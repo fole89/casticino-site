@@ -737,27 +737,26 @@ def link():
                 body)
 
 
-WP = "https://casticino.ch/wp-content/uploads/"
+DOC = "docs/"  # PDF della sezione, in sottocartelle per tema (nomi in minuscolo, con trattini)
 DOCS = [
-    ("Scale di difficoltà", [("Arrampicata sportiva", WP + "2021/08/scala_di_diffficolta_arrampicata_sportiva-1.pdf"),
-                             ("Alpinismo", WP + "2021/08/scala_di_difficolta_alpinistiche-1.pdf"),
-                             ("Arrampicata artificiale", WP + "2021/08/scala_di_difficolta_arrampicata_artificiale-1.pdf"),
-                             ("Escursionismo e trekking", WP + "2021/08/scala_di_difficolta_escursionismo_trekking-1.pdf"),
-                             ("Racchette", WP + "2021/08/scala_di_difficolta_racchette_ciaspole-1.pdf"),
-                             ("Sci alpinismo", WP + "2021/08/scala_di_difficolta_sci_alpinismo-1.pdf"),
-                             ("Vie ferrate", WP + "2021/08/scala_di_difficolta_vie_ferrate-1.pdf")]),
-    ("Promemoria", [("Meteo", WP + "2021/08/promemoria_meteo.pdf"),
-                    ("Orientamento", WP + "2021/08/promemoria_orientamento.pdf"),
-                    ("Scalata su ghiaccio", WP + "2021/08/promemoria_scalata_su_ghiaccio.pdf"),
-                    ("Tecnica alpina", WP + "2021/08/promemoria_tecnica_alpina.pdf"),
-                    ("Incidente valanga e ARVA", WP + "2021/08/promemoria_incidente_valanga_e_ARVA.pdf"),
-                    ("Promemoria capigita", WP + "2024/04/Procedura-attivita-e-gite-CasTicino.pdf"),
-                    ("Manuale caricamento foto delle gite", WP + "2024/04/MANUALE-FORM-CARICAMENTO-IMMAGINI.pdf")]),
-    ("Materiale e pianificazione", [("Lista noleggio materiale", WP + "2024/03/Lista-materiele-magazzino-CAS-Ticino_v2-1.pdf"),
-                                    ("Formulario pianificazione gite estive", WP + "2021/08/formulario_pianificazione_gite_estivo.pdf"),
-                                    ("Cartine CH 1:25 000", WP + "2021/08/carte_nazionali_CH_25000.pdf"),
-                                    ("Cartine CH 1:50 000", WP + "2021/08/carte_nazionali_CH-50000.pdf"),
-                                    ("Cartine CH 1:50 000 sci", WP + "2021/08/carte_nazionali_CH_50000_Sci_esc.pdf")]),
+    ("Scale di difficoltà", [("Arrampicata sportiva", DOC + "scale-difficolta/arrampicata-sportiva.pdf"),
+                             ("Alpinismo", DOC + "scale-difficolta/alpinismo.pdf"),
+                             ("Arrampicata artificiale", DOC + "scale-difficolta/arrampicata-artificiale.pdf"),
+                             ("Escursionismo e trekking", DOC + "scale-difficolta/escursionismo-trekking.pdf"),
+                             ("Racchette", DOC + "scale-difficolta/racchette.pdf"),
+                             ("Sci alpinismo", DOC + "scale-difficolta/sci-alpinismo.pdf"),
+                             ("Vie ferrate", DOC + "scale-difficolta/vie-ferrate.pdf")]),
+    ("Promemoria", [("Meteo", DOC + "promemoria/meteo.pdf"),
+                    ("Orientamento", DOC + "promemoria/orientamento.pdf"),
+                    ("Scalata su ghiaccio", DOC + "promemoria/scalata-su-ghiaccio.pdf"),
+                    ("Tecnica alpina", DOC + "promemoria/tecnica-alpina.pdf"),
+                    ("Incidente valanga e ARVA", DOC + "promemoria/incidente-valanga-arva.pdf"),
+                    ("Promemoria capigita", DOC + "promemoria/capigita.pdf")]),
+    ("Materiale e pianificazione", [("Lista noleggio materiale", DOC + "noleggio/lista-materiale.pdf"),
+                                    ("Formulario pianificazione gite estive", DOC + "moduli/pianificazione-gite-estive.pdf"),
+                                    ("Cartine CH 1:25 000", DOC + "cartine/carte-nazionali-25000.pdf"),
+                                    ("Cartine CH 1:50 000", DOC + "cartine/carte-nazionali-50000.pdf"),
+                                    ("Cartine CH 1:50 000 sci", DOC + "cartine/carte-nazionali-50000-sci.pdf")]),
 ]
 
 
@@ -990,7 +989,7 @@ CORSI = [
      [("Struttura", "Tre fine settimana più una giornata di prova per valutare forma e tecnica. Sabato istruzione, domenica applicazione con salita in vetta."),
       ("Requisiti", "Sciare bene su piste nere e reggere 4-5 ore di salita con 1200 m di dislivello. Età minima 16 anni; presenza obbligatoria a tutte le uscite."),
       ("Partecipanti", "Al massimo 30, con precedenza ai principianti e in ordine d’iscrizione. ARTVA, pala e sonda prestati gratuitamente su richiesta."),
-      ("Programma", f'<a href="{WP}2026/09/CORSO-BASE-SCIALPINISMO-2027.pdf">Programma 2027 (PDF)</a>')]),
+      ("Programma", f'<a href="{DOC}corsi/sci-alpinismo-base-2027.pdf">Programma 2027 (PDF)</a>')]),
     ("Inverno", "Racchette", "corso-racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole",
      "Introduzione all’escursionismo con le racchette, tra teoria e pratica: riconoscere i segnali di pericolo, valutare il rischio valanghe e il terreno, pianificare con gli strumenti disponibili, ricerca dei sepolti e primo soccorso.",
      GITE,
@@ -1064,7 +1063,7 @@ def noleggio():
 <div class="detail-intro split-intro">
 <h2 id="cosa-h" class="h2">Dall’arrampicata<br>al bouldering</h2>
 <p>Alpinismo, mountain bike, cascate di ghiaccio, sci alpinismo, arrampicata, racchette, escursionismo e bouldering. L’elenco completo con i prezzi giornalieri è nella lista del magazzino.</p>
-<div><a class="btn btn--primary" href="{WP}2024/03/Lista-materiele-magazzino-CAS-Ticino_v2-1.pdf">Lista materiale (PDF) <span class="arrow" aria-hidden="true">→</span></a></div>
+<div><a class="btn btn--primary" href="{DOC}noleggio/lista-materiale.pdf">Lista materiale (PDF) <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
 <div data-reveal>
 {facts(rows)}

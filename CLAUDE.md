@@ -44,7 +44,7 @@ Every page is still a top-level static `*.html` file served as-is, but the HTML 
 Don't hand-edit `data/foto.json` for lasting changes — edit `data/foto-overrides.json` instead.
 
 ## Known pending work (from README)
-- PDFs in Documenti, Corsi and Noleggio still link to `casticino.ch/wp-content/…`; they must be moved into a `docs/` folder in the repo and links updated before the domain switch.
+- PDFs live in `docs/<tema>/` (`scale-difficolta`, `promemoria`, `cartine`, `moduli`, `corsi`, `noleggio`) with lowercase hyphenated Italian names, no accents or version suffixes, year only when the document is year-specific (e.g. `corsi/sci-alpinismo-base-2027.pdf`); they are linked from `pages.py` as `DOC + "<tema>/<file>.pdf"`. Replacing a document keeps its name so links stay valid; never link to `casticino.ch/wp-content/…`, which disappears at the domain switch.
 - Placeholders still to fill (hut/HQ photos, committee photos, Statuto, Organigramma, Annuario, etc.).
 - News is static: adding an item means editing `news()` **and** the «Dalla sezione» block of `home()` in `scripts/redesign/pages.py`, then regenerating.
 - DNS: only the site records move to GitHub; MX/TXT mail records and hut subdomains (e.g. `capannacristallina.casticino.ch`) must not be touched.
