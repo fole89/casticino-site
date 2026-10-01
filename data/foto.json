@@ -1,4 +1,47 @@
 {
-  "updated": "2026-10-01T07:08:39+00:00",
-  "albums": []
+  "updated": "2026-10-01T06:36:36+00:00",
+  "albums": [
+    {
+      "id": "2026-09-24-valsolda-bassa-500-m---italia",
+      "date": "2026-09-24",
+      "title": "Valsolda Bassa 500 m",
+      "place": "Italia",
+      "text": "In 12, dopo il viaggio in corriera da Lugano a San Mamete, abbiamo iniziato la salita verso Castello. Dopo la perlustrazione di questo bel borgo abbiamo raggiunto Puria, dove abbiamo fatto la pausa pranzo. Nel pomeriggio siamo scesi verso Loggio per poi raggiungere San Mamete. La corriera ci ha poi riportati a Lugano.",
+      "link": "",
+      "photos": [
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-09-24-valsolda-bassa-500-m---italia/thumbnails/photo-2026-09-25-11-34-48-1-m-2-5688.jpg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-09-24-valsolda-bassa-500-m---italia/mysize/photo-2026-09-25-11-34-48-1-m-2-5688.jpg"
+        }
+      ]
+    },
+    {
+      "id": "2026-09-19-galivaggio-spigolo-paletta---italia",
+      "date": "2026-09-19",
+      "title": "Galivaggio (Spigolo Paletta)",
+      "place": "Italia",
+      "text": "Weekend di arrampicate «plaisir» a Chiavenna con avvicinamenti da 5 minuti, per la gioia di tutti.\nSabato, giunti a Chiavenna, dopo il doveroso «caffè e briochina» per resettare le 2 ore di trasferta, ci siamo diretti alla meta del giorno, ovvero lo «Spigolo della Paletta», una via di 10 tiri famosa nella zona.\nGiunti all’attacco della via, sono risuonate le ultime parole famose pronunciate al parcheggio dal capogita: «Ma par che ghé in gir nisun». Davanti a noi, ahinoi, diverse cordate erano già impegnate sulla via, il mantra del sabato è presto diventato: «Ma sì, tant ghem mia présa» (cit.).\nLa giornata è quindi volata in maniera tranquilla tra tiri di corda, pause obbligate e aiutini psicologici alla cordata «tappo» davanti a noi.\nTerminata la via e rientrati a Chiavenna, ci siamo concessi un meritato aperitivo e una cena sostanziosa al grotto a colpi di sciatt, bresaola, pizzoccheri e gnocchi.\nDomenica invece abbiamo scalato presso la falesia «Sasso del Drago», un settore che offre numerose vie medio alte per tutti i gusti. Immancabile tappa gelato a Chiavenna e poi rientro in Ticino.\nGrazie a tutti i partecipanti per l’ottima compagnia.",
+      "link": "",
+      "photos": [
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-09-19-galivaggio-spigolo-paletta---italia/thumbnails/2026-09-20-17-11-44-3cf6f054-30e6-4ae9-978a-653093f919de-3007.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-09-19-galivaggio-spigolo-paletta---italia/mysize/2026-09-20-17-11-44-3cf6f054-30e6-4ae9-978a-653093f919de-3007.jpeg"
+        }
+      ]
+    },
+    {
+      "id": "2026-09-05-gross-diamantstock-ostgrat-3161-m---ur",
+      "date": "2026-09-05",
+      "title": "Gross Diamantstock Ostgrat 3161 m",
+      "place": "UR",
+      "text": "",
+      "link": "",
+      "photos": [
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-09-05-gross-diamantstock-ostgrat-3161-m---ur/thumbnails/003-4915.jpg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-09-05-gross-diamantstock-ostgrat-3161-m---ur/mysize/003-4915.jpg"
+        }
+      ]
+    }
+  ]
 }

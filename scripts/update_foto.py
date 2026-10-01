@@ -99,7 +99,8 @@ def listdir(ftp, path):
     """Nomi (non percorsi) contenuti in una cartella; [] se non esiste."""
     try:
         names = ftp.nlst(path)
-    except (ftplib.error_perm, ftplib.error_temp):  # alcuni server rispondono 450 invece di 550
+    except (ftplib.error_perm, ftplib.error_temp) as e:  # alcuni server rispondono 450 invece di 550
+        print(f"  {path}: {e}", file=sys.stderr)
         return []
     return sorted({posixpath.basename(n.rstrip("/")) for n in names} - {".", ".."})
 
@@ -113,6 +114,7 @@ def collect(ftp, today=None):
             if info:
                 folders.append((info["date"], str(year), name, info))
     folders.sort(key=lambda t: (t[0], t[2]), reverse=True)
+    print(f"{len(folders)} cartelle di gite trovate in {FTP_BASE}.")
 
     albums = []
     for _, year, name, info in folders:
@@ -120,7 +122,9 @@ def collect(ftp, today=None):
             break
         files = [f for f in listdir(ftp, f"{FTP_BASE}/{year}/{name}/thumbnails") if IMAGE_RE.search(f)]
         if not files:
-            continue  # cartella ancora vuota o senza miniature: la riprendiamo al prossimo giro
+            # cartella ancora vuota o senza miniature: la riprendiamo al prossimo giro
+            print(f"  {name}: nessuna miniatura; contenuto: {listdir(ftp, f'{FTP_BASE}/{year}/{name}')[:10]}")
+            continue
         base = f"{PUBLIC_BASE}/{year}/{name}"
         albums.append({
             "id": name,
@@ -186,6 +190,8 @@ def main():
             ftp.quit()
         except Exception:
             ftp.close()
+    if not albums:
+        sys.exit("Nessuna gita con foto trovata: foto.json non modificato.")
     albums = merge(albums, fetch_droptour(albums), load_overrides())
     write_if_changed(albums)
 
