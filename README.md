@@ -117,5 +117,5 @@ La pagina Foto va aperta tramite un server, anche quello locale qui sopra. Apert
 ## 4. Da completare prima di andare online
 
 - Segnaposto da riempire: foto della sede, foto profilo dei dicasteri e di due membri del comitato (Geoffroy Jolly, Flavia Spinelli: oggi mostrano le iniziali), alcuni PDF dei corsi, l'ispettore della Capanna Motterascio.
-- **News**: le notizie sono in `data/news.json` (importate una volta dal vecchio sito con `scripts/import_news.py`). Per aggiungerne una si inserisce una voce in cima al file e si rigenerano le pagine: compare in `News.html`, nella sua pagina `news/<nome>.html` e, se è tra le ultime 3, in home.
+- **News**: le notizie sono in `data/news.json` (importate una volta dal vecchio sito con `scripts/import_news.py`). Per aggiungerne una si inserisce una voce in cima al file e si rigenerano le pagine: compare in `News.html`, nella sua pagina `news/<anno>/<AAAA-MM-GG>-<titolo-breve>.html` e, se è tra le ultime 3, in home.
 - **Annuari e Informazione**: si mette il PDF in `docs/annuari/annuario-<anno>.pdf` o `docs/informazione/informazione-<anno>-<mese>.pdf`, si lancia `python scripts/copertine.py` (crea la copertina) e si rigenerano le pagine.

@@ -931,8 +931,9 @@ def news_article(i):
 </div>
 </div>
 </section>"""
+    su = "../" * n["file"].count("/")  # news/<anno>/… : due livelli sotto la radice
     return in_sottocartella(page(n["file"], f"{esc(n['title'])} | CAS Ticino", esc(n["excerpt"][:155]), body,
-                                 og=og_name(n), section="News"))
+                                 og=og_name(n), section="News"), su=su)
 
 
 def foto():

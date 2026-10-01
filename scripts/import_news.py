@@ -5,7 +5,7 @@ Scrive:
   assets/img/news/*.webp    immagine principale e immagini nel testo, convertite in WebP (max 1400 px)
   docs/news/*.pdf           PDF allegati, scaricati dal vecchio sito
 
-Le pagine (News.html e news/<slug>.html) le genera poi scripts/redesign/pages.py leggendo data/news.json.
+Le pagine (News.html e news/<anno>/<AAAA-MM-GG>-<titolo-breve>.html) le genera poi scripts/redesign/pages.py leggendo data/news.json.
 Serve Pillow solo per questo script:  pip install pillow
 Uso: python scripts/import_news.py
 """
@@ -34,6 +34,35 @@ def get(url):
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (import news CAS Ticino)"})
     with urllib.request.urlopen(req, timeout=60) as r:
         return r.read()
+
+
+GIORNI_MESI = set("""lun mar mer gio ven sab dom lunedi martedi mercoledi giovedi venerdi sabato domenica ma
+gen feb mag giu lug ago set ott nov dic gennaio febbraio marzo aprile maggio giugno luglio agosto settembre
+ottobre novembre dicembre apr ore alle h""".split())
+PAROLE_VUOTE = set("""il lo la i gli le l un una uno di del dello della dei degli delle d a al allo alla ai agli alle
+da dal dallo dalla dai dagli dalle in nel nello nella nei negli nelle su sul sullo sulla sui sugli sulle con per tra fra
+e ed o vs""".split())
+
+
+def nome_breve(slug, titolo, maxlen=40):
+    """Titolo breve per il nome del file: senza giorni e date iniziali, senza articoli e preposizioni."""
+    def pulisci(t):
+        t = unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode().lower()
+        return [p for p in re.split(r"[^a-z0-9]+", t) if p]
+    parole = pulisci(slug)
+    if not parole or all(p.isdigit() for p in parole):
+        parole = pulisci(titolo)
+    parole = [p for p in parole if p != "copy"]  # duplicati di WordPress
+    while parole and (parole[0] in GIORNI_MESI or parole[0] in PAROLE_VUOTE or parole[0].isdigit()):
+        parole.pop(0)
+    parole = [p for p in parole if p not in PAROLE_VUOTE] or pulisci(titolo)[:3]
+    out = ""
+    for p in parole:
+        prova = f"{out}-{p}" if out else p
+        if len(prova) > maxlen:
+            break
+        out = prova
+    return out or parole[0][:maxlen]
 
 
 def slugify(text, maxlen=70):
@@ -224,13 +253,15 @@ def main():
 
     slugs, link_post = set(), {}
     for p in posts:
-        s = slugify(p["slug"] or p["title"]["rendered"])
-        base, n = s, 2
+        # nome del file: data + titolo breve, in una cartella per anno (news/2026/2026-09-30-film-trail-locarno.html)
+        data = p["date"][:10]
+        breve = nome_breve(p["slug"] or "", html.unescape(p["title"]["rendered"]))
+        s, n = f"{data}-{breve}", 2
         while s in slugs:
-            s, n = f"{base}-{n}", n + 1
+            s, n = f"{data}-{breve}-{n}", n + 1
         slugs.add(s)
         p["_slug"] = s
-        link_post[p["id"]] = f"news/{s}.html"
+        link_post[p["id"]] = f"news/{data[:4]}/{s}.html"
 
     out = []
     for p in posts:
@@ -249,7 +280,7 @@ def main():
         pul.feed(p["content"]["rendered"])
         corpo = pul.risultato()
         out.append({
-            "id": p["id"], "slug": s, "file": f"news/{s}.html",
+            "id": p["id"], "slug": s, "file": link_post[p["id"]],
             "title": html.unescape(p["title"]["rendered"]).strip(),
             "date": p["date"][:10], "category": cat,
             "excerpt": estratto(p, corpo), "image": img, "html": corpo,
