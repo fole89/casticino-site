@@ -21,12 +21,17 @@
     Array.prototype.forEach.call(els, function (el) { el.classList.add('is-in'); });
     return;
   }
+  // Quello che è già nello schermo resta visibile; solo il resto aspetta lo scorrimento.
+  // La classe che nasconde la mette questo script: se non gira (o è una versione vecchia in cache) si vede tutto.
+  var h = window.innerHeight;
+  Array.prototype.forEach.call(els, function (el) { if (el.getBoundingClientRect().top < h) el.classList.add('is-in'); });
+  document.documentElement.classList.add('reveal-on');
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
     });
   }, { rootMargin: '0px 0px -8% 0px' });
-  Array.prototype.forEach.call(els, function (el) { io.observe(el); });
+  Array.prototype.forEach.call(els, function (el) { if (!el.classList.contains('is-in')) io.observe(el); });
 })();
 
 // CAS Ticino - titoloni: se una parola lunga non sta nello schermo, riduce il corpo finché entra

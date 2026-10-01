@@ -3,7 +3,7 @@
 Uso: python scripts/redesign/pages.py [Pagina.html ...]  (senza argomenti rigenera tutto)"""
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from shared import head, nav, footer, pic, img, GITE, page_hero, subnav
+from shared import head, nav, footer, pic, img, GITE, page_hero, subnav, asset
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -819,7 +819,7 @@ def foto():
 </section>"""
     return page("Foto.html", "Foto delle gite | CAS Ticino",
                 "Le foto delle ultime gite della Sezione Ticino del Club Alpino Svizzero, con i resoconti dei capigita.",
-                body, og="attivita-gite-2x1", scripts='<script src="assets/foto.js" defer></script>\n')
+                body, og="attivita-gite-2x1", scripts=f'<script src="{asset("assets/foto.js")}" defer></script>\n')
 
 
 def adesione():

@@ -1,4 +1,13 @@
 """Parti comuni del nuovo design (intestazione, footer). Genera HTML statico."""
+import hashlib, os
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
+def asset(path):
+    """Percorso con impronta del contenuto (?v=…), così il browser non usa una copia vecchia in cache."""
+    with open(os.path.join(ROOT, path), "rb") as f:
+        return f"{path}?v={hashlib.md5(f.read()).hexdigest()[:8]}"
 
 GITE = "https://ssl.dropnet.ch/casticino/gite/index.php"
 
@@ -37,7 +46,7 @@ def head(title, description, extra=""):
 <meta name="theme-color" content="#0F1412" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/logo-cas.webp">
 <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="{asset("assets/site.css")}">
 <script>document.documentElement.classList.add('js')</script>
 {extra}</head>"""
 
@@ -111,7 +120,7 @@ def footer():
 <div class="footer-bottom"><span>© 2026 CAS Ticino</span><span>Club Alpino Svizzero, Sezione Ticino</span></div>
 </div>
 </footer>
-<script src="assets/site.js" defer></script>
+<script src="{asset("assets/site.js")}" defer></script>
 </body>
 </html>
 """

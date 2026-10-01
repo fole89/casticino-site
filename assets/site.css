@@ -459,8 +459,8 @@ a.sponsor:hover{transform:translateY(-2px)}
 
 /* ------------------------------------------------------------------ comparsa allo scorrimento */
 @media (prefers-reduced-motion:no-preference){
-  .js [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-  .js [data-reveal].is-in{opacity:1;transform:none}
+  .reveal-on [data-reveal]{opacity:0;transform:translateY(18px)}
+  .reveal-on [data-reveal].is-in{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
