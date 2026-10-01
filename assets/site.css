@@ -638,6 +638,8 @@ dl,dd{margin:0}
 .sponsor--white img{mix-blend-mode:multiply}
 a.sponsor:hover{transform:translateY(-2px)}
 .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.footer-bottom a{color:var(--muted)}
+.footer-bottom a:hover{color:var(--accent)}
 @media (max-width:900px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-brand{grid-column:1/-1}}
 @media (max-width:480px){.footer-grid{grid-template-columns:1fr}}
 

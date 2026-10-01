@@ -55,13 +55,13 @@ T = {
                lingua="Deutsch", percorso="Percorso", seguici="Seguici", sostegno="Con il sostegno di",
                indirizzo="Club Alpino Svizzero, Sezione Ticino<br>Casella postale 112, 6998 Monteggio 2<br>Sede: Canvetto Luganese, Molino Nuovo",
                sezione="Club Alpino Svizzero, Sezione Ticino", su_instagram="CAS Ticino su Instagram", su_facebook="CAS Ticino su Facebook",
-               locale="it_CH"),
+               redazione="Area redazione", locale="it_CH"),
     "de": dict(skip="Zum Inhalt", nav="Hauptnavigation", menu_apri="Menü öffnen", menu_chiudi="Menü schliessen", menu="Menü",
                logo_sotto="Schweizer Alpen-Club", cerca="Suche (italienisch)", gite="Tourenprogramm",
                lingua="Italiano", percorso="Pfad", seguici="Folgen Sie uns", sostegno="Mit Unterstützung von",
                indirizzo="Schweizer Alpen-Club SAC, Sektion Ticino<br>Postfach 112, 6998 Monteggio 2<br>Sitz: Canvetto Luganese, Molino Nuovo",
                sezione="Schweizer Alpen-Club SAC, Sektion Ticino", su_instagram="CAS Ticino auf Instagram", su_facebook="CAS Ticino auf Facebook",
-               locale="de_CH"),
+               redazione="Redaktion", locale="de_CH"),
 }
 
 
@@ -193,7 +193,7 @@ def footer():
 {cols}
 </div>
 {SPONSORS.replace("{sostegno}", t('sostegno'))}
-<div class="footer-bottom"><span>© 2026 CAS Ticino</span><span>{t('sezione')}</span><span>webmaster - michele.foletti</span></div>
+<div class="footer-bottom"><span>© 2026 CAS Ticino</span><span>{t('sezione')}</span><a href="admin/">{t('redazione')}</a></div>
 </div>
 </footer>
 <script src="{asset("assets/site.js")}" defer></script>
