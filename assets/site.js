@@ -1,7 +1,7 @@
 // CAS Ticino - menu fisso: classe .scrolled appena la pagina non è più in cima.
 // Un elemento sentinella osservato con IntersectionObserver evita di ascoltare ogni evento di scroll.
 (function () {
-  var nav = document.querySelector('nav[aria-label="Principale"]');
+  var nav = document.querySelector('.site-nav nav');
   if (!nav || !('IntersectionObserver' in window)) return;
   var bar = nav.closest('.site-nav') || nav;
   var sentinel = document.createElement('div');
@@ -55,8 +55,8 @@
 
 // CAS Ticino - menu mobile (costruito a partire dal menu desktop)
 (function () {
-  var btn = document.querySelector('button[aria-label="Apri menu"]');
-  var nav = document.querySelector('nav[aria-label="Principale"]');
+  var btn = document.querySelector('.menu-toggle');
+  var nav = document.querySelector('.site-nav nav');
   if (!btn || !nav) return;
 
   var panel = document.createElement('div');
@@ -65,7 +65,7 @@
   panel.hidden = true;
   panel.setAttribute('role', 'dialog');
   panel.setAttribute('aria-modal', 'true');
-  panel.setAttribute('aria-label', 'Menu');
+  panel.setAttribute('aria-label', btn.getAttribute('data-titolo') || 'Menu');
 
   var top = document.createElement('div');
   top.className = 'mnav-top';
@@ -73,7 +73,7 @@
   var close = document.createElement('button');
   close.type = 'button';
   close.className = 'mnav-close';
-  close.setAttribute('aria-label', 'Chiudi menu');
+  close.setAttribute('aria-label', btn.getAttribute('data-chiudi') || 'Chiudi menu');
   close.textContent = '×';
   top.appendChild(brand);
   top.appendChild(close);
