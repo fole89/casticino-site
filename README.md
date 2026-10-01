@@ -94,11 +94,9 @@ La pagina Foto va aperta tramite un server, anche quello locale qui sopra. Apert
 
 ### Titoli e testi
 
-- **Di default** titolo e luogo vengono dal nome della cartella: `valsolda-bassa-500-m---italia` diventa «Valsolda Bassa 500 m», «Italia». Le sigle dei cantoni (`ur`, `ti`, …) diventano maiuscole.
-- **Per correggere** un titolo o aggiungere il racconto della gita, modifica `data/foto-overrides.json`. Usa come chiave il nome della cartella e come campi `title`, `place`, `text`, `link`. Le correzioni vincono sempre.
-- **Da fare:** collegare l'API XML di Droptour nella funzione `fetch_droptour()` dello script, così titoli e testi arrivano da soli.
-
-> **Nota:** il `data/foto.json` incluso è un esempio con tre gite e una sola foto ciascuna. Il primo avvio del workflow lo sostituisce con i dati veri.
+- **Di default** titolo, luogo, resoconto e link alla scheda della gita arrivano dalla galleria pubblica di Droptour (`https://ssl.dropnet.ch/casticino/gite/index.php?page=galery_overview`, senza login). L'abbinamento con la cartella delle foto avviene tramite l'indirizzo delle foto. Basta quindi scrivere il resoconto su Droptour: il giorno dopo compare sul sito.
+- **Se la galleria non è raggiungibile** titolo e luogo vengono dal nome della cartella: `valsolda-bassa-500-m---italia` diventa «Valsolda Bassa 500 m», «Italia». Le sigle dei cantoni (`ur`, `ti`, …) diventano maiuscole.
+- **Per correggere** un titolo o un testo solo sul sito, modifica `data/foto-overrides.json`. Usa come chiave il nome della cartella e come campi `title`, `place`, `text`, `link`. Le correzioni vincono sempre, anche su Droptour, quindi usale solo quando serve davvero.
 
 ## 4. Da completare prima di andare online
 

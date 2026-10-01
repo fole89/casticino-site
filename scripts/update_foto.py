@@ -11,25 +11,28 @@ Le immagini NON vengono copiate: restano su ssl.dropnet.ch.
 
 Titolo, luogo e testo:
   1. data/foto-overrides.json  (correzioni manuali, chiave = nome cartella)  ← vince sempre
-  2. API Droptour              (TODO: da collegare, vedi fetch_droptour())
+  2. galleria pubblica Droptour (titolo esatto, resoconto e link alla scheda; vedi fetch_droptour())
   3. nome della cartella       (fallback: "valsolda-bassa-500-m---italia" → "Valsolda Bassa 500 m", "Italia")
 
 Variabili d'ambiente (in GitHub: Settings › Secrets and variables › Actions):
   FTP_HOST       obbligatoria   es. ftp.dropnet.ch
   FTP_USER       obbligatoria
   FTP_PASSWORD   obbligatoria
-  FTP_BASE       percorso FTP della cartella delle gite   (default: /casticino/dropbox/photo/gite)
+  FTP_BASE       percorso FTP della cartella delle gite   (default:     /casticino/dropbox/photo/gite)
   FTP_TLS        "1" per FTPS esplicito, "0" per FTP semplice (default: 1)
   PUBLIC_BASE    URL pubblico corrispondente a FTP_BASE   (default: https://ssl.dropnet.ch/casticino/dropbox/photo/gite)
   MAX_ALBUMS     quante gite tenere                      (default: 15)
+  GALLERY_URL    galleria pubblica Droptour con i resoconti (default: https://ssl.dropnet.ch/casticino/gite/index.php?page=galery_overview)
 """
 import datetime as dt
 import ftplib
+import html
 import json
 import os
 import posixpath
 import re
 import sys
+import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "foto.json")
@@ -38,6 +41,8 @@ OVERRIDES = os.path.join(ROOT, "data", "foto-overrides.json")
 FTP_BASE = os.environ.get("FTP_BASE", "/casticino/dropbox/photo/gite").rstrip("/")
 PUBLIC_BASE = os.environ.get("PUBLIC_BASE", "https://ssl.dropnet.ch/casticino/dropbox/photo/gite").rstrip("/")
 MAX_ALBUMS = int(os.environ.get("MAX_ALBUMS", "15"))
+GALLERY_URL = os.environ.get("GALLERY_URL", "https://ssl.dropnet.ch/casticino/gite/index.php?page=galery_overview")
+DETAIL_URL = "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer={nr}"
 
 FOLDER_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})-(.+)$")
 IMAGE_RE = re.compile(r"\.(jpe?g|png|webp|gif)$", re.I)
@@ -136,13 +141,46 @@ def collect(ftp, today=None):
 
 
 # ------------------------------------------------------------------ testi
+def html_to_text(s):
+    s = re.sub(r"(?i)<br\s*/?>|</p\s*>", "\n", s)
+    s = html.unescape(re.sub(r"<[^>]+>", "", s)).replace("\xa0", " ")
+    lines = (" ".join(line.split()) for line in s.split("\n"))
+    return "\n".join(line for line in lines if line)
+
+
 def fetch_droptour(albums):
     """
-    TODO: collegare l'API XML di Droptour per avere titolo esatto, testo del resoconto e link alla gita.
-    Deve restituire {id_cartella: {"title": ..., "place": ..., "text": ..., "link": ...}}.
-    Abbinamento suggerito: stessa data e titolo simile al nome della cartella.
+    Titolo esatto, resoconto e link alla scheda dalla galleria pubblica di Droptour (nessun login).
+    Ogni gita è un blocco  <div id="dropapp-tours-galery-<numero>">  che contiene l'indirizzo
+    .../<anno>/<cartella>/mysize/ (usato per l'abbinamento), il titolo «Titolo - Luogo» nell'ultimo <h2>
+    e il resoconto in  <div id="droptours-description-<numero>">.
+    Restituisce {id_cartella: {"title": ..., "place": ..., "text": ..., "link": ...}}.
     """
-    return {}
+    try:
+        with urllib.request.urlopen(GALLERY_URL, timeout=60) as r:
+            page = r.read().decode("utf-8", "replace")
+    except Exception as e:  # senza resoconti si pubblicano comunque le foto
+        print(f"Galleria Droptour non raggiungibile ({e}): uso i titoli delle cartelle.", file=sys.stderr)
+        return {}
+
+    wanted = {a["id"] for a in albums}
+    out = {}
+    parts = re.split(r'<div id="dropapp-tours-galery-(\d+)"', page)[1:]
+    for nr, block in zip(parts[::2], parts[1::2]):
+        m = re.search(r"/\d{4}/([^/'\"]+)/mysize/", block)
+        if not m or m.group(1) not in wanted:
+            continue
+        info = {"link": DETAIL_URL.format(nr=nr)}
+        h2 = re.findall(r"<h2[^>]*>(.*?)</h2>", block, re.S)
+        if h2:
+            title, _, place = html_to_text(h2[-1]).rpartition(" - ")
+            info["title"], info["place"] = (title.strip(), place.strip()) if title else (place.strip(), "")
+        d = re.search(r'id="droptours-description-\d+"[^>]*>(.*?)<div id="dropapp-photo-carpet-', block, re.S)
+        if d:
+            info["text"] = html_to_text(re.sub(r"</div>\s*</div>\s*$", "", d.group(1)))
+        out[m.group(1)] = info
+    print(f"Resoconti Droptour: {len(out)} gite su {len(albums)} abbinate, {sum(1 for v in out.values() if v.get('text'))} con testo.")
+    return out
 
 
 def load_overrides():
