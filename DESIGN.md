@@ -2,20 +2,15 @@
 name: CAS Ticino
 description: Sito della Sezione Ticino del Club Alpino Svizzero, sistema grafico del redesign (assets/site.css).
 colors:
-  neve: "#F2F3F0"
-  granito-chiaro: "#E6E9E5"
-  granito: "#D9DED9"
+  neve: "#FFFFFF"
+  granito-chiaro: "#F0F2F0"
+  granito: "#E2E6E2"
   ardesia: "#121816"
   ardesia-2: "#36403C"
   lichene: "#5B6661"
-  rosso-cas: "#C8352B"
-  rosso-cas-deep: "#A92B22"
+  rosso-cas: "#EF1C24"
+  rosso-cas-deep: "#C9141B"
   bianco-su-foto: "#F4F5F2"
-  notte-bg: "#0F1412"
-  notte-surface: "#171D1B"
-  notte-surface-2: "#202825"
-  notte-ink: "#E8ECE8"
-  notte-rosso: "#E0584C"
 typography:
   display:
     fontFamily: "Geist, system-ui, -apple-system, 'Segoe UI', sans-serif"
@@ -111,7 +106,7 @@ components:
 
 The site reads like the logbook kept in a mountain hut: plain, exact, written by people who have been there. Real numbers carry the authority (altitudes, walking times, beds, founding years), set in a sharp grotesque and a monospaced figure face. The mountain itself speaks through real photography of the huts, courses and trips; the interface around it stays cold and mineral, snow, granite and slate, so the photos and the CAS red are the only warm things on the page.
 
-Density is generous and editorial: big display headings set tight, wide sections, a 12-column feel inside a 1320px container. Every corner is square. The light theme is the default; a dark theme follows `prefers-color-scheme` with the same roles.
+Density is generous and editorial: big display headings set tight, wide sections, a 12-column feel inside a 1320px container. Every corner is square. The site is always light, on a white page, whatever the device theme: the section confirmed it prefers a bright site (reference: caslocarno.ch).
 
 The system is moving towards two decisions confirmed by the section that the current pages express only in part: **the CAS red may be more present** than a rare signpost, and **components should feel solid and tactile**, with real weight and depth on interactive elements rather than the current mostly-flat surfaces. New work should push in that direction; refinements of existing pages should bring them closer to it.
 
@@ -121,20 +116,20 @@ The system is moving towards two decisions confirmed by the section that the cur
 - Geist for everything readable, Geist Mono for data: altitudes, years, times, counts.
 - Real photography only, under dark gradient scrims when text sits on it.
 - Solid, tactile interactive elements; depth earned by state and by photos.
-- Light by default, automatic dark mode with matched roles.
+- Always light: white page, pale granite bands, no dark theme.
 
 ## Colors
 
 A cold, desaturated mountain-stone palette carrying a single saturated red.
 
 ### Primary
-- **Rosso CAS** (#C8352B; dark mode #E0584C): the club's voice. Primary buttons, the current page in navigation, years in timelines, news dates, hut status, the accent word in hero headlines, text selection, focus rings. It may also take larger areas (bands, blocks, full-bleed accents) when a section needs emphasis.
-- **Rosso CAS profondo** (#A92B22): hover and pressed state of red surfaces.
+- **Rosso CAS** (#EF1C24): the club's voice. Primary buttons, the current page in navigation, years in timelines, news dates, hut status, the accent word in hero headlines, text selection, focus rings. It may also take larger areas (bands, blocks, full-bleed accents) when a section needs emphasis.
+- **Rosso CAS profondo** (#C9141B): hover and pressed state of red surfaces.
 
 ### Neutral
-- **Neve** (#F2F3F0): page background.
-- **Granito chiaro** (#E6E9E5): alternate section background, footer, callouts, contact blocks, dropdown hover.
-- **Granito** (#D9DED9): image placeholders behind photos, deeper surfaces.
+- **Neve** (#FFFFFF): page background.
+- **Granito chiaro** (#F0F2F0): alternate section background, footer, callouts, contact blocks, dropdown hover.
+- **Granito** (#E2E6E2): image placeholders behind photos, deeper surfaces.
 - **Ardesia** (#121816): headings and primary text; also the solid base of photo bands.
 - **Ardesia 2** (#36403C): body copy in leads, cards and nav links.
 - **Lichene** (#5B6661): labels, metadata, captions, breadcrumbs.
@@ -179,7 +174,7 @@ Breakpoints are content-driven: 1080px (desktop nav collapses to the menu button
 Depth comes from three sources: photographs with dark scrims, tonal layering between neve and granite surfaces, and one shadow (`0 22px 44px -24px rgba(18,30,26,.45)`) used today for dropdown menus and, softer, for the nav once scrolled. Following the confirmed "solid and tactile" direction, interactive cards and buttons may gain real weight: a pressed state (already `translateY(1px) scale(.985)` on buttons), lift and shadow on hover for cards, firmer borders. Static text blocks stay flat.
 
 ### Shadow Vocabulary
-- **Rilievo** (`box-shadow: 0 22px 44px -24px rgba(18,30,26,.45)`; dark mode `rgba(0,0,0,.7)`): floating layers (dropdowns) and hovered interactive cards.
+- **Rilievo** (`box-shadow: 0 22px 44px -24px rgba(18,30,26,.45)`): floating layers (dropdowns) and hovered interactive cards.
 - **Nav scrolled** (`box-shadow: 0 10px 30px -22px rgba(18,24,22,.5)`): the fixed nav after scrolling.
 
 ### Named Rules
@@ -207,7 +202,7 @@ Square corners everywhere (0px radius): buttons, cards, images, inputs, tiles, m
 - **Callout / contact:** granite-chiaro block, generous fluid padding, no border.
 
 ### Navigation
-- Fixed top bar, 72px, translucent neve with blur; gains a hairline and soft shadow once scrolled. Crest in a pale tile, "CAS Ticino" in 720 weight. Links in ardesia-2, current page in red; dropdowns are square panels with the rilievo shadow. Under 1080px the links fold into a full-screen menu (large 30px group titles) built by `site.js`; the red CTA stays at the bottom.
+- Fixed top bar, 72px, translucent neve with blur; gains a hairline and soft shadow once scrolled. Crest in a pale tile, "CAS Ticino" in 720 weight with «Club Alpino Svizzero» below. Links in ardesia-2, current page in red; dropdowns are square panels with the rilievo shadow. Under 1080px the links fold into a full-screen menu (large 30px group titles) built by `site.js`; the red CTA stays at the bottom.
 
 ### Signature: Key facts
 Hut pages open with a row of big facts (quota, posti, tempo d'accesso) at clamp(26px, 2.6vw, 36px), labels above in lichene: the hut-book entry made visible.
@@ -220,7 +215,7 @@ Hut pages open with a row of big facts (quota, posti, tempo d'accesso) at clamp(
 - **Do** use real photographs from `assets/img/` and Droptour; put text on photos only over the dark scrim gradients.
 - **Do** give interactive elements weight: pressed states, hover lift, firm borders.
 - **Do** let red carry orientation and emphasis, including larger blocks when a section needs it.
-- **Do** keep every color in light and dark variants via the `:root` tokens.
+- **Do** keep every color in the `:root` tokens; don't reintroduce an automatic dark theme.
 
 ### Don't:
 - **Don't** introduce rounded corners, pills or soft blobs.

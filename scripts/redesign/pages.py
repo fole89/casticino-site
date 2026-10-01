@@ -3,7 +3,8 @@
 Uso: python scripts/redesign/pages.py [Pagina.html ...]  (senza argomenti rigenera tutto)"""
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from shared import head, nav, footer, pic, img, GITE, page_hero, subnav, asset
+from shared import head, nav, footer, pic, img, GITE, page_hero, subnav, asset, in_sottocartella, crumbs
+import json, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -75,7 +76,7 @@ def home():
 </figure>
 </section>
 
-<section class="section" id="sezione" aria-label="La sezione in cifre">
+<section class="section section--tight" id="sezione" aria-label="La sezione in cifre">
 <div class="container">
 <div class="stats" data-reveal>
 <div class="stat"><strong>1886</strong><span>anno di fondazione</span></div>
@@ -86,7 +87,7 @@ def home():
 </div>
 </section>
 
-<section class="section" id="storia" aria-labelledby="storia-h">
+<section class="section section--tight" id="storia" aria-labelledby="storia-h">
 <div class="container split">
 <div class="split-intro">
 <h2 id="storia-h" class="h2">Dal 1886,<br>a piedi.</h2>
@@ -99,25 +100,14 @@ def home():
 </div>
 </section>
 
-<section class="section--surface" id="news" aria-labelledby="news-h">
-<div class="container news">
-<div class="split-intro">
+<section class="section--surface section--tight" id="news" aria-labelledby="news-h">
+<div class="container">
+<div class="section-row">
 <h2 id="news-h" class="h2">Dalla sezione</h2>
 <div class="links"><a class="link" href="News.html">Tutte le news</a><a class="link" href="Foto.html">Galleria foto</a></div>
 </div>
-<div class="news-list" data-reveal>
-<article class="news-item">
-<div class="news-date"><strong class="num">15</strong><span>ott 2026</span></div>
-<div class="news-body"><span class="label">Serata, ingresso gratuito</span><h3 class="h3">(S)legati</h3><p>L’incredibile storia degli alpinisti Joe Simpson e Simon Yates.</p><a class="link" href="News.html">Dettagli</a></div>
-</article>
-<article class="news-item">
-<div class="news-date"><strong>FTL</strong><span>Locarno</span></div>
-<div class="news-body"><span class="label">Festival</span><h3 class="h3">Film Trail Locarno</h3><p>Cinema, avventura, conversazioni.</p><a class="link" href="News.html">Dettagli</a></div>
-</article>
-<article class="news-item">
-<div class="news-date"><strong class="news-word">Avviso</strong><span>Produttore</span></div>
-<div class="news-body"><span class="label">Sicurezza materiale</span><h3 class="h3">Richiamo rinvii Simond Alpinism / Vertika</h3><p>Verifica se i tuoi quickdraws rientrano nel richiamo del produttore.</p><a class="link" href="News.html">Dettagli</a></div>
-</article>
+<div class="news-grid" data-reveal>
+{chr(10).join(news_card(n) for n in NEWS[:3])}
 </div>
 </div>
 </section>
@@ -466,8 +456,8 @@ def introduzione():
 </article>
 <article class="pillar pillar--dark pillar--wide">
 <h3>Statuto, visione e strategia, organigramma</h3>
-<p>I documenti di riferimento della sezione sono raccolti nella pagina Documenti.</p>
-<div class="actions"><a class="btn btn--primary" href="Documenti.html">Documenti <span class="arrow" aria-hidden="true">→</span></a><a class="btn btn--ghost-dark" href="Adesione.html">Diventa socio</a></div>
+<p>I documenti di riferimento della sezione, in PDF. Gli altri sono nella pagina <a href="Documenti.html">Documenti</a>.</p>
+<div class="actions"><a class="btn btn--primary" href="{DOC}statuto-visione/statuto-2025.pdf">Statuto <span class="arrow" aria-hidden="true">→</span></a><a class="btn btn--ghost-dark" href="{DOC}statuto-visione/visione-strategia-2025.pdf">Visione e strategia</a><a class="btn btn--ghost-dark" href="{DOC}statuto-visione/organigramma-2025.pdf">Organigramma</a></div>
 </article>
 </div>
 </div>
@@ -739,6 +729,9 @@ def link():
 
 DOC = "docs/"  # PDF della sezione, in sottocartelle per tema (nomi in minuscolo, con trattini)
 DOCS = [
+    ("La sezione", [("Statuto", DOC + "statuto-visione/statuto-2025.pdf"),
+                    ("Visione e strategia", DOC + "statuto-visione/visione-strategia-2025.pdf"),
+                    ("Organigramma", DOC + "statuto-visione/organigramma-2025.pdf")]),
     ("Scale di difficoltà", [("Arrampicata sportiva", DOC + "scale-difficolta/arrampicata-sportiva.pdf"),
                              ("Alpinismo", DOC + "scale-difficolta/alpinismo.pdf"),
                              ("Arrampicata artificiale", DOC + "scale-difficolta/arrampicata-artificiale.pdf"),
@@ -761,19 +754,20 @@ DOCS = [
 
 
 def documenti():
-    body = page_hero([("La Sezione", "index.html#sezione"), ("Documenti", None)], "Documenti",
-                     "Scale di difficoltà, promemoria tecnici, moduli e cartine da scaricare.") + f"""
+    body = page_hero([("Media", "Foto.html"), ("Documenti", None)], "Documenti",
+                     "Statuto e documenti della sezione, scale di difficoltà, promemoria tecnici, moduli e cartine da scaricare.") + f"""
 
 <section class="section" aria-label="Documenti">
 <div class="container">
 {linkgroups(DOCS, "PDF")}
 <div class="callout">
-<p><strong>In preparazione:</strong> statuto, visione e strategia, organigramma, annuario e periodico informazione saranno pubblicati qui.</p>
+<p><strong>Annuari e Informazione</strong>, il bollettino della sezione, hanno una pagina propria.</p>
+<div class="actions"><a class="btn btn--secondary" href="Annuari.html">Annuari</a><a class="btn btn--secondary" href="Informazione.html">Informazione</a></div>
 </div>
 </div>
 </section>
 
-{subnav("La Sezione", "Documenti.html")}"""
+{subnav("Media", "Documenti.html")}"""
     return page("Documenti.html", "Documenti | CAS Ticino",
                 "Documenti del CAS Ticino da scaricare: scale di difficoltà, promemoria tecnici, promemoria capigita, lista del materiale e cartine.",
                 body)
@@ -781,56 +775,142 @@ def documenti():
 
 # ------------------------------------------------------------------ news, foto, adesione
 
-def news():
-    items = [
-        ("15", "ott 2026, giovedì", "Teatro, ingresso gratuito", "(S)legati",
-         [("Cosa", "Uno spettacolo teatrale sull’incredibile storia di Joe Simpson e Simon Yates, tratto dal libro «La morte sospesa»: due alpinisti legati dalla stessa corda e dalla stessa passione."),
-          ("Dove", "Centro parrocchiale di Lamone"),
-          ("Ingresso", "Gratuito. I posti non sono riservabili: vale l’ordine di arrivo."),
-          ("Organizzano", "CAS Ticino con CAS Bellinzona, CAS Locarno e FAT")],
-         None),
-        ("16-18", "ott 2026, Locarno", "Festival", "Film Trail Locarno",
-         [("Cosa", "Un nuovo festival di film e incontri dedicato ad avventura, sport e natura."),
-          ("A cura di", "Fulvio Mariani, regista, e Mario Casella, guida alpina e autore"),
-          ("Dove", "PalaCinema Locarno")],
-         ("Programma sul sito del PalaCinema", "https://palacinemalocarno.ch/agenda/film-trail-locarno-2026")),
-        ("Avviso", "di sicurezza", "Richiamo prodotto", "Rinvii Simond Alpinism / Vertika",
-         [("Prodotti", "Alpinism 11 cm e 17 cm, Alpinism set da 5, Vertika 11 cm e 17 cm"),
-          ("Acquistati", "Tra il 1° gennaio 2022 e il 23 luglio 2026"),
-          ("Cosa fare", "Smetti di usarli e segui le istruzioni del produttore sul sito dedicato al richiamo."),
-          ("Domande", '<a href="mailto:info@casticino.ch">info@casticino.ch</a>')],
-         ("Sito del richiamo", "https://simondrecallquickdraw.fandi.fr/it")),
-    ]
-    arts = []
-    for big, small, label, title, rows, lnk in items:
-        cls = ' class="news-word"' if not big[0].isdigit() else ' class="num"'
-        more = f'<a class="link" href="{lnk[1]}">{lnk[0]}</a>' if lnk else ""
-        arts.append(f"""<article class="news-item">
-<div class="news-date"><strong{cls}>{big}</strong><span>{small}</span></div>
-<div class="news-body">
-<span class="label">{label}</span>
-<h2 class="h3">{title}</h2>
-{facts(rows)}
-{more}
-</div>
-</article>""")
-    body = page_hero([("News", None)], "News", "Serate, eventi e avvisi importanti dalla sezione.",
-                     figure=img("corso-alpinismo-4x5", "Cordata su una cresta di neve", 594, 742, lazy=False)) + f"""
+NEWS = json.load(open(os.path.join(ROOT, "data", "news.json"), encoding="utf-8"))["news"]
+MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto",
+        "settembre", "ottobre", "novembre", "dicembre"]
 
-<section class="section" aria-label="Notizie">
-<div class="container news-page">
-<div class="news-list" data-reveal>
-{chr(10).join(arts)}
+
+def data_it(iso):
+    y, m, d = (int(x) for x in iso.split("-"))
+    return f"{d} {MESI[m - 1]} {y}"
+
+
+def esc(t):
+    return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+
+def og_name(n):
+    """Nome dell'immagine per og:image (page() aggiunge assets/img/ e .webp)."""
+    return n["image"]["src"][len("assets/img/"):-len(".webp")] if n["image"] else "hero-ticino-2000"
+
+
+def news_meta(n):
+    cat = f'<span>{esc(n["category"])}</span>' if n["category"] else ""
+    return f'<p class="news-meta"><time datetime="{n["date"]}">{data_it(n["date"])}</time>{cat}</p>'
+
+
+def news_card(n, feature=False):
+    """Scheda di una notizia: foto (o blocco rosso con la data se manca), data, titolo, estratto."""
+    if n["image"]:
+        im = n["image"]
+        fig = f'<figure><img src="{im["src"]}" alt="" width="{im["w"]}" height="{im["h"]}" loading="lazy" decoding="async"></figure>'
+    else:
+        y, m, d = n["date"].split("-")
+        fig = f'<figure class="news-noimg" aria-hidden="true"><strong>{int(d)}</strong><span>{MESI[int(m) - 1]} {y}</span></figure>'
+    cls = "news-card news-card--feature" if feature else "news-card"
+    tag = "h2" if feature else "h3"
+    return f"""<a class="{cls}" href="{n['file']}">
+{fig}
+<div class="news-card-body">
+{news_meta(n)}
+<{tag}>{esc(n['title'])}</{tag}>
+<p>{esc(n['excerpt'])}</p>
 </div>
+</a>"""
+
+
+def news():
+    anni = []
+    for n in NEWS[1:]:
+        y = n["date"][:4]
+        if not anni or anni[-1][0] != y:
+            anni.append((y, []))
+        anni[-1][1].append(n)
+    salti = "\n".join(f'<a href="#anno-{y}">{y}</a>' for y, _ in anni)
+    gruppi = "\n".join(f"""<section class="news-year" id="anno-{y}" aria-labelledby="anno-{y}-h">
+<h2 id="anno-{y}-h" class="news-year-h">{y}</h2>
+<div class="news-grid">
+{chr(10).join(news_card(n) for n in items)}
+</div>
+</section>""" for y, items in anni)
+    body = page_hero([("News", None)], "News", "Serate, eventi, corsi e avvisi della sezione: tutte le notizie, dalla più recente.") + f"""
+
+<section class="section" aria-label="Ultima notizia">
+<div class="container">
+{news_card(NEWS[0], feature=True)}
+</div>
+</section>
+
+<section class="section section--tight" aria-label="Archivio delle notizie">
+<div class="container">
+<nav class="subnav news-years" aria-label="Anni">
+<h2 class="label">Archivio</h2>
+<div class="subnav-links">
+{salti}
+</div>
+</nav>
+{gruppi}
 </div>
 </section>"""
     return page("News.html", "News | CAS Ticino",
-                "Serate, eventi e avvisi della Sezione Ticino del Club Alpino Svizzero.",
-                body, section="News")
+                "Le notizie della Sezione Ticino del Club Alpino Svizzero: serate, eventi, corsi, avvisi di sicurezza e vita delle capanne.",
+                body, og=og_name(NEWS[0]))
+
+
+def news_article(i):
+    n = NEWS[i]
+    corpo = n["html"]
+    fig = ""
+    if n["image"]:
+        im = n["image"]
+        # l'immagine principale sta già accanto al testo: niente doppione dentro l'articolo
+        src = re.escape(im["src"])
+        corpo = re.sub(r'<figure>\s*<img src="' + src + r'"[^>]*>\s*(<figcaption>.*?</figcaption>)?\s*</figure>', "", corpo, flags=re.S)
+        corpo = re.sub(r'<img src="' + src + r'"[^>]*>', "", corpo)
+        alt = esc(im["alt"]) or esc(n["title"])
+        fig = f'<figure class="article-figure"><img src="{im["src"]}" alt="{alt}" width="{im["w"]}" height="{im["h"]}" fetchpriority="high"></figure>'
+    piu_recente = NEWS[i - 1] if i > 0 else None
+    meno_recente = NEWS[i + 1] if i + 1 < len(NEWS) else None
+    prev = (f'<a class="article-prev" href="{meno_recente["file"]}"><span class="label">Notizia precedente</span><strong>{esc(meno_recente["title"])}</strong></a>'
+            if meno_recente else "<span></span>")
+    nxt = (f'<a class="article-next" href="{piu_recente["file"]}"><span class="label">Notizia successiva</span><strong>{esc(piu_recente["title"])}</strong></a>'
+           if piu_recente else "<span></span>")
+    altre = [x for x in NEWS[max(0, i - 2):i + 4] if x is not n][:3]
+    body = f"""<section class="page-hero article-hero" aria-labelledby="page-h">
+<div class="container">
+{crumbs(("News", "News.html"), (esc(n["title"]), None))}
+{news_meta(n)}
+<h1 id="page-h" class="article-title">{esc(n["title"])}</h1>
+</div>
+</section>
+
+<section class="section section--tight" aria-label="Testo">
+<div class="container article{'' if fig else ' article--noimg'}">
+{fig}
+<div class="prose">
+{corpo}
+</div>
+</div>
+</section>
+
+<section class="section section--tight" aria-labelledby="altre-h">
+<div class="container">
+<nav class="article-pager" aria-label="Notizia precedente e successiva">{prev}{nxt}</nav>
+<div class="section-row">
+<h2 id="altre-h" class="h3">Altre notizie</h2>
+<a class="link" href="News.html">Tutte le news</a>
+</div>
+<div class="news-grid">
+{chr(10).join(news_card(x) for x in altre)}
+</div>
+</div>
+</section>"""
+    return in_sottocartella(page(n["file"], f"{esc(n['title'])} | CAS Ticino", esc(n["excerpt"][:155]), body,
+                                 og=og_name(n), section="News"))
 
 
 def foto():
-    body = page_hero([("Foto", None)], "Foto", "Gli scatti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.") + f"""
+    body = page_hero([("Media", "Foto.html"), ("Foto", None)], "Foto", "Gli scatti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.") + f"""
 
 <section class="section" aria-label="Ultime gite">
 <div class="container">
@@ -843,10 +923,112 @@ def foto():
 <button type="button" class="btn btn--secondary" id="load-more" hidden>Carica altre gite</button>
 </div>
 </div>
-</section>"""
+</section>
+
+{subnav("Media", "Foto.html")}"""
     return page("Foto.html", "Foto delle gite | CAS Ticino",
                 "Le foto delle ultime gite della Sezione Ticino del Club Alpino Svizzero, con i resoconti dei capigita.",
                 body, og="attivita-gite-2x1", scripts=f'<script src="{asset("assets/foto.js")}" defer></script>\n')
+
+
+def webp_size(path):
+    """Larghezza e altezza di un file WebP, leggendo l'intestazione (senza librerie esterne)."""
+    with open(path, "rb") as f:
+        d = f.read(30)
+    kind = d[12:16]
+    if kind == b"VP8 ":
+        return int.from_bytes(d[26:28], "little") & 0x3FFF, int.from_bytes(d[28:30], "little") & 0x3FFF
+    if kind == b"VP8L":
+        v = int.from_bytes(d[21:25], "little")
+        return (v & 0x3FFF) + 1, ((v >> 14) & 0x3FFF) + 1
+    return int.from_bytes(d[24:27], "little") + 1, int.from_bytes(d[27:30], "little") + 1
+
+
+def pubblicazioni(cartella, prefisso):
+    """PDF docs/<cartella>/<prefisso>-<anno>[-<mese>].pdf, dal più recente; copertine da scripts/copertine.py."""
+    out = []
+    for nome in os.listdir(os.path.join(ROOT, "docs", cartella)):
+        m = re.fullmatch(prefisso + r"-(\d{4})(?:-([a-z]+))?\.pdf", nome)
+        if not m or (m.group(2) and m.group(2) not in MESI):
+            continue
+        base = nome[:-4]
+        cover = os.path.join(ROOT, "assets", "img", "pubblicazioni", base + ".webp")
+        if not os.path.exists(cover):
+            raise SystemExit(f"manca la copertina di {nome}: lancia python scripts/copertine.py")
+        w, h = webp_size(cover)
+        mb = os.path.getsize(os.path.join(ROOT, "docs", cartella, nome)) / 1e6
+        mese = m.group(2) or ""
+        out.append({"anno": m.group(1), "mese": mese, "quando": f"{mese} {m.group(1)}".strip(),
+                    "ordine": (m.group(1), MESI.index(mese) if mese else 0),
+                    "pdf": f"docs/{cartella}/{nome}", "mb": f"{mb:.1f}".replace(".", ","),
+                    "cover": f"assets/img/pubblicazioni/{base}.webp", "w": w, "h": h})
+    return sorted(out, key=lambda x: x["ordine"], reverse=True)
+
+
+def pub_card(x, titolo):
+    return f"""<a class="pub" href="{x['pdf']}">
+<figure><img src="{x['cover']}" alt="Copertina: {titolo}" width="{x['w']}" height="{x['h']}" loading="lazy" decoding="async"></figure>
+<strong>{titolo}</strong>
+<span class="small">PDF, {x['mb']} MB</span>
+</a>"""
+
+
+def pub_feature(x, titolo, testo):
+    return f"""<div class="pub-feature" data-reveal>
+<figure><img src="{x['cover']}" alt="Copertina: {titolo}" width="{x['w']}" height="{x['h']}"></figure>
+<div class="pub-feature-body">
+<span class="label">Ultimo numero</span>
+<h2 class="h2">{titolo}</h2>
+<p>{testo}</p>
+<a class="btn btn--primary" href="{x['pdf']}">Leggi il PDF <span class="arrow" aria-hidden="true">→</span></a>
+<span class="small">PDF, {x['mb']} MB</span>
+</div>
+</div>"""
+
+
+def annuari():
+    items = pubblicazioni("annuari", "annuario")
+    ultimo, altri = items[0], items[1:]
+    body = page_hero([("Media", "Foto.html"), ("Annuari", None)], "Annuari",
+                     "L’annuario racconta la vita della sezione: un volume per ogni anno, da sfogliare in PDF.") + f"""
+
+<section class="section" aria-label="Annuari">
+<div class="container">
+{pub_feature(ultimo, f"Annuario {ultimo['anno']}", "L’ultimo annuario pubblicato dalla sezione.")}
+<div class="section-row"><h2 class="h3">Annate precedenti</h2></div>
+<div class="pubs" data-reveal>
+{chr(10).join(pub_card(x, f"Annuario {x['anno']}") for x in altri)}
+</div>
+</div>
+</section>
+
+{subnav("Media", "Annuari.html")}"""
+    return page("Annuari.html", "Annuari | CAS Ticino",
+                "Gli annuari della Sezione Ticino del Club Alpino Svizzero da scaricare in PDF.",
+                body, og=ultimo["cover"][len("assets/img/"):-len(".webp")])
+
+
+def informazione():
+    items = pubblicazioni("informazione", "informazione")
+    ultimo, altri = items[0], items[1:]
+    griglia = (f"""<div class="section-row"><h2 class="h3">Numeri precedenti</h2></div>
+<div class="pubs" data-reveal>
+{chr(10).join(pub_card(x, f"Informazione, {x['quando']}") for x in altri)}
+</div>""" if altri else "")
+    body = page_hero([("Media", "Foto.html"), ("Informazione", None)], "Informazione",
+                     "Il bollettino ufficiale della sezione: notizie, attività e appuntamenti, da sfogliare in PDF.") + f"""
+
+<section class="section" aria-label="Numeri di Informazione">
+<div class="container">
+{pub_feature(ultimo, f"Informazione, {ultimo['quando']}", "Il numero più recente del bollettino ufficiale della Sezione Ticino.")}
+{griglia}
+</div>
+</section>
+
+{subnav("Media", "Informazione.html")}"""
+    return page("Informazione.html", "Informazione | CAS Ticino",
+                "Informazione, il bollettino ufficiale della Sezione Ticino del Club Alpino Svizzero, da scaricare in PDF.",
+                body, og=ultimo["cover"][len("assets/img/"):-len(".webp")])
 
 
 def adesione():
@@ -1081,17 +1263,21 @@ PAGES = {
     "index.html": home,
     "Introduzione.html": introduzione, "Comitato.html": comitato, "Organizzazione.html": organizzazione,
     "Sede.html": sede, "Storia.html": storia, "Link.html": link, "Documenti.html": documenti,
-    "News.html": news, "Foto.html": foto, "Adesione.html": adesione,
+    "News.html": news, "Foto.html": foto, "Annuari.html": annuari, "Informazione.html": informazione,
+    "Adesione.html": adesione,
     "Giovani.html": giovani, "Senior.html": senior, "Corsi.html": corsi, "Noleggio.html": noleggio,
 }
 for _f in HUT_PAGES:
     PAGES[_f] = (lambda f: lambda: hut(f))(_f)
+for _i, _n in enumerate(NEWS):
+    PAGES[_n["file"]] = (lambda i: lambda: news_article(i))(_i)
 
 if __name__ == "__main__":
     only = sys.argv[1:]
     for name, fn in PAGES.items():
         if only and name not in only:
             continue
+        os.makedirs(os.path.dirname(os.path.join(ROOT, name)), exist_ok=True)
         with open(os.path.join(ROOT, name), "w", encoding="utf-8", newline="\n") as f:
             f.write(fn())
         print("scritto", name)

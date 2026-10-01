@@ -15,15 +15,17 @@ MENU = [
     ("La Sezione", "index.html#sezione", [
         ("Introduzione", "Introduzione.html"), ("Comitato", "Comitato.html"),
         ("Organizzazione", "Organizzazione.html"), ("Sede e recapiti", "Sede.html"),
-        ("Storia", "Storia.html"), ("Link utili", "Link.html"), ("Documenti", "Documenti.html")]),
-    ("News", "index.html#news", None),
+        ("Storia", "Storia.html"), ("Link utili", "Link.html")]),
+    ("News", "News.html", None),
     ("Attività", "index.html#attivita", [
         ("Programma gite", GITE), ("Giovani", "Giovani.html"), ("Senior", "Senior.html"),
         ("Corsi", "Corsi.html"), ("Noleggio materiale", "Noleggio.html")]),
     ("Le Capanne", "index.html#capanne", [
         ("Campo Tencia", "CampoTencia.html"), ("Cristallina", "Cristallina.html"), ("Adula", "Adula.html"),
         ("Motterascio", "Motterascio.html"), ("Monte Bar", "MonteBar.html"), ("Baita del Luca", "BaitaDelLuca.html")]),
-    ("Foto", "Foto.html", None),
+    ("Media", "Foto.html", [
+        ("Foto", "Foto.html"), ("Annuari", "Annuari.html"), ("Informazione", "Informazione.html"),
+        ("Documenti", "Documenti.html")]),
     ("Adesione", "Adesione.html", None),
 ]
 
@@ -42,8 +44,7 @@ def head(title, description, extra=""):
 <meta property="og:description" content="{description}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="it_CH">
-<meta name="theme-color" content="#F2F3F0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F1412" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo-cas.webp">
 <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{asset("assets/site.css")}">
@@ -62,8 +63,11 @@ def nav(current_page, current_section=None):
             cls = "navlink dd-trigger is-current" if is_cur else "navlink dd-trigger"
             items.append(f'<div class="dd">\n<a class="{cls}" href="{href}" aria-haspopup="true">{label} {CARET}</a>\n<div class="dd-menu">\n{links}\n</div>\n</div>')
         else:
-            attr = ' aria-current="page"' if href == current_page or label == current_section else ""
-            items.append(f'<a class="navlink" href="{href}"{attr}>{label}</a>')
+            if href == current_page:
+                items.append(f'<a class="navlink" href="{href}" aria-current="page">{label}</a>')
+            else:
+                cls = "navlink is-current" if label == current_section else "navlink"
+                items.append(f'<a class="{cls}" href="{href}">{label}</a>')
     links = "\n".join(items)
     return f"""<a class="skip-link" href="#contenuto">Vai al contenuto</a>
 <header class="site-nav">
@@ -100,7 +104,7 @@ def footer():
             continue
         name = {"Attività": "Attività"}.get(label, label)
         extra = [("News", "News.html")] if label == "Attività" else []
-        extra_end = [("Foto", "Foto.html"), ("Adesione", "Adesione.html")] if label == "Attività" else []
+        extra_end = [("Adesione", "Adesione.html")] if label == "Attività" else []
         links = "\n".join(f'<a href="{h}">{l}</a>' for l, h in extra + sub + extra_end)
         cols.append(f'<nav class="footer-col" aria-label="{name}">\n<h2>{name}</h2>\n{links}\n</nav>')
     cols = "\n".join(cols)
@@ -190,3 +194,25 @@ def subnav(group, current_page):
 </div>
 </section>"""
     raise KeyError(group)
+
+
+def in_sottocartella(page_html, su="../"):
+    """Pagina pubblicata in una sottocartella (es. news/): i percorsi relativi salgono di un livello."""
+    import re
+
+    def fix(url):
+        url = url.strip()
+        if not url or url.startswith(("http:", "https:", "mailto:", "tel:", "#", "/", "data:", "../")):
+            return url
+        return su + url
+
+    def attr(m):
+        nome, val = m.group(1), m.group(2)
+        if nome in ("srcset", "imagesrcset"):
+            val = ", ".join(" ".join([fix(parte.split()[0])] + parte.split()[1:]) for parte in val.split(","))
+        else:
+            val = fix(val)
+        return f'{nome}="{val}"'
+
+    page_html = re.sub(r'\b(href|src|srcset|imagesrcset)="([^"]*)"', attr, page_html)
+    return re.sub(r'(<meta property="og:image" content=")([^"]+)"', lambda m: m.group(1) + fix(m.group(2)) + '"', page_html)

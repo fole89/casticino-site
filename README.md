@@ -14,7 +14,8 @@ assets/logo-cas.webp            stemma
 assets/comitato/                foto profilo del comitato (WebP 240×280)
 assets/sponsor/                 loghi degli sponsor nel footer (originali/ = file ricevuti)
 data/foto.json                  ultime gite con foto (generato in automatico)
-docs/<tema>/                    PDF della sezione per tema (scale-difficolta, promemoria, cartine, moduli, corsi, noleggio);
+docs/<tema>/                    PDF della sezione per tema (scale-difficolta, promemoria, cartine, moduli, corsi, noleggio,
+                                annuari, informazione, statuto-visione, news);
                                 nomi in minuscolo con trattini, i link sono in scripts/redesign/pages.py
 data/foto-overrides.json        correzioni manuali a titoli e testi delle gite
 scripts/update_foto.py          legge le cartelle foto via FTP e scrive data/foto.json
@@ -106,5 +107,6 @@ La pagina Foto va aperta tramite un server, anche quello locale qui sopra. Apert
 
 ## 4. Da completare prima di andare online
 
-- Segnaposto da riempire: foto della sede, foto profilo dei dicasteri e di due membri del comitato (Geoffroy Jolly, Flavia Spinelli: oggi mostrano le iniziali), Statuto, Visione e strategia, Organigramma, Annuario, alcuni PDF dei corsi, l'ispettore della Capanna Motterascio.
-- La pagina **News** è statica: per aggiungere una notizia si modificano `news()` e il blocco «Dalla sezione» di `home()` in `scripts/redesign/pages.py`, poi si rigenerano le pagine.
+- Segnaposto da riempire: foto della sede, foto profilo dei dicasteri e di due membri del comitato (Geoffroy Jolly, Flavia Spinelli: oggi mostrano le iniziali), alcuni PDF dei corsi, l'ispettore della Capanna Motterascio.
+- **News**: le notizie sono in `data/news.json` (importate una volta dal vecchio sito con `scripts/import_news.py`). Per aggiungerne una si inserisce una voce in cima al file e si rigenerano le pagine: compare in `News.html`, nella sua pagina `news/<nome>.html` e, se è tra le ultime 3, in home.
+- **Annuari e Informazione**: si mette il PDF in `docs/annuari/annuario-<anno>.pdf` o `docs/informazione/informazione-<anno>-<mese>.pdf`, si lancia `python scripts/copertine.py` (crea la copertina) e si rigenerano le pagine.
