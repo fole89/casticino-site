@@ -1,19 +1,37 @@
-// CAS Ticino — menu fisso: barra piena e più bassa quando si scorre la pagina
+// CAS Ticino - menu fisso: classe .scrolled appena la pagina non è più in cima.
+// Un elemento sentinella osservato con IntersectionObserver evita di ascoltare ogni evento di scroll.
 (function () {
   var nav = document.querySelector('nav[aria-label="Principale"]');
-  if (!nav) return;
-  var on = false;
-  function update() {
-    var s = window.scrollY > 24;
-    if (s !== on) { on = s; nav.classList.toggle('scrolled', s); }
-  }
-  window.addEventListener('scroll', update, { passive: true });
-  update();
+  if (!nav || !('IntersectionObserver' in window)) return;
+  var bar = nav.closest('.site-nav') || nav;
+  var sentinel = document.createElement('div');
+  sentinel.setAttribute('aria-hidden', 'true');
+  sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:24px;pointer-events:none';
+  document.body.prepend(sentinel);
+  new IntersectionObserver(function (entries) {
+    bar.classList.toggle('scrolled', !entries[0].isIntersecting);
+  }).observe(sentinel);
 })();
 
-// CAS Ticino — titoloni: se una parola lunga non sta nello schermo, riduce il corpo finché entra
+// CAS Ticino - comparsa delle sezioni allo scorrimento (solo se il sistema non chiede di ridurre il movimento)
 (function () {
-  var hs = document.querySelectorAll('.hero-h, .sec-h');
+  var els = document.querySelectorAll('[data-reveal]');
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    Array.prototype.forEach.call(els, function (el) { el.classList.add('is-in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px' });
+  Array.prototype.forEach.call(els, function (el) { io.observe(el); });
+})();
+
+// CAS Ticino - titoloni: se una parola lunga non sta nello schermo, riduce il corpo finché entra
+(function () {
+  var hs = document.querySelectorAll('.hero-h, .sec-h, .fit');
   if (!hs.length) return;
   function fit() {
     Array.prototype.forEach.call(hs, function (h) {
@@ -30,7 +48,7 @@
   if (document.fonts) document.fonts.ready.then(fit);
 })();
 
-// CAS Ticino — menu mobile (costruito a partire dal menu desktop)
+// CAS Ticino - menu mobile (costruito a partire dal menu desktop)
 (function () {
   var btn = document.querySelector('button[aria-label="Apri menu"]');
   var nav = document.querySelector('nav[aria-label="Principale"]');
