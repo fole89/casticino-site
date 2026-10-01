@@ -1,0 +1,54 @@
+name: Pubblica news
+
+# Parte quando cambia una news (di solito salvata dall'area di redazione admin/): prepara foto e nomi,
+# rigenera tutte le pagine e pubblica il risultato.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/news/**"
+      - "assets/img/news/**"
+      - "docs/news/**"
+  workflow_dispatch:        # avvio manuale da GitHub › Actions › "Run workflow"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news
+  cancel-in-progress: false
+
+jobs:
+  pubblica:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main         # l'ultima versione, anche se nel frattempo è arrivata un'altra news
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Prepara le news (nome della pagina, foto in WebP)
+        run: |
+          pip install --quiet pillow
+          python scripts/prepara_news.py
+
+      - name: Rigenera le pagine
+        run: python scripts/redesign/pages.py > /dev/null
+
+      - name: Pubblica se ci sono novità
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Niente da pubblicare."
+            exit 0
+          fi
+          git config user.name  "casticino-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "News: pagine aggiornate"
+          # se nel frattempo è arrivata un'altra modifica, ci si mette in coda
+          git pull --rebase
+          git push

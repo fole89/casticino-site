@@ -8,6 +8,8 @@ from shared import LINGUA, PAGINE_DE, de, L
 from capanne import CONTENUTI, PRENOTA
 from capanne_de import CONTENUTI_DE, HUT_DE, HUTS_DE
 import json, re, unicodedata
+import news_util
+from news_util import webp_size
 from html import unescape as html_unescape
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -1258,7 +1260,24 @@ def documenti():
 
 # ------------------------------------------------------------------ news, foto, adesione
 
-NEWS = json.load(open(os.path.join(ROOT, "data", "news.json"), encoding="utf-8"))["news"]
+def carica_news():
+    """Le news di data/news/*.json (vedi news_util.py) pronte per le pagine: testo in HTML, foto con le dimensioni, estratto."""
+    out, presi = [], set()
+    for n in news_util.leggi_tutte():
+        corpo = news_util.md_html(n["testo"]) if (n.get("testo") or "").strip() else n.get("html", "")
+        corpo = "\n".join(x for x in (corpo, news_util.allegati_html(n.get("allegati"))) if x)
+        immagine = None
+        if n.get("image") and n["image"].endswith(".webp") and os.path.exists(os.path.join(ROOT, n["image"])):
+            w, h = webp_size(os.path.join(ROOT, n["image"]))
+            immagine = {"src": n["image"], "w": w, "h": h, "alt": n.get("alt", "")}
+        file = n.get("file") or news_util.nome_file(n, presi)
+        presi.add(file)
+        out.append({"title": n["title"].strip(), "date": n["date"][:10], "category": n.get("category", ""), "image": immagine,
+                    "excerpt": (n.get("excerpt") or "").strip() or news_util.estratto(corpo), "html": corpo, "file": file})
+    return out
+
+
+NEWS = carica_news()
 MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto",
         "settembre", "ottobre", "novembre", "dicembre"]
 
@@ -1409,19 +1428,6 @@ def foto():
     return page("Foto.html", "Foto delle gite | CAS Ticino",
                 "Le foto delle ultime gite della Sezione Ticino del Club Alpino Svizzero, con i resoconti dei capigita.",
                 body, og="attivita/gite-2x1", scripts=f'<script src="{asset("assets/foto.js")}" defer></script>\n')
-
-
-def webp_size(path):
-    """Larghezza e altezza di un file WebP, leggendo l'intestazione (senza librerie esterne)."""
-    with open(path, "rb") as f:
-        d = f.read(30)
-    kind = d[12:16]
-    if kind == b"VP8 ":
-        return int.from_bytes(d[26:28], "little") & 0x3FFF, int.from_bytes(d[28:30], "little") & 0x3FFF
-    if kind == b"VP8L":
-        v = int.from_bytes(d[21:25], "little")
-        return (v & 0x3FFF) + 1, ((v >> 14) & 0x3FFF) + 1
-    return int.from_bytes(d[24:27], "little") + 1, int.from_bytes(d[27:30], "little") + 1
 
 
 def pubblicazioni(cartella, prefisso):
@@ -1743,7 +1749,6 @@ def corsi():
 <div class="container">
 <div class="callout">
 <p><strong id="avanzati-h">Verso capogita e monitore G+S.</strong> Per chi vuole approfondire o prepararsi ai corsi capogita CAS e monitore Gioventù+Sport, la sezione propone corsi avanzati nelle tre discipline e serate di formazione teorica con specialisti.</p>
-<a class="btn btn--secondary" href="Noleggio.html">Noleggio</a>
 </div>
 </div>
 </section>

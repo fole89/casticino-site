@@ -1,7 +1,7 @@
 """Importa le news dal vecchio sito WordPress (casticino.ch) nel sito statico.
 
 Scrive:
-  data/news.json            elenco delle notizie (titolo, data, estratto, testo HTML ripulito, immagine)
+  data/news.json            elenco delle notizie (formato storico: ora ogni news è un file in data/news/, vedi redesign/news_util.py)
   assets/img/news/<anno>/   immagine principale e immagini nel testo in WebP (max 1400 px), con lo stesso nome dell'articolo
   docs/news/*.pdf           PDF allegati, scaricati dal vecchio sito
 

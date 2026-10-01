@@ -1,0 +1,112 @@
+# Area di redazione delle news (Decap CMS). Si apre su …/admin/ e salva le news direttamente nel repository:
+# ogni news è un file data/news/<data>-<titolo>.json; il workflow .github/workflows/news.yml prepara le foto,
+# rigenera le pagine e le pubblica. Vedi scripts/cms-auth/LEGGIMI.md per il login.
+
+backend:
+  name: github
+  repo: fole89/casticino-site
+  branch: main
+  auth_scope: public_repo          # il repository è pubblico: basta il permesso minimo
+  base_url: https://casticino-cms-auth.fole89.workers.dev   # indirizzo del servizio di login (scripts/cms-auth/)
+  auth_endpoint: auth
+  commit_messages:
+    create: "News: nuova «{{slug}}»"
+    update: "News: modifica «{{slug}}»"
+    delete: "News: eliminata «{{slug}}»"
+    uploadMedia: "News: caricato {{path}}"
+    deleteMedia: "News: tolto {{path}}"
+
+locale: it
+site_url: https://fole89.github.io/casticino-site/
+display_url: https://fole89.github.io/casticino-site/
+logo_url: assets/logo-cas-stemma.webp
+
+# foto caricate: arrivano in assets/img/news/, prepara_news.py le converte in WebP e le sposta in assets/img/news/<anno>/
+# (stessa cartella delle foto già pubblicate, così l'editor mostra anche quelle)
+media_folder: assets/img/news
+public_folder: assets/img/news
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: news
+    label: News
+    label_singular: news
+    description: "Le news della sezione. Dopo «Pubblica» la news è online in uno o due minuti."
+    folder: data/news
+    extension: json
+    format: json
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{date | date('DD.MM.YYYY')}} · {{title}}"
+    sortable_fields:
+      - field: date
+        default_sort: desc
+      - title
+    fields:
+      - label: Titolo
+        name: title
+        widget: string
+      - label: Data
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DDTHH:mm"
+        date_format: "DD.MM.YYYY"
+        time_format: "HH:mm"
+        default: "{{now}}"
+        hint: "L’ora serve solo a ordinare le news dello stesso giorno."
+      - label: Foto principale
+        name: image
+        widget: image
+        required: false
+        choose_url: false
+        hint: "JPG o PNG: viene ridimensionata e convertita in automatico. Si vede accanto al testo e nelle schede."
+      - label: Descrizione della foto
+        name: alt
+        widget: string
+        required: false
+        hint: "Cosa si vede nella foto, per chi non può vederla (es. «Scialpinisti in salita verso il Pizzo Rotondo»)."
+      - label: Riassunto
+        name: excerpt
+        widget: text
+        required: false
+        hint: "Due righe per la scheda in home e nell’elenco delle news. Se resta vuoto si usa l’inizio del testo."
+      - label: Testo
+        name: testo
+        widget: markdown
+        required: false
+        modes: ["rich_text"]
+        buttons: ["bold", "italic", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"]
+        editor_components: ["image"]
+      - label: Allegati PDF
+        name: allegati
+        widget: list
+        required: false
+        label_singular: allegato
+        summary: "{{fields.titolo}}"
+        fields:
+          - label: Titolo del link
+            name: titolo
+            widget: string
+          - label: File
+            name: file
+            widget: file
+            choose_url: false
+            media_folder: /docs/news
+            public_folder: docs/news
+      - label: Testo HTML (solo news del vecchio sito)
+        name: html
+        widget: text
+        required: false
+        hint: "Le news importate dal vecchio sito hanno il testo qui. Per le news nuove usare «Testo»: se è compilato, vale quello."
+      - label: Pagina
+        name: file
+        widget: hidden
+        required: false
+      - label: Categoria
+        name: category
+        widget: hidden
+        required: false

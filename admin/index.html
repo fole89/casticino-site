@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Redazione news | CAS Ticino</title>
+<!-- i percorsi partono dalla radice del sito, come nelle news (assets/…, docs/…): così si vedono anche le foto già pubblicate -->
+<base href="../">
+<link rel="icon" href="assets/logo-cas.webp">
+<link href="admin/config.yml" type="text/yaml" rel="cms-config-url">
+</head>
+<body>
+<!-- Area di redazione delle news: Decap CMS, configurazione in config.yml. -->
+<script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+<script>
+// Anteprima della news con lo stile del sito: come apparirà la pagina dell'articolo.
+CMS.registerPreviewStyle("assets/site.css");
+
+var MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto",
+            "settembre", "ottobre", "novembre", "dicembre"];
+
+function dataIt(iso) {
+  var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || "");
+  return m ? parseInt(m[3], 10) + " " + MESI[parseInt(m[2], 10) - 1] + " " + m[1] : "";
+}
+
+// indirizzo completo di un file (foto caricata in questo momento o già nel sito)
+function indirizzo(props, path) {
+  if (!path) return null;
+  return new URL(String(props.getAsset(path)), document.baseURI).href;
+}
+
+var NewsPreview = createClass({
+  render: function () {
+    var props = this.props, d = props.entry.get("data");
+    var foto = indirizzo(props, d.get("image"));
+    var testo = d.get("testo"), vecchio = d.get("html");
+    var corpo = testo ? props.widgetFor("testo")
+      : (vecchio ? h("div", { dangerouslySetInnerHTML: { __html: vecchio.replace(/(src|href)="((assets|docs)\/[^"]*)"/g, function (m, a, p) { return a + '="' + new URL(p, document.baseURI).href + '"'; }) } }) : null);
+    var allegati = (d.get("allegati") || []).map ? (d.get("allegati") || []).map(function (a, i) {
+      return h("p", { key: i }, h("a", { className: "file-link", href: indirizzo(props, a.get("file")) || "#" }, a.get("titolo") || "Allegato"));
+    }) : null;
+    return h("main", {},
+      h("section", { className: "page-hero article-hero" },
+        h("div", { className: "container" },
+          h("p", { className: "news-meta" }, h("time", {}, dataIt(d.get("date")))),
+          h("h1", { className: "article-title" }, d.get("title") || "Titolo della news"))),
+      h("section", { className: "section section--tight" },
+        h("div", { className: "container article" + (foto ? "" : " article--noimg") },
+          foto ? h("figure", { className: "article-figure" }, h("img", { src: foto, alt: d.get("alt") || "" })) : null,
+          h("div", { className: "prose" }, corpo, allegati))));
+  }
+});
+CMS.registerPreviewTemplate("news", NewsPreview);
+</script>
+</body>
+</html>
