@@ -16,14 +16,14 @@ MENU = [
         ("Introduzione", "Introduzione.html"), ("Comitato", "Comitato.html"),
         ("Organizzazione", "Organizzazione.html"), ("Sede e recapiti", "Sede.html"),
         ("Storia", "Storia.html"), ("Link utili", "Link.html")]),
-    ("News", "News.html", None),
+    ("News", "index.html#news", None),
     ("Attività", "index.html#attivita", [
-        ("Programma gite", GITE), ("Giovani", "Giovani.html"), ("Senior", "Senior.html"),
-        ("Corsi", "Corsi.html"), ("Noleggio materiale", "Noleggio.html")]),
+        ("Giovani", "Giovani.html"), ("Senior", "Senior.html"),
+        ("Corsi", "Corsi.html"), ("Noleggio", "Noleggio.html")]),
     ("Le Capanne", "index.html#capanne", [
         ("Campo Tencia", "CampoTencia.html"), ("Cristallina", "Cristallina.html"), ("Adula", "Adula.html"),
         ("Motterascio", "Motterascio.html"), ("Monte Bar", "MonteBar.html"), ("Baita del Luca", "BaitaDelLuca.html")]),
-    ("Media", "Foto.html", [
+    ("Media", "index.html#media", [
         ("Foto", "Foto.html"), ("Annuari", "Annuari.html"), ("Informazione", "Informazione.html"),
         ("Documenti", "Documenti.html")]),
     ("Adesione", "Adesione.html", None),

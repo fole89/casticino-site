@@ -31,26 +31,18 @@
   }
 
   function render(a) {
-    var n = a.photos.length, idx = 0, open = false;
-    var long = (a.text || '').length > 320;
+    var n = a.photos.length, idx = 0;
     var date = a.date ? fmt.format(new Date(a.date + 'T12:00:00')) : '';
     var meta = (a.place ? a.place + ', ' : '') + n + ' foto';
 
-    var text = el('p', { class: 'album-text' });
-    var toggle = long ? el('button', { type: 'button', class: 'album-more' }) : null;
-    function setText() {
-      text.textContent = long && !open ? a.text.slice(0, a.text.lastIndexOf(' ', 300)) + '…' : (a.text || '');
-      if (toggle) { toggle.textContent = open ? 'Riduci' : 'Leggi tutto'; toggle.setAttribute('aria-expanded', open ? 'true' : 'false'); }
-    }
-    if (toggle) toggle.addEventListener('click', function () { open = !open; setText(); });
-    setText();
+    // resoconto intero in un riquadro ad altezza massima, scorrevole: il carosello resta vicino al titolo
+    var text = a.text ? el('div', { class: 'album-text', tabindex: '0', role: 'region', 'aria-label': 'Resoconto: ' + a.title, text: a.text }) : null;
 
     var info = el('div', { class: 'album-info' }, [
       date ? el('span', { class: 'album-date', text: date }) : null,
       el('h2', { class: 'h2', text: a.title }),
       el('span', { class: 'small', text: meta }),
-      a.text ? text : null,
-      toggle,
+      text,
       a.link ? el('a', { class: 'link', href: a.link, text: 'Dettagli della gita' }) : null
     ]);
 
@@ -80,8 +72,20 @@
     return el('article', { class: 'album' }, [info, el('div', { class: 'album-viewer' }, [frame, grid])]);
   }
 
+  // sfumatura in fondo al resoconto solo se è più lungo del riquadro; sparisce arrivati alla fine
+  function fade(box) {
+    function upd() { box.classList.toggle('has-more', box.scrollTop + box.clientHeight < box.scrollHeight - 4); }
+    box.addEventListener('scroll', upd, { passive: true });
+    upd();
+  }
+
   function next() {
-    albums.slice(shown, shown + PAGE).forEach(function (a) { root.appendChild(render(a)); });
+    albums.slice(shown, shown + PAGE).forEach(function (a) {
+      var art = render(a);
+      root.appendChild(art);
+      var box = art.querySelector('.album-text');
+      if (box) fade(box);
+    });
     shown += PAGE;
     if (more) more.hidden = shown >= albums.length;
   }

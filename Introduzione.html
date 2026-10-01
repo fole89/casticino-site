@@ -12,9 +12,9 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo-cas.webp">
 <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=265d495f">
+<link rel="stylesheet" href="assets/site.css?v=74c45737">
 <script>document.documentElement.classList.add('js')</script>
-<meta property="og:image" content="assets/img/attivita-gite-2x1.webp">
+<meta property="og:image" content="assets/img/paesaggi/gruppo-ghiacciaio-2000.webp">
 </head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
@@ -36,15 +36,14 @@
 <a href="Link.html">Link utili</a>
 </div>
 </div>
-<a class="navlink" href="News.html">News</a>
+<a class="navlink" href="index.html#news">News</a>
 <div class="dd">
 <a class="navlink dd-trigger" href="index.html#attivita" aria-haspopup="true">Attività <span class="caret" aria-hidden="true"></span></a>
 <div class="dd-menu">
-<a href="https://ssl.dropnet.ch/casticino/gite/index.php">Programma gite</a>
 <a href="Giovani.html">Giovani</a>
 <a href="Senior.html">Senior</a>
 <a href="Corsi.html">Corsi</a>
-<a href="Noleggio.html">Noleggio materiale</a>
+<a href="Noleggio.html">Noleggio</a>
 </div>
 </div>
 <div class="dd">
@@ -59,7 +58,7 @@
 </div>
 </div>
 <div class="dd">
-<a class="navlink dd-trigger" href="Foto.html" aria-haspopup="true">Media <span class="caret" aria-hidden="true"></span></a>
+<a class="navlink dd-trigger" href="index.html#media" aria-haspopup="true">Media <span class="caret" aria-hidden="true"></span></a>
 <div class="dd-menu">
 <a href="Foto.html">Foto</a>
 <a href="Annuari.html">Annuari</a>
@@ -87,7 +86,10 @@
 </section>
 
 <figure class="band">
-<img src="assets/img/attivita-gite-2x1.webp" alt="Gruppo della sezione in vetta, con vista sulle Alpi innevate" width="1400" height="700">
+<picture>
+<source media="(max-width: 700px)" srcset="assets/img/paesaggi/gruppo-ghiacciaio-4x3.webp">
+<img src="assets/img/paesaggi/gruppo-ghiacciaio-2000.webp" srcset="assets/img/paesaggi/gruppo-ghiacciaio-1000.webp 1000w, assets/img/paesaggi/gruppo-ghiacciaio-2000.webp 2000w" sizes="100vw" alt="Gruppo di alpinisti in cammino su un ghiacciaio" width="2000" height="1500" fetchpriority="high" class="pos-low">
+</picture>
 </figure>
 
 <section class="section--accent" aria-label="La sezione in cifre">
@@ -108,7 +110,7 @@
 </div>
 <div class="pillars" data-reveal>
 <article class="pillar pillar--photo pillar--wide">
-<img src="assets/img/hero-ticino-2000.webp" alt="Alpinisti su una cresta rocciosa" width="2000" height="580" loading="lazy" decoding="async">
+<img src="assets/img/paesaggi/cresta-lugano-2000.webp" alt="Alpinisti su una cresta rocciosa" width="2000" height="580" loading="lazy" decoding="async">
 <h3>Discipline</h3>
 <p>Escursionismo, alpinismo, arrampicata, sci alpinismo, racchette e cascate di ghiaccio.</p>
 </article>
@@ -118,7 +120,7 @@
 <a class="link" href="Corsi.html">Vedi i corsi</a>
 </article>
 <article class="pillar pillar--photo">
-<img src="assets/img/capanna-montebar-3x2.webp" alt="La Capanna Monte Bar" width="663" height="442" loading="lazy" decoding="async">
+<img src="assets/img/capanne/montebar-3x2.webp" alt="La Capanna Monte Bar" width="663" height="442" loading="lazy" decoding="async">
 <h3>Capanne</h3>
 <p>La sezione gestisce sei rifugi: <a href="CampoTencia.html">Campo Tencia</a>, <a href="Cristallina.html">Cristallina</a>, <a href="Adula.html">Adula</a>, <a href="Motterascio.html">Motterascio (Michela)</a>, <a href="MonteBar.html">Monte Bar</a> e <a href="BaitaDelLuca.html">Baita del Luca</a>.</p>
 </article>
@@ -131,7 +133,7 @@
 <p>Un <a href="Comitato.html">comitato</a> coordina le diverse attività, affiancato da cinque <a href="Organizzazione.html">dicasteri</a> e dal lavoro volontario dei soci.</p>
 </article>
 <article class="pillar pillar--photo pillar--wide-md">
-<img src="assets/img/corso-racchette-4x5.webp" alt="Cresta innevata sopra un mare di nuvole" width="800" height="1000" loading="lazy" decoding="async">
+<img src="assets/img/corsi/racchette-4x5.webp" alt="Cresta innevata sopra un mare di nuvole" width="800" height="1000" loading="lazy" decoding="async">
 <h3>Comunicazione</h3>
 <p>Programma delle attività, sito web, un periodico semestrale e l’annuario che racconta la vita della sezione.</p>
 </article>
@@ -181,11 +183,10 @@
 <nav class="footer-col" aria-label="Attività">
 <h2>Attività</h2>
 <a href="News.html">News</a>
-<a href="https://ssl.dropnet.ch/casticino/gite/index.php">Programma gite</a>
 <a href="Giovani.html">Giovani</a>
 <a href="Senior.html">Senior</a>
 <a href="Corsi.html">Corsi</a>
-<a href="Noleggio.html">Noleggio materiale</a>
+<a href="Noleggio.html">Noleggio</a>
 <a href="Adesione.html">Adesione</a>
 </nav>
 <nav class="footer-col" aria-label="Le Capanne">

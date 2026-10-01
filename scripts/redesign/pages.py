@@ -10,20 +10,20 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 
 HUTS = [
     # file, nome, quota, valle, stato, testo, posti, accesso, img 3x2 (w,h), grande
-    ("CampoTencia.html", "Campo Tencia", "2140", "Val Piumogna", "Custodita", "Su un terrazzo sopra la Val Piumogna, base per il Pizzo Campo Tencia: la cima più alta interamente ticinese.", "80 posti", "Dalpe 2h30", "capanna-campotencia-3x2", (987, 658), True),
-    ("Cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Custodita", "Sull’omonimo passo, tra Leventina e Valle Maggia. Inaugurata nel 2003, primo rifugio moderno del CAS.", "120 posti", "Ossasco 3h45", "capanna-cristallina-3x2", (837, 558), True),
-    ("Adula.html", "Adula", "2012", "Val Carassino", "Custodita", "Il classico rifugio in pietra affacciato sulla Valle di Blenio: storia, accoglienza calorosa e cucina nostrana.", "34 posti", "Compietto 2h", "capanna-adula-3x2", (1000, 667), False),
-    ("Motterascio.html", "Motterascio", "2172", "Greina", "Custodita", "Al margine della riserva della Greina: torbiere, alpeggi e l’arco naturale più grande del Ticino.", "70 posti", "Luzzone 1h30", "capanna-motterascio-3x2", (974, 649), False),
-    ("MonteBar.html", "Monte Bar", "1620", "Alta Capriasca", "Tutto l’anno", "Il balcone sul Luganese, ricostruito nel 2016: vista dal Monte Rosa ai Denti della Vecchia, standard Bike Hotel.", "42 posti", "Corticiasca 1h30", "capanna-montebar-3x2", (663, 442), False),
-    ("BaitaDelLuca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Su riservazione", "Sopra Sonvico, ai piedi dei Denti della Vecchia. Punto di ritrovo dei giovani, ideale per famiglie e arrampicata.", "16 posti, autogestita", "Rosone 30 min", "capanna-baitadelluca-3x2", (1000, 667), False),
+    ("CampoTencia.html", "Campo Tencia", "2140", "Val Piumogna", "Custodita", "Su un terrazzo sopra la Val Piumogna, base per il Pizzo Campo Tencia: la cima più alta interamente ticinese.", "80 posti", "Dalpe 2h30", "capanne/campotencia-3x2", (987, 658), True),
+    ("Cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Custodita", "Sull’omonimo passo, tra Leventina e Valle Maggia. Inaugurata nel 2003, primo rifugio moderno del CAS.", "120 posti", "Ossasco 3h45", "capanne/cristallina-3x2", (837, 558), True),
+    ("Adula.html", "Adula", "2012", "Val Carassino", "Custodita", "Il classico rifugio in pietra affacciato sulla Valle di Blenio: storia, accoglienza calorosa e cucina nostrana.", "34 posti", "Compietto 2h", "capanne/adula-3x2", (1000, 667), False),
+    ("Motterascio.html", "Motterascio", "2172", "Greina", "Custodita", "Al margine della riserva della Greina: torbiere, alpeggi e l’arco naturale più grande del Ticino.", "70 posti", "Luzzone 1h30", "capanne/motterascio-3x2", (974, 649), False),
+    ("MonteBar.html", "Monte Bar", "1620", "Alta Capriasca", "Tutto l’anno", "Il balcone sul Luganese, ricostruito nel 2016: vista dal Monte Rosa ai Denti della Vecchia, standard Bike Hotel.", "42 posti", "Corticiasca 1h30", "capanne/montebar-3x2", (663, 442), False),
+    ("BaitaDelLuca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Su riservazione", "Sopra Sonvico, ai piedi dei Denti della Vecchia. Punto di ritrovo dei giovani, ideale per famiglie e arrampicata.", "16 posti, autogestita", "Rosone 30 min", "capanne/baitadelluca-3x2", (1000, 667), False),
 ]
 
 COURSES = [
-    ("Inverno", "Sci alpinismo", "Salita e discesa fuori pista, nivologia, prevenzione valanghe, ricerca ARTVA.", "corso-scialpinismo-4x5", (582, 728), "Sci alpinisti in salita su un pendio innevato"),
-    ("Inverno", "Racchette", "Muoversi sulla neve in sicurezza: meteo, orientamento, primi soccorsi.", "corso-racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole"),
-    ("Inverno", "Freeride", "Tecnica di sci fuori pista per chi vuole scendere con più sicurezza.", "corso-freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio"),
-    ("Primavera", "Arrampicata", "Vie a uno o più tiri: assicurazione, gestione della sosta, corda doppia.", "corso-arrampicata-4x5", (594, 742), "Cordata su una parete di roccia accanto a un ghiacciaio"),
-    ("Estate", "Alpinismo", "Progressione su neve e roccia per escursionisti che vogliono salire più in alto.", "corso-alpinismo-4x5", (594, 742), "Cordata su una cresta di neve"),
+    ("Inverno", "Sci alpinismo", "Salita e discesa fuori pista, nivologia, prevenzione valanghe, ricerca ARTVA.", "corsi/scialpinismo-4x5", (582, 728), "Sci alpinisti in salita su un pendio innevato"),
+    ("Inverno", "Racchette", "Muoversi sulla neve in sicurezza: meteo, orientamento, primi soccorsi.", "corsi/racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole"),
+    ("Inverno", "Freeride", "Tecnica di sci fuori pista per chi vuole scendere con più sicurezza.", "corsi/freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio"),
+    ("Primavera", "Arrampicata", "Vie a uno o più tiri: assicurazione, gestione della sosta, corda doppia.", "corsi/arrampicata-4x5", (594, 742), "Cordata su una parete di roccia accanto a un ghiacciaio"),
+    ("Estate", "Alpinismo", "Progressione su neve e roccia per escursionisti che vogliono salire più in alto.", "corsi/alpinismo-4x5", (594, 742), "Cordata su una cresta di neve"),
 ]
 
 TIMELINE = [
@@ -56,7 +56,7 @@ def home():
 
     html = head("CAS Ticino | Club Alpino Svizzero, Sezione Ticino",
                 "Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età. Da oltre un secolo, la casa dell’alpinismo ticinese.",
-                '<meta property="og:image" content="assets/img/hero-ticino-2000.webp">\n<link rel="preload" as="image" href="assets/img/hero-ticino-2000.webp" imagesrcset="assets/img/hero-ticino-1000.webp 1000w, assets/img/hero-ticino-2000.webp 2000w" imagesizes="100vw" media="(min-width: 701px)">\n')
+                '<meta property="og:image" content="assets/img/paesaggi/sciatori-villaggio-2000.webp">\n<link rel="preload" as="image" href="assets/img/paesaggi/sciatori-villaggio-2000.webp" imagesrcset="assets/img/paesaggi/sciatori-villaggio-1000.webp 1000w, assets/img/paesaggi/sciatori-villaggio-2000.webp 2000w" imagesizes="100vw" media="(min-width: 701px)">\n')
     html += "\n<body>\n" + nav("index.html") + f"""
 <main id="contenuto">
 
@@ -72,7 +72,7 @@ def home():
 </div>
 </div>
 <figure class="band">
-{pic("hero-ticino", "Alpinisti su una cresta rocciosa sopra il Lago di Lugano", mobile="hero-ticino-4x3", w=2000, h=580, lazy=False)}
+{pic("paesaggi/sciatori-villaggio", "Scialpinisti in salita verso un villaggio innevato", mobile="paesaggi/sciatori-villaggio-4x3", w=2000, h=901, lazy=False, cls="pos-low")}
 </figure>
 </section>
 
@@ -120,7 +120,7 @@ def home():
 </div>
 <div class="bento" id="gruppi">
 <article class="tile tile--wide-top" data-reveal>
-{img("attivita-gite-2x1", "Gruppo in vetta con vista sulle Alpi innevate", 1400, 700)}
+{img("attivita/gite-2x1", "Gruppo in vetta con vista sulle Alpi innevate", 1400, 700)}
 <div class="tile-body">
 <span class="label">Programma gite 2026</span>
 <h3 class="h2">Gite, escursioni e uscite della sezione</h3>
@@ -129,7 +129,7 @@ def home():
 </div>
 </article>
 <article class="tile tile--tall" data-reveal>
-{img("attivita-giovani-3x4", "Giovane arrampicatore su una parete dei Denti della Vecchia", 800, 1066)}
+{img("attivita/giovani-3x4", "Giovane arrampicatore su una parete dei Denti della Vecchia", 800, 1066)}
 <div class="tile-body">
 <span class="label">Gruppo giovani, dagli anni ’60</span>
 <h3 class="h2">Giovani</h3>
@@ -138,7 +138,7 @@ def home():
 </div>
 </article>
 <article class="tile tile--wide-bottom" data-reveal>
-{img("attivita-senior-2x1", "Escursionisti su un sentiero di cresta", 1000, 500)}
+{img("attivita/senior-2x1", "Escursionisti su un sentiero di cresta", 1000, 500)}
 <div class="tile-body">
 <span class="label">Gruppo senior, dal 1940</span>
 <h3 class="h2">Senior</h3>
@@ -161,7 +161,7 @@ def home():
 </div>
 <div class="rail-foot">
 <p class="small">Corsi avanzati per futuri capigita CAS e monitori G+S.</p>
-<a class="link" href="Noleggio.html">Noleggio materiale</a>
+<a class="link" href="Noleggio.html">Noleggio</a>
 </div>
 </div>
 </section>
@@ -182,8 +182,10 @@ def home():
 </div>
 </section>
 
+{media_section()}
+
 <section class="cta-band" id="adesione" aria-labelledby="adesione-h">
-{pic("adesione", "", mobile="adesione-4x3", w=2000, h=602)}
+{pic("paesaggi/tramonto-larici", "", mobile="paesaggi/tramonto-larici-4x3", w=2000, h=1126)}
 <div class="container">
 <h2 id="adesione-h" class="h2">Sali con noi.</h2>
 <p>Tariffe ridotte nelle capanne CAS di tutta la Svizzera, corsi, gite e una comunità che ama la montagna quanto te.</p>
@@ -198,7 +200,7 @@ def home():
 
 # ------------------------------------------------------------------ pagine interne
 
-def page(file, title, description, body, og="hero-ticino-2000", section=None, scripts=""):
+def page(file, title, description, body, og="paesaggi/sciatori-villaggio-2000", section=None, scripts=""):
     """Pagina completa: testa, menu, contenuto, footer."""
     html = head(title, description, f'<meta property="og:image" content="assets/img/{og}.webp">\n')
     return html + "\n<body>\n" + nav(file, section) + f"""
@@ -226,7 +228,7 @@ HUT_PAGES = {
         name="Campo Tencia", where="Val Piumogna, Leventina", alt_m="2140", beds="80", custody="metà giu, metà ott",
         mail="campotencia@casticino.ch",
         description="Capanna Campo Tencia, 2140 m, in Val Piumogna (Leventina): 80 posti letto, custodita da metà giugno a metà ottobre. Contatti e prenotazioni.",
-        band=("capanna-campotencia", "La Capanna Campo Tencia al tramonto, sopra la Val Piumogna", 658),
+        band=("capanne/campotencia", "La Capanna Campo Tencia al tramonto, sopra la Val Piumogna", 658),
         intro="Adagiata su un terrazzo che domina l’alta Val Piumogna, è la base ideale per escursioni, traversate verso altre capanne e salite come quella al Pizzo Campo Tencia, che con i suoi 3071 m è la cima più alta interamente in territorio ticinese.",
         stay=[("Apertura", "Tutto l’anno"),
               ("Custodia", "Da metà giugno a metà ottobre; d’inverno su richiesta"),
@@ -243,7 +245,7 @@ HUT_PAGES = {
         name="Cristallina", where="Passo Cristallina, Valle Bedretto", alt_m="2575", beds="120", custody="fine giu, ott",
         mail="cristallina@casticino.ch",
         description="Capanna Cristallina, 2575 m, sul Passo Cristallina tra Leventina e Valle Maggia: 120 posti letto, custodita da fine giugno a ottobre. Contatti e prenotazioni.",
-        band=("capanna-cristallina", "La Capanna Cristallina sul passo, tra Leventina e Valle Maggia", 558),
+        band=("capanne/cristallina", "La Capanna Cristallina sul passo, tra Leventina e Valle Maggia", 558),
         intro="Progettata dagli architetti Baserga e Mozzetti e inaugurata nel 2003, è il primo rifugio moderno costruito dal Club Alpino Svizzero. Sorge sul passo, in un punto strategico tra Leventina e Valle Maggia: tappa panoramica sulle traversate verso Robiei, il Naret, il Campo Tencia e il San Giacomo. Il giro dei laghi del Cristallina, di uno o due giorni, è adatto anche alle famiglie; in un’ora si raggiungono il Cristallina e la Cima di Lago. D’inverno, raggiungibile soprattutto da nord, apre pendii splendidi verso la Valle Bedretto, Robiei e la Val Formazza.",
         stay=[("Apertura", "Da giugno a ottobre; d’inverno saltuariamente o su richiesta"),
               ("Custodia", "Da fine giugno a ottobre; inverno su prenotazione"),
@@ -260,7 +262,7 @@ HUT_PAGES = {
         name="Adula", where="Alta Val Carassino, Val Soi, Blenio", alt_m="2012", beds="34", custody="fine giu, fine set",
         mail="adula@casticino.ch",
         description="Capanna Adula, 2012 m, tra Val Carassino e Val Soi (Blenio): 34 posti letto, aperta tutto l’anno, custodita da fine giugno a fine settembre. Contatti e prenotazioni.",
-        img=("capanna-adula-3x2", "La Capanna Adula, rifugio in pietra affacciato sulla Valle di Blenio", 1000, 667),
+        img=("capanne/adula-3x2", "La Capanna Adula, rifugio in pietra affacciato sulla Valle di Blenio", 1000, 667),
         intro="La «Bassa», come la si chiama da sempre, ha il fascino del rifugio d’altri tempi: costruzione in pietra, un soggiorno che trasuda storia, dormitori che hanno visto passare migliaia di alpinisti, accoglienza calorosa e cucina nostrana. Da questo balcone sulla Valle di Blenio si parte per la cima dell’Adula o, su comodi sentieri, verso altre capanne; i selvaggi itinerari della Val Carassino offrono un escursionismo avventuroso. Per i meno ambiziosi: una passeggiata in valle, un buon pranzo e un pisolino al sole.",
         stay=[("Apertura", "Tutto l’anno"),
               ("Custodia", "Da fine giugno a fine settembre"),
@@ -278,7 +280,7 @@ HUT_PAGES = {
         name="Motterascio", where="Alpe Motterascio, Greina, Blenio", alt_m="2172", beds="70", custody="10 giu, 15 ott",
         mail="motterascio@casticino.ch",
         description="Capanna Motterascio, 2172 m, al margine della Greina (Blenio): 70 posti letto, aperta tutto l’anno, custodita dal 10 giugno al 15 ottobre. Contatti e prenotazioni.",
-        band=("capanna-motterascio", "La Capanna Motterascio sull’altopiano della Greina", 649),
+        band=("capanne/motterascio", "La Capanna Motterascio sull’altopiano della Greina", 649),
         intro="Capanna nuova, al margine di una riserva naturale straordinaria: la Greina, con le sue paludi, torbiere, alpeggi e una flora incontaminata. Punto di partenza per itinerari interessanti, tra cui spicca l’arco della Greina, il più grande arco naturale del Canton Ticino.",
         stay=[("Apertura", "Tutto l’anno"),
               ("Custodia", "Dal 10 giugno al 15 ottobre; d’inverno nel periodo pasquale o su richiesta"),
@@ -296,7 +298,7 @@ HUT_PAGES = {
         name="Monte Bar", where="Alta Capriasca, Luganese", alt_m="1620", beds="42", custody="tutto l’anno",
         mail="montebar@casticino.ch",
         description="Capanna Monte Bar, 1620 m, in Alta Capriasca: 42 posti letto in camere da 2, 4 e 6, custodita tutto l’anno, standard Bike Hotel. Contatti e prenotazioni.",
-        band=("capanna-montebar", "La Capanna Monte Bar con vista sul Luganese", 442),
+        band=("capanne/montebar", "La Capanna Monte Bar con vista sul Luganese", 442),
         intro="Su un poggio di eccezionale bellezza, con una vista a 180 gradi dai Denti della Vecchia al Tamaro e, a ovest, sui 4000 vallesani dal Mischabel al Monte Rosa. Ricostruita nell’autunno 2016: camere da 2, 4 e 6 posti, servizi ai piani, refettorio per circa 80 persone, saletta riunioni per 20, ampia terrazza e un locale chiuso con caricatori per e-bike e piccola officina, secondo lo standard Bike Hotel.",
         stay=[("Apertura", "In presenza dei custodi e su riservazione; apre anche per eventi, cene e pranzi fuori stagione"),
               ("Custodia", "Da aprile a ottobre sempre; da novembre a marzo dal giovedì alla domenica"),
@@ -314,7 +316,7 @@ HUT_PAGES = {
         name="Baita del Luca", where="Cioascio, Sonvico", alt_m="1070", beds="16", custody="su riservazione",
         mail="baitaluca@casticino.ch",
         description="Baita del Luca, 1070 m, sopra Sonvico ai piedi dei Denti della Vecchia: 16 posti letto, autogestita, solo su riservazione. Ritrovo del gruppo giovani.",
-        img=("capanna-baitadelluca-3x2", "La Baita del Luca su un pendio erboso sopra Sonvico", 1000, 667),
+        img=("capanne/baitadelluca-3x2", "La Baita del Luca su un pendio erboso sopra Sonvico", 1000, 667),
         intro="Su un ampio pendio erboso sopra Sonvico, ai piedi dei Denti della Vecchia: base ideale per escursioni, anche in famiglia, e arrampicate in un paesaggio unico. È il punto di ritrovo del <a href=\"Giovani.html\">gruppo giovani</a>.",
         stay=[("Apertura", "Chiusa; accessibile solo previa riservazione"),
               ("Posti letto", "16"),
@@ -407,7 +409,9 @@ def introduzione():
     body = page_hero([("La Sezione", "index.html#sezione"), ("Introduzione", None)], "La sezione",
                      "Fondata a Bellinzona l’11 aprile 1886, la Sezione Ticino del Club Alpino Svizzero conta quasi 3000 soci e propone un’attività varia, pensata per tutte le età: dai più giovani ai seniori.") + f"""
 
-{band_img("attivita-gite-2x1", "Gruppo della sezione in vetta, con vista sulle Alpi innevate", 1400, 700)}
+<figure class="band">
+{pic("paesaggi/gruppo-ghiacciaio", "Gruppo di alpinisti in cammino su un ghiacciaio", mobile="paesaggi/gruppo-ghiacciaio-4x3", w=2000, h=1500, lazy=False, cls="pos-low")}
+</figure>
 
 <section class="section--accent" aria-label="La sezione in cifre">
 <div class="container">
@@ -427,7 +431,7 @@ def introduzione():
 </div>
 <div class="pillars" data-reveal>
 <article class="pillar pillar--photo pillar--wide">
-{img("hero-ticino-2000", "Alpinisti su una cresta rocciosa", 2000, 580)}
+{img("paesaggi/cresta-lugano-2000", "Alpinisti su una cresta rocciosa", 2000, 580)}
 <h3>Discipline</h3>
 <p>Escursionismo, alpinismo, arrampicata, sci alpinismo, racchette e cascate di ghiaccio.</p>
 </article>
@@ -437,7 +441,7 @@ def introduzione():
 <a class="link" href="Corsi.html">Vedi i corsi</a>
 </article>
 <article class="pillar pillar--photo">
-{img("capanna-montebar-3x2", "La Capanna Monte Bar", 663, 442)}
+{img("capanne/montebar-3x2", "La Capanna Monte Bar", 663, 442)}
 <h3>Capanne</h3>
 <p>La sezione gestisce sei rifugi: {huts}.</p>
 </article>
@@ -450,7 +454,7 @@ def introduzione():
 <p>Un <a href="Comitato.html">comitato</a> coordina le diverse attività, affiancato da cinque <a href="Organizzazione.html">dicasteri</a> e dal lavoro volontario dei soci.</p>
 </article>
 <article class="pillar pillar--photo pillar--wide-md">
-{img("corso-racchette-4x5", "Cresta innevata sopra un mare di nuvole", 800, 1000)}
+{img("corsi/racchette-4x5", "Cresta innevata sopra un mare di nuvole", 800, 1000)}
 <h3>Comunicazione</h3>
 <p>Programma delle attività, sito web, un periodico semestrale e l’annuario che racconta la vita della sezione.</p>
 </article>
@@ -466,7 +470,7 @@ def introduzione():
 {subnav("La Sezione", "Introduzione.html")}"""
     return page("Introduzione.html", "La sezione | CAS Ticino",
                 "La Sezione Ticino del Club Alpino Svizzero: fondata nel 1886, quasi 3000 soci, sei capanne, corsi, gite e attività per tutte le età.",
-                body, og="attivita-gite-2x1")
+                body, og="paesaggi/gruppo-ghiacciaio-2000")
 
 
 COMITATO = [
@@ -656,6 +660,10 @@ def storia():
     body = page_hero([("La Sezione", "index.html#sezione"), ("Storia", None)], "Dal 1886,<br>a piedi.",
                      "Più di un secolo di salite, rifugi, soccorso e cultura alpina: la storia della sezione in tappe.") + f"""
 
+<figure class="band">
+{pic("paesaggi/seraccata", "Seraccata di un ghiacciaio sotto il cielo azzurro", mobile="paesaggi/seraccata-4x3", w=2000, h=1125, lazy=False)}
+</figure>
+
 <section class="section" aria-labelledby="tappe-h">
 <div class="container split">
 <div class="split-intro">
@@ -688,6 +696,8 @@ def linkgroups(groups, tag):
 
 
 LINKS = [
+    ("Capigita", [("Portale DropTour", "https://ssl.dropnet.ch/casticino/manager/touren/index.php"),
+                  ("Reset password", "https://ssl.dropnet.ch/casticino/gite/index.php?page=order_password")]),
     ("Meteo e neve", [("SLF, bollettini valanghe in Svizzera", "http://www.slf.ch/"), ("MeteoSvizzera", "http://www.meteosvizzera.ch/"),
                       ("Meteoblue, previsioni a 7 giorni", "http://www.meteoblue.com/"), ("MeteoCentrale", "http://www.meteocentrale.ch/it/"),
                       ("Bollettino valanghe Tirolo", "http://lawine.tirol.gv.at/"), ("Servizio valanghe italiano (CAI-SVI)", "http://www.cai-svi.it/j15/"),
@@ -744,7 +754,8 @@ DOCS = [
                     ("Scalata su ghiaccio", DOC + "promemoria/scalata-su-ghiaccio.pdf"),
                     ("Tecnica alpina", DOC + "promemoria/tecnica-alpina.pdf"),
                     ("Incidente valanga e ARVA", DOC + "promemoria/incidente-valanga-arva.pdf"),
-                    ("Promemoria capigita", DOC + "promemoria/capigita.pdf")]),
+                    ("Promemoria capigita", DOC + "promemoria/capigita.pdf"),
+                    ("Istruzioni DropTour", DOC + "promemoria/istruzioni-droptour-2026.pdf")]),
     ("Materiale e pianificazione", [("Lista noleggio materiale", DOC + "noleggio/lista-materiale.pdf"),
                                     ("Formulario pianificazione gite estive", DOC + "moduli/pianificazione-gite-estive.pdf"),
                                     ("Cartine CH 1:25 000", DOC + "cartine/carte-nazionali-25000.pdf"),
@@ -754,7 +765,7 @@ DOCS = [
 
 
 def documenti():
-    body = page_hero([("Media", "Foto.html"), ("Documenti", None)], "Documenti",
+    body = page_hero([("Media", "index.html#media"), ("Documenti", None)], "Documenti",
                      "Statuto e documenti della sezione, scale di difficoltà, promemoria tecnici, moduli e cartine da scaricare.") + f"""
 
 <section class="section" aria-label="Documenti">
@@ -791,7 +802,7 @@ def esc(t):
 
 def og_name(n):
     """Nome dell'immagine per og:image (page() aggiunge assets/img/ e .webp)."""
-    return n["image"]["src"][len("assets/img/"):-len(".webp")] if n["image"] else "hero-ticino-2000"
+    return n["image"]["src"][len("assets/img/"):-len(".webp")] if n["image"] else "paesaggi/cresta-lugano-2000"
 
 
 def news_meta(n):
@@ -854,7 +865,7 @@ def news():
 </section>"""
     return page("News.html", "News | CAS Ticino",
                 "Le notizie della Sezione Ticino del Club Alpino Svizzero: serate, eventi, corsi, avvisi di sicurezza e vita delle capanne.",
-                body, og=og_name(NEWS[0]))
+                body, og=og_name(NEWS[0]), section="News")
 
 
 def news_article(i):
@@ -910,14 +921,10 @@ def news_article(i):
 
 
 def foto():
-    body = page_hero([("Media", "Foto.html"), ("Foto", None)], "Foto", "Gli scatti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.") + f"""
+    body = page_hero([("Media", "index.html#media"), ("Foto", None)], "Foto", "Gli scatti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.") + f"""
 
 <section class="section" aria-label="Ultime gite">
 <div class="container">
-<div class="albums-head">
-<p class="small">Ultime gite pubblicate, dal portale Droptour</p>
-<a class="link" href="{GITE}?page=galery_overview">Archivio completo su Droptour</a>
-</div>
 <div id="albums" aria-live="polite"><p class="albums-status">Caricamento delle foto…</p></div>
 <div class="albums-more">
 <button type="button" class="btn btn--secondary" id="load-more" hidden>Carica altre gite</button>
@@ -925,10 +932,10 @@ def foto():
 </div>
 </section>
 
-{subnav("Media", "Foto.html")}"""
+{subnav("Media", "index.html#media")}"""
     return page("Foto.html", "Foto delle gite | CAS Ticino",
                 "Le foto delle ultime gite della Sezione Ticino del Club Alpino Svizzero, con i resoconti dei capigita.",
-                body, og="attivita-gite-2x1", scripts=f'<script src="{asset("assets/foto.js")}" defer></script>\n')
+                body, og="attivita/gite-2x1", scripts=f'<script src="{asset("assets/foto.js")}" defer></script>\n')
 
 
 def webp_size(path):
@@ -986,10 +993,47 @@ def pub_feature(x, titolo, testo):
 </div>"""
 
 
+def media_section():
+    """Home: un riquadro per ciascuna pagina di Media, con l'ultima foto, le ultime copertine e i documenti."""
+    foto = json.load(open(os.path.join(ROOT, "data", "foto.json"), encoding="utf-8")).get("albums", [])
+    foto = next((a for a in foto if a.get("photos")), None)
+    ann = pubblicazioni("annuari", "annuario")[0]
+    inf = pubblicazioni("informazione", "informazione")[0]
+    n_doc = sum(len(g[1]) for g in DOCS)
+    foto_fig = (f'<figure><img src="{foto["photos"][0]["large"]}" alt="" loading="lazy" decoding="async"></figure>'
+                if foto else f'<figure>{img("attivita/gite-2x1", "", 1400, 700)}</figure>')
+    foto_txt = f"Ultima gita: {esc(foto['title'])}" if foto else "Le foto delle gite della sezione"
+    return f"""<section class="section" id="media" aria-labelledby="media-h">
+<div class="container">
+<div class="section-row">
+<h2 id="media-h" class="h2">Media</h2>
+</div>
+<div class="media-grid" data-reveal>
+<a class="media-card" href="Foto.html">
+{foto_fig}
+<div class="media-card-body"><h3>Foto</h3><p>{foto_txt}</p></div>
+</a>
+<a class="media-card media-card--cover" href="Annuari.html">
+<figure><img src="{ann['cover']}" alt="" width="{ann['w']}" height="{ann['h']}" loading="lazy" decoding="async"></figure>
+<div class="media-card-body"><h3>Annuari</h3><p>Annuario {ann['anno']} e annate precedenti</p></div>
+</a>
+<a class="media-card media-card--cover" href="Informazione.html">
+<figure><img src="{inf['cover']}" alt="" width="{inf['w']}" height="{inf['h']}" loading="lazy" decoding="async"></figure>
+<div class="media-card-body"><h3>Informazione</h3><p>Il bollettino, numero di {inf['quando']}</p></div>
+</a>
+<a class="media-card media-card--docs" href="Documenti.html">
+<figure aria-hidden="true"><strong>{n_doc}</strong><span>PDF da scaricare</span></figure>
+<div class="media-card-body"><h3>Documenti</h3><p>Statuto, scale di difficoltà, promemoria, cartine</p></div>
+</a>
+</div>
+</div>
+</section>"""
+
+
 def annuari():
     items = pubblicazioni("annuari", "annuario")
     ultimo, altri = items[0], items[1:]
-    body = page_hero([("Media", "Foto.html"), ("Annuari", None)], "Annuari",
+    body = page_hero([("Media", "index.html#media"), ("Annuari", None)], "Annuari",
                      "L’annuario racconta la vita della sezione: un volume per ogni anno, da sfogliare in PDF.") + f"""
 
 <section class="section" aria-label="Annuari">
@@ -1015,7 +1059,7 @@ def informazione():
 <div class="pubs" data-reveal>
 {chr(10).join(pub_card(x, f"Informazione, {x['quando']}") for x in altri)}
 </div>""" if altri else "")
-    body = page_hero([("Media", "Foto.html"), ("Informazione", None)], "Informazione",
+    body = page_hero([("Media", "index.html#media"), ("Informazione", None)], "Informazione",
                      "Il bollettino ufficiale della sezione: notizie, attività e appuntamenti, da sfogliare in PDF.") + f"""
 
 <section class="section" aria-label="Numeri di Informazione">
@@ -1052,7 +1096,7 @@ def adesione():
                      f'<div class="actions hero-actions"><a class="btn btn--primary" href="{join}">Iscriviti sul sito del CAS <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
 
 <figure class="band">
-{pic("adesione", "Alpinisti in cammino su un crinale", mobile="adesione-4x3", w=2000, h=602, lazy=False)}
+{pic("paesaggi/laghetto-alpino", "Laghetto alpino tra le rocce, con le montagne sullo sfondo", mobile="paesaggi/laghetto-alpino-4x3", w=2000, h=1126, lazy=False)}
 </figure>
 
 <section class="section" aria-labelledby="quote-h">
@@ -1078,7 +1122,7 @@ def adesione():
 </section>"""
     return page("Adesione.html", "Diventa socio | CAS Ticino",
                 "Diventa socio della Sezione Ticino del Club Alpino Svizzero: quote annuali per singoli, famiglie e giovani, e vantaggi per i soci.",
-                body, og="adesione-2000")
+                body, og="paesaggi/laghetto-alpino-2000")
 
 
 # ------------------------------------------------------------------ attività
@@ -1104,7 +1148,7 @@ def giovani():
     body = page_hero([("Attività", "index.html#attivita"), ("Giovani", None)], "Giovani",
                      "Uscite di un giorno, fine settimana e campi di più giorni: alpinismo, arrampicata, sci alpinismo e molto altro, con monitori formati e guide alpine.",
                      f'<div class="actions hero-actions"><a class="btn btn--primary" href="{GITE}">Programma giovani <span class="arrow" aria-hidden="true">→</span></a></div>',
-                     figure=img("attivita-giovani-3x4", "Giovane arrampicatore su una parete dei Denti della Vecchia", 800, 1066, lazy=False)) + f"""
+                     figure=img("attivita/giovani-3x4", "Giovane arrampicatore su una parete dei Denti della Vecchia", 800, 1066, lazy=False)) + f"""
 
 <section class="section" aria-labelledby="fasce-h">
 <div class="container">
@@ -1130,7 +1174,7 @@ def giovani():
 {subnav("Attività", "Giovani.html")}"""
     return page("Giovani.html", "Giovani | CAS Ticino",
                 "Il gruppo giovani del CAS Ticino: arrampicata, sci alpinismo, campi e uscite per ragazze e ragazzi dai 2 ai 22 anni, con monitori e guide alpine.",
-                body, og="attivita-giovani-3x4")
+                body, og="attivita/giovani-3x4")
 
 
 def senior():
@@ -1142,7 +1186,7 @@ def senior():
     body = page_hero([("Attività", "index.html#attivita"), ("Senior", None)], "Senior",
                      "Un gruppo di non più giovani con la passione per la montagna: la bellezza della natura, i piaceri della tavola e la nostra storia.") + f"""
 
-{band_img("attivita-senior-2x1", "Escursionisti del gruppo senior su un sentiero di cresta", 1000, 500)}
+{band_img("attivita/senior-2x1", "Escursionisti del gruppo senior su un sentiero di cresta", 1000, 500)}
 
 <section class="section" aria-labelledby="gruppo-h">
 <div class="container detail">
@@ -1161,33 +1205,33 @@ def senior():
 {subnav("Attività", "Senior.html")}"""
     return page("Senior.html", "Senior | CAS Ticino",
                 "Il gruppo senior del CAS Ticino, dal 1940: escursioni il giovedì, gite di più giorni, mountain bike e racchette per soci dai 60 anni.",
-                body, og="attivita-senior-2x1")
+                body, og="attivita/senior-2x1")
 
 
 CORSI = [
-    ("Inverno", "Sci alpinismo", "corso-scialpinismo-4x5", (582, 728), "Sci alpinisti in salita su un pendio innevato",
+    ("Inverno", "Sci alpinismo", "corsi/scialpinismo-4x5", (582, 728), "Sci alpinisti in salita su un pendio innevato",
      "Per muoversi in sicurezza e in autonomia nelle gite della sezione: salita con le pelli su pendii ripidi, discesa fuori pista, uso del materiale di sicurezza, valutazione del pericolo valanghe e pianificazione.",
      GITE + "?page=detail&amp;touren_nummer=2096",
      [("Struttura", "Tre fine settimana più una giornata di prova per valutare forma e tecnica. Sabato istruzione, domenica applicazione con salita in vetta."),
       ("Requisiti", "Sciare bene su piste nere e reggere 4-5 ore di salita con 1200 m di dislivello. Età minima 16 anni; presenza obbligatoria a tutte le uscite."),
       ("Partecipanti", "Al massimo 30, con precedenza ai principianti e in ordine d’iscrizione. ARTVA, pala e sonda prestati gratuitamente su richiesta."),
       ("Programma", f'<a href="{DOC}corsi/sci-alpinismo-base-2027.pdf">Programma 2027 (PDF)</a>')]),
-    ("Inverno", "Racchette", "corso-racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole",
+    ("Inverno", "Racchette", "corsi/racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole",
      "Introduzione all’escursionismo con le racchette, tra teoria e pratica: riconoscere i segnali di pericolo, valutare il rischio valanghe e il terreno, pianificare con gli strumenti disponibili, ricerca dei sepolti e primo soccorso.",
      GITE,
      [("Struttura", "Sei giornate: una serata di teoria sulla nivologia, una giornata dedicata alla sicurezza e due fine settimana di pratica."),
       ("Materiale", 'Obiettivi del corso, lista del materiale, regolamento gite e programma 2027 in PDF. <span class="small">In preparazione.</span>')]),
-    ("Inverno", "Tecnica di sci fuori pista", "corso-freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio",
+    ("Inverno", "Tecnica di sci fuori pista", "corsi/freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio",
      "Per chi fatica a scendere su pendii non preparati: trucchi e consigli per affrontare la neve fuori dalle piste battute. Adatto ai soci che vogliono migliorare, a chi si avvicina allo sci alpinismo e agli sciatori esperti in cerca di strategie per le condizioni difficili.",
      GITE + "?page=detail&amp;touren_nummer=2167",
      [("Date", "Seguono informazioni."),
       ("Materiale", 'Attrezzatura da fuori pista completa; lista dettagliata nella scheda del corso. <span class="small">PDF in preparazione.</span>')]),
-    ("Primavera", "Arrampicata", "corso-arrampicata-4x5", (594, 742), "Cordata su una parete di roccia accanto a un ghiacciaio",
+    ("Primavera", "Arrampicata", "corsi/arrampicata-4x5", (594, 742), "Cordata su una parete di roccia accanto a un ghiacciaio",
      "Per principianti che vogliono avvicinarsi all’arrampicata in ambiente e per chi vuole consolidare la tecnica: sicurezza, manovre di corda, progressione su vie di più tiri. Dopo le basi, sempre più autonomia sotto la supervisione di un istruttore di arrampicata.",
      GITE,
      [("Obiettivo", "Praticare in sicurezza e in autonomia l’arrampicata sportiva su vie di uno o più tiri."),
       ("Materiale", 'Programma, lista del materiale e regolamento gite in PDF. <span class="small">In preparazione.</span>')]),
-    ("Estate", "Alpinismo", "corso-alpinismo-4x5", (594, 742), "Cordata su una cresta di neve",
+    ("Estate", "Alpinismo", "corsi/alpinismo-4x5", (594, 742), "Cordata su una cresta di neve",
      "Il ponte tra escursionismo e alpinismo: legarsi correttamente su ghiacciaio e in cresta, tecniche di assicurazione, uso della corda in arrampicata e dei diversi attrezzi di progressione. Teoria e pratica, con lettura della carta, pianificazione, primo soccorso e salite in vetta su roccia e ghiaccio.",
      GITE,
      [("Struttura", "Tre uscite: la prima di solito in una capanna della sezione, le altre due vicino a un ghiacciaio adatto all’istruzione su roccia e ghiaccio. Nell’ultima si applicano le tecniche sotto la supervisione degli istruttori."),
@@ -1209,6 +1253,10 @@ def corsi():
     body = page_hero([("Attività", "index.html#attivita"), ("Corsi", None)], "Corsi",
                      "Corsi nei fine settimana, diretti da professionisti della montagna con monitori esperti: le basi per partecipare in sicurezza alle attività della sezione. Il programma dell’anno successivo esce entro novembre.") + f"""
 
+<figure class="band">
+{pic("paesaggi/traccia-ghiacciaio", "Traccia di sci su un ghiacciaio, sotto una cima innevata", mobile="paesaggi/traccia-ghiacciaio-4x3", w=2000, h=901, lazy=False)}
+</figure>
+
 <section class="section" aria-label="Corsi base">
 <div class="container">
 {rows}
@@ -1219,7 +1267,7 @@ def corsi():
 <div class="container">
 <div class="callout">
 <p><strong id="avanzati-h">Verso capogita e monitore G+S.</strong> Per chi vuole approfondire o prepararsi ai corsi capogita CAS e monitore Gioventù+Sport, la sezione propone corsi avanzati nelle tre discipline e serate di formazione teorica con specialisti.</p>
-<a class="btn btn--secondary" href="Noleggio.html">Noleggio materiale</a>
+<a class="btn btn--secondary" href="Noleggio.html">Noleggio</a>
 </div>
 </div>
 </section>
@@ -1227,7 +1275,7 @@ def corsi():
 {subnav("Attività", "Corsi.html")}"""
     return page("Corsi.html", "Corsi | CAS Ticino",
                 "Corsi del CAS Ticino diretti da professionisti: sci alpinismo, racchette, tecnica di sci fuori pista, arrampicata e alpinismo.",
-                body, og="corso-scialpinismo-4x5")
+                body, og="corsi/scialpinismo-4x5")
 
 
 def noleggio():
@@ -1237,7 +1285,7 @@ def noleggio():
             ("Riconsegna", "Entro il martedì sera"),
             ("Magazzino", "Manno"),
             ("Responsabile", 'Michele Foletti, <a class="num" href="tel:+41792416955">079 241 69 55</a> (anche WhatsApp), <a href="mailto:fole89@gmail.com">fole89@gmail.com</a>')]
-    body = page_hero([("Attività", "index.html#attivita"), ("Noleggio materiale", None)], "Noleggio<br>materiale",
+    body = page_hero([("Attività", "index.html#attivita"), ("Noleggio", None)], "Noleggio",
                      "Materiale in affitto per le attività della sezione e per le uscite private.") + f"""
 
 <section class="section" aria-labelledby="cosa-h">
@@ -1254,7 +1302,7 @@ def noleggio():
 </section>
 
 {subnav("Attività", "Noleggio.html")}"""
-    return page("Noleggio.html", "Noleggio materiale | CAS Ticino",
+    return page("Noleggio.html", "Noleggio | CAS Ticino",
                 "Noleggio materiale del CAS Ticino: alpinismo, sci alpinismo, arrampicata, racchette e altro, con ritiro al magazzino di Manno.",
                 body)
 

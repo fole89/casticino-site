@@ -11,6 +11,8 @@ assets/site.css                 stile di tutto il sito
 assets/site.js                  menu, comparsa allo scorrimento, menu mobile
 assets/foto.js                  pagina Foto: legge data/foto.json
 assets/logo-cas.webp            stemma
+assets/img/<tema>/              foto del sito in WebP: paesaggi, capanne, attivita, corsi, news, pubblicazioni
+assets/img/originali/           foto originali ad alta risoluzione (non pubblicate, escluse da git)
 assets/comitato/                foto profilo del comitato (WebP 240×280)
 assets/sponsor/                 loghi degli sponsor nel footer (originali/ = file ricevuti)
 data/foto.json                  ultime gite con foto (generato in automatico)
