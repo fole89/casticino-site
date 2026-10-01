@@ -124,6 +124,8 @@ dl,dd{margin:0}
 .dd-menu a:hover,.dd-menu a:focus-visible{background:var(--surface);color:var(--ink)}
 .dd-menu a[aria-current="page"]{color:var(--accent);font-weight:600}
 .nav-end{display:flex;align-items:center;gap:10px}
+.nav-search{display:inline-grid;place-items:center;width:44px;height:44px;color:var(--ink-2);transition:color .2s var(--ease)}
+.nav-search:hover,.nav-search[aria-current="page"]{color:var(--accent)}
 .menu-toggle{display:none;width:48px;height:48px;align-items:center;justify-content:center;background:transparent;border:1.5px solid var(--line-strong);color:var(--ink);cursor:pointer}
 .menu-toggle:active{transform:scale(.97)}
 @media (max-width:1080px){
@@ -550,6 +552,22 @@ dl,dd{margin:0}
 .media-card--docs p{color:var(--accent-ink);opacity:.86}
 @media (max-width:1000px){.media-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:480px){.media-grid{grid-template-columns:1fr}.media-card figure{aspect-ratio:3/2}}
+
+/* pagina Cerca */
+.cerca-form{display:flex;gap:8px;margin-top:clamp(24px,3vw,36px);max-width:760px}
+.cerca-form input{flex:1;min-width:0;min-height:56px;padding:0 18px;border:1.5px solid var(--line-strong);border-radius:0;background:var(--bg);color:var(--ink);font:500 clamp(18px,1.6vw,21px) var(--font)}
+.cerca-form input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(239,28,36,.18)}
+.cerca-form .btn{min-height:56px}
+.cerca-stato{color:var(--muted);margin-bottom:12px}
+.cerca-lista{list-style:none;margin:0;padding:0;display:grid;max-width:880px;border-top:1px solid var(--line)}
+.cerca-item a{display:grid;gap:6px;padding:20px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.cerca-item a:hover strong{color:var(--accent)}
+.cerca-item strong{font-size:clamp(19px,1.6vw,22px);letter-spacing:-.02em;line-height:1.2;transition:color .2s var(--ease)}
+.cerca-meta{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--muted)}
+.cerca-tipo{font-family:var(--mono);font-weight:550;color:var(--accent)}
+.cerca-estratto{font-size:15px;color:var(--ink-2)}
+.cerca-item mark{background:rgba(239,28,36,.14);color:inherit;padding:0 1px}
+@media (max-width:480px){.cerca-form{flex-direction:column}}
 
 /* ------------------------------------------------------------------ footer */
 .site-footer{background:var(--surface);color:var(--ink);padding-top:clamp(56px,7vw,96px)}

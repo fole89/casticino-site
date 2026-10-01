@@ -20,6 +20,7 @@ docs/<tema>/                    PDF della sezione per tema (scale-difficolta, pr
                                 annuari, informazione, statuto-visione, news);
                                 nomi in minuscolo con trattini, i link sono in scripts/redesign/pages.py
 data/foto-overrides.json        correzioni manuali a titoli e testi delle gite
+data/cerca.json                 indice della pagina Cerca (generato da scripts/redesign/pages.py)
 scripts/update_foto.py          legge le cartelle foto via FTP e scrive data/foto.json
 .github/workflows/update-foto.yml   esegue lo script ogni giorno
 .nojekyll                       pubblica i file così come sono

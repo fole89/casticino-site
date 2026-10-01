@@ -80,6 +80,7 @@ def nav(current_page, current_section=None):
 {links}
 </div>
 <div class="nav-end">
+<a class="nav-search" href="Cerca.html" aria-label="Cerca nel sito" title="Cerca nel sito"{' aria-current="page"' if current_page == "Cerca.html" else ""}><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="m13 13 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a>
 <a class="btn btn--primary" href="{GITE}">Programma gite</a>
 <button class="menu-toggle" type="button" aria-label="Apri menu"><span class="burger" aria-hidden="true"></span></button>
 </div>
