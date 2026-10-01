@@ -13,7 +13,6 @@ data/foto.json                  ultime gite con foto (generato in automatico)
 data/foto-overrides.json        correzioni manuali a titoli e testi delle gite
 scripts/update_foto.py          legge le cartelle foto via FTP e scrive data/foto.json
 .github/workflows/update-foto.yml   esegue lo script ogni giorno
-CNAME                           dominio personalizzato (casticino.ch)
 .nojekyll                       pubblica i file così come sono
 ```
 
@@ -24,9 +23,9 @@ CNAME                           dominio personalizzato (casticino.ch)
 1. Crea su GitHub un repository, per esempio `cas-ticino/casticino-site`, e carica tutti questi file sul ramo `main`.
 2. Vai in **Settings › Pages**.
 3. In **Build and deployment** scegli **Source: Deploy from a branch**, poi **Branch: `main` / `(root)`**, e salva.
-4. In **Custom domain** dovrebbe comparire `casticino.ch`, letto dal file `CNAME`. Se manca, scrivilo e salva.
+Dopo un paio di minuti il sito è raggiungibile su `https://fole89.github.io/casticino-site/` (repository attuale: `fole89/casticino-site`).
 
-Dopo un paio di minuti il sito è raggiungibile su `https://<utente>.github.io/casticino-site/`. Collegando il DNS (punto 2) sarà anche su casticino.ch.
+> **Dominio personalizzato tolto per ora.** Finché il DNS di casticino.ch punta al vecchio sito, la repo non contiene il file `CNAME`: altrimenti l'indirizzo github.io rimanderebbe a casticino.ch, cioè al vecchio sito, e non si potrebbe vedere la versione nuova. Il dominio si rimette al punto 2.
 
 ## 2. Collegare il dominio casticino.ch
 
@@ -49,6 +48,8 @@ Prima di cambiarli, verifica questi indirizzi sulla guida ufficiale di GitHub: *
 **Non toccare:**
 - i record **MX** e TXT della posta (info@casticino.ch & co.);
 - i sottodomini esistenti, come `capannacristallina.casticino.ch`, `campotencia.casticino.ch` e gli altri siti delle capanne.
+
+Al momento del cambio DNS rimetti il dominio: crea nella cartella principale il file `CNAME` con dentro solo `casticino.ch` e fai push. In alternativa scrivi `casticino.ch` in **Settings › Pages › Custom domain**: GitHub crea il file da solo.
 
 Quando il DNS si è propagato (da qualche minuto fino a 48 ore), torna in **Settings › Pages** e attiva **Enforce HTTPS**.
 

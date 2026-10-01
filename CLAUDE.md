@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Static website for the Ticino section of the Swiss Alpine Club (CAS Ticino), published via GitHub Pages on **casticino.ch** (`CNAME`, `.nojekyll` → files are served as-is from `main` / root). Plain HTML/CSS/JS: no framework, no build step, no package manager, no tests, no linter. All site content, code comments, commit messages and the README are in **Italian** — keep it that way.
+Static website for the Ticino section of the Swiss Alpine Club (CAS Ticino), published via GitHub Pages from `main` / root of `fole89/casticino-site` (`.nojekyll` → files are served as-is). Currently live at `https://fole89.github.io/casticino-site/`; the `CNAME` file (`casticino.ch`) was removed on purpose until the DNS switch, because with it the github.io URL redirects to the old site — don't re-add it unless asked. Since the site is served from a subpath, use relative links only (no `/…` root-absolute paths). Plain HTML/CSS/JS: no framework, no build step, no package manager, no tests, no linter. All site content, code comments, commit messages and the README are in **Italian** — keep it that way.
 
 ## Commands
 
