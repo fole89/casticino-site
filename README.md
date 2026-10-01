@@ -10,7 +10,7 @@ assets/site.js                  menu mobile
 assets/foto.js                  pagina Foto: legge data/foto.json
 assets/logo-cas.webp            stemma
 assets/comitato/                foto profilo del comitato (WebP 240×280)
-assets/sponsor/                 loghi degli sponsor nel footer
+assets/sponsor/                 loghi degli sponsor nel footer (originali/ = file ricevuti)
 data/foto.json                  ultime gite con foto (generato in automatico)
 data/foto-overrides.json        correzioni manuali a titoli e testi delle gite
 scripts/update_foto.py          legge le cartelle foto via FTP e scrive data/foto.json
