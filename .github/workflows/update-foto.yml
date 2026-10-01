@@ -37,14 +37,23 @@ jobs:
           for v in FTP_BASE FTP_TLS PUBLIC_BASE MAX_ALBUMS; do [ -z "${!v}" ] && unset $v; done
           python scripts/update_foto.py
 
-      - name: Pubblica se ci sono novità
+      - name: Aggiorna ricerca e home se ci sono gite nuove
         run: |
           if git diff --quiet -- data/foto.json; then
             echo "Nessuna nuova foto."
             exit 0
           fi
+          # indice della ricerca (data/cerca.json), pagina Cerca (impronta dell'indice)
+          # e home (riquadro Foto della sezione Media con l'ultima gita); le altre pagine non cambiano
+          python scripts/redesign/pages.py index.html Cerca.html
+
+      - name: Pubblica se ci sono novità
+        run: |
+          if git diff --quiet -- data/foto.json; then
+            exit 0
+          fi
           git config user.name  "casticino-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/foto.json
+          git add data/foto.json data/cerca.json index.html Cerca.html
           git commit -m "Foto: aggiornamento automatico da Droptour"
           git push
