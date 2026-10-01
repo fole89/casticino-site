@@ -412,36 +412,63 @@ def hut(file):
 # ------------------------------------------------------------------ la sezione
 
 def introduzione():
-    rows = [
-        ("Discipline", "Escursionismo, alpinismo, arrampicata, sci alpinismo, racchette e cascate di ghiaccio."),
-        ("Per chi inizia", 'Corsi di introduzione ad alpinismo, sci alpinismo, racchette e arrampicata in ambiente. <a href="Corsi.html">Vedi i corsi</a>'),
-        ("Capanne", 'La sezione gestisce sei rifugi: <a href="CampoTencia.html">Campo Tencia</a>, <a href="Cristallina.html">Cristallina</a>, <a href="Adula.html">Adula</a>, <a href="Motterascio.html">Motterascio (Michela)</a>, <a href="MonteBar.html">Monte Bar</a> e <a href="BaitaDelLuca.html">Baita del Luca</a>.'),
-        ("Oltre lo sport", "Coordina il soccorso alpino nel Sottoceneri, si impegna per la tutela dell’ambiente alpino e promuove la cultura della montagna."),
-        ("Come funziona", 'Un <a href="Comitato.html">comitato</a> coordina le diverse attività, affiancato da cinque <a href="Organizzazione.html">dicasteri</a> e dal lavoro volontario dei soci.'),
-        ("Comunicazione", "Programma delle attività, sito web, un periodico semestrale e l’annuario che racconta la vita della sezione."),
-    ]
+    huts = ('<a href="CampoTencia.html">Campo Tencia</a>, <a href="Cristallina.html">Cristallina</a>, <a href="Adula.html">Adula</a>, '
+            '<a href="Motterascio.html">Motterascio (Michela)</a>, <a href="MonteBar.html">Monte Bar</a> e <a href="BaitaDelLuca.html">Baita del Luca</a>')
     body = page_hero([("La Sezione", "index.html#sezione"), ("Introduzione", None)], "La sezione",
                      "Fondata a Bellinzona l’11 aprile 1886, la Sezione Ticino del Club Alpino Svizzero conta quasi 3000 soci e propone un’attività varia, pensata per tutte le età: dai più giovani ai seniori.") + f"""
 
 {band_img("attivita-gite-2x1", "Gruppo della sezione in vetta, con vista sulle Alpi innevate", 1400, 700)}
 
-<section class="section" aria-labelledby="cosa-h">
-<div class="container detail">
-<div class="detail-intro split-intro">
-<h2 id="cosa-h" class="h2">In montagna,<br>in ogni stagione</h2>
-<div class="actions"><a class="btn btn--primary" href="Adesione.html">Diventa socio <span class="arrow" aria-hidden="true">→</span></a></div>
-</div>
-<div data-reveal>
-{facts(rows)}
+<section class="section--accent" aria-label="La sezione in cifre">
+<div class="container">
+<div class="stats" data-reveal>
+<div class="stat"><strong>1886</strong><span>fondata a Bellinzona l’11 aprile</span></div>
+<div class="stat"><strong>≈3000</strong><span>soci, dai più giovani ai seniori</span></div>
+<div class="stat"><strong>6</strong><span>capanne gestite dalla sezione</span></div>
+<div class="stat"><strong>5</strong><span>dicasteri accanto al comitato</span></div>
 </div>
 </div>
 </section>
 
-<section class="section" aria-labelledby="doc-h">
+<section class="section" aria-labelledby="cosa-h">
 <div class="container">
-<div class="callout">
-<p><strong id="doc-h">Statuto, visione e strategia, organigramma.</strong> I documenti di riferimento della sezione sono raccolti nella pagina Documenti.</p>
-<a class="btn btn--secondary" href="Documenti.html">Documenti</a>
+<div class="section-head">
+<h2 id="cosa-h" class="h2">In montagna,<br>in ogni stagione</h2>
+</div>
+<div class="pillars" data-reveal>
+<article class="pillar pillar--photo pillar--wide">
+{img("hero-ticino-2000", "Alpinisti su una cresta rocciosa", 2000, 580)}
+<h3>Discipline</h3>
+<p>Escursionismo, alpinismo, arrampicata, sci alpinismo, racchette e cascate di ghiaccio.</p>
+</article>
+<article class="pillar pillar--accent">
+<h3>Per chi inizia</h3>
+<p>Corsi di introduzione ad alpinismo, sci alpinismo, racchette e arrampicata in ambiente.</p>
+<a class="link" href="Corsi.html">Vedi i corsi</a>
+</article>
+<article class="pillar pillar--photo">
+{img("capanna-montebar-3x2", "La Capanna Monte Bar", 663, 442)}
+<h3>Capanne</h3>
+<p>La sezione gestisce sei rifugi: {huts}.</p>
+</article>
+<article class="pillar">
+<h3>Oltre lo sport</h3>
+<p>Coordina il soccorso alpino nel Sottoceneri, si impegna per la tutela dell’ambiente alpino e promuove la cultura della montagna.</p>
+</article>
+<article class="pillar">
+<h3>Come funziona</h3>
+<p>Un <a href="Comitato.html">comitato</a> coordina le diverse attività, affiancato da cinque <a href="Organizzazione.html">dicasteri</a> e dal lavoro volontario dei soci.</p>
+</article>
+<article class="pillar pillar--photo pillar--wide-md">
+{img("corso-racchette-4x5", "Cresta innevata sopra un mare di nuvole", 800, 1000)}
+<h3>Comunicazione</h3>
+<p>Programma delle attività, sito web, un periodico semestrale e l’annuario che racconta la vita della sezione.</p>
+</article>
+<article class="pillar pillar--dark pillar--wide">
+<h3>Statuto, visione e strategia, organigramma</h3>
+<p>I documenti di riferimento della sezione sono raccolti nella pagina Documenti.</p>
+<div class="actions"><a class="btn btn--primary" href="Documenti.html">Documenti <span class="arrow" aria-hidden="true">→</span></a><a class="btn btn--ghost-dark" href="Adesione.html">Diventa socio</a></div>
+</article>
 </div>
 </div>
 </section>
@@ -788,7 +815,8 @@ def news():
 {more}
 </div>
 </article>""")
-    body = page_hero([("News", None)], "News", "Serate, eventi e avvisi importanti dalla sezione.") + f"""
+    body = page_hero([("News", None)], "News", "Serate, eventi e avvisi importanti dalla sezione.",
+                     figure=img("corso-alpinismo-4x5", "Cordata su una cresta di neve", 594, 742, lazy=False)) + f"""
 
 <section class="section" aria-label="Notizie">
 <div class="container news-page">
