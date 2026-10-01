@@ -99,7 +99,7 @@ def listdir(ftp, path):
     """Nomi (non percorsi) contenuti in una cartella; [] se non esiste."""
     try:
         names = ftp.nlst(path)
-    except ftplib.error_perm:
+    except (ftplib.error_perm, ftplib.error_temp):  # alcuni server rispondono 450 invece di 550
         return []
     return sorted({posixpath.basename(n.rstrip("/")) for n in names} - {".", ".."})
 
