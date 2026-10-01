@@ -22,11 +22,11 @@ GITE = "https://ssl.dropnet.ch/casticino/gite/index.php"
 
 # pagine del vecchio sito citate negli articoli -> pagine nuove (percorsi relativi alla radice del sito)
 VECCHIE_PAGINE = {
-    "page_id=53": "Corsi.html#corso-4",       # corso di arrampicata
-    "page_id=55": "Corsi.html#corso-2",       # corso di racchette
-    "page_id=4380": "Corsi.html#corso-3",     # tecnica di sci fuori pista
+    "page_id=53": "Corsi.html#corso-arrampicata",       # corso di arrampicata
+    "page_id=55": "Corsi.html#corso-racchette",       # corso di racchette
+    "page_id=4380": "Corsi.html#corso-fuoripista",     # tecnica di sci fuori pista
     "page_id=78": GITE,                       # programma
-    "/corso-di-sci-alpinismo/": "Corsi.html#corso-1",
+    "/corso-di-sci-alpinismo/": "Corsi.html#corso-scialpinismo",
 }
 
 

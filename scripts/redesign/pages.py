@@ -20,11 +20,11 @@ HUTS = [
 ]
 
 COURSES = [
-    ("Inverno", "Sci alpinismo", "Salita e discesa fuori pista, nivologia, prevenzione valanghe, ricerca ARTVA.", "corsi/scialpinismo-4x5", (582, 728), "Sci alpinisti in salita su un pendio innevato"),
-    ("Inverno", "Racchette", "Muoversi sulla neve in sicurezza: meteo, orientamento, primi soccorsi.", "corsi/racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole"),
-    ("Inverno", "Freeride", "Tecnica di sci fuori pista per chi vuole scendere con più sicurezza.", "corsi/freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio"),
-    ("Primavera", "Arrampicata", "Vie a uno o più tiri: assicurazione, gestione della sosta, corda doppia.", "corsi/arrampicata-4x5", (594, 742), "Cordata su una parete di roccia accanto a un ghiacciaio"),
     ("Estate", "Alpinismo", "Progressione su neve e roccia per escursionisti che vogliono salire più in alto.", "corsi/alpinismo-4x5", (594, 742), "Cordata su una cresta di neve"),
+    ("Inverno", "Sci alpinismo", "Salita e discesa fuori pista, nivologia, prevenzione valanghe, ricerca ARTVA.", "corsi/scialpinismo-4x5", (582, 728), "Sci alpinisti in salita su un pendio innevato"),
+    ("Primavera", "Arrampicata", "Vie a uno o più tiri: assicurazione, gestione della sosta, corda doppia.", "corsi/arrampicata-4x5", (594, 742), "Cordata su una parete di roccia accanto a un ghiacciaio"),
+    ("Inverno", "Freeride", "Tecnica di sci fuori pista per chi vuole scendere con più sicurezza.", "corsi/freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio"),
+    ("Inverno", "Racchette", "Muoversi sulla neve in sicurezza: meteo, orientamento, primi soccorsi.", "corsi/racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole"),
 ]
 
 TIMELINE = [
@@ -47,7 +47,7 @@ def home():
 <p>{t}</p>
 <div class="hut-meta"><span>{posti}</span><span>Accesso da {acc}</span></div>
 </a>""" for f, n, q, v, st, t, posti, acc, im, (w, h), big in HUTS)
-    courses = "\n".join(f"""<a class="course" href="Corsi.html">
+    courses = "\n".join(f"""<a class="course" href="Corsi.html#corso-{CORSO_SLUG[title]}">
 <figure>{img(im, alt, w, h)}</figure>
 <span class="label">{season}</span>
 <h3 class="h3">{title}</h3>
@@ -1209,7 +1209,15 @@ def senior():
                 body, og="attivita/senior-2x1")
 
 
+CORSO_SLUG = {"Alpinismo": "alpinismo", "Sci alpinismo": "scialpinismo", "Arrampicata": "arrampicata",
+              "Tecnica di sci fuori pista": "fuoripista", "Freeride": "fuoripista", "Racchette": "racchette"}
+
 CORSI = [
+    ("Estate", "Alpinismo", "corsi/alpinismo-4x5", (594, 742), "Cordata su una cresta di neve",
+     "Il ponte tra escursionismo e alpinismo: legarsi correttamente su ghiacciaio e in cresta, tecniche di assicurazione, uso della corda in arrampicata e dei diversi attrezzi di progressione. Teoria e pratica, con lettura della carta, pianificazione, primo soccorso e salite in vetta su roccia e ghiaccio.",
+     GITE,
+     [("Struttura", "Tre uscite: la prima di solito in una capanna della sezione, le altre due vicino a un ghiacciaio adatto all’istruzione su roccia e ghiaccio. Nell’ultima si applicano le tecniche sotto la supervisione degli istruttori."),
+      ("Programma", 'Programma 2027, obiettivi, lista del materiale e regolamento gite in PDF. <span class="small">In preparazione.</span>')]),
     ("Inverno", "Sci alpinismo", "corsi/scialpinismo-4x5", (582, 728), "Sci alpinisti in salita su un pendio innevato",
      "Per muoversi in sicurezza e in autonomia nelle gite della sezione: salita con le pelli su pendii ripidi, discesa fuori pista, uso del materiale di sicurezza, valutazione del pericolo valanghe e pianificazione.",
      GITE + "?page=detail&amp;touren_nummer=2096",
@@ -1217,35 +1225,30 @@ CORSI = [
       ("Requisiti", "Sciare bene su piste nere e reggere 4-5 ore di salita con 1200 m di dislivello. Età minima 16 anni; presenza obbligatoria a tutte le uscite."),
       ("Partecipanti", "Al massimo 30, con precedenza ai principianti e in ordine d’iscrizione. ARTVA, pala e sonda prestati gratuitamente su richiesta."),
       ("Programma", f'<a href="{DOC}corsi/sci-alpinismo-base-2027.pdf">Programma 2027 (PDF)</a>')]),
-    ("Inverno", "Racchette", "corsi/racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole",
-     "Introduzione all’escursionismo con le racchette, tra teoria e pratica: riconoscere i segnali di pericolo, valutare il rischio valanghe e il terreno, pianificare con gli strumenti disponibili, ricerca dei sepolti e primo soccorso.",
-     GITE,
-     [("Struttura", "Sei giornate: una serata di teoria sulla nivologia, una giornata dedicata alla sicurezza e due fine settimana di pratica."),
-      ("Materiale", 'Obiettivi del corso, lista del materiale, regolamento gite e programma 2027 in PDF. <span class="small">In preparazione.</span>')]),
-    ("Inverno", "Tecnica di sci fuori pista", "corsi/freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio",
-     "Per chi fatica a scendere su pendii non preparati: trucchi e consigli per affrontare la neve fuori dalle piste battute. Adatto ai soci che vogliono migliorare, a chi si avvicina allo sci alpinismo e agli sciatori esperti in cerca di strategie per le condizioni difficili.",
-     GITE + "?page=detail&amp;touren_nummer=2167",
-     [("Date", "Seguono informazioni."),
-      ("Materiale", 'Attrezzatura da fuori pista completa; lista dettagliata nella scheda del corso. <span class="small">PDF in preparazione.</span>')]),
     ("Primavera", "Arrampicata", "corsi/arrampicata-4x5", (594, 742), "Cordata su una parete di roccia accanto a un ghiacciaio",
      "Per principianti che vogliono avvicinarsi all’arrampicata in ambiente e per chi vuole consolidare la tecnica: sicurezza, manovre di corda, progressione su vie di più tiri. Dopo le basi, sempre più autonomia sotto la supervisione di un istruttore di arrampicata.",
      GITE,
      [("Obiettivo", "Praticare in sicurezza e in autonomia l’arrampicata sportiva su vie di uno o più tiri."),
       ("Materiale", 'Programma, lista del materiale e regolamento gite in PDF. <span class="small">In preparazione.</span>')]),
-    ("Estate", "Alpinismo", "corsi/alpinismo-4x5", (594, 742), "Cordata su una cresta di neve",
-     "Il ponte tra escursionismo e alpinismo: legarsi correttamente su ghiacciaio e in cresta, tecniche di assicurazione, uso della corda in arrampicata e dei diversi attrezzi di progressione. Teoria e pratica, con lettura della carta, pianificazione, primo soccorso e salite in vetta su roccia e ghiaccio.",
+    ("Inverno", "Tecnica di sci fuori pista", "corsi/freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio",
+     "Per chi fatica a scendere su pendii non preparati: trucchi e consigli per affrontare la neve fuori dalle piste battute. Adatto ai soci che vogliono migliorare, a chi si avvicina allo sci alpinismo e agli sciatori esperti in cerca di strategie per le condizioni difficili.",
+     GITE + "?page=detail&amp;touren_nummer=2167",
+     [("Date", "Seguono informazioni."),
+      ("Materiale", 'Attrezzatura da fuori pista completa; lista dettagliata nella scheda del corso. <span class="small">PDF in preparazione.</span>')]),
+    ("Inverno", "Racchette", "corsi/racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole",
+     "Introduzione all’escursionismo con le racchette, tra teoria e pratica: riconoscere i segnali di pericolo, valutare il rischio valanghe e il terreno, pianificare con gli strumenti disponibili, ricerca dei sepolti e primo soccorso.",
      GITE,
-     [("Struttura", "Tre uscite: la prima di solito in una capanna della sezione, le altre due vicino a un ghiacciaio adatto all’istruzione su roccia e ghiaccio. Nell’ultima si applicano le tecniche sotto la supervisione degli istruttori."),
-      ("Programma", 'Programma 2027, obiettivi, lista del materiale e regolamento gite in PDF. <span class="small">In preparazione.</span>')]),
+     [("Struttura", "Sei giornate: una serata di teoria sulla nivologia, una giornata dedicata alla sicurezza e due fine settimana di pratica."),
+      ("Materiale", 'Obiettivi del corso, lista del materiale, regolamento gite e programma 2027 in PDF. <span class="small">In preparazione.</span>')]),
 ]
 
 
 def corsi():
-    rows = "\n".join(f"""<article class="course-row" id="corso-{i}" aria-labelledby="corso-{i}-h" data-reveal>
+    rows = "\n".join(f"""<article class="course-row" id="corso-{CORSO_SLUG[title]}" aria-labelledby="corso-{CORSO_SLUG[title]}-h" data-reveal>
 <figure>{img(im, alt, w, h)}</figure>
 <div class="course-text">
 <span class="label">{season}</span>
-<h2 id="corso-{i}-h" class="h2">{title}</h2>
+<h2 id="corso-{CORSO_SLUG[title]}-h" class="h2">{title}</h2>
 <p>{text}</p>
 <a class="btn btn--primary" href="{href}">Iscriviti <span class="arrow" aria-hidden="true">→</span></a>
 </div>

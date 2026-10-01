@@ -122,7 +122,7 @@ def footer():
 {cols}
 </div>
 {SPONSORS}
-<div class="footer-bottom"><span>© 2026 CAS Ticino</span><span>Club Alpino Svizzero, Sezione Ticino</span></div>
+<div class="footer-bottom"><span>© 2026 CAS Ticino</span><span>Club Alpino Svizzero, Sezione Ticino</span><span>webmaster - michele.foletti</span></div>
 </div>
 </footer>
 <script src="{asset("assets/site.js")}" defer></script>
