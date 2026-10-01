@@ -9,7 +9,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 def asset(path):
     """Percorso con impronta del contenuto (?v=…), così il browser non usa una copia vecchia in cache."""
     with open(os.path.join(ROOT, path), "rb") as f:
-        return f"{path}?v={hashlib.md5(f.read()).hexdigest()[:8]}"
+        # a capo uniformati: su Windows Git può dare CRLF, su GitHub LF, e l'impronta deve essere la stessa
+        return f"{path}?v={hashlib.md5(f.read().replace(b'\r\n', b'\n')).hexdigest()[:8]}"
 
 GITE = "https://ssl.dropnet.ch/casticino/gite/index.php"
 
