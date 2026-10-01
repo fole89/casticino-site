@@ -293,6 +293,46 @@ dl,dd{margin:0}
 .mini-hut span{font-size:14px;color:var(--muted);font-family:var(--mono)}
 @media (max-width:900px){.mini-huts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
+/* pagina capanna: testi in più (scripts/redesign/capanne.py) e sottopagine */
+.detail-intro .prose{font-size:17px}
+.hut-life{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
+.hut-cuisine,.hut-team{display:grid;gap:22px;align-content:start}
+.hut-team figure{margin:0;overflow:hidden;background:var(--surface-2)}
+.hut-team figure img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.hut-team .prose,.hut-cuisine .prose{font-size:16.5px}
+.rates{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.rate{display:grid;gap:10px;align-content:start;padding:clamp(22px,2.5vw,32px);background:var(--bg)}
+.rate .small{color:var(--muted);margin-bottom:8px}
+.rate .facts{grid-template-columns:minmax(0,1fr) auto}
+.rate .facts dd{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.rates-note{margin-top:clamp(32px,4vw,48px);font-size:16.5px}
+.hut-activities{margin-bottom:clamp(36px,5vw,64px)}
+.hut-activities .prose{font-size:16.5px}
+.hut-story{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:center}
+.hut-story figure{margin:0;overflow:hidden;background:var(--surface-2)}
+.hut-story figure img{width:100%}
+.hut-story-text{display:grid;gap:18px;justify-items:start}
+.hut-story-text p{font-size:clamp(18px,1.4vw,20px);line-height:1.6;color:var(--ink-2)}
+.hut-sheet{grid-column:2;grid-row:1;display:grid;gap:18px;align-content:start;padding:clamp(22px,2.5vw,32px);background:var(--surface);position:sticky;top:calc(var(--nav-h) + 24px)}
+.hut-sheet .prose{font-size:16px}
+.hut-sheet .prose>*+*{margin-top:.6em}
+.course-text .prose{font-size:16px}
+.course-text .prose>*+*{margin-top:.5em}
+.prose table{display:block;overflow-x:auto}
+.gallery-h{margin-bottom:clamp(20px,3vw,32px)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:8px}
+.gallery a{display:block;overflow:hidden;aspect-ratio:4/3;background:var(--surface-2)}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.gallery a:hover img{transform:scale(1.04)}
+.logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr));gap:8px;margin:0;padding:0;list-style:none}
+.logos li{display:grid;place-items:center;padding:16px;background:var(--bg);border:1px solid var(--line);aspect-ratio:3/1}
+.logos img{max-height:56px;width:auto;mix-blend-mode:multiply}
+@media (max-width:900px){
+  .hut-life,.hut-story{grid-template-columns:1fr}
+  .hut-sheet{grid-column:auto;grid-row:auto;position:static}
+}
+@media (max-width:480px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 /* intestazione con foto a lato (pagine con un ritratto verticale) */
 .page-hero--split .container{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:end}
 .page-hero--split figure{margin:0;overflow:hidden;background:var(--surface-2)}
@@ -476,6 +516,7 @@ dl,dd{margin:0}
 .news-card--feature h2{font-size:clamp(28px,3vw,44px);letter-spacing:-.04em;line-height:1.02}
 .news-card--feature p{-webkit-line-clamp:5;font-size:17px}
 .news-years{margin-bottom:clamp(32px,4vw,56px)}
+.news-years .subnav-links a{min-width:84px;justify-content:center;font-variant-numeric:tabular-nums}
 .news-year{margin-bottom:clamp(48px,6vw,80px)}
 .news-year-h{font-family:var(--mono);font-size:clamp(28px,3vw,40px);font-weight:500;color:var(--accent);padding-bottom:12px;margin-bottom:28px;border-bottom:1.5px solid var(--ink)}
 .article-title{margin-top:10px;max-width:24ch;font-size:clamp(32px,4.2vw,58px);letter-spacing:-.04em;line-height:1.02}

@@ -4,6 +4,7 @@ Uso: python scripts/redesign/pages.py [Pagina.html ...]  (senza argomenti rigene
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from shared import head, nav, footer, pic, img, GITE, page_hero, subnav, asset, in_sottocartella, crumbs
+from capanne import CONTENUTI, PRENOTA
 import json, re, unicodedata
 from html import unescape as html_unescape
 
@@ -11,9 +12,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 
 HUTS = [
     # file, nome, quota, valle, stato, testo, posti, accesso, img 3x2 (w,h), grande
-    ("CampoTencia.html", "Campo Tencia", "2140", "Val Piumogna", "Custodita", "Su un terrazzo sopra la Val Piumogna, base per il Pizzo Campo Tencia: la cima più alta interamente ticinese.", "80 posti", "Dalpe 2h30", "capanne/campotencia-3x2", (987, 658), True),
-    ("Cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Custodita", "Sull’omonimo passo, tra Leventina e Valle Maggia. Inaugurata nel 2003, primo rifugio moderno del CAS.", "120 posti", "Ossasco 3h45", "capanne/cristallina-3x2", (837, 558), True),
-    ("Adula.html", "Adula", "2012", "Val Carassino", "Custodita", "Il classico rifugio in pietra affacciato sulla Valle di Blenio: storia, accoglienza calorosa e cucina nostrana.", "34 posti", "Compietto 2h", "capanne/adula-3x2", (1000, 667), False),
+    ("CampoTencia.html", "Campo Tencia", "2140", "Val Piumogna", "Custodita", "Su un terrazzo sopra la Val Piumogna, base per il Pizzo Campo Tencia: la cima più alta interamente ticinese.", "80 posti", "Dalpe 3h", "capanne/campotencia-3x2", (987, 658), True),
+    ("Cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Custodita", "Sull’omonimo passo, tra Leventina e Valle Maggia. Inaugurata nel 2003, primo rifugio moderno del CAS.", "100 posti", "Ossasco 3h30", "capanne/cristallina-3x2", (837, 558), True),
+    ("Adula.html", "Adula", "2012", "Val Carassino", "Custodita", "Il classico rifugio in pietra affacciato sulla Valle di Blenio: storia, accoglienza calorosa e cucina nostrana.", "24 posti", "Compietto 2h40", "capanne/adula-3x2", (1000, 667), False),
     ("Motterascio.html", "Motterascio", "2172", "Greina", "Custodita", "Al margine della riserva della Greina: torbiere, alpeggi e l’arco naturale più grande del Ticino.", "70 posti", "Luzzone 1h30", "capanne/motterascio-3x2", (974, 649), False),
     ("MonteBar.html", "Monte Bar", "1620", "Alta Capriasca", "Tutto l’anno", "Il balcone sul Luganese, ricostruito nel 2016: vista dal Monte Rosa ai Denti della Vecchia, standard Bike Hotel.", "42 posti", "Corticiasca 1h30", "capanne/montebar-3x2", (663, 442), False),
     ("BaitaDelLuca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Su riservazione", "Sopra Sonvico, ai piedi dei Denti della Vecchia. Punto di ritrovo dei giovani, ideale per famiglie e arrampicata.", "16 posti, autogestita", "Rosone 30 min", "capanne/baitadelluca-3x2", (1000, 667), False),
@@ -135,7 +136,7 @@ def home():
 <span class="label">Gruppo giovani, dagli anni ’60</span>
 <h3 class="h2">Giovani</h3>
 <p>Arrampicata, escursioni e settimane in montagna con monitori della sezione. Il ritrovo è la Baita del Luca, ai piedi dei Denti della Vecchia.</p>
-<div class="links"><a class="link" href="Giovani.html">Gruppo giovani</a><a class="link" href="Organizzazione.html">Organizzazione</a></div>
+<div class="links"><a class="link" href="Giovani.html">Gruppo giovani</a><a class="link" href="Organizzazione.html#giovani">Organizzazione</a></div>
 </div>
 </article>
 <article class="tile tile--wide-bottom" data-reveal>
@@ -144,7 +145,7 @@ def home():
 <span class="label">Gruppo senior, dal 1940</span>
 <h3 class="h2">Senior</h3>
 <p>Uscite settimanali con capigita esperti, al ritmo giusto e in buona compagnia, dalla Capriasca alle Alpi.</p>
-<div class="links"><a class="link" href="Senior.html">Gruppo senior</a><a class="link" href="Documenti.html">Promemoria capigita</a></div>
+<div class="links"><a class="link" href="Senior.html">Gruppo senior</a><a class="link" href="Organizzazione.html#senior">Organizzazione</a></div>
 </div>
 </article>
 </div>
@@ -226,65 +227,66 @@ def band_img(name, alt, w, h):
 
 HUT_PAGES = {
     "CampoTencia.html": dict(
-        name="Campo Tencia", where="Val Piumogna, Leventina", alt_m="2140", beds="80", custody="metà giu, metà ott",
-        mail="campotencia@casticino.ch",
+        name="Campo Tencia", where="Val Piumogna, Leventina", alt_m="2140", beds="80", custody="da metà giugno a metà ottobre",
+        mail="campotencia@casticino.ch", booking=PRENOTA.format(36),
         description="Capanna Campo Tencia, 2140 m, in Val Piumogna (Leventina): 80 posti letto, custodita da metà giugno a metà ottobre. Contatti e prenotazioni.",
         band=("capanne/campotencia", "La Capanna Campo Tencia al tramonto, sopra la Val Piumogna", 658),
         intro="Adagiata su un terrazzo che domina l’alta Val Piumogna, è la base ideale per escursioni, traversate verso altre capanne e salite come quella al Pizzo Campo Tencia, che con i suoi 3071 m è la cima più alta interamente in territorio ticinese.",
         stay=[("Apertura", "Tutto l’anno"),
-              ("Custodia", "Da metà giugno a metà ottobre; d’inverno su richiesta"),
+              ("Custodia", "Da metà giugno a metà ottobre; d’inverno in marzo e aprile, su riservazione"),
               ("Posti letto", "80"),
               ("Pasti", "Cucina calda, pasti serviti tutto il giorno dal guardiano"),
-              ("Bibite", "Disponibili anche in assenza del guardiano")],
-        reach=[("Accesso estivo", "Da Dalpe 2h30; da Rodi via Tremorgio e Leit 3h30"),
+              ("Locale invernale", "Sempre aperto, con bibite e legna")],
+        reach=[("Accesso estivo", "Da Dalpe 3h; dal Lago Tremorgio (funivia da Rodi) 3h30; da Fusio per il Passo Campolungo 6h"),
+               ("Accesso invernale", "Da Dalpe 3h, con gli sci per la Val Piumogna"),
                ("Cartina", 'CNS 1272 Campo Tencia, coordinate <span class="num">699.430 / 144.480</span>')],
         contact=[("Guardiani", "Valeria Grandi e Paco Porcu"),
                  ("Telefono capanna", '<a class="num" href="tel:+41918671544">+41 91 867 15 44</a>'),
-                 ("Cellulare", '<a class="num" href="tel:+41766934994">+41 76 693 49 94</a>'),
+                 ("Cellulare", '<a class="num" href="tel:+41767212572">+41 76 721 25 72</a>'),
                  ("E-mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
     "Cristallina.html": dict(
-        name="Cristallina", where="Passo Cristallina, Valle Bedretto", alt_m="2575", beds="120", custody="fine giu, ott",
-        mail="cristallina@casticino.ch",
-        description="Capanna Cristallina, 2575 m, sul Passo Cristallina tra Leventina e Valle Maggia: 120 posti letto, custodita da fine giugno a ottobre. Contatti e prenotazioni.",
+        name="Cristallina", where="Passo Cristallina, Valle Bedretto", alt_m="2575", beds="100", custody="da giugno a metà ottobre",
+        mail="cristallina@casticino.ch", booking=PRENOTA.format(20),
+        description="Capanna Cristallina, 2575 m, sul Passo Cristallina tra Leventina e Valle Maggia: 100 posti letto, custodita da giugno a metà ottobre. Contatti e prenotazioni.",
         band=("capanne/cristallina", "La Capanna Cristallina sul passo, tra Leventina e Valle Maggia", 558),
         intro="Progettata dagli architetti Baserga e Mozzetti e inaugurata nel 2003, è il primo rifugio moderno costruito dal Club Alpino Svizzero. Sorge sul passo, in un punto strategico tra Leventina e Valle Maggia: tappa panoramica sulle traversate verso Robiei, il Naret, il Campo Tencia e il San Giacomo. Il giro dei laghi del Cristallina, di uno o due giorni, è adatto anche alle famiglie; in un’ora si raggiungono il Cristallina e la Cima di Lago. D’inverno, raggiungibile soprattutto da nord, apre pendii splendidi verso la Valle Bedretto, Robiei e la Val Formazza.",
-        stay=[("Apertura", "Da giugno a ottobre; d’inverno saltuariamente o su richiesta"),
-              ("Custodia", "Da fine giugno a ottobre; inverno su prenotazione"),
-              ("Posti letto", "120"),
+        stay=[("Apertura", "Sempre aperta e accessibile"),
+              ("Custodia", "Da giugno a metà ottobre; d’inverno, da dicembre a fine aprile, con buone condizioni, nei fine settimana, nei giorni festivi e per i gruppi"),
+              ("Posti letto", "100"),
               ("Pasti", "Preparati dal guardiano tutto il giorno"),
               ("Bibite", "Disponibili anche in assenza del guardiano")],
-        reach=[("Accesso estivo", "Da Ossasco 3h45; da Robiei 2h30; dalla diga del Naret 2h30; dalla Capanna Basodino 3h"),
-               ("Accesso invernale", "Da Ossasco 4h; cartine sci CNS 266S e 256S"),
+        reach=[("Accesso estivo", "Da Ossasco 3h30; da Robiei 3h; dal Lago del Narèt 2h30; dal Passo San Giacomo 4h"),
+               ("Accesso invernale", "Da Ossasco 3h; da All’Acqua 4h"),
                ("Cartina", 'CNS 1251 Bedretto, coordinate <span class="num">683.550 / 147.300</span>')],
         contact=[("Guardiano", "Emanuele Vellati"),
                  ("Telefono", '<a class="num" href="tel:+41918692330">+41 91 869 23 30</a>'),
                  ("E-mail", '<a href="mailto:cristallina@casticino.ch">cristallina@casticino.ch</a>')]),
     "Adula.html": dict(
-        name="Adula", where="Alta Val Carassino, Val Soi, Blenio", alt_m="2012", beds="34", custody="fine giu, fine set",
-        mail="adula@casticino.ch",
-        description="Capanna Adula, 2012 m, tra Val Carassino e Val Soi (Blenio): 34 posti letto, aperta tutto l’anno, custodita da fine giugno a fine settembre. Contatti e prenotazioni.",
+        name="Adula", where="Alta Val Carassino, Val Soi, Blenio", alt_m="2012", beds="24", custody="da fine maggio a metà ottobre",
+        mail="adula@casticino.ch", booking=PRENOTA.format(42),
+        description="Capanna Adula, 2012 m, tra Val Carassino e Val Soi (Blenio): 24 posti letto, aperta tutto l’anno, custodita da fine maggio a metà ottobre. Contatti e prenotazioni.",
         img=("capanne/adula-3x2", "La Capanna Adula, rifugio in pietra affacciato sulla Valle di Blenio", 1000, 667),
         intro="La «Bassa», come la si chiama da sempre, ha il fascino del rifugio d’altri tempi: costruzione in pietra, un soggiorno che trasuda storia, dormitori che hanno visto passare migliaia di alpinisti, accoglienza calorosa e cucina nostrana. Da questo balcone sulla Valle di Blenio si parte per la cima dell’Adula o, su comodi sentieri, verso altre capanne; i selvaggi itinerari della Val Carassino offrono un escursionismo avventuroso. Per i meno ambiziosi: una passeggiata in valle, un buon pranzo e un pisolino al sole.",
         stay=[("Apertura", "Tutto l’anno"),
-              ("Custodia", "Da fine giugno a fine settembre"),
-              ("Posti letto", "34"),
+              ("Custodia", "Da fine maggio a metà ottobre"),
+              ("Posti letto", "24"),
               ("Pasti", "Pasti preparati dal guardiano; cucina autonoma solo d’inverno o d’accordo con il guardiano"),
               ("Bibite", "Disponibili anche in assenza del guardiano")],
-        reach=[("Accesso estivo", "Da Dangio per la Val Soi 3h; dalla diga del Luzzone per la Val Carassino 3h; da Compietto 2h (40 min in MTB)"),
-               ("Accesso invernale", "Da Dangio 5h; da Ghirone 5h"),
+        reach=[("Accesso estivo", "Da Compietto per la Val Carassino 2h40 (in mountain bike circa 1h); da Dangio per la Val Soi 3h; da Cusiè (Val Malvaglia) per il Passo del Laghetto 5h"),
+               ("Accesso invernale", "Da Dangio 3h30; da Ghirone 5h"),
                ("Cartina", 'CNS 1253 Olivone, coordinate <span class="num">719.510 / 150.950</span>')],
         contact=[("Guardiano", "Raffaele «Lele» Demaldi"),
                  ("Telefono capanna", '<a class="num" href="tel:+41918721532">+41 91 872 15 32</a>'),
                  ("Cellulare", '<a class="num" href="tel:+41795352112">+41 79 535 21 12</a>'),
                  ("E-mail", '<a href="mailto:adula@casticino.ch">adula@casticino.ch</a>')]),
     "Motterascio.html": dict(
-        name="Motterascio", where="Alpe Motterascio, Greina, Blenio", alt_m="2172", beds="70", custody="10 giu, 15 ott",
-        mail="motterascio@casticino.ch",
-        description="Capanna Motterascio, 2172 m, al margine della Greina (Blenio): 70 posti letto, aperta tutto l’anno, custodita dal 10 giugno al 15 ottobre. Contatti e prenotazioni.",
+        name="Motterascio", where="Alpe Motterascio, Greina, Blenio", alt_m="2172", beds="70", custody="da metà giugno a metà ottobre",
+        mail="motterascio@casticino.ch", booking=PRENOTA.format(221),
+        description="Capanna Motterascio, 2172 m, al margine della Greina (Blenio): 70 posti letto, aperta tutto l’anno, custodita da metà giugno a metà ottobre. Contatti e prenotazioni.",
         band=("capanne/motterascio", "La Capanna Motterascio sull’altopiano della Greina", 649),
         intro="Capanna nuova, al margine di una riserva naturale straordinaria: la Greina, con le sue paludi, torbiere, alpeggi e una flora incontaminata. Punto di partenza per itinerari interessanti, tra cui spicca l’arco della Greina, il più grande arco naturale del Canton Ticino.",
         stay=[("Apertura", "Tutto l’anno"),
-              ("Custodia", "Dal 10 giugno al 15 ottobre; d’inverno nel periodo pasquale o su richiesta"),
+              ("Custodia", "Da metà giugno a metà ottobre (nel 2026 dal 13 giugno al 10 ottobre); d’inverno il locale invernale da 10 posti, su riservazione"),
               ("Posti letto", "70"),
               ("Pasti", "Pasti caldi preparati dai guardiani tutto il giorno"),
               ("Bibite", "Disponibili anche in assenza del guardiano")],
@@ -292,17 +294,17 @@ HUT_PAGES = {
                ("Accesso invernale", "Da Ghirone solo passando dalla Capanna Scaletta-Greina, 5-6h"),
                ("Cartina", 'CNS 1233 Greina, coordinate <span class="num">720.075 / 161.425</span>')],
         contact=[("Guardiano", "Fabio Merzaghi"),
-                 ("Prenotazioni", '<a class="num" href="tel:+41918721622">+41 91 872 16 22</a> (dal 10 giugno al 15 ottobre)'),
+                 ("Prenotazioni", '<a class="num" href="tel:+41918721622">+41 91 872 16 22</a> (da metà giugno a metà ottobre)'),
                  ("Cellulare", '<a class="num" href="tel:+41797276905">+41 79 727 69 05</a>'),
                  ("E-mail", '<a href="mailto:motterascio@casticino.ch">motterascio@casticino.ch</a>')]),
     "MonteBar.html": dict(
         name="Monte Bar", where="Alta Capriasca, Luganese", alt_m="1620", beds="42", custody="tutto l’anno",
-        mail="montebar@casticino.ch",
+        mail="montebar@casticino.ch", booking=PRENOTA.format(168),
         description="Capanna Monte Bar, 1620 m, in Alta Capriasca: 42 posti letto in camere da 2, 4 e 6, custodita tutto l’anno, standard Bike Hotel. Contatti e prenotazioni.",
         band=("capanne/montebar", "La Capanna Monte Bar con vista sul Luganese", 442),
         intro="Su un poggio di eccezionale bellezza, con una vista a 180 gradi dai Denti della Vecchia al Tamaro e, a ovest, sui 4000 vallesani dal Mischabel al Monte Rosa. Ricostruita nell’autunno 2016: camere da 2, 4 e 6 posti, servizi ai piani, refettorio per circa 80 persone, saletta riunioni per 20, ampia terrazza e un locale chiuso con caricatori per e-bike e piccola officina, secondo lo standard Bike Hotel.",
-        stay=[("Apertura", "In presenza dei custodi e su riservazione; apre anche per eventi, cene e pranzi fuori stagione"),
-              ("Custodia", "Da aprile a ottobre sempre; da novembre a marzo dal giovedì alla domenica"),
+        stay=[("Apertura", "Tutto l’anno; apre anche per eventi, cene e pranzi su richiesta"),
+              ("Custodia", "Da maggio a inizio novembre tutti i giorni; d’inverno dal venerdì a pranzo alla domenica a pranzo, nei festivi e nelle vacanze scolastiche"),
               ("Posti letto", "42, in camere da 2-4-6"),
               ("Pasti", "Cucina tipica con prodotti del territorio; menu speciali su riservazione"),
               ("In assenza dei custodi", "La capanna è chiusa; resta accessibile solo un piccolo atrio per le emergenze")],
@@ -333,8 +335,275 @@ HUT_PAGES = {
 }
 
 
+def prenota(d, cls="btn btn--primary"):
+    """Pulsante di prenotazione: hut-reservation.org se la capanna c'è, altrimenti e-mail."""
+    href = d.get("booking") or f"mailto:{d['mail']}"
+    ext = ' rel="noopener"' if href.startswith("http") else ""
+    return f'<a class="{cls}" href="{href}"{ext}>Prenota <span class="arrow" aria-hidden="true">→</span></a>'
+
+
+def cimg(c, name, alt, lazy=True):
+    """Immagine di una capanna (assets/img/capanne/<cartella>/<name>.webp), con le dimensioni lette dal file."""
+    src = f"assets/img/capanne/{c['cartella']}/{name}.webp"
+    w, h = webp_size(os.path.join(ROOT, src))
+    load = ' loading="lazy" decoding="async"' if lazy else ' fetchpriority="high"'
+    return f'<img src="{src}" alt="{alt}" width="{w}" height="{h}"{load}>'
+
+
+def galleria(c, gruppi, alt, quante=None):
+    """Foto di uno o più gruppi (assets/img/capanne/<cartella>/foto/<gruppo>-NN-600/1200.webp): la miniatura apre la foto grande."""
+    cartella = os.path.join(ROOT, "assets", "img", "capanne", c["cartella"], "foto")
+    file = os.listdir(cartella)
+    nomi = [n for g in ([gruppi] if isinstance(gruppi, str) else gruppi)
+            for n in sorted(f[:-len("-600.webp")] for f in file if f.startswith(g + "-") and f.endswith("-600.webp"))]
+    voci = []
+    for i, n in enumerate(nomi[:quante], 1):
+        base = f"assets/img/capanne/{c['cartella']}/foto/{n}"
+        w, h = webp_size(os.path.join(ROOT, base + "-600.webp"))
+        voci.append(f'<a href="{base}-1200.webp"><img src="{base}-600.webp" alt="{alt}, foto {i}" width="{w}" height="{h}" loading="lazy" decoding="async"></a>')
+    return '<div class="gallery">\n' + "\n".join(voci) + "\n</div>"
+
+
+def link_capanna(links):
+    """Link di una pagina capanna: i PDF con l'etichetta PDF, gli altri come link semplici."""
+    out = []
+    for label, href in links:
+        if href.endswith(".pdf"):
+            out.append(f'<p><a class="file-link" href="{href}">{label}</a></p>')
+        else:
+            ext = ' rel="noopener"' if href.startswith("http") else ""
+            out.append(f'<p><a href="{href}"{ext}>{label}</a></p>')
+    return "\n".join(out)
+
+
+def hut_subnav(file, current):
+    """Le pagine di una capanna: panoramica, attività, storia, foto."""
+    c, d = CONTENUTI[file], HUT_PAGES[file]
+    base = f"capanne/{c['cartella']}/"
+    voci = [(d["name"], file)] + [(p["titolo"], base + p["file"] + ".html") for p in c["pagine"]]
+    if c.get("storia"):
+        voci.append(("Storia", base + c["storia"]["file"] + ".html"))
+    if c.get("foto"):
+        voci.append(("Foto", base + "foto.html"))
+    cur = ' aria-current="page"'
+    links = "\n".join(f'<a href="{h}"{cur if h == current else ""}>{l}</a>' for l, h in voci)
+    return f"""<section class="section" aria-label="Capanna {d['name']}">
+<div class="container subnav">
+<h2 class="label">Capanna {d['name']}</h2>
+<div class="subnav-links">
+{links}
+</div>
+</div>
+</section>"""
+
+
+def hut_extra(file):
+    """Sezioni in più della pagina capanna, da CONTENUTI: cucina e guardiani, tariffe, accessi, attività, storia, foto."""
+    c, d = CONTENUTI[file], HUT_PAGES[file]
+    out = []
+    if c.get("cucina") or c.get("team"):
+        t = c.get("team")
+        cucina = f"""<div class="hut-cuisine">
+<h2 class="h2">{c.get("cucina_titolo", "La cucina")}</h2>
+<div class="prose">
+{c["cucina"]}
+</div>
+</div>""" if c.get("cucina") else ""
+        team = ""
+        if t:
+            foto = f'<figure>{cimg(c, t["img"][0], t["img"][1])}</figure>' if t.get("img") else ""
+            persone = "\n".join(f'<div class="member"><div class="member-photo">{cimg(c, im, nome)}</div>'
+                                f'<div class="member-body"><strong>{nome}</strong><span>{ruolo}</span></div></div>'
+                                for nome, ruolo, im in t.get("persone", []))
+            persone = f'<div class="members">\n{persone}\n</div>' if persone else ""
+            team = f"""<div class="hut-team">
+<h2 class="h2">{t.get("titolo", "Chi vi accoglie")}</h2>
+{foto}
+<div class="prose">
+{t["testo"]}
+</div>
+{persone}
+</div>"""
+        out.append(f"""<section class="section" aria-label="La cucina e i guardiani">
+<div class="container hut-life">
+{cucina}
+{team}
+</div>
+</section>""")
+    if c.get("tariffe"):
+        cards = "\n".join(f"""<div class="rate">
+<h3 class="h3">{titolo}</h3>
+<p class="small">{nota}</p>
+{facts(righe)}
+</div>""" for titolo, nota, righe in c["tariffe"])
+        out.append(f"""<section class="section--surface" id="tariffe" aria-labelledby="tariffe-h">
+<div class="container">
+<div class="section-row">
+<h2 id="tariffe-h" class="h2">Tariffe e prenotazioni</h2>
+{prenota(d)}
+</div>
+<div class="rates">
+{cards}
+</div>
+<div class="prose rates-note">
+{c.get("prenotare", "")}
+</div>
+</div>
+</section>""")
+    if c.get("accessi"):
+        out.append(f"""<section class="section" id="accessi" aria-labelledby="accessi-h">
+<div class="container detail">
+<h2 id="accessi-h" class="h2">Come arrivare</h2>
+<div class="prose">
+{c["accessi"]}
+</div>
+</div>
+</section>""")
+    if c.get("pagine"):
+        cards = "\n".join(f"""<a class="news-card" href="capanne/{c['cartella']}/{p['file']}.html">
+<figure>{cimg(c, p["img"][0], p["img"][1])}</figure>
+<div class="news-card-body">
+<h3>{p["titolo"]}</h3>
+<p>{p["lead"]}</p>
+</div>
+</a>""" for p in c["pagine"])
+        out.append(f"""<section class="section" id="attivita" aria-labelledby="attivita-h">
+<div class="container">
+<div class="detail hut-activities">
+<h2 id="attivita-h" class="h2">Attività</h2>
+<div class="prose">
+{c.get("attivita", "")}
+</div>
+</div>
+<div class="news-grid">
+{cards}
+</div>
+</div>
+</section>""")
+    if c.get("sostenitori"):
+        loghi = "\n".join(f'<li>{cimg(c, "sostenitori/" + f, nome)}</li>' for nome, f in c["sostenitori"]["loghi"])
+        out.append(f"""<section class="section" aria-labelledby="sostenitori-h">
+<div class="container">
+<div class="section-head">
+<h2 id="sostenitori-h" class="h2">Sostenitori</h2>
+<p>{c["sostenitori"]["testo"]}</p>
+</div>
+<ul class="logos">
+{loghi}
+</ul>
+</div>
+</section>""")
+    if c.get("storia"):
+        st = c["storia"]
+        out.append(f"""<section class="section" aria-labelledby="storia-h">
+<div class="container hut-story">
+<figure>{cimg(c, st["img"][0], st["img"][1])}</figure>
+<div class="hut-story-text">
+<h2 id="storia-h" class="h2">Storia</h2>
+<p>{st["lead"]}</p>
+<a class="link" href="capanne/{c['cartella']}/{st['file']}.html">La storia della capanna</a>
+</div>
+</div>
+</section>""")
+    if c.get("foto"):
+        out.append(f"""<section class="section" aria-labelledby="foto-h">
+<div class="container">
+<div class="section-row">
+<h2 id="foto-h" class="h2">Foto</h2>
+<a class="link" href="capanne/{c['cartella']}/foto.html">Tutte le foto</a>
+</div>
+{galleria(c, [g for _, g in c["foto"]], f"Capanna {d['name']}", quante=10)}
+</div>
+</section>""")
+    return "\n\n".join(out)
+
+
+def hut_page(file, p):
+    """Sottopagina di una capanna (attività, storia): testo, scheda tecnica, itinerari e foto. p: voce di CONTENUTI."""
+    c, d = CONTENUTI[file], HUT_PAGES[file]
+    nome = f"capanne/{c['cartella']}/{p['file']}.html"
+    scheda = ""
+    if p.get("dati") or p.get("link"):
+        scheda = f"""<aside class="hut-sheet" aria-label="In breve">
+<h2 class="label">In breve</h2>
+{facts(p["dati"]) if p.get("dati") else ""}
+<div class="prose">
+{link_capanna(p.get("link", []))}
+</div>
+</aside>"""
+    corpo = f"""<section class="section section--tight" aria-label="Testo">
+<div class="container article{'' if scheda else ' article--noimg'}">
+<div class="prose">
+{p["corpo"]}
+</div>
+{scheda}
+</div>
+</section>""" if p.get("corpo") else ""
+    itinerari = ""
+    if p.get("itinerari"):
+        righe = "\n".join(f"""<article class="course-row" aria-labelledby="it-{i}-h" data-reveal>
+<figure>{cimg(c, it["img"][0], it["img"][1])}</figure>
+<div class="course-text">
+<h2 id="it-{i}-h" class="h3">{it["titolo"]}</h2>
+<p>{it["testo"]}</p>
+<div class="prose">
+{link_capanna(it.get("link", []))}
+</div>
+</div>
+{facts(it["dati"]) if it.get("dati") else ""}
+</article>""" for i, it in enumerate(p["itinerari"], 1))
+        itinerari = f"""<section class="section" aria-label="Itinerari">
+<div class="container">
+{righe}
+</div>
+</section>"""
+    foto = f"""<section class="section" aria-labelledby="foto-h">
+<div class="container">
+<h2 id="foto-h" class="h2 gallery-h">Foto</h2>
+{galleria(c, p["foto"], p["titolo"])}
+</div>
+</section>""" if p.get("foto") else ""
+    body = page_hero([("Le capanne", "index.html#capanne"), (d["name"], file), (p["titolo"], None)], p["titolo"], p["lead"]) + f"""
+
+<figure class="band">
+{cimg(c, p["img"][0], p["img"][1], lazy=False)}
+</figure>
+
+{corpo}
+
+{itinerari}
+
+{foto}
+
+{hut_subnav(file, nome)}"""
+    html = page(nome, f"{p['titolo']} | Capanna {d['name']} | CAS Ticino", f"{p['lead']} Capanna {d['name']}, CAS Ticino.",
+                body, og=f"capanne/{c['cartella']}/{p['img'][0]}", section="Le capanne")
+    return in_sottocartella(html, su="../../")
+
+
+def hut_foto(file):
+    c, d = CONTENUTI[file], HUT_PAGES[file]
+    nome = f"capanne/{c['cartella']}/foto.html"
+    gruppi = "\n\n".join(f"""<section class="section" aria-labelledby="g-{g}-h">
+<div class="container">
+<h2 id="g-{g}-h" class="h2 gallery-h">{titolo}</h2>
+{galleria(c, g, f"{titolo}, Capanna {d['name']}")}
+</div>
+</section>""" for titolo, g in c["foto"])
+    body = page_hero([("Le capanne", "index.html#capanne"), (d["name"], file), ("Foto", None)], "Foto",
+                     f"{c.get('foto_lead', 'La capanna, la cucina e i dintorni')}. Tocca una foto per vederla grande.") + f"""
+
+{gruppi}
+
+{hut_subnav(file, nome)}"""
+    html = page(nome, f"Foto | Capanna {d['name']} | CAS Ticino", f"Foto della Capanna {d['name']} e dei dintorni.",
+                body, section="Le capanne")
+    return in_sottocartella(html, su="../../")
+
+
 def hut(file):
     d = HUT_PAGES[file]
+    c = CONTENUTI.get(file)
     others = [h for h in HUTS if h[0] != file]
     mini = "\n".join(f"""<a class="mini-hut" href="{f}"><figure>{img(im, f'Capanna {n}', w, h)}</figure><strong>{n}</strong><span>{q} m</span></a>"""
                      for f, n, q, v, st, t, posti, acc, im, (w, h), big in others)
@@ -353,17 +622,28 @@ def hut(file):
 <div><dt>Posti letto</dt><dd class="num">{d['beds']}</dd></div>
 <div><dt>{custody_dt}</dt><dd>{d['custody']}</dd></div>
 </dl>
-<a class="btn btn--primary" href="mailto:{d['mail']}">Prenota <span class="arrow" aria-hidden="true">→</span></a>
+{prenota(d)}
 </div>"""
+    avviso = f"""
+
+<section class="section section--tight" aria-label="Avviso">
+<div class="container">
+<div class="callout">
+<p>{c["avviso"]}</p>
+{prenota(d, "btn btn--secondary")}
+</div>
+</div>
+</section>""" if c and c.get("avviso") else ""
+    testo = f'\n<div class="prose">\n{c["capanna"]}\n</div>' if c and c.get("capanna") else ""
     body = page_hero([("Le capanne", "index.html#capanne"), (d["name"], None)], d["name"], d["where"], extra) + f"""
 
-{band}
+{band}{avviso}
 
 <section class="section" aria-labelledby="capanna-h">
 <div class="container detail">
 <div class="detail-intro">
 <h2 id="capanna-h" class="h2">La capanna</h2>
-<p>{d['intro']}</p>
+<p>{d['intro']}</p>{testo}
 </div>
 <div class="factgroups" data-reveal>
 <div class="factgroup">
@@ -377,6 +657,8 @@ def hut(file):
 </div>
 </div>
 </section>
+
+{hut_extra(file) if c else ""}
 
 <section class="section" aria-labelledby="contatti-h">
 <div class="container">
@@ -598,7 +880,7 @@ def organizzazione():
             m = f'<a href="mailto:{mail}">{mail}</a>' if mail else ""
             ms.append(f'<div class="member"><div class="member-photo">{ph}</div>'
                       f'<div class="member-body"><strong>{name}</strong><span>{role}</span>{m}</div></div>')
-        depts.append(f"""<article class="dept" aria-labelledby="d{i}-h" data-reveal>
+        depts.append(f"""<article class="dept" id="{CARTELLE_DICASTERI[title]}" aria-labelledby="d{i}-h" data-reveal>
 <div class="dept-intro">
 <span class="dept-count">{len(members)} membri</span>
 <h2 id="d{i}-h" class="h2">{title}</h2>
@@ -1328,7 +1610,7 @@ def noleggio():
 
 # ------------------------------------------------------------------ ricerca
 
-TIPI = {"news/": "Notizia", "CampoTencia.html": "Capanna", "Cristallina.html": "Capanna", "Adula.html": "Capanna",
+TIPI = {"news/": "Notizia", "capanne/": "Capanna", "CampoTencia.html": "Capanna", "Cristallina.html": "Capanna", "Adula.html": "Capanna",
         "Motterascio.html": "Capanna", "MonteBar.html": "Capanna", "BaitaDelLuca.html": "Capanna"}
 FUORI_INDICE = {"News.html", "Cerca.html"}  # elenchi che ripetono il contenuto di altre pagine
 
@@ -1408,6 +1690,11 @@ PAGES = {
 }
 for _f in HUT_PAGES:
     PAGES[_f] = (lambda f: lambda: hut(f))(_f)
+for _f, _c in CONTENUTI.items():
+    for _p in _c["pagine"] + ([_c["storia"]] if _c.get("storia") else []):
+        PAGES[f"capanne/{_c['cartella']}/{_p['file']}.html"] = (lambda f, p: lambda: hut_page(f, p))(_f, _p)
+    if _c.get("foto"):
+        PAGES[f"capanne/{_c['cartella']}/foto.html"] = (lambda f: lambda: hut_foto(f))(_f)
 for _i, _n in enumerate(NEWS):
     PAGES[_n["file"]] = (lambda i: lambda: news_article(i))(_i)
 
