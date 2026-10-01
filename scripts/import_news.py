@@ -2,7 +2,7 @@
 
 Scrive:
   data/news.json            elenco delle notizie (titolo, data, estratto, testo HTML ripulito, immagine)
-  assets/img/news/*.webp    immagine principale e immagini nel testo, convertite in WebP (max 1400 px)
+  assets/img/news/<anno>/   immagine principale e immagini nel testo in WebP (max 1400 px), con lo stesso nome dell'articolo
   docs/news/*.pdf           PDF allegati, scaricati dal vecchio sito
 
 Le pagine (News.html e news/<anno>/<AAAA-MM-GG>-<titolo-breve>.html) le genera poi scripts/redesign/pages.py leggendo data/news.json.
@@ -101,6 +101,7 @@ class Risorse:
         if im.width > MAX_W:
             im = im.resize((MAX_W, round(im.height * MAX_W / im.width)), Image.LANCZOS)
         nome = self._nome(base, "webp", IMG_DIR)
+        os.makedirs(os.path.dirname(os.path.join(IMG_DIR, nome)), exist_ok=True)
         im.save(os.path.join(IMG_DIR, nome), "WEBP", quality=80, method=6)
         res = (f"assets/img/news/{nome}", im.width, im.height)
         self.cache[url] = res
@@ -273,10 +274,10 @@ def main():
         img = None
         fm = (emb.get("wp:featuredmedia") or [{}])[0]
         if fm.get("source_url"):
-            res = r.immagine(fm["source_url"], s)
+            res = r.immagine(fm["source_url"], f"{s[:4]}/{s}")  # assets/img/news/<anno>/<data>-<titolo-breve>.webp
             if res:
                 img = {"src": res[0], "w": res[1], "h": res[2], "alt": html.unescape(fm.get("alt_text") or "")}
-        pul = Pulisci(r, s, link_post)
+        pul = Pulisci(r, f"{s[:4]}/{s}", link_post)
         pul.feed(p["content"]["rendered"])
         corpo = pul.risultato()
         out.append({
