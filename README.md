@@ -61,7 +61,7 @@ Lo script `scripts/update_foto.py` fa questo:
 
 1. si collega via FTP alla cartella delle foto delle gite;
 2. elenca le cartelle dell'anno in corso e di quello precedente (`AAAA-MM-GG-titolo---luogo`) e prende le più recenti, di default 15;
-3. per ciascuna legge `thumbnails/` e costruisce gli indirizzi pubblici di miniatura e foto grande (`mysize/`), con lo stesso nome del file;
+3. per ciascuna legge i nomi delle foto direttamente nella cartella della gita (via FTP non ci sono sottocartelle) e costruisce gli indirizzi pubblici di miniatura (`thumbnails/`) e foto grande (`mysize/`), con lo stesso nome del file;
 4. scrive `data/foto.json`, solo se qualcosa è cambiato.
 
 Le immagini **non vengono copiate**: restano su ssl.dropnet.ch e il sito le carica da lì.

@@ -2,8 +2,8 @@
 """
 Aggiorna data/foto.json con le ultime gite pubblicate sul portale Droptour.
 
-Legge via FTP l'elenco delle cartelle  <FTP_BASE>/<anno>/<AAAA-MM-GG-titolo---luogo>/thumbnails/
-e costruisce gli indirizzi pubblici HTTPS delle foto:
+Legge via FTP le foto nelle cartelle  <FTP_BASE>/<anno>/<AAAA-MM-GG-titolo---luogo>/
+e costruisce gli indirizzi pubblici HTTPS (stesso nome file; thumbnails/ e mysize/ esistono solo sul web):
   miniatura   <PUBLIC_BASE>/<anno>/<cartella>/thumbnails/<file>
   foto grande <PUBLIC_BASE>/<anno>/<cartella>/mysize/<file>
 
@@ -120,11 +120,10 @@ def collect(ftp, today=None):
     for _, year, name, info in folders:
         if len(albums) >= MAX_ALBUMS:
             break
-        files = [f for f in listdir(ftp, f"{FTP_BASE}/{year}/{name}/thumbnails") if IMAGE_RE.search(f)]
+        # via FTP la cartella contiene direttamente le foto; thumbnails/ e mysize/ esistono solo sul web
+        files = [f for f in listdir(ftp, f"{FTP_BASE}/{year}/{name}") if IMAGE_RE.search(f)]
         if not files:
-            # cartella ancora vuota o senza miniature: la riprendiamo al prossimo giro
-            print(f"  {name}: nessuna miniatura; contenuto: {listdir(ftp, f'{FTP_BASE}/{year}/{name}')[:10]}")
-            continue
+            continue  # cartella ancora vuota (gita futura): la riprendiamo al prossimo giro
         base = f"{PUBLIC_BASE}/{year}/{name}"
         albums.append({
             "id": name,
