@@ -11,6 +11,25 @@
   update();
 })();
 
+// CAS Ticino — titoloni: se una parola lunga non sta nello schermo, riduce il corpo finché entra
+(function () {
+  var hs = document.querySelectorAll('.hero-h, .sec-h');
+  if (!hs.length) return;
+  function fit() {
+    Array.prototype.forEach.call(hs, function (h) {
+      if (h.dataset.fs === undefined) h.dataset.fs = h.style.getPropertyValue('font-size');
+      h.style.setProperty('font-size', h.dataset.fs);
+      if (h.scrollWidth > h.clientWidth + 1) {
+        var size = parseFloat(getComputedStyle(h).fontSize) * h.clientWidth / h.scrollWidth;
+        h.style.setProperty('font-size', Math.floor(size) + 'px', 'important');
+      }
+    });
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  if (document.fonts) document.fonts.ready.then(fit);
+})();
+
 // CAS Ticino — menu mobile (costruito a partire dal menu desktop)
 (function () {
   var btn = document.querySelector('button[aria-label="Apri menu"]');

@@ -25,7 +25,11 @@ Every page is a top-level `*.html` file with **no templating or includes**. Each
 - the `<head>` (Google Fonts: Archivo, Newsreader, IBM Plex Mono) and an identical `<style>` block with the shared classes (`.disp`, `.mono`, `.serif`, `.navlink`, `.btn`, `.card-link`, `.dd*` dropdowns, `.mnav*` mobile menu, `.hide-sm`/`.show-sm` at 960px);
 - the header with `<nav aria-label="Principale">` — identical except for `aria-current="page"` on the current page's link;
   the nav (`class="topnav"`) is `position:fixed` at the top of every page: `header{padding-top:113px}` reserves its height (keep the two in sync if the nav's size changes), `assets/site.js` adds `.scrolled` (solid, shorter bar) after 24px of scroll, `scroll-margin-top:112px` keeps anchors clear of it, and under 600px the "Programma gite" `.btn` is hidden from the bar (it stays in the mobile menu);
-- the footer (byte-identical across all pages).
+- the footer (byte-identical across all pages), including the sponsor logo tiles (`.sponsor`, images in `assets/sponsor/`).
+
+Mobile rules live in the shared `<style>` block under `@media (max-width:600px)` / `(max-width:359px)`: flex items written as `flex: 1 1 NNNpx` get `min-width:0`, and `.disp` headings with large inline sizes (44–72px, 88px/52px under 360px) are capped via `[style*="font-size: NNpx"]` attribute selectors with `!important` — if you add a heading with a new large inline size, add it there too. `.hero-h`/`.sec-h` titles are shrunk at runtime by `site.js` when a long word doesn't fit. Verify there's no horizontal scroll at 320–430px after layout changes.
+
+Committee portraits are in `assets/comitato/<nome-cognome>.webp` (240×280, shown at 96×112); members without a photo keep the initials placeholder.
 
 So any change to shared CSS, navigation items or the footer must be applied to **all 21 HTML files**. Most layout styling is written as inline `style="…"` attributes; the palette is hard-coded (`#15201B` dark, `#EFEDE6` paper, `#C42A1E`/`--accent` red).
 

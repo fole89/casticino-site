@@ -48,6 +48,11 @@ section[id],div[id]{scroll-margin-top:112px}
 .topnav>a:first-child>span:first-child{transition:transform .25s ease;transform-origin:left center}
 .topnav.scrolled>a:first-child>span:first-child{transform:scale(0.82)}
 header{padding-top:113px}
+.sponsor{display:flex;align-items:center;justify-content:center;height:64px;padding:6px 12px;background:#FFFFFF;transition:transform .2s ease}
+.sponsor img{height:52px;width:auto;max-width:150px;object-fit:contain;display:block}
+a.sponsor:hover{transform:translateY(-2px)}
+@media (max-width:600px){[style*="flex: 1 1"]{min-width:0}dd{overflow-wrap:anywhere}div:has(>.sponsor){gap:12px!important}div:has(>.sponsor)>.mono{flex-basis:100%}.sponsor{height:52px;padding:6px 10px}.sponsor img{height:40px;max-width:120px}.disp[style*="font-size: 44px"]{font-size:min(44px,10.5vw)!important}.disp[style*="font-size: 48px"]{font-size:min(48px,10.5vw)!important}.disp[style*="font-size: 52px"]{font-size:min(52px,10.5vw)!important}.disp[style*="font-size: 56px"]{font-size:min(56px,10.5vw)!important}.disp[style*="font-size: 60px"]{font-size:min(60px,10.5vw)!important}.disp[style*="font-size: 64px"]{font-size:min(64px,10.5vw)!important}.disp[style*="font-size: 72px"]{font-size:min(72px,10.5vw)!important}}
+@media (max-width:359px){.disp[style*="font-size: 88px"]{font-size:13vw!important}.disp[style*="font-size: 52px"],h3[style*="font-size: 52px"]{font-size:9.5vw!important}}
 @media (max-width:600px){.topnav{gap:16px}.topnav .btn{display:none}}
 </style>
 </head>
@@ -202,11 +207,11 @@ header{padding-top:113px}
 </div>
 <div style="padding: 32px 0; display: flex; gap: 28px; flex-wrap: wrap; align-items: center; border-bottom: 1px solid rgba(239,237,230,0.2)">
 <span class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.6">CON IL SOSTEGNO DI</span>
-<span class="disp" style="font-size: 22px; opacity: 0.8">BancaStato</span>
-<span class="disp" style="font-size: 22px; opacity: 0.8">AIL</span>
-<span class="disp" style="font-size: 22px; opacity: 0.8">Bächli Bergsport</span>
-<span class="disp" style="font-size: 22px; opacity: 0.8">DOS Group</span>
-<span class="disp" style="font-size: 22px; opacity: 0.8">Studio grafica Grizzi</span>
+<a class="sponsor" href="https://www.bancastato.ch" target="_blank" rel="noopener"><img src="assets/sponsor/bancastato.jpg" alt="BancaStato" width="180" height="70" loading="lazy"></a>
+<a class="sponsor" href="https://www.ail.ch/privati.html" target="_blank" rel="noopener"><img src="assets/sponsor/ail.jpg" alt="AIL" width="113" height="80" loading="lazy"></a>
+<a class="sponsor" href="https://www.baechli-bergsport.ch/it" target="_blank" rel="noopener"><img src="assets/sponsor/baechli.jpg" alt="Bächli Bergsport" width="89" height="80" loading="lazy"></a>
+<a class="sponsor" href="https://www.dos-group.com/it/" target="_blank" rel="noopener"><img src="assets/sponsor/dos-group.png" alt="DOS Group" width="180" height="80" loading="lazy"></a>
+<span class="sponsor"><img src="assets/sponsor/studio-grafica-grizzi.png" alt="Studio grafica Grizzi" width="180" height="80" loading="lazy"></span>
 </div>
 <div class="mono" style="padding-top: 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 12px; opacity: 0.6">
 <span>© 2026 CAS Ticino</span><span>Club Alpino Svizzero · Sezione Ticino</span>
