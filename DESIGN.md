@@ -202,7 +202,7 @@ Square corners everywhere (0px radius): buttons, cards, images, inputs, tiles, m
 - **Callout / contact:** granite-chiaro block, generous fluid padding, no border.
 
 ### Navigation
-- Fixed top bar, 72px, translucent neve with blur; gains a hairline and soft shadow once scrolled. Crest in a pale tile, "CAS Ticino" in 720 weight with «Club Alpino Svizzero» below. Links in ardesia-2, current page in red; dropdowns are square panels with the rilievo shadow. Under 1080px the links fold into a full-screen menu (large 30px group titles) built by `site.js`; the red CTA stays at the bottom.
+- Fixed top bar, 72px, translucent neve with blur; gains a hairline and soft shadow once scrolled. Logo image `assets/logo-cas-ticino.webp` (crest + «CAS Ticino / Club Alpino Svizzero», transparent), 44px tall in the bar, 52px in the footer. Links in ardesia-2, current page in red; dropdowns are square panels with the rilievo shadow. Under 1080px the links fold into a full-screen menu (large 30px group titles) built by `site.js`; the red CTA stays at the bottom.
 
 ### Signature: Key facts
 Hut pages open with a row of big facts (quota, posti, tempo d'accesso) at clamp(26px, 2.6vw, 36px), labels above in lichene: the hut-book entry made visible.
@@ -210,7 +210,7 @@ Hut pages open with a row of big facts (quota, posti, tempo d'accesso) at clamp(
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep every corner at 0px radius.
+- **Do** keep every corner at 0px radius. The one exception, chosen by the section: profile portraits (Comitato, Organizzazione) are circles.
 - **Do** set altitudes, years, times and counts in Geist Mono or tabular figures.
 - **Do** use real photographs from `assets/img/` and Droptour; put text on photos only over the dark scrim gradients.
 - **Do** give interactive elements weight: pressed states, hover lift, firm borders.

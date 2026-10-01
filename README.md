@@ -13,7 +13,7 @@ assets/foto.js                  pagina Foto: legge data/foto.json
 assets/logo-cas.webp            stemma
 assets/img/<tema>/              foto del sito in WebP: paesaggi, capanne, attivita, corsi, news, pubblicazioni
 assets/img/originali/           foto originali ad alta risoluzione (non pubblicate, escluse da git)
-assets/comitato/                foto profilo del comitato (WebP 240×280)
+assets/img/persone/<gruppo>/    foto profilo (WebP 240×280) di comitato e dicasteri, nome-cognome.webp
 assets/sponsor/                 loghi degli sponsor nel footer (originali/ = file ricevuti)
 data/foto.json                  ultime gite con foto (generato in automatico)
 docs/<tema>/                    PDF della sezione per tema (scale-difficolta, promemoria, cartine, moduli, corsi, noleggio,
@@ -51,9 +51,15 @@ Nel pannello di chi gestisce il DNS di casticino.ch **cambia solo i record del s
 | AAAA  | `@`             | `2606:50c0:8001::153`           |
 | AAAA  | `@`             | `2606:50c0:8002::153`           |
 | AAAA  | `@`             | `2606:50c0:8003::153`           |
-| CNAME | `www`           | `<utente-o-organizzazione>.github.io` |
+| CNAME | `www`           | `fole89.github.io`              |
 
 Prima di cambiarli, verifica questi indirizzi sulla guida ufficiale di GitHub: *Managing a custom domain for your GitHub Pages site*.
+
+Note sul CNAME:
+- il valore è solo il nome utente GitHub, **senza** `/casticino-site`;
+- il dominio principale (`casticino.ch`, senza www) non può avere un CNAME: per quello servono i record A e AAAA qui sopra;
+- alcuni pannelli DNS vogliono il punto finale (`fole89.github.io.`), altri lo aggiungono da soli;
+- se il repository passa a un account o un'organizzazione della sezione, il valore diventa `<nome-organizzazione>.github.io`.
 
 **Non toccare:**
 - i record **MX** e TXT della posta (info@casticino.ch & co.);

@@ -104,11 +104,8 @@ dl,dd{margin:0}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--nav-h)}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);flex-shrink:0}
 .brand:hover{color:var(--ink)}
-.brand-mark{width:34px;height:40px;display:grid;place-items:center}
-.brand-mark img{height:40px;width:auto}
-.brand-name{display:grid;line-height:1.05}
-.brand-name strong{font-size:19px;letter-spacing:-.03em;font-weight:720}
-.brand-name span{font-size:12px;color:var(--muted);letter-spacing:.01em}
+.brand-logo{height:44px;width:auto}
+.site-footer .brand-logo{height:52px}
 .nav-links{display:flex;align-items:center;gap:4px}
 .navlink{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;font-size:15px;font-weight:550;text-decoration:none;color:var(--ink-2);transition:color .2s var(--ease)}
 .navlink:hover,.dd:focus-within>.navlink,.dd:hover>.navlink{color:var(--ink)}
@@ -134,7 +131,6 @@ dl,dd{margin:0}
 }
 @media (max-width:560px){
   .nav-end .btn{display:none}
-  .brand-name span{display:none}
 }
 
 /* menu mobile (costruito da site.js) */
@@ -328,8 +324,8 @@ dl,dd{margin:0}
 /* persone: comitato */
 .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px}
 .person{display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:center;padding:16px;background:var(--surface)}
-.person-photo{width:96px;height:112px;background:var(--surface-2);display:grid;place-items:center;overflow:hidden}
-.person-photo img{width:96px;height:112px;object-fit:cover}
+.person-photo{width:96px;height:96px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;overflow:hidden}
+.person-photo img{width:96px;height:96px;object-fit:cover;object-position:center 22%}
 .person-photo span{font-size:30px;font-weight:700;letter-spacing:-.04em;color:var(--muted)}
 .person-body{display:grid;gap:4px;min-width:0}
 .person-body h3{font-size:21px;letter-spacing:-.025em;line-height:1.1}
@@ -344,7 +340,11 @@ dl,dd{margin:0}
 .dept-intro p{color:var(--ink-2)}
 .dept-count{font-family:var(--mono);font-size:14px;color:var(--accent);font-weight:550}
 .members{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 28px;align-content:start}
-.member{display:grid;gap:2px;padding-top:12px;border-top:1px solid var(--line);min-width:0}
+.member{display:grid;grid-template-columns:60px minmax(0,1fr);gap:14px;align-items:center;padding-top:12px;border-top:1px solid var(--line);min-width:0}
+.member-photo{width:60px;height:60px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;overflow:hidden}
+.member-photo img{width:60px;height:60px;object-fit:cover;object-position:center 22%}
+.member-photo span{font-size:19px;font-weight:700;letter-spacing:-.03em;color:var(--muted)}
+.member-body{display:grid;gap:2px;min-width:0}
 .member strong{font-size:17px;font-weight:620;letter-spacing:-.015em}
 .member span{font-size:14.5px;color:var(--muted)}
 .member a{font-size:14.5px;color:var(--ink-2);overflow-wrap:anywhere}

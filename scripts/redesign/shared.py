@@ -73,8 +73,7 @@ def nav(current_page, current_section=None):
 <header class="site-nav">
 <nav aria-label="Principale" class="container nav-inner">
 <a class="brand" href="index.html">
-<span class="brand-mark"><img src="assets/logo-cas.webp" alt="Stemma del Club Alpino Svizzero" width="34" height="40"></span>
-<span class="brand-name"><strong>CAS Ticino</strong><span>Club Alpino Svizzero</span></span>
+<img class="brand-logo" src="assets/logo-cas-ticino.webp" alt="CAS Ticino, Club Alpino Svizzero" width="146" height="44">
 </a>
 <div class="nav-links hide-sm">
 {links}
@@ -114,8 +113,7 @@ def footer():
 <div class="footer-grid">
 <div class="footer-brand">
 <a class="brand" href="index.html">
-<span class="brand-mark"><img src="assets/logo-cas.webp" alt="" width="34" height="40" loading="lazy"></span>
-<span class="brand-name"><strong>CAS Ticino</strong><span>Club Alpino Svizzero</span></span>
+<img class="brand-logo" src="assets/logo-cas-ticino.webp" alt="CAS Ticino, Club Alpino Svizzero" width="172" height="52" loading="lazy">
 </a>
 <address>Club Alpino Svizzero, Sezione Ticino<br>Casella postale 112, 6998 Monteggio 2<br>Sede: Canvetto Luganese, Molino Nuovo<br><a href="mailto:info@casticino.ch">info@casticino.ch</a></address>
 </div>

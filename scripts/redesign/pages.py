@@ -4,7 +4,7 @@ Uso: python scripts/redesign/pages.py [Pagina.html ...]  (senza argomenti rigene
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from shared import head, nav, footer, pic, img, GITE, page_hero, subnav, asset, in_sottocartella, crumbs
-import json, re
+import json, re, unicodedata
 from html import unescape as html_unescape
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -493,7 +493,7 @@ def initials(name):
 def comitato():
     people = []
     for role, name, mail, photo in COMITATO:
-        ph = (f'<img src="assets/comitato/{photo}.webp" alt="Ritratto di {name}" width="96" height="112" loading="lazy">'
+        ph = (f'<img src="assets/img/persone/comitato/{photo}.webp" alt="Ritratto di {name}" width="96" height="96" loading="lazy">'
               if photo else f'<span aria-hidden="true">{initials(name)}</span>')
         people.append(f"""<article class="person">
 <div class="person-photo">{ph}</div>
@@ -574,16 +574,30 @@ DICASTERI = [
 ]
 
 
+CARTELLE_DICASTERI = {"Dicastero infrastruttura": "infrastruttura", "Dicastero sport di montagna": "sport-di-montagna",
+                      "Dicastero giovani": "giovani", "Dicastero senior": "senior", "Dicastero comunicazione": "comunicazione"}
+
+
+def slug_nome(nome):
+    t = unicodedata.normalize("NFKD", nome).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+
+
 def organizzazione():
     depts = []
     for i, (title, text, members) in enumerate(DICASTERI, 1):
         ms = []
         for name, role, mail in members:
             if name is None:
-                ms.append(f'<div class="member member--tbd"><strong>Da definire</strong><span>{role}</span></div>')
-            else:
-                m = f'<a href="mailto:{mail}">{mail}</a>' if mail else ""
-                ms.append(f'<div class="member"><strong>{name}</strong><span>{role}</span>{m}</div>')
+                ms.append(f'<div class="member member--tbd"><div class="member-photo" aria-hidden="true"><span>?</span></div>'
+                          f'<div class="member-body"><strong>Da definire</strong><span>{role}</span></div></div>')
+                continue
+            foto = f"assets/img/persone/{CARTELLE_DICASTERI[title]}/{slug_nome(name)}.webp"
+            ph = (f'<img src="{foto}" alt="Ritratto di {name}" width="60" height="60" loading="lazy" decoding="async">'
+                  if os.path.exists(os.path.join(ROOT, foto)) else f'<span aria-hidden="true">{initials(name)}</span>')
+            m = f'<a href="mailto:{mail}">{mail}</a>' if mail else ""
+            ms.append(f'<div class="member"><div class="member-photo">{ph}</div>'
+                      f'<div class="member-body"><strong>{name}</strong><span>{role}</span>{m}</div></div>')
         depts.append(f"""<article class="dept" aria-labelledby="d{i}-h" data-reveal>
 <div class="dept-intro">
 <span class="dept-count">{len(members)} membri</span>
