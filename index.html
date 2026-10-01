@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAS Ticino — Home</title>
+<meta name="description" content="Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età. Da oltre un secolo, la casa dell’alpinismo ticinese.">
+<link rel="icon" href="assets/logo-cas.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EFEDE6}
+*{box-sizing:border-box}
+a{color:#15201B}a:hover{color:#B3241A}
+.disp{font-family:'Archivo',sans-serif;font-stretch:68%;font-weight:850;text-transform:uppercase;letter-spacing:-0.01em;line-height:0.88}
+.mono{font-family:'IBM Plex Mono',monospace}
+.serif{font-family:'Newsreader',serif}
+.navlink{font-family:'Archivo',sans-serif;font-stretch:88%;font-weight:600;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:#EFEDE6;padding:12px 2px}
+.navlink:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:6px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;font-family:'Archivo',sans-serif;font-stretch:88%;font-weight:700;font-size:15px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none}
+.card-link{font-family:'Archivo',sans-serif;font-stretch:88%;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.dd{position:relative}
+.dd-trigger{display:inline-flex;align-items:center;gap:6px;background:none;border:0;cursor:pointer;min-height:44px}
+.dd-menu{position:absolute;top:100%;left:-18px;min-width:248px;background:#EFEDE6;padding:10px 0;display:none;flex-direction:column;z-index:30;box-shadow:0 18px 40px rgba(0,0,0,0.28);border-top:3px solid #C42A1E}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{display:flex}
+.dd:hover .dd-trigger,.dd:focus-within .dd-trigger{color:#F07A6E}
+.dd-menu a{padding:11px 24px;font-family:'Newsreader',serif;font-size:17px;color:#15201B;text-decoration:none}
+.dd-menu a:hover,.dd-menu a:focus{background:#E3E0D6;color:#B3241A}
+.show-sm{display:none !important}
+@media (max-width:960px){.hide-sm{display:none !important}.show-sm{display:flex !important}.hero-h{font-size:clamp(64px,17vw,140px) !important}.sec-h{font-size:clamp(48px,12vw,96px) !important}}
+
+:root{--accent:#C42A1E}
+html{scroll-behavior:smooth}
+section[id],div[id]{scroll-margin-top:24px}
+.mnav{position:fixed;inset:0;z-index:100;background:#15201B;color:#EFEDE6;overflow-y:auto;padding:20px 24px 48px}
+.mnav[hidden]{display:none}
+.mnav-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.mnav-close{width:48px;height:48px;background:transparent;border:1px solid rgba(239,237,230,0.4);color:#EFEDE6;font-size:22px;cursor:pointer}
+.mnav-group{border-top:1px solid rgba(239,237,230,0.2);padding:14px 0}
+.mnav-group>a,.mnav-head{display:block;font-family:'Archivo',sans-serif;font-stretch:68%;font-weight:850;text-transform:uppercase;font-size:34px;line-height:1.1;color:#EFEDE6;text-decoration:none;padding:6px 0}
+.mnav-sub{display:flex;flex-direction:column;padding:4px 0 6px}
+.mnav-sub a{font-family:'Newsreader',serif;font-size:19px;color:#EFEDE6;text-decoration:none;padding:9px 0;opacity:.88}
+.mnav-cta{display:flex;margin-top:24px}
+.f-photo{width:100%;height:100%;object-fit:contain;display:block;background:#2A332E}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+</style>
+</head>
+<body>
+<div style="min-height: 100vh; background: #EFEDE6; color: #15201B; font-family: 'Newsreader', serif">
+
+<!-- ================= HEADER + HERO ================= -->
+<header style="background: #15201B; color: #EFEDE6; position: relative">
+<svg aria-hidden="true" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.16">
+<g fill="none" stroke="#EFEDE6" stroke-width="1">
+<path d="M-50 620 C 200 540, 380 600, 560 520 S 900 380, 1120 430 S 1400 360, 1500 380"></path>
+<path d="M-50 580 C 210 500, 390 560, 570 480 S 905 340, 1125 390 S 1400 320, 1500 340"></path>
+<path d="M-50 540 C 220 460, 400 520, 580 440 S 910 300, 1130 350 S 1400 280, 1500 300"></path>
+<path d="M-50 500 C 230 420, 410 480, 590 400 S 915 260, 1135 310 S 1400 240, 1500 260"></path>
+<path d="M-50 460 C 240 380, 420 440, 600 360 S 920 220, 1140 270 S 1400 200, 1500 220"></path>
+<path d="M-50 420 C 250 340, 430 400, 610 320 S 925 180, 1145 230 S 1400 160, 1500 180"></path>
+<path d="M-50 380 C 260 300, 440 360, 620 280 S 930 140, 1150 190 S 1400 120, 1500 140"></path>
+<path d="M-50 340 C 270 260, 450 320, 630 240 S 935 100, 1155 150 S 1400 80, 1500 100"></path>
+<path d="M-50 300 C 280 220, 460 280, 640 200 S 940 60, 1160 110 S 1400 40, 1500 60"></path>
+<path d="M-50 260 C 290 180, 470 240, 650 160 S 945 20, 1165 70 S 1400 0, 1500 20"></path>
+<path d="M-50 220 C 300 140, 480 200, 660 120 S 950 -20, 1170 30"></path>
+</g>
+</svg>
+
+<div style="position: relative; max-width: 1360px; margin: 0 auto; padding: 0 40px">
+<nav aria-label="Principale" style="position: relative; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 0; border-bottom: 1px solid rgba(239,237,230,0.22)">
+<a href="index.html" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #EFEDE6">
+<span style="width: 60px; height: 68px; background: #EFEDE6; display: flex; align-items: center; justify-content: center; padding: 5px">
+<img src="assets/logo-cas.webp" alt="Stemma del Club Alpino Svizzero" style="height: 58px; width: auto; display: block">
+</span>
+<span style="display: flex; flex-direction: column">
+<span class="disp" style="font-size: 26px; line-height: 0.9">CAS Ticino</span>
+<span class="mono" style="font-size: 10.5px; letter-spacing: 0.12em; opacity: 0.75">CLUB ALPINO SVIZZERO · DAL 1886</span>
+</span>
+</a>
+<div class="hide-sm" style="display: flex; gap: 26px; align-items: center">
+<div class="dd">
+<a class="navlink dd-trigger" href="#sezione" aria-haspopup="true">La Sezione <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" fill="none"></path></svg></a>
+<div class="dd-menu">
+<a href="Introduzione.html">Introduzione</a>
+<a href="Comitato.html">Comitato</a>
+<a href="Organizzazione.html">Organizzazione</a>
+<a href="Sede.html">Sede e recapiti</a>
+<a href="Storia.html">Storia</a>
+<a href="Link.html">Link utili</a>
+<a href="Documenti.html">Documenti</a>
+</div>
+</div>
+<a class="navlink" href="#news">News</a>
+<div class="dd">
+<a class="navlink dd-trigger" href="#attivita" aria-haspopup="true">Attività <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" fill="none"></path></svg></a>
+<div class="dd-menu">
+<a href="https://ssl.dropnet.ch/casticino/gite/index.php">Programma gite</a>
+<a href="Giovani.html">Giovani</a>
+<a href="Senior.html">Senior</a>
+<a href="Corsi.html">Corsi</a>
+<a href="Noleggio.html">Noleggio materiale</a>
+</div>
+</div>
+<div class="dd">
+<a class="navlink dd-trigger" href="#capanne" aria-haspopup="true">Le Capanne <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" fill="none"></path></svg></a>
+<div class="dd-menu">
+<a href="CampoTencia.html">Campo Tencia</a>
+<a href="Cristallina.html">Cristallina</a>
+<a href="Adula.html">Adula</a>
+<a href="Motterascio.html">Motterascio</a>
+<a href="MonteBar.html">Monte Bar</a>
+<a href="BaitaDelLuca.html">Baita del Luca</a>
+</div>
+</div>
+<a class="navlink" href="Foto.html">Foto</a>
+<a class="navlink" href="Adesione.html">Adesione</a>
+</div>
+<div style="display: flex; gap: 12px; align-items: center">
+<a class="btn" href="https://ssl.dropnet.ch/casticino/gite/index.php" style="background: var(--accent); color: #FFFFFF">Programma gite</a>
+<button class="show-sm" aria-label="Apri menu" style="width: 48px; height: 48px; background: transparent; border: 1px solid rgba(239,237,230,0.4); color: #EFEDE6; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="1.8" fill="none"></path></svg>
+</button>
+</div>
+</nav>
+
+<div id="top" style="padding: 88px 0 0; display: flex; flex-direction: column; gap: 36px">
+<div class="mono" style="font-size: 13px; letter-spacing: 0.14em; display: flex; gap: 18px; flex-wrap: wrap; opacity: 0.85">
+<span>46°10′N · 8°57′E</span><span>SEZIONE TICINO</span><span>FONDATA L’11.04.1886 A BELLINZONA</span>
+</div>
+<h1 class="disp hero-h" style="margin: 0; font-size: 168px; max-width: 1200px">In montagna<br>con <span style="color: var(--accent)">noi</span>.</h1>
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap">
+<p class="serif" style="margin: 0; font-size: 24px; line-height: 1.4; max-width: 560px; opacity: 0.92">Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età. Da oltre un secolo, la casa dell’alpinismo ticinese.</p>
+<div style="display: flex; gap: 12px; flex-wrap: wrap">
+<a class="btn" href="Adesione.html" style="background: #EFEDE6; color: #15201B">Diventa socio
+<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" fill="none"></path></svg></a>
+<a class="btn" href="#capanne" style="border: 1px solid rgba(239,237,230,0.55); color: #EFEDE6">Le capanne</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- altimetric profile -->
+<div style="position: relative; margin-top: 56px">
+<svg role="img" aria-label="Profilo altimetrico delle sei capanne del CAS Ticino" viewBox="0 0 1440 360" preserveAspectRatio="none" style="display: block; width: 100%; height: 360px">
+<g class="mono" font-family="IBM Plex Mono, monospace" font-size="11" fill="#EFEDE6" opacity="0.45">
+<line x1="0" y1="20" x2="1440" y2="20" stroke="#EFEDE6" stroke-dasharray="2 6" opacity="0.6"></line>
+<text x="16" y="14">3000 m</text>
+<line x1="0" y1="140" x2="1440" y2="140" stroke="#EFEDE6" stroke-dasharray="2 6" opacity="0.6"></line>
+<text x="16" y="134">2000 m</text>
+<line x1="0" y1="260" x2="1440" y2="260" stroke="#EFEDE6" stroke-dasharray="2 6" opacity="0.6"></line>
+<text x="16" y="254">1000 m</text>
+</g>
+<path d="M0 150 L70 118 L120 76 L160 98 L210 62 L250 92 L300 12 L340 70 L380 104 L420 88 L470 118 L520 96 L560 124 L610 140 L660 108 L700 76 L740 112 L790 132 L830 104 L880 120 L930 168 L980 200 L1020 194 L1060 212 L1110 236 L1150 250 L1200 262 L1250 248 L1300 280 L1360 296 L1440 300 L1440 360 L0 360 Z" fill="#EFEDE6"></path>
+<g font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#EFEDE6">
+<line x1="300" y1="12" x2="300" y2="-10" stroke="#EFEDE6"></line>
+</g>
+</svg>
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none">
+<div style="position: absolute; left: 20.8%; top: 12px; transform: translate(-50%, -100%); padding-bottom: 6px; text-align: center; color: #EFEDE6">
+<div class="mono" style="font-size: 11px; letter-spacing: 0.1em; opacity: 0.7">PIZZO CAMPO TENCIA · 3071</div>
+</div>
+</div>
+<div style="position: absolute; inset: 0">
+<a href="Cristallina.html" style="position: absolute; left: 8.3%; top: 76px; transform: translate(-50%, -100%); text-decoration: none; color: #EFEDE6; text-align: center; padding-bottom: 10px">
+<div class="disp" style="font-size: 18px">Cristallina</div><div class="mono" style="font-size: 12px; opacity: 0.8">2575 m</div></a>
+<a href="CampoTencia.html" style="position: absolute; left: 26.4%; top: 104px; transform: translate(-50%, -100%); text-decoration: none; color: #EFEDE6; text-align: center; padding-bottom: 10px">
+<div class="disp" style="font-size: 18px">Campo Tencia</div><div class="mono" style="font-size: 12px; opacity: 0.8">2140 m</div></a>
+<a href="Adula.html" style="position: absolute; left: 38.9%; top: 124px; transform: translate(-50%, -100%); text-decoration: none; color: #EFEDE6; text-align: center; padding-bottom: 10px">
+<div class="disp" style="font-size: 18px">Adula</div><div class="mono" style="font-size: 12px; opacity: 0.8">2012 m</div></a>
+<a href="Motterascio.html" style="position: absolute; left: 48.6%; top: 76px; transform: translate(-50%, -100%); text-decoration: none; color: #EFEDE6; text-align: center; padding-bottom: 10px">
+<div class="disp" style="font-size: 18px">Motterascio</div><div class="mono" style="font-size: 12px; opacity: 0.8">2172 m</div></a>
+<a href="MonteBar.html" style="position: absolute; left: 70.8%; top: 194px; transform: translate(-50%, -100%); text-decoration: none; color: #EFEDE6; text-align: center; padding-bottom: 10px">
+<div class="disp" style="font-size: 18px">Monte Bar</div><div class="mono" style="font-size: 12px; opacity: 0.8">1620 m</div></a>
+<a href="BaitaDelLuca.html" style="position: absolute; left: 86.8%; top: 248px; transform: translate(-50%, -100%); text-decoration: none; color: #EFEDE6; text-align: center; padding-bottom: 10px">
+<div class="disp" style="font-size: 18px">Baita del Luca</div><div class="mono" style="font-size: 12px; opacity: 0.8">1070 m</div></a>
+<span style="position: absolute; left: 8.3%; top: 76px; width: 14px; height: 14px; transform: translate(-50%, -50%); background: var(--accent); border: 3px solid #EFEDE6; border-radius: 50%"></span>
+<span style="position: absolute; left: 26.4%; top: 104px; width: 14px; height: 14px; transform: translate(-50%, -50%); background: var(--accent); border: 3px solid #EFEDE6; border-radius: 50%"></span>
+<span style="position: absolute; left: 38.9%; top: 124px; width: 14px; height: 14px; transform: translate(-50%, -50%); background: var(--accent); border: 3px solid #EFEDE6; border-radius: 50%"></span>
+<span style="position: absolute; left: 48.6%; top: 76px; width: 14px; height: 14px; transform: translate(-50%, -50%); background: var(--accent); border: 3px solid #EFEDE6; border-radius: 50%"></span>
+<span style="position: absolute; left: 70.8%; top: 194px; width: 14px; height: 14px; transform: translate(-50%, -50%); background: var(--accent); border: 3px solid #EFEDE6; border-radius: 50%"></span>
+<span style="position: absolute; left: 86.8%; top: 248px; width: 14px; height: 14px; transform: translate(-50%, -50%); background: var(--accent); border: 3px solid #EFEDE6; border-radius: 50%"></span>
+</div>
+</div>
+</header>
+
+<!-- ================= NUMERI ================= -->
+<section id="sezione" aria-label="La sezione in cifre" style="max-width: 1360px; margin: 0 auto; padding: 0 40px">
+<div style="display: flex; flex-wrap: wrap; border-bottom: 2px solid #15201B">
+<div style="flex: 1 1 240px; padding: 36px 24px 32px 0; border-right: 1px solid rgba(21,32,27,0.18)">
+<div class="disp" style="font-size: 88px">1886</div>
+<div class="mono" style="font-size: 12px; letter-spacing: 0.1em; margin-top: 10px">ANNO DI FONDAZIONE</div>
+</div>
+<div style="flex: 1 1 240px; padding: 36px 24px 32px; border-right: 1px solid rgba(21,32,27,0.18)">
+<div class="disp" style="font-size: 88px">≈3000</div>
+<div class="mono" style="font-size: 12px; letter-spacing: 0.1em; margin-top: 10px">SOCI</div>
+</div>
+<div style="flex: 1 1 240px; padding: 36px 24px 32px; border-right: 1px solid rgba(21,32,27,0.18)">
+<div class="disp" style="font-size: 88px">6 <span style="font-size: 40px">/ 362</span></div>
+<div class="mono" style="font-size: 12px; letter-spacing: 0.1em; margin-top: 10px">RIFUGI / POSTI LETTO</div>
+</div>
+<div style="flex: 1 1 240px; padding: 36px 0 32px 24px">
+<div class="disp" style="font-size: 88px">5</div>
+<div class="mono" style="font-size: 12px; letter-spacing: 0.1em; margin-top: 10px">DISCIPLINE INSEGNATE NEI CORSI</div>
+</div>
+</div>
+</section>
+
+<!-- ================= STORIA ================= -->
+<section id="storia" aria-labelledby="storia-h" style="max-width: 1360px; margin: 0 auto; padding: 96px 40px 0">
+<div style="display: flex; gap: 64px; flex-wrap: wrap">
+<div style="flex: 1 1 380px">
+<div class="mono" style="font-size: 13px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 14px">01 — LA SEZIONE · STORIA</div>
+<h2 id="storia-h" class="disp sec-h" style="margin: 0; font-size: 96px">Dal 1886,<br>a piedi.</h2>
+<p class="serif" style="margin: 28px 0 0; font-size: 21px; line-height: 1.5; font-style: italic; max-width: 420px">Fondato alla Birraria Gambrinus di Bellinzona nell’anno del centenario della prima salita al Monte Bianco, per «visitare, studiare e far conoscere» le montagne del Cantone.</p>
+<a class="card-link" href="Storia.html" style="color: #15201B; margin-top: 16px; border-bottom: 2px solid #15201B">Leggi la storia completa</a>
+</div>
+<ol style="flex: 1.4 1 520px; list-style: none; margin: 0; padding: 0; border-top: 2px solid #15201B">
+<li style="display: flex; gap: 28px; padding: 18px 0; border-bottom: 1px solid rgba(21,32,27,0.2)"><span class="mono" style="flex: 0 0 64px; font-size: 18px; font-weight: 600; color: var(--accent)">1886</span><span class="serif" style="font-size: 18px; line-height: 1.4">Nasce il Club Alpino Ticinese; primo presidente l’avv. Curzio Curti.</span></li>
+<li style="display: flex; gap: 28px; padding: 18px 0; border-bottom: 1px solid rgba(21,32,27,0.2)"><span class="mono" style="flex: 0 0 64px; font-size: 18px; font-weight: 600; color: var(--accent)">1887</span><span class="serif" style="font-size: 18px; line-height: 1.4">Adesione al Club Alpino Svizzero come sezione ticinese, con sede a Lugano.</span></li>
+<li style="display: flex; gap: 28px; padding: 18px 0; border-bottom: 1px solid rgba(21,32,27,0.2)"><span class="mono" style="flex: 0 0 64px; font-size: 18px; font-weight: 600; color: var(--accent)">1913</span><span class="serif" style="font-size: 18px; line-height: 1.4">Nasce la sezione di Lugano del Club Alpino Femminile Svizzero.</span></li>
+<li style="display: flex; gap: 28px; padding: 18px 0; border-bottom: 1px solid rgba(21,32,27,0.2)"><span class="mono" style="flex: 0 0 64px; font-size: 18px; font-weight: 600; color: var(--accent)">1918</span><span class="serif" style="font-size: 18px; line-height: 1.4">Prime stazioni di soccorso alpino a Faido, Airolo e Olivone.</span></li>
+<li style="display: flex; gap: 28px; padding: 18px 0; border-bottom: 1px solid rgba(21,32,27,0.2)"><span class="mono" style="flex: 0 0 64px; font-size: 18px; font-weight: 600; color: var(--accent)">1940</span><span class="serif" style="font-size: 18px; line-height: 1.4">Costituzione del gruppo Seniori.</span></li>
+<li style="display: flex; gap: 28px; padding: 18px 0; border-bottom: 1px solid rgba(21,32,27,0.2)"><span class="mono" style="flex: 0 0 64px; font-size: 18px; font-weight: 600; color: var(--accent)">1980</span><span class="serif" style="font-size: 18px; line-height: 1.4">Le sezioni maschile e femminile si fondono.</span></li>
+<li style="display: flex; gap: 28px; padding: 18px 0; border-bottom: 1px solid rgba(21,32,27,0.2)"><span class="mono" style="flex: 0 0 64px; font-size: 18px; font-weight: 600; color: var(--accent)">2003</span><span class="serif" style="font-size: 18px; line-height: 1.4">Inaugurata la nuova Capanna Cristallina.</span></li>
+<li style="display: flex; gap: 28px; padding: 18px 0; border-bottom: 1px solid rgba(21,32,27,0.2)"><span class="mono" style="flex: 0 0 64px; font-size: 18px; font-weight: 600; color: var(--accent)">2016</span><span class="serif" style="font-size: 18px; line-height: 1.4">Conclusa la ricostruzione della Capanna Monte Bar.</span></li>
+</ol>
+</div>
+</section>
+
+
+<!-- ================= NEWS ================= -->
+<section id="news" style="max-width: 1360px; margin: 0 auto; padding: 120px 40px 0">
+<div style="display: flex; gap: 64px; flex-wrap: wrap">
+<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 24px">
+<div class="mono" style="font-size: 13px; letter-spacing: 0.14em; color: var(--accent)">02 — NEWS</div>
+<h2 class="disp sec-h" style="margin: 0; font-size: 120px">Dalla<br>sezione</h2>
+<div style="display: flex; gap: 20px; flex-wrap: wrap">
+<a class="card-link" href="News.html" style="color: #15201B; border-bottom: 2px solid #15201B">Tutte le news</a>
+<a class="card-link" href="Foto.html" style="color: #15201B">Galleria foto →</a>
+</div>
+</div>
+<div style="flex: 1.6 1 520px; display: flex; flex-direction: column; border-top: 2px solid #15201B">
+<article style="display: flex; gap: 24px; padding: 26px 0; border-bottom: 1px solid rgba(21,32,27,0.2)">
+<div style="flex: 0 0 92px; text-align: left">
+<div class="disp" style="font-size: 56px; color: var(--accent)">15</div>
+<div class="mono" style="font-size: 12px; letter-spacing: 0.1em">OTT 2026</div>
+</div>
+<div style="flex: 1">
+<div class="mono" style="font-size: 11px; letter-spacing: 0.12em; opacity: 0.7">SERATA · INGRESSO GRATUITO</div>
+<h3 class="disp" style="margin: 8px 0 8px; font-size: 32px; line-height: 0.95">(S)legati</h3>
+<p class="serif" style="margin: 0; font-size: 17px; line-height: 1.45">L’incredibile storia degli alpinisti Joe Simpson e Simon Yates.</p>
+<a class="card-link" href="News.html" style="color: #15201B">Dettagli →</a>
+</div>
+</article>
+<article style="display: flex; gap: 24px; padding: 26px 0; border-bottom: 1px solid rgba(21,32,27,0.2)">
+<div style="flex: 0 0 92px">
+<div class="disp" style="font-size: 56px; color: var(--accent)">FTL</div>
+<div class="mono" style="font-size: 12px; letter-spacing: 0.1em">LOCARNO</div>
+</div>
+<div style="flex: 1">
+<div class="mono" style="font-size: 11px; letter-spacing: 0.12em; opacity: 0.7">FESTIVAL</div>
+<h3 class="disp" style="margin: 8px 0 8px; font-size: 32px; line-height: 0.95">Film Trail Locarno</h3>
+<p class="serif" style="margin: 0; font-size: 17px; line-height: 1.45">Cinema, avventura, conversazioni.</p>
+<a class="card-link" href="News.html" style="color: #15201B">Dettagli →</a>
+</div>
+</article>
+<article style="display: flex; gap: 24px; padding: 26px 0; border-bottom: 1px solid rgba(21,32,27,0.2)">
+<div style="flex: 0 0 92px">
+<div style="width: 56px; height: 56px; border: 2px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center">
+<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 L22 20 H2 Z M12 10 V14 M12 17 V17.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"></path></svg>
+</div>
+<div class="mono" style="font-size: 12px; letter-spacing: 0.1em; margin-top: 8px">AVVISO</div>
+</div>
+<div style="flex: 1">
+<div class="mono" style="font-size: 11px; letter-spacing: 0.12em; opacity: 0.7">SICUREZZA MATERIALE</div>
+<h3 class="disp" style="margin: 8px 0 8px; font-size: 32px; line-height: 0.95">Richiamo rinvii Simond Alpinism / Vertika</h3>
+<p class="serif" style="margin: 0; font-size: 17px; line-height: 1.45">Verifica se i tuoi quickdraws rientrano nel richiamo del produttore.</p>
+<a class="card-link" href="News.html" style="color: #15201B">Dettagli →</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<!-- ================= ATTIVITA ================= -->
+<section id="attivita" style="max-width: 1360px; margin: 0 auto; padding: 120px 40px 0">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 48px">
+<div>
+<div class="mono" style="font-size: 13px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 14px">03 — ATTIVITÀ</div>
+<h2 class="disp sec-h" style="margin: 0; font-size: 120px">Fuori con<br>la sezione</h2>
+</div>
+<p class="serif" style="margin: 0; font-size: 19px; line-height: 1.5; max-width: 440px">Gite per tutti i livelli, un gruppo per ogni età e corsi per imparare a muoversi in montagna in sicurezza.</p>
+</div>
+<article style="background: #15201B; color: #EFEDE6; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 380px">
+<div>
+<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.75">PROGRAMMA GITE 2026</div>
+<h3 class="disp" style="margin: 18px 0 0; font-size: 72px">Gite, escursioni<br>e uscite della sezione</h3>
+<p class="serif" style="margin: 22px 0 0; font-size: 20px; line-height: 1.45; max-width: 460px; opacity: 0.9">Escursionismo, alpinismo, sci alpinismo, racchette e arrampicata — il calendario completo con iscrizioni online.</p>
+</div>
+<div style="display: flex; gap: 12px; flex-wrap: wrap">
+<a class="btn" href="https://ssl.dropnet.ch/casticino/gite/index.php" style="background: var(--accent); color: #FFFFFF">Apri il programma</a>
+<a class="btn" href="Foto.html" style="border: 1px solid rgba(239,237,230,0.55); color: #EFEDE6">Galleria foto</a>
+</div>
+</article>
+</section>
+
+<!-- ================= GRUPPI ================= -->
+<section id="gruppi" style="max-width: 1360px; margin: 0 auto; padding: 24px 40px 0">
+<div class="mono" style="font-size: 13px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 14px">03 — ATTIVITÀ · GIOVANI E SENIOR</div>
+<div style="display: flex; gap: 24px; flex-wrap: wrap">
+<article style="flex: 1 1 480px; border: 2px solid #15201B; padding: 44px; display: flex; flex-direction: column; gap: 20px; min-height: 420px; position: relative; overflow: hidden">
+<span class="disp" aria-hidden="true" style="position: absolute; right: -10px; bottom: -40px; font-size: 260px; color: rgba(21,32,27,0.06)">OG</span>
+<div class="mono" style="font-size: 12px; letter-spacing: 0.12em">GRUPPO GIOVANI · DAGLI ANNI ’60</div>
+<h3 class="disp" style="margin: 0; font-size: 88px">Giovani</h3>
+<p class="serif" style="margin: 0; font-size: 19px; line-height: 1.5; max-width: 480px">Arrampicata, escursioni e settimane in montagna con monitori della sezione. Il ritrovo è la Baita del Luca, ai piedi dei Denti della Vecchia.</p>
+<div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: auto; position: relative">
+<a class="card-link" href="Giovani.html" style="color: #15201B; border-bottom: 2px solid var(--accent)">Gruppo giovani</a>
+<a class="card-link" href="Organizzazione.html" style="color: #15201B">Organizzazione →</a>
+</div>
+</article>
+<article style="flex: 1 1 480px; background: var(--accent); color: #FFFFFF; padding: 44px; display: flex; flex-direction: column; gap: 20px; min-height: 420px; position: relative; overflow: hidden">
+<span class="disp" aria-hidden="true" style="position: absolute; right: -10px; bottom: -40px; font-size: 260px; color: rgba(255,255,255,0.1)">1940</span>
+<div class="mono" style="font-size: 12px; letter-spacing: 0.12em">GRUPPO SENIOR · DAL 1940</div>
+<h3 class="disp" style="margin: 0; font-size: 88px">Senior</h3>
+<p class="serif" style="margin: 0; font-size: 19px; line-height: 1.5; max-width: 480px">Uscite settimanali con capigita esperti, al ritmo giusto e in buona compagnia, dalla Capriasca alle Alpi.</p>
+<div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: auto; position: relative">
+<a class="card-link" href="Senior.html" style="color: #FFFFFF; border-bottom: 2px solid #FFFFFF">Gruppo senior</a>
+<a class="card-link" href="Documenti.html" style="color: #FFFFFF">Promemoria capigita →</a>
+</div>
+</article>
+</div>
+</section>
+
+<!-- ================= CORSI ================= -->
+<section id="corsi" style="background: #15201B; color: #EFEDE6; margin-top: 120px">
+<div style="max-width: 1360px; margin: 0 auto; padding: 120px 40px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 56px">
+<div>
+<div class="mono" style="font-size: 13px; letter-spacing: 0.14em; color: #F07A6E; margin-bottom: 14px">03 — ATTIVITÀ · CORSI</div>
+<h2 class="disp sec-h" style="margin: 0; font-size: 120px">Impara la montagna</h2>
+</div>
+<p class="serif" style="margin: 0; font-size: 19px; line-height: 1.5; max-width: 440px; opacity: 0.9">Corsi nel fine settimana, diretti da professionisti con monitori esperti. Il programma del nuovo anno esce entro novembre.</p>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; border-top: 1px solid rgba(239,237,230,0.35)">
+<a href="Corsi.html" style="flex: 1 1 250px; padding: 32px 28px 36px 0; text-decoration: none; color: #EFEDE6; border-right: 1px solid rgba(239,237,230,0.18); display: flex; flex-direction: column; gap: 14px; min-height: 280px">
+<span class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.7">INVERNO</span>
+<span class="disp" style="font-size: 44px">Sci<br>alpinismo</span>
+<span class="serif" style="font-size: 16px; line-height: 1.45; opacity: 0.85">Salita e discesa fuori pista, nivologia, prevenzione valanghe, ricerca ARTVA.</span>
+<span class="card-link" style="margin-top: auto; color: #F07A6E">Scopri →</span>
+</a>
+<a href="Corsi.html" style="flex: 1 1 250px; padding: 32px 28px 36px; text-decoration: none; color: #EFEDE6; border-right: 1px solid rgba(239,237,230,0.18); display: flex; flex-direction: column; gap: 14px; min-height: 280px">
+<span class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.7">INVERNO</span>
+<span class="disp" style="font-size: 44px">Racchette</span>
+<span class="serif" style="font-size: 16px; line-height: 1.45; opacity: 0.85">Muoversi sulla neve in sicurezza: meteo, orientamento, primi soccorsi.</span>
+<span class="card-link" style="margin-top: auto; color: #F07A6E">Scopri →</span>
+</a>
+<a href="Corsi.html" style="flex: 1 1 250px; padding: 32px 28px 36px; text-decoration: none; color: #EFEDE6; border-right: 1px solid rgba(239,237,230,0.18); display: flex; flex-direction: column; gap: 14px; min-height: 280px">
+<span class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.7">INVERNO</span>
+<span class="disp" style="font-size: 44px">Freeride</span>
+<span class="serif" style="font-size: 16px; line-height: 1.45; opacity: 0.85">Tecnica di sci fuori pista per chi vuole scendere con più sicurezza.</span>
+<span class="card-link" style="margin-top: auto; color: #F07A6E">Scopri →</span>
+</a>
+<a href="Corsi.html" style="flex: 1 1 250px; padding: 32px 28px 36px; text-decoration: none; color: #EFEDE6; border-right: 1px solid rgba(239,237,230,0.18); display: flex; flex-direction: column; gap: 14px; min-height: 280px">
+<span class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.7">PRIMAVERA</span>
+<span class="disp" style="font-size: 44px">Arram-<br>picata</span>
+<span class="serif" style="font-size: 16px; line-height: 1.45; opacity: 0.85">Vie a uno o più tiri: assicurazione, gestione della sosta, corda doppia.</span>
+<span class="card-link" style="margin-top: auto; color: #F07A6E">Scopri →</span>
+</a>
+<a href="Corsi.html" style="flex: 1 1 250px; padding: 32px 0 36px 28px; text-decoration: none; color: #EFEDE6; display: flex; flex-direction: column; gap: 14px; min-height: 280px">
+<span class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.7">ESTATE</span>
+<span class="disp" style="font-size: 44px">Alpinismo</span>
+<span class="serif" style="font-size: 16px; line-height: 1.45; opacity: 0.85">Progressione su neve e roccia per escursionisti che vogliono salire più in alto.</span>
+<span class="card-link" style="margin-top: auto; color: #F07A6E">Scopri →</span>
+</a>
+</div>
+
+<div style="margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center">
+<span class="mono" style="font-size: 13px; letter-spacing: 0.06em; opacity: 0.8">Corsi avanzati per futuri capigita CAS e monitori G+S</span>
+<a class="btn" href="Noleggio.html" style="border: 1px solid rgba(239,237,230,0.55); color: #EFEDE6; margin-left: auto">Noleggio materiale</a>
+</div>
+</div>
+</section>
+
+<!-- ================= CAPANNE ================= -->
+<section id="capanne" style="max-width: 1360px; margin: 0 auto; padding: 120px 40px 40px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 48px">
+<div>
+<div class="mono" style="font-size: 13px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 14px">04 — LE CAPANNE</div>
+<h2 class="disp sec-h" style="margin: 0; font-size: 120px">Sei capanne,<br>un solo Ticino</h2>
+</div>
+<p class="serif" style="margin: 0; font-size: 19px; line-height: 1.5; max-width: 440px">Sempre aperte, custodite quando i guardiani sono presenti. Prima di partire, contatta il guardiano per verificare presenza e condizioni della montagna.</p>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 0; border-top: 2px solid #15201B; border-left: 1px solid rgba(21,32,27,0.2)">
+
+<article style="flex: 1 1 400px; padding: 32px; border-right: 1px solid rgba(21,32,27,0.2); border-bottom: 1px solid rgba(21,32,27,0.2); display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span class="mono" style="font-size: 12px; letter-spacing: 0.12em">01 · VAL PIUMOGNA</span><span class="mono" style="font-size: 12px; color: var(--accent)">CUSTODITA</span></div>
+<div><h3 class="disp" style="margin: 0; font-size: 52px">Campo Tencia</h3><div class="mono" style="font-size: 40px; font-weight: 500; letter-spacing: -0.02em; margin-top: 8px">2140<span style="font-size: 18px"> m</span></div></div>
+<p class="serif" style="margin: 0; font-size: 17px; line-height: 1.45">Su un terrazzo sopra la Val Piumogna, base per il Pizzo Campo Tencia: la cima più alta interamente ticinese.</p>
+<dl class="mono" style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; font-size: 13px">
+<div><dt style="opacity: 0.6; font-size: 11px">POSTI</dt><dd style="margin: 2px 0 0">80</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">CUSTODIA</dt><dd style="margin: 2px 0 0">Metà giu – metà ott</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">ACCESSO</dt><dd style="margin: 2px 0 0">Dalpe 2h30</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">TELEFONO</dt><dd style="margin: 2px 0 0">091 867 15 44</dd></div>
+</dl>
+<a class="card-link" href="CampoTencia.html" style="color: #15201B; margin-top: auto">Scheda e prenotazioni →</a>
+</article>
+
+<article style="flex: 1 1 400px; padding: 32px; border-right: 1px solid rgba(21,32,27,0.2); border-bottom: 1px solid rgba(21,32,27,0.2); display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span class="mono" style="font-size: 12px; letter-spacing: 0.12em">02 · VALLE BEDRETTO</span><span class="mono" style="font-size: 12px; color: var(--accent)">CUSTODITA</span></div>
+<div><h3 class="disp" style="margin: 0; font-size: 52px">Cristallina</h3><div class="mono" style="font-size: 40px; font-weight: 500; letter-spacing: -0.02em; margin-top: 8px">2575<span style="font-size: 18px"> m</span></div></div>
+<p class="serif" style="margin: 0; font-size: 17px; line-height: 1.45">Sull’omonimo passo, tra Leventina e Valle Maggia. Inaugurata nel 2003, primo rifugio moderno del CAS.</p>
+<dl class="mono" style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; font-size: 13px">
+<div><dt style="opacity: 0.6; font-size: 11px">POSTI</dt><dd style="margin: 2px 0 0">120</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">CUSTODIA</dt><dd style="margin: 2px 0 0">Fine giu – ott</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">ACCESSO</dt><dd style="margin: 2px 0 0">Ossasco 3h45</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">TELEFONO</dt><dd style="margin: 2px 0 0">091 869 23 30</dd></div>
+</dl>
+<a class="card-link" href="Cristallina.html" style="color: #15201B; margin-top: auto">Scheda e prenotazioni →</a>
+</article>
+
+<article style="flex: 1 1 400px; padding: 32px; border-right: 1px solid rgba(21,32,27,0.2); border-bottom: 1px solid rgba(21,32,27,0.2); display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span class="mono" style="font-size: 12px; letter-spacing: 0.12em">03 · VAL CARASSINO</span><span class="mono" style="font-size: 12px; color: var(--accent)">CUSTODITA</span></div>
+<div><h3 class="disp" style="margin: 0; font-size: 52px">Adula <span class="serif" style="font-family: 'Newsreader', serif; font-style: italic; font-weight: 400; text-transform: none; font-size: 28px; letter-spacing: 0">«la Bassa»</span></h3><div class="mono" style="font-size: 40px; font-weight: 500; letter-spacing: -0.02em; margin-top: 8px">2012<span style="font-size: 18px"> m</span></div></div>
+<p class="serif" style="margin: 0; font-size: 17px; line-height: 1.45">Il classico rifugio in pietra affacciato sulla Valle di Blenio: storia, accoglienza calorosa e cucina nostrana.</p>
+<dl class="mono" style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; font-size: 13px">
+<div><dt style="opacity: 0.6; font-size: 11px">POSTI</dt><dd style="margin: 2px 0 0">34</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">CUSTODIA</dt><dd style="margin: 2px 0 0">Fine giu – fine set</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">ACCESSO</dt><dd style="margin: 2px 0 0">Compietto 2h</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">TELEFONO</dt><dd style="margin: 2px 0 0">091 872 15 32</dd></div>
+</dl>
+<a class="card-link" href="Adula.html" style="color: #15201B; margin-top: auto">Scheda e prenotazioni →</a>
+</article>
+
+<article style="flex: 1 1 400px; padding: 32px; border-right: 1px solid rgba(21,32,27,0.2); border-bottom: 1px solid rgba(21,32,27,0.2); display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span class="mono" style="font-size: 12px; letter-spacing: 0.12em">04 · GREINA</span><span class="mono" style="font-size: 12px; color: var(--accent)">CUSTODITA</span></div>
+<div><h3 class="disp" style="margin: 0; font-size: 52px">Motterascio</h3><div class="mono" style="font-size: 40px; font-weight: 500; letter-spacing: -0.02em; margin-top: 8px">2172<span style="font-size: 18px"> m</span></div></div>
+<p class="serif" style="margin: 0; font-size: 17px; line-height: 1.45">Al margine della riserva della Greina: torbiere, alpeggi e l’arco naturale più grande del Ticino.</p>
+<dl class="mono" style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; font-size: 13px">
+<div><dt style="opacity: 0.6; font-size: 11px">POSTI</dt><dd style="margin: 2px 0 0">70</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">CUSTODIA</dt><dd style="margin: 2px 0 0">10 giu – 15 ott</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">ACCESSO</dt><dd style="margin: 2px 0 0">Luzzone 1h30</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">TELEFONO</dt><dd style="margin: 2px 0 0">091 872 16 22</dd></div>
+</dl>
+<a class="card-link" href="Motterascio.html" style="color: #15201B; margin-top: auto">Scheda e prenotazioni →</a>
+</article>
+
+<article style="flex: 1 1 400px; padding: 32px; border-right: 1px solid rgba(21,32,27,0.2); border-bottom: 1px solid rgba(21,32,27,0.2); display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span class="mono" style="font-size: 12px; letter-spacing: 0.12em">05 · ALTA CAPRIASCA</span><span class="mono" style="font-size: 12px; color: var(--accent)">TUTTO L’ANNO</span></div>
+<div><h3 class="disp" style="margin: 0; font-size: 52px">Monte Bar</h3><div class="mono" style="font-size: 40px; font-weight: 500; letter-spacing: -0.02em; margin-top: 8px">1620<span style="font-size: 18px"> m</span></div></div>
+<p class="serif" style="margin: 0; font-size: 17px; line-height: 1.45">Il balcone sul Luganese, ricostruito nel 2016: vista dal Monte Rosa ai Denti della Vecchia, standard Bike Hotel.</p>
+<dl class="mono" style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; font-size: 13px">
+<div><dt style="opacity: 0.6; font-size: 11px">POSTI</dt><dd style="margin: 2px 0 0">42 (camere 2-4-6)</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">CUSTODIA</dt><dd style="margin: 2px 0 0">Apr – ott; inverno gio–dom</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">ACCESSO</dt><dd style="margin: 2px 0 0">Corticiasca 1h30</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">TELEFONO</dt><dd style="margin: 2px 0 0">091 966 33 22</dd></div>
+</dl>
+<a class="card-link" href="MonteBar.html" style="color: #15201B; margin-top: auto">Scheda e prenotazioni →</a>
+</article>
+
+<article style="flex: 1 1 400px; padding: 32px; border-right: 1px solid rgba(21,32,27,0.2); border-bottom: 1px solid rgba(21,32,27,0.2); display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span class="mono" style="font-size: 12px; letter-spacing: 0.12em">06 · DENTI DELLA VECCHIA</span><span class="mono" style="font-size: 12px; color: var(--accent)">SU RISERVAZIONE</span></div>
+<div><h3 class="disp" style="margin: 0; font-size: 52px">Baita del Luca</h3><div class="mono" style="font-size: 40px; font-weight: 500; letter-spacing: -0.02em; margin-top: 8px">1070<span style="font-size: 18px"> m</span></div></div>
+<p class="serif" style="margin: 0; font-size: 17px; line-height: 1.45">Sopra Sonvico, ai piedi dei Denti della Vecchia. Punto di ritrovo dei giovani, ideale per famiglie e arrampicata.</p>
+<dl class="mono" style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; font-size: 13px">
+<div><dt style="opacity: 0.6; font-size: 11px">POSTI</dt><dd style="margin: 2px 0 0">16, autogestita</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">APERTURA</dt><dd style="margin: 2px 0 0">Previa riservazione</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">ACCESSO</dt><dd style="margin: 2px 0 0">Rosone 30 min</dd></div>
+<div><dt style="opacity: 0.6; font-size: 11px">E-MAIL</dt><dd style="margin: 2px 0 0">baitaluca@casticino.ch</dd></div>
+</dl>
+<a class="card-link" href="BaitaDelLuca.html" style="color: #15201B; margin-top: auto">Scheda e prenotazioni →</a>
+</article>
+</div>
+
+<div style="margin-top: 24px; padding: 28px 32px; background: #E3E0D6; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap">
+<p class="serif" style="margin: 0; font-size: 19px; line-height: 1.45; max-width: 760px"><strong style="font-weight: 500">Cerchiamo «api operaie».</strong> I volontari aiutano i guardiani ad aprire, chiudere e mantenere le capanne — e passano qualche bella serata in quota.</p>
+<a class="btn" href="mailto:info@casticino.ch" style="background: #15201B; color: #EFEDE6">Voglio aiutare</a>
+</div>
+</section>
+
+<!-- ================= CTA SOCIO ================= -->
+<section id="adesione" style="max-width: 1360px; margin: 0 auto; padding: 120px 40px 120px">
+<div style="background: var(--accent); color: #FFFFFF; padding: 64px 56px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap">
+<div>
+<div class="mono" style="font-size: 13px; letter-spacing: 0.14em; margin-bottom: 18px">ADESIONE</div>
+<h2 class="disp sec-h" style="margin: 0; font-size: 128px">Sali con noi.</h2>
+<p class="serif" style="margin: 20px 0 0; font-size: 21px; line-height: 1.45; max-width: 560px">Tariffe ridotte nelle capanne CAS di tutta la Svizzera, corsi, gite e una comunità che ama la montagna quanto te.</p>
+</div>
+<a class="btn" href="Adesione.html" style="background: #FFFFFF; color: #15201B; min-height: 56px; padding: 0 28px; font-size: 16px">Iscriviti al CAS Ticino
+<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" fill="none"></path></svg></a>
+</div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer style="background: #15201B; color: #EFEDE6">
+<div style="max-width: 1360px; margin: 0 auto; padding: 80px 40px 40px">
+<div style="display: flex; gap: 48px; flex-wrap: wrap; padding-bottom: 56px; border-bottom: 1px solid rgba(239,237,230,0.2)">
+<div style="flex: 1.4 1 300px">
+<div class="disp" style="font-size: 56px">CAS Ticino</div>
+<address class="serif" style="font-style: normal; margin-top: 18px; font-size: 17px; line-height: 1.6; opacity: 0.9">Club Alpino Svizzero · Sezione Ticino<br>Casella postale 112, 6998 Monteggio 2<br>Sede: Canvetto Luganese, Molino Nuovo<br><a href="mailto:info@casticino.ch" style="color: #EFEDE6">info@casticino.ch</a></address>
+</div>
+<nav aria-label="La Sezione" style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px">
+<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.6; margin-bottom: 12px">LA SEZIONE</div>
+<a class="serif" href="Introduzione.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Introduzione</a>
+<a class="serif" href="Comitato.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Comitato</a>
+<a class="serif" href="Organizzazione.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Organizzazione</a>
+<a class="serif" href="Sede.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Sede e recapiti</a>
+<a class="serif" href="Storia.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Storia</a>
+<a class="serif" href="Link.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Link utili</a>
+<a class="serif" href="Documenti.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Documenti</a>
+</nav>
+<nav aria-label="Attività" style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px">
+<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.6; margin-bottom: 12px">ATTIVITÀ</div>
+<a class="serif" href="News.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">News</a>
+<a class="serif" href="https://ssl.dropnet.ch/casticino/gite/index.php" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Programma gite</a>
+<a class="serif" href="Giovani.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Giovani</a>
+<a class="serif" href="Senior.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Senior</a>
+<a class="serif" href="Corsi.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Corsi</a>
+<a class="serif" href="Noleggio.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Noleggio materiale</a>
+<a class="serif" href="Foto.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Foto</a>
+<a class="serif" href="Adesione.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Adesione</a>
+</nav>
+<nav aria-label="Le Capanne" style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px">
+<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.6; margin-bottom: 12px">LE CAPANNE</div>
+<a class="serif" href="CampoTencia.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Campo Tencia</a>
+<a class="serif" href="Cristallina.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Cristallina</a>
+<a class="serif" href="Adula.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Adula</a>
+<a class="serif" href="Motterascio.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Motterascio</a>
+<a class="serif" href="MonteBar.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Monte Bar</a>
+<a class="serif" href="BaitaDelLuca.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Baita del Luca</a>
+</nav>
+</div>
+<div style="padding: 32px 0; display: flex; gap: 28px; flex-wrap: wrap; align-items: center; border-bottom: 1px solid rgba(239,237,230,0.2)">
+<span class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.6">CON IL SOSTEGNO DI</span>
+<span class="disp" style="font-size: 22px; opacity: 0.8">BancaStato</span>
+<span class="disp" style="font-size: 22px; opacity: 0.8">AIL</span>
+<span class="disp" style="font-size: 22px; opacity: 0.8">Bächli Bergsport</span>
+<span class="disp" style="font-size: 22px; opacity: 0.8">DOS Group</span>
+<span class="disp" style="font-size: 22px; opacity: 0.8">Studio grafica Grizzi</span>
+</div>
+<div class="mono" style="padding-top: 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 12px; opacity: 0.6">
+<span>© 2026 CAS Ticino</span><span>Club Alpino Svizzero · Sezione Ticino</span>
+</div>
+</div>
+</footer>
+
+</div>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

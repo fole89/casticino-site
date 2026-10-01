@@ -1,0 +1,50 @@
+name: Aggiorna foto da Droptour
+
+on:
+  schedule:
+    - cron: "17 4 * * *"   # ogni giorno alle 04:17 UTC (06:17 ora estiva svizzera)
+  workflow_dispatch:        # avvio manuale da GitHub › Actions › "Run workflow"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-foto
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Leggi le cartelle via FTP e genera data/foto.json
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_BASE: ${{ vars.FTP_BASE }}
+          FTP_TLS: ${{ vars.FTP_TLS }}
+          PUBLIC_BASE: ${{ vars.PUBLIC_BASE }}
+          MAX_ALBUMS: ${{ vars.MAX_ALBUMS }}
+        run: |
+          # le variabili non impostate arrivano vuote: le togliamo così valgono i default dello script
+          for v in FTP_BASE FTP_TLS PUBLIC_BASE MAX_ALBUMS; do [ -z "${!v}" ] && unset $v; done
+          python scripts/update_foto.py
+
+      - name: Pubblica se ci sono novità
+        run: |
+          if git diff --quiet -- data/foto.json; then
+            echo "Nessuna nuova foto."
+            exit 0
+          fi
+          git config user.name  "casticino-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/foto.json
+          git commit -m "Foto: aggiornamento automatico da Droptour"
+          git push
