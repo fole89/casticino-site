@@ -5,8 +5,10 @@ Sito della Sezione Ticino del Club Alpino Svizzero, pubblicato con GitHub Pages 
 Sito statico in HTML, CSS e JavaScript semplici, senza framework né passaggi di build. Ogni pagina è un file `.html` nella cartella principale.
 
 ```
-index.html, Comitato.html, …   pagine del sito
-assets/site.js                  menu mobile
+index.html, Comitato.html, …   pagine del sito (generate, non modificarle a mano)
+scripts/redesign/               genera le pagine: python scripts/redesign/pages.py
+assets/site.css                 stile di tutto il sito
+assets/site.js                  menu, comparsa allo scorrimento, menu mobile
 assets/foto.js                  pagina Foto: legge data/foto.json
 assets/logo-cas.webp            stemma
 assets/comitato/                foto profilo del comitato (WebP 240×280)
@@ -104,4 +106,4 @@ La pagina Foto va aperta tramite un server, anche quello locale qui sopra. Apert
 
 - I PDF in **Documenti**, **Corsi** e **Noleggio** puntano ancora a `casticino.ch/wp-content/…`. Quando il dominio passa a GitHub quei link smettono di funzionare: copia i PDF in una cartella `docs/` del repository e aggiorna i link.
 - Segnaposto da riempire: foto delle capanne e della sede, foto profilo dei dicasteri e di due membri del comitato (Geoffroy Jolly, Flavia Spinelli: oggi mostrano le iniziali), Statuto, Visione e strategia, Organigramma, Annuario, alcuni PDF dei corsi, l'ispettore della Capanna Motterascio.
-- La pagina **News** è statica: per aggiungere una notizia si modifica `News.html` (e il blocco «Dalla sezione» in `index.html`).
+- La pagina **News** è statica: per aggiungere una notizia si modificano `news()` e il blocco «Dalla sezione» di `home()` in `scripts/redesign/pages.py`, poi si rigenerano le pagine.

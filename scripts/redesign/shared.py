@@ -53,7 +53,7 @@ def nav(current_page, current_section=None):
             cls = "navlink dd-trigger is-current" if is_cur else "navlink dd-trigger"
             items.append(f'<div class="dd">\n<a class="{cls}" href="{href}" aria-haspopup="true">{label} {CARET}</a>\n<div class="dd-menu">\n{links}\n</div>\n</div>')
         else:
-            attr = ' aria-current="page"' if href == current_page else ""
+            attr = ' aria-current="page"' if href == current_page or label == current_section else ""
             items.append(f'<a class="navlink" href="{href}"{attr}>{label}</a>')
     links = "\n".join(items)
     return f"""<a class="skip-link" href="#contenuto">Vai al contenuto</a>
@@ -132,3 +132,52 @@ def pic(base, alt, sizes="100vw", mobile=None, w=None, h=None, lazy=True, cls=""
 def img(name, alt, w, h, lazy=True):
     load = ' loading="lazy" decoding="async"' if lazy else ""
     return f'<img src="assets/img/{name}.webp" alt="{alt}" width="{w}" height="{h}"{load}>'
+
+
+def crumbs(*trail):
+    """Percorso: coppie (etichetta, link); l'ultima voce è la pagina corrente (link None)."""
+    parts = ['<a href="index.html">Home</a>']
+    for label, href in trail:
+        parts.append('<span aria-hidden="true">/</span>')
+        parts.append(f'<a href="{href}">{label}</a>' if href else f'<span aria-current="page">{label}</span>')
+    return '<nav class="crumbs" aria-label="Percorso">' + "".join(parts) + "</nav>"
+
+
+def page_hero(trail, title, lead, extra="", figure=None):
+    """Intestazione delle pagine interne. figure: HTML di un'immagine verticale da mettere a lato."""
+    body = f"""{crumbs(*trail)}
+<h1 id="page-h" class="display fit">{title}</h1>
+<p class="lead">{lead}</p>
+{extra}"""
+    if figure:
+        return f"""<section class="page-hero page-hero--split" aria-labelledby="page-h">
+<div class="container">
+<div>
+{body}
+</div>
+<figure>{figure}</figure>
+</div>
+</section>"""
+    return f"""<section class="page-hero" aria-labelledby="page-h">
+<div class="container">
+{body}
+</div>
+</section>"""
+
+
+def subnav(group, current_page):
+    """Le altre pagine della stessa voce di menu (La Sezione, Attività)."""
+    for label, _, sub in MENU:
+        if label == group:
+            cur = ' aria-current="page"'
+            links = "\n".join(f'<a href="{h}"{cur if h == current_page else ""}>{l}</a>'
+                              for l, h in sub if h.endswith(".html"))
+            return f"""<section class="section" aria-label="{group}">
+<div class="container subnav">
+<h2 class="label">{group}</h2>
+<div class="subnav-links">
+{links}
+</div>
+</div>
+</section>"""
+    raise KeyError(group)

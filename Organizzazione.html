@@ -3,79 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Organizzazione — CAS Ticino</title>
-<meta name="description" content="Il comitato si appoggia a cinque dicasteri, ognuno responsabile di un ambito della vita della sezione.">
+<title>Organizzazione | CAS Ticino</title>
+<meta name="description" content="I cinque dicasteri della Sezione Ticino del CAS (infrastruttura, sport di montagna, giovani, senior, comunicazione) con i loro membri e recapiti.">
+<meta property="og:title" content="Organizzazione | CAS Ticino">
+<meta property="og:description" content="I cinque dicasteri della Sezione Ticino del CAS (infrastruttura, sport di montagna, giovani, senior, comunicazione) con i loro membri e recapiti.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_CH">
+<meta name="theme-color" content="#F2F3F0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1412" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/logo-cas.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
-<style>
-body{margin:0;background:#EFEDE6}
-*{box-sizing:border-box}
-a{color:#15201B}a:hover{color:#B3241A}
-.disp{font-family:'Archivo',sans-serif;font-stretch:68%;font-weight:850;text-transform:uppercase;letter-spacing:-0.01em;line-height:0.88}
-.mono{font-family:'IBM Plex Mono',monospace}
-.serif{font-family:'Newsreader',serif}
-.navlink{font-family:'Archivo',sans-serif;font-stretch:88%;font-weight:600;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:#EFEDE6;padding:12px 2px}
-.navlink:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:6px}
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;font-family:'Archivo',sans-serif;font-stretch:88%;font-weight:700;font-size:15px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none}
-.card-link{font-family:'Archivo',sans-serif;font-stretch:88%;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:44px}
-.dd{position:relative}
-.dd-trigger{display:inline-flex;align-items:center;gap:6px;background:none;border:0;cursor:pointer;min-height:44px}
-.dd-menu{position:absolute;top:100%;left:-18px;min-width:248px;background:#EFEDE6;padding:10px 0;display:none;flex-direction:column;z-index:30;box-shadow:0 18px 40px rgba(0,0,0,0.28);border-top:3px solid #C42A1E}
-.dd:hover .dd-menu,.dd:focus-within .dd-menu{display:flex}
-.dd:hover .dd-trigger,.dd:focus-within .dd-trigger{color:#F07A6E}
-.dd-menu a{padding:11px 24px;font-family:'Newsreader',serif;font-size:17px;color:#15201B;text-decoration:none}
-.dd-menu a:hover,.dd-menu a:focus{background:#E3E0D6;color:#B3241A}
-.show-sm{display:none !important}
-@media (max-width:960px){.hide-sm{display:none !important}.show-sm{display:flex !important}.hero-h{font-size:clamp(64px,17vw,140px) !important}.sec-h{font-size:clamp(48px,12vw,96px) !important}}
-
-:root{--accent:#C42A1E}
-html{scroll-behavior:smooth}
-section[id],div[id]{scroll-margin-top:112px}
-.mnav{position:fixed;inset:0;z-index:100;background:#15201B;color:#EFEDE6;overflow-y:auto;padding:20px 24px 48px}
-.mnav[hidden]{display:none}
-.mnav-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
-.mnav-close{width:48px;height:48px;background:transparent;border:1px solid rgba(239,237,230,0.4);color:#EFEDE6;font-size:22px;cursor:pointer}
-.mnav-group{border-top:1px solid rgba(239,237,230,0.2);padding:14px 0}
-.mnav-group>a,.mnav-head{display:block;font-family:'Archivo',sans-serif;font-stretch:68%;font-weight:850;text-transform:uppercase;font-size:34px;line-height:1.1;color:#EFEDE6;text-decoration:none;padding:6px 0}
-.mnav-sub{display:flex;flex-direction:column;padding:4px 0 6px}
-.mnav-sub a{font-family:'Newsreader',serif;font-size:19px;color:#EFEDE6;text-decoration:none;padding:9px 0;opacity:.88}
-.mnav-cta{display:flex;margin-top:24px}
-.f-photo{width:100%;height:100%;object-fit:contain;display:block;background:#2A332E}
-.th img{width:100%;height:100%;object-fit:cover;display:block}
-.topnav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px max(40px,calc((100% - 1280px) / 2));border-bottom:1px solid rgba(239,237,230,0.22);transition:padding .25s ease,background-color .25s ease,box-shadow .25s ease}
-.topnav.scrolled{background:#15201B;padding-top:8px;padding-bottom:8px;border-bottom-color:transparent;box-shadow:0 10px 28px rgba(0,0,0,0.28)}
-.topnav>a:first-child>span:first-child{transition:transform .25s ease;transform-origin:left center}
-.topnav.scrolled>a:first-child>span:first-child{transform:scale(0.82)}
-header{padding-top:113px}
-.sponsor{display:flex;align-items:center;justify-content:center;height:64px;padding:8px 16px;background:#FFFFFF;transition:transform .2s ease}
-.sponsor img{display:block}
-a.sponsor:hover{transform:translateY(-2px)}
-@media (max-width:600px){[style*="flex: 1 1"]{min-width:0}dd{overflow-wrap:anywhere}div:has(>.sponsor){gap:12px!important}div:has(>.sponsor)>.mono{flex-basis:100%}.sponsor{zoom:.8}.disp[style*="font-size: 44px"]{font-size:min(44px,10.5vw)!important}.disp[style*="font-size: 48px"]{font-size:min(48px,10.5vw)!important}.disp[style*="font-size: 52px"]{font-size:min(52px,10.5vw)!important}.disp[style*="font-size: 56px"]{font-size:min(56px,10.5vw)!important}.disp[style*="font-size: 60px"]{font-size:min(60px,10.5vw)!important}.disp[style*="font-size: 64px"]{font-size:min(64px,10.5vw)!important}.disp[style*="font-size: 72px"]{font-size:min(72px,10.5vw)!important}}
-@media (max-width:359px){.disp[style*="font-size: 88px"]{font-size:13vw!important}.disp[style*="font-size: 52px"],h3[style*="font-size: 52px"]{font-size:9.5vw!important}}
-@media (max-width:600px){.topnav{gap:16px}.topnav .btn{display:none}}
-</style>
+<link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<meta property="og:image" content="assets/img/hero-ticino-2000.webp">
 </head>
 <body>
-<div style="min-height: 100vh; background: #EFEDE6; color: #15201B; font-family: 'Newsreader', serif">
-<header style="background: #15201B; color: #EFEDE6; position: relative">
-<svg aria-hidden="true" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.14">
-<g fill="none" stroke="#EFEDE6" stroke-width="1"><path d="M-50 520 C 220 440, 420 500, 620 420 S 940 300, 1160 340 S 1400 280, 1500 300"></path><path d="M-50 476 C 220 396, 420 456, 620 376 S 940 256, 1160 296 S 1400 236, 1500 256"></path><path d="M-50 432 C 220 352, 420 412, 620 332 S 940 212, 1160 252 S 1400 192, 1500 212"></path><path d="M-50 388 C 220 308, 420 368, 620 288 S 940 168, 1160 208 S 1400 148, 1500 168"></path><path d="M-50 344 C 220 264, 420 324, 620 244 S 940 124, 1160 164 S 1400 104, 1500 124"></path><path d="M-50 300 C 220 220, 420 280, 620 200 S 940 80, 1160 120 S 1400 60, 1500 80"></path><path d="M-50 256 C 220 176, 420 236, 620 156 S 940 36, 1160 76 S 1400 16, 1500 36"></path><path d="M-50 212 C 220 132, 420 192, 620 112 S 940 -8, 1160 32 S 1400 -28, 1500 -8"></path><path d="M-50 168 C 220 88, 420 148, 620 68 S 940 -52, 1160 -12 S 1400 -72, 1500 -52"></path><path d="M-50 124 C 220 44, 420 104, 620 24 S 940 -96, 1160 -56 S 1400 -116, 1500 -96"></path><path d="M-50 80 C 220 0, 420 60, 620 -20 S 940 -140, 1160 -100 S 1400 -160, 1500 -140"></path></g>
-</svg>
-<div style="position: relative; max-width: 1360px; margin: 0 auto; padding: 0 40px">
-<nav aria-label="Principale" class="topnav">
-<a href="index.html" style="display: flex; align-items: center; gap: 14px; text-decoration: none; color: #EFEDE6">
-<span style="width: 60px; height: 68px; background: #EFEDE6; display: flex; align-items: center; justify-content: center; padding: 5px">
-<img src="assets/logo-cas.webp" alt="Stemma del Club Alpino Svizzero" style="height: 58px; width: auto; display: block">
-</span>
-<span style="display: flex; flex-direction: column">
-<span class="disp" style="font-size: 26px; line-height: 0.9">CAS Ticino</span>
-<span class="mono" style="font-size: 10.5px; letter-spacing: 0.12em; opacity: 0.75">CLUB ALPINO SVIZZERO · DAL 1886</span>
-</span>
+<a class="skip-link" href="#contenuto">Vai al contenuto</a>
+<header class="site-nav">
+<nav aria-label="Principale" class="container nav-inner">
+<a class="brand" href="index.html">
+<span class="brand-mark"><img src="assets/logo-cas.webp" alt="Stemma del Club Alpino Svizzero" width="34" height="40"></span>
+<span class="brand-name"><strong>CAS Ticino</strong><span>Club Alpino Svizzero</span></span>
 </a>
-<div class="hide-sm" style="display: flex; gap: 26px; align-items: center">
+<div class="nav-links hide-sm">
 <div class="dd">
-<a class="navlink dd-trigger" href="index.html#sezione" aria-haspopup="true" style="color: #F07A6E">La Sezione <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" fill="none"></path></svg></a>
+<a class="navlink dd-trigger is-current" href="index.html#sezione" aria-haspopup="true">La Sezione <span class="caret" aria-hidden="true"></span></a>
 <div class="dd-menu">
 <a href="Introduzione.html">Introduzione</a>
 <a href="Comitato.html">Comitato</a>
@@ -88,7 +40,7 @@ a.sponsor:hover{transform:translateY(-2px)}
 </div>
 <a class="navlink" href="index.html#news">News</a>
 <div class="dd">
-<a class="navlink dd-trigger" href="index.html#attivita" aria-haspopup="true">Attività <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" fill="none"></path></svg></a>
+<a class="navlink dd-trigger" href="index.html#attivita" aria-haspopup="true">Attività <span class="caret" aria-hidden="true"></span></a>
 <div class="dd-menu">
 <a href="https://ssl.dropnet.ch/casticino/gite/index.php">Programma gite</a>
 <a href="Giovani.html">Giovani</a>
@@ -98,7 +50,7 @@ a.sponsor:hover{transform:translateY(-2px)}
 </div>
 </div>
 <div class="dd">
-<a class="navlink dd-trigger" href="index.html#capanne" aria-haspopup="true">Le Capanne <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" stroke="currentColor" stroke-width="1.6" fill="none"></path></svg></a>
+<a class="navlink dd-trigger" href="index.html#capanne" aria-haspopup="true">Le Capanne <span class="caret" aria-hidden="true"></span></a>
 <div class="dd-menu">
 <a href="CampoTencia.html">Campo Tencia</a>
 <a href="Cristallina.html">Cristallina</a>
@@ -111,380 +63,181 @@ a.sponsor:hover{transform:translateY(-2px)}
 <a class="navlink" href="Foto.html">Foto</a>
 <a class="navlink" href="Adesione.html">Adesione</a>
 </div>
-<div style="display: flex; gap: 12px; align-items: center">
-<a class="btn" href="https://ssl.dropnet.ch/casticino/gite/index.php" style="background: var(--accent); color: #FFFFFF">Programma gite</a>
-<button class="show-sm" aria-label="Apri menu" style="width: 48px; height: 48px; background: transparent; border: 1px solid rgba(239,237,230,0.4); color: #EFEDE6; display: flex; align-items: center; justify-content: center; cursor: pointer">
-<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="1.8" fill="none"></path></svg>
-</button>
+<div class="nav-end">
+<a class="btn btn--primary" href="https://ssl.dropnet.ch/casticino/gite/index.php">Programma gite</a>
+<button class="menu-toggle" type="button" aria-label="Apri menu"><span class="burger" aria-hidden="true"></span></button>
 </div>
 </nav>
-<div style="padding: 72px 0 80px; display: flex; flex-direction: column; gap: 28px">
-<div class="mono" style="font-size: 13px; letter-spacing: 0.14em; opacity: 0.85"><a href="index.html" style="color: #EFEDE6">HOME</a> / LA SEZIONE / ORGANIZZAZIONE</div>
-<h1 class="disp hero-h" style="margin: 0; font-size: 136px; max-width: 1200px">Organizzazione</h1>
-<p class="serif" style="margin: 0; font-size: 23px; line-height: 1.45; max-width: 760px; opacity: 0.92">Il <a href="Comitato.html" style="color: #EFEDE6">comitato</a> si appoggia a cinque dicasteri, ognuno responsabile di un ambito della vita della sezione.</p>
-
-</div>
-</div>
 </header>
+<main id="contenuto">
 
-<main>
-<section style="max-width: 1360px; margin: 0 auto; padding: 96px 40px 120px">
-<article style="display: flex; gap: 48px; padding: 56px 0; border-top: 2px solid #15201B; flex-wrap: wrap">
-<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 16px">
-<div class="mono" style="font-size: 40px; font-weight: 500; color: var(--accent)">01</div>
-<h2 class="disp" style="margin: 0; font-size: 56px">Dicastero infrastruttura</h2>
-<p class="serif" style="margin: 0; font-size: 18px; line-height: 1.55; max-width: 460px">Si occupa delle infrastrutture della sezione: capanne e sentieri. Affianca il comitato su tutte le questioni e i progetti legati ai rifugi. Tramite gli ispettori segue l’operato dei guardiani, coordina la manutenzione ordinaria e straordinaria, cura gli aspetti amministrativi e contrattuali con i guardiani e sviluppa la promozione delle capanne.</p>
+<section class="page-hero" aria-labelledby="page-h">
+<div class="container">
+<nav class="crumbs" aria-label="Percorso"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="index.html#sezione">La Sezione</a><span aria-hidden="true">/</span><span aria-current="page">Organizzazione</span></nav>
+<h1 id="page-h" class="display fit">Organizzazione</h1>
+<p class="lead">Il <a href="Comitato.html">comitato</a> si appoggia a cinque dicasteri, ognuno responsabile di un ambito della vita della sezione.</p>
+
 </div>
-<div style="flex: 1.5 1 560px">
-<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.7; padding-bottom: 10px; border-bottom: 2px solid #15201B">COMPOSIZIONE · 12 MEMBRI</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">RK</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Richard Knupfer</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Responsabile capanne</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:richard@knupferarredamenti.ch" style="color: #15201B">richard@knupferarredamenti.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">UC</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Ulisse Conrengia</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Responsabile sentieri</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">SO</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Stefano Olgiati</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Responsabile sentieri</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">EB</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Edgardo Bulloni</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Responsabile tecnico capanne</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:e_bulloni@bluewin.ch" style="color: #15201B">e_bulloni@bluewin.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)"></span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">[DA INSERIRE]</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Ispettore Capanna Michela Motterascio</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">EG</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Edy Galli</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Ispettore Capanna Campo Tencia</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:tgmgalli@yahoo.it" style="color: #15201B">tgmgalli@yahoo.it</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">FS</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Fabio Savoldelli</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Ispettore Capanna Adula</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:fabio.savoldelli@bmsuisse.ch" style="color: #15201B">fabio.savoldelli@bmsuisse.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">MP</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Marzio Pagani</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Ispettore Capanna Cristallina e Baita del Luca</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:ma.pa@bluewin.ch" style="color: #15201B">ma.pa@bluewin.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">FM</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Francesco Mattinelli</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Ispettore Capanna Cristallina</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:f.mattinelli70@gmail.com" style="color: #15201B">f.mattinelli70@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">EF</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Erico Fogliada</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Ispettore Capanna Monte Bar</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:ericofo@bluewin.ch" style="color: #15201B">ericofo@bluewin.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">MS</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Mauro Scalmanini</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Ispettore Capanna Monte Bar</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:mascate@bluewin.ch" style="color: #15201B">mascate@bluewin.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">RG</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Roberto Grassi</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Ispettore Capanna Monte Bar</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:roby.grassi@live.com" style="color: #15201B">roby.grassi@live.com</a></div>
-</div>
-</div>
-</article>
-<article style="display: flex; gap: 48px; padding: 56px 0; border-top: 1px solid rgba(21,32,27,0.25); flex-wrap: wrap">
-<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 16px">
-<div class="mono" style="font-size: 40px; font-weight: 500; color: var(--accent)">02</div>
-<h2 class="disp" style="margin: 0; font-size: 56px">Dicastero sport di montagna</h2>
-<p class="serif" style="margin: 0; font-size: 18px; line-height: 1.55; max-width: 460px">Oltre a comporre il programma annuale delle gite, aggiorna e prepara materiale formativo, consiglia e sostiene i capigita promuovendone la formazione continua e gestisce il materiale tecnico della sezione.</p>
-</div>
-<div style="flex: 1.5 1 560px">
-<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.7; padding-bottom: 10px; border-bottom: 2px solid #15201B">COMPOSIZIONE · 8 MEMBRI</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">GJ</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Geoffroy Jolly</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Coordinatore e responsabile attività</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:Geo155@gmail.com" style="color: #15201B">Geo155@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">EZ</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Enrico Zamboni</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Responsabile formazione</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:zamboni.e.89@gmail.com" style="color: #15201B">zamboni.e.89@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">DS</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">David Stracquadanio</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Responsabile amministrativo palestra Cornaredo</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:d.stracqua@bluewin.ch" style="color: #15201B">d.stracqua@bluewin.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">MF</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Michele Foletti</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Responsabile magazzino</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:fole89@gmail.com" style="color: #15201B">fole89@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">VD</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Valeria Demarta</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Amministratrice sito web</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:valeria.demarta@gmail.com" style="color: #15201B">valeria.demarta@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">SD</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Sara Della Frera</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Membro</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:sara.dellafrera@gmail.com" style="color: #15201B">sara.dellafrera@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">TA</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Thomas Arn</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Membro</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:thomas.arn@ticino.com" style="color: #15201B">thomas.arn@ticino.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">AD</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Alessandro Docimo</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Membro</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:alessandro.docimo@outlook.com" style="color: #15201B">alessandro.docimo@outlook.com</a></div>
-</div>
-</div>
-</article>
-<article style="display: flex; gap: 48px; padding: 56px 0; border-top: 1px solid rgba(21,32,27,0.25); flex-wrap: wrap">
-<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 16px">
-<div class="mono" style="font-size: 40px; font-weight: 500; color: var(--accent)">03</div>
-<h2 class="disp" style="margin: 0; font-size: 56px">Dicastero giovani</h2>
-<p class="serif" style="margin: 0; font-size: 18px; line-height: 1.55; max-width: 460px">Organizza campi settimanali e attività di arrampicata per ragazze e ragazzi dai 10 ai 22 anni e promuove la formazione di monitori Gioventù+Sport.</p>
-</div>
-<div style="flex: 1.5 1 560px">
-<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.7; padding-bottom: 10px; border-bottom: 2px solid #15201B">COMPOSIZIONE · 7 MEMBRI</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">DR</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Diego Romelli</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Coordinatore e comunicazione</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:diego.romelli15@gmail.com" style="color: #15201B">diego.romelli15@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">CP</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Claudio Petrini</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Coach</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:claudio@petrininet.ch" style="color: #15201B">claudio@petrininet.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">NM</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Nicola Martinoni</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Cassiere</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:nicola.martinoni@bluewin.ch" style="color: #15201B">nicola.martinoni@bluewin.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">GC</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Giosiana Codoni</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Segretariato, giovanissimi e Spider</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:giosiana.codoni@bluewin.ch" style="color: #15201B">giosiana.codoni@bluewin.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">DA</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Deborah Acierno</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Attività del mercoledì sera e arrampicata</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:debo.ooacierno@gmail.com" style="color: #15201B">debo.ooacierno@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">KK</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Kilian Knupfer</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Attività estive</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:kilian.knupfer@gmail.com" style="color: #15201B">kilian.knupfer@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">JS</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Jacopo Soldini</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Attività invernali</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:soldini.jacopo@gmail.com" style="color: #15201B">soldini.jacopo@gmail.com</a></div>
-</div>
-</div>
-</article>
-<article style="display: flex; gap: 48px; padding: 56px 0; border-top: 1px solid rgba(21,32,27,0.25); flex-wrap: wrap">
-<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 16px">
-<div class="mono" style="font-size: 40px; font-weight: 500; color: var(--accent)">04</div>
-<h2 class="disp" style="margin: 0; font-size: 56px">Dicastero senior</h2>
-<p class="serif" style="margin: 0; font-size: 18px; line-height: 1.55; max-width: 460px">Coordina il programma annuale del gruppo Senior: gite di un giorno, fine settimana e vacanze di più giorni. È sempre alla ricerca di nuovi capigita.</p>
-</div>
-<div style="flex: 1.5 1 560px">
-<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.7; padding-bottom: 10px; border-bottom: 2px solid #15201B">COMPOSIZIONE · 6 MEMBRI</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">LS</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Luca Salzborn</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Presidente</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:lsalzborn@gmail.com" style="color: #15201B">lsalzborn@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">CE</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Cati Eisenhut</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Segretaria</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:segretariato.seniori@casticino.ch" style="color: #15201B">segretariato.seniori@casticino.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">CR</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Christoph Rudolf von Rohr</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Cassiere</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:vonrohr55@gmail.com" style="color: #15201B">vonrohr55@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">FC</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Fausto Cattalini</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Coordinatore gite</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:laca2@bluewin.ch" style="color: #15201B">laca2@bluewin.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">FG</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Fabrizio Gastori</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Informatica</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:biciog@bluewin.ch" style="color: #15201B">biciog@bluewin.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">WB</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Walter Baumgartner</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Membro</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:Walterbaumgartner51@gmail.com" style="color: #15201B">Walterbaumgartner51@gmail.com</a></div>
-</div>
-</div>
-</article>
-<article style="display: flex; gap: 48px; padding: 56px 0; border-top: 1px solid rgba(21,32,27,0.25); flex-wrap: wrap">
-<div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 16px">
-<div class="mono" style="font-size: 40px; font-weight: 500; color: var(--accent)">05</div>
-<h2 class="disp" style="margin: 0; font-size: 56px">Dicastero comunicazione</h2>
-<p class="serif" style="margin: 0; font-size: 18px; line-height: 1.55; max-width: 460px">Cura il periodico semestrale, l’annuario, il sito e i canali social. Organizza, anche con altri partner, eventi e iniziative che promuovono la cultura della montagna.</p>
-</div>
-<div style="flex: 1.5 1 560px">
-<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.7; padding-bottom: 10px; border-bottom: 2px solid #15201B">COMPOSIZIONE · 7 MEMBRI</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">DL</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Dario Lanfranconi</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Responsabile comunicazione</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:dario.lanfranconi@gmail.com" style="color: #15201B">dario.lanfranconi@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">AR</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Alessandro Romelli</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Redazione annuario</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:alessandro.romelli@outlook.com" style="color: #15201B">alessandro.romelli@outlook.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">KP</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Katia Papa</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Eventi</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:katiapa@bluewin.ch" style="color: #15201B">katiapa@bluewin.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">RG</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Roberto Grizzi</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Grafica</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:bodesign@bluewin.ch" style="color: #15201B">bodesign@bluewin.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">ZS</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Zita Sartori</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Responsabile ambiente</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:zita.sartori@gmail.com" style="color: #15201B">zita.sartori@gmail.com</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">MJ</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Maria Jannuzzi</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Membro</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:maria.jannuzzi@rsi.ch" style="color: #15201B">maria.jannuzzi@rsi.ch</a></div>
-</div>
-<div style="display: flex; gap: 20px; padding: 12px 0; border-bottom: 1px solid rgba(21,32,27,0.2); flex-wrap: wrap; align-items: center">
-<div aria-hidden="true" style="flex: 0 0 52px; width: 52px; height: 60px; background: #E3E0D6; display: flex; align-items: flex-end; padding: 5px 6px"><span class="disp" style="font-size: 20px; color: rgba(21,32,27,0.35)">TA</span></div>
-<div class="disp" style="flex: 0 0 200px; font-size: 24px; line-height: 1">Tiziano Allevi</div>
-<div class="serif" style="flex: 1 1 220px; font-size: 17px">Membro</div>
-<div class="mono" style="flex: 0 1 260px; font-size: 13px; word-break: break-all"><a href="mailto:tiziano.allevi@bluewin.ch" style="color: #15201B">tiziano.allevi@bluewin.ch</a></div>
-</div>
-</div>
-</article>
-</section><section style="max-width: 1360px; margin: 0 auto; padding: 0 40px 96px">
-<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.7; margin-bottom: 14px">LA SEZIONE</div>
-<div style="display: flex; gap: 10px; flex-wrap: wrap"><a class="card-link" href="Introduzione.html" style="color: #15201B; padding: 0 18px; border: 1px solid rgba(21,32,27,0.3)">Introduzione</a>
-<a class="card-link" href="Comitato.html" style="color: #15201B; padding: 0 18px; border: 1px solid rgba(21,32,27,0.3)">Comitato</a>
-<a class="card-link" href="Organizzazione.html" style="color: #15201B; padding: 0 18px; border: 1px solid rgba(21,32,27,0.3); background: #E3E0D6">Organizzazione</a>
-<a class="card-link" href="Sede.html" style="color: #15201B; padding: 0 18px; border: 1px solid rgba(21,32,27,0.3)">Sede e recapiti</a>
-<a class="card-link" href="Storia.html" style="color: #15201B; padding: 0 18px; border: 1px solid rgba(21,32,27,0.3)">Storia</a>
-<a class="card-link" href="Link.html" style="color: #15201B; padding: 0 18px; border: 1px solid rgba(21,32,27,0.3)">Link utili</a>
-<a class="card-link" href="Documenti.html" style="color: #15201B; padding: 0 18px; border: 1px solid rgba(21,32,27,0.3)">Documenti</a></div>
 </section>
-</main>
 
-<!-- ================= FOOTER ================= -->
-<footer style="background: #15201B; color: #EFEDE6">
-<div style="max-width: 1360px; margin: 0 auto; padding: 80px 40px 40px">
-<div style="display: flex; gap: 48px; flex-wrap: wrap; padding-bottom: 56px; border-bottom: 1px solid rgba(239,237,230,0.2)">
-<div style="flex: 1.4 1 300px">
-<div class="disp" style="font-size: 56px">CAS Ticino</div>
-<address class="serif" style="font-style: normal; margin-top: 18px; font-size: 17px; line-height: 1.6; opacity: 0.9">Club Alpino Svizzero · Sezione Ticino<br>Casella postale 112, 6998 Monteggio 2<br>Sede: Canvetto Luganese, Molino Nuovo<br><a href="mailto:info@casticino.ch" style="color: #EFEDE6">info@casticino.ch</a></address>
+<section class="section" aria-label="Dicasteri">
+<div class="container">
+<article class="dept" aria-labelledby="d1-h" data-reveal>
+<div class="dept-intro">
+<span class="dept-count">12 membri</span>
+<h2 id="d1-h" class="h2">Dicastero infrastruttura</h2>
+<p>Si occupa delle infrastrutture della sezione: capanne e sentieri. Affianca il comitato su tutte le questioni e i progetti legati ai rifugi. Tramite gli ispettori segue l’operato dei guardiani, coordina la manutenzione ordinaria e straordinaria, cura gli aspetti amministrativi e contrattuali con i guardiani e sviluppa la promozione delle capanne.</p>
 </div>
-<nav aria-label="La Sezione" style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px">
-<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.6; margin-bottom: 12px">LA SEZIONE</div>
-<a class="serif" href="Introduzione.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Introduzione</a>
-<a class="serif" href="Comitato.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Comitato</a>
-<a class="serif" href="Organizzazione.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Organizzazione</a>
-<a class="serif" href="Sede.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Sede e recapiti</a>
-<a class="serif" href="Storia.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Storia</a>
-<a class="serif" href="Link.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Link utili</a>
-<a class="serif" href="Documenti.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Documenti</a>
+<div class="members">
+<div class="member"><strong>Richard Knupfer</strong><span>Responsabile capanne</span><a href="mailto:richard@knupferarredamenti.ch">richard@knupferarredamenti.ch</a></div>
+<div class="member"><strong>Ulisse Conrengia</strong><span>Responsabile sentieri</span></div>
+<div class="member"><strong>Stefano Olgiati</strong><span>Responsabile sentieri</span></div>
+<div class="member"><strong>Edgardo Bulloni</strong><span>Responsabile tecnico capanne</span><a href="mailto:e_bulloni@bluewin.ch">e_bulloni@bluewin.ch</a></div>
+<div class="member member--tbd"><strong>Da definire</strong><span>Ispettore Capanna Michela Motterascio</span></div>
+<div class="member"><strong>Edy Galli</strong><span>Ispettore Capanna Campo Tencia</span><a href="mailto:tgmgalli@yahoo.it">tgmgalli@yahoo.it</a></div>
+<div class="member"><strong>Fabio Savoldelli</strong><span>Ispettore Capanna Adula</span><a href="mailto:fabio.savoldelli@bmsuisse.ch">fabio.savoldelli@bmsuisse.ch</a></div>
+<div class="member"><strong>Marzio Pagani</strong><span>Ispettore Capanna Cristallina e Baita del Luca</span><a href="mailto:ma.pa@bluewin.ch">ma.pa@bluewin.ch</a></div>
+<div class="member"><strong>Francesco Mattinelli</strong><span>Ispettore Capanna Cristallina</span><a href="mailto:f.mattinelli70@gmail.com">f.mattinelli70@gmail.com</a></div>
+<div class="member"><strong>Erico Fogliada</strong><span>Ispettore Capanna Monte Bar</span><a href="mailto:ericofo@bluewin.ch">ericofo@bluewin.ch</a></div>
+<div class="member"><strong>Mauro Scalmanini</strong><span>Ispettore Capanna Monte Bar</span><a href="mailto:mascate@bluewin.ch">mascate@bluewin.ch</a></div>
+<div class="member"><strong>Roberto Grassi</strong><span>Ispettore Capanna Monte Bar</span><a href="mailto:roby.grassi@live.com">roby.grassi@live.com</a></div>
+</div>
+</article>
+<article class="dept" aria-labelledby="d2-h" data-reveal>
+<div class="dept-intro">
+<span class="dept-count">8 membri</span>
+<h2 id="d2-h" class="h2">Dicastero sport di montagna</h2>
+<p>Oltre a comporre il programma annuale delle gite, aggiorna e prepara materiale formativo, consiglia e sostiene i capigita promuovendone la formazione continua e gestisce il materiale tecnico della sezione.</p>
+</div>
+<div class="members">
+<div class="member"><strong>Geoffroy Jolly</strong><span>Coordinatore e responsabile attività</span><a href="mailto:Geo155@gmail.com">Geo155@gmail.com</a></div>
+<div class="member"><strong>Enrico Zamboni</strong><span>Responsabile formazione</span><a href="mailto:zamboni.e.89@gmail.com">zamboni.e.89@gmail.com</a></div>
+<div class="member"><strong>David Stracquadanio</strong><span>Responsabile amministrativo palestra Cornaredo</span><a href="mailto:d.stracqua@bluewin.ch">d.stracqua@bluewin.ch</a></div>
+<div class="member"><strong>Michele Foletti</strong><span>Responsabile magazzino</span><a href="mailto:fole89@gmail.com">fole89@gmail.com</a></div>
+<div class="member"><strong>Valeria Demarta</strong><span>Amministratrice sito web</span><a href="mailto:valeria.demarta@gmail.com">valeria.demarta@gmail.com</a></div>
+<div class="member"><strong>Sara Della Frera</strong><span>Membro</span><a href="mailto:sara.dellafrera@gmail.com">sara.dellafrera@gmail.com</a></div>
+<div class="member"><strong>Thomas Arn</strong><span>Membro</span><a href="mailto:thomas.arn@ticino.com">thomas.arn@ticino.com</a></div>
+<div class="member"><strong>Alessandro Docimo</strong><span>Membro</span><a href="mailto:alessandro.docimo@outlook.com">alessandro.docimo@outlook.com</a></div>
+</div>
+</article>
+<article class="dept" aria-labelledby="d3-h" data-reveal>
+<div class="dept-intro">
+<span class="dept-count">7 membri</span>
+<h2 id="d3-h" class="h2">Dicastero giovani</h2>
+<p>Organizza campi settimanali e attività di arrampicata per ragazze e ragazzi dai 10 ai 22 anni e promuove la formazione di monitori Gioventù+Sport.</p>
+</div>
+<div class="members">
+<div class="member"><strong>Diego Romelli</strong><span>Coordinatore e comunicazione</span><a href="mailto:diego.romelli15@gmail.com">diego.romelli15@gmail.com</a></div>
+<div class="member"><strong>Claudio Petrini</strong><span>Coach</span><a href="mailto:claudio@petrininet.ch">claudio@petrininet.ch</a></div>
+<div class="member"><strong>Nicola Martinoni</strong><span>Cassiere</span><a href="mailto:nicola.martinoni@bluewin.ch">nicola.martinoni@bluewin.ch</a></div>
+<div class="member"><strong>Giosiana Codoni</strong><span>Segretariato, giovanissimi e Spider</span><a href="mailto:giosiana.codoni@bluewin.ch">giosiana.codoni@bluewin.ch</a></div>
+<div class="member"><strong>Deborah Acierno</strong><span>Attività del mercoledì sera e arrampicata</span><a href="mailto:debo.ooacierno@gmail.com">debo.ooacierno@gmail.com</a></div>
+<div class="member"><strong>Kilian Knupfer</strong><span>Attività estive</span><a href="mailto:kilian.knupfer@gmail.com">kilian.knupfer@gmail.com</a></div>
+<div class="member"><strong>Jacopo Soldini</strong><span>Attività invernali</span><a href="mailto:soldini.jacopo@gmail.com">soldini.jacopo@gmail.com</a></div>
+</div>
+</article>
+<article class="dept" aria-labelledby="d4-h" data-reveal>
+<div class="dept-intro">
+<span class="dept-count">6 membri</span>
+<h2 id="d4-h" class="h2">Dicastero senior</h2>
+<p>Coordina il programma annuale del gruppo Senior: gite di un giorno, fine settimana e vacanze di più giorni. È sempre alla ricerca di nuovi capigita.</p>
+</div>
+<div class="members">
+<div class="member"><strong>Luca Salzborn</strong><span>Presidente</span><a href="mailto:lsalzborn@gmail.com">lsalzborn@gmail.com</a></div>
+<div class="member"><strong>Cati Eisenhut</strong><span>Segretaria</span><a href="mailto:segretariato.seniori@casticino.ch">segretariato.seniori@casticino.ch</a></div>
+<div class="member"><strong>Christoph Rudolf von Rohr</strong><span>Cassiere</span><a href="mailto:vonrohr55@gmail.com">vonrohr55@gmail.com</a></div>
+<div class="member"><strong>Fausto Cattalini</strong><span>Coordinatore gite</span><a href="mailto:laca2@bluewin.ch">laca2@bluewin.ch</a></div>
+<div class="member"><strong>Fabrizio Gastori</strong><span>Informatica</span><a href="mailto:biciog@bluewin.ch">biciog@bluewin.ch</a></div>
+<div class="member"><strong>Walter Baumgartner</strong><span>Membro</span><a href="mailto:Walterbaumgartner51@gmail.com">Walterbaumgartner51@gmail.com</a></div>
+</div>
+</article>
+<article class="dept" aria-labelledby="d5-h" data-reveal>
+<div class="dept-intro">
+<span class="dept-count">7 membri</span>
+<h2 id="d5-h" class="h2">Dicastero comunicazione</h2>
+<p>Cura il periodico semestrale, l’annuario, il sito e i canali social. Organizza, anche con altri partner, eventi e iniziative che promuovono la cultura della montagna.</p>
+</div>
+<div class="members">
+<div class="member"><strong>Dario Lanfranconi</strong><span>Responsabile comunicazione</span><a href="mailto:dario.lanfranconi@gmail.com">dario.lanfranconi@gmail.com</a></div>
+<div class="member"><strong>Alessandro Romelli</strong><span>Redazione annuario</span><a href="mailto:alessandro.romelli@outlook.com">alessandro.romelli@outlook.com</a></div>
+<div class="member"><strong>Katia Papa</strong><span>Eventi</span><a href="mailto:katiapa@bluewin.ch">katiapa@bluewin.ch</a></div>
+<div class="member"><strong>Roberto Grizzi</strong><span>Grafica</span><a href="mailto:bodesign@bluewin.ch">bodesign@bluewin.ch</a></div>
+<div class="member"><strong>Zita Sartori</strong><span>Responsabile ambiente</span><a href="mailto:zita.sartori@gmail.com">zita.sartori@gmail.com</a></div>
+<div class="member"><strong>Maria Jannuzzi</strong><span>Membro</span><a href="mailto:maria.jannuzzi@rsi.ch">maria.jannuzzi@rsi.ch</a></div>
+<div class="member"><strong>Tiziano Allevi</strong><span>Membro</span><a href="mailto:tiziano.allevi@bluewin.ch">tiziano.allevi@bluewin.ch</a></div>
+</div>
+</article>
+</div>
+</section>
+
+<section class="section" aria-label="La Sezione">
+<div class="container subnav">
+<h2 class="label">La Sezione</h2>
+<div class="subnav-links">
+<a href="Introduzione.html">Introduzione</a>
+<a href="Comitato.html">Comitato</a>
+<a href="Organizzazione.html" aria-current="page">Organizzazione</a>
+<a href="Sede.html">Sede e recapiti</a>
+<a href="Storia.html">Storia</a>
+<a href="Link.html">Link utili</a>
+<a href="Documenti.html">Documenti</a>
+</div>
+</div>
+</section>
+
+</main>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<a class="brand" href="index.html">
+<span class="brand-mark"><img src="assets/logo-cas.webp" alt="" width="34" height="40" loading="lazy"></span>
+<span class="brand-name"><strong>CAS Ticino</strong><span>Club Alpino Svizzero</span></span>
+</a>
+<address>Club Alpino Svizzero, Sezione Ticino<br>Casella postale 112, 6998 Monteggio 2<br>Sede: Canvetto Luganese, Molino Nuovo<br><a href="mailto:info@casticino.ch">info@casticino.ch</a></address>
+</div>
+<nav class="footer-col" aria-label="La Sezione">
+<h2>La Sezione</h2>
+<a href="Introduzione.html">Introduzione</a>
+<a href="Comitato.html">Comitato</a>
+<a href="Organizzazione.html">Organizzazione</a>
+<a href="Sede.html">Sede e recapiti</a>
+<a href="Storia.html">Storia</a>
+<a href="Link.html">Link utili</a>
+<a href="Documenti.html">Documenti</a>
 </nav>
-<nav aria-label="Attività" style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px">
-<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.6; margin-bottom: 12px">ATTIVITÀ</div>
-<a class="serif" href="News.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">News</a>
-<a class="serif" href="https://ssl.dropnet.ch/casticino/gite/index.php" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Programma gite</a>
-<a class="serif" href="Giovani.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Giovani</a>
-<a class="serif" href="Senior.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Senior</a>
-<a class="serif" href="Corsi.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Corsi</a>
-<a class="serif" href="Noleggio.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Noleggio materiale</a>
-<a class="serif" href="Foto.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Foto</a>
-<a class="serif" href="Adesione.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Adesione</a>
+<nav class="footer-col" aria-label="Attività">
+<h2>Attività</h2>
+<a href="News.html">News</a>
+<a href="https://ssl.dropnet.ch/casticino/gite/index.php">Programma gite</a>
+<a href="Giovani.html">Giovani</a>
+<a href="Senior.html">Senior</a>
+<a href="Corsi.html">Corsi</a>
+<a href="Noleggio.html">Noleggio materiale</a>
+<a href="Foto.html">Foto</a>
+<a href="Adesione.html">Adesione</a>
 </nav>
-<nav aria-label="Le Capanne" style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 4px">
-<div class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.6; margin-bottom: 12px">LE CAPANNE</div>
-<a class="serif" href="CampoTencia.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Campo Tencia</a>
-<a class="serif" href="Cristallina.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Cristallina</a>
-<a class="serif" href="Adula.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Adula</a>
-<a class="serif" href="Motterascio.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Motterascio</a>
-<a class="serif" href="MonteBar.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Monte Bar</a>
-<a class="serif" href="BaitaDelLuca.html" style="color: #EFEDE6; font-size: 17px; text-decoration: none; padding: 4px 0">Baita del Luca</a>
+<nav class="footer-col" aria-label="Le Capanne">
+<h2>Le Capanne</h2>
+<a href="CampoTencia.html">Campo Tencia</a>
+<a href="Cristallina.html">Cristallina</a>
+<a href="Adula.html">Adula</a>
+<a href="Motterascio.html">Motterascio</a>
+<a href="MonteBar.html">Monte Bar</a>
+<a href="BaitaDelLuca.html">Baita del Luca</a>
 </nav>
 </div>
-<div style="padding: 32px 0; display: flex; gap: 28px; flex-wrap: wrap; align-items: center; border-bottom: 1px solid rgba(239,237,230,0.2)">
-<span class="mono" style="font-size: 12px; letter-spacing: 0.12em; opacity: 0.6">CON IL SOSTEGNO DI</span>
+<div class="sponsors">
+<h2>Con il sostegno di</h2>
 <a class="sponsor" href="https://www.bancastato.ch" target="_blank" rel="noopener"><img src="assets/sponsor/bancastato.webp" alt="BancaStato" width="172" height="24" loading="lazy"></a>
 <a class="sponsor" href="https://www.ail.ch/privati.html" target="_blank" rel="noopener"><img src="assets/sponsor/ail.webp" alt="AIL" width="55" height="48" loading="lazy"></a>
 <a class="sponsor" href="https://www.baechli-bergsport.ch/it" target="_blank" rel="noopener"><img src="assets/sponsor/baechli.webp" alt="Bächli Bergsport" width="52" height="48" loading="lazy"></a>
 <a class="sponsor" href="https://www.dos-group.com/it/" target="_blank" rel="noopener"><img src="assets/sponsor/dos-group.webp" alt="DOS Group" width="64" height="48" loading="lazy"></a>
-<span class="sponsor"><img src="assets/sponsor/studio-grafica-grizzi.webp" alt="Studio grafica Grizzi" width="79" height="48" loading="lazy"></span>
+<span class="sponsor sponsor--white"><img src="assets/sponsor/studio-grafica-grizzi.webp" alt="Studio grafica Grizzi" width="79" height="48" loading="lazy"></span>
 </div>
-<div class="mono" style="padding-top: 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 12px; opacity: 0.6">
-<span>© 2026 CAS Ticino</span><span>Club Alpino Svizzero · Sezione Ticino</span>
-</div>
+<div class="footer-bottom"><span>© 2026 CAS Ticino</span><span>Club Alpino Svizzero, Sezione Ticino</span></div>
 </div>
 </footer>
-
-</div>
 <script src="assets/site.js" defer></script>
 </body>
 </html>

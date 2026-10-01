@@ -20,21 +20,17 @@ The script uses only the Python standard library (`.venv` exists but has no depe
 
 ## Architecture
 
-### Pages are self-contained and duplicated
-Every page is a top-level `*.html` file with **no templating or includes**. Each page carries its own copy of:
-- the `<head>` (Google Fonts: Archivo, Newsreader, IBM Plex Mono) and an identical `<style>` block with the shared classes (`.disp`, `.mono`, `.serif`, `.navlink`, `.btn`, `.card-link`, `.dd*` dropdowns, `.mnav*` mobile menu, `.hide-sm`/`.show-sm` at 960px);
-- the header with `<nav aria-label="Principale">` — identical except for `aria-current="page"` on the current page's link;
-  the nav (`class="topnav"`) is `position:fixed` at the top of every page: `header{padding-top:113px}` reserves its height (keep the two in sync if the nav's size changes), `assets/site.js` adds `.scrolled` (solid, shorter bar) after 24px of scroll, `scroll-margin-top:112px` keeps anchors clear of it, and under 600px the "Programma gite" `.btn` is hidden from the bar (it stays in the mobile menu);
-- the footer (byte-identical across all pages), including the sponsor logo tiles (`.sponsor`, white tiles because some logos have dark text). `assets/sponsor/*.webp` are generated from the files in `assets/sponsor/originali/`: trimmed to content, sized to roughly equal area (max 48px tall) and exported at 2x; the footer `<img>` width/height must match.
-
-Mobile rules live in the shared `<style>` block under `@media (max-width:600px)` / `(max-width:359px)`: flex items written as `flex: 1 1 NNNpx` get `min-width:0`, and `.disp` headings with large inline sizes (44–72px, 88px/52px under 360px) are capped via `[style*="font-size: NNpx"]` attribute selectors with `!important` — if you add a heading with a new large inline size, add it there too. `.hero-h`/`.sec-h` titles are shrunk at runtime by `site.js` when a long word doesn't fit. Verify there's no horizontal scroll at 320–430px after layout changes.
-
-Committee portraits are in `assets/comitato/<nome-cognome>.webp` (240×280, shown at 96×112); members without a photo keep the initials placeholder.
-
-So any change to shared CSS, navigation items or the footer must be applied to **all 21 HTML files**. Most layout styling is written as inline `style="…"` attributes; the palette is hard-coded (`#15201B` dark, `#EFEDE6` paper, `#C42A1E`/`--accent` red).
+### Pages are generated from Python (scripts/redesign/)
+Every page is still a top-level static `*.html` file served as-is, but the HTML is **generated**: `python scripts/redesign/pages.py` rewrites all 21 pages (pass file names, e.g. `pages.py Corsi.html`, to rebuild only those). **Edit the generator, not the HTML** — a hand edit to a page is lost on the next run.
+- `scripts/redesign/shared.py`: `head()`, `nav()` (menu from `MENU`, `aria-current` on the current page, `is-current` on its parent), `footer()` with sponsor logos, `page_hero()`, `crumbs()`, `subnav()` (sibling pages of La Sezione / Attività), `pic()`/`img()` for `assets/img/*.webp`.
+- `scripts/redesign/pages.py`: one function per page with its content (Italian copy lives here), hut data in `HUTS` (home cards) and `HUT_PAGES` (hut pages, one generic `hut()` template), `PAGES` maps file name → function.
+- All styling is in `assets/site.css` (tokens on `:root`, automatic dark mode, Geist/Geist Mono self-hosted in `assets/fonts/`, square corners). No inline colors. The visual system is documented in `DESIGN.md` (product context in `PRODUCT.md`).
+- `assets/sponsor/*.webp` are generated from `assets/sponsor/originali/`: trimmed, roughly equal area (max 48px tall), exported at 2x; the footer `<img>` width/height must match.
+- Committee portraits: `assets/comitato/<nome-cognome>.webp` (240×280, shown at 96×112); members without a photo show initials (`COMITATO` in `pages.py`).
+- Long `h1.fit` titles are shrunk at runtime by `site.js` when a word doesn't fit. Verify there's no horizontal scroll at 320–430px after layout changes.
 
 ### JavaScript
-- `assets/site.js` (loaded `defer` on every page): toggles `.scrolled` on the fixed nav, and builds the mobile menu at runtime by cloning the desktop nav (`nav[aria-label="Principale"] .hide-sm`, `.dd` / `.dd-trigger` / `.dd-menu`, `a.btn` CTA). It relies on that markup and on the `button[aria-label="Apri menu"]` toggle — keep those selectors intact when editing the nav.
+- `assets/site.js` (loaded `defer` on every page): toggles `.scrolled` on the sticky nav (IntersectionObserver), reveals `[data-reveal]` blocks on scroll, fits `.fit` titles, and builds the mobile menu at runtime by cloning the desktop nav (`nav[aria-label="Principale"] .hide-sm`, `.dd` / `.dd-trigger` / `.dd-menu`, `a.btn` CTA). It relies on that markup and on the `button[aria-label="Apri menu"]` toggle — keep those selectors intact when editing the nav.
 - `assets/foto.js` (only `Foto.html`): fetches `data/foto.json` and renders albums into `#albums` with a gallery per album, paginated 5 at a time via `#load-more`.
 
 ### Photo pipeline
@@ -50,5 +46,5 @@ Don't hand-edit `data/foto.json` for lasting changes — edit `data/foto-overrid
 ## Known pending work (from README)
 - PDFs in Documenti, Corsi and Noleggio still link to `casticino.ch/wp-content/…`; they must be moved into a `docs/` folder in the repo and links updated before the domain switch.
 - Placeholders still to fill (hut/HQ photos, committee photos, Statuto, Organigramma, Annuario, etc.).
-- News is static: adding an item means editing `News.html` **and** the «Dalla sezione» block in `index.html`.
+- News is static: adding an item means editing `news()` **and** the «Dalla sezione» block of `home()` in `scripts/redesign/pages.py`, then regenerating.
 - DNS: only the site records move to GitHub; MX/TXT mail records and hut subdomains (e.g. `capannacristallina.casticino.ch`) must not be touched.
