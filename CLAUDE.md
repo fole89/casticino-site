@@ -24,12 +24,13 @@ The script uses only the Python standard library (`.venv` exists but has no depe
 Every page is a top-level `*.html` file with **no templating or includes**. Each page carries its own copy of:
 - the `<head>` (Google Fonts: Archivo, Newsreader, IBM Plex Mono) and an identical `<style>` block with the shared classes (`.disp`, `.mono`, `.serif`, `.navlink`, `.btn`, `.card-link`, `.dd*` dropdowns, `.mnav*` mobile menu, `.hide-sm`/`.show-sm` at 960px);
 - the header with `<nav aria-label="Principale">` — identical except for `aria-current="page"` on the current page's link;
+  the nav (`class="topnav"`) is `position:fixed` at the top of every page: `header{padding-top:113px}` reserves its height (keep the two in sync if the nav's size changes), `assets/site.js` adds `.scrolled` (solid, shorter bar) after 24px of scroll, `scroll-margin-top:112px` keeps anchors clear of it, and under 600px the "Programma gite" `.btn` is hidden from the bar (it stays in the mobile menu);
 - the footer (byte-identical across all pages).
 
 So any change to shared CSS, navigation items or the footer must be applied to **all 21 HTML files**. Most layout styling is written as inline `style="…"` attributes; the palette is hard-coded (`#15201B` dark, `#EFEDE6` paper, `#C42A1E`/`--accent` red).
 
 ### JavaScript
-- `assets/site.js` (loaded `defer` on every page): builds the mobile menu at runtime by cloning the desktop nav (`nav[aria-label="Principale"] .hide-sm`, `.dd` / `.dd-trigger` / `.dd-menu`, `a.btn` CTA). It relies on that markup and on the `button[aria-label="Apri menu"]` toggle — keep those selectors intact when editing the nav.
+- `assets/site.js` (loaded `defer` on every page): toggles `.scrolled` on the fixed nav, and builds the mobile menu at runtime by cloning the desktop nav (`nav[aria-label="Principale"] .hide-sm`, `.dd` / `.dd-trigger` / `.dd-menu`, `a.btn` CTA). It relies on that markup and on the `button[aria-label="Apri menu"]` toggle — keep those selectors intact when editing the nav.
 - `assets/foto.js` (only `Foto.html`): fetches `data/foto.json` and renders albums into `#albums` with a gallery per album, paginated 5 at a time via `#load-more`.
 
 ### Photo pipeline

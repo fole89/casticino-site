@@ -1,3 +1,16 @@
+// CAS Ticino — menu fisso: barra piena e più bassa quando si scorre la pagina
+(function () {
+  var nav = document.querySelector('nav[aria-label="Principale"]');
+  if (!nav) return;
+  var on = false;
+  function update() {
+    var s = window.scrollY > 24;
+    if (s !== on) { on = s; nav.classList.toggle('scrolled', s); }
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
 // CAS Ticino — menu mobile (costruito a partire dal menu desktop)
 (function () {
   var btn = document.querySelector('button[aria-label="Apri menu"]');
