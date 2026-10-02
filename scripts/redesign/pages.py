@@ -1726,7 +1726,7 @@ def pubblicazioni(cartella, prefisso):
         mese = m.group(2) or ""
         out.append({"anno": m.group(1), "mese": mese, "quando": f"{mese} {m.group(1)}".strip(),
                     "ordine": (m.group(1), MESI.index(mese) if mese else 0),
-                    "pdf": f"docs/{cartella}/{nome}", "mb": f"{mb:.1f}".replace(".", ","),
+                    "pdf": f"docs/{cartella}/{nome}", "mb": f"{mb:.1f}",
                     "cover": f"assets/img/pubblicazioni/{base}.webp", "w": w, "h": h})
     return sorted(out, key=lambda x: x["ordine"], reverse=True)
 
@@ -1735,7 +1735,7 @@ def pub_card(x, titolo):
     return f"""<a class="pub" href="{x['pdf']}">
 <figure><img src="{x['cover']}" alt="Copertina: {titolo}" width="{x['w']}" height="{x['h']}" loading="lazy" decoding="async"></figure>
 <strong>{titolo}</strong>
-<span class="small">PDF, {x['mb']} MB</span>
+<span class="small">PDF {x['mb']}MB</span>
 </a>"""
 
 
@@ -1747,7 +1747,7 @@ def pub_feature(x, titolo, testo):
 <h2 class="h2">{titolo}</h2>
 <p>{testo}</p>
 <a class="btn btn--primary" href="{x['pdf']}">Leggi il PDF <span class="arrow" aria-hidden="true">→</span></a>
-<span class="small">PDF, {x['mb']} MB</span>
+<span class="small">PDF {x['mb']}MB</span>
 </div>
 </div>"""
 
