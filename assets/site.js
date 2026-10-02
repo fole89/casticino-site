@@ -247,6 +247,16 @@
     brand.appendChild(icona);
   }
 
+  // in home la stessa icona, più grande, dopo il titolo «In montagna con noi.»
+  var titolo = document.querySelector('.hero h1');
+  if (titolo) {
+    var grande = document.createElement('span');
+    grande.className = 'festa-icona festa-icona--titolo';
+    grande.setAttribute('aria-hidden', 'true');
+    grande.innerHTML = ICONE[nome];
+    titolo.appendChild(grande);
+  }
+
   // effetto sulla foto della home, solo se il sistema non chiede di ridurre il movimento
   var foto = document.querySelector('.hero .band');
   if (!foto || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
