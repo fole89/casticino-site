@@ -13,9 +13,9 @@ HUT_DE = {
     "CampoTencia.html": dict(
         where="Val Piumogna, Leventina", custody="Mitte Juni bis Mitte Oktober",
         description="Capanna Campo Tencia, 2140 m, im Val Piumogna (Leventina): 80 Schlafplätze, bewartet von Mitte Juni bis Mitte Oktober. Kontakt und Reservation.",
-        intro="Auf einer Terrasse hoch über dem Val Piumogna gelegen, ist sie der ideale Ausgangspunkt für Wanderungen, Übergänge zu anderen Hütten und Besteigungen wie die des Pizzo Campo Tencia, mit 3071 m der höchste Gipfel, der ganz auf Tessiner Boden liegt.",
+        intro="Auf einer Terrasse hoch über dem Val Piumogna gelegen, ist sie der ideale Ausgangspunkt für Wanderungen, Übergänge zu anderen Hütten und Besteigungen wie die des Pizzo Campo Tencia, mit 3072 m der höchste Gipfel, der ganz auf Tessiner Boden liegt.",
         stay=[("Öffnung", "Ganzjährig"),
-              ("Bewartet", "Mitte Juni bis Mitte Oktober; im Winter im März und April auf Reservation"),
+              ("Bewartet", "Mitte Juni bis Mitte Oktober; im Winter nicht bewartet, die Reservation ist aber obligatorisch; für grosse Gruppen kann die Hütte nach Absprache mit den Hüttenwarten geöffnet werden"),
               ("Schlafplätze", "80"),
               ("Verpflegung", "Warme Küche, den ganzen Tag vom Hüttenwart serviert"),
               ("Winterraum", "Immer offen, mit Getränken und Brennholz")],
@@ -60,7 +60,7 @@ HUT_DE = {
     "Motterascio.html": dict(
         where="Alpe Motterascio, Greina, Blenio", custody="Mitte Juni bis Mitte Oktober",
         description="Capanna Motterascio, 2172 m, am Rand der Greina (Blenio): 70 Schlafplätze, ganzjährig offen, bewartet von Mitte Juni bis Mitte Oktober. Kontakt und Reservation.",
-        intro="Eine neue Hütte am Rand eines aussergewöhnlichen Naturschutzgebiets: die Greina, mit ihren Sümpfen, Mooren, Alpweiden und einer unberührten Flora. Ausgangspunkt für spannende Routen, allen voran zum Greina-Bogen, dem grössten Felsbogen im Tessin.",
+        intro="1967 eingeweiht und 1980, 1990 und 2006 erweitert, steht sie am Rand eines aussergewöhnlichen Naturschutzgebiets: die Greina, mit ihren Sümpfen, Mooren, Alpweiden und einer unberührten Flora. Ausgangspunkt für spannende Routen, allen voran zum Greina-Bogen, dem grössten Felsbogen im Tessin.",
         stay=[("Öffnung", "Ganzjährig"),
               ("Bewartet", "Mitte Juni bis Mitte Oktober (2026 vom 13. Juni bis 10. Oktober); im Winter der Winterraum mit 10 Plätzen, auf Reservation"),
               ("Schlafplätze", "70"),
@@ -75,7 +75,7 @@ HUT_DE = {
                  ("E-Mail", '<a href="mailto:motterascio@casticino.ch">motterascio@casticino.ch</a>')]),
     "MonteBar.html": dict(
         where="Alta Capriasca, Region Lugano", custody="ganzjährig",
-        description="Capanna Monte Bar, 1620 m, in der Alta Capriasca: 42 Schlafplätze in Zimmern mit 2, 4 und 6 Betten, ganzjährig bewartet, Bike-Hotel-Standard. Kontakt und Reservation.",
+        description="Capanna Monte Bar, 1602 m, in der Alta Capriasca: 42 Schlafplätze in Zimmern mit 2, 4 und 6 Betten, ganzjährig bewartet, Bike-Hotel-Standard. Kontakt und Reservation.",
         intro="Auf einer aussergewöhnlich schönen Kuppe, mit 180-Grad-Blick von den Denti della Vecchia bis zum Tamaro und im Westen auf die Walliser Viertausender von den Mischabel bis zum Monte Rosa. Im Herbst 2016 neu gebaut: Zimmer mit 2, 4 und 6 Betten, Toiletten auf den Etagen, Speisesaal für rund 80 Personen, Sitzungszimmer für 20, grosse Terrasse und ein geschlossener Raum mit E-Bike-Ladestationen und kleiner Werkstatt nach Bike-Hotel-Standard.",
         stay=[("Öffnung", "Ganzjährig; auf Anfrage auch für Anlässe, Abend- und Mittagessen"),
               ("Bewartet", "Von Mai bis Anfang November täglich; im Winter von Freitagmittag bis Sonntagmittag, an Feiertagen und in den Schulferien"),
@@ -91,14 +91,14 @@ HUT_DE = {
                  ("E-Mail", '<a href="mailto:montebar@casticino.ch">montebar@casticino.ch</a>')]),
     "BaitaDelLuca.html": dict(
         where="Cioascio, Sonvico", custody="auf Reservation",
-        description="Baita del Luca, 1070 m, oberhalb von Sonvico am Fuss der Denti della Vecchia: 16 Schlafplätze, Selbstversorgerhütte, nur auf Reservation. Treffpunkt der Jugendgruppe.",
-        intro="Auf einem weiten Grashang oberhalb von Sonvico, am Fuss der Denti della Vecchia: idealer Ausgangspunkt für Wanderungen, auch mit der Familie, und zum Klettern in einer einzigartigen Landschaft. Hier trifft sich die <a href=\"Giovani.html\">Jugendgruppe</a> der Sektion.",
-        stay=[("Öffnung", "Geschlossen; nur nach Reservation zugänglich"),
+        description="Baita del Luca, 1070 m, oberhalb von Sonvico am Fuss der Denti della Vecchia: 16 Schlafplätze, Selbstversorgerhütte, nur auf Reservation.",
+        intro="Auf einem weiten Grashang oberhalb von Sonvico, am Fuss der Denti della Vecchia: idealer Ausgangspunkt für Wanderungen, auch mit der Familie, und zum Klettern in einer einzigartigen Landschaft.",
+        stay=[("Öffnung", "Ganzjährig, nur nach Reservation"),
               ("Schlafplätze", "16"),
               ("Verpflegung", "Selbstversorgung, Küche vorhanden"),
-              ("Getränke", "Auch ohne Verantwortliche erhältlich"),
+              ("Getränke", "In beschränkter Menge erhältlich"),
               ("Reservation", "Den Zugangscode erhalten Sie nach der Vorauszahlung")],
-        reach=[("Zugang", "Ab Rosone 30 min; ab Lovarescia (oberhalb von Sonvico) 60 min; ab Car und Luss (Villa Luganese) 60 min"),
+        reach=[("Zugang", "Ab Rosone 45 min; ab Lovarescia (oberhalb von Sonvico) 60 min; ab Car und Luss (Villa Luganese) 60 min"),
                ("Karte", 'LK 1333 Tesserete, Koordinaten <span class="num">722.980 / 102.600</span>')],
         contact=[("Verantwortliche", "Priska Deluigi, 6960 Odogno"),
                  ("Mobile", '<a class="num" href="tel:+41792033084">+41 79 203 30 84</a>'),
@@ -112,15 +112,14 @@ HUTS_DE = [
     ("Cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Bewartet", "Auf dem gleichnamigen Pass zwischen Leventina und Maggiatal. 2003 eröffnet, die erste moderne SAC-Hütte.", "100 Plätze", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
     ("Adula.html", "Adula", "2012", "Val Carassino", "Bewartet", "Die klassische Steinhütte hoch über dem Bleniotal: Geschichte, herzlicher Empfang und einheimische Küche.", "24 Plätze", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
     ("Motterascio.html", "Motterascio", "2172", "Greina", "Bewartet", "Am Rand der geschützten Greina-Ebene: Moore, Alpweiden und der grösste natürliche Felsbogen im Tessin.", "70 Plätze", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
-    ("MonteBar.html", "Monte Bar", "1620", "Alta Capriasca", "Ganzjährig", "Der Balkon über Lugano, 2016 neu gebaut: Blick vom Monte Rosa bis zu den Denti della Vecchia, Bike-Hotel-Standard.", "42 Plätze", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),
-    ("BaitaDelLuca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Auf Reservation", "Oberhalb von Sonvico, am Fuss der Denti della Vecchia. Treffpunkt der Jugend, ideal für Familien und zum Klettern.", "16 Plätze, Selbstversorger", "Rosone 30 min", "capanne/baitadelluca-3x2", (1000, 667), False),
+    ("MonteBar.html", "Monte Bar", "1602", "Alta Capriasca", "Ganzjährig", "Der Balkon über Lugano, 2016 neu gebaut: Blick vom Monte Rosa bis zu den Denti della Vecchia, Bike-Hotel-Standard.", "42 Plätze", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),
+    ("BaitaDelLuca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Auf Reservation", "Oberhalb von Sonvico, am Fuss der Denti della Vecchia. Ideal für Familien und zum Klettern.", "16 Plätze, Selbstversorger", "Rosone 45 min", "capanne/baitadelluca-3x2", (1000, 667), False),
 ]
 
 CONTENUTI_DE = {
     "CampoTencia.html": dict(
         cartella="campotencia",
-        avviso="""<strong>Sommersaison 2026.</strong> Die Hütte ist bis etwa Mitte Oktober offen und bewartet.
-Bitte reservieren Sie online; für weitere Auskünfte rufen Sie uns an. Bis bald, Valeria und Paco.""",
+        avviso="""<strong>Sommersaison 2026.</strong> Die Hütte ist bis etwa Mitte Oktober offen und bewartet.""",
         capanna="""<p>Die erste Hütte der Tessiner Berge wurde 1912 am Fuss des gleichnamigen Gipfels gebaut, auf der Leventiner Seite im oberen Val Piumogna. Sie ist ein Basislager für Familien, Wanderer und Bergsteiger: Naturwanderungen, der Lago Morghirolo ganz in der Nähe, die Klettergärten und die grossen Touren der Campo-Tencia-Gruppe mit der klassischen Überschreitung der Cresta dei Corni.</p>
 <p>Das heutige Gebäude, entworfen vom Sektionsarchitekten Oscar Hofmann und 1977 eingeweiht, hat drei Stockwerke: im Erdgeschoss Eingang, Schuhraum, Toiletten und Keller; im ersten Stock eine helle Stube mit 70 Plätzen und die Küche; im zweiten rund 70 Schlafplätze in 7 Lagern, einige mit 4 bis 8 Plätzen, ideal für Familien.</p>
 <p>Die Betten haben Duvets; <strong>der Hüttenschlafsack ist obligatorisch</strong>. Die Hütte hat den Charakter der 1980er-Jahre bewahrt: keine Einzelzimmer mit Bad und keine Föhns!</p>""",
@@ -150,7 +149,7 @@ Bitte reservieren Sie online; für weitere Auskünfte rufen Sie uns an. Bis bald
 <li><strong>Reservation obligatorisch</strong>, online mit der Schaltfläche «Reservieren».</li>
 <li>Kostenlose Annullierung bis 18 Uhr <strong>zwei Tage vor</strong> dem reservierten Datum.</li>
 <li>Keine Reservationen oder Anfragen über soziale Medien: Rufen Sie uns bitte an.</li>
-<li>Bewartet von Mitte Juni bis Mitte Oktober; im Winter im März und April auf Reservation.</li>
+<li>Bewartet von Mitte Juni bis Mitte Oktober. Im Winter ist die Hütte nicht bewartet, die Reservation ist aber obligatorisch; für grosse Gruppen kann sie nach Absprache mit den Hüttenwarten geöffnet werden.</li>
 <li>Winterraum immer offen, mit Getränken und Brennholz.</li>
 </ul>
 <p><a class="file-link" href="{CT_DOC}disposizioni-per-gli-ospiti.pdf">Hinweise für die Gäste</a></p>
@@ -171,11 +170,11 @@ Bitte reservieren Sie online; für weitere Auskünfte rufen Sie uns an. Bis bald
             file="storia", titolo="Geschichte der Hütte",
             lead="Seit 1912 die erste Hütte der Tessiner Berge: erweitert, von einem Brand zerstört und schöner wieder aufgebaut.",
             img=("inaugurazione-1912", "Postkarte von der Einweihung der Hütte am 10. August 1912, mit Bergsteigern vor der Steinhütte"),
-            corpo="""<p>Die Hütte wurde 1912 am Fuss des gleichnamigen Gipfels gebaut, auf der Leventiner Seite im oberen Val Piumogna. Der Name Campo Tencia ist eine Erfindung von 1858: Er bezeichnete den höchsten ganz auf Tessiner Boden gelegenen Berg (3071,7 m), als die berühmte Dufourkarte gezeichnet wurde. Er verbindet die Namen zweier Alpen des Patriziato di Prato, Campo und Tencia, im oberen Val Lavizzara auf der Seite des Maggiatals.</p>
-<p>Am 11. August 1912 wurde die Hütte eingeweiht. 1932 legte Patocchi, wie immer die treibende Kraft, das Projekt für eine Erweiterung vor, und im Sommer 1933 wurde der neue Ostflügel gebaut.</p>
+            corpo="""<p>Die Hütte wurde 1912 am Fuss des gleichnamigen Gipfels gebaut, auf der Leventiner Seite im oberen Val Piumogna. Der Name Campo Tencia ist eine Erfindung von 1858: Er bezeichnete den höchsten ganz auf Tessiner Boden gelegenen Berg (3072 m), als die berühmte Dufourkarte gezeichnet wurde. Er verbindet die Namen zweier Alpen des Patriziato di Prato, Campo und Tencia, im oberen Val Lavizzara auf der Seite des Maggiatals.</p>
+<p>Am 11. August 1912 (nach einigen Archivquellen am 10. August) wurde die Hütte eingeweiht. 1932 legte Patocchi, wie immer die treibende Kraft, das Projekt für eine Erweiterung vor, und im Sommer 1933 wurde der neue Ostflügel gebaut.</p>
 <figure><img src="assets/img/capanne/campotencia/costruzione.webp" alt="Männer bei der Arbeit vor der alten Steinhütte, historische Aufnahme" width="1200" height="832" loading="lazy" decoding="async"></figure>
 <p>Vierzig Jahre später folgten weitere Arbeiten zur Verstärkung und Verbesserung. Am 22. August 1975 zerstörte ein schwerer Brand das Werk vieler Jahre.</p>
-<p>Im folgenden Sommer entstand die Hütte grösser, schöner und zweckmässiger neu. Ihre Bauweise war schweizweit eine Neuheit, das Verdienst des Architekten Oscar Hofmann: nicht mehr das kantige Bild der klassischen Berghütte, sondern ein neuartiges, leichtes und elegantes Aussehen, mit einem Tragwerk aus verkleidetem und für die Höhe isoliertem Stahl. Die neue Einweihung fand am 25. September 1977 statt.</p>
+<p>Sofort machte man sich an den Wiederaufbau, und die Hütte entstand grösser, schöner und zweckmässiger neu. Ihre Bauweise war schweizweit eine Neuheit, das Verdienst des Architekten Oscar Hofmann: nicht mehr das kantige Bild der klassischen Berghütte, sondern ein neuartiges, leichtes und elegantes Aussehen, mit einem Tragwerk aus verkleidetem und für die Höhe isoliertem Stahl. Die neue Einweihung fand am 25. September 1977 statt.</p>
 <figure><img src="assets/img/capanne/campotencia/capanna-storica.webp" alt="Die alte Steinhütte im Schnee, historische Aufnahme" width="1200" height="782" loading="lazy" decoding="async"></figure>
 <p>2008 kam mit dem Nordflügel eine neue Profiküche dazu. Am 11. August 2012 wurde das 100-Jahr-Jubiläum gefeiert. 2022 sorgte eine Wasserturbine für die Stromversorgung, die Photovoltaikanlage wurde erweitert und die Abwasserreinigung erneuert.</p>"""),
         pagine=[
@@ -193,10 +192,6 @@ Bitte reservieren Sie online; für weitere Auskünfte rufen Sie uns an. Bis bald
                           dati=[("Länge", "12 km"), ("Höhendifferenz", "+1300 m"), ("Zeit", "4-5 h"), ("Schwierigkeit", "T3")],
                           link=[("Online-Karte", "https://s.geo.admin.ch/151dbckh2v17"),
                                 ("Routenbeschreibung", CT_DOC + "e-lago-morghirolo-e-sentiero-didattico.pdf")]),
-                     dict(titolo="Rundtour Leìt-Piumogna", img=("genziane", "Blühende Enziane unter einem felsigen Gipfel"),
-                          testo="Grosse Rundtour, die zwei Hütten und zwei Bergseen über zwei Pässe verbindet, in einer Naturlandschaft von grossem Wert. Achtung: Im Frühsommer liegen im oberen Teil östlich des Pizzo Lei di Cima oft steile, gefährliche Schneefelder.",
-                          dati=[("Länge", "18 km"), ("Höhendifferenz", "+1350 / −1350 m"), ("Zeit", "8 h"), ("Schwierigkeit", "T3")],
-                          link=[("Online-Karte", "https://s.geo.admin.ch/rzubpn495uo8")]),
                  ]),
             dict(file="giro-piumogna", titolo="Piumogna-Runde",
                  lead="Eine Rundtour ab Dalpe über die Hütten Leìt und Campo Tencia, in einem geschützten, blumenreichen Gebiet.",
@@ -218,9 +213,9 @@ Bitte reservieren Sie online; für weitere Auskünfte rufen Sie uns an. Bis bald
 <p><a href="https://www.sac-cas.ch/de/ausbildung-und-sicherheit/sicher-unterwegs/sicher-unterwegs-beim-berg-und-alpinwandern/" rel="noopener">Sicher unterwegs beim Alpinwandern: die Tipps des SAC</a></p>""",
                  itinerari=[
                      dict(titolo="Pizzo Campo Tencia (3072 m) und Pizzo Croslina (3012 m)", img=("croce-campo-tencia", "Das Gipfelkreuz des Pizzo Campo Tencia"),
-                          testo="Der höchste ganz im Tessin gelegene Berg verdankt seinen Namen dem rötlichen, eisenhaltigen Gestein: «tencie», also schmutzig, im Dialekt. In der Mitte des Kantons bietet er eine Rundsicht; vom Gipfel kann man ins Val Lavizzara absteigen oder die Via Alta Vallemaggia erreichen. Die Route ist grösstenteils markiert; an einigen Stellen Vorsicht vor Steinschlag, besonders wenn andere unterwegs sind. Im Frühsommer liegt Schnee in der Mulde vor der Bocchetta di Croslina. Von der Scharte (2865 m) kann man nach Norden zum Grat queren, der auf den Pizzo Croslina führt: ausgesetzte Stellen, Vorsicht vor allem im Abstieg.",
-                          dati=[("Länge", "3 km"), ("Höhendifferenz", "+940 m"), ("Zeit", "3 h für einen Gipfel, 4 h 30 für beide"),
-                                ("Schwierigkeit", "T4 Pizzo Campo Tencia, T6 Pizzo Croslina"), ("Ausrüstung", "Gute Bergschuhe")],
+                          testo="Der höchste ganz im Tessin gelegene Berg verdankt seinen Namen dem rötlichen, eisenhaltigen Gestein: «tencie», also schmutzig, im Dialekt. In der Mitte des Kantons bietet er eine Rundsicht; vom Gipfel kann man ins Val Lavizzara absteigen oder die Via Alta Vallemaggia erreichen. Die Route ist grösstenteils markiert; an einigen Stellen Vorsicht vor Steinschlag, besonders wenn andere unterwegs sind. Im Frühsommer liegt Schnee in der Mulde vor der Bocchetta di Croslina. Von der Scharte (2864 m) kann man nach Norden zum Grat queren, der auf den Pizzo Croslina führt: ausgesetzte Stellen, Vorsicht vor allem im Abstieg.",
+                          dati=[("Länge", "3 km"), ("Höhendifferenz", "+940 m"), ("Zeit", "3 h für den Pizzo Campo Tencia, 4 h mit dem Pizzo Croslina"),
+                                ("Schwierigkeit", "T4+ Pizzo Campo Tencia, T6 mit dem Pizzo Croslina"), ("Ausrüstung", "Gute Bergschuhe")],
                           link=[("Ausführliche Beschreibung", "capanne/campotencia/tencia-croslina.html"),
                                 ("Routenbeschreibung", CT_DOC + "b-pizzo-campo-tencia-3072-m-pizzo-croslina-3012-m.pdf")]),
                      dict(titolo="Pizzo Forno (2907 m)", img=("pizzo-forno", "Pizzo Forno und Pizzo Laghetto mit den letzten Schneefeldern"),
@@ -256,12 +251,12 @@ Bitte reservieren Sie online; für weitere Auskünfte rufen Sie uns an. Bis bald
                  corpo="""<p>Der Pizzo Campo Tencia (3072 m) ist eine aussergewöhnliche Pyramide aus Fels und Eis mit weiter Rundsicht. Der Pizzo Croslina (3012 m) erhebt sich wie ein Koloss über der Hütte; von Osten gesehen ist er dagegen eine elegante Pyramide.</p>
 <p>Typisch ist die Nordseite dieses Abschnitts des Hauptkamms: Nach der Pyramide des Croslina folgen gegen Südosten regelmässig drei Gipfel, getrennt durch kaum angedeutete Sättel: der Pizzo Campo Tencia (3072 m), der mittlere Gipfel Tenca (3035 m, ohne Namen auf der Landeskarte) und der Pizzo Penca (3038 m).</p>
 <h2>Route</h2>
-<p>Von der Hütte geht man nach Süden den weiss-blau-weissen Markierungen nach bis zu einem Wasserfall. Links führt ein breiter Kamin zum Band, das die ganze Wand quert: Ein gut markierter, ausgesetzter Weg steigt nach Südosten zu einer leichten Rippe. Gegen Südwesten erreicht man die Mulde des Laghetto, am Fuss der Reste des Ghiacciaio Grande di Croslina. Weiter geht es über den kleinen Grat zwischen den beiden Croslina-Gletschern bis etwa 2800 m, dann nach Südwesten, leicht auf den Gletscher absteigend, zur Bocchetta di Croslina (2867 m), immer den weiss-blau-weissen Markierungen nach. Auf der Gratschneide erreicht man das Gipfelkreuz.</p>
+<p>Von der Hütte geht man nach Süden den weiss-blau-weissen Markierungen nach bis zu einem Wasserfall. Links führt ein breiter Kamin zum Band, das die ganze Wand quert: Ein gut markierter, ausgesetzter Weg steigt nach Südosten zu einer leichten Rippe. Gegen Südwesten erreicht man die Mulde des Laghetto, am Fuss der Reste des Ghiacciaio Grande di Croslina. Weiter geht es über den kleinen Grat zwischen den beiden Croslina-Gletschern bis etwa 2800 m, dann nach Südwesten, leicht auf den Gletscher absteigend, zur Bocchetta di Croslina (2864 m), immer den weiss-blau-weissen Markierungen nach. Auf der Gratschneide erreicht man das Gipfelkreuz.</p>
 <p>Vom Gipfel kann man zur Capanna Soveltra im Maggiatal queren, gegen Südosten auf den weiss-blau-weissen Markierungen.</p>
 <p><strong>Pizzo Croslina:</strong> Von der Bocchetta di Croslina geht man nach Nordwesten den blauen Punkten nach bis zu einem Band rechts der deutlichen Geröllrinne. Teilweise ausgesetzter Aufstieg mit Felsstellen im II. Grad.</p>
 <p>Für beide Gipfel erfolgt der Abstieg über die Aufstiegsroute.</p>""",
-                 dati=[("Länge", "3 km"), ("Höhendifferenz", "+940 m"), ("Zeit", "3 h für einen Gipfel, 4 h für beide"),
-                       ("Schwierigkeit", "T3-T4 Pizzo Campo Tencia, T6 Pizzo Croslina"),
+                 dati=[("Länge", "3 km"), ("Höhendifferenz", "+940 m"), ("Zeit", "3 h für den Pizzo Campo Tencia, 4 h mit dem Pizzo Croslina"),
+                       ("Schwierigkeit", "T4+ Pizzo Campo Tencia, T6 mit dem Pizzo Croslina"),
                        ("Sehenswert", "Mulde des Laghetto, Ghiacciaio Grande di Croslina, das Gipfelkreuz des Campo Tencia, die Edelweiss am Croslina")],
                  link=[("Routenbeschreibung", CT_DOC + "b-pizzo-campo-tencia-3072-m-pizzo-croslina-3012-m.pdf")],
                  foto="tencia-croslina"),
@@ -294,7 +289,7 @@ Bitte reservieren Sie online; für weitere Auskünfte rufen Sie uns an. Bis bald
                  lead="Anspruchsvolle Skitouren abseits der bekannten Ziele und Eisfälle bis 200 Meter.",
                  img=("scialpinismo", "Skitourengeher in der Abfahrt auf einem weiten Schneehang, im Gegenlicht"),
                  corpo="""<h2>Skitouren</h2>
-<p>Im Winter bleibt das Gebiet des Campo Tencia abseits der bekannten Ziele. Das technische, unwegsame Gelände verlangt gute Schneeverhältnisse und sicheres Können im Skitourengehen und in der Orientierung. Im Frühling findet man die Verhältnisse für sehr lohnende Touren: Pizzo Campo Tencia, Pizzo Forno und Pizzo Campolungo. Die Hütte ist normalerweise nicht bewartet, kann aber für Gruppen oder mehrere Tage geöffnet werden.</p>
+<p>Im Winter bleibt das Gebiet des Campo Tencia abseits der bekannten Ziele. Das technische, unwegsame Gelände verlangt gute Schneeverhältnisse und sicheres Können im Skitourengehen und in der Orientierung. Im Frühling findet man die Verhältnisse für sehr lohnende Touren: Pizzo Campo Tencia, Pizzo Forno und Pizzo Campolungo. Die Hütte ist nicht bewartet, die Reservation ist aber obligatorisch; für grosse Gruppen kann sie nach Absprache mit den Hüttenwarten geöffnet werden.</p>
 <h2>Eisfälle</h2>
 <p>In der Mulde des Buco di Cumasna auf 2000 Metern bilden sich ab Winterbeginn mächtige Eisfälle bis 200 Meter Länge und in verschiedenen Schwierigkeiten. Rechts liegt der bekannteste, die «Giovannelli», in der Rinne, über die man im Winter die Felsstufe zum oder vom Gipfel des Pizzo Campo Tencia überwindet.</p>""",
                  foto="inverno"),
@@ -306,7 +301,7 @@ Bitte reservieren Sie online; für weitere Auskünfte rufen Sie uns an. Bis bald
         cartella="cristallina",
         avviso="""<strong>Die Sommersaison läuft.</strong> Alle wichtigen Zugänge sind schneefrei und gut begehbar.
 Reservationen bitte online. Wir freuen uns auf Sie, Manu.""",
-        capanna="""<p>Die erste moderne Hütte des Schweizer Alpen-Clubs steht auf 2572 m auf dem Cristallinapass, in einem Gebiet, das im Sommer wie im Winter zum Wandern einlädt. Im Sommer ist sie Stützpunkt für die umliegenden Gipfel und für Übergänge ins Maggiatal, ins Val Formazza und ins Gotthardgebiet; im Winter bietet die schneereiche Gegend herrliche Abfahrten und Gipfelkombinationen.</p>
+        capanna="""<p>Die erste moderne Hütte des Schweizer Alpen-Clubs steht auf 2575 m auf dem Cristallinapass, in einem Gebiet, das im Sommer wie im Winter zum Wandern einlädt. Im Sommer ist sie Stützpunkt für die umliegenden Gipfel und für Übergänge ins Maggiatal, ins Val Formazza und ins Gotthardgebiet; im Winter bietet die schneereiche Gegend herrliche Abfahrten und Gipfelkombinationen.</p>
 <p>Sie hat 100 Schlafplätze in Kojen mit Duvets, in 6 Zimmern mit 4, 9 mit 8 und 2 Lagern mit 12 Plätzen, einen Panorama-Speisesaal mit Terrasse, Toiletten mit warmem Wasser im Haus, Dusche, Trocknungsraum und einen Schuhraum mit Hüttenschuhen. Der Hüttenschlafsack ist obligatorisch. Guter Swisscom-Empfang bei der Hütte.</p>
 <p>Die Hütte ist immer offen und zugänglich. Bewartet ist sie im Sommer, von Juni bis Mitte Oktober; im Winter, von Dezember bis Ende April, ist der Hüttenwart bei guten Verhältnissen, an Wochenenden, über die Feiertage und für Gruppen mit Reservation da.</p>""",
         cucina="""<p>Tagsüber einfache Gerichte für alle: Gnocchi, Ravioli, Wähen, Wurstwaren, Desserts und vieles mehr, alles in der Hütte mit lokalen Schweizer Produkten zubereitet. Für die Halbpension wechseln die Menüs je nach Wochentag, auch mit Blick auf Vegetarier. Dazu eine gute Auswahl an Weinen und Bränden.</p>
@@ -362,12 +357,12 @@ Reservationen bitte online. Wir freuen uns auf Sie, Manu.""",
                  corpo="""<p>Wer die wunderbare Gegend am Cristallina mit ihren Bergseen und der Tierwelt des Hochgebirges entdecken möchte, findet hier mittelschwere, nicht zu lange Routen, die bei der Hütte beginnen oder sie als Etappe nutzen.</p>""",
                  itinerari=[
                      dict(titolo="Cima di Lago (2832 m)", img=("cima-di-lago", "Ein Steinbock am Hang der Cima di Lago, die Route rot eingezeichnet"),
-                          testo="Leichter Gipfel mit herrlicher Aussicht, auch für Kinder ideal: Steinbockbegegnungen sind wahrscheinlich.",
+                          testo="Gipfel mit herrlicher Aussicht, auch für trittsichere Kinder ideal: Steinbockbegegnungen sind wahrscheinlich.",
                           dati=[("Länge", "4 km"), ("Höhendifferenz", "+300 m"), ("Zeit", "1 h"), ("Schwierigkeit", "T4")],
                           link=[("Routenbeschreibung", "docs/capanne/cristallina/a-cima-di-lago-2832-msm.pdf")]),
                      dict(titolo="Pizzo Cristallina (2912 m)", img=("pizzo-cristallina", "Blick vom Gipfel des Pizzo Cristallina auf Bergseen und Gipfel"),
                           testo="Der Hauptgipfel inmitten einer Reihe von Bergseen; auf dem Gipfel steht noch das Rifugio Camosci, letzter Zeuge der Kriegszeit in der Gegend. Im letzten Hang auf Steinschlag achten, wenn andere unterwegs sind; das Biwak nur mit grosser Vorsicht betreten, Absturzgefahr.",
-                          dati=[("Länge", "11 km"), ("Höhendifferenz", "+1100 m"), ("Zeit", "2 h"), ("Schwierigkeit", "T4")],
+                          dati=[("Länge", "11 km ab Ossasco"), ("Höhendifferenz", "+1100 m ab Ossasco"), ("Zeit", "2 h ab der Hütte, 6 h ab Ossasco"), ("Schwierigkeit", "T4")],
                           link=[("Routenbeschreibung", "docs/capanne/cristallina/b-cristallina-2912.pdf")]),
                      dict(titolo="Cristallina-Runde", img=("giro-cristallina", "Der Stausee von Robiei mit der Mauer, unter den Bergen"),
                           testo="Klassische, leichte Runde auf weiss-rot-weissem Weg rund um den Gipfel des Cristallina. Auch als Tagestour ab Robiei oder vom Narèt-Pass, mit Mittagessen in der Hütte.",
@@ -465,7 +460,7 @@ Für Auskünfte rufen Sie uns an. Bis bald in der Höhe, Lele, Miri und das Team
 <p><strong>Mit dem Auto:</strong> A2 bis Biasca, dann Richtung Lukmanier bis Campo Blenio und Ghirone; hinauf zur Staumauer des Luzzone, über die Mauer und weiter bis zur Alpe di Compietto. Oder das Auto in Ghirone lassen und den <a href="http://www.autolinee.ch/greina" rel="noopener">Alpenbus</a> nehmen.</p>
 <p><strong>Mit dem öffentlichen Verkehr:</strong> Zug S10 bis Biasca, Bus 131 bis Ghirone, dann Alpenbus zur Staumauer des Luzzone. Taxi Riviera (Biasca): <a class="num" href="tel:+41918624848">+41 91 862 48 48</a>.</p>
 <p><strong>Übergänge zu anderen Hütten:</strong> <a href="de/Motterascio.html">Motterascio</a> 5 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 3 h 30; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 1 h; <a href="http://quarnei.ch/" rel="noopener">Quarnei</a> 3 h.</p>
-<p>Karten: LK 1:25’000 Blatt 1233 Greina; Skitourenkarte 256 S.</p>""",
+<p>Karten: LK 1:25’000 Blatt 1253 Olivone; Skitourenkarte 256 S.</p>""",
         attivita="""<p>Auf der Adula liegt ein Hauch von früher in der Luft: Gastfreundschaft und gute Küche, dazu ein Glas Wein, laden ein, sich vor einer aussergewöhnlichen Kulisse ins Gras zu legen. Von hier aus geht es zu spannenden Routen, alten Übergängen und luftigen Graten.</p>
 <p>Ein idealer Ort für Kinder: prächtige Blumen im Frühsommer, Gämsen und Steinböcke, Murmeltiere, Kühe zum Streicheln und ein Bach zum Baden. Man schläft in einer historischen Hütte mit dem Charme von früher und steigt auf das Rheinwaldhorn (Adula), Ziel vieler Tessiner, mit seinem Gletscher, der leider bald nur noch Erinnerung sein wird.</p>""",
         pagine=[
@@ -646,7 +641,7 @@ Bitte reservieren Sie online; für Auskünfte schreiben oder rufen Sie uns an. B
                  corpo="""<p>Camona da Medel, Capanna Michela Motterascio, Läntahütte: Das Trekking Greina Alta für mittlere bis erfahrene Wanderer führt von Curaglia nach Vals, mit einem gemeinsamen Nenner, der Zahl 3. Es durchquert eine Region mit 3 SAC-Hütten, 3 Kulturen, 3 Sprachen und 3 mächtigen Gipfeln. Wer es ganz geht, kann in einer der drei Hütten eine Pauschalreservation verlangen.</p>
 <ul>
 <li><strong>Tag 1:</strong> (Disentis) Curaglia (1332 m), Val Platta, Alp Sura (1982 m), Camona da Medel (2524 m). 3 h 30, T3.</li>
-<li><strong>Tag 2:</strong> Camona da Medel, Fuorcla Sura da Lavaz (2759 m), Greinapass (2355 m), Crap la Crusch (2268 m), Capanna Michela Motterascio (2172 m). 6 h, T4.</li>
+<li><strong>Tag 2:</strong> Camona da Medel, Fuorcla Sura da Lavaz (2703 m), Greinapass (2355 m), Crap la Crusch (2268 m), Capanna Michela Motterascio (2172 m). 6 h, T4.</li>
 <li><strong>Tag 3:</strong> Capanna Michela Motterascio, Lago di Luzzone, Larecc (1633 m), Val Scaradra, Passo Soreda (2759 m), Läntatal, Läntahütte (2090 m). 7 h, T3.</li>
 <li><strong>Tag 4:</strong> Läntahütte, Furggelti (2712 m), Zervreilasee (1862 m), Zervreila (Vals). 5 h, T3.</li>
 </ul>""",
@@ -678,10 +673,10 @@ Die Hütte ist nur ab Corticiasca erreichbar. Bis 8. November täglich offen."""
 <p><strong>James und Seo</strong></p>"""),
         tariffe=[
             ("Mitglieder SAC/FAT und Gegenrechtsvereine", "Übernachtung mit Halbpension",
-             [("Kinder bis 8 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 40.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 60.–"),
+             [("Kinder bis 7 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 40.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 60.–"),
               ("Erwachsene ab 22 Jahren", "Fr. 80.–")]),
             ("Nichtmitglieder", "Übernachtung mit Halbpension",
-             [("Kinder bis 8 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 45.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 65.–"),
+             [("Kinder bis 7 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 45.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 65.–"),
               ("Erwachsene ab 22 Jahren", "Fr. 95.–")]),
             ("Doppelzimmer", "Mit Doppelbett und frischer Bettwäsche",
              [("Pro Person", "Fr. 120.–"), ("Einzelbelegung", "Fr. 150.–")]),
@@ -786,7 +781,7 @@ Die Hütte ist nur ab Corticiasca erreichbar. Bis 8. November täglich offen."""
             corpo="""<p>Nach den Erfahrungen auf den Monti di Condra erhielt der CAS 1935 die Alphütte der Alpe Musgatina als Winterunterkunft für die erste Skischule des Kantons Tessin, mit den Lehrern Tita Calvi und Aldo Balmelli.</p>
 <p>Der Erfolg war so gross, dass schon 1936, zum fünfzigjährigen Bestehen der Sektion Ticino, eine Hütte auf dem Monte Bar gebaut wurde; die Baustelle gab den vielen Saisonauswanderern des Tals Arbeit. Die Hütte wurde rasch zum Ziel zahlreicher Skifahrergruppen: Sonntags waren bis zu 300 Leute auf den Pisten. Die Winterverwaltung übernahm der Sci Club Lugano, und der Riesenslalom am Monte Bar war ein grosser Erfolg. Im Sommer war die Hütte Basislager für die Gipfel der Umgebung.</p>
 <p>2013 beschloss die Sektion, eine neue Hütte zu bauen: Die Hütte von 1936, 1993 verbessert, hatte inzwischen grosse Probleme bei Logistik, Sicherheit und Versorgung. Gesucht war ein moderner, zweckmässiger und ökologischer Bau mit dem Charakter einer klassischen Berghütte. Das Projekt entstand mit der Gemeinde Capriasca (Projekt Areaviva) und verschiedenen lokalen Partnern, um die ganze Region aufzuwerten.</p>
-<p>Den Wettbewerb von 2014 gewann unter dreissig Projekten «Barlume» der Architekten Oliviero Piffaretti und Carlo Romano (Atelier PeR, Mendrisio): ein einfacher, kubischer Holzbau rund um die Feuerstelle als Symbol der Begegnung. Der Berg bleibt das prägende Element, und die Hütte ist eine Laterne in der Landschaft. 2016 eingeweiht, 80 Jahre nach der ersten Hütte, auf 1600 m auf den südseitigen Weiden, ist sie vielleicht die schönste Terrasse über Lugano, den Voralpen, dem Apennin mit dem Monviso, dem Monte Rosa und den Tessiner Alpen, mit unvergesslichen Sonnenuntergängen.</p>
+<p>Den Wettbewerb von 2014 gewann unter dreissig Projekten «Barlume» der Architekten Oliviero Piffaretti und Carlo Romano (Atelier PeR, Mendrisio): ein einfacher, kubischer Holzbau rund um die Feuerstelle als Symbol der Begegnung. Der Berg bleibt das prägende Element, und die Hütte ist eine Laterne in der Landschaft. 2016 eingeweiht, 80 Jahre nach der ersten Hütte, auf 1602 m auf den südseitigen Weiden, ist sie vielleicht die schönste Terrasse über Lugano, den Voralpen, dem Apennin mit dem Monviso, dem Monte Rosa und den Tessiner Alpen, mit unvergesslichen Sonnenuntergängen.</p>
 <p><a href="http://www.simonemengani.ch/nuovo-servizio-fotografico-capanna-monte-bar/" rel="noopener">Fotos des Baus von Simone Mengani</a></p>"""),
         sostenitori=dict(
             testo="Die neue Hütte entstand dank diesen Unterstützern und über 300 Freunden, öffentlichen und privaten, die zu ihrem Bau beigetragen haben. Herzlichen Dank!",
@@ -801,7 +796,7 @@ Die Hütte ist nur ab Corticiasca erreichbar. Bis 8. November täglich offen."""
     "BaitaDelLuca.html": dict(
         cartella="baitadelluca",
         capanna_titolo="Die Baita",
-        capanna="""<p>Die Baita hat 16 Schlafplätze in zwei Räumen mit 4 und 12 Plätzen, eine Stube mit Gasküche und Cheminée, warmes Wasser und Dusche; das Licht kommt von Solarzellen. Geschirr und Pfannen sind vorhanden, Getränke gibt es auch ohne die Verantwortliche. Mässiger Empfang, kein WLAN und kein Telefon.</p>
+        capanna="""<p>Die Baita hat 16 Schlafplätze in zwei Räumen mit 4 und 12 Plätzen, eine Stube mit Gasküche und Cheminée, warmes Wasser und Dusche; das Licht kommt von Solarzellen. Geschirr und Pfannen sind vorhanden, Getränke gibt es in beschränkter Menge. Mässiger Empfang, kein WLAN und kein Telefon.</p>
 <p>Sie ist ganzjährig offen, aber nicht bewartet: Die Tür ist abgeschlossen, den Code erhalten Sie von der Verantwortlichen. Schnell und einfach erreichbar, wird sie auch für Kurse, Ausbildungstage oder einfach für ein gemeinsames Abendessen genutzt.</p>""",
         tariffe=[
             ("Mitglieder SAC/FAT/CAI/DAV", "Übernachtung, Taxen inbegriffen",
@@ -823,7 +818,7 @@ Die Hütte ist nur ab Corticiasca erreichbar. Bis 8. November täglich offen."""
 </ul>
 <p><a class="file-link" href="docs/capanne/baitadelluca/2020-cgc-capanne-cas-it.pdf">Allgemeine Geschäftsbedingungen der SAC-Hütten</a></p>""",
         accessi="""<ul>
-<li>Ab Rosone (Bus): 1 h, +270 m, T2 (<a href="https://map.schweizmobil.ch/?lang=de&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2722290&amp;N=1102884&amp;layers=Wanderland%2CStation&amp;trackId=5273099" rel="noopener">Route</a>).</li>
+<li>Ab Rosone (Bus): 45 min, +270 m, T2 (<a href="https://map.schweizmobil.ch/?lang=de&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2722290&amp;N=1102884&amp;layers=Wanderland%2CStation&amp;trackId=5273099" rel="noopener">Route</a>).</li>
 <li>Ab Sonvico (Bus): 1 h 45, +500 m, T2 (<a href="https://map.schweizmobil.ch/?lang=de&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2721523&amp;N=1102174&amp;layers=Wanderland%2CStation&amp;trackId=5273106" rel="noopener">Route</a>).</li>
 <li>Ab Villa Luganese (Bus): 1 h 45, +500 m, T2 (<a href="https://map.schweizmobil.ch/?lang=de&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2721748&amp;N=1101916&amp;layers=Wanderland%2CStation&amp;trackId=5273108" rel="noopener">Route</a>).</li>
 </ul>

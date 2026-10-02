@@ -17,8 +17,7 @@ CT_DOC = "docs/capanne/campotencia/"
 CONTENUTI = {
     "CampoTencia.html": dict(
         cartella="campotencia",
-        avviso="""<strong>Stagione estiva 2026.</strong> La capanna è aperta e custodita fino a metà ottobre circa.
-Riservate il soggiorno online; per altre informazioni chiamateci. A presto, Valeria e Paco.""",
+        avviso="""<strong>Stagione estiva 2026.</strong> La capanna è aperta e custodita fino a metà ottobre circa.""",
         capanna="""<p>La prima capanna delle montagne ticinesi fu costruita nel 1912 ai piedi del pizzo omonimo, sul versante leventinese in alta Val Piumogna. È un campo base per famiglie, escursionisti e alpinisti: escursioni naturalistiche, il Lago Morghirolo a due passi, i giardini d’arrampicata e le grandi ascensioni del gruppo del Campo Tencia, con la classica traversata della Cresta dei Corni.</p>
 <p>L’edificio attuale, progettato dall’architetto sezionale Oscar Hofmann e inaugurato nel 1977, è su tre piani: al pianterreno entrata, locale scarpe, servizi e cantina; al primo piano un luminoso soggiorno da 70 posti e la cucina; al secondo circa 70 posti letto in 7 camerate, alcune da 4-8 posti, ideali per le famiglie.</p>
 <p>I letti hanno piumoni nordici; <strong>il sacco lenzuolo è obbligatorio</strong>. La capanna mantiene il carattere degli anni ’80: niente camere singole con bagno, né asciugacapelli!</p>""",
@@ -48,7 +47,7 @@ Riservate il soggiorno online; per altre informazioni chiamateci. A presto, Vale
 <li><strong>Riservazione obbligatoria</strong>, online con il pulsante «Prenota».</li>
 <li>Disdette senza costi entro le 18.00 di <strong>due giorni prima</strong> della data riservata.</li>
 <li>Non si accettano riservazioni o richieste tramite social media: per informazioni chiamateci.</li>
-<li>Capanna custodita da metà giugno a metà ottobre; d’inverno in marzo e aprile, su riservazione.</li>
+<li>Capanna custodita da metà giugno a metà ottobre. D’inverno non è custodita, ma la riservazione è obbligatoria; per gruppi numerosi si può aprire d’accordo con i guardiani.</li>
 <li>Locale invernale sempre aperto, con bibite e legna a disposizione.</li>
 </ul>
 <p><a class="file-link" href="{CT_DOC}disposizioni-per-gli-ospiti.pdf">Disposizioni per gli ospiti</a></p>
@@ -69,11 +68,11 @@ Riservate il soggiorno online; per altre informazioni chiamateci. A presto, Vale
             file="storia", titolo="Storia della capanna",
             lead="Dal 1912 la prima capanna delle montagne ticinesi: ampliata, distrutta da un incendio e ricostruita più bella.",
             img=("inaugurazione-1912", "Cartolina dell’inaugurazione del rifugio il 10 agosto 1912, con un gruppo di alpinisti davanti alla capanna in pietra"),
-            corpo=f"""<p>La capanna fu costruita nel 1912 ai piedi del pizzo omonimo, sul versante leventinese, in alta Val Piumogna. Il nome Campo Tencia è un’invenzione toponomastica del 1858: indicava la montagna più alta interamente in territorio ticinese (3071,7 m) quando si disegnava la famosa carta nazionale del generale Dufour. Unisce i nomi di due alpi del Patriziato di Prato, Campo e Tencia, in alta Valle Lavizzara, sul versante valmaggese.</p>
-<p>L’11 agosto 1912 l’inaugurazione. Nel 1932 Patocchi, sempre lui l’animatore, presenta il progetto di ampliamento e nell’estate del 1933 si costruisce la nuova ala est.</p>
+            corpo=f"""<p>La capanna fu costruita nel 1912 ai piedi del pizzo omonimo, sul versante leventinese, in alta Val Piumogna. Il nome Campo Tencia è un’invenzione toponomastica del 1858: indicava la montagna più alta interamente in territorio ticinese (3072 m) quando si disegnava la famosa carta nazionale del generale Dufour. Unisce i nomi di due alpi del Patriziato di Prato, Campo e Tencia, in alta Valle Lavizzara, sul versante valmaggese.</p>
+<p>L’11 agosto 1912 l’inaugurazione (il 10 agosto secondo alcune fonti d’archivio). Nel 1932 Patocchi, sempre lui l’animatore, presenta il progetto di ampliamento e nell’estate del 1933 si costruisce la nuova ala est.</p>
 <figure><img src="assets/img/{CT_IMG}costruzione.webp" alt="Uomini al lavoro davanti alla vecchia capanna in pietra, in una foto d’epoca" width="1200" height="832" loading="lazy" decoding="async"></figure>
 <p>Passano quarant’anni e si mette mano ad altre opere di consolidamento e miglioria. Il 22 agosto 1975 un grave incendio distrugge il paziente lavoro di anni.</p>
-<p>L’estate seguente la capanna rinasce più grande, più bella, più funzionale. La sua struttura è una novità a livello nazionale, merito dell’architetto Oscar Hofmann: non più l’immagine squadrata delle classiche capanne alpine, ma un aspetto innovativo, agile e aggraziato, con strutture portanti in acciaio rivestito e isolato con materiali adatti alla quota. Nuova inaugurazione il 25 settembre 1977.</p>
+<p>Subito si mette mano alla ricostruzione, e la capanna rinasce più grande, più bella, più funzionale. La sua struttura è una novità a livello nazionale, merito dell’architetto Oscar Hofmann: non più l’immagine squadrata delle classiche capanne alpine, ma un aspetto innovativo, agile e aggraziato, con strutture portanti in acciaio rivestito e isolato con materiali adatti alla quota. Nuova inaugurazione il 25 settembre 1977.</p>
 <figure><img src="assets/img/{CT_IMG}capanna-storica.webp" alt="La vecchia capanna in pietra nella neve, in una foto d’epoca" width="1200" height="782" loading="lazy" decoding="async"></figure>
 <p>Nel 2008 l’ala nord aggiunge una nuova cucina professionale. L’11 agosto 2012 si festeggiano i 100 anni. Nel 2022 una turbina idrica garantisce l’approvvigionamento elettrico, l’impianto fotovoltaico è ampliato e il trattamento delle acque reflue rifatto.</p>"""),
         pagine=[
@@ -91,10 +90,6 @@ Riservate il soggiorno online; per altre informazioni chiamateci. A presto, Vale
                           dati=[("Lunghezza", "12 km"), ("Dislivello", "+1300 m"), ("Tempo", "4-5 h"), ("Difficoltà", "T3")],
                           link=[("Mappa online", "https://s.geo.admin.ch/151dbckh2v17"),
                                 ("Scheda dell’itinerario", CT_DOC + "e-lago-morghirolo-e-sentiero-didattico.pdf")]),
-                     dict(titolo="Giro Leìt-Piumogna", img=("genziane", "Genziane in fiore sotto una cima rocciosa"),
-                          testo="Grande giro ad anello che collega due capanne e due laghetti passando da due passi, in un contesto naturalistico di grande pregio. Attenzione: a inizio estate, nella parte alta a est del Pizzo Lei di Cima, ci sono spesso nevai ripidi e pericolosi.",
-                          dati=[("Lunghezza", "18 km"), ("Dislivello", "+1350 / −1350 m"), ("Tempo", "8 h"), ("Difficoltà", "T3")],
-                          link=[("Mappa online", "https://s.geo.admin.ch/rzubpn495uo8")]),
                  ]),
             dict(file="giro-piumogna", titolo="Giro della Piumogna",
                  lead="Un anello da Dalpe per le capanne Leìt e Campo Tencia, in una zona protetta ricca di fiori.",
@@ -116,9 +111,9 @@ Riservate il soggiorno online; per altre informazioni chiamateci. A presto, Vale
 <p><a href="https://www.sac-cas.ch/it/formazione-e-sicurezza/sicuri/sicuri-nelle-escursioni-alpine-e-in-montagna/" rel="noopener">Sicuri nelle escursioni alpine: i consigli del CAS</a></p>""",
                  itinerari=[
                      dict(titolo="Pizzo Campo Tencia (3072 m) e Pizzo Croslina (3012 m)", img=("croce-campo-tencia", "La croce di vetta del Pizzo Campo Tencia"),
-                          testo="La montagna più alta interamente in territorio ticinese deve il nome alle sue rocce rossastre e ferrose, «tencie», cioè sporche, in dialetto. Al centro del cantone, offre una vista a 360 gradi; dalla cima si può scendere in Valle Lavizzara o raggiungere la Via Alta Vallemaggia. Il percorso è in buona parte marcato; in alcuni punti attenzione alla caduta di sassi, soprattutto se ci sono altre persone. A inizio estate c’è neve nella conca prima della bocchetta di Croslina. Dalla bocchetta (2865 m) si può traversare verso nord fino alla cresta che porta al Pizzo Croslina: passaggi esposti, attenzione soprattutto in discesa.",
-                          dati=[("Lunghezza", "3 km"), ("Dislivello", "+940 m"), ("Tempo", "3 h per una cima, 4 h 30 per le due"),
-                                ("Difficoltà", "T4 Pizzo Campo Tencia, T6 Pizzo Croslina"), ("Materiale", "Buoni scarponi")],
+                          testo="La montagna più alta interamente in territorio ticinese deve il nome alle sue rocce rossastre e ferrose, «tencie», cioè sporche, in dialetto. Al centro del cantone, offre una vista a 360 gradi; dalla cima si può scendere in Valle Lavizzara o raggiungere la Via Alta Vallemaggia. Il percorso è in buona parte marcato; in alcuni punti attenzione alla caduta di sassi, soprattutto se ci sono altre persone. A inizio estate c’è neve nella conca prima della bocchetta di Croslina. Dalla bocchetta (2864 m) si può traversare verso nord fino alla cresta che porta al Pizzo Croslina: passaggi esposti, attenzione soprattutto in discesa.",
+                          dati=[("Lunghezza", "3 km"), ("Dislivello", "+940 m"), ("Tempo", "3 h per il Pizzo Campo Tencia, 4 h con il Pizzo Croslina"),
+                                ("Difficoltà", "T4+ Pizzo Campo Tencia, T6 con il Pizzo Croslina"), ("Materiale", "Buoni scarponi")],
                           link=[("Descrizione completa", CT + "tencia-croslina.html"),
                                 ("Scheda dell’itinerario", CT_DOC + "b-pizzo-campo-tencia-3072-m-pizzo-croslina-3012-m.pdf")]),
                      dict(titolo="Pizzo Forno (2907 m)", img=("pizzo-forno", "Il Pizzo Forno e il Pizzo Laghetto con gli ultimi nevai"),
@@ -154,12 +149,12 @@ Riservate il soggiorno online; per altre informazioni chiamateci. A presto, Vale
                  corpo="""<p>Il Pizzo Campo Tencia (3072 m) è una straordinaria piramide di pietra e di ghiaccio, con un vasto panorama a 360 gradi. Il Pizzo Croslina (3012 m) si erge come un colosso sopra la capanna; visto da est è invece un’elegante piramide.</p>
 <p>Caratteristico è il versante nord di questo tratto della catena principale: dopo la piramide del Croslina emergono verso sud-est, in sequenza regolare, tre cime separate da selle appena accennate: il Pizzo Campo Tencia (3072 m), la cima intermedia detta Tenca (3035 m, senza nome sulla carta nazionale) e il Pizzo Penca (3038 m).</p>
 <h2>Percorso</h2>
-<p>Dalla capanna si va verso sud seguendo le marcature bianco-blu fino a una cascata. A sinistra un largo camino porta alla cengia che attraversa tutta la parete: un sentiero ben marcato ed esposto sale verso sud-est fino a una facile costa. Piegando a sud-ovest si arriva nella conca del Laghetto, ai piedi di quel che resta del Ghiacciaio Grande di Croslina. Si continua sulla crestina tra i due ghiacciai di Croslina fino a circa 2800 m, poi verso sud-ovest, abbassandosi sul ghiacciaio, alla bocchetta di Croslina (2867 m), sempre sulle marcature bianco-blu. Restando sul filo di cresta si raggiunge la croce di vetta.</p>
+<p>Dalla capanna si va verso sud seguendo le marcature bianco-blu fino a una cascata. A sinistra un largo camino porta alla cengia che attraversa tutta la parete: un sentiero ben marcato ed esposto sale verso sud-est fino a una facile costa. Piegando a sud-ovest si arriva nella conca del Laghetto, ai piedi di quel che resta del Ghiacciaio Grande di Croslina. Si continua sulla crestina tra i due ghiacciai di Croslina fino a circa 2800 m, poi verso sud-ovest, abbassandosi sul ghiacciaio, alla bocchetta di Croslina (2864 m), sempre sulle marcature bianco-blu. Restando sul filo di cresta si raggiunge la croce di vetta.</p>
 <p>Dalla cima si può traversare verso la Capanna Soveltra, in Valle Maggia, scendendo a sud-est sulle marcature bianco-blu-bianco.</p>
 <p><strong>Pizzo Croslina:</strong> dalla bocchetta di Croslina si va verso nord-ovest seguendo i punti blu, fino a una cengia sul lato destro dell’evidente canale detritico. Salita in parte esposta, con passaggi su roccia di II grado.</p>
 <p>Per entrambe le cime la discesa segue lo stesso itinerario.</p>""",
-                 dati=[("Lunghezza", "3 km"), ("Dislivello", "+940 m"), ("Tempo", "3 h per una cima, 4 h per le due"),
-                       ("Difficoltà", "T3-T4 Pizzo Campo Tencia, T6 Pizzo Croslina"),
+                 dati=[("Lunghezza", "3 km"), ("Dislivello", "+940 m"), ("Tempo", "3 h per il Pizzo Campo Tencia, 4 h con il Pizzo Croslina"),
+                       ("Difficoltà", "T4+ Pizzo Campo Tencia, T6 con il Pizzo Croslina"),
                        ("Da vedere", "Conca del Laghetto, Ghiacciaio Grande di Croslina, la croce di vetta del Campo Tencia, le stelle alpine sul Croslina")],
                  link=[("Scheda dell’itinerario", CT_DOC + "b-pizzo-campo-tencia-3072-m-pizzo-croslina-3012-m.pdf")],
                  foto="tencia-croslina"),
@@ -192,7 +187,7 @@ Riservate il soggiorno online; per altre informazioni chiamateci. A presto, Vale
                  lead="Sci alpinismo impegnativo lontano dalle mete più battute e cascate di ghiaccio fino a 200 metri.",
                  img=("scialpinismo", "Scialpinisti in discesa su un ampio pendio innevato, controsole"),
                  corpo="""<h2>Sci alpinismo</h2>
-<p>D’inverno la zona del Campo Tencia resta lontana dalle mete più battute. Il terreno tecnico e impervio richiede buone condizioni di neve e una buona padronanza dello sci alpinismo e dell’orientamento. In primavera si trovano le condizioni per gite di grande soddisfazione: il Pizzo Campo Tencia, il Pizzo Forno e il Pizzo Campolungo. Di norma la capanna non è custodita, ma può essere aperta per gruppi o per più giornate.</p>
+<p>D’inverno la zona del Campo Tencia resta lontana dalle mete più battute. Il terreno tecnico e impervio richiede buone condizioni di neve e una buona padronanza dello sci alpinismo e dell’orientamento. In primavera si trovano le condizioni per gite di grande soddisfazione: il Pizzo Campo Tencia, il Pizzo Forno e il Pizzo Campolungo. La capanna non è custodita, ma la riservazione è obbligatoria; per gruppi numerosi si può aprire d’accordo con i guardiani.</p>
 <h2>Cascate di ghiaccio</h2>
 <p>Nella conca del Buco di Cumasna, a 2000 metri, dall’inizio dell’inverno si formano imponenti cascate di ghiaccio, lunghe fino a 200 metri e di varie difficoltà. Sulla destra c’è la più famosa, la «Giovannelli», lungo il canale che d’inverno permette di superare la barra rocciosa per salire o scendere dalla vetta del Pizzo Campo Tencia.</p>""",
                  foto="inverno"),
@@ -204,7 +199,7 @@ Riservate il soggiorno online; per altre informazioni chiamateci. A presto, Vale
         cartella="cristallina",
         avviso="""<strong>Stagione estiva a pieno regime.</strong> Tutti i principali collegamenti sono liberi dalla neve e ben percorribili.
 Le prenotazioni si fanno online. Vi aspettiamo, Manu.""",
-        capanna="""<p>La prima capanna moderna del Club Alpino Svizzero sorge a 2572 m sul Passo Cristallina, in una zona molto bella per l’escursionismo estivo e invernale. D’estate è il punto d’appoggio per le cime vicine e per le traversate verso la Valle Maggia, la Val Formazza e il Gottardo; d’inverno la regione, ricca di neve, offre splendide discese e concatenamenti di vette.</p>
+        capanna="""<p>La prima capanna moderna del Club Alpino Svizzero sorge a 2575 m sul Passo Cristallina, in una zona molto bella per l’escursionismo estivo e invernale. D’estate è il punto d’appoggio per le cime vicine e per le traversate verso la Valle Maggia, la Val Formazza e il Gottardo; d’inverno la regione, ricca di neve, offre splendide discese e concatenamenti di vette.</p>
 <p>Ha 100 posti letto in cuccette con piumone, in 6 camere da 4, 9 da 8 e 2 dormitori da 12, un refettorio panoramico con terrazza, servizi interni con acqua calda, doccia, locale essiccatoio e locale scarponi con ciabatte per gli ospiti. Il sacco lenzuolo è obbligatorio. Buona ricezione Swisscom vicino alla capanna.</p>
 <p>La capanna è sempre aperta e accessibile. È custodita d’estate, da giugno a metà ottobre; d’inverno, da dicembre a fine aprile, il guardiano c’è con buone condizioni, nei fine settimana, durante le feste e per i gruppi che hanno riservato.</p>""",
         cucina="""<p>Durante il giorno ricette semplici alla portata di tutti: gnocchi, ravioli, torte salate, salumi, dolci e tanto altro, tutto fatto in capanna con prodotti locali di origine svizzera. Per la mezza pensione i menu cambiano secondo il giorno della settimana, pensando anche ai vegetariani. Vi aspetta inoltre una buona scelta di vini e distillati.</p>
@@ -261,12 +256,12 @@ Le prenotazioni si fanno online. Vi aspettiamo, Manu.""",
                  corpo="""<p>A chi vuole scoprire la magnifica zona del Cristallina, i laghetti e la fauna dell’alta montagna, proponiamo itinerari di media difficoltà e non troppo lunghi, che partono dalla capanna o la usano come tappa.</p>""",
                  itinerari=[
                      dict(titolo="Cima di Lago (2832 m)", img=("cima-di-lago", "Uno stambecco sul pendio della Cima di Lago, con il percorso segnato in rosso"),
-                          testo="Facile vetta con una splendida vista, ideale anche per i bambini: è probabile incontrare gli stambecchi.",
+                          testo="Vetta con una splendida vista, ideale anche per i bambini con passo sicuro: è probabile incontrare gli stambecchi.",
                           dati=[("Lunghezza", "4 km"), ("Dislivello", "+300 m"), ("Tempo", "1 h"), ("Difficoltà", "T4")],
                           link=[("Scheda dell’itinerario", "docs/capanne/cristallina/a-cima-di-lago-2832-msm.pdf")]),
                      dict(titolo="Pizzo Cristallina (2912 m)", img=("pizzo-cristallina", "Vista dalla vetta del Pizzo Cristallina su laghetti e cime"),
                           testo="La cima principale, al centro di una serie di laghetti alpini; in vetta resiste il rifugio Camosci, ultima traccia del periodo bellico. Nel pendio finale attenzione alla caduta di sassi se ci sono altre persone; entrate nel bivacco con molta prudenza, c’è pericolo di caduta.",
-                          dati=[("Lunghezza", "11 km"), ("Dislivello", "+1100 m"), ("Tempo", "2 h"), ("Difficoltà", "T4")],
+                          dati=[("Lunghezza", "11 km da Ossasco"), ("Dislivello", "+1100 m da Ossasco"), ("Tempo", "2 h dalla capanna, 6 h da Ossasco"), ("Difficoltà", "T4")],
                           link=[("Scheda dell’itinerario", "docs/capanne/cristallina/b-cristallina-2912.pdf")]),
                      dict(titolo="Giro del Cristallina", img=("giro-cristallina", "Il lago artificiale di Robiei con la diga, sotto le montagne"),
                           testo="Classico e facile anello su sentiero bianco-rosso intorno alla vetta del Cristallina. Si fa anche in giornata da Robiei o dal Passo del Narèt, con pranzo in capanna.",
@@ -364,7 +359,7 @@ Per qualsiasi informazione chiamateci. A presto in quota, Lele, Miri e il team."
 <p><strong>In auto:</strong> A2 fino a Biasca, poi direzione Lucomagno fino a Campo Blenio e Ghirone; si sale alla diga del Luzzone, la si attraversa e si arriva all’Alpe di Compietto. Oppure si lascia l’auto a Ghirone e si prende il <a href="http://www.autolinee.ch/greina" rel="noopener">bus alpino</a>.</p>
 <p><strong>Con i mezzi pubblici:</strong> treno S10 fino a Biasca, bus 131 fino a Ghirone, poi bus alpino verso la diga del Luzzone. Taxi Riviera (Biasca): <a class="num" href="tel:+41918624848">+41 91 862 48 48</a>.</p>
 <p><strong>Traversate ad altre capanne:</strong> <a href="Motterascio.html">Motterascio</a> 5 h; <a href="http://laentahuette.ch/it/startseite.html" rel="noopener">Läntahütte</a> 3 h 30; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 1 h; <a href="http://quarnei.ch/" rel="noopener">Quarnei</a> 3 h.</p>
-<p>Cartine: CNS 1:25’000 foglio 1233 Greina; carta scialpinistica 256 S.</p>""",
+<p>Cartine: CNS 1:25’000 foglio 1253 Olivone; carta scialpinistica 256 S.</p>""",
         attivita="""<p>All’Adula si respira un profumo antico: l’accoglienza e la buona cucina, con un bicchiere di vino, invitano a sdraiarsi sul prato davanti a uno scenario d’eccezione. Da qui si parte per itinerari entusiasmanti, antichi passaggi e creste aeree.</p>
 <p>È il posto giusto per i bambini, che possono vedere fiori stupendi a inizio estate, scovare camosci e stambecchi, sentire le marmotte, accarezzare le mucche e bagnarsi nel fiume. Si dorme in una capanna storica, che conserva il fascino del rifugio d’altri tempi, e si sale sulla vetta dell’Adula, ambizione di tanti ticinesi, con il suo ghiacciaio che purtroppo presto sarà solo un ricordo.</p>""",
         pagine=[
@@ -544,7 +539,7 @@ Riservate il soggiorno online; per informazioni scriveteci o chiamateci. A prest
                  corpo="""<p>Camona da Medel, Capanna Michela Motterascio, Läntahütte: il trekking Greina Alta, per escursionisti medi o esperti, va da Curaglia a Vals e ha un denominatore comune, il numero 3. Attraversa una regione con 3 capanne del CAS, 3 culture, 3 lingue e 3 vette imponenti. Chi lo percorre per intero può chiedere una prenotazione forfettaria in una delle tre capanne.</p>
 <ul>
 <li><strong>Giorno 1:</strong> (Disentis) Curaglia (1332 m), Val Platta, Alp Sura (1982 m), Camona da Medel (2524 m). 3 h 30, T3.</li>
-<li><strong>Giorno 2:</strong> Camona da Medel, Fuorcla Sura da Lavaz (2759 m), Passo della Greina (2355 m), Crap la Crusch (2268 m), Capanna Michela Motterascio (2172 m). 6 h, T4.</li>
+<li><strong>Giorno 2:</strong> Camona da Medel, Fuorcla Sura da Lavaz (2703 m), Passo della Greina (2355 m), Crap la Crusch (2268 m), Capanna Michela Motterascio (2172 m). 6 h, T4.</li>
 <li><strong>Giorno 3:</strong> Capanna Michela Motterascio, Lago di Luzzone, Larecc (1633 m), Val Scaradra, Passo Soreda (2759 m), Valle della Länta, Läntahütte (2090 m). 7 h, T3.</li>
 <li><strong>Giorno 4:</strong> Läntahütte, Furggelti (2712 m), Lago di Zervreila (1862 m), Zervreila (Vals). 5 h, T3.</li>
 </ul>""",
@@ -576,10 +571,10 @@ La capanna si raggiunge solo da Corticiasca. Aperta tutti i giorni fino all’8 
 <p><strong>James e Seo</strong></p>"""),
         tariffe=[
             ("Soci CAS/FAT e club con diritto di reciprocità", "Pernottamento con mezza pensione",
-             [("Bambini fino a 8 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 40.–"), ("Giovani da 15 a 21 anni", "Fr. 60.–"),
+             [("Bambini fino a 7 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 40.–"), ("Giovani da 15 a 21 anni", "Fr. 60.–"),
               ("Adulti dai 22 anni", "Fr. 80.–")]),
             ("Non soci", "Pernottamento con mezza pensione",
-             [("Bambini fino a 8 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 45.–"), ("Giovani da 15 a 21 anni", "Fr. 65.–"),
+             [("Bambini fino a 7 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 45.–"), ("Giovani da 15 a 21 anni", "Fr. 65.–"),
               ("Adulti dai 22 anni", "Fr. 95.–")]),
             ("Camera doppia", "Con letto matrimoniale e biancheria fresca",
              [("Per persona", "Fr. 120.–"), ("Uso singolo", "Fr. 150.–")]),
@@ -685,7 +680,7 @@ La capanna si raggiunge solo da Corticiasca. Aperta tutti i giorni fino all’8 
             corpo="""<p>Dopo l’esperienza sui monti di Condra, nel 1935 il CAS ottenne la cascina dell’Alpe Musgatina come rifugio invernale per la prima scuola di sci del Canton Ticino, con gli istruttori Tita Calvi e Aldo Balmelli.</p>
 <p>Il successo fu tale che già nel 1936, per il cinquantenario della Sezione Ticino, si costruì una capanna sul Monte Bar; il cantiere diede lavoro ai molti emigranti stagionali della valle. Il rifugio divenne presto la meta di numerosi gruppi di sciatori: la domenica sulle piste si contavano anche più di 300 persone. L’amministrazione invernale fu affidata allo Sci Club Lugano, e lo slalom gigante del Monte Bar ebbe un enorme successo. D’estate la capanna era il campo base per le salite sulle montagne vicine.</p>
 <p>Nel 2013 la sezione decise di costruire una nuova capanna: quella del 1936, migliorata nel 1993, aveva ormai grossi problemi di logistica, sicurezza e approvvigionamento. Si cercava una struttura moderna, funzionale ed ecologica, con il carattere di un rifugio alpino classico. Il progetto fu pensato con il Comune di Capriasca (progetto Areaviva) e vari partner locali, per valorizzare tutta la regione.</p>
-<p>Il concorso del 2014 fu vinto, tra trenta progetti, da «Barlume» degli architetti Oliviero Piffaretti e Carlo Romano (Atelier PeR, Mendrisio): un edificio semplice, cubico, in legno, intorno al focolare come simbolo di incontro. La montagna resta l’elemento dominante e la capanna è una lanterna nel paesaggio. Inaugurata nel 2016, 80 anni dopo il primo rifugio, a 1600 m sui pascoli rivolti a sud è forse la più bella terrazza sul Luganese, sulle Prealpi, sugli Appennini con il Monviso, sul Monte Rosa e sulle Alpi ticinesi, con tramonti indimenticabili.</p>
+<p>Il concorso del 2014 fu vinto, tra trenta progetti, da «Barlume» degli architetti Oliviero Piffaretti e Carlo Romano (Atelier PeR, Mendrisio): un edificio semplice, cubico, in legno, intorno al focolare come simbolo di incontro. La montagna resta l’elemento dominante e la capanna è una lanterna nel paesaggio. Inaugurata nel 2016, 80 anni dopo il primo rifugio, a 1602 m sui pascoli rivolti a sud è forse la più bella terrazza sul Luganese, sulle Prealpi, sugli Appennini con il Monviso, sul Monte Rosa e sulle Alpi ticinesi, con tramonti indimenticabili.</p>
 <p><a href="http://www.simonemengani.ch/nuovo-servizio-fotografico-capanna-monte-bar/" rel="noopener">Fotografie del progetto di Simone Mengani</a></p>"""),
         sostenitori=dict(
             testo="La nuova capanna è nata grazie a questi sostenitori e agli oltre 300 amici, pubblici e privati, che hanno contribuito alla sua realizzazione. Grazie!",
@@ -699,7 +694,7 @@ La capanna si raggiunge solo da Corticiasca. Aperta tutti i giorni fino all’8 
 
     "BaitaDelLuca.html": dict(
         cartella="baitadelluca",
-        capanna="""<p>La baita ha 16 posti letto in due camere da 4 e da 12, un refettorio con cucina a gas e camino a legna, acqua calda e doccia; l’illuminazione è a pannelli solari. Piatti e pentole sono a disposizione e le bibite ci sono anche in assenza della responsabile. Ricezione discreta, niente wi-fi e niente telefono.</p>
+        capanna="""<p>La baita ha 16 posti letto in due camere da 4 e da 12, un refettorio con cucina a gas e camino a legna, acqua calda e doccia; l’illuminazione è a pannelli solari. Piatti e pentole sono a disposizione e ci sono bibite in quantità limitata. Ricezione discreta, niente wi-fi e niente telefono.</p>
 <p>È aperta tutto l’anno ma non è custodita: la porta è chiusa e il codice per entrare si chiede alla responsabile. Facile e veloce da raggiungere, è usata anche per corsi, giornate di formazione o semplicemente per una cena in compagnia.</p>""",
         tariffe=[
             ("Soci CAS/FAT/CAI/DAV", "Pernottamento, tasse incluse",
@@ -721,7 +716,7 @@ La capanna si raggiunge solo da Corticiasca. Aperta tutti i giorni fino all’8 
 </ul>
 <p><a class="file-link" href="docs/capanne/baitadelluca/2020-cgc-capanne-cas-it.pdf">Condizioni generali delle capanne CAS</a></p>""",
         accessi="""<ul>
-<li>Da Rosone (bus): 1 h, +270 m, T2 (<a href="https://map.schweizmobil.ch/?lang=it&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2722290&amp;N=1102884&amp;layers=Wanderland%2CStation&amp;trackId=5273099" rel="noopener">percorso</a>).</li>
+<li>Da Rosone (bus): 45 min, +270 m, T2 (<a href="https://map.schweizmobil.ch/?lang=it&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2722290&amp;N=1102884&amp;layers=Wanderland%2CStation&amp;trackId=5273099" rel="noopener">percorso</a>).</li>
 <li>Da Sonvico (bus): 1 h 45, +500 m, T2 (<a href="https://map.schweizmobil.ch/?lang=it&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2721523&amp;N=1102174&amp;layers=Wanderland%2CStation&amp;trackId=5273106" rel="noopener">percorso</a>).</li>
 <li>Da Villa Luganese (bus): 1 h 45, +500 m, T2 (<a href="https://map.schweizmobil.ch/?lang=it&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2721748&amp;N=1101916&amp;layers=Wanderland%2CStation&amp;trackId=5273108" rel="noopener">percorso</a>).</li>
 </ul>

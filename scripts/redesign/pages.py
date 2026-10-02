@@ -27,8 +27,8 @@ HUTS = [
     ("Cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Custodita", "Sull’omonimo passo, tra Leventina e Valle Maggia. Inaugurata nel 2003, primo rifugio moderno del CAS.", "100 posti", "Ossasco 3h30", "capanne/cristallina-3x2", (837, 558), True),
     ("Adula.html", "Adula", "2012", "Val Carassino", "Custodita", "Il classico rifugio in pietra affacciato sulla Valle di Blenio: storia, accoglienza calorosa e cucina nostrana.", "24 posti", "Compietto 2h40", "capanne/adula-3x2", (1000, 667), False),
     ("Motterascio.html", "Motterascio", "2172", "Greina", "Custodita", "Al margine della riserva della Greina: torbiere, alpeggi e l’arco naturale più grande del Ticino.", "70 posti", "Garzott 2h", "capanne/motterascio-3x2", (974, 649), False),
-    ("MonteBar.html", "Monte Bar", "1620", "Alta Capriasca", "Tutto l’anno", "Il balcone sul Luganese, ricostruito nel 2016: vista dal Monte Rosa ai Denti della Vecchia, standard Bike Hotel.", "42 posti", "Corticiasca 1h30", "capanne/montebar-3x2", (663, 442), False),
-    ("BaitaDelLuca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Su riservazione", "Sopra Sonvico, ai piedi dei Denti della Vecchia. Punto di ritrovo dei giovani, ideale per famiglie e arrampicata.", "16 posti, autogestita", "Rosone 30 min", "capanne/baitadelluca-3x2", (1000, 667), False),
+    ("MonteBar.html", "Monte Bar", "1602", "Alta Capriasca", "Tutto l’anno", "Il balcone sul Luganese, ricostruito nel 2016: vista dal Monte Rosa ai Denti della Vecchia, standard Bike Hotel.", "42 posti", "Corticiasca 1h30", "capanne/montebar-3x2", (663, 442), False),
+    ("BaitaDelLuca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Su riservazione", "Sopra Sonvico, ai piedi dei Denti della Vecchia. Ideale per famiglie e arrampicata.", "16 posti, autogestita", "Rosone 45 min", "capanne/baitadelluca-3x2", (1000, 667), False),
 ]
 
 COURSES = [
@@ -149,7 +149,7 @@ def home():
 <div class="tile-body">
 <span class="label">Gruppo giovani, dagli anni ’60</span>
 <h3 class="h2">Giovani</h3>
-<p>Arrampicata, escursioni e settimane in montagna con monitori della sezione. Il ritrovo è la Baita del Luca, ai piedi dei Denti della Vecchia.</p>
+<p>Arrampicata, escursioni e settimane in montagna con monitori della sezione.</p>
 <div class="links"><a class="link" href="Giovani.html">Gruppo giovani</a><a class="link" href="Organizzazione.html#giovani">Organizzazione</a></div>
 </div>
 </article>
@@ -245,9 +245,9 @@ HUT_PAGES = {
         mail="campotencia@casticino.ch", booking=PRENOTA.format(36), facebook="https://www.facebook.com/61559861696010",
         description="Capanna Campo Tencia, 2140 m, in Val Piumogna (Leventina): 80 posti letto, custodita da metà giugno a metà ottobre. Contatti e prenotazioni.",
         band=("capanne/campotencia", "La Capanna Campo Tencia al tramonto, sopra la Val Piumogna", 658),
-        intro="Adagiata su un terrazzo che domina l’alta Val Piumogna, è la base ideale per escursioni, traversate verso altre capanne e salite come quella al Pizzo Campo Tencia, che con i suoi 3071 m è la cima più alta interamente in territorio ticinese.",
+        intro="Adagiata su un terrazzo che domina l’alta Val Piumogna, è la base ideale per escursioni, traversate verso altre capanne e salite come quella al Pizzo Campo Tencia, che con i suoi 3072 m è la cima più alta interamente in territorio ticinese.",
         stay=[("Apertura", "Tutto l’anno"),
-              ("Custodia", "Da metà giugno a metà ottobre; d’inverno in marzo e aprile, su riservazione"),
+              ("Custodia", "Da metà giugno a metà ottobre; d’inverno non è custodita, ma la riservazione è obbligatoria; per gruppi numerosi si può aprire d’accordo con i guardiani"),
               ("Posti letto", "80"),
               ("Pasti", "Cucina calda, pasti serviti tutto il giorno dal guardiano"),
               ("Locale invernale", "Sempre aperto, con bibite e legna")],
@@ -298,7 +298,7 @@ HUT_PAGES = {
         mail="motterascio@casticino.ch", booking=PRENOTA.format(221), facebook="https://www.facebook.com/michelamotterascio",
         description="Capanna Motterascio, 2172 m, al margine della Greina (Blenio): 70 posti letto, aperta tutto l’anno, custodita da metà giugno a metà ottobre. Contatti e prenotazioni.",
         band=("capanne/motterascio", "La Capanna Motterascio sull’altopiano della Greina", 649),
-        intro="Capanna nuova, al margine di una riserva naturale straordinaria: la Greina, con le sue paludi, torbiere, alpeggi e una flora incontaminata. Punto di partenza per itinerari interessanti, tra cui spicca l’arco della Greina, il più grande arco naturale del Canton Ticino.",
+        intro="Inaugurata nel 1967 e ampliata nel 1980, nel 1990 e nel 2006, sorge al margine di una riserva naturale straordinaria: la Greina, con le sue paludi, torbiere, alpeggi e una flora incontaminata. Punto di partenza per itinerari interessanti, tra cui spicca l’arco della Greina, il più grande arco naturale del Canton Ticino.",
         stay=[("Apertura", "Tutto l’anno"),
               ("Custodia", "Da metà giugno a metà ottobre (nel 2026 dal 13 giugno al 10 ottobre); d’inverno il locale invernale da 10 posti, su riservazione"),
               ("Posti letto", "70"),
@@ -312,9 +312,9 @@ HUT_PAGES = {
                  ("Cellulare", '<a class="num" href="tel:+41797276905">+41 79 727 69 05</a>'),
                  ("E-mail", '<a href="mailto:motterascio@casticino.ch">motterascio@casticino.ch</a>')]),
     "MonteBar.html": dict(
-        name="Monte Bar", where="Alta Capriasca, Luganese", alt_m="1620", beds="42", custody="tutto l’anno",
+        name="Monte Bar", where="Alta Capriasca, Luganese", alt_m="1602", beds="42", custody="tutto l’anno",
         mail="montebar@casticino.ch", booking=PRENOTA.format(168), facebook="https://www.facebook.com/CapannaMonteBarCAS/",
-        description="Capanna Monte Bar, 1620 m, in Alta Capriasca: 42 posti letto in camere da 2, 4 e 6, custodita tutto l’anno, standard Bike Hotel. Contatti e prenotazioni.",
+        description="Capanna Monte Bar, 1602 m, in Alta Capriasca: 42 posti letto in camere da 2, 4 e 6, custodita tutto l’anno, standard Bike Hotel. Contatti e prenotazioni.",
         band=("capanne/montebar", "La Capanna Monte Bar con vista sul Luganese", 442),
         intro="Su un poggio di eccezionale bellezza, con una vista a 180 gradi dai Denti della Vecchia al Tamaro e, a ovest, sui 4000 vallesani dal Mischabel al Monte Rosa. Ricostruita nell’autunno 2016: camere da 2, 4 e 6 posti, servizi ai piani, refettorio per circa 80 persone, saletta riunioni per 20, ampia terrazza e un locale chiuso con caricatori per e-bike e piccola officina, secondo lo standard Bike Hotel.",
         stay=[("Apertura", "Tutto l’anno; apre anche per eventi, cene e pranzi su richiesta"),
@@ -332,15 +332,15 @@ HUT_PAGES = {
     "BaitaDelLuca.html": dict(
         name="Baita del Luca", where="Cioascio, Sonvico", alt_m="1070", beds="16", custody="su riservazione",
         mail="baitaluca@casticino.ch",
-        description="Baita del Luca, 1070 m, sopra Sonvico ai piedi dei Denti della Vecchia: 16 posti letto, autogestita, solo su riservazione. Ritrovo del gruppo giovani.",
+        description="Baita del Luca, 1070 m, sopra Sonvico ai piedi dei Denti della Vecchia: 16 posti letto, autogestita, solo su riservazione.",
         img=("capanne/baitadelluca-3x2", "La Baita del Luca su un pendio erboso sopra Sonvico", 1000, 667),
-        intro="Su un ampio pendio erboso sopra Sonvico, ai piedi dei Denti della Vecchia: base ideale per escursioni, anche in famiglia, e arrampicate in un paesaggio unico. È il punto di ritrovo del <a href=\"Giovani.html\">gruppo giovani</a>.",
-        stay=[("Apertura", "Chiusa; accessibile solo previa riservazione"),
+        intro="Su un ampio pendio erboso sopra Sonvico, ai piedi dei Denti della Vecchia: base ideale per escursioni, anche in famiglia, e arrampicate in un paesaggio unico.",
+        stay=[("Apertura", "Tutto l’anno, solo previa riservazione"),
               ("Posti letto", "16"),
               ("Pasti", "Possibilità di cucinare"),
-              ("Bibite", "Disponibili anche in assenza del guardiano"),
+              ("Bibite", "Disponibili in quantità limitata"),
               ("Prenotazioni", "Il codice d’accesso viene dato dopo il versamento anticipato")],
-        reach=[("Accesso estivo", "Da Rosone 30 min; da Lovarescia (sopra Sonvico) 60 min; da Car e da Luss (Villa Luganese) 60 min"),
+        reach=[("Accesso estivo", "Da Rosone 45 min; da Lovarescia (sopra Sonvico) 60 min; da Car e da Luss (Villa Luganese) 60 min"),
                ("Cartina", 'CNS 1333 Tesserete, coordinate <span class="num">722.980 / 102.600</span>')],
         contact=[("Responsabile", "Priska Deluigi, 6960 Odogno"),
                  ("Cellulare", '<a class="num" href="tel:+41792033084">+41 79 203 30 84</a>'),
@@ -895,7 +895,7 @@ RUOLI_DE = {
     "Responsabile capanne": "Verantwortlicher Hütten", "Responsabile sentieri": "Verantwortlicher Wanderwege",
     "Responsabile tecnico capanne": "Technischer Verantwortlicher Hütten",
     "Coordinatore e responsabile attività": "Koordinator und Verantwortlicher Aktivitäten", "Responsabile formazione": "Verantwortlicher Ausbildung",
-    "Responsabile amministrativo palestra Cornaredo": "Administration Kletterhalle Cornaredo", "Responsabile magazzino": "Verantwortlicher Materiallager",
+    "Responsabile magazzino": "Verantwortlicher Materiallager",
     "Amministratrice sito web": "Administratorin Website", "Membro": "Mitglied", "Coordinatore e comunicazione": "Koordinator und Kommunikation",
     "Coach": "Coach", "Cassiere": "Kassier", "Segretariato, giovanissimi e Spider": "Sekretariat, Jüngste und Spider",
     "Attività del mercoledì sera e arrampicata": "Mittwochabend und Klettern", "Attività estive": "Sommeraktivitäten",
@@ -914,7 +914,7 @@ RUOLI_EN = {
     "Responsabile capanne": "Head of huts", "Responsabile sentieri": "Head of trails",
     "Responsabile tecnico capanne": "Technical manager, huts",
     "Coordinatore e responsabile attività": "Coordinator and head of activities", "Responsabile formazione": "Head of training",
-    "Responsabile amministrativo palestra Cornaredo": "Administration, Cornaredo climbing gym", "Responsabile magazzino": "Equipment store manager",
+    "Responsabile magazzino": "Equipment store manager",
     "Amministratrice sito web": "Website administrator", "Membro": "Member", "Coordinatore e comunicazione": "Coordinator and communication",
     "Coach": "Coach", "Cassiere": "Treasurer", "Segretariato, giovanissimi e Spider": "Secretariat, youngest members and Spider",
     "Attività del mercoledì sera e arrampicata": "Wednesday evenings and climbing", "Attività estive": "Summer activities",
@@ -1005,14 +1005,14 @@ DICASTERI = [
      "Oltre a comporre il programma annuale delle gite, aggiorna e prepara materiale formativo, consiglia e sostiene i capigita promuovendone la formazione continua e gestisce il materiale tecnico della sezione.",
      [("Geoffroy Jolly", "Coordinatore e responsabile attività", "Geo155@gmail.com"),
       ("Enrico Zamboni", "Responsabile formazione", "zamboni.e.89@gmail.com"),
-      ("David Stracquadanio", "Responsabile amministrativo palestra Cornaredo", "d.stracqua@bluewin.ch"),
+      ("David Stracquadanio", "Membro", "d.stracqua@bluewin.ch"),
       ("Michele Foletti", "Responsabile magazzino", "fole89@gmail.com"),
       ("Valeria Demarta", "Amministratrice sito web", "valeria.demarta@gmail.com"),
       ("Sara Della Frera", "Membro", "sara.dellafrera@gmail.com"),
       ("Thomas Arn", "Membro", "thomas.arn@ticino.com"),
       ("Alessandro Docimo", "Membro", "alessandro.docimo@outlook.com")]),
     ("Dicastero giovani",
-     "Organizza campi settimanali e attività di arrampicata per ragazze e ragazzi dai 10 ai 22 anni e promuove la formazione di monitori Gioventù+Sport.",
+     "Organizza campi settimanali e attività di arrampicata per ragazze e ragazzi dai 2 ai 25 anni e promuove la formazione di monitori Gioventù+Sport.",
      [("Diego Romelli", "Coordinatore e comunicazione", "diego.romelli15@gmail.com"),
       ("Claudio Petrini", "Coach", "claudio@petrininet.ch"),
       ("Nicola Martinoni", "Cassiere", "nicola.martinoni@bluewin.ch"),
@@ -1046,7 +1046,7 @@ DICASTERI_DE = {
     "Dicastero sport di montagna": ("Ressort Bergsport",
         "Stellt das jährliche Tourenprogramm zusammen, aktualisiert und erstellt Ausbildungsunterlagen, berät und unterstützt die Tourenleiter in ihrer Weiterbildung und verwaltet das technische Material der Sektion."),
     "Dicastero giovani": ("Ressort Jugend",
-        "Organisiert Lagerwochen und Kletteraktivitäten für Mädchen und Jungen von 10 bis 22 Jahren und fördert die Ausbildung von Leitern Jugend+Sport."),
+        "Organisiert Lagerwochen und Kletteraktivitäten für Mädchen und Jungen von 2 bis 25 Jahren und fördert die Ausbildung von Leitern Jugend+Sport."),
     "Dicastero senior": ("Ressort Senioren",
         "Koordiniert das Jahresprogramm der Seniorengruppe: Tagestouren, Wochenenden und mehrtägige Ferien. Ist immer auf der Suche nach neuen Tourenleitern."),
     "Dicastero comunicazione": ("Ressort Kommunikation",
@@ -1059,7 +1059,7 @@ DICASTERI_EN = {
     "Dicastero sport di montagna": ("Mountain sports department",
         "Puts together the annual trip programme, updates and prepares training material, advises and supports trip leaders in their continuing training and manages the section’s technical equipment."),
     "Dicastero giovani": ("Youth department",
-        "Organises week-long camps and climbing activities for girls and boys aged 10 to 22 and promotes the training of Youth+Sport instructors."),
+        "Organises week-long camps and climbing activities for girls and boys aged 2 to 25 and promotes the training of Youth+Sport instructors."),
     "Dicastero senior": ("Seniors department",
         "Coordinates the annual programme of the Seniors group: day trips, weekends and holidays of several days. Always looking for new trip leaders."),
     "Dicastero comunicazione": ("Communication department",
@@ -1881,7 +1881,7 @@ def giovani():
     groups = [("2-10", "Giovanissimi e famiglie", "Arrampicata in famiglia: i bambini imparano a muoversi in corda, gli adulti ad assicurare."),
               ("9-14", "Spider", "Arrampicata, nevai, lettura della carta e scoperta della natura, tra gioco, divertimento e spirito di gruppo."),
               ("13-17", "Junior", "D’inverno sci alpinismo e splitboard, d’estate creste e arrampicata: prima il divertimento e la sicurezza, poi l’autonomia."),
-              ("16-22", "OG", "Sci alpinismo impegnativo, cascate di ghiaccio e arrampicata tecnica in tutto l’arco alpino. Chi vuole può formarsi come monitore.")]
+              ("16-25", "OG", "Sci alpinismo impegnativo, cascate di ghiaccio e arrampicata tecnica in tutto l’arco alpino. Chi vuole può formarsi come monitore.")]
     cards = "\n".join(f"""<article class="group">
 <div class="age">{a}<span>anni</span></div>
 <h3 class="h3">{t}</h3>
@@ -1889,12 +1889,11 @@ def giovani():
 </article>""" for a, t, p in groups)
     rows = [("Iscrizione", "Su Droptour, almeno due settimane prima per le singole attività, oppure dal coordinatore per iscrizioni a blocchi."),
             ("Requisiti", 'Serve essere soci del CAS Ticino, tranne per le uscite di prova. <a href="Adesione.html">Diventa socio</a>'),
-            ("Costi", "Coprono vitto e alloggio a mezza pensione, guida e trasporto in furgone. Dai 20 ai 25 anni si aggiungono CHF 30 al giorno, perché non ci sono contributi G+S."),
+            ("Costi", "Coprono vitto e alloggio a mezza pensione, guida e trasporto in furgone. Dai 21 ai 25 anni si aggiungono CHF 30 al giorno, perché non ci sono contributi G+S."),
             ("Inclusione", "Ragazze e ragazzi con disabilità fisica o psichica sono i benvenuti: contatta il coordinatore per trovare insieme la soluzione giusta."),
             ("Coordinatore", 'Diego Romelli, <a class="num" href="tel:+393485731549">+39 348 573 1549</a>'),
             ("Cassiere", 'Nicola Martinoni, <a class="num" href="tel:+41794391691">+41 79 439 16 91</a>'),
-            ("Spider", "Giosiana Codoni"),
-            ("Ritrovo", '<a href="BaitaDelLuca.html">Baita del Luca</a>, ai piedi dei Denti della Vecchia')]
+            ("Spider", "Giosiana Codoni")]
     body = page_hero([("Attività", "index.html#attivita"), ("Giovani", None)], "Giovani",
                      "Uscite di un giorno, fine settimana e campi di più giorni: alpinismo, arrampicata, sci alpinismo e molto altro, con monitori formati e guide alpine.",
                      f'<div class="actions hero-actions"><a class="btn btn--primary" href="{GITE_GIOVANI}">Programma giovani <span class="arrow" aria-hidden="true">→</span></a></div>',
@@ -1923,7 +1922,7 @@ def giovani():
 
 {subnav("Attività", "Giovani.html")}"""
     return page("Giovani.html", "Giovani | CAS Ticino",
-                "Il gruppo giovani del CAS Ticino: arrampicata, sci alpinismo, campi e uscite per ragazze e ragazzi dai 2 ai 22 anni, con monitori e guide alpine.",
+                "Il gruppo giovani del CAS Ticino: arrampicata, sci alpinismo, campi e uscite per ragazze e ragazzi dai 2 ai 25 anni, con monitori e guide alpine.",
                 body, og="attivita/giovani-3x4")
 
 
@@ -1988,7 +1987,7 @@ CORSI = [
                   "Discreta condizione fisica: 4-5 ore di cammino con uno zaino di circa 10 kg, a 350-400 m di dislivello all’ora. Esperienza escursionistica, nessuna vertigine, età minima 16 anni (con il consenso dei genitori).",
                   "Iscrizioni online dal 1° dicembre 2026. Numero di posti limitato per ragioni di sicurezza (in definizione); precedenza in ordine d’iscrizione e ai soci CAS, poi lista d’attesa. L’iscrizione è definitiva con il pagamento della quota. Serata di presentazione e uscite obbligatorie, con qualsiasi tempo.",
                   "L’equipaggiamento personale spetta al partecipante; il materiale tecnico lo presta il CAS a chi non ce l’ha. Alla serata di presentazione si vede cosa serve: meglio aspettarla prima di comprare.",
-                  'Serata di presentazione il 12 marzo 2027 a Bellinzona; uscite il 28-30 maggio, il 12-13 giugno e il 3-4 luglio 2027. CHF 700 per i soci, 800 per i non soci, 450 per i giovani G+S e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing escluse.')),
+                  'Serata di presentazione il 12 marzo 2027 a Bellinzona; uscite il 28-30 maggio, il 12-13 giugno e il 3-4 luglio 2027. CHF 700 per i soci, 800 per i non soci, 450 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing escluse.')),
     ("Inverno", "Sci alpinismo", "corsi/scialpinismo-4x5", (582, 728), "Sci alpinisti in salita su un pendio innevato",
      "Per muoversi in sicurezza e in autonomia nelle gite della sezione: salita con le pelli su pendii ripidi, discesa fuori pista, uso del materiale di sicurezza, valutazione del pericolo valanghe e pianificazione.",
      GITE_CORSI,
@@ -1997,7 +1996,7 @@ CORSI = [
                   "Sciare bene su piste nere e reggere una gita di 1200 m di dislivello con uno zaino di 5 kg in al massimo 4 ore. Età minima 16 anni. Aperto anche agli snowboarder con splitboard. Chi dopo la giornata introduttiva non risulta idoneo riceve l’80% della quota.",
                   'Al massimo 30. Iscrizioni dal 1° ottobre al 1° dicembre 2026, o fino a esaurimento dei posti; la quota va versata entro il 10 dicembre. Uscite obbligatorie, con qualsiasi tempo; assenze e ritiri non danno diritto a rimborsi.',
                   "Attrezzatura completa da sci alpinismo. ARTVA, pala e sonda prestati su richiesta, compresi nella quota.",
-                  'Presentazione il 3 dicembre 2026 (anche via Teams); giornata introduttiva il 9 gennaio, teoria il 12 gennaio, uscite il 16-17 gennaio, il 20-21 febbraio e il 6-7 marzo 2027. CHF 650 per i soci, 750 per i non soci, 400 per i giovani G+S fino a 20 anni e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing (circa CHF 100) escluse.')),
+                  'Presentazione il 3 dicembre 2026 (anche via Teams); giornata introduttiva il 9 gennaio, teoria il 12 gennaio, uscite il 16-17 gennaio, il 20-21 febbraio e il 6-7 marzo 2027. CHF 650 per i soci, 750 per i non soci, 400 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing (circa CHF 100) escluse.')),
     ("Primavera", "Arrampicata", "corsi/arrampicata-4x5", (594, 742), "Cordata su una parete di roccia accanto a un ghiacciaio",
      "Per principianti che vogliono avvicinarsi all’arrampicata in ambiente e per chi vuole consolidare la tecnica: sicurezza, manovre di corda, progressione su vie di più tiri. Dopo le basi, sempre più autonomia sotto la supervisione di un istruttore di arrampicata.",
      GITE_CORSI,
@@ -2006,7 +2005,7 @@ CORSI = [
                   "Nessun prerequisito tecnico: il corso è pensato per chi comincia. Età minima 16 anni.",
                   "Al massimo 26, in ordine d’iscrizione. All’iscrizione si versa un anticipo di CHF 300; l’iscrizione è definitiva con il saldo alla serata di presentazione. Serata e uscite obbligatorie, con qualsiasi tempo; le assenze vanno annunciate al capocorso entro il martedì prima.",
                   "Il CAS presta il materiale tecnico a chi non ce l’ha; alla serata di presentazione si vede cosa serve.",
-                  'Presentazione il 12 aprile 2027 alle 20:00 alla Scuola professionale di Trevano; uscite il 1-2 maggio, il 15-17 maggio e il 12-13 giugno 2027. CHF 600 per i soci, 650 per i non soci, 400 per i giovani dai 16 ai 20 anni; trasferte in car sharing (CHF 40) escluse.')),
+                  'Presentazione il 12 aprile 2027 alle 20:00 alla Scuola professionale di Trevano; uscite il 1-2 maggio, il 15-17 maggio e il 12-13 giugno 2027. CHF 600 per i soci, 650 per i non soci, 400 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing (CHF 40) escluse.')),
     ("Inverno", "Tecnica di sci fuori pista", "corsi/freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio",
      "Per chi fatica a scendere su pendii non preparati: trucchi e consigli per affrontare la neve fuori dalle piste battute. Adatto ai soci che vogliono migliorare, a chi si avvicina allo sci alpinismo e agli sciatori esperti in cerca di strategie per le condizioni difficili.",
      GITE_CORSI,
@@ -2024,7 +2023,7 @@ CORSI = [
                   "Discreta condizione fisica: escursioni di 4-5 ore con 500-700 m di dislivello. Età minima 16 anni.",
                   "Al massimo 20, in ordine d’iscrizione. L’iscrizione è definitiva con il pagamento della quota alla serata introduttiva. Serata e uscite obbligatorie, con qualsiasi tempo; la meta può cambiare secondo le condizioni.",
                   "L’equipaggiamento personale viene controllato il primo giorno. ARTVA, pala e sonda prestati a chi ne ha bisogno.",
-                  'Serata introduttiva martedì 15 dicembre 2026 nel Luganese; nivologia il 12 gennaio 2027 a Mezzovico, sicurezza il 16 gennaio ad Airolo, uscite il 23-24 gennaio e il 13-14 febbraio 2027. CHF 650 per i soci, 700 per i non soci, 375 per i giovani OG dai 16 ai 20 anni, trasferte comprese.')),
+                  'Serata introduttiva martedì 15 dicembre 2026 nel Luganese; nivologia il 12 gennaio 2027 a Mezzovico, sicurezza il 16 gennaio ad Airolo, uscite il 23-24 gennaio e il 13-14 febbraio 2027. CHF 650 per i soci, 700 per i non soci, 375 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni, trasferte comprese.')),
 ]
 
 # PDF dei corsi anche nella pagina Documenti (e quindi nella ricerca): un gruppo per tipo di documento
@@ -2062,7 +2061,7 @@ def corsi():
 <section class="section" aria-labelledby="avanzati-h">
 <div class="container">
 <div class="callout">
-<p><strong id="avanzati-h">Verso capogita e monitore G+S.</strong> Per chi vuole approfondire o prepararsi ai corsi capogita CAS e monitore Gioventù+Sport, la sezione propone corsi avanzati nelle tre discipline e serate di formazione teorica con specialisti.</p>
+<p><strong id="avanzati-h">Verso capogita e monitore G+S.</strong> Per chi vuole approfondire o prepararsi ai corsi capogita CAS e monitore Gioventù+Sport, la sezione propone corsi avanzati di alpinismo, sci alpinismo e arrampicata, di regola ad anni alterni, e serate di formazione teorica con specialisti.</p>
 </div>
 </div>
 </section>

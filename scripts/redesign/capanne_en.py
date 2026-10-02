@@ -14,9 +14,9 @@ HUT_EN = {
     "CampoTencia.html": dict(
         where="Val Piumogna, Leventina", custody="mid-June to mid-October",
         description="Capanna Campo Tencia, 2140 m, in Val Piumogna (Leventina): 80 beds, staffed from mid-June to mid-October. Contacts and booking.",
-        intro="Set on a terrace high above the upper Val Piumogna, it is the ideal base for hikes, traverses to other huts and climbs such as Pizzo Campo Tencia, which at 3071 m is the highest peak lying entirely in Ticino.",
+        intro="Set on a terrace high above the upper Val Piumogna, it is the ideal base for hikes, traverses to other huts and climbs such as Pizzo Campo Tencia, which at 3072 m is the highest peak lying entirely in Ticino.",
         stay=[("Opening", "All year round"),
-              ("Staffed", "Mid-June to mid-October; in winter in March and April, on booking"),
+              ("Staffed", "Mid-June to mid-October; not staffed in winter, but booking is required; for large groups the hut can be opened by arrangement with the keepers"),
               ("Beds", "80"),
               ("Meals", "Hot food, served all day by the hut keeper"),
               ("Winter room", "Always open, with drinks and firewood")],
@@ -61,7 +61,7 @@ HUT_EN = {
     "Motterascio.html": dict(
         where="Alpe Motterascio, Greina, Blenio", custody="mid-June to mid-October",
         description="Capanna Motterascio, 2172 m, on the edge of the Greina (Blenio): 70 beds, open all year, staffed from mid-June to mid-October. Contacts and booking.",
-        intro="A new hut on the edge of an extraordinary nature reserve: the Greina, with its marshes, peat bogs, alpine pastures and unspoilt flora. The starting point for fascinating routes, above all to the Greina arch, the largest natural rock arch in Ticino.",
+        intro="Inaugurated in 1967 and enlarged in 1980, 1990 and 2006, the hut stands on the edge of an extraordinary nature reserve: the Greina, with its marshes, peat bogs, alpine pastures and unspoilt flora. The starting point for fascinating routes, above all to the Greina arch, the largest natural rock arch in Ticino.",
         stay=[("Opening", "All year round"),
               ("Staffed", "Mid-June to mid-October (in 2026 from 13 June to 10 October); in winter the winter room with 10 places, on booking"),
               ("Beds", "70"),
@@ -76,7 +76,7 @@ HUT_EN = {
                  ("E-mail", '<a href="mailto:motterascio@casticino.ch">motterascio@casticino.ch</a>')]),
     "MonteBar.html": dict(
         where="Alta Capriasca, Lugano region", custody="all year round",
-        description="Capanna Monte Bar, 1620 m, in the Alta Capriasca: 42 beds in rooms with 2, 4 and 6 beds, staffed all year round, Bike Hotel standard. Contacts and booking.",
+        description="Capanna Monte Bar, 1602 m, in the Alta Capriasca: 42 beds in rooms with 2, 4 and 6 beds, staffed all year round, Bike Hotel standard. Contacts and booking.",
         intro="On an exceptionally beautiful rounded summit, with a 180-degree view from the Denti della Vecchia to the Tamaro and, to the west, the Valais four-thousanders from the Mischabel to Monte Rosa. Rebuilt in autumn 2016: rooms with 2, 4 and 6 beds, toilets on each floor, a dining room for about 80 people, a meeting room for 20, a large terrace and a closed room with e-bike charging points and a small workshop, to Bike Hotel standard.",
         stay=[("Opening", "All year round; on request also for events, dinners and lunches"),
               ("Staffed", "Every day from May to early November; in winter from Friday noon to Sunday noon, on public holidays and during school holidays"),
@@ -92,14 +92,14 @@ HUT_EN = {
                  ("E-mail", '<a href="mailto:montebar@casticino.ch">montebar@casticino.ch</a>')]),
     "BaitaDelLuca.html": dict(
         where="Cioascio, Sonvico", custody="on booking",
-        description="Baita del Luca, 1070 m, above Sonvico at the foot of the Denti della Vecchia: 16 beds, self-catering, on booking only. Meeting point of the youth group.",
-        intro="On a broad grassy slope above Sonvico, at the foot of the Denti della Vecchia: the ideal starting point for hikes, also with the family, and for climbing in a unique landscape. This is where the section’s <a href=\"Giovani.html\">youth group</a> meets.",
-        stay=[("Opening", "Closed; accessible only on booking"),
+        description="Baita del Luca, 1070 m, above Sonvico at the foot of the Denti della Vecchia: 16 beds, self-catering, on booking only.",
+        intro="On a broad grassy slope above Sonvico, at the foot of the Denti della Vecchia: the ideal starting point for hikes, also with the family, and for climbing in a unique landscape.",
+        stay=[("Opening", "All year, only on booking"),
               ("Beds", "16"),
               ("Meals", "Self-catering, kitchen available"),
-              ("Drinks", "Also available when the managers are away"),
+              ("Drinks", "Available in limited quantities"),
               ("Booking", "You receive the access code after paying in advance")],
-        reach=[("Access", "From Rosone 30 min; from Lovarescia (above Sonvico) 60 min; from Car and Luss (Villa Luganese) 60 min"),
+        reach=[("Access", "From Rosone 45 min; from Lovarescia (above Sonvico) 60 min; from Car and Luss (Villa Luganese) 60 min"),
                ("Map", 'Swiss map 1333 Tesserete, coordinates <span class="num">722.980 / 102.600</span>')],
         contact=[("Manager", "Priska Deluigi, 6960 Odogno"),
                  ("Mobile", '<a class="num" href="tel:+41792033084">+41 79 203 30 84</a>'),
@@ -113,15 +113,14 @@ HUTS_EN = [
     ("Cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Staffed", "On the pass of the same name between Leventina and Valle Maggia. Opened in 2003, the first modern SAC hut.", "100 beds", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
     ("Adula.html", "Adula", "2012", "Val Carassino", "Staffed", "The classic stone hut high above Valle di Blenio: history, a warm welcome and local cooking.", "24 beds", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
     ("Motterascio.html", "Motterascio", "2172", "Greina", "Staffed", "On the edge of the protected Greina plateau: peat bogs, alpine pastures and the largest natural rock arch in Ticino.", "70 beds", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
-    ("MonteBar.html", "Monte Bar", "1620", "Alta Capriasca", "All year", "The balcony above Lugano, rebuilt in 2016: views from Monte Rosa to the Denti della Vecchia, Bike Hotel standard.", "42 beds", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),
-    ("BaitaDelLuca.html", "Baita del Luca", "1070", "Denti della Vecchia", "On booking", "Above Sonvico, at the foot of the Denti della Vecchia. Meeting point of the youth group, ideal for families and climbing.", "16 beds, self-catering", "Rosone 30 min", "capanne/baitadelluca-3x2", (1000, 667), False),
+    ("MonteBar.html", "Monte Bar", "1602", "Alta Capriasca", "All year", "The balcony above Lugano, rebuilt in 2016: views from Monte Rosa to the Denti della Vecchia, Bike Hotel standard.", "42 beds", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),
+    ("BaitaDelLuca.html", "Baita del Luca", "1070", "Denti della Vecchia", "On booking", "Above Sonvico, at the foot of the Denti della Vecchia. Ideal for families and climbing.", "16 beds, self-catering", "Rosone 45 min", "capanne/baitadelluca-3x2", (1000, 667), False),
 ]
 
 CONTENUTI_EN = {
     "CampoTencia.html": dict(
         cartella="campotencia",
-        avviso="""<strong>Summer season 2026.</strong> The hut is open and staffed until about mid-October.
-Please book online; for any other information, give us a call. See you soon, Valeria and Paco.""",
+        avviso="""<strong>Summer season 2026.</strong> The hut is open and staffed until about mid-October.""",
         capanna="""<p>The first hut in the mountains of Ticino was built in 1912 at the foot of the peak of the same name, on the Leventina side, in the upper Val Piumogna. It is a base camp for families, hikers and climbers: nature walks, Lago Morghirolo close by, the climbing crags and the great routes of the Campo Tencia group, with the classic traverse of the Cresta dei Corni.</p>
 <p>The present building, designed by the section’s architect Oscar Hofmann and inaugurated in 1977, has three floors: on the ground floor the entrance, boot room, toilets and cellar; on the first floor a bright common room with 70 places and the kitchen; on the second about 70 beds in 7 dormitories, some with 4 to 8 places, ideal for families.</p>
 <p>The beds have duvets; <strong>a sleeping-bag liner is compulsory</strong>. The hut has kept its 1980s character: no single rooms with bathroom and no hairdryers!</p>""",
@@ -151,7 +150,7 @@ Please book online; for any other information, give us a call. See you soon, Val
 <li><strong>Booking is compulsory</strong>, online with the “Book” button.</li>
 <li>Free cancellation until 6 pm <strong>two days before</strong> the booked date.</li>
 <li>No bookings or enquiries via social media: please phone us.</li>
-<li>Staffed from mid-June to mid-October; in winter in March and April, on booking.</li>
+<li>Staffed from mid-June to mid-October. In winter the hut is not staffed, but booking is required; for large groups it can be opened by arrangement with the keepers.</li>
 <li>Winter room always open, with drinks and firewood.</li>
 </ul>
 <p><a class="file-link" href="{CT_DOC}disposizioni-per-gli-ospiti.pdf">Information for guests</a></p>
@@ -172,11 +171,11 @@ Please book online; for any other information, give us a call. See you soon, Val
             file="storia", titolo="History of the hut",
             lead="Since 1912 the first hut in the mountains of Ticino: enlarged, destroyed by fire and rebuilt more beautiful than before.",
             img=("inaugurazione-1912", "Postcard of the hut’s inauguration on 10 August 1912, with climbers in front of the stone hut"),
-            corpo="""<p>The hut was built in 1912 at the foot of the peak of the same name, on the Leventina side, in the upper Val Piumogna. The name Campo Tencia was invented in 1858: it was given to the highest mountain lying entirely in Ticino (3071.7 m) when the famous Dufour map was drawn. It combines the names of two alpine pastures belonging to the Patriziato di Prato, Campo and Tencia, in the upper Val Lavizzara on the Valle Maggia side.</p>
-<p>The hut was inaugurated on 11 August 1912. In 1932 Patocchi, as ever the driving force, presented plans for an extension, and in the summer of 1933 the new east wing was built.</p>
+            corpo="""<p>The hut was built in 1912 at the foot of the peak of the same name, on the Leventina side, in the upper Val Piumogna. The name Campo Tencia was invented in 1858: it was given to the highest mountain lying entirely in Ticino (3072 m) when the famous Dufour map was drawn. It combines the names of two alpine pastures belonging to the Patriziato di Prato, Campo and Tencia, in the upper Val Lavizzara on the Valle Maggia side.</p>
+<p>The hut was inaugurated on 11 August 1912 (10 August according to some archive sources). In 1932 Patocchi, as ever the driving force, presented plans for an extension, and in the summer of 1933 the new east wing was built.</p>
 <figure><img src="assets/img/capanne/campotencia/costruzione.webp" alt="Men at work in front of the old stone hut, historical photograph" width="1200" height="832" loading="lazy" decoding="async"></figure>
 <p>Forty years later further work followed to strengthen and improve it. On 22 August 1975 a serious fire destroyed the work of many years.</p>
-<p>The following summer the hut was rebuilt bigger, more beautiful and more practical. Its construction was a first in Switzerland, thanks to the architect Oscar Hofmann: no longer the angular image of the classic mountain hut, but a new, light and elegant appearance, with a load-bearing structure in steel, clad and insulated for altitude. The new inauguration took place on 25 September 1977.</p>
+<p>Work began at once, and the hut was rebuilt bigger, more beautiful and more practical. Its construction was a first in Switzerland, thanks to the architect Oscar Hofmann: no longer the angular image of the classic mountain hut, but a new, light and elegant appearance, with a load-bearing structure in steel, clad and insulated for altitude. The new inauguration took place on 25 September 1977.</p>
 <figure><img src="assets/img/capanne/campotencia/capanna-storica.webp" alt="The old stone hut in the snow, historical photograph" width="1200" height="782" loading="lazy" decoding="async"></figure>
 <p>In 2008 the north wing added a new professional kitchen. On 11 August 2012 the hut celebrated its centenary. In 2022 a water turbine was installed for the power supply, the photovoltaic system was extended and the waste-water treatment renewed.</p>"""),
         pagine=[
@@ -194,10 +193,6 @@ Please book online; for any other information, give us a call. See you soon, Val
                           dati=[("Length", "12 km"), ("Ascent", "+1300 m"), ("Time", "4-5 h"), ("Difficulty", "T3")],
                           link=[("Online map", "https://s.geo.admin.ch/151dbckh2v17"),
                                 ("Route description", CT_DOC + "e-lago-morghirolo-e-sentiero-didattico.pdf")]),
-                     dict(titolo="Leìt-Piumogna circuit", img=("genziane", "Gentians in flower below a rocky peak"),
-                          testo="A long circuit linking two huts and two mountain lakes over two passes, in a natural landscape of great value. Note: in early summer there are often steep, dangerous snowfields in the upper part east of Pizzo Lei di Cima.",
-                          dati=[("Length", "18 km"), ("Ascent", "+1350 / −1350 m"), ("Time", "8 h"), ("Difficulty", "T3")],
-                          link=[("Online map", "https://s.geo.admin.ch/rzubpn495uo8")]),
                  ]),
             dict(file="giro-piumogna", titolo="Piumogna circuit",
                  lead="A circular route from Dalpe via the Leìt and Campo Tencia huts, through a protected area rich in flowers.",
@@ -219,9 +214,9 @@ Please book online; for any other information, give us a call. See you soon, Val
 <p><a href="https://www.sac-cas.ch/en/training-and-safety/" rel="noopener">Training and safety: SAC advice</a></p>""",
                  itinerari=[
                      dict(titolo="Pizzo Campo Tencia (3072 m) and Pizzo Croslina (3012 m)", img=("croce-campo-tencia", "The summit cross of Pizzo Campo Tencia"),
-                          testo="The highest mountain lying entirely in Ticino owes its name to its reddish, iron-rich rock: “tencie”, meaning dirty, in dialect. In the centre of the canton, it offers a panoramic view; from the summit you can descend into Val Lavizzara or join the Via Alta Vallemaggia. The route is mostly waymarked; in some places watch out for stonefall, especially when others are about. In early summer there is snow in the hollow below the Bocchetta di Croslina. From the col (2865 m) you can traverse north to the ridge leading to Pizzo Croslina: exposed sections, take care especially on the descent.",
-                          dati=[("Length", "3 km"), ("Ascent", "+940 m"), ("Time", "3 h for one summit, 4 h 30 for both"),
-                                ("Difficulty", "T4 Pizzo Campo Tencia, T6 Pizzo Croslina"), ("Equipment", "Good mountain boots")],
+                          testo="The highest mountain lying entirely in Ticino owes its name to its reddish, iron-rich rock: “tencie”, meaning dirty, in dialect. In the centre of the canton, it offers a panoramic view; from the summit you can descend into Val Lavizzara or join the Via Alta Vallemaggia. The route is mostly waymarked; in some places watch out for stonefall, especially when others are about. In early summer there is snow in the hollow below the Bocchetta di Croslina. From the col (2864 m) you can traverse north to the ridge leading to Pizzo Croslina: exposed sections, take care especially on the descent.",
+                          dati=[("Length", "3 km"), ("Ascent", "+940 m"), ("Time", "3 h for Pizzo Campo Tencia, 4 h including Pizzo Croslina"),
+                                ("Difficulty", "T4+ Pizzo Campo Tencia, T6 including Pizzo Croslina"), ("Equipment", "Good mountain boots")],
                           link=[("Detailed description", "capanne/campotencia/tencia-croslina.html"),
                                 ("Route description", CT_DOC + "b-pizzo-campo-tencia-3072-m-pizzo-croslina-3012-m.pdf")]),
                      dict(titolo="Pizzo Forno (2907 m)", img=("pizzo-forno", "Pizzo Forno and Pizzo Laghetto with the last snowfields"),
@@ -257,12 +252,12 @@ Please book online; for any other information, give us a call. See you soon, Val
                  corpo="""<p>Pizzo Campo Tencia (3072 m) is an extraordinary pyramid of rock and ice with a wide panoramic view. Pizzo Croslina (3012 m) rises like a giant above the hut; seen from the east, however, it is an elegant pyramid.</p>
 <p>The north side of this stretch of the main ridge is typical: after the pyramid of the Croslina, three summits follow regularly towards the south-east, separated by barely marked saddles: Pizzo Campo Tencia (3072 m), the middle summit Tenca (3035 m, unnamed on the national map) and Pizzo Penca (3038 m).</p>
 <h2>Route</h2>
-<p>From the hut head south following the white-blue-white waymarks to a waterfall. On the left a wide chimney leads to the ledge that crosses the whole face: a well waymarked, exposed path climbs south-east to an easy rib. Heading south-west you reach the hollow of the Laghetto, at the foot of the remains of the Ghiacciaio Grande di Croslina. Continue along the small ridge between the two Croslina glaciers to about 2800 m, then south-west, descending slightly onto the glacier, to the Bocchetta di Croslina (2867 m), always following the white-blue-white waymarks. Along the crest you reach the summit cross.</p>
+<p>From the hut head south following the white-blue-white waymarks to a waterfall. On the left a wide chimney leads to the ledge that crosses the whole face: a well waymarked, exposed path climbs south-east to an easy rib. Heading south-west you reach the hollow of the Laghetto, at the foot of the remains of the Ghiacciaio Grande di Croslina. Continue along the small ridge between the two Croslina glaciers to about 2800 m, then south-west, descending slightly onto the glacier, to the Bocchetta di Croslina (2864 m), always following the white-blue-white waymarks. Along the crest you reach the summit cross.</p>
 <p>From the summit you can traverse to Capanna Soveltra in Valle Maggia, heading south-east on the white-blue-white waymarks.</p>
 <p><strong>Pizzo Croslina:</strong> from the Bocchetta di Croslina head north-west following the blue dots to a ledge to the right of the obvious scree gully. Partly exposed ascent with rock sections of grade II.</p>
 <p>For both summits the descent is by the ascent route.</p>""",
-                 dati=[("Length", "3 km"), ("Ascent", "+940 m"), ("Time", "3 h for one summit, 4 h for both"),
-                       ("Difficulty", "T3-T4 Pizzo Campo Tencia, T6 Pizzo Croslina"),
+                 dati=[("Length", "3 km"), ("Ascent", "+940 m"), ("Time", "3 h for Pizzo Campo Tencia, 4 h including Pizzo Croslina"),
+                       ("Difficulty", "T4+ Pizzo Campo Tencia, T6 including Pizzo Croslina"),
                        ("Highlights", "The hollow of the Laghetto, the Ghiacciaio Grande di Croslina, the summit cross of Campo Tencia, the edelweiss on the Croslina")],
                  link=[("Route description", CT_DOC + "b-pizzo-campo-tencia-3072-m-pizzo-croslina-3012-m.pdf")],
                  foto="tencia-croslina"),
@@ -295,7 +290,7 @@ Please book online; for any other information, give us a call. See you soon, Val
                  lead="Demanding ski tours away from the well-known destinations, and icefalls up to 200 metres.",
                  img=("scialpinismo", "Ski tourers descending a wide snow slope, against the light"),
                  corpo="""<h2>Ski touring</h2>
-<p>In winter the Campo Tencia area stays away from the well-known destinations. The technical, rough terrain calls for good snow conditions and solid skills in ski touring and navigation. In spring you find the conditions for very rewarding tours: Pizzo Campo Tencia, Pizzo Forno and Pizzo Campolungo. The hut is not usually staffed, but can be opened for groups or for several days.</p>
+<p>In winter the Campo Tencia area stays away from the well-known destinations. The technical, rough terrain calls for good snow conditions and solid skills in ski touring and navigation. In spring you find the conditions for very rewarding tours: Pizzo Campo Tencia, Pizzo Forno and Pizzo Campolungo. The hut is not staffed, but booking is required; for large groups it can be opened by arrangement with the keepers.</p>
 <h2>Icefalls</h2>
 <p>In the hollow of the Buco di Cumasna, at 2000 metres, mighty icefalls up to 200 metres long and of varying difficulty form from the start of winter. On the right is the best known, the “Giovannelli”, in the gully used in winter to get past the rock step on the way to or from the summit of Pizzo Campo Tencia.</p>""",
                  foto="inverno"),
@@ -307,7 +302,7 @@ Please book online; for any other information, give us a call. See you soon, Val
         cartella="cristallina",
         avviso="""<strong>The summer season is under way.</strong> All the main access routes are free of snow and easy to walk.
 Please book online. We look forward to seeing you, Manu.""",
-        capanna="""<p>The first modern hut of the Swiss Alpine Club stands at 2572 m on the Cristallina Pass, in an area that invites you to explore in summer and winter alike. In summer it is a base for the surrounding peaks and for traverses into Valle Maggia, Val Formazza and the Gotthard area; in winter the snowy surroundings offer superb descents and combinations of summits.</p>
+        capanna="""<p>The first modern hut of the Swiss Alpine Club stands at 2575 m on the Cristallina Pass, in an area that invites you to explore in summer and winter alike. In summer it is a base for the surrounding peaks and for traverses into Valle Maggia, Val Formazza and the Gotthard area; in winter the snowy surroundings offer superb descents and combinations of summits.</p>
 <p>It has 100 beds in bunks with duvets, in 6 rooms of 4, 9 of 8 and 2 dormitories of 12, a panoramic dining room with terrace, indoor toilets with hot water, a shower, a drying room and a boot room with hut slippers. A sleeping-bag liner is compulsory. Good Swisscom reception at the hut.</p>
 <p>The hut is always open and accessible. It is staffed in summer, from June to mid-October; in winter, from December to the end of April, the hut keeper is there in good conditions, at weekends, over the holidays and for groups on booking.</p>""",
         cucina="""<p>During the day, simple dishes for everyone: gnocchi, ravioli, savoury tarts, cured meats, desserts and much more, all made at the hut with local Swiss produce. For half board the menus change with the day of the week, with vegetarians in mind too. Plus a good choice of wines and spirits.</p>
@@ -363,12 +358,12 @@ Please book online. We look forward to seeing you, Manu.""",
                  corpo="""<p>If you want to discover the wonderful Cristallina area, with its mountain lakes and high-mountain wildlife, here are moderate routes, not too long, that start at the hut or use it as a stage.</p>""",
                  itinerari=[
                      dict(titolo="Cima di Lago (2832 m)", img=("cima-di-lago", "An ibex on the slope of the Cima di Lago, with the route marked in red"),
-                          testo="An easy summit with a superb view, ideal for children too: you are likely to meet ibex.",
+                          testo="A summit with a superb view, ideal for sure-footed children too: you are likely to meet ibex.",
                           dati=[("Length", "4 km"), ("Ascent", "+300 m"), ("Time", "1 h"), ("Difficulty", "T4")],
                           link=[("Route description", "docs/capanne/cristallina/a-cima-di-lago-2832-msm.pdf")]),
                      dict(titolo="Pizzo Cristallina (2912 m)", img=("pizzo-cristallina", "View from the summit of Pizzo Cristallina over mountain lakes and peaks"),
                           testo="The main summit, surrounded by a string of mountain lakes; on the top still stands the Rifugio Camosci, the last witness of wartime in the area. On the final slope watch out for stonefall when others are about; enter the bivouac only with great care, there is a risk of falling.",
-                          dati=[("Length", "11 km"), ("Ascent", "+1100 m"), ("Time", "2 h"), ("Difficulty", "T4")],
+                          dati=[("Length", "11 km from Ossasco"), ("Ascent", "+1100 m from Ossasco"), ("Time", "2 h from the hut, 6 h from Ossasco"), ("Difficulty", "T4")],
                           link=[("Route description", "docs/capanne/cristallina/b-cristallina-2912.pdf")]),
                      dict(titolo="Cristallina circuit", img=("giro-cristallina", "The Robiei reservoir and its dam, below the mountains"),
                           testo="A classic, easy circuit on a white-red-white path around the summit of the Cristallina. Also possible as a day trip from Robiei or from the Narèt pass, with lunch at the hut.",
@@ -466,7 +461,7 @@ For information, give us a call. See you up there soon, Lele, Miri and the team.
 <p><strong>By car:</strong> A2 to Biasca, then towards the Lukmanier Pass to Campo Blenio and Ghirone; up to the Luzzone dam, across the dam and on to Alpe di Compietto. Or leave the car in Ghirone and take the <a href="http://www.autolinee.ch/greina" rel="noopener">alpine bus</a>.</p>
 <p><strong>By public transport:</strong> S10 train to Biasca, bus 131 to Ghirone, then the alpine bus to the Luzzone dam. Taxi Riviera (Biasca): <a class="num" href="tel:+41918624848">+41 91 862 48 48</a>.</p>
 <p><strong>Traverses to other huts:</strong> <a href="en/Motterascio.html">Motterascio</a> 5 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 3 h 30; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 1 h; <a href="http://quarnei.ch/" rel="noopener">Quarnei</a> 3 h.</p>
-<p>Maps: Swiss map 1:25,000 sheet 1233 Greina; ski touring map 256 S.</p>""",
+<p>Maps: Swiss map 1:25,000 sheet 1253 Olivone; ski touring map 256 S.</p>""",
         attivita="""<p>At the Adula there is a touch of the old days in the air: hospitality and good food, with a glass of wine, invite you to lie back in the grass against an extraordinary backdrop. From here you set off on exciting routes, old crossings and airy ridges.</p>
 <p>An ideal place for children: splendid flowers in early summer, chamois and ibex, marmots, cows to stroke and a stream to bathe in. You sleep in a historic hut with old-time charm and climb the Adula (Rheinwaldhorn), the goal of many people from Ticino, with its glacier, which sadly will soon be only a memory.</p>""",
         pagine=[
@@ -647,7 +642,7 @@ Please book online; for information write to us or give us a call. See you soon,
                  corpo="""<p>Camona da Medel, Capanna Michela Motterascio, Läntahütte: the Greina Alta trek, for intermediate to experienced hikers, leads from Curaglia to Vals, with a common denominator, the number 3. It crosses a region with 3 SAC huts, 3 cultures, 3 languages and 3 mighty peaks. If you walk the whole trek, you can ask any of the three huts for a package booking.</p>
 <ul>
 <li><strong>Day 1:</strong> (Disentis) Curaglia (1332 m), Val Platta, Alp Sura (1982 m), Camona da Medel (2524 m). 3 h 30, T3.</li>
-<li><strong>Day 2:</strong> Camona da Medel, Fuorcla Sura da Lavaz (2759 m), Greina Pass (2355 m), Crap la Crusch (2268 m), Capanna Michela Motterascio (2172 m). 6 h, T4.</li>
+<li><strong>Day 2:</strong> Camona da Medel, Fuorcla Sura da Lavaz (2703 m), Greina Pass (2355 m), Crap la Crusch (2268 m), Capanna Michela Motterascio (2172 m). 6 h, T4.</li>
 <li><strong>Day 3:</strong> Capanna Michela Motterascio, Lago di Luzzone, Larecc (1633 m), Val Scaradra, Passo Soreda (2759 m), Läntatal, Läntahütte (2090 m). 7 h, T3.</li>
 <li><strong>Day 4:</strong> Läntahütte, Furggelti (2712 m), Zervreilasee (1862 m), Zervreila (Vals). 5 h, T3.</li>
 </ul>""",
@@ -679,10 +674,10 @@ The hut can only be reached from Corticiasca. Open every day until 8 November.""
 <p><strong>James and Seo</strong></p>"""),
         tariffe=[
             ("Members of SAC/FAT and reciprocal clubs", "Overnight stay with half board",
-             [("Children up to 8", "CHF 30.–"), ("Children aged 8 to 14", "CHF 40.–"), ("Young people aged 15 to 21", "CHF 60.–"),
+             [("Children up to 7", "CHF 30.–"), ("Children aged 8 to 14", "CHF 40.–"), ("Young people aged 15 to 21", "CHF 60.–"),
               ("Adults from 22", "CHF 80.–")]),
             ("Non-members", "Overnight stay with half board",
-             [("Children up to 8", "CHF 30.–"), ("Children aged 8 to 14", "CHF 45.–"), ("Young people aged 15 to 21", "CHF 65.–"),
+             [("Children up to 7", "CHF 30.–"), ("Children aged 8 to 14", "CHF 45.–"), ("Young people aged 15 to 21", "CHF 65.–"),
               ("Adults from 22", "CHF 95.–")]),
             ("Double room", "With double bed and fresh bed linen",
              [("Per person", "CHF 120.–"), ("Single occupancy", "CHF 150.–")]),
@@ -787,7 +782,7 @@ The hut can only be reached from Corticiasca. Open every day until 8 November.""
             corpo="""<p>After the experience on the Monti di Condra, in 1935 the CAS was given the alpine hut of Alpe Musgatina as winter quarters for the first ski school in the canton of Ticino, with the instructors Tita Calvi and Aldo Balmelli.</p>
 <p>It was such a success that in 1936, for the fiftieth anniversary of the Ticino Section, a hut was built on Monte Bar; the building site gave work to the valley’s many seasonal emigrants. The hut quickly became the destination of many groups of skiers: on Sundays there were up to 300 people on the slopes. The Sci Club Lugano took over the winter management, and the Monte Bar giant slalom was a great success. In summer the hut was a base camp for the surrounding summits.</p>
 <p>In 2013 the section decided to build a new hut: the 1936 hut, improved in 1993, by then had serious problems with logistics, safety and supplies. The aim was a modern, practical and ecological building with the character of a classic mountain hut. The project was developed with the municipality of Capriasca (Areaviva project) and various local partners, to enhance the whole region.</p>
-<p>The 2014 competition, with thirty entries, was won by “Barlume” by the architects Oliviero Piffaretti and Carlo Romano (Atelier PeR, Mendrisio): a simple, cubic wooden building around the fireplace as a symbol of meeting. The mountain remains the defining element, and the hut is a lantern in the landscape. Inaugurated in 2016, 80 years after the first hut, at 1600 m on the south-facing pastures, it is perhaps the finest terrace over Lugano, the Prealps, the Apennines with Monviso, Monte Rosa and the Ticino Alps, with unforgettable sunsets.</p>
+<p>The 2014 competition, with thirty entries, was won by “Barlume” by the architects Oliviero Piffaretti and Carlo Romano (Atelier PeR, Mendrisio): a simple, cubic wooden building around the fireplace as a symbol of meeting. The mountain remains the defining element, and the hut is a lantern in the landscape. Inaugurated in 2016, 80 years after the first hut, at 1602 m on the south-facing pastures, it is perhaps the finest terrace over Lugano, the Prealps, the Apennines with Monviso, Monte Rosa and the Ticino Alps, with unforgettable sunsets.</p>
 <p><a href="http://www.simonemengani.ch/nuovo-servizio-fotografico-capanna-monte-bar/" rel="noopener">Photos of the construction by Simone Mengani</a></p>"""),
         sostenitori=dict(
             testo="The new hut was made possible by these supporters and more than 300 friends, public and private, who contributed to building it. Thank you very much!",
@@ -802,7 +797,7 @@ The hut can only be reached from Corticiasca. Open every day until 8 November.""
     "BaitaDelLuca.html": dict(
         cartella="baitadelluca",
         capanna_titolo="The baita",
-        capanna="""<p>The baita has 16 beds in two rooms of 4 and 12 places, a common room with a gas kitchen and fireplace, hot water and a shower; the light comes from solar panels. Crockery and pans are provided, and drinks are available even when the manager is away. Moderate reception, no Wi-Fi and no telephone.</p>
+        capanna="""<p>The baita has 16 beds in two rooms of 4 and 12 places, a common room with a gas kitchen and fireplace, hot water and a shower; the light comes from solar panels. Crockery and pans are provided, and drinks are available in limited quantities. Moderate reception, no Wi-Fi and no telephone.</p>
 <p>It is open all year round but not staffed: the door is locked and you receive the code from the manager. Quick and easy to reach, it is also used for courses, training days or simply for a dinner together.</p>""",
         tariffe=[
             ("Members of SAC/FAT/CAI/DAV", "Overnight stay, taxes included",
@@ -824,7 +819,7 @@ The hut can only be reached from Corticiasca. Open every day until 8 November.""
 </ul>
 <p><a class="file-link" href="docs/capanne/baitadelluca/2020-cgc-capanne-cas-it.pdf">General terms and conditions of SAC huts</a></p>""",
         accessi="""<ul>
-<li>From Rosone (bus): 1 h, +270 m, T2 (<a href="https://map.schweizmobil.ch/?lang=en&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2722290&amp;N=1102884&amp;layers=Wanderland%2CStation&amp;trackId=5273099" rel="noopener">route</a>).</li>
+<li>From Rosone (bus): 45 min, +270 m, T2 (<a href="https://map.schweizmobil.ch/?lang=en&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2722290&amp;N=1102884&amp;layers=Wanderland%2CStation&amp;trackId=5273099" rel="noopener">route</a>).</li>
 <li>From Sonvico (bus): 1 h 45, +500 m, T2 (<a href="https://map.schweizmobil.ch/?lang=en&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2721523&amp;N=1102174&amp;layers=Wanderland%2CStation&amp;trackId=5273106" rel="noopener">route</a>).</li>
 <li>From Villa Luganese (bus): 1 h 45, +500 m, T2 (<a href="https://map.schweizmobil.ch/?lang=en&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2721748&amp;N=1101916&amp;layers=Wanderland%2CStation&amp;trackId=5273108" rel="noopener">route</a>).</li>
 </ul>
