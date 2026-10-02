@@ -1219,7 +1219,8 @@ def soccorso():
                  ("Ambulanza", '<a class="num" href="tel:144">144</a>'),
                  ("Emergenza europeo", '<a class="num" href="tel:112">112</a>')]
     body = page_hero([("Attività", "index.html#attivita"), ("Soccorso", None)], "Soccorso",
-                     "La sezione coordina il soccorso alpino nel Sottoceneri, con volontari formati che intervengono in montagna insieme al Soccorso Alpino Svizzero e alla Rega.") + f"""
+                     "La sezione coordina il soccorso alpino nel Sottoceneri, con volontari formati che intervengono in montagna insieme al Soccorso Alpino Svizzero e alla Rega.",
+                     figure=img("attivita/soccorso-4x5", "Soccorritori con casco e imbragatura recuperano una persona in barella in una gola rocciosa", 525, 657, lazy=False)) + f"""
 
 <section class="section" aria-labelledby="emergenza-h">
 <div class="container">
@@ -1241,7 +1242,7 @@ def soccorso():
 </div>
 <div class="prose" data-reveal>
 <p>Qui troverai presto le informazioni sulla colonna di soccorso della sezione: chi la compone, come è organizzata, la formazione dei soccorritori e come entrare a farne parte.</p>
-<p class="small">Pagina in preparazione.</p>
+<p class="small">Pagina in preparazione. Foto: Soccorso Alpino Svizzero / Urs Nett.</p>
 <div class="actions"><a class="btn btn--secondary" href="https://www.alpinerettung.ch" rel="noopener">Soccorso Alpino Svizzero</a><a class="btn btn--secondary" href="https://www.rega.ch" rel="noopener">Rega</a></div>
 </div>
 </div>
@@ -1839,7 +1840,7 @@ def adesione():
             ("Formazione", "Riduzioni sui corsi"),
             ("Pubblicazioni", "La rivista «Le Alpi», il periodico della sezione e sconti sulle edizioni CAS"),
             ("Arrampicata", "Accesso gratuito alla palestra di arrampicata San Paolo")]
-    join = "https://www.sac-cas.ch/it/affiliazione/diventasocio/?section=5100"
+    join = "https://portal.sac-cas.ch/it/groups/6783/self_registration"
     body = page_hero([("Adesione", None)], "Diventa socio",
                      "Entra nella sezione ticinese del Club Alpino Svizzero: gite, corsi, capanne e una comunità che ama la montagna.",
                      f'<div class="actions hero-actions"><a class="btn btn--primary" href="{join}">Iscriviti sul sito del CAS <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
@@ -2175,7 +2176,7 @@ TRADOTTE = {
                   ("Ausbildung", "Vergünstigungen bei den Kursen"),
                   ("Publikationen", "Die Zeitschrift «Die Alpen», das Bulletin der Sektion und Rabatte auf SAC-Publikationen"),
                   ("Klettern", "Freier Eintritt in die Kletterhalle San Paolo")],
-        join="https://www.sac-cas.ch/de/mitgliedschaft/mitglied-werden/?section=5100",
+        join="https://portal.sac-cas.ch/de/groups/6783/self_registration",
         ade_crumb="Mitgliedschaft", ade_h="Mitglied werden",
         ade_lead="Treten Sie der Tessiner Sektion des Schweizer Alpen-Clubs bei: Touren, Kurse, Hütten und eine Gemeinschaft, die die Berge liebt.",
         iscriviti="Auf der SAC-Website beitreten",
@@ -2249,7 +2250,7 @@ TRADOTTE = {
                   ("Training", "Reduced prices on courses"),
                   ("Publications", "The SAC magazine “Die Alpen”, the section bulletin and discounts on SAC publications"),
                   ("Climbing", "Free entry to the San Paolo climbing gym")],
-        join="https://www.sac-cas.ch/en/membership/become-a-member/?section=5100",
+        join="https://portal.sac-cas.ch/it/groups/6783/self_registration",
         ade_crumb="Membership", ade_h="Become a member",
         ade_lead="Join the Ticino Section of the Swiss Alpine Club: trips, courses, huts and a community that loves the mountains.",
         iscriviti="Join on the SAC website",
