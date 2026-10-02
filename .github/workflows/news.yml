@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Prepara le news (nome della pagina, foto in WebP)
+      - name: Prepara le news (nome della pagina, foto in WebP, PDF nella cartella dell’anno)
         run: |
           pip install --quiet pillow
           python scripts/prepara_news.py

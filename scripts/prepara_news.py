@@ -5,10 +5,12 @@ Per ogni data/news/*.json:
   - le foto caricate (in assets/img/news/ fuori dalle cartelle degli anni, anche quelle dentro il testo) diventano
     WebP larghe al massimo 1400 px in assets/img/news/<anno>/, con lo stesso nome della pagina (-2, -3… per le
     altre); l'originale viene tolto
-I PDF allegati sono già in docs/news/ (li salva lì l'area di redazione).
+  - i PDF (allegati o link nel testo) ancora in docs/news/, dove li salva l'area di redazione, vanno in
+    docs/news/<anno>/ con il nome della pagina (-2, -3… per gli altri) e i link nella news vengono aggiornati;
+    un PDF usato da più news segue la prima, le altre puntano al nuovo percorso
 Lo esegue il workflow .github/workflows/news.yml; serve Pillow:  pip install pillow
 Uso: python scripts/prepara_news.py"""
-import glob, json, os, re, sys, urllib.parse
+import glob, json, os, re, shutil, sys, urllib.parse
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,15 +43,54 @@ def in_webp(src, dest):
     print("  foto", src, "->", dest)
 
 
+# PDF nel testo o negli allegati: docs/news/<file>.pdf, con o senza «/» davanti (fuori dalle cartelle degli anni)
+PDF_DA_SPOSTARE = re.compile(r'/?docs/news/([^/"\\\s)<>]+\.pdf)', re.I)
+
+
+def sposta_pdf(tutte):
+    """Porta i PDF delle news da docs/news/ a docs/news/<anno>/<nome-pagina>[-N].pdf e aggiorna i link."""
+    nuovi = {}  # vecchio percorso -> nuovo
+    for n in sorted(tutte, key=lambda n: n["date"]):
+        base = f"docs/news/{n['date'][:4]}/{os.path.splitext(os.path.basename(n['file']))[0]}"
+        testo = json.dumps(n, ensure_ascii=False)
+        for m in PDF_DA_SPOSTARE.finditer(testo):
+            vecchio = "docs/news/" + urllib.parse.unquote(m.group(1))
+            if vecchio in nuovi or not os.path.exists(os.path.join(ROOT, vecchio)):
+                continue
+            nome, k = base + ".pdf", 2
+            while nome in nuovi.values() or os.path.exists(os.path.join(ROOT, nome)):
+                nome, k = f"{base}-{k}.pdf", k + 1
+            os.makedirs(os.path.dirname(os.path.join(ROOT, nome)), exist_ok=True)
+            shutil.move(os.path.join(ROOT, vecchio), os.path.join(ROOT, nome))
+            nuovi[vecchio] = nome
+            print("  pdf", vecchio, "->", nome)
+
+    def aggiorna(v):
+        if isinstance(v, str):
+            return PDF_DA_SPOSTARE.sub(lambda m: nuovi.get("docs/news/" + urllib.parse.unquote(m.group(1)), m.group(0)), v)
+        if isinstance(v, list):
+            return [aggiorna(x) for x in v]
+        if isinstance(v, dict):
+            return {k: aggiorna(x) for k, x in v.items()}
+        return v
+    if nuovi:
+        for n in tutte:
+            for k in list(n):
+                if k != "percorso":
+                    n[k] = aggiorna(n[k])
+
+
 def main():
     tutte = news_util.leggi_tutte()
     presi = {n["file"] for n in tutte if n.get("file")}
     for n in tutte:
-        p = n.pop("percorso")
         if not n.get("file"):
             n["file"] = news_util.nome_file(n, presi)
             presi.add(n["file"])
             print("nuova news:", n["file"])
+    sposta_pdf(tutte)
+    for n in tutte:
+        p = n.pop("percorso")
         base = f"assets/img/news/{n['date'][:4]}/{os.path.splitext(os.path.basename(n['file']))[0]}"
         usati = set()
 

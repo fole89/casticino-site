@@ -1255,7 +1255,8 @@ DOC = "docs/"  # PDF della sezione, in sottocartelle per tema (nomi in minuscolo
 DOCS = [
     ("La sezione", [("Statuto", DOC + "statuto-visione/statuto-2025.pdf"),
                     ("Visione e strategia", DOC + "statuto-visione/visione-strategia-2025.pdf"),
-                    ("Organigramma", DOC + "statuto-visione/organigramma-2025.pdf")]),
+                    ("Organigramma", DOC + "statuto-visione/organigramma-2025.pdf"),
+                    ("Regolamento gite", DOC + "statuto-visione/regolamento-gite-2026.pdf")]),
     ("Scale di difficoltà", [("Arrampicata sportiva", DOC + "scale-difficolta/arrampicata-sportiva.pdf"),
                              ("Alpinismo", DOC + "scale-difficolta/alpinismo.pdf"),
                              ("Arrampicata artificiale", DOC + "scale-difficolta/arrampicata-artificiale.pdf"),
@@ -1270,17 +1271,16 @@ DOCS = [
                     ("Incidente valanga e ARVA", DOC + "promemoria/incidente-valanga-arva.pdf"),
                     ("Promemoria capigita", DOC + "promemoria/capigita.pdf"),
                     ("Istruzioni DropTour", DOC + "promemoria/istruzioni-droptour-2026.pdf")]),
-    ("Materiale e pianificazione", [("Lista noleggio materiale", DOC + "noleggio/lista-materiale.pdf"),
-                                    ("Formulario pianificazione gite estive", DOC + "moduli/pianificazione-gite-estive.pdf"),
-                                    ("Cartine CH 1:25 000", DOC + "cartine/carte-nazionali-25000.pdf"),
-                                    ("Cartine CH 1:50 000", DOC + "cartine/carte-nazionali-50000.pdf"),
-                                    ("Cartine CH 1:50 000 sci", DOC + "cartine/carte-nazionali-50000-sci.pdf")]),
+    ("Pianificazione", [("Formulario pianificazione gite estive", DOC + "moduli/pianificazione-gite-estive.pdf"),
+                        ("Cartine CH 1:25 000", DOC + "cartine/carte-nazionali-25000.pdf"),
+                        ("Cartine CH 1:50 000", DOC + "cartine/carte-nazionali-50000.pdf"),
+                        ("Cartine CH 1:50 000 sci", DOC + "cartine/carte-nazionali-50000-sci.pdf")]),
 ]
 
 
 def documenti():
     body = page_hero([("Media", "index.html#media"), ("Documenti", None)], "Documenti",
-                     "Statuto e documenti della sezione, scale di difficoltà, promemoria tecnici, moduli e cartine da scaricare.") + f"""
+                     "Statuto e documenti della sezione, scale di difficoltà, promemoria tecnici, documenti dei corsi, moduli e cartine da scaricare.") + f"""
 
 <section class="section" aria-label="Documenti">
 <div class="container">
@@ -1294,7 +1294,7 @@ def documenti():
 
 {subnav("Media", "Documenti.html")}"""
     return page("Documenti.html", "Documenti | CAS Ticino",
-                "Documenti del CAS Ticino da scaricare: scale di difficoltà, promemoria tecnici, promemoria capigita, lista del materiale e cartine.",
+                "Documenti del CAS Ticino da scaricare: scale di difficoltà, promemoria tecnici, promemoria capigita, obiettivi ed equipaggiamento dei corsi, pianificazione e cartine.",
                 body)
 
 
@@ -1795,6 +1795,13 @@ CORSI = [
                   "L’equipaggiamento personale viene controllato il primo giorno. ARTVA, pala e sonda prestati a chi ne ha bisogno.",
                   'Serata introduttiva martedì 15 dicembre 2026 nel Luganese; nivologia il 12 gennaio 2027 a Mezzovico, sicurezza il 16 gennaio ad Airolo, uscite il 23-24 gennaio e il 13-14 febbraio 2027. CHF 650 per i soci, 700 per i non soci, 375 per i giovani OG dai 16 ai 20 anni, trasferte comprese.')),
 ]
+
+# PDF dei corsi anche nella pagina Documenti (e quindi nella ricerca): un gruppo per tipo di documento
+CARTELLE_CORSI = [("Alpinismo", "alpinismo"), ("Sci alpinismo", "sci-alpinismo"), ("Arrampicata", "arrampicata"),
+                  ("Tecnica di sci fuori pista", "freeride"), ("Racchette", "racchette")]
+for gruppo, file in [("Obiettivi corsi", "obiettivi"), ("Equipaggiamento", "materiale")]:
+    DOCS.append((gruppo, [(nome, f"{DOC}corsi/{c}/{file}.pdf") for nome, c in CARTELLE_CORSI
+                          if os.path.exists(os.path.join(ROOT, "docs", "corsi", c, file + ".pdf"))]))
 
 
 def corsi():

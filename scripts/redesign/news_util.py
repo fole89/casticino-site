@@ -8,7 +8,7 @@ Ogni news è un file data/news/<AAAA-MM-GG>-<titolo>.json, scritto a mano o dall
   excerpt   riassunto per le schede, facoltativo (se manca: l'inizio del testo)
   testo     testo in Markdown (news nuove)
   html      testo in HTML (news importate dal vecchio sito; vale se «testo» è vuoto)
-  allegati  PDF: lista di {"titolo", "file"} (docs/news/…), facoltativi
+  allegati  PDF: lista di {"titolo", "file"} (docs/news/<anno>/…, ci li sposta prepara_news.py), facoltativi
   category  categoria, facoltativa
   file      pagina generata (news/<anno>/<AAAA-MM-GG>-<titolo-breve>.html); se manca la calcola nome_file()
 Solo libreria standard: lo usano pages.py e scripts/prepara_news.py."""
