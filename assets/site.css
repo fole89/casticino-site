@@ -21,6 +21,13 @@
   --accent:#EF1C24;        /* rosso CAS */
   --accent-hover:#C9141B;
   --accent-ink:#FFFFFF;
+  --festa-arancio:#F28C1B; /* feste (site.js): icona accanto al logo ed effetto sulla foto della home */
+  --festa-giallo:#F6C445;
+  --festa-verde:#3E8E4F;
+  --festa-blu:#2F6FD0;
+  --festa-viola:#7A3FB0;
+  --festa-scuro:#1E1B22;
+  --festa-rosa:#F4B6C8;
   --on-photo:#F4F5F2;
   --scrim:rgba(9,13,11,.78);
   --shadow:0 22px 44px -24px rgba(18,30,26,.45);
@@ -682,6 +689,53 @@ a.sponsor:hover{transform:translateY(-2px)}
 .footer-bottom a:hover{color:var(--accent)}
 @media (max-width:900px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-brand{grid-column:1/-1}}
 @media (max-width:480px){.footer-grid{grid-template-columns:1fr}}
+
+/* ------------------------------------------------------------------ feste (site.js aggiunge .festa--<nome> a <html>) */
+.site-nav .brand{position:relative}
+.festa-icona{position:absolute;left:21px;top:-9px;width:24px;height:24px;pointer-events:none;transform-origin:50% 90%}
+.festa-icona svg{display:block;width:100%;height:100%;overflow:visible}
+.festa--natale .festa-icona{left:-2px;top:-12px;width:28px;height:28px;transform:rotate(-14deg)}
+.festa--agosto .festa-icona{top:-5px;transform-origin:50% 0}
+.f-rosso{fill:var(--accent)}.f-bianco{fill:var(--bg)}.f-arancio{fill:var(--festa-arancio)}.f-giallo{fill:var(--festa-giallo)}
+.f-verde{fill:var(--festa-verde)}.f-blu{fill:var(--festa-blu)}.f-viola{fill:var(--festa-viola)}.f-scuro{fill:var(--festa-scuro)}
+.festa--natale .festa-icona .f-bianco,.festa--pasqua .festa-icona .f-giallo{stroke:var(--line-strong);stroke-width:.8}
+.festa-strato{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.festa-strato i{position:absolute;display:block}
+@media (prefers-reduced-motion:no-preference){
+  .festa-icona{animation:festa-dondola 3.2s ease-in-out infinite}
+  .festa--natale .festa-icona{animation:none}
+  .festa--pasqua .festa-icona{animation:festa-traballa 2.4s ease-in-out infinite}
+  .festa--halloween .festa-icona{animation:festa-salta 2.8s var(--ease) infinite}
+}
+@keyframes festa-dondola{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+@keyframes festa-traballa{0%,60%,100%{transform:rotate(0)}70%{transform:rotate(-12deg)}80%{transform:rotate(10deg)}90%{transform:rotate(-5deg)}}
+@keyframes festa-salta{0%,70%,100%{transform:translateY(0)}80%{transform:translateY(-5px)}90%{transform:translateY(0)}}
+
+/* Natale: neve */
+.festa--natale .festa-strato i{top:-3%;width:calc(7px*var(--s));height:calc(7px*var(--s));border-radius:50%;background:var(--bg);opacity:.9;box-shadow:0 0 6px rgba(255,255,255,.7);animation:festa-neve linear infinite}
+@keyframes festa-neve{0%{top:-3%;transform:translateX(0)}50%{transform:translateX(18px)}100%{top:103%;transform:translateX(-6px)}}
+/* Carnevale: coriandoli */
+.festa--carnevale .festa-strato i{top:-3%;width:calc(7px*var(--s));height:calc(11px*var(--s));animation:festa-coriandoli linear infinite}
+.festa--carnevale .festa-strato .v0{background:var(--accent)}.festa--carnevale .festa-strato .v1{background:var(--festa-giallo)}
+.festa--carnevale .festa-strato .v2{background:var(--festa-blu)}.festa--carnevale .festa-strato .v3{background:var(--festa-verde)}
+@keyframes festa-coriandoli{0%{top:-3%;transform:rotate(0) rotateY(0)}100%{top:103%;transform:rotate(540deg) rotateY(720deg)}}
+/* Pasqua: petali che scendono piano */
+.festa--pasqua .festa-strato i{top:-3%;width:calc(10px*var(--s));height:calc(7px*var(--s));border-radius:70% 0 70% 0;opacity:.9;animation:festa-petali linear infinite}
+.festa--pasqua .festa-strato .v0,.festa--pasqua .festa-strato .v2{background:var(--bg)}
+.festa--pasqua .festa-strato .v1{background:var(--festa-giallo)}.festa--pasqua .festa-strato .v3{background:var(--festa-rosa)}
+@keyframes festa-petali{0%{top:-3%;transform:translateX(0) rotate(0)}50%{transform:translateX(30px) rotate(160deg)}100%{top:103%;transform:translateX(0) rotate(320deg)}}
+/* Halloween: pipistrelli che attraversano la foto */
+.festa--halloween .festa-strato i{left:-60px!important;width:calc(46px*var(--s));height:calc(20px*var(--s));background:var(--festa-scuro);
+  clip-path:polygon(0 20%,14% 30%,24% 18%,34% 40%,44% 30%,50% 10%,56% 30%,66% 40%,76% 18%,86% 30%,100% 20%,90% 65%,78% 55%,66% 80%,56% 62%,50% 75%,44% 62%,34% 80%,22% 55%,10% 65%);
+  animation:festa-volo linear infinite,festa-ali ease-in-out infinite alternate;animation-duration:17s,.22s!important}
+@keyframes festa-volo{0%{transform:translate(0,0)}25%{transform:translate(30vw,-30px)}50%{transform:translate(60vw,10px)}75%{transform:translate(90vw,-25px)}100%{transform:translate(120vw,0)}}
+@keyframes festa-ali{from{scale:1 1}to{scale:1 .45}}
+/* 1° agosto: fuochi d'artificio */
+.festa--agosto .festa-strato i{width:5px;height:5px;border-radius:50%;color:var(--accent);opacity:0;animation:festa-fuoco ease-out infinite;
+  box-shadow:0 -46px currentColor,33px -33px currentColor,46px 0 currentColor,33px 33px currentColor,0 46px currentColor,-33px 33px currentColor,-46px 0 currentColor,-33px -33px currentColor,
+             0 -24px var(--bg),17px -17px var(--bg),24px 0 var(--bg),17px 17px var(--bg),0 24px var(--bg),-17px 17px var(--bg),-24px 0 var(--bg),-17px -17px var(--bg)}
+.festa--agosto .festa-strato .v1,.festa--agosto .festa-strato .v3{color:var(--festa-giallo)}
+@keyframes festa-fuoco{0%,55%{opacity:0;transform:scale(.1)}57%{opacity:1}80%{opacity:1;transform:scale(calc(1.4*var(--s)))}100%{opacity:0;transform:scale(calc(1.6*var(--s))) translateY(8px)}}
 
 /* ------------------------------------------------------------------ comparsa allo scorrimento */
 @media (prefers-reduced-motion:no-preference){

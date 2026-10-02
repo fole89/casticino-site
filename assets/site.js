@@ -198,3 +198,71 @@
     if (stato) stato.textContent = f ? n + ' ' + (n === 1 ? bar.dataset.uno : bar.dataset.molti) + ': ' + b.firstChild.textContent.trim() : '';
   });
 })();
+
+// CAS Ticino - feste: nella settimana prima di Carnevale, Pasqua, 1° agosto, Halloween e Natale un'icona accanto al logo
+// e un effetto leggero sulla foto della home. Solo decorazione (aria-hidden), nessuna pagina in più.
+// Per provarle in qualsiasi giorno: ?festa=carnevale | pasqua | agosto | halloween | natale (?festa=no le spegne).
+(function () {
+  function pasqua(y) { // calcolo gregoriano (Meeus/Jones/Butcher)
+    var a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4,
+        f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30,
+        i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451),
+        mese = Math.floor((h + l - 7 * m + 114) / 31), giorno = (h + l - 7 * m + 114) % 31 + 1;
+    return new Date(y, mese - 1, giorno);
+  }
+  function giorni(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  function festa(oggi) {
+    var y = oggi.getFullYear(), p = pasqua(y), martediGrasso = giorni(p, -47);
+    var periodi = [
+      ['carnevale', giorni(martediGrasso, -6), martediGrasso],
+      ['pasqua', giorni(p, -7), giorni(p, 1)],          // fino a Pasquetta
+      ['agosto', new Date(y, 6, 25), new Date(y, 7, 1)],
+      ['halloween', new Date(y, 9, 24), new Date(y, 9, 31)],
+      ['natale', new Date(y, 11, 18), new Date(y, 11, 26)] // fino a Santo Stefano
+    ];
+    var t = new Date(y, oggi.getMonth(), oggi.getDate());
+    for (var j = 0; j < periodi.length; j++) if (t >= periodi[j][1] && t <= periodi[j][2]) return periodi[j][0];
+    return null;
+  }
+
+  var scelta = null;
+  try { scelta = new URLSearchParams(location.search).get('festa'); } catch (e) {}
+  var nome = scelta ? (scelta === 'no' ? null : scelta) : festa(new Date());
+  var ICONE = {
+    natale: '<svg viewBox="0 0 32 32"><path class="f-rosso" d="M4 24 C8 12 16 4 26 8 L22 12 C16 10 12 16 12 24 Z"/><rect class="f-bianco" x="2" y="22" width="13" height="5" rx="2.5"/><circle class="f-bianco" cx="26" cy="9" r="3.6"/></svg>',
+    halloween: '<svg viewBox="0 0 32 32"><path class="f-verde" d="M15 9 C15 5 17 3 20 3 L20 5 C18 5 17 6 17 9 Z"/><ellipse class="f-arancio" cx="16" cy="19" rx="12" ry="10"/><path class="f-scuro" d="M9 16 L12 13 L14 17 Z M23 16 L20 13 L18 17 Z M9 21 Q16 27 23 21 L21 22 L19 21 L16 23 L13 21 L11 22 Z"/></svg>',
+    pasqua: '<svg viewBox="0 0 32 32"><ellipse class="f-giallo" cx="16" cy="17" rx="10" ry="13"/><path class="f-rosso" d="M6.4 14 L11 11 L16 14 L21 11 L25.6 14 L25.9 17 L21 14 L16 17 L11 14 L6.1 17 Z"/><circle class="f-blu" cx="12" cy="22" r="1.6"/><circle class="f-blu" cx="16" cy="24" r="1.6"/><circle class="f-blu" cx="20" cy="22" r="1.6"/></svg>',
+    carnevale: '<svg viewBox="0 0 32 32"><path class="f-viola" d="M2 12 C8 9 12 10 16 13 C20 10 24 9 30 12 C30 20 26 23 21 23 C18 23 17 20 16 19 C15 20 14 23 11 23 C6 23 2 20 2 12 Z"/><ellipse class="f-bianco" cx="9.5" cy="15.5" rx="3" ry="2"/><ellipse class="f-bianco" cx="22.5" cy="15.5" rx="3" ry="2"/><path class="f-giallo" d="M27 10 C28 5 30 3 31 2 C31 6 30 9 28.5 11 Z"/></svg>',
+    agosto: '<svg viewBox="0 0 32 32"><path class="f-scuro" d="M15 0 H17 V5 H15 Z"/><path class="f-rosso" d="M8 7 H24 C26 11 26 21 24 25 H8 C6 21 6 11 8 7 Z"/><path class="f-bianco" d="M14 11 H18 V14 H21 V18 H18 V21 H14 V18 H11 V14 H14 Z"/><path class="f-scuro" d="M9 5 H23 V7 H9 Z M9 25 H23 V27 H9 Z"/></svg>'
+  };
+  if (!nome || !ICONE[nome]) return;
+  document.documentElement.classList.add('festa', 'festa--' + nome);
+
+  var brand = document.querySelector('.site-nav .brand');
+  if (brand) {
+    var icona = document.createElement('span');
+    icona.className = 'festa-icona';
+    icona.setAttribute('aria-hidden', 'true');
+    icona.innerHTML = ICONE[nome];
+    brand.appendChild(icona);
+  }
+
+  // effetto sulla foto della home, solo se il sistema non chiede di ridurre il movimento
+  var foto = document.querySelector('.hero .band');
+  if (!foto || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var strato = document.createElement('div');
+  strato.className = 'festa-strato';
+  strato.setAttribute('aria-hidden', 'true');
+  var quanti = { natale: 28, carnevale: 26, pasqua: 14, halloween: 3, agosto: 4 }[nome];
+  for (var n = 0; n < quanti; n++) {
+    var p = document.createElement('i');
+    p.style.left = (Math.random() * 96 + 2) + '%';
+    if (nome === 'halloween' || nome === 'agosto') p.style.top = (Math.random() * 45 + 8) + '%'; // gli altri cadono dall'alto
+    p.style.animationDelay = (-Math.random() * 14).toFixed(2) + 's';
+    p.style.animationDuration = (9 + Math.random() * 7).toFixed(2) + 's';
+    p.style.setProperty('--s', (0.6 + Math.random() * 0.8).toFixed(2));
+    p.className = 'v' + (n % 4);
+    strato.appendChild(p);
+  }
+  foto.appendChild(strato);
+})();
