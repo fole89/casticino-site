@@ -1931,7 +1931,7 @@ def senior():
             ("Come aderire", 'Scrivi a <a href="mailto:segretariato.seniori@casticino.ch">segretariato.seniori@casticino.ch</a> con nome, data di nascita, numero di socio CAS, indirizzo, telefono ed e-mail.'),
             ("Uscite", "Di norma il giovedì. Il calendario aggiornato è sul programma gite online."),
             ("Pranzi", 'Il secondo e il quarto mercoledì del mese al Bistrot Vecchio Torchio di Viganello. Iscrizioni entro il lunedì presso Hanni Vanossi (<a class="num" href="tel:+41763973390">+41 76 397 33 90</a>) o direttamente al ristorante (<a class="num" href="tel:+41919721010">+41 91 972 10 10</a>).'),
-            ("Capigita", 'Il dicastero cerca sempre nuovi capigita. <a href="Documenti.html">Promemoria capigita</a>')]
+            ("Capigita", "Il dicastero cerca sempre nuovi capigita.")]
     body = page_hero([("Attività", "index.html#attivita"), ("Senior", None)], "Senior",
                      "Un gruppo di non più giovani con la passione per la montagna: la bellezza della natura, i piaceri della tavola e la nostra storia.") + f"""
 
