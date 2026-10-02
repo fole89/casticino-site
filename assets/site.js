@@ -1,3 +1,11 @@
+// CAS Ticino - indirizzo senza .html: GitHub Pages serve corsi.html anche come /corsi, quindi nella barra degli indirizzi
+// si toglie l'estensione (e index.html) senza ricaricare. Non in locale: python -m http.server non trova le pagine senza .html.
+(function () {
+  if (!history.replaceState || location.protocol === 'file:' || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) return;
+  var p = location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+  if (p !== location.pathname) history.replaceState(history.state, '', p + location.search + location.hash);
+})();
+
 // CAS Ticino - menu fisso: classe .scrolled appena la pagina non è più in cima.
 // Un elemento sentinella osservato con IntersectionObserver evita di ascoltare ogni evento di scroll.
 (function () {
