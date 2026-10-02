@@ -199,8 +199,8 @@
   });
 })();
 
-// CAS Ticino - feste: nella settimana prima di Carnevale, Pasqua, 1° agosto, Halloween e Natale un'icona accanto al logo
-// e un effetto leggero sulla foto della home. Solo decorazione (aria-hidden), nessuna pagina in più.
+// CAS Ticino - feste: nella settimana prima di Carnevale, Pasqua, 1° agosto, Halloween e Natale un'icona dopo il titolo
+// della home e un effetto leggero sulla sua foto. Solo decorazione (aria-hidden), nessuna pagina in più.
 // Per provarle in qualsiasi giorno: ?festa=carnevale | pasqua | agosto | halloween | natale (?festa=no le spegne).
 (function () {
   function pasqua(y) { // calcolo gregoriano (Meeus/Jones/Butcher)
@@ -242,12 +242,9 @@
   }
   document.documentElement.classList.add('festa', 'festa--' + nome);
 
-  var brand = document.querySelector('.site-nav .brand');
-  if (brand) brand.appendChild(icona('festa-icona'));
-
-  // in home la stessa icona, più grande, dopo il titolo «In montagna con noi.»
+  // icona dopo il titolo «In montagna con noi.»
   var titolo = document.querySelector('.hero h1');
-  if (titolo) titolo.appendChild(icona('festa-icona festa-icona--titolo'));
+  if (titolo) titolo.appendChild(icona('festa-icona'));
 
   // effetto sulla foto della home, solo se il sistema non chiede di ridurre il movimento
   var foto = document.querySelector('.hero .band');
