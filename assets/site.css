@@ -632,7 +632,7 @@ dl,dd{margin:0}
 .pub:hover figure{transform:translateY(-4px);box-shadow:var(--shadow)}
 .pub strong{font-size:20px;letter-spacing:-.025em;line-height:1.1;transition:color .2s var(--ease)}
 .pub:hover strong{color:var(--accent)}
-.pub .small{font-family:var(--mono)}
+.pub .small,.pub-feature-body .small{font-family:var(--mono)}
 .pub-feature{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:center;margin-bottom:clamp(48px,6vw,88px)}
 .pub-feature figure{margin:0;box-shadow:var(--shadow)}
 .pub-feature figure img{width:100%;height:auto}
