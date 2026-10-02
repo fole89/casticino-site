@@ -1,7 +1,7 @@
 """Versione tedesca delle pagine capanna: stessa struttura di capanne.py (CONTENUTI) e dei dati di pages.py (HUT_PAGES, HUTS).
 
-Le pagine tedesche si generano in de/ (de/CampoTencia.html, de/capanne/<cartella>/<pagina>.html).
-I link ad altre pagine tradotte si scrivono già con de/ davanti (es. "de/Motterascio.html"); quelli a pagine solo in
+Le pagine tedesche si generano in de/ (de/campotencia.html, de/capanne/<cartella>/<pagina>.html).
+I link ad altre pagine tradotte si scrivono già con de/ davanti (es. "de/motterascio.html"); quelli a pagine solo in
 italiano (news, attività, PDF) restano senza. Immagini, gallerie e PDF sono gli stessi della versione italiana.
 Traduzione da far rileggere a chi parla tedesco."""
 from capanne import PRENOTA  # noqa: F401  (stesso formato del link di prenotazione)
@@ -10,7 +10,7 @@ CT_DOC = "docs/capanne/campotencia/"
 
 # testi di HUT_PAGES (pages.py) in tedesco: sostituiscono quelli italiani, il resto (quota, foto, contatti…) resta uguale
 HUT_DE = {
-    "CampoTencia.html": dict(
+    "campotencia.html": dict(
         where="Val Piumogna, Leventina", custody="Mitte Juni bis Mitte Oktober",
         description="Capanna Campo Tencia, 2140 m, im Val Piumogna (Leventina): 80 Schlafplätze, bewartet von Mitte Juni bis Mitte Oktober. Kontakt und Reservation.",
         intro="Auf einer Terrasse hoch über dem Val Piumogna gelegen, ist sie der ideale Ausgangspunkt für Wanderungen, Übergänge zu anderen Hütten und Besteigungen wie die des Pizzo Campo Tencia, mit 3072 m der höchste Gipfel, der ganz auf Tessiner Boden liegt.",
@@ -26,7 +26,7 @@ HUT_DE = {
                  ("Telefon Hütte", '<a class="num" href="tel:+41918671544">+41 91 867 15 44</a>'),
                  ("Mobile", '<a class="num" href="tel:+41767212572">+41 76 721 25 72</a>'),
                  ("E-Mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
-    "Cristallina.html": dict(
+    "cristallina.html": dict(
         where="Passo Cristallina, Valle Bedretto", custody="Juni bis Mitte Oktober",
         description="Capanna Cristallina, 2575 m, auf dem Cristallinapass zwischen Leventina und Maggiatal: 100 Schlafplätze, bewartet von Juni bis Mitte Oktober. Kontakt und Reservation.",
         intro="Von den Architekten Baserga und Mozzetti entworfen und 2003 eröffnet, ist sie die erste moderne Hütte des Schweizer Alpen-Clubs. Sie steht auf dem Pass, an einer strategischen Stelle zwischen Leventina und Maggiatal: aussichtsreiche Etappe auf den Übergängen nach Robiei, zum Naret, zum Campo Tencia und zum San Giacomo. Die Seenrunde am Cristallina, an einem oder zwei Tagen, eignet sich auch für Familien; in einer Stunde erreicht man den Cristallina und die Cima di Lago. Im Winter, vor allem von Norden her erreichbar, öffnen sich herrliche Hänge ins Bedrettotal, nach Robiei und ins Val Formazza.",
@@ -41,7 +41,7 @@ HUT_DE = {
         contact=[("Hüttenwart", "Emanuele Vellati"),
                  ("Telefon", '<a class="num" href="tel:+41918692330">+41 91 869 23 30</a>'),
                  ("E-Mail", '<a href="mailto:cristallina@casticino.ch">cristallina@casticino.ch</a>')]),
-    "Adula.html": dict(
+    "adula.html": dict(
         where="Oberes Val Carassino, Val Soi, Blenio", custody="Ende Mai bis Mitte Oktober",
         description="Capanna Adula, 2012 m, zwischen Val Carassino und Val Soi (Blenio): 24 Schlafplätze, ganzjährig offen, bewartet von Ende Mai bis Mitte Oktober. Kontakt und Reservation.",
         intro="Die «Bassa», wie sie seit jeher heisst, hat den Charme der Hütte von früher: Steinbau, eine Stube voller Geschichte, Schlafräume, in denen Tausende von Bergsteigern übernachtet haben, herzlicher Empfang und einheimische Küche. Von diesem Balkon über dem Bleniotal startet man zum Gipfel des Rheinwaldhorns (Adula) oder auf bequemen Wegen zu anderen Hütten; die wilden Routen im Val Carassino bieten abenteuerliches Wandern. Für weniger Ehrgeizige: ein Spaziergang im Tal, ein gutes Mittagessen und ein Nickerchen in der Sonne.",
@@ -57,7 +57,7 @@ HUT_DE = {
                  ("Telefon Hütte", '<a class="num" href="tel:+41918721532">+41 91 872 15 32</a>'),
                  ("Mobile", '<a class="num" href="tel:+41795352112">+41 79 535 21 12</a>'),
                  ("E-Mail", '<a href="mailto:adula@casticino.ch">adula@casticino.ch</a>')]),
-    "Motterascio.html": dict(
+    "motterascio.html": dict(
         where="Alpe Motterascio, Greina, Blenio", custody="Mitte Juni bis Mitte Oktober",
         description="Capanna Motterascio, 2172 m, am Rand der Greina (Blenio): 70 Schlafplätze, ganzjährig offen, bewartet von Mitte Juni bis Mitte Oktober. Kontakt und Reservation.",
         intro="1967 eingeweiht und 1980, 1990 und 2006 erweitert, steht sie am Rand eines aussergewöhnlichen Naturschutzgebiets: die Greina, mit ihren Sümpfen, Mooren, Alpweiden und einer unberührten Flora. Ausgangspunkt für spannende Routen, allen voran zum Greina-Bogen, dem grössten Felsbogen im Tessin.",
@@ -73,7 +73,7 @@ HUT_DE = {
                  ("Reservation", '<a class="num" href="tel:+41918721622">+41 91 872 16 22</a> (Mitte Juni bis Mitte Oktober)'),
                  ("Mobile", '<a class="num" href="tel:+41797276905">+41 79 727 69 05</a>'),
                  ("E-Mail", '<a href="mailto:motterascio@casticino.ch">motterascio@casticino.ch</a>')]),
-    "MonteBar.html": dict(
+    "montebar.html": dict(
         where="Alta Capriasca, Region Lugano", custody="ganzjährig",
         description="Capanna Monte Bar, 1602 m, in der Alta Capriasca: 42 Schlafplätze in Zimmern mit 2, 4 und 6 Betten, ganzjährig bewartet, Bike-Hotel-Standard. Kontakt und Reservation.",
         intro="Auf einer aussergewöhnlich schönen Kuppe, mit 180-Grad-Blick von den Denti della Vecchia bis zum Tamaro und im Westen auf die Walliser Viertausender von den Mischabel bis zum Monte Rosa. Im Herbst 2016 neu gebaut: Zimmer mit 2, 4 und 6 Betten, Toiletten auf den Etagen, Speisesaal für rund 80 Personen, Sitzungszimmer für 20, grosse Terrasse und ein geschlossener Raum mit E-Bike-Ladestationen und kleiner Werkstatt nach Bike-Hotel-Standard.",
@@ -89,7 +89,7 @@ HUT_DE = {
         contact=[("Hüttenwarte", "James Mauri und Serge Santese"),
                  ("Telefon", '<a class="num" href="tel:+41919663322">+41 91 966 33 22</a>'),
                  ("E-Mail", '<a href="mailto:montebar@casticino.ch">montebar@casticino.ch</a>')]),
-    "BaitaDelLuca.html": dict(
+    "baitadelluca.html": dict(
         where="Cioascio, Sonvico", custody="auf Reservation",
         description="Baita del Luca, 1070 m, oberhalb von Sonvico am Fuss der Denti della Vecchia: 16 Schlafplätze, Selbstversorgerhütte, nur auf Reservation.",
         intro="Auf einem weiten Grashang oberhalb von Sonvico, am Fuss der Denti della Vecchia: idealer Ausgangspunkt für Wanderungen, auch mit der Familie, und zum Klettern in einer einzigartigen Landschaft.",
@@ -108,16 +108,16 @@ HUT_DE = {
 
 # schede della home tedesca e delle «altre capanne»: stessi campi di HUTS in pages.py
 HUTS_DE = [
-    ("CampoTencia.html", "Campo Tencia", "2140", "Val Piumogna", "Bewartet", "Auf einer Terrasse über dem Val Piumogna, Ausgangspunkt für den Pizzo Campo Tencia, den höchsten ganz im Tessin gelegenen Gipfel.", "80 Plätze", "Dalpe 3 h", "capanne/campotencia-3x2", (987, 658), True),
-    ("Cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Bewartet", "Auf dem gleichnamigen Pass zwischen Leventina und Maggiatal. 2003 eröffnet, die erste moderne SAC-Hütte.", "100 Plätze", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
-    ("Adula.html", "Adula", "2012", "Val Carassino", "Bewartet", "Die klassische Steinhütte hoch über dem Bleniotal: Geschichte, herzlicher Empfang und einheimische Küche.", "24 Plätze", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
-    ("Motterascio.html", "Motterascio", "2172", "Greina", "Bewartet", "Am Rand der geschützten Greina-Ebene: Moore, Alpweiden und der grösste natürliche Felsbogen im Tessin.", "70 Plätze", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
-    ("MonteBar.html", "Monte Bar", "1602", "Alta Capriasca", "Ganzjährig", "Der Balkon über Lugano, 2016 neu gebaut: Blick vom Monte Rosa bis zu den Denti della Vecchia, Bike-Hotel-Standard.", "42 Plätze", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),
-    ("BaitaDelLuca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Auf Reservation", "Oberhalb von Sonvico, am Fuss der Denti della Vecchia. Ideal für Familien und zum Klettern.", "16 Plätze, Selbstversorger", "Rosone 45 min", "capanne/baitadelluca-3x2", (1000, 667), False),
+    ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Bewartet", "Auf einer Terrasse über dem Val Piumogna, Ausgangspunkt für den Pizzo Campo Tencia, den höchsten ganz im Tessin gelegenen Gipfel.", "80 Plätze", "Dalpe 3 h", "capanne/campotencia-3x2", (987, 658), True),
+    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Bewartet", "Auf dem gleichnamigen Pass zwischen Leventina und Maggiatal. 2003 eröffnet, die erste moderne SAC-Hütte.", "100 Plätze", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
+    ("adula.html", "Adula", "2012", "Val Carassino", "Bewartet", "Die klassische Steinhütte hoch über dem Bleniotal: Geschichte, herzlicher Empfang und einheimische Küche.", "24 Plätze", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
+    ("motterascio.html", "Motterascio", "2172", "Greina", "Bewartet", "Am Rand der geschützten Greina-Ebene: Moore, Alpweiden und der grösste natürliche Felsbogen im Tessin.", "70 Plätze", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
+    ("montebar.html", "Monte Bar", "1602", "Alta Capriasca", "Ganzjährig", "Der Balkon über Lugano, 2016 neu gebaut: Blick vom Monte Rosa bis zu den Denti della Vecchia, Bike-Hotel-Standard.", "42 Plätze", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),
+    ("baitadelluca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Auf Reservation", "Oberhalb von Sonvico, am Fuss der Denti della Vecchia. Ideal für Familien und zum Klettern.", "16 Plätze, Selbstversorger", "Rosone 45 min", "capanne/baitadelluca-3x2", (1000, 667), False),
 ]
 
 CONTENUTI_DE = {
-    "CampoTencia.html": dict(
+    "campotencia.html": dict(
         cartella="campotencia",
         avviso="""<strong>Sommersaison 2026.</strong> Die Hütte ist bis etwa Mitte Oktober offen und bewartet.""",
         capanna="""<p>Die erste Hütte der Tessiner Berge wurde 1912 am Fuss des gleichnamigen Gipfels gebaut, auf der Leventiner Seite im oberen Val Piumogna. Sie ist ein Basislager für Familien, Wanderer und Bergsteiger: Naturwanderungen, der Lago Morghirolo ganz in der Nähe, die Klettergärten und die grossen Touren der Campo-Tencia-Gruppe mit der klassischen Überschreitung der Cresta dei Corni.</p>
@@ -297,7 +297,7 @@ CONTENUTI_DE = {
         foto=[("Die Hütte", "capanna"), ("Die Küche", "cucina"), ("Die Umgebung", "dintorni")],
     ),
 
-    "Cristallina.html": dict(
+    "cristallina.html": dict(
         cartella="cristallina",
         avviso="""<strong>Die Sommersaison läuft.</strong> Alle wichtigen Zugänge sind schneefrei und gut begehbar.
 Reservationen bitte online. Wir freuen uns auf Sie, Manu.""",
@@ -410,7 +410,7 @@ Reservationen bitte online. Wir freuen uns auf Sie, Manu.""",
         foto=[("Die Hütte", "capanna"), ("Die Küche", "cucina"), ("Die Umgebung", "dintorni")],
     ),
 
-    "Adula.html": dict(
+    "adula.html": dict(
         cartella="adula",
         avviso="""<strong>Saison 2026: Die Hütte ist offen.</strong> Alle Zugangswege sind begehbar; auch fürs Mittagessen ist eine Reservation willkommen.
 Für Auskünfte rufen Sie uns an. Bis bald in der Höhe, Lele, Miri und das Team.""",
@@ -459,7 +459,7 @@ Für Auskünfte rufen Sie uns an. Bis bald in der Höhe, Lele, Miri und das Team
 </ul>
 <p><strong>Mit dem Auto:</strong> A2 bis Biasca, dann Richtung Lukmanier bis Campo Blenio und Ghirone; hinauf zur Staumauer des Luzzone, über die Mauer und weiter bis zur Alpe di Compietto. Oder das Auto in Ghirone lassen und den <a href="http://www.autolinee.ch/greina" rel="noopener">Alpenbus</a> nehmen.</p>
 <p><strong>Mit dem öffentlichen Verkehr:</strong> Zug S10 bis Biasca, Bus 131 bis Ghirone, dann Alpenbus zur Staumauer des Luzzone. Taxi Riviera (Biasca): <a class="num" href="tel:+41918624848">+41 91 862 48 48</a>.</p>
-<p><strong>Übergänge zu anderen Hütten:</strong> <a href="de/Motterascio.html">Motterascio</a> 5 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 3 h 30; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 1 h; <a href="http://quarnei.ch/" rel="noopener">Quarnei</a> 3 h.</p>
+<p><strong>Übergänge zu anderen Hütten:</strong> <a href="de/motterascio.html">Motterascio</a> 5 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 3 h 30; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 1 h; <a href="http://quarnei.ch/" rel="noopener">Quarnei</a> 3 h.</p>
 <p>Karten: LK 1:25’000 Blatt 1253 Olivone; Skitourenkarte 256 S.</p>""",
         attivita="""<p>Auf der Adula liegt ein Hauch von früher in der Luft: Gastfreundschaft und gute Küche, dazu ein Glas Wein, laden ein, sich vor einer aussergewöhnlichen Kulisse ins Gras zu legen. Von hier aus geht es zu spannenden Routen, alten Übergängen und luftigen Graten.</p>
 <p>Ein idealer Ort für Kinder: prächtige Blumen im Frühsommer, Gämsen und Steinböcke, Murmeltiere, Kühe zum Streicheln und ein Bach zum Baden. Man schläft in einer historischen Hütte mit dem Charme von früher und steigt auf das Rheinwaldhorn (Adula), Ziel vieler Tessiner, mit seinem Gletscher, der leider bald nur noch Erinnerung sein wird.</p>""",
@@ -540,7 +540,7 @@ Für Auskünfte rufen Sie uns an. Bis bald in der Höhe, Lele, Miri und das Team
         foto_lead="Die Hütte und die Umgebung",
     ),
 
-    "Motterascio.html": dict(
+    "motterascio.html": dict(
         cartella="motterascio",
         avviso="""<strong>Die Hütte ist offen: Wir freuen uns auf Sie!</strong> Wir sind von Samstag, 13. Juni, bis Samstag, 10. Oktober 2026 für Sie da.
 Bitte reservieren Sie online; für Auskünfte schreiben oder rufen Sie uns an. Bis bald, Fabio und Vanessa.""",
@@ -588,7 +588,7 @@ Bitte reservieren Sie online; für Auskünfte schreiben oder rufen Sie uns an. B
 <p><strong>Mit dem öffentlichen Verkehr:</strong> Zug und Bus bis Ghirone, Aquilesco; dann mit dem <a href="https://busalpin.ch/regionen/greina/sommer" rel="noopener">Bus alpin</a> der Autolinee Bleniesi bis Lago di Luzzone oder Pian Geirètt, im Juli und August täglich, im September nur an Wochenenden.</p>
 <p><strong>Mit dem Auto:</strong> A2 bis Biasca, dann Richtung Lukmanier bis Campo Blenio und Ghirone; hinauf zur Staumauer des Luzzone und dem See entlang bis zur Alpe Garzott. Kostenlose Parkplätze in Ghirone-Aquilesco und bei der Staumauer (mit Toiletten; Ristorante Luzzone von April bis Oktober); auf der Alpe Garzott, wo man ausgezeichneten Käse kaufen kann, gibt es nur wenige Plätze: früh kommen oder Fahrgemeinschaften bilden.</p>
 <p><strong>Taxi:</strong> Poglia Mirko (Olivone) <a class="num" href="tel:+41794440712">+41 79 444 07 12</a>; <a href="https://www.taxiriviera.ch/" rel="noopener">Taxi Riviera</a> (Biasca) <a class="num" href="tel:+41794136868">+41 79 413 68 68</a>.</p>
-<p><strong>Übergänge zu anderen Hütten:</strong> <a href="https://www.terrihuette.ch/" rel="noopener">Terri</a> 2 h 30; <a href="https://www.satlucomagno.ch/wordpress/capanna-scaletta/" rel="noopener">Scaletta</a> 2 h; <a href="http://www.capannabovarina.ch/" rel="noopener">Bovarina</a> 5 h; <a href="de/Adula.html">Adula CAS</a> 5 h; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 6 h; <a href="https://www.medelserhuette.ch/" rel="noopener">Medelser Hütte</a> 6 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 7 h; <a href="https://www.rifugioscaradra.ch/" rel="noopener">Rifugio Scaradra</a> 3 h. Routen auf <a href="https://map.schweizmobil.ch/?lang=de&amp;bgLayer=pk&amp;season=summer&amp;resolution=10&amp;E=2720474&amp;N=1161992&amp;layers=Wanderland%2CStation%2CAccomodation" rel="noopener">SchweizMobil</a>.</p>
+<p><strong>Übergänge zu anderen Hütten:</strong> <a href="https://www.terrihuette.ch/" rel="noopener">Terri</a> 2 h 30; <a href="https://www.satlucomagno.ch/wordpress/capanna-scaletta/" rel="noopener">Scaletta</a> 2 h; <a href="http://www.capannabovarina.ch/" rel="noopener">Bovarina</a> 5 h; <a href="de/adula.html">Adula CAS</a> 5 h; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 6 h; <a href="https://www.medelserhuette.ch/" rel="noopener">Medelser Hütte</a> 6 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 7 h; <a href="https://www.rifugioscaradra.ch/" rel="noopener">Rifugio Scaradra</a> 3 h. Routen auf <a href="https://map.schweizmobil.ch/?lang=de&amp;bgLayer=pk&amp;season=summer&amp;resolution=10&amp;E=2720474&amp;N=1161992&amp;layers=Wanderland%2CStation%2CAccomodation" rel="noopener">SchweizMobil</a>.</p>
 <p>Karten: LK 1:25’000 Blatt 1233 Greina; Skitourenkarte 256 S.</p>""",
         attivita="""<p>Die Greina ist eine einzigartige Hochebene zwischen Tessin und Graubünden, fast 6 km lang und über 2200 m hoch: eine geschützte alpine Tundra im Bundesinventar der Landschaften von nationaler Bedeutung. Sie ist unberührt: Die einzigen Spuren des Menschen sind der Crap la Crusch und der Pass Crap, wo ein Eisenkreuz daran erinnert, dass die Greina schon in römischer Zeit und im Mittelalter Durchgangsweg und Weideland war.</p>
 <p>Hier entspringen unzählige Quellen, die Mäander, Altwasser und Sümpfe bilden, auf der kontinentalen Wasserscheide: Der Brenno della Greina fliesst zum Mittelmeer, der Rein da Sumvitg zur Nordsee. Sie ist die Königin der Kontraste, zwischen dem Weiss der Gletscher, dem Schwarz der Schiefer und dem Grün der Tundra, mit dem rund vierzig Meter langen Felsbogen, den Mooren, den Felstürmchen und den Dolinen. <strong>Um ihren Zauber wirklich zu erleben, bleiben Sie zwei Tage oder länger.</strong></p>""",
@@ -654,7 +654,7 @@ Bitte reservieren Sie online; für Auskünfte schreiben oder rufen Sie uns an. B
         foto=[("Die Hütte", "capanna"), ("Die Küche", "cucina"), ("Die Umgebung", "dintorni")],
     ),
 
-    "MonteBar.html": dict(
+    "montebar.html": dict(
         cartella="montebar",
         avviso="""<strong>Strasse gesperrt:</strong> Wegen des Neubaus der Brücke über den Fiume Bello ist die Strasse von Bidogno zum Parkplatz Monte Bar («strada da Boris») für Fahrzeuge gesperrt.
 Die Hütte ist nur ab Corticiasca erreichbar. Bis 8. November täglich offen.""",
@@ -793,7 +793,7 @@ Die Hütte ist nur ab Corticiasca erreichbar. Bis 8. November täglich offen."""
         foto=[("Die Hütte", "capanna"), ("Die Küche", "cucina"), ("Die Umgebung", "dintorni")],
     ),
 
-    "BaitaDelLuca.html": dict(
+    "baitadelluca.html": dict(
         cartella="baitadelluca",
         capanna_titolo="Die Baita",
         capanna="""<p>Die Baita hat 16 Schlafplätze in zwei Räumen mit 4 und 12 Plätzen, eine Stube mit Gasküche und Cheminée, warmes Wasser und Dusche; das Licht kommt von Solarzellen. Geschirr und Pfannen sind vorhanden, Getränke gibt es in beschränkter Menge. Mässiger Empfang, kein WLAN und kein Telefon.</p>
@@ -829,7 +829,7 @@ Die Hütte ist nur ab Corticiasca erreichbar. Bis 8. November täglich offen."""
                  img=("sentiero-denti", "Ein Wanderer auf dem Weg unter den Felstürmen der Denti della Vecchia"),
                  itinerari=[
                      dict(titolo="Wandern", img=("sentiero-denti", "Ein Wanderer auf dem Weg unter den Felstürmen der Denti della Vecchia"),
-                          testo="Von der Baita zur Alpe Bolla 3 h, nach Villa Luganese 3 h, auf den Gipfel der Fojorina 4 h; von Brè zur Baita 4-5 h; von der Baita zur Capanna San Lucio 4 h und zur <a href=\"de/MonteBar.html\">Capanna Monte Bar</a> 6 h, oder 9 h über die Gipfel von Fojorina und Gazzirola.",
+                          testo="Von der Baita zur Alpe Bolla 3 h, nach Villa Luganese 3 h, auf den Gipfel der Fojorina 4 h; von Brè zur Baita 4-5 h; von der Baita zur Capanna San Lucio 4 h und zur <a href=\"de/montebar.html\">Capanna Monte Bar</a> 6 h, oder 9 h über die Gipfel von Fojorina und Gazzirola.",
                           link=[("Aus dem Archiv, 1997: Prealpi ticinesi 5, vom Passo San Jorio zum Monte Generoso", "docs/capanne/baitadelluca/baita-del-luca-prealpi-ticinesi-5-passo-s-jorio-generoso.pdf")]),
                      dict(titolo="Klettern", img=("arrampicata-denti", "Kletterer an den Kalkplatten der Denti della Vecchia"),
                           testo="Die Denti della Vecchia sind ein Kletterparadies mit über 200 Routen im Kalk. Der Führer der Gruppo Scoiattoli ist online auf <a href=\"https://scoiattoli.ch/\" rel=\"noopener\">scoiattoli.ch</a>; in der Baita liegt auch die gedruckte Ausgabe zum Nachschlagen.",

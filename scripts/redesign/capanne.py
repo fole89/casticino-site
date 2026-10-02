@@ -15,7 +15,7 @@ CT_IMG = "capanne/campotencia/"      # immagini (dentro assets/img/)
 CT_DOC = "docs/capanne/campotencia/"
 
 CONTENUTI = {
-    "CampoTencia.html": dict(
+    "campotencia.html": dict(
         cartella="campotencia",
         avviso="""<strong>Stagione estiva 2026.</strong> La capanna è aperta e custodita fino a metà ottobre circa.""",
         capanna="""<p>La prima capanna delle montagne ticinesi fu costruita nel 1912 ai piedi del pizzo omonimo, sul versante leventinese in alta Val Piumogna. È un campo base per famiglie, escursionisti e alpinisti: escursioni naturalistiche, il Lago Morghirolo a due passi, i giardini d’arrampicata e le grandi ascensioni del gruppo del Campo Tencia, con la classica traversata della Cresta dei Corni.</p>
@@ -195,7 +195,7 @@ CONTENUTI = {
         foto=[("La capanna", "capanna"), ("La cucina", "cucina"), ("I dintorni", "dintorni")],
     ),
 
-    "Cristallina.html": dict(
+    "cristallina.html": dict(
         cartella="cristallina",
         avviso="""<strong>Stagione estiva a pieno regime.</strong> Tutti i principali collegamenti sono liberi dalla neve e ben percorribili.
 Le prenotazioni si fanno online. Vi aspettiamo, Manu.""",
@@ -309,7 +309,7 @@ Le prenotazioni si fanno online. Vi aspettiamo, Manu.""",
         foto=[("La capanna", "capanna"), ("La cucina", "cucina"), ("I dintorni", "dintorni")],
     ),
 
-    "Adula.html": dict(
+    "adula.html": dict(
         cartella="adula",
         avviso="""<strong>Stagione 2026: la capanna è aperta.</strong> Tutti i sentieri di accesso sono percorribili; gradita la riservazione anche per il pranzo.
 Per qualsiasi informazione chiamateci. A presto in quota, Lele, Miri e il team.""",
@@ -358,7 +358,7 @@ Per qualsiasi informazione chiamateci. A presto in quota, Lele, Miri e il team."
 </ul>
 <p><strong>In auto:</strong> A2 fino a Biasca, poi direzione Lucomagno fino a Campo Blenio e Ghirone; si sale alla diga del Luzzone, la si attraversa e si arriva all’Alpe di Compietto. Oppure si lascia l’auto a Ghirone e si prende il <a href="http://www.autolinee.ch/greina" rel="noopener">bus alpino</a>.</p>
 <p><strong>Con i mezzi pubblici:</strong> treno S10 fino a Biasca, bus 131 fino a Ghirone, poi bus alpino verso la diga del Luzzone. Taxi Riviera (Biasca): <a class="num" href="tel:+41918624848">+41 91 862 48 48</a>.</p>
-<p><strong>Traversate ad altre capanne:</strong> <a href="Motterascio.html">Motterascio</a> 5 h; <a href="http://laentahuette.ch/it/startseite.html" rel="noopener">Läntahütte</a> 3 h 30; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 1 h; <a href="http://quarnei.ch/" rel="noopener">Quarnei</a> 3 h.</p>
+<p><strong>Traversate ad altre capanne:</strong> <a href="motterascio.html">Motterascio</a> 5 h; <a href="http://laentahuette.ch/it/startseite.html" rel="noopener">Läntahütte</a> 3 h 30; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 1 h; <a href="http://quarnei.ch/" rel="noopener">Quarnei</a> 3 h.</p>
 <p>Cartine: CNS 1:25’000 foglio 1253 Olivone; carta scialpinistica 256 S.</p>""",
         attivita="""<p>All’Adula si respira un profumo antico: l’accoglienza e la buona cucina, con un bicchiere di vino, invitano a sdraiarsi sul prato davanti a uno scenario d’eccezione. Da qui si parte per itinerari entusiasmanti, antichi passaggi e creste aeree.</p>
 <p>È il posto giusto per i bambini, che possono vedere fiori stupendi a inizio estate, scovare camosci e stambecchi, sentire le marmotte, accarezzare le mucche e bagnarsi nel fiume. Si dorme in una capanna storica, che conserva il fascino del rifugio d’altri tempi, e si sale sulla vetta dell’Adula, ambizione di tanti ticinesi, con il suo ghiacciaio che purtroppo presto sarà solo un ricordo.</p>""",
@@ -438,7 +438,7 @@ Per qualsiasi informazione chiamateci. A presto in quota, Lele, Miri e il team."
         foto_lead="La capanna e i dintorni",
     ),
 
-    "Motterascio.html": dict(
+    "motterascio.html": dict(
         cartella="motterascio",
         avviso="""<strong>Capanna aperta: vi aspettiamo!</strong> Siamo aperti da sabato 13 giugno a sabato 10 ottobre 2026.
 Riservate il soggiorno online; per informazioni scriveteci o chiamateci. A presto, Fabio e Vanessa.""",
@@ -486,7 +486,7 @@ Riservate il soggiorno online; per informazioni scriveteci o chiamateci. A prest
 <p><strong>Con i mezzi pubblici:</strong> treno e bus fino a Ghirone, Aquilesco; poi il <a href="https://busalpin.ch/regionen/greina/sommer" rel="noopener">bus alpino</a> delle Autolinee Bleniesi fino al Lago di Luzzone o a Pian Geirètt, ogni giorno in luglio e agosto, solo nei fine settimana in settembre.</p>
 <p><strong>In auto:</strong> A2 fino a Biasca, poi direzione Lucomagno fino a Campo Blenio e Ghirone; si sale alla diga del Luzzone e si costeggia il lago fino all’Alpe Garzott. Posteggi gratuiti a Ghirone-Aquilesco e alla diga (con servizi igienici; ristorante Luzzone da aprile a ottobre); all’Alpe Garzott, dove si compra un ottimo formaggio, i posti sono pochi: arrivate presto o condividete l’auto.</p>
 <p><strong>Taxi:</strong> Poglia Mirko (Olivone) <a class="num" href="tel:+41794440712">+41 79 444 07 12</a>; <a href="https://www.taxiriviera.ch/" rel="noopener">Taxi Riviera</a> (Biasca) <a class="num" href="tel:+41794136868">+41 79 413 68 68</a>.</p>
-<p><strong>Traversate ad altre capanne:</strong> <a href="https://www.terrihuette.ch/" rel="noopener">Terri</a> 2 h 30; <a href="https://www.satlucomagno.ch/wordpress/capanna-scaletta/" rel="noopener">Scaletta</a> 2 h; <a href="http://www.capannabovarina.ch/" rel="noopener">Bovarina</a> 5 h; <a href="Adula.html">Adula CAS</a> 5 h; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 6 h; <a href="https://www.medelserhuette.ch/" rel="noopener">Medels</a> 6 h; <a href="http://laentahuette.ch/" rel="noopener">Länta</a> 7 h; <a href="https://www.rifugioscaradra.ch/" rel="noopener">Rifugio Scaradra</a> 3 h. Itinerari su <a href="https://map.schweizmobil.ch/?lang=it&amp;bgLayer=pk&amp;season=summer&amp;resolution=10&amp;E=2720474&amp;N=1161992&amp;layers=Wanderland%2CStation%2CAccomodation" rel="noopener">SvizzeraMobile</a>.</p>
+<p><strong>Traversate ad altre capanne:</strong> <a href="https://www.terrihuette.ch/" rel="noopener">Terri</a> 2 h 30; <a href="https://www.satlucomagno.ch/wordpress/capanna-scaletta/" rel="noopener">Scaletta</a> 2 h; <a href="http://www.capannabovarina.ch/" rel="noopener">Bovarina</a> 5 h; <a href="adula.html">Adula CAS</a> 5 h; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 6 h; <a href="https://www.medelserhuette.ch/" rel="noopener">Medels</a> 6 h; <a href="http://laentahuette.ch/" rel="noopener">Länta</a> 7 h; <a href="https://www.rifugioscaradra.ch/" rel="noopener">Rifugio Scaradra</a> 3 h. Itinerari su <a href="https://map.schweizmobil.ch/?lang=it&amp;bgLayer=pk&amp;season=summer&amp;resolution=10&amp;E=2720474&amp;N=1161992&amp;layers=Wanderland%2CStation%2CAccomodation" rel="noopener">SvizzeraMobile</a>.</p>
 <p>Cartine: CNS 1:25’000 foglio 1233 Greina; carta scialpinistica 256 S.</p>""",
         attivita="""<p>La Greina è un altopiano unico tra Ticino e Grigioni, lungo quasi 6 km a oltre 2200 m: una tundra alpina protetta, iscritta nell’inventario federale dei paesaggi d’importanza nazionale. È intatta: gli unici segni dell’uomo sono il Crap la Crusch e il Pass Crap, dove una croce di ferro ricorda che già in epoca romana e nel Medioevo era via di transito e di pascolo.</p>
 <p>Qui nascono innumerevoli sorgenti che formano meandri, lanche e paludi, sullo spartiacque continentale: il Brenno della Greina va verso il Mediterraneo, il Rein da Sumvitg verso il Mare del Nord. È la regina dei contrasti, tra il bianco dei ghiacciai, il nero degli scisti e il verde della tundra, con l’arco naturale di pietra di una quarantina di metri, le torbiere, i pinnacoli e le doline. <strong>Per viverne davvero l’incanto, fermatevi due giorni o più.</strong></p>""",
@@ -552,7 +552,7 @@ Riservate il soggiorno online; per informazioni scriveteci o chiamateci. A prest
         foto=[("La capanna", "capanna"), ("La cucina", "cucina"), ("I dintorni", "dintorni")],
     ),
 
-    "MonteBar.html": dict(
+    "montebar.html": dict(
         cartella="montebar",
         avviso="""<strong>Strada chiusa:</strong> per il rifacimento del ponte sul fiume Bello la strada da Bidogno al posteggio Monte Bar («strada da Boris») è chiusa ai veicoli.
 La capanna si raggiunge solo da Corticiasca. Aperta tutti i giorni fino all’8 novembre.""",
@@ -692,7 +692,7 @@ La capanna si raggiunge solo da Corticiasca. Aperta tutti i giorni fino all’8 
         foto=[("La capanna", "capanna"), ("La cucina", "cucina"), ("I dintorni", "dintorni")],
     ),
 
-    "BaitaDelLuca.html": dict(
+    "baitadelluca.html": dict(
         cartella="baitadelluca",
         capanna="""<p>La baita ha 16 posti letto in due camere da 4 e da 12, un refettorio con cucina a gas e camino a legna, acqua calda e doccia; l’illuminazione è a pannelli solari. Piatti e pentole sono a disposizione e ci sono bibite in quantità limitata. Ricezione discreta, niente wi-fi e niente telefono.</p>
 <p>È aperta tutto l’anno ma non è custodita: la porta è chiusa e il codice per entrare si chiede alla responsabile. Facile e veloce da raggiungere, è usata anche per corsi, giornate di formazione o semplicemente per una cena in compagnia.</p>""",
@@ -727,7 +727,7 @@ La capanna si raggiunge solo da Corticiasca. Aperta tutti i giorni fino all’8 
                  img=("sentiero-denti", "Un escursionista sul sentiero sotto le guglie dei Denti della Vecchia"),
                  itinerari=[
                      dict(titolo="Escursioni", img=("sentiero-denti", "Un escursionista sul sentiero sotto le guglie dei Denti della Vecchia"),
-                          testo="Dalla baita all’Alpe Bolla 3 h, a Villa Luganese 3 h, alla cima della Fojorina 4 h; da Brè alla baita 4-5 h; dalla baita alla Capanna San Lucio 4 h e alla <a href=\"MonteBar.html\">Capanna Monte Bar</a> 6 h, o 9 h passando dalle cime Fojorina e Gazzirola.",
+                          testo="Dalla baita all’Alpe Bolla 3 h, a Villa Luganese 3 h, alla cima della Fojorina 4 h; da Brè alla baita 4-5 h; dalla baita alla Capanna San Lucio 4 h e alla <a href=\"montebar.html\">Capanna Monte Bar</a> 6 h, o 9 h passando dalle cime Fojorina e Gazzirola.",
                           link=[("Dall’archivio, 1997: Prealpi ticinesi 5, dal Passo San Jorio al Monte Generoso", "docs/capanne/baitadelluca/baita-del-luca-prealpi-ticinesi-5-passo-s-jorio-generoso.pdf")]),
                      dict(titolo="Arrampicata", img=("arrampicata-denti", "Arrampicatori sulle placche calcaree dei Denti della Vecchia"),
                           testo="I Denti della Vecchia sono un paradiso per l’arrampicata, con più di 200 vie su calcare. La guida del Gruppo Scoiattoli è online su <a href=\"https://scoiattoli.ch/\" rel=\"noopener\">scoiattoli.ch</a>; in baita c’è anche la versione cartacea da consultare.",

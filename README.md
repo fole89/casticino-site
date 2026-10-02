@@ -5,7 +5,7 @@ Sito della Sezione Ticino del Club Alpino Svizzero, pubblicato con GitHub Pages 
 Sito statico in HTML, CSS e JavaScript semplici, senza framework né passaggi di build. Ogni pagina è un file `.html` nella cartella principale.
 
 ```
-index.html, Comitato.html, …   pagine del sito (generate, non modificarle a mano)
+index.html, comitato.html, …   pagine del sito (generate, non modificarle a mano)
 scripts/redesign/               genera le pagine: python scripts/redesign/pages.py
 assets/site.css                 stile di tutto il sito
 assets/site.js                  menu, comparsa allo scorrimento, menu mobile
@@ -103,7 +103,7 @@ Poi vai in **Actions › Aggiorna foto da Droptour › Run workflow** per il pri
 
 ```bash
 FTP_HOST=… FTP_USER=… FTP_PASSWORD=… python3 scripts/update_foto.py
-python3 -m http.server 8000      # poi apri http://localhost:8000/Foto.html
+python3 -m http.server 8000      # poi apri http://localhost:8000/foto.html
 ```
 
 La pagina Foto va aperta tramite un server, anche quello locale qui sopra. Aperta con doppio clic, il browser blocca la lettura di `foto.json`.
@@ -117,5 +117,5 @@ La pagina Foto va aperta tramite un server, anche quello locale qui sopra. Apert
 ## 4. Da completare prima di andare online
 
 - Segnaposto da riempire: foto della sede, foto profilo dei dicasteri e di due membri del comitato (Geoffroy Jolly, Flavia Spinelli: oggi mostrano le iniziali), alcuni PDF dei corsi, l'ispettore della Capanna Motterascio.
-- **News**: le notizie sono in `data/news.json` (importate una volta dal vecchio sito con `scripts/import_news.py`). Per aggiungerne una si inserisce una voce in cima al file e si rigenerano le pagine: compare in `News.html`, nella sua pagina `news/<anno>/<AAAA-MM-GG>-<titolo-breve>.html` e, se è tra le ultime 3, in home.
+- **News**: le notizie sono in `data/news.json` (importate una volta dal vecchio sito con `scripts/import_news.py`). Per aggiungerne una si inserisce una voce in cima al file e si rigenerano le pagine: compare in `news.html`, nella sua pagina `news/<anno>/<AAAA-MM-GG>-<titolo-breve>.html` e, se è tra le ultime 3, in home.
 - **Annuari e Informazione**: si mette il PDF in `docs/annuari/annuario-<anno>.pdf` o `docs/informazione/informazione-<anno>-<mese>.pdf`, si lancia `python scripts/copertine.py` (crea la copertina) e si rigenerano le pagine.

@@ -1,7 +1,7 @@
 """Versione inglese delle pagine capanna: stessa struttura di capanne.py (CONTENUTI) e dei dati di pages.py (HUT_PAGES, HUTS).
 
-Le pagine inglesi si generano in en/ (en/CampoTencia.html, en/capanne/<cartella>/<pagina>.html).
-I link ad altre pagine tradotte si scrivono già con en/ davanti (es. "en/Motterascio.html"); quelli a pagine solo in
+Le pagine inglesi si generano in en/ (en/campotencia.html, en/capanne/<cartella>/<pagina>.html).
+I link ad altre pagine tradotte si scrivono già con en/ davanti (es. "en/motterascio.html"); quelli a pagine solo in
 italiano (news, attività, PDF) restano senza. Immagini, gallerie e PDF sono gli stessi della versione italiana.
 Inglese britannico; i nomi propri delle capanne restano in italiano («Capanna Cristallina»).
 Traduzione da far rileggere a chi parla inglese."""
@@ -11,7 +11,7 @@ CT_DOC = "docs/capanne/campotencia/"
 
 # testi di HUT_PAGES (pages.py) in inglese: sostituiscono quelli italiani, il resto (quota, foto, contatti…) resta uguale
 HUT_EN = {
-    "CampoTencia.html": dict(
+    "campotencia.html": dict(
         where="Val Piumogna, Leventina", custody="mid-June to mid-October",
         description="Capanna Campo Tencia, 2140 m, in Val Piumogna (Leventina): 80 beds, staffed from mid-June to mid-October. Contacts and booking.",
         intro="Set on a terrace high above the upper Val Piumogna, it is the ideal base for hikes, traverses to other huts and climbs such as Pizzo Campo Tencia, which at 3072 m is the highest peak lying entirely in Ticino.",
@@ -27,7 +27,7 @@ HUT_EN = {
                  ("Hut phone", '<a class="num" href="tel:+41918671544">+41 91 867 15 44</a>'),
                  ("Mobile", '<a class="num" href="tel:+41767212572">+41 76 721 25 72</a>'),
                  ("E-mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
-    "Cristallina.html": dict(
+    "cristallina.html": dict(
         where="Passo Cristallina, Valle Bedretto", custody="June to mid-October",
         description="Capanna Cristallina, 2575 m, on the Cristallina Pass between Leventina and Valle Maggia: 100 beds, staffed from June to mid-October. Contacts and booking.",
         intro="Designed by the architects Baserga and Mozzetti and opened in 2003, it is the first modern hut built by the Swiss Alpine Club. It stands on the pass, at a strategic point between Leventina and Valle Maggia: a panoramic stage on the traverses to Robiei, the Naret, Campo Tencia and San Giacomo. The Cristallina lakes circuit, over one or two days, is also suitable for families; in an hour you can reach the Cristallina and the Cima di Lago. In winter, reached mainly from the north, it opens up superb slopes towards Valle Bedretto, Robiei and Val Formazza.",
@@ -42,7 +42,7 @@ HUT_EN = {
         contact=[("Hut keeper", "Emanuele Vellati"),
                  ("Phone", '<a class="num" href="tel:+41918692330">+41 91 869 23 30</a>'),
                  ("E-mail", '<a href="mailto:cristallina@casticino.ch">cristallina@casticino.ch</a>')]),
-    "Adula.html": dict(
+    "adula.html": dict(
         where="Upper Val Carassino, Val Soi, Blenio", custody="end of May to mid-October",
         description="Capanna Adula, 2012 m, between Val Carassino and Val Soi (Blenio): 24 beds, open all year, staffed from the end of May to mid-October. Contacts and booking.",
         intro="The “Bassa”, as it has always been known, has the charm of the huts of old: built of stone, a common room full of history, dormitories where thousands of climbers have slept, a warm welcome and local cooking. From this balcony above Valle di Blenio you set off for the summit of the Adula (Rheinwaldhorn) or, on easy paths, for other huts; the wild routes of Val Carassino offer adventurous hiking. For the less ambitious: a walk in the valley, a good lunch and a nap in the sun.",
@@ -58,7 +58,7 @@ HUT_EN = {
                  ("Hut phone", '<a class="num" href="tel:+41918721532">+41 91 872 15 32</a>'),
                  ("Mobile", '<a class="num" href="tel:+41795352112">+41 79 535 21 12</a>'),
                  ("E-mail", '<a href="mailto:adula@casticino.ch">adula@casticino.ch</a>')]),
-    "Motterascio.html": dict(
+    "motterascio.html": dict(
         where="Alpe Motterascio, Greina, Blenio", custody="mid-June to mid-October",
         description="Capanna Motterascio, 2172 m, on the edge of the Greina (Blenio): 70 beds, open all year, staffed from mid-June to mid-October. Contacts and booking.",
         intro="Inaugurated in 1967 and enlarged in 1980, 1990 and 2006, the hut stands on the edge of an extraordinary nature reserve: the Greina, with its marshes, peat bogs, alpine pastures and unspoilt flora. The starting point for fascinating routes, above all to the Greina arch, the largest natural rock arch in Ticino.",
@@ -74,7 +74,7 @@ HUT_EN = {
                  ("Booking", '<a class="num" href="tel:+41918721622">+41 91 872 16 22</a> (mid-June to mid-October)'),
                  ("Mobile", '<a class="num" href="tel:+41797276905">+41 79 727 69 05</a>'),
                  ("E-mail", '<a href="mailto:motterascio@casticino.ch">motterascio@casticino.ch</a>')]),
-    "MonteBar.html": dict(
+    "montebar.html": dict(
         where="Alta Capriasca, Lugano region", custody="all year round",
         description="Capanna Monte Bar, 1602 m, in the Alta Capriasca: 42 beds in rooms with 2, 4 and 6 beds, staffed all year round, Bike Hotel standard. Contacts and booking.",
         intro="On an exceptionally beautiful rounded summit, with a 180-degree view from the Denti della Vecchia to the Tamaro and, to the west, the Valais four-thousanders from the Mischabel to Monte Rosa. Rebuilt in autumn 2016: rooms with 2, 4 and 6 beds, toilets on each floor, a dining room for about 80 people, a meeting room for 20, a large terrace and a closed room with e-bike charging points and a small workshop, to Bike Hotel standard.",
@@ -90,7 +90,7 @@ HUT_EN = {
         contact=[("Hut keepers", "James Mauri and Serge Santese"),
                  ("Phone", '<a class="num" href="tel:+41919663322">+41 91 966 33 22</a>'),
                  ("E-mail", '<a href="mailto:montebar@casticino.ch">montebar@casticino.ch</a>')]),
-    "BaitaDelLuca.html": dict(
+    "baitadelluca.html": dict(
         where="Cioascio, Sonvico", custody="on booking",
         description="Baita del Luca, 1070 m, above Sonvico at the foot of the Denti della Vecchia: 16 beds, self-catering, on booking only.",
         intro="On a broad grassy slope above Sonvico, at the foot of the Denti della Vecchia: the ideal starting point for hikes, also with the family, and for climbing in a unique landscape.",
@@ -109,16 +109,16 @@ HUT_EN = {
 
 # schede della home inglese e delle «altre capanne»: stessi campi di HUTS in pages.py
 HUTS_EN = [
-    ("CampoTencia.html", "Campo Tencia", "2140", "Val Piumogna", "Staffed", "On a terrace above Val Piumogna, the base for Pizzo Campo Tencia, the highest peak lying entirely in Ticino.", "80 beds", "Dalpe 3 h", "capanne/campotencia-3x2", (987, 658), True),
-    ("Cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Staffed", "On the pass of the same name between Leventina and Valle Maggia. Opened in 2003, the first modern SAC hut.", "100 beds", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
-    ("Adula.html", "Adula", "2012", "Val Carassino", "Staffed", "The classic stone hut high above Valle di Blenio: history, a warm welcome and local cooking.", "24 beds", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
-    ("Motterascio.html", "Motterascio", "2172", "Greina", "Staffed", "On the edge of the protected Greina plateau: peat bogs, alpine pastures and the largest natural rock arch in Ticino.", "70 beds", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
-    ("MonteBar.html", "Monte Bar", "1602", "Alta Capriasca", "All year", "The balcony above Lugano, rebuilt in 2016: views from Monte Rosa to the Denti della Vecchia, Bike Hotel standard.", "42 beds", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),
-    ("BaitaDelLuca.html", "Baita del Luca", "1070", "Denti della Vecchia", "On booking", "Above Sonvico, at the foot of the Denti della Vecchia. Ideal for families and climbing.", "16 beds, self-catering", "Rosone 45 min", "capanne/baitadelluca-3x2", (1000, 667), False),
+    ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Staffed", "On a terrace above Val Piumogna, the base for Pizzo Campo Tencia, the highest peak lying entirely in Ticino.", "80 beds", "Dalpe 3 h", "capanne/campotencia-3x2", (987, 658), True),
+    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Staffed", "On the pass of the same name between Leventina and Valle Maggia. Opened in 2003, the first modern SAC hut.", "100 beds", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
+    ("adula.html", "Adula", "2012", "Val Carassino", "Staffed", "The classic stone hut high above Valle di Blenio: history, a warm welcome and local cooking.", "24 beds", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
+    ("motterascio.html", "Motterascio", "2172", "Greina", "Staffed", "On the edge of the protected Greina plateau: peat bogs, alpine pastures and the largest natural rock arch in Ticino.", "70 beds", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
+    ("montebar.html", "Monte Bar", "1602", "Alta Capriasca", "All year", "The balcony above Lugano, rebuilt in 2016: views from Monte Rosa to the Denti della Vecchia, Bike Hotel standard.", "42 beds", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),
+    ("baitadelluca.html", "Baita del Luca", "1070", "Denti della Vecchia", "On booking", "Above Sonvico, at the foot of the Denti della Vecchia. Ideal for families and climbing.", "16 beds, self-catering", "Rosone 45 min", "capanne/baitadelluca-3x2", (1000, 667), False),
 ]
 
 CONTENUTI_EN = {
-    "CampoTencia.html": dict(
+    "campotencia.html": dict(
         cartella="campotencia",
         avviso="""<strong>Summer season 2026.</strong> The hut is open and staffed until about mid-October.""",
         capanna="""<p>The first hut in the mountains of Ticino was built in 1912 at the foot of the peak of the same name, on the Leventina side, in the upper Val Piumogna. It is a base camp for families, hikers and climbers: nature walks, Lago Morghirolo close by, the climbing crags and the great routes of the Campo Tencia group, with the classic traverse of the Cresta dei Corni.</p>
@@ -298,7 +298,7 @@ CONTENUTI_EN = {
         foto=[("The hut", "capanna"), ("The kitchen", "cucina"), ("The surroundings", "dintorni")],
     ),
 
-    "Cristallina.html": dict(
+    "cristallina.html": dict(
         cartella="cristallina",
         avviso="""<strong>The summer season is under way.</strong> All the main access routes are free of snow and easy to walk.
 Please book online. We look forward to seeing you, Manu.""",
@@ -411,7 +411,7 @@ Please book online. We look forward to seeing you, Manu.""",
         foto=[("The hut", "capanna"), ("The kitchen", "cucina"), ("The surroundings", "dintorni")],
     ),
 
-    "Adula.html": dict(
+    "adula.html": dict(
         cartella="adula",
         avviso="""<strong>2026 season: the hut is open.</strong> All access paths are passable; booking is welcome for lunch too.
 For information, give us a call. See you up there soon, Lele, Miri and the team.""",
@@ -460,7 +460,7 @@ For information, give us a call. See you up there soon, Lele, Miri and the team.
 </ul>
 <p><strong>By car:</strong> A2 to Biasca, then towards the Lukmanier Pass to Campo Blenio and Ghirone; up to the Luzzone dam, across the dam and on to Alpe di Compietto. Or leave the car in Ghirone and take the <a href="http://www.autolinee.ch/greina" rel="noopener">alpine bus</a>.</p>
 <p><strong>By public transport:</strong> S10 train to Biasca, bus 131 to Ghirone, then the alpine bus to the Luzzone dam. Taxi Riviera (Biasca): <a class="num" href="tel:+41918624848">+41 91 862 48 48</a>.</p>
-<p><strong>Traverses to other huts:</strong> <a href="en/Motterascio.html">Motterascio</a> 5 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 3 h 30; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 1 h; <a href="http://quarnei.ch/" rel="noopener">Quarnei</a> 3 h.</p>
+<p><strong>Traverses to other huts:</strong> <a href="en/motterascio.html">Motterascio</a> 5 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 3 h 30; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 1 h; <a href="http://quarnei.ch/" rel="noopener">Quarnei</a> 3 h.</p>
 <p>Maps: Swiss map 1:25,000 sheet 1253 Olivone; ski touring map 256 S.</p>""",
         attivita="""<p>At the Adula there is a touch of the old days in the air: hospitality and good food, with a glass of wine, invite you to lie back in the grass against an extraordinary backdrop. From here you set off on exciting routes, old crossings and airy ridges.</p>
 <p>An ideal place for children: splendid flowers in early summer, chamois and ibex, marmots, cows to stroke and a stream to bathe in. You sleep in a historic hut with old-time charm and climb the Adula (Rheinwaldhorn), the goal of many people from Ticino, with its glacier, which sadly will soon be only a memory.</p>""",
@@ -541,7 +541,7 @@ For information, give us a call. See you up there soon, Lele, Miri and the team.
         foto_lead="The hut and the surroundings",
     ),
 
-    "Motterascio.html": dict(
+    "motterascio.html": dict(
         cartella="motterascio",
         avviso="""<strong>The hut is open: we look forward to seeing you!</strong> We are here for you from Saturday 13 June to Saturday 10 October 2026.
 Please book online; for information write to us or give us a call. See you soon, Fabio and Vanessa.""",
@@ -589,7 +589,7 @@ Please book online; for information write to us or give us a call. See you soon,
 <p><strong>By public transport:</strong> train and bus to Ghirone, Aquilesco; then the Autolinee Bleniesi <a href="https://busalpin.ch/regionen/greina/sommer" rel="noopener">Bus alpin</a> to Lago di Luzzone or Pian Geirètt, daily in July and August, at weekends only in September.</p>
 <p><strong>By car:</strong> A2 to Biasca, then towards the Lukmanier Pass to Campo Blenio and Ghirone; up to the Luzzone dam and along the lake to Alpe Garzott. Free parking in Ghirone-Aquilesco and at the dam (with toilets; Ristorante Luzzone from April to October); at Alpe Garzott, where you can buy excellent cheese, there are only a few spaces: arrive early or share cars.</p>
 <p><strong>Taxi:</strong> Poglia Mirko (Olivone) <a class="num" href="tel:+41794440712">+41 79 444 07 12</a>; <a href="https://www.taxiriviera.ch/" rel="noopener">Taxi Riviera</a> (Biasca) <a class="num" href="tel:+41794136868">+41 79 413 68 68</a>.</p>
-<p><strong>Traverses to other huts:</strong> <a href="https://www.terrihuette.ch/" rel="noopener">Terri</a> 2 h 30; <a href="https://www.satlucomagno.ch/wordpress/capanna-scaletta/" rel="noopener">Scaletta</a> 2 h; <a href="http://www.capannabovarina.ch/" rel="noopener">Bovarina</a> 5 h; <a href="en/Adula.html">Adula CAS</a> 5 h; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 6 h; <a href="https://www.medelserhuette.ch/" rel="noopener">Medelser Hütte</a> 6 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 7 h; <a href="https://www.rifugioscaradra.ch/" rel="noopener">Rifugio Scaradra</a> 3 h. Routes on <a href="https://map.schweizmobil.ch/?lang=en&amp;bgLayer=pk&amp;season=summer&amp;resolution=10&amp;E=2720474&amp;N=1161992&amp;layers=Wanderland%2CStation%2CAccomodation" rel="noopener">SwitzerlandMobility</a>.</p>
+<p><strong>Traverses to other huts:</strong> <a href="https://www.terrihuette.ch/" rel="noopener">Terri</a> 2 h 30; <a href="https://www.satlucomagno.ch/wordpress/capanna-scaletta/" rel="noopener">Scaletta</a> 2 h; <a href="http://www.capannabovarina.ch/" rel="noopener">Bovarina</a> 5 h; <a href="en/adula.html">Adula CAS</a> 5 h; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 6 h; <a href="https://www.medelserhuette.ch/" rel="noopener">Medelser Hütte</a> 6 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 7 h; <a href="https://www.rifugioscaradra.ch/" rel="noopener">Rifugio Scaradra</a> 3 h. Routes on <a href="https://map.schweizmobil.ch/?lang=en&amp;bgLayer=pk&amp;season=summer&amp;resolution=10&amp;E=2720474&amp;N=1161992&amp;layers=Wanderland%2CStation%2CAccomodation" rel="noopener">SwitzerlandMobility</a>.</p>
 <p>Maps: Swiss map 1:25,000 sheet 1233 Greina; ski touring map 256 S.</p>""",
         attivita="""<p>The Greina is a unique high plateau between Ticino and Graubünden, almost 6 km long and over 2200 m high: a protected alpine tundra in the Federal Inventory of Landscapes of National Importance. It is unspoilt: the only signs of people are the Crap la Crusch and the Crap pass, where an iron cross recalls that the Greina was already a route and pastureland in Roman times and in the Middle Ages.</p>
 <p>Countless springs rise here, forming meanders, oxbows and marshes on the continental divide: the Brenno della Greina flows to the Mediterranean, the Rein da Sumvitg to the North Sea. It is the queen of contrasts, between the white of the glaciers, the black of the schists and the green of the tundra, with the rock arch about forty metres long, the peat bogs, the small rock towers and the sinkholes. <strong>To really feel its magic, stay two days or more.</strong></p>""",
@@ -655,7 +655,7 @@ Please book online; for information write to us or give us a call. See you soon,
         foto=[("The hut", "capanna"), ("The kitchen", "cucina"), ("The surroundings", "dintorni")],
     ),
 
-    "MonteBar.html": dict(
+    "montebar.html": dict(
         cartella="montebar",
         avviso="""<strong>Road closed:</strong> because the bridge over the Fiume Bello is being rebuilt, the road from Bidogno to the Monte Bar car park (“strada da Boris”) is closed to vehicles.
 The hut can only be reached from Corticiasca. Open every day until 8 November.""",
@@ -794,7 +794,7 @@ The hut can only be reached from Corticiasca. Open every day until 8 November.""
         foto=[("The hut", "capanna"), ("The kitchen", "cucina"), ("The surroundings", "dintorni")],
     ),
 
-    "BaitaDelLuca.html": dict(
+    "baitadelluca.html": dict(
         cartella="baitadelluca",
         capanna_titolo="The baita",
         capanna="""<p>The baita has 16 beds in two rooms of 4 and 12 places, a common room with a gas kitchen and fireplace, hot water and a shower; the light comes from solar panels. Crockery and pans are provided, and drinks are available in limited quantities. Moderate reception, no Wi-Fi and no telephone.</p>
@@ -830,7 +830,7 @@ The hut can only be reached from Corticiasca. Open every day until 8 November.""
                  img=("sentiero-denti", "A hiker on the path below the rock towers of the Denti della Vecchia"),
                  itinerari=[
                      dict(titolo="Hiking", img=("sentiero-denti", "A hiker on the path below the rock towers of the Denti della Vecchia"),
-                          testo="From the baita to Alpe Bolla 3 h, to Villa Luganese 3 h, to the summit of the Fojorina 4 h; from Brè to the baita 4-5 h; from the baita to Capanna San Lucio 4 h and to <a href=\"en/MonteBar.html\">Capanna Monte Bar</a> 6 h, or 9 h over the summits of the Fojorina and the Gazzirola.",
+                          testo="From the baita to Alpe Bolla 3 h, to Villa Luganese 3 h, to the summit of the Fojorina 4 h; from Brè to the baita 4-5 h; from the baita to Capanna San Lucio 4 h and to <a href=\"en/montebar.html\">Capanna Monte Bar</a> 6 h, or 9 h over the summits of the Fojorina and the Gazzirola.",
                           link=[("From the archive, 1997: Prealpi ticinesi 5, from the Passo San Jorio to Monte Generoso", "docs/capanne/baitadelluca/baita-del-luca-prealpi-ticinesi-5-passo-s-jorio-generoso.pdf")]),
                      dict(titolo="Climbing", img=("arrampicata-denti", "Climbers on the limestone slabs of the Denti della Vecchia"),
                           testo="The Denti della Vecchia are a climbing paradise with over 200 routes on limestone. The Gruppo Scoiattoli guidebook is online at <a href=\"https://scoiattoli.ch/\" rel=\"noopener\">scoiattoli.ch</a>; a printed copy is also kept at the baita for reference.",

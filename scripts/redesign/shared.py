@@ -16,47 +16,47 @@ GITE = "https://ssl.dropnet.ch/casticino/gite/index.php"
 
 MENU = [
     ("La Sezione", "index.html#sezione", [
-        ("Introduzione", "Introduzione.html"), ("Comitato", "Comitato.html"),
-        ("Organizzazione", "Organizzazione.html"), ("Capigita", "Capigita.html"), ("Sede e recapiti", "Sede.html"),
-        ("Storia", "Storia.html"), ("Link utili", "Link.html")]),
+        ("Introduzione", "introduzione.html"), ("Comitato", "comitato.html"),
+        ("Organizzazione", "organizzazione.html"), ("Capigita", "capigita.html"), ("Sede e recapiti", "sede.html"),
+        ("Storia", "storia.html"), ("Link utili", "link.html")]),
     ("News", "index.html#news", None),
     ("Attività", "index.html#attivita", [
-        ("Giovani", "Giovani.html"), ("Senior", "Senior.html"),
-        ("Corsi", "Corsi.html"), ("Soccorso", "Soccorso.html"), ("Noleggio", "Noleggio.html")]),
+        ("Giovani", "giovani.html"), ("Senior", "senior.html"),
+        ("Corsi", "corsi.html"), ("Soccorso", "soccorso.html"), ("Noleggio", "noleggio.html")]),
     ("Capanne", "index.html#capanne", [
-        ("Campo Tencia", "CampoTencia.html"), ("Cristallina", "Cristallina.html"), ("Adula", "Adula.html"),
-        ("Motterascio", "Motterascio.html"), ("Monte Bar", "MonteBar.html"), ("Baita del Luca", "BaitaDelLuca.html")]),
+        ("Campo Tencia", "campotencia.html"), ("Cristallina", "cristallina.html"), ("Adula", "adula.html"),
+        ("Motterascio", "motterascio.html"), ("Monte Bar", "montebar.html"), ("Baita del Luca", "baitadelluca.html")]),
     ("Media", "index.html#media", [
-        ("Foto e resoconti", "Foto.html"), ("Annuari", "Annuari.html"), ("Informazione", "Informazione.html"),
-        ("Documenti", "Documenti.html")]),
-    ("Adesione", "Adesione.html", None),
+        ("Foto e resoconti", "foto.html"), ("Annuari", "annuari.html"), ("Informazione", "informazione.html"),
+        ("Documenti", "documenti.html")]),
+    ("Adesione", "adesione.html", None),
 ]
 
 # Versione tedesca: le pagine tradotte sono in de/ (stesso nome di file). News, attività, media e PDF restano
 # solo in italiano e nel menu tedesco non compaiono.
 MENU_DE = [
-    ("Die Sektion", "de/Introduzione.html", [
-        ("Einführung", "de/Introduzione.html"), ("Vorstand", "de/Comitato.html"),
-        ("Organisation", "de/Organizzazione.html"), ("Tourenleitende", "de/Capigita.html"),
-        ("Sitz und Kontakt", "de/Sede.html"),
-        ("Geschichte", "de/Storia.html"), ("Nützliche Links", "de/Link.html")]),
+    ("Die Sektion", "de/introduzione.html", [
+        ("Einführung", "de/introduzione.html"), ("Vorstand", "de/comitato.html"),
+        ("Organisation", "de/organizzazione.html"), ("Tourenleitende", "de/capigita.html"),
+        ("Sitz und Kontakt", "de/sede.html"),
+        ("Geschichte", "de/storia.html"), ("Nützliche Links", "de/link.html")]),
     ("Hütten", "de/index.html#capanne", [
-        ("Campo Tencia", "de/CampoTencia.html"), ("Cristallina", "de/Cristallina.html"), ("Adula", "de/Adula.html"),
-        ("Motterascio", "de/Motterascio.html"), ("Monte Bar", "de/MonteBar.html"), ("Baita del Luca", "de/BaitaDelLuca.html")]),
-    ("Mitgliedschaft", "de/Adesione.html", None),
+        ("Campo Tencia", "de/campotencia.html"), ("Cristallina", "de/cristallina.html"), ("Adula", "de/adula.html"),
+        ("Motterascio", "de/motterascio.html"), ("Monte Bar", "de/montebar.html"), ("Baita del Luca", "de/baitadelluca.html")]),
+    ("Mitgliedschaft", "de/adesione.html", None),
 ]
 
 # Versione inglese: come quella tedesca, in en/ (stesse pagine, stessi nomi di file).
 MENU_EN = [
-    ("The Section", "en/Introduzione.html", [
-        ("Introduction", "en/Introduzione.html"), ("Committee", "en/Comitato.html"),
-        ("Organisation", "en/Organizzazione.html"), ("Trip leaders", "en/Capigita.html"),
-        ("Office and contacts", "en/Sede.html"),
-        ("History", "en/Storia.html"), ("Useful links", "en/Link.html")]),
+    ("The Section", "en/introduzione.html", [
+        ("Introduction", "en/introduzione.html"), ("Committee", "en/comitato.html"),
+        ("Organisation", "en/organizzazione.html"), ("Trip leaders", "en/capigita.html"),
+        ("Office and contacts", "en/sede.html"),
+        ("History", "en/storia.html"), ("Useful links", "en/link.html")]),
     ("Huts", "en/index.html#capanne", [
-        ("Campo Tencia", "en/CampoTencia.html"), ("Cristallina", "en/Cristallina.html"), ("Adula", "en/Adula.html"),
-        ("Motterascio", "en/Motterascio.html"), ("Monte Bar", "en/MonteBar.html"), ("Baita del Luca", "en/BaitaDelLuca.html")]),
-    ("Membership", "en/Adesione.html", None),
+        ("Campo Tencia", "en/campotencia.html"), ("Cristallina", "en/cristallina.html"), ("Adula", "en/adula.html"),
+        ("Motterascio", "en/motterascio.html"), ("Monte Bar", "en/montebar.html"), ("Baita del Luca", "en/baitadelluca.html")]),
+    ("Membership", "en/adesione.html", None),
 ]
 
 LINGUE = ("it", "de", "en")  # l'italiano è la lingua principale; le altre hanno solo La Sezione, le capanne e Adesione
@@ -180,7 +180,7 @@ def nav(current_page, current_section=None):
 <div class="nav-langs">
 {lingue}
 </div>
-<a class="nav-search" href="Cerca.html" aria-label="{t('cerca')}" title="{t('cerca')}"{' aria-current="page"' if current_page == "Cerca.html" else ""}><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="m13 13 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a>
+<a class="nav-search" href="cerca.html" aria-label="{t('cerca')}" title="{t('cerca')}"{' aria-current="page"' if current_page == "cerca.html" else ""}><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="m13 13 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a>
 <a class="btn btn--primary" href="{GITE}">{t('gite')}</a>
 <button class="menu-toggle" type="button" aria-label="{t('menu_apri')}" data-chiudi="{t('menu_chiudi')}" data-titolo="{t('menu')}"><span class="burger" aria-hidden="true"></span></button>
 </div>
@@ -214,10 +214,10 @@ def footer():
         if not sub:
             continue
         name = label
-        extra = [("News", "News.html")] if label == "Attività" else []
-        extra_end = [("Adesione", "Adesione.html")] if label == "Attività" else []
+        extra = [("News", "news.html")] if label == "Attività" else []
+        extra_end = [("Adesione", "adesione.html")] if label == "Attività" else []
         if LINGUA["lang"] != "it" and not cols:  # versioni tradotte: Adesione in fondo alla prima colonna
-            extra_end = [(t("adesione"), L("Adesione.html"))]
+            extra_end = [(t("adesione"), L("adesione.html"))]
         links = "\n".join(f'<a href="{h}">{l}</a>' for l, h in extra + sub + extra_end)
         cols.append(f'<nav class="footer-col" aria-label="{name}">\n<h2>{name}</h2>\n{links}\n</nav>')
     cols = "\n".join(cols)

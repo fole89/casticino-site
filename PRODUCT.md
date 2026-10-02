@@ -33,7 +33,7 @@ The only CAS section serving Italian-speaking Switzerland: six huts from Passo C
 - Trip program and registrations live on Droptour (`ssl.dropnet.ch/casticino/gite/…`); the site links out to it.
 - Trip photos and reports come automatically from the public Droptour gallery via `scripts/update_foto.py` → `data/foto.json` (daily GitHub Action). Images stay hosted on ssl.dropnet.ch.
 - Huts have their own sites on subdomains (e.g. `capannacristallina.casticino.ch`) that are not part of this repo.
-- News is static and edited by hand (`News.html` plus the «Dalla sezione» block on the home page).
+- News is static and edited by hand (`news.html` plus the «Dalla sezione» block on the home page).
 - Published with GitHub Pages, currently at `fole89.github.io/casticino-site/`, moving to `casticino.ch` at the DNS switch.
 
 ## Capabilities and Constraints
@@ -52,7 +52,7 @@ The only CAS section serving Italian-speaking Switzerland: six huts from Passo C
 
 ## Evidence on Hand
 
-- Real facts: founding 1886 (Birraria Gambrinus, Bellinzona), ≈3000 members, 6 huts with 362 beds, 5 course disciplines, historical timeline (Storia.html), hut data (altitude, valley, places, access times).
+- Real facts: founding 1886 (Birraria Gambrinus, Bellinzona), ≈3000 members, 6 huts with 362 beds, 5 course disciplines, historical timeline (storia.html), hut data (altitude, valley, places, access times).
 - Real photography: huts, activities and courses in `assets/img/` (WebP); committee portraits in `assets/comitato/`; trip photos from Droptour via `data/foto.json`.
 - Sponsor logos in `assets/sponsor/`.
 - Absent, must not be fabricated: member testimonials, statistics beyond those above, photos for placeholders listed under Constraints, prices or opening dates not supplied by the huts.

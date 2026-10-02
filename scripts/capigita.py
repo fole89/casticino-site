@@ -1,9 +1,9 @@
-"""Elenco dei capigita per la pagina Capigita.html, ricavato dall'export Droptour dei capigita attivi.
+"""Elenco dei capigita per la pagina capigita.html, ricavato dall'export Droptour dei capigita attivi.
 
 Il file Excel (es. capogita-attivi-2027.xlsx) contiene dati personali: resta solo in locale (*.xlsx è in .gitignore).
 Da qui si prendono solo nome, anno «Capogita dal» e categorie, e si scrivono in data/capigita.json, che va su git.
 Solo libreria standard (un .xlsx è uno zip di file XML).
-Uso: python scripts/capigita.py capogita-attivi-2027.xlsx   poi   python scripts/redesign/pages.py Capigita.html Cerca.html"""
+Uso: python scripts/capigita.py capogita-attivi-2027.xlsx   poi   python scripts/redesign/pages.py capigita.html cerca.html"""
 import json, os, re, sys, zipfile
 from xml.etree import ElementTree as ET
 

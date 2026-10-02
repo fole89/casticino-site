@@ -5,7 +5,7 @@ Scrive:
   assets/img/news/<anno>/   immagine principale e immagini nel testo in WebP (max 1400 px), con lo stesso nome dell'articolo
   docs/news/*.pdf           PDF allegati, scaricati dal vecchio sito
 
-Le pagine (News.html e news/<anno>/<AAAA-MM-GG>-<titolo-breve>.html) le genera poi scripts/redesign/pages.py leggendo data/news.json.
+Le pagine (news.html e news/<anno>/<AAAA-MM-GG>-<titolo-breve>.html) le genera poi scripts/redesign/pages.py leggendo data/news.json.
 Serve Pillow solo per questo script:  pip install pillow
 Uso: python scripts/import_news.py
 """
@@ -22,11 +22,11 @@ GITE = "https://ssl.dropnet.ch/casticino/gite/index.php"
 
 # pagine del vecchio sito citate negli articoli -> pagine nuove (percorsi relativi alla radice del sito)
 VECCHIE_PAGINE = {
-    "page_id=53": "Corsi.html#corso-arrampicata",       # corso di arrampicata
-    "page_id=55": "Corsi.html#corso-racchette",       # corso di racchette
-    "page_id=4380": "Corsi.html#corso-fuoripista",     # tecnica di sci fuori pista
+    "page_id=53": "corsi.html#corso-arrampicata",       # corso di arrampicata
+    "page_id=55": "corsi.html#corso-racchette",       # corso di racchette
+    "page_id=4380": "corsi.html#corso-fuoripista",     # tecnica di sci fuori pista
     "page_id=78": GITE,                       # programma
-    "/corso-di-sci-alpinismo/": "Corsi.html#corso-scialpinismo",
+    "/corso-di-sci-alpinismo/": "corsi.html#corso-scialpinismo",
 }
 
 
