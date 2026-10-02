@@ -642,6 +642,10 @@ dl,dd{margin:0}
 .cerca-form input{flex:1;min-width:0;min-height:56px;padding:0 18px;border:1.5px solid var(--line-strong);border-radius:0;background:var(--bg);color:var(--ink);font:500 clamp(18px,1.6vw,21px) var(--font)}
 .cerca-form input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(239,28,36,.18)}
 .cerca-form .btn{min-height:56px}
+/* pagina 404: pulsante e righe in tedesco/inglese staccati dalla ricerca */
+.non-trovata .actions{margin-top:clamp(28px,3.5vw,40px)}
+.non-trovata .altre-lingue{display:grid;gap:10px;margin-top:clamp(40px,5vw,64px)}
+.non-trovata .altre-lingue p{margin:0}
 .cerca-stato{color:var(--muted);margin-bottom:12px}
 .cerca-lista{list-style:none;margin:0;padding:0;display:grid;max-width:880px;border-top:1px solid var(--line)}
 .cerca-item a{display:grid;gap:6px;padding:20px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}

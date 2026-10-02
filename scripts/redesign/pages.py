@@ -2623,14 +2623,18 @@ def pagina_404():
     <base> fa partire i percorsi relativi dalla radice del sito."""
     body = page_hero([("Pagina non trovata", None)], "Pagina non trovata",
                      "La pagina che cerchi non esiste o è stata spostata. Dal nuovo sito alcuni indirizzi sono cambiati: prova dalla home o con la ricerca.",
-                     """<form class="cerca-form" role="search" action="cerca.html">
+                     """<div class="non-trovata">
+<form class="cerca-form" role="search" action="cerca.html">
 <label class="visually-hidden" for="cerca-q">Cerca nel sito</label>
 <input id="cerca-q" name="q" type="search" placeholder="Es. Cristallina, corso racchette, statuto…" autocomplete="off">
 <button class="btn btn--primary" type="submit">Cerca</button>
 </form>
 <div class="actions"><a class="btn btn--secondary" href="index.html">Vai alla home</a></div>
+<div class="altre-lingue">
 <p class="small" lang="de">Seite nicht gefunden. <a href="de/index.html">Zur Startseite</a></p>
-<p class="small" lang="en">Page not found. <a href="en/index.html">Go to the home page</a></p>""")
+<p class="small" lang="en">Page not found. <a href="en/index.html">Go to the home page</a></p>
+</div>
+</div>""")
     html = page("404.html", "Pagina non trovata | CAS Ticino", "La pagina cercata non esiste sul sito del CAS Ticino.", body)
     return html.replace("<head>\n", f'<head>\n<base href="{SITO}">\n<meta name="robots" content="noindex">\n', 1)
 
