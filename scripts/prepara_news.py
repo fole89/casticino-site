@@ -8,6 +8,7 @@ Per ogni data/news/*.json:
   - i PDF (allegati o link nel testo) ancora in docs/news/, dove li salva l'area di redazione, vanno in
     docs/news/<anno>/ con il nome della pagina (-2, -3… per gli altri) e i link nella news vengono aggiornati;
     un PDF usato da più news segue la prima, le altre puntano al nuovo percorso
+  - toglie le pagine delle news eliminate e le foto/PDF nelle cartelle degli anni che nessuna news usa più
 Lo esegue il workflow .github/workflows/news.yml; serve Pillow:  pip install pillow
 Uso: python scripts/prepara_news.py"""
 import glob, json, os, re, shutil, sys, urllib.parse
@@ -136,6 +137,22 @@ def main():
         if rel not in valide:
             os.remove(pagina)
             print("pagina tolta:", rel)
+    togli_orfani()
+
+
+def togli_orfani():
+    """Toglie foto e PDF nelle cartelle degli anni che nessuna news usa più (news eliminate o con la data cambiata).
+    Per prudenza conta come usato anche un file citato nei generatori delle pagine (scripts/redesign/*.py)."""
+    citati = ""
+    for p in glob.glob(os.path.join(ROOT, "data", "news", "*.json")) + glob.glob(os.path.join(ROOT, "scripts", "redesign", "*.py")):
+        with open(p, encoding="utf-8") as f:
+            t = f.read()
+        citati += t + urllib.parse.unquote(t)
+    for f in glob.glob(os.path.join(ROOT, "assets", "img", "news", "[0-9]" * 4, "*")) + glob.glob(os.path.join(ROOT, "docs", "news", "[0-9]" * 4, "*")):
+        rel = os.path.relpath(f, ROOT).replace(os.sep, "/")
+        if rel not in citati:
+            os.remove(f)
+            print("file non più usato, tolto:", rel)
 
 
 if __name__ == "__main__":
