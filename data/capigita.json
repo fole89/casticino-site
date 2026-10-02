@@ -1,0 +1,565 @@
+{
+ "capigita": [
+  {
+   "nome": "Deborah Acierno",
+   "dal": 2024,
+   "ruoli": [
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Valerio Ariu",
+   "dal": 2021,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Thomas Arn",
+   "dal": 2017,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Walter Baumgartner",
+   "dal": 2023,
+   "ruoli": [
+    "seniori",
+    "invernale",
+    "escursionismo"
+   ]
+  },
+  {
+   "nome": "Franco Bertoni",
+   "dal": 2018,
+   "ruoli": [
+    "estivo",
+    "seniori",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Enrica Bianchi",
+   "dal": 2027,
+   "ruoli": [
+    "estivo",
+    "invernale",
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Pier Carlo Bocchi",
+   "dal": 2025,
+   "ruoli": [
+    "seniori",
+    "escursionismo"
+   ]
+  },
+  {
+   "nome": "Elisa Bossi",
+   "dal": 2025,
+   "ruoli": [
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Marco Buck",
+   "dal": 2017,
+   "ruoli": [
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Nadir Caduff",
+   "dal": 2017,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Milvia Carelli",
+   "dal": 2023,
+   "ruoli": [
+    "seniori",
+    "escursionismo"
+   ]
+  },
+  {
+   "nome": "Loris Carpineti",
+   "dal": 2018,
+   "ruoli": [
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Joel Casada",
+   "dal": 2026,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Fausto Cattalini",
+   "dal": 2020,
+   "ruoli": [
+    "seniori",
+    "escursionismo"
+   ]
+  },
+  {
+   "nome": "Sofia Cereghetti",
+   "dal": 2026,
+   "ruoli": [
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Giosiana Codoni",
+   "dal": 2017,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Marco Corti",
+   "dal": 2017,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Pierre Crivelli",
+   "dal": 2018,
+   "ruoli": [
+    "estivo",
+    "soccorso",
+    "invernale",
+    "escursionismo",
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Alessandro Docimo",
+   "dal": 2023,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Alessandro Doninelli",
+   "dal": 2017,
+   "ruoli": [
+    "estivo",
+    "seniori",
+    "invernale",
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Luigi Dosso",
+   "dal": 2024,
+   "ruoli": [
+    "estivo",
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Caterina Eisenhut",
+   "dal": 2019,
+   "ruoli": [
+    "seniori",
+    "escursionismo"
+   ]
+  },
+  {
+   "nome": "Daniele Eisenhut",
+   "dal": 2025,
+   "ruoli": [
+    "seniori"
+   ]
+  },
+  {
+   "nome": "Michele Foletti",
+   "dal": 2023,
+   "ruoli": [
+    "estivo",
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Sara Della Frera",
+   "dal": 2020,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Giovanni Galli",
+   "dal": 2017,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Niccolò Galliani",
+   "dal": 2025,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Fabrizio Gastori",
+   "dal": 2027,
+   "ruoli": [
+    "seniori",
+    "escursionismo"
+   ]
+  },
+  {
+   "nome": "Andrea Ghidotti",
+   "dal": 2018,
+   "ruoli": [
+    "estivo",
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Sarah Holzer",
+   "dal": 2025,
+   "ruoli": [
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Filippo Iocchi",
+   "dal": 2024,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Michel Jaeger",
+   "dal": 2020,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Geoffroy Jolly",
+   "dal": 2024,
+   "ruoli": [
+    "soccorso",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "James Kennedy",
+   "dal": 2027,
+   "ruoli": [
+    "soccorso",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Kilian Knupfer",
+   "dal": 2025,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Richard Knupfer",
+   "dal": 2020,
+   "ruoli": [
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Stephan Kotyczka",
+   "dal": 2027,
+   "ruoli": [
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Anna Lazzarinetti",
+   "dal": 2025,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Christian Lorenzetti",
+   "dal": 2018,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Alfio Maestretti",
+   "dal": 2026,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Alessia Mangia",
+   "dal": 2024,
+   "ruoli": [
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Michael Margagliotti",
+   "dal": 2025,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Nicola Martinoni",
+   "dal": 2017,
+   "ruoli": [
+    "estivo",
+    "invernale",
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Hamos Meneghelli",
+   "dal": 2017,
+   "ruoli": [
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Marta Pedrini",
+   "dal": 2023,
+   "ruoli": [
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Manuel Pellanda",
+   "dal": 2017,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Claudio Petrini",
+   "dal": 2019,
+   "ruoli": [
+    "invernale",
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Francesco Piattini",
+   "dal": 2027,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Rico Piazzalunga",
+   "dal": 2026,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Alessandro Piazzoli",
+   "dal": 2022,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Gabriele Ponzio",
+   "dal": 2020,
+   "ruoli": [
+    "estivo",
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Jessica Poretti",
+   "dal": 2026,
+   "ruoli": [
+    "aiuto",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Nicolò Poretti",
+   "dal": 2023,
+   "ruoli": [
+    "arrampicata"
+   ]
+  },
+  {
+   "nome": "Nicola Rampa",
+   "dal": 2021,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Cinzia Rezzonico",
+   "dal": 2022,
+   "ruoli": [
+    "aiuto",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Patrik Rivaroli",
+   "dal": 2026,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Alessandro Romelli",
+   "dal": 2018,
+   "ruoli": [
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Filippo Sala",
+   "dal": 2024,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Luca Salzborn",
+   "dal": 2018,
+   "ruoli": [
+    "seniori",
+    "invernale",
+    "escursionismo"
+   ]
+  },
+  {
+   "nome": "Simona Salzborn",
+   "dal": 2018,
+   "ruoli": [
+    "seniori"
+   ]
+  },
+  {
+   "nome": "Andrea Stella",
+   "dal": 2017,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Monica Stoppani",
+   "dal": 2025,
+   "ruoli": [
+    "seniori",
+    "escursionismo"
+   ]
+  },
+  {
+   "nome": "David Stracquadanio",
+   "dal": 2017,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Alessandro Valenti",
+   "dal": 2025,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Alessio Valsangiacomo",
+   "dal": 2018,
+   "ruoli": [
+    "estivo"
+   ]
+  },
+  {
+   "nome": "Sandra Valsangiacomo-Zanini",
+   "dal": 2025,
+   "ruoli": [
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Alessandro Vanoni",
+   "dal": 2025,
+   "ruoli": [
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Hanni Vanossi",
+   "dal": 2019,
+   "ruoli": [
+    "seniori"
+   ]
+  },
+  {
+   "nome": "Piergiorgio Gin Vassalli",
+   "dal": 2017,
+   "ruoli": [
+    "seniori",
+    "escursionismo"
+   ]
+  },
+  {
+   "nome": "Ivan Vicenzi",
+   "dal": 2023,
+   "ruoli": [
+    "seniori",
+    "escursionismo"
+   ]
+  },
+  {
+   "nome": "Saskia Willemse",
+   "dal": 2017,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  },
+  {
+   "nome": "Martin Wägli",
+   "dal": 2022,
+   "ruoli": [
+    "seniori"
+   ]
+  },
+  {
+   "nome": "Enrico Zamboni",
+   "dal": 2020,
+   "ruoli": [
+    "estivo",
+    "invernale"
+   ]
+  }
+ ]
+}

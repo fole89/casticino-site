@@ -7,3 +7,7 @@ __pycache__/
 
 # foto originali ad alta risoluzione: sul sito vanno le versioni WebP in assets/img/
 assets/img/originali/
+
+# elenchi con dati personali (es. capogita-attivi-2027.xlsx): mai sul sito né su git
+*.xls
+*.xlsx

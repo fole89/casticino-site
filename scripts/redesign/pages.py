@@ -3,7 +3,7 @@
 Uso: python scripts/redesign/pages.py [Pagina.html ...]  (senza argomenti rigenera tutto)"""
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from shared import head, nav, footer, pic, img, GITE, page_hero, subnav, asset, in_sottocartella, crumbs
+from shared import head, nav, footer, social, pic, img, GITE, page_hero, subnav, asset, in_sottocartella, crumbs
 
 # Programma gite su Droptour già filtrato per gruppo o per tipo di attività (i link dei singoli corsi cambiano ogni anno)
 GITE_FILTRO = GITE + "?page=touren&amp;year=&amp;typ=&amp;gruppe={gruppe}&amp;anlasstyp={tipo}&amp;selected_anf_tech=&amp;selected_anf_kond=&amp;zusatz=&amp;search="
@@ -120,6 +120,9 @@ def home():
 </div>
 <div class="news-grid" data-reveal>
 {chr(10).join(news_card(n) for n in NEWS[:3])}
+</div>
+<div class="rail-foot">
+{social()}
 </div>
 </div>
 </section>
@@ -251,8 +254,8 @@ HUT_PAGES = {
                ("Accesso invernale", "Da Dalpe 3h, con gli sci per la Val Piumogna"),
                ("Cartina", 'CNS 1272 Campo Tencia, coordinate <span class="num">699.430 / 144.480</span>')],
         contact=[("Guardiani", "Valeria Grandi e Paco Porcu"),
-                 ("Telefono capanna", '<a class="num" href="tel:+41918671544">+41 (0) 91 867 15 44</a>'),
-                 ("Cellulare", '<a class="num" href="tel:+41767212572">+41 (0) 76 721 25 72</a>'),
+                 ("Telefono capanna", '<a class="num" href="tel:+41918671544">+41 91 867 15 44</a>'),
+                 ("Cellulare", '<a class="num" href="tel:+41767212572">+41 76 721 25 72</a>'),
                  ("E-mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
     "Cristallina.html": dict(
         name="Cristallina", where="Passo Cristallina, Valle Bedretto", alt_m="2575", beds="100", custody="da giugno a metà ottobre",
@@ -269,7 +272,7 @@ HUT_PAGES = {
                ("Accesso invernale", "Da Ossasco 3h; da All’Acqua 4h"),
                ("Cartina", 'CNS 1251 Bedretto, coordinate <span class="num">683.550 / 147.300</span>')],
         contact=[("Guardiano", "Emanuele Vellati"),
-                 ("Telefono", '<a class="num" href="tel:+41918692330">+41 (0) 91 869 23 30</a>'),
+                 ("Telefono", '<a class="num" href="tel:+41918692330">+41 91 869 23 30</a>'),
                  ("E-mail", '<a href="mailto:cristallina@casticino.ch">cristallina@casticino.ch</a>')]),
     "Adula.html": dict(
         name="Adula", where="Alta Val Carassino, Val Soi, Blenio", alt_m="2012", beds="24", custody="da fine maggio a metà ottobre",
@@ -286,8 +289,8 @@ HUT_PAGES = {
                ("Accesso invernale", "Da Dangio 3h30; da Ghirone 5h"),
                ("Cartina", 'CNS 1253 Olivone, coordinate <span class="num">719.510 / 150.950</span>')],
         contact=[("Guardiano", "Raffaele «Lele» Demaldi"),
-                 ("Telefono capanna", '<a class="num" href="tel:+41918721532">+41 (0) 91 872 15 32</a>'),
-                 ("Cellulare", '<a class="num" href="tel:+41795352112">+41 (0) 79 535 21 12</a>'),
+                 ("Telefono capanna", '<a class="num" href="tel:+41918721532">+41 91 872 15 32</a>'),
+                 ("Cellulare", '<a class="num" href="tel:+41795352112">+41 79 535 21 12</a>'),
                  ("E-mail", '<a href="mailto:adula@casticino.ch">adula@casticino.ch</a>')]),
     "Motterascio.html": dict(
         name="Motterascio", where="Alpe Motterascio, Greina, Blenio", alt_m="2172", beds="70", custody="da metà giugno a metà ottobre",
@@ -304,8 +307,8 @@ HUT_PAGES = {
                ("Accesso invernale", "Da Ghirone per la Val Camadra e il Passo della Greina, 5-6h, solo con neve assestata"),
                ("Cartina", 'CNS 1233 Greina, coordinate <span class="num">720.075 / 161.425</span>')],
         contact=[("Guardiano", "Fabio Merzaghi"),
-                 ("Prenotazioni", '<a class="num" href="tel:+41918721622">+41 (0) 91 872 16 22</a> (da metà giugno a metà ottobre)'),
-                 ("Cellulare", '<a class="num" href="tel:+41797276905">+41 (0) 79 727 69 05</a>'),
+                 ("Prenotazioni", '<a class="num" href="tel:+41918721622">+41 91 872 16 22</a> (da metà giugno a metà ottobre)'),
+                 ("Cellulare", '<a class="num" href="tel:+41797276905">+41 79 727 69 05</a>'),
                  ("E-mail", '<a href="mailto:motterascio@casticino.ch">motterascio@casticino.ch</a>')]),
     "MonteBar.html": dict(
         name="Monte Bar", where="Alta Capriasca, Luganese", alt_m="1620", beds="42", custody="tutto l’anno",
@@ -323,7 +326,7 @@ HUT_PAGES = {
                ("Accesso invernale", "Da Corticiasca e da Gola di Lago"),
                ("Cartina", 'CNS 1333 Tesserete, coordinate <span class="num">721.800 / 106.610</span>')],
         contact=[("Guardiani", "James Mauri e Serge Santese"),
-                 ("Telefono", '<a class="num" href="tel:+41919663322">+41 (0) 91 966 33 22</a>'),
+                 ("Telefono", '<a class="num" href="tel:+41919663322">+41 91 966 33 22</a>'),
                  ("E-mail", '<a href="mailto:montebar@casticino.ch">montebar@casticino.ch</a>')]),
     "BaitaDelLuca.html": dict(
         name="Baita del Luca", where="Cioascio, Sonvico", alt_m="1070", beds="16", custody="su riservazione",
@@ -339,7 +342,7 @@ HUT_PAGES = {
         reach=[("Accesso estivo", "Da Rosone 30 min; da Lovarescia (sopra Sonvico) 60 min; da Car e da Luss (Villa Luganese) 60 min"),
                ("Cartina", 'CNS 1333 Tesserete, coordinate <span class="num">722.980 / 102.600</span>')],
         contact=[("Responsabile", "Priska Deluigi, 6960 Odogno"),
-                 ("Cellulare", '<a class="num" href="tel:+41792033084">+41 (0) 79 203 30 84</a>'),
+                 ("Cellulare", '<a class="num" href="tel:+41792033084">+41 79 203 30 84</a>'),
                  ("E-mail", '<a href="mailto:pristh@bluewin.ch">pristh@bluewin.ch</a>'),
                  ("Prenotazioni", '<a href="mailto:baitaluca@casticino.ch">baitaluca@casticino.ch</a>')]),
 }
@@ -350,7 +353,7 @@ TC = {
     "it": dict(prenota="Prenota", cucina="La cucina", team="Chi vi accoglie", vita="La cucina e i guardiani",
                tariffe="Tariffe e prenotazioni", accessi="Come arrivare", attivita="Attività", sostenitori="Sostenitori",
                storia="Storia", storia_link="La storia della capanna", foto="Foto", tutte_foto="Tutte le foto",
-               in_breve="In breve", testo="Testo", itinerari="Itinerari", capanne="Le capanne", sezione_menu="Le Capanne",
+               in_breve="In breve", testo="Testo", itinerari="Itinerari", capanne="Le capanne", sezione_menu="Capanne",
                foto_lead="La capanna, la cucina e i dintorni", tocca="Tocca una foto per vederla grande.",
                foto_desc="Foto della Capanna {n} e dei dintorni.", avviso="Avviso", altitudine="Altitudine",
                posti="Posti letto", custodia="Custodia", apertura="Apertura", la_capanna="La capanna",
@@ -1069,6 +1072,119 @@ def organizzazione():
                 "I cinque dicasteri della Sezione Ticino del CAS (infrastruttura, sport di montagna, giovani, senior, comunicazione) con i loro membri e recapiti.",
                 body)
 
+# Capigita: elenco da data/capigita.json (lo scrive scripts/capigita.py dall'export Droptour, senza dati personali)
+RUOLI_CAPIGITA = [("estivo", "Estivo"), ("invernale", "Invernale"), ("arrampicata", "Arrampicata"),
+                  ("escursionismo", "Escursionismo"), ("seniori", "Seniori"), ("aiuto", "Aiuto capogita"),
+                  ("soccorso", "Soccorso alpino")]
+RUOLI_CAPIGITA_DE = {"estivo": "Sommer", "invernale": "Winter", "arrampicata": "Klettern", "escursionismo": "Wandern",
+                     "seniori": "Senioren", "aiuto": "Hilfsleitung", "soccorso": "Bergrettung"}
+CAPIGITA_T = {
+    "it": dict(titolo="Capigita", sezione="La Sezione", sezione_href="index.html#sezione", ritratto="Ritratto di",
+               dal="Capogita dal", tutti="Tutti", filtra="Filtra per ruolo", elenco="Elenco dei capigita",
+               uno="capogita", molti="capigita",
+               lead="Le gite della sezione sono preparate e guidate da soci volontari, formati nei corsi del CAS: {n} capigita attivi, ognuno con le sue discipline.",
+               box="<strong>Per i capigita.</strong> Le gite si pubblicano sul portale Droptour; il promemoria raccoglie compiti e procedure del capogita.",
+               portale="Portale Droptour", promemoria="Promemoria capigita (PDF)",
+               desc="I {n} capigita del CAS Ticino che preparano e guidano le gite della sezione: estive e invernali, arrampicata, escursionismo e seniori."),
+    "de": dict(titolo="Tourenleitende", sezione="Die Sektion", sezione_href="de/Introduzione.html", ritratto="Porträt von",
+               dal="Tourenleitung seit", tutti="Alle", filtra="Nach Rolle filtern", elenco="Liste der Tourenleitenden",
+               uno="Tourenleitende", molti="Tourenleitende",
+               lead="Die Touren der Sektion werden von ehrenamtlichen Mitgliedern vorbereitet und geleitet, ausgebildet in den Kursen des SAC: {n} aktive Tourenleitende, alle mit ihren eigenen Disziplinen.",
+               box="<strong>Für Tourenleitende.</strong> Die Touren werden im Droptour-Portal veröffentlicht; das Merkblatt fasst Aufgaben und Abläufe der Tourenleitung zusammen.",
+               portale="Droptour-Portal", promemoria="Merkblatt Tourenleitung (PDF, italienisch)",
+               desc="Die {n} Tourenleitenden des SAC Ticino, die die Touren der Sektion vorbereiten und leiten: Sommer- und Wintertouren, Klettern, Wandern und Senioren."),
+}
+
+
+def foto_persona(nome, gruppo):
+    """Ritratto assets/img/persone/<gruppo>/<nome-cognome>.webp; se manca, quello della stessa persona in un altro gruppo."""
+    gruppi = [gruppo] + sorted(g for g in os.listdir(os.path.join(ROOT, "assets", "img", "persone")) if g != gruppo)
+    for g in gruppi:
+        foto = f"assets/img/persone/{g}/{slug_nome(nome)}.webp"
+        if os.path.exists(os.path.join(ROOT, foto)):
+            return foto
+    return None
+
+
+def capigita():
+    """Capigita da data/capigita.json (lo scrive scripts/capigita.py dall'export Droptour, senza dati personali)."""
+    persone = json.load(open(os.path.join(ROOT, "data", "capigita.json"), encoding="utf-8"))["capigita"]
+    tx = CAPIGITA_T[LINGUA["lang"]]
+    nomi = {k: (RUOLI_CAPIGITA_DE[k] if de() else n) for k, n in RUOLI_CAPIGITA}
+    schede = []
+    for p in persone:
+        foto = foto_persona(p["nome"], "capigita")
+        ph = (f'<img src="{foto}" alt="{tx["ritratto"]} {p["nome"]}" width="60" height="60" loading="lazy" decoding="async">'
+              if foto else f'<span aria-hidden="true">{initials(p["nome"])}</span>')
+        ruoli = " · ".join(nomi[r] for r in p["ruoli"])
+        dal = f'<span>{tx["dal"]} <span class="num">{p["dal"]}</span></span>' if p.get("dal") else ""
+        schede.append(f'<div class="member" data-ruoli="{" ".join(p["ruoli"])}"><div class="member-photo">{ph}</div>'
+                      f'<div class="member-body"><strong>{p["nome"]}</strong><span>{ruoli}</span>{dal}</div></div>')
+    conta = {k: sum(k in p["ruoli"] for p in persone) for k, _ in RUOLI_CAPIGITA}
+    filtri = "\n".join([f'<button type="button" data-filtro="" aria-pressed="true">{tx["tutti"]} <span class="num">{len(persone)}</span></button>'] +
+                       [f'<button type="button" data-filtro="{k}" aria-pressed="false">{nomi[k]} <span class="num">{conta[k]}</span></button>'
+                        for k, _ in RUOLI_CAPIGITA if conta[k]])
+    n = len(persone)
+    body = page_hero([(tx["sezione"], tx["sezione_href"]), (tx["titolo"], None)], tx["titolo"], tx["lead"].format(n=n)) + f"""
+
+<section class="section" aria-label="{tx['elenco']}">
+<div class="container">
+<div class="filtro" role="group" aria-label="{tx['filtra']}" data-filtra="#capigita" data-uno="{tx['uno']}" data-molti="{tx['molti']}" hidden>
+{filtri}
+</div>
+<p class="small filtro-stato" id="filtro-stato" aria-live="polite"></p>
+<div class="members members--griglia" id="capigita">
+{chr(10).join(schede)}
+</div>
+<div class="callout">
+<p>{tx['box']}</p>
+<div class="actions"><a class="btn btn--secondary" href="https://ssl.dropnet.ch/casticino/manager/touren/index.php" rel="noopener">{tx['portale']}</a><a class="btn btn--secondary" href="{DOC}promemoria/capigita.pdf">{tx['promemoria']}</a></div>
+</div>
+</div>
+</section>
+
+{subnav(tx["sezione"], L("Capigita.html"))}"""
+    return sezione_page("Capigita.html", f"{tx['titolo']} | CAS Ticino", tx["desc"].format(n=n), body)
+
+
+def soccorso():
+    emergenza = [("Rega", '<a class="num" href="tel:1414">1414</a> <span class="small">dall’estero <a class="num" href="tel:+41333333333">+41 333 333 333</a></span>'),
+                 ("Ambulanza", '<a class="num" href="tel:144">144</a>'),
+                 ("Emergenza europeo", '<a class="num" href="tel:112">112</a>')]
+    body = page_hero([("Attività", "index.html#attivita"), ("Soccorso", None)], "Soccorso",
+                     "La sezione coordina il soccorso alpino nel Sottoceneri, con volontari formati che intervengono in montagna insieme al Soccorso Alpino Svizzero e alla Rega.") + f"""
+
+<section class="section" aria-labelledby="emergenza-h">
+<div class="container">
+<div class="contact" data-reveal>
+<div class="contact-intro">
+<h2 id="emergenza-h" class="h2">In caso di emergenza</h2>
+<p>Chiama subito: indica chi sei, dove ti trovi, cosa è successo e quante persone sono coinvolte. Resta raggiungibile al telefono.</p>
+</div>
+{facts(emergenza)}
+</div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="colonna-h">
+<div class="container detail">
+<div class="detail-intro">
+<h2 id="colonna-h" class="h2">La colonna<br>di soccorso</h2>
+<p>Dal 1918, quando nacquero le prime stazioni di soccorso alpino a Faido, Airolo e Olivone, la sezione è parte del soccorso in montagna in Ticino.</p>
+</div>
+<div class="prose" data-reveal>
+<p>Qui troverai presto le informazioni sulla colonna di soccorso della sezione: chi la compone, come è organizzata, la formazione dei soccorritori e come entrare a farne parte.</p>
+<p class="small">Pagina in preparazione.</p>
+<div class="actions"><a class="btn btn--secondary" href="https://www.alpinerettung.ch" rel="noopener">Soccorso Alpino Svizzero</a><a class="btn btn--secondary" href="https://www.rega.ch" rel="noopener">Rega</a></div>
+</div>
+</div>
+</section>
+
+{subnav("Attività", "Soccorso.html")}"""
+    return page("Soccorso.html", "Soccorso | CAS Ticino",
+                "Il soccorso alpino del CAS Ticino nel Sottoceneri: numeri d’emergenza (Rega 1414, 144, 112) e la colonna di soccorso della sezione.",
+                body)
+
 
 def sede():
     rows = [
@@ -1375,7 +1491,7 @@ def news():
 {chr(10).join(news_card(n) for n in items)}
 </div>
 </section>""" for y, items in anni)
-    body = page_hero([("News", None)], "News", "Serate, eventi, corsi e avvisi della sezione: tutte le notizie, dalla più recente.") + f"""
+    body = page_hero([("News", None)], "News", "Serate, eventi, corsi e avvisi della sezione: tutte le notizie, dalla più recente.", social()) + f"""
 
 <section class="section" aria-label="Ultima notizia">
 <div class="container">
@@ -1661,7 +1777,7 @@ def giovani():
             ("Costi", "Coprono vitto e alloggio a mezza pensione, guida e trasporto in furgone. Dai 20 ai 25 anni si aggiungono CHF 30 al giorno, perché non ci sono contributi G+S."),
             ("Inclusione", "Ragazze e ragazzi con disabilità fisica o psichica sono i benvenuti: contatta il coordinatore per trovare insieme la soluzione giusta."),
             ("Coordinatore", 'Diego Romelli, <a class="num" href="tel:+393485731549">+39 348 573 1549</a>'),
-            ("Cassiere", 'Nicola Martinoni, <a class="num" href="tel:+41794391691">+41 (0) 79 439 16 91</a>'),
+            ("Cassiere", 'Nicola Martinoni, <a class="num" href="tel:+41794391691">+41 79 439 16 91</a>'),
             ("Spider", "Giosiana Codoni"),
             ("Ritrovo", '<a href="BaitaDelLuca.html">Baita del Luca</a>, ai piedi dei Denti della Vecchia')]
     body = page_hero([("Attività", "index.html#attivita"), ("Giovani", None)], "Giovani",
@@ -1700,7 +1816,7 @@ def senior():
     rows = [("Chi può partecipare", 'Dai 60 anni, con l’affiliazione al CAS Ticino. Non c’è una tassa aggiuntiva, e tutti i soci della sezione possono partecipare alle attività. <a href="Adesione.html">Diventa socio</a>'),
             ("Come aderire", 'Scrivi a <a href="mailto:segretariato.seniori@casticino.ch">segretariato.seniori@casticino.ch</a> con nome, data di nascita, numero di socio CAS, indirizzo, telefono ed e-mail.'),
             ("Uscite", "Di norma il giovedì. Il calendario aggiornato è sul programma gite online."),
-            ("Pranzi", 'Il secondo e il quarto mercoledì del mese al Bistrot Vecchio Torchio di Viganello. Iscrizioni entro il lunedì presso Hanni Vanossi (<a class="num" href="tel:+41763973390">+41 (0) 76 397 33 90</a>) o direttamente al ristorante (<a class="num" href="tel:+41919721010">+41 (0) 91 972 10 10</a>).'),
+            ("Pranzi", 'Il secondo e il quarto mercoledì del mese al Bistrot Vecchio Torchio di Viganello. Iscrizioni entro il lunedì presso Hanni Vanossi (<a class="num" href="tel:+41763973390">+41 76 397 33 90</a>) o direttamente al ristorante (<a class="num" href="tel:+41919721010">+41 91 972 10 10</a>).'),
             ("Capigita", 'Il dicastero cerca sempre nuovi capigita. <a href="Documenti.html">Promemoria capigita</a>')]
     body = page_hero([("Attività", "index.html#attivita"), ("Senior", None)], "Senior",
                      "Un gruppo di non più giovani con la passione per la montagna: la bellezza della natura, i piaceri della tavola e la nostra storia.") + f"""
@@ -1843,12 +1959,12 @@ def corsi():
 
 
 def noleggio():
-    rows = [("Come funziona", "Compila il formulario con i dati dell’attività e il materiale che ti serve. Con la conferma ricevi il codice d’accesso e le istruzioni per il ritiro. Si paga in contanti alla riconsegna."),
+    rows = [("Come funziona", "Prendi direttamente contatto con il responsabile materiale. Con la conferma ricevi le istruzioni per il ritiro. Si paga in contanti o TWINT alla riconsegna."),
             ("Richiesta", "Una settimana prima dell’attività"),
-            ("Ritiro", 'Dal mercoledì alle <span class="num">19:00</span>'),
-            ("Riconsegna", "Entro il martedì sera"),
+            ("Ritiro", 'A partire dal mercoledì alle <span class="num">19:00</span>'),
+            ("Riconsegna", "Entro il martedì sera successivo"),
             ("Magazzino", "Manno"),
-            ("Responsabile", 'Michele Foletti, <a class="num" href="tel:+41792416955">+41 (0) 79 241 69 55</a> (anche WhatsApp), <a href="mailto:fole89@gmail.com">fole89@gmail.com</a>')]
+            ("Responsabile", 'Michele Foletti, <a class="num" href="tel:+41792416955">+41 79 241 69 55</a>, <a href="mailto:fole89@gmail.com">fole89@gmail.com</a>')]
     body = page_hero([("Attività", "index.html#attivita"), ("Noleggio", None)], "Noleggio",
                      "Materiale in affitto per le attività della sezione e per le uscite private.") + f"""
 
@@ -1856,7 +1972,7 @@ def noleggio():
 <div class="container detail">
 <div class="detail-intro split-intro">
 <h2 id="cosa-h" class="h2">Dall’arrampicata<br>al bouldering</h2>
-<p>Alpinismo, mountain bike, cascate di ghiaccio, sci alpinismo, arrampicata, racchette, escursionismo e bouldering. L’elenco completo con i prezzi giornalieri è nella lista del magazzino.</p>
+<p>Alpinismo, cascate di ghiaccio, sci alpinismo, arrampicata, racchette, escursionismo e bouldering. Consulta l’elenco completo con i prezzi giornalieri.</p>
 <div><a class="btn btn--primary" href="{DOC}noleggio/lista-materiale.pdf">Lista materiale (PDF) <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
 <div data-reveal>
@@ -2184,6 +2300,7 @@ PAGES = {
     "News.html": news, "Foto.html": foto, "Annuari.html": annuari, "Informazione.html": informazione,
     "Adesione.html": adesione,
     "Giovani.html": giovani, "Senior.html": senior, "Corsi.html": corsi, "Noleggio.html": noleggio,
+    "Soccorso.html": soccorso, "Capigita.html": capigita,
 }
 for _f in HUT_PAGES:
     PAGES[_f] = (lambda f: lambda: hut(f))(_f)
@@ -2208,7 +2325,7 @@ def in_tedesco(fn):
 
 
 PAGES_DE = {"index.html": home_de, "Introduzione.html": introduzione_de, "Comitato.html": comitato,
-            "Organizzazione.html": organizzazione, "Sede.html": sede_de, "Storia.html": storia, "Link.html": link,
+            "Organizzazione.html": organizzazione, "Capigita.html": capigita, "Sede.html": sede_de, "Storia.html": storia, "Link.html": link,
             "Adesione.html": adesione_de}
 for _f in HUT_PAGES:
     PAGES_DE[_f] = (lambda f: lambda: hut(f))(_f)

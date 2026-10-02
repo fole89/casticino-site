@@ -155,3 +155,25 @@
   });
   if (location.hash === '#notizie') tutti();
 })();
+
+// CAS Ticino - filtro per ruolo (pagina Capigita): ogni pulsante [data-filtro] mostra solo gli elementi
+// [data-ruoli] che contengono quel ruolo; senza JavaScript il filtro resta nascosto e si vede l'elenco completo.
+(function () {
+  var bar = document.querySelector('.filtro[data-filtra]');
+  if (!bar) return;
+  var items = document.querySelectorAll(bar.dataset.filtra + ' [data-ruoli]');
+  var stato = document.getElementById('filtro-stato');
+  bar.hidden = false;
+  bar.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-filtro]');
+    if (!b) return;
+    var f = b.dataset.filtro, n = 0;
+    Array.prototype.forEach.call(bar.querySelectorAll('button'), function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    Array.prototype.forEach.call(items, function (it) {
+      var ok = !f || (' ' + it.dataset.ruoli + ' ').indexOf(' ' + f + ' ') !== -1;
+      it.hidden = !ok;
+      if (ok) n++;
+    });
+    if (stato) stato.textContent = f ? n + ' ' + (n === 1 ? bar.dataset.uno : bar.dataset.molti) + ': ' + b.firstChild.textContent.trim() : '';
+  });
+})();

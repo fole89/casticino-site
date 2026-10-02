@@ -23,8 +23,8 @@ HUT_DE = {
                ("Winterzugang", "Ab Dalpe 3 h, mit Ski durch das Val Piumogna"),
                ("Karte", 'LK 1272 Campo Tencia, Koordinaten <span class="num">699.430 / 144.480</span>')],
         contact=[("Hüttenwarte", "Valeria Grandi und Paco Porcu"),
-                 ("Telefon Hütte", '<a class="num" href="tel:+41918671544">+41 (0) 91 867 15 44</a>'),
-                 ("Mobile", '<a class="num" href="tel:+41767212572">+41 (0) 76 721 25 72</a>'),
+                 ("Telefon Hütte", '<a class="num" href="tel:+41918671544">+41 91 867 15 44</a>'),
+                 ("Mobile", '<a class="num" href="tel:+41767212572">+41 76 721 25 72</a>'),
                  ("E-Mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
     "Cristallina.html": dict(
         where="Passo Cristallina, Valle Bedretto", custody="Juni bis Mitte Oktober",
@@ -39,7 +39,7 @@ HUT_DE = {
                ("Winterzugang", "Ab Ossasco 3 h; ab All’Acqua 4 h"),
                ("Karte", 'LK 1251 Bedretto, Koordinaten <span class="num">683.550 / 147.300</span>')],
         contact=[("Hüttenwart", "Emanuele Vellati"),
-                 ("Telefon", '<a class="num" href="tel:+41918692330">+41 (0) 91 869 23 30</a>'),
+                 ("Telefon", '<a class="num" href="tel:+41918692330">+41 91 869 23 30</a>'),
                  ("E-Mail", '<a href="mailto:cristallina@casticino.ch">cristallina@casticino.ch</a>')]),
     "Adula.html": dict(
         where="Oberes Val Carassino, Val Soi, Blenio", custody="Ende Mai bis Mitte Oktober",
@@ -54,8 +54,8 @@ HUT_DE = {
                ("Winterzugang", "Ab Dangio 3 h 30; ab Ghirone 5 h"),
                ("Karte", 'LK 1253 Olivone, Koordinaten <span class="num">719.510 / 150.950</span>')],
         contact=[("Hüttenwart", "Raffaele «Lele» Demaldi"),
-                 ("Telefon Hütte", '<a class="num" href="tel:+41918721532">+41 (0) 91 872 15 32</a>'),
-                 ("Mobile", '<a class="num" href="tel:+41795352112">+41 (0) 79 535 21 12</a>'),
+                 ("Telefon Hütte", '<a class="num" href="tel:+41918721532">+41 91 872 15 32</a>'),
+                 ("Mobile", '<a class="num" href="tel:+41795352112">+41 79 535 21 12</a>'),
                  ("E-Mail", '<a href="mailto:adula@casticino.ch">adula@casticino.ch</a>')]),
     "Motterascio.html": dict(
         where="Alpe Motterascio, Greina, Blenio", custody="Mitte Juni bis Mitte Oktober",
@@ -70,8 +70,8 @@ HUT_DE = {
                ("Winterzugang", "Ab Ghirone durch das Val Camadra und über den Greinapass, 5-6 h, nur bei gesetztem Schnee"),
                ("Karte", 'LK 1233 Greina, Koordinaten <span class="num">720.075 / 161.425</span>')],
         contact=[("Hüttenwart", "Fabio Merzaghi"),
-                 ("Reservation", '<a class="num" href="tel:+41918721622">+41 (0) 91 872 16 22</a> (Mitte Juni bis Mitte Oktober)'),
-                 ("Mobile", '<a class="num" href="tel:+41797276905">+41 (0) 79 727 69 05</a>'),
+                 ("Reservation", '<a class="num" href="tel:+41918721622">+41 91 872 16 22</a> (Mitte Juni bis Mitte Oktober)'),
+                 ("Mobile", '<a class="num" href="tel:+41797276905">+41 79 727 69 05</a>'),
                  ("E-Mail", '<a href="mailto:motterascio@casticino.ch">motterascio@casticino.ch</a>')]),
     "MonteBar.html": dict(
         where="Alta Capriasca, Region Lugano", custody="ganzjährig",
@@ -87,7 +87,7 @@ HUT_DE = {
                ("Winterzugang", "Ab Corticiasca und ab Gola di Lago"),
                ("Karte", 'LK 1333 Tesserete, Koordinaten <span class="num">721.800 / 106.610</span>')],
         contact=[("Hüttenwarte", "James Mauri und Serge Santese"),
-                 ("Telefon", '<a class="num" href="tel:+41919663322">+41 (0) 91 966 33 22</a>'),
+                 ("Telefon", '<a class="num" href="tel:+41919663322">+41 91 966 33 22</a>'),
                  ("E-Mail", '<a href="mailto:montebar@casticino.ch">montebar@casticino.ch</a>')]),
     "BaitaDelLuca.html": dict(
         where="Cioascio, Sonvico", custody="auf Reservation",
@@ -101,7 +101,7 @@ HUT_DE = {
         reach=[("Zugang", "Ab Rosone 30 min; ab Lovarescia (oberhalb von Sonvico) 60 min; ab Car und Luss (Villa Luganese) 60 min"),
                ("Karte", 'LK 1333 Tesserete, Koordinaten <span class="num">722.980 / 102.600</span>')],
         contact=[("Verantwortliche", "Priska Deluigi, 6960 Odogno"),
-                 ("Mobile", '<a class="num" href="tel:+41792033084">+41 (0) 79 203 30 84</a>'),
+                 ("Mobile", '<a class="num" href="tel:+41792033084">+41 79 203 30 84</a>'),
                  ("E-Mail", '<a href="mailto:pristh@bluewin.ch">pristh@bluewin.ch</a>'),
                  ("Reservation", '<a href="mailto:baitaluca@casticino.ch">baitaluca@casticino.ch</a>')]),
 }
@@ -350,7 +350,7 @@ Reservationen bitte online. Wir freuen uns auf Sie, Manu.""",
 <li>Im Winter: ab Ossasco 3 h, ab All’Acqua 4 h.</li>
 </ul>
 <p><strong>Mit dem Auto von Norden:</strong> A2 bis Airolo, dann Richtung Nufenenpass und Bedrettotal. <strong>Von Süden:</strong> A2 bis Bellinzona, dann Locarno und Maggiatal: Val Bavona für Robiei, mit der <a href="https://www.robiei.ch/" rel="noopener">Seilbahn San Carlo-Robiei</a> (im Sommer), oder Val Lavizzara für den Narèt.</p>
-<p><strong>Mit dem öffentlichen Verkehr:</strong> Zug S10 bis Airolo, dann Bus ins Bedrettotal. Taxi ab Airolo: Marchetti Taxi <a class="num" href="tel:+41918733035">+41 (0) 91 873 30 35</a>, Gotthard Taxi <a class="num" href="tel:+41787901055">+41 (0) 78 790 10 55</a>.</p>
+<p><strong>Mit dem öffentlichen Verkehr:</strong> Zug S10 bis Airolo, dann Bus ins Bedrettotal. Taxi ab Airolo: Marchetti Taxi <a class="num" href="tel:+41918733035">+41 91 873 30 35</a>, Gotthard Taxi <a class="num" href="tel:+41787901055">+41 78 790 10 55</a>.</p>
 <p><strong>Übergänge zu anderen Hütten:</strong> <a href="https://www.corno-gries.ch/?lang=de" rel="noopener">Corno Gries</a> (2338 m) 5 h; <a href="https://www.capanna-basodino.ch/" rel="noopener">Basodino</a> (2200 m) 2 h; <a href="http://www.utoelocarno.ch/" rel="noopener">Poncione di Braga</a> (1870 m) 4 h; <a href="https://www.satritom.ch/garzonera/" rel="noopener">Garzonera</a> (2000 m) 5 h, T5; <a href="https://www.rifugiomarialuisa.it/" rel="noopener">Rifugio Maria Luisa</a> (Italien, 2393 m) 5 h.</p>
 <p>Karten: LK 1:25’000 Blatt 1251 Val Bedretto; Skitourenkarte 265 S Nufenenpass.</p>""",
         attivita="""<p>Der Cristallinapass ist eine natürliche Verbindung zwischen dem Gotthardmassiv und dem Maggiatal, mitten in einem Netz von Routen und Hütten: Die <a href="https://www.viaidra.ch/" rel="noopener">Via Idra</a>, die Via Cristallina und die Via Alta della Vallemaggia führen hier vorbei. Im Winter ist er ein Skitourenparadies, mit sicherem Schnee auch in schlechten Jahren.</p>
@@ -463,7 +463,7 @@ Für Auskünfte rufen Sie uns an. Bis bald in der Höhe, Lele, Miri und das Team
 <li>Im Winter: ab Ghirone 5 h, ab Dangio 3 h 30.</li>
 </ul>
 <p><strong>Mit dem Auto:</strong> A2 bis Biasca, dann Richtung Lukmanier bis Campo Blenio und Ghirone; hinauf zur Staumauer des Luzzone, über die Mauer und weiter bis zur Alpe di Compietto. Oder das Auto in Ghirone lassen und den <a href="http://www.autolinee.ch/greina" rel="noopener">Alpenbus</a> nehmen.</p>
-<p><strong>Mit dem öffentlichen Verkehr:</strong> Zug S10 bis Biasca, Bus 131 bis Ghirone, dann Alpenbus zur Staumauer des Luzzone. Taxi Riviera (Biasca): <a class="num" href="tel:+41918624848">+41 (0) 91 862 48 48</a>.</p>
+<p><strong>Mit dem öffentlichen Verkehr:</strong> Zug S10 bis Biasca, Bus 131 bis Ghirone, dann Alpenbus zur Staumauer des Luzzone. Taxi Riviera (Biasca): <a class="num" href="tel:+41918624848">+41 91 862 48 48</a>.</p>
 <p><strong>Übergänge zu anderen Hütten:</strong> <a href="de/Motterascio.html">Motterascio</a> 5 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 3 h 30; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 1 h; <a href="http://quarnei.ch/" rel="noopener">Quarnei</a> 3 h.</p>
 <p>Karten: LK 1:25’000 Blatt 1233 Greina; Skitourenkarte 256 S.</p>""",
         attivita="""<p>Auf der Adula liegt ein Hauch von früher in der Luft: Gastfreundschaft und gute Küche, dazu ein Glas Wein, laden ein, sich vor einer aussergewöhnlichen Kulisse ins Gras zu legen. Von hier aus geht es zu spannenden Routen, alten Übergängen und luftigen Graten.</p>
@@ -592,7 +592,7 @@ Bitte reservieren Sie online; für Auskünfte schreiben oder rufen Sie uns an. B
 </ul>
 <p><strong>Mit dem öffentlichen Verkehr:</strong> Zug und Bus bis Ghirone, Aquilesco; dann mit dem <a href="https://busalpin.ch/regionen/greina/sommer" rel="noopener">Bus alpin</a> der Autolinee Bleniesi bis Lago di Luzzone oder Pian Geirètt, im Juli und August täglich, im September nur an Wochenenden.</p>
 <p><strong>Mit dem Auto:</strong> A2 bis Biasca, dann Richtung Lukmanier bis Campo Blenio und Ghirone; hinauf zur Staumauer des Luzzone und dem See entlang bis zur Alpe Garzott. Kostenlose Parkplätze in Ghirone-Aquilesco und bei der Staumauer (mit Toiletten; Ristorante Luzzone von April bis Oktober); auf der Alpe Garzott, wo man ausgezeichneten Käse kaufen kann, gibt es nur wenige Plätze: früh kommen oder Fahrgemeinschaften bilden.</p>
-<p><strong>Taxi:</strong> Poglia Mirko (Olivone) <a class="num" href="tel:+41794440712">+41 (0) 79 444 07 12</a>; <a href="https://www.taxiriviera.ch/" rel="noopener">Taxi Riviera</a> (Biasca) <a class="num" href="tel:+41794136868">+41 (0) 79 413 68 68</a>.</p>
+<p><strong>Taxi:</strong> Poglia Mirko (Olivone) <a class="num" href="tel:+41794440712">+41 79 444 07 12</a>; <a href="https://www.taxiriviera.ch/" rel="noopener">Taxi Riviera</a> (Biasca) <a class="num" href="tel:+41794136868">+41 79 413 68 68</a>.</p>
 <p><strong>Übergänge zu anderen Hütten:</strong> <a href="https://www.terrihuette.ch/" rel="noopener">Terri</a> 2 h 30; <a href="https://www.satlucomagno.ch/wordpress/capanna-scaletta/" rel="noopener">Scaletta</a> 2 h; <a href="http://www.capannabovarina.ch/" rel="noopener">Bovarina</a> 5 h; <a href="de/Adula.html">Adula CAS</a> 5 h; <a href="http://adula-utoe.ch/" rel="noopener">Adula UTOE</a> 6 h; <a href="https://www.medelserhuette.ch/" rel="noopener">Medelser Hütte</a> 6 h; <a href="http://laentahuette.ch/" rel="noopener">Läntahütte</a> 7 h; <a href="https://www.rifugioscaradra.ch/" rel="noopener">Rifugio Scaradra</a> 3 h. Routen auf <a href="https://map.schweizmobil.ch/?lang=de&amp;bgLayer=pk&amp;season=summer&amp;resolution=10&amp;E=2720474&amp;N=1161992&amp;layers=Wanderland%2CStation%2CAccomodation" rel="noopener">SchweizMobil</a>.</p>
 <p>Karten: LK 1:25’000 Blatt 1233 Greina; Skitourenkarte 256 S.</p>""",
         attivita="""<p>Die Greina ist eine einzigartige Hochebene zwischen Tessin und Graubünden, fast 6 km lang und über 2200 m hoch: eine geschützte alpine Tundra im Bundesinventar der Landschaften von nationaler Bedeutung. Sie ist unberührt: Die einzigen Spuren des Menschen sind der Crap la Crusch und der Pass Crap, wo ein Eisenkreuz daran erinnert, dass die Greina schon in römischer Zeit und im Mittelalter Durchgangsweg und Weideland war.</p>
