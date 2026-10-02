@@ -81,7 +81,7 @@ def home():
 <p class="lead">Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età.</p>
 <div class="actions">
 <a class="btn btn--primary" href="adesione.html">Diventa socio <span class="arrow" aria-hidden="true">→</span></a>
-<a class="btn btn--secondary" href="#capanne">Le capanne</a>
+<a class="btn btn--secondary" href="news.html">Ultime news</a>
 </div>
 </div>
 </div>

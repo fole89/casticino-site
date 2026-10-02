@@ -167,7 +167,7 @@ A cold, desaturated mountain-stone palette carrying a single saturated red.
 
 Content sits in a centred container (max 1320px) with a fluid gutter of clamp(20px, 4vw, 48px). Sections breathe with clamp(72px, 10vw, 136px) vertical padding; consecutive plain sections drop the top padding, alternate granite sections restore it. Splits use asymmetric 5/7 or 4/8 columns with clamp(40px, 6vw, 96px) gaps and a sticky intro column on desktop. Huts use a 12-column grid (two big cards of 6, then cards of 3); activities use a 3-column bento with a tall photo tile; courses use a horizontal snap rail. The fixed nav is 72px tall with a blurred translucent background; anchors scroll with that offset.
 
-Breakpoints are content-driven: 1080px (desktop nav collapses to the menu button), 900px (splits and bento stack), 600px and 560px (single column, nav CTA hidden), 480px (fact lists stack). No horizontal page scroll at 320–430px.
+Breakpoints are content-driven: 1180px (desktop nav collapses to the menu button), 900px (splits and bento stack), 600px and 560px (single column, nav CTA hidden), 480px (fact lists stack). No horizontal page scroll at 320–430px.
 
 ## Elevation & Depth
 
@@ -202,7 +202,7 @@ Square corners everywhere (0px radius): buttons, cards, images, inputs, tiles, m
 - **Callout / contact:** granite-chiaro block, generous fluid padding, no border.
 
 ### Navigation
-- Fixed top bar, 72px, translucent neve with blur; gains a hairline and soft shadow once scrolled. Logo: the crest `assets/logo-cas-stemma.webp` (44px tall in the bar, 52px in the footer) with HTML text in Geist beside it, «CAS Ticino» 20px bold on top and «Club Alpino Svizzero» 12px in ardesia-2 below (23/13.5px in the footer). Links in ardesia-2, current page in red; dropdowns are square panels with the rilievo shadow. Under 1080px the links fold into a full-screen menu (large 30px group titles) built by `site.js`; the red CTA stays at the bottom.
+- Fixed top bar, 72px, translucent neve with blur; gains a hairline and soft shadow once scrolled. Logo: the crest `assets/logo-cas-stemma.webp` (44px tall in the bar, 52px in the footer) with HTML text in Geist beside it, «CAS Ticino» 20px bold on top and «Club Alpino Svizzero» 12px in ardesia-2 below (23/13.5px in the footer). Links in ardesia-2, current page in red; dropdowns are square panels with the rilievo shadow. Under 1180px the links fold into a full-screen menu (large 30px group titles) built by `site.js`; the red CTA stays at the bottom.
 
 ### Signature: Key facts
 Hut pages open with a row of big facts (quota, posti, tempo d'accesso) at clamp(26px, 2.6vw, 36px), labels above in lichene: the hut-book entry made visible.
