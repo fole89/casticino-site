@@ -10,9 +10,10 @@ GITE_FILTRO = GITE + "?page=touren&amp;year=&amp;typ=&amp;gruppe={gruppe}&amp;an
 GITE_GIOVANI = GITE_FILTRO.format(gruppe="Giovani", tipo="")
 GITE_SENIORI = GITE_FILTRO.format(gruppe="Seniori", tipo="")
 GITE_CORSI = GITE_FILTRO.format(gruppe="", tipo="Corso")
-from shared import LINGUA, PAGINE_DE, de, L
+from shared import LINGUA, PAGINE_LINGUA, de, en, tr, L
 from capanne import CONTENUTI, PRENOTA
 from capanne_de import CONTENUTI_DE, HUT_DE, HUTS_DE
+from capanne_en import CONTENUTI_EN, HUT_EN, HUTS_EN
 import json, re, unicodedata
 import news_util
 from news_util import webp_size
@@ -376,6 +377,19 @@ TC = {
                fb_h="Aus der Hütte", fb_notizie="Aktuelles", fb_p="Die neusten Nachrichten der Hütte, vom Hüttenteam auf Facebook veröffentlicht (meist italienisch).",
                fb_carica="Beiträge anzeigen", fb_privacy="Die Beiträge werden erst nach dem Klick von Facebook geladen: ab dann erhält Facebook Daten über Ihren Besuch.",
                fb_apri="Facebook-Seite öffnen"),
+    "en": dict(prenota="Book", cucina="The kitchen", team="Your hosts", vita="Kitchen and hut team",
+               tariffe="Rates and booking", accessi="Getting there", attivita="Activities", sostenitori="Supporters",
+               storia="History", storia_link="The history of the hut", foto="Photos", tutte_foto="All photos",
+               in_breve="At a glance", testo="Text", itinerari="Routes", capanne="The huts", sezione_menu="Huts",
+               foto_lead="The hut, the kitchen and the surroundings", tocca="Tap a photo to see it full size.",
+               foto_desc="Photos of Capanna {n} and its surroundings.", avviso="Notice", altitudine="Altitude",
+               posti="Beds", custodia="Staffed", apertura="Opening", la_capanna="The hut",
+               soggiorno="Your stay", arrivare="Getting there", contatti_h="Check with the hut keeper before you set out",
+               contatti_p="Always check that the hut keeper is there and find out about conditions in the mountains.",
+               altre="The other huts", capanna="Capanna", n_foto="photo", accesso_da="Access from", pdf=" (in Italian)",
+               fb_h="From the hut", fb_notizie="Latest news", fb_p="The hut’s latest news, posted by the hut team on Facebook (mostly in Italian).",
+               fb_carica="Show posts", fb_privacy="Posts are only loaded from Facebook after you click: from then on Facebook receives data about your visit.",
+               fb_apri="Open the Facebook page"),
 }
 
 
@@ -384,19 +398,18 @@ def tc(chiave):
 
 
 def capanna(file):
-    """Dati di HUT_PAGES nella lingua corrente (in tedesco i testi vengono da capanne_de.HUT_DE)."""
+    """Dati di HUT_PAGES nella lingua corrente (in tedesco e in inglese i testi vengono da capanne_de/capanne_en)."""
     d = dict(HUT_PAGES[file])
-    if de():
-        d.update(HUT_DE[file])
+    d.update({"it": {}, "de": HUT_DE, "en": HUT_EN}[LINGUA["lang"]].get(file, {}))
     return d
 
 
 def contenuti(file):
-    return (CONTENUTI_DE if de() else CONTENUTI).get(file)
+    return {"it": CONTENUTI, "de": CONTENUTI_DE, "en": CONTENUTI_EN}[LINGUA["lang"]].get(file)
 
 
 def pubblica(nome, html):
-    """Pagina in una sottocartella (de/, capanne/…): i percorsi relativi salgono dei livelli giusti."""
+    """Pagina in una sottocartella (de/, en/, capanne/…): i percorsi relativi salgono dei livelli giusti."""
     return in_sottocartella(html, su="../" * nome.count("/")) if "/" in nome else html
 
 
@@ -430,8 +443,8 @@ def galleria(c, gruppi, alt, quante=None):
 
 
 def pdf_lingua(frammento):
-    """In tedesco i PDF (tutti in italiano) dentro i testi lo dicono, come quelli in link_capanna()."""
-    if not de():
+    """Nelle versioni tradotte i PDF (tutti in italiano) dentro i testi lo dicono, come quelli in link_capanna()."""
+    if LINGUA["lang"] == "it":
         return frammento
     return re.sub(r'(<a class="file-link" href="[^"]+">)(.*?)</a>', lambda m: m.group(1) + m.group(2) + tc("pdf") + "</a>", frammento)
 
@@ -687,7 +700,7 @@ def facebook(d):
 <p>{tc('fb_p')}</p>
 <a class="link" href="{d['facebook']}" rel="noopener">{tc('fb_apri')} <span class="arrow" aria-hidden="true">→</span></a>
 </div>
-<div class="fb-feed" data-fb="{d['facebook']}" data-lang="{'de_DE' if de() else 'it_IT'}" data-titolo="Facebook {d['name']}">
+<div class="fb-feed" data-fb="{d['facebook']}" data-lang="{tr('it_IT', 'de_DE', 'en_GB')}" data-titolo="Facebook {d['name']}">
 <button type="button" class="btn btn--secondary">{tc('fb_carica')}</button>
 <p class="small">{tc('fb_privacy')}</p>
 </div>
@@ -700,7 +713,7 @@ def facebook(d):
 def hut(file):
     d = capanna(file)
     c = contenuti(file)
-    others = [h for h in (HUTS_DE if de() else HUTS) if h[0] != file]
+    others = [h for h in {"it": HUTS, "de": HUTS_DE, "en": HUTS_EN}[LINGUA["lang"]] if h[0] != file]
     mini = "\n".join(f"""<a class="mini-hut" href="{L(f)}"><figure>{img(im, f"{tc('capanna')} {n}", w, h)}</figure><strong>{n}</strong><span>{q} m</span></a>"""
                      for f, n, q, v, st, t, posti, acc, im, (w, h), big in others)
     if "band" in d:
@@ -892,24 +905,44 @@ RUOLI_DE = {
 }
 
 
+RUOLI_EN = {
+    # comitato
+    "Presidente": "President", "Capanne e vicepresidente": "Huts and vice-president", "Segretaria": "Secretary",
+    "Consigliere giuridico": "Legal adviser", "Finanze e sponsoring": "Finance and sponsorship",
+    "Coordinazione gruppi": "Group coordination", "Sport di montagna": "Mountain sports", "Comunicazione": "Communication",
+    # dicasteri
+    "Responsabile capanne": "Head of huts", "Responsabile sentieri": "Head of trails",
+    "Responsabile tecnico capanne": "Technical manager, huts",
+    "Coordinatore e responsabile attività": "Coordinator and head of activities", "Responsabile formazione": "Head of training",
+    "Responsabile amministrativo palestra Cornaredo": "Administration, Cornaredo climbing gym", "Responsabile magazzino": "Equipment store manager",
+    "Amministratrice sito web": "Website administrator", "Membro": "Member", "Coordinatore e comunicazione": "Coordinator and communication",
+    "Coach": "Coach", "Cassiere": "Treasurer", "Segretariato, giovanissimi e Spider": "Secretariat, youngest members and Spider",
+    "Attività del mercoledì sera e arrampicata": "Wednesday evenings and climbing", "Attività estive": "Summer activities",
+    "Attività invernali": "Winter activities", "Coordinatore gite": "Trip coordinator", "Informatica": "IT",
+    "Responsabile comunicazione": "Head of communication", "Redazione annuario": "Yearbook editor", "Eventi": "Events",
+    "Grafica": "Graphic design", "Responsabile ambiente": "Head of environment",
+}
+
+
 def ruolo(r):
-    """Ruolo nella lingua corrente (gli ispettori delle capanne in tedesco sono «Hüttenchef»)."""
-    if not de():
+    """Ruolo nella lingua corrente (gli ispettori delle capanne sono «Hüttenchef» in tedesco, «hut supervisor» in inglese)."""
+    if LINGUA["lang"] == "it":
         return r
     if r.startswith("Ispettore "):
-        return "Hüttenchef " + r[len("Ispettore "):].replace(" e ", " und ")
-    return RUOLI_DE.get(r, r)
+        capanne = r[len("Ispettore "):]
+        return tr(r, "Hüttenchef " + capanne.replace(" e ", " und "), "Hut supervisor, " + capanne.replace(" e ", " and "))
+    return tr(r, RUOLI_DE.get(r, r), RUOLI_EN.get(r, r))
 
 
 def sezione_page(file, title, description, body, **kw):
-    """Pagina della sezione nella lingua corrente (in tedesco: de/<file>)."""
+    """Pagina della sezione nella lingua corrente (tradotta: de/<file>, en/<file>)."""
     nome = L(file)
     return pubblica(nome, page(nome, title, description, body, **kw))
 
 
 def comitato():
     people = []
-    ritratto = "Porträt von" if de() else "Ritratto di"
+    ritratto = tr("Ritratto di", "Porträt von", "Portrait of")
     for role, name, mail, photo in COMITATO:
         role = ruolo(role)
         ph = (f'<img src="assets/img/persone/comitato/{photo}.webp" alt="{ritratto} {name}" width="96" height="96" loading="lazy">'
@@ -925,12 +958,15 @@ def comitato():
     if de():
         body = page_hero([("Die Sektion", "de/Introduzione.html"), ("Vorstand", None)], "Der Vorstand",
                          "Acht Personen, jede mit einem klaren Aufgabenbereich, führen die Sektion zusammen mit den <a href=\"de/Organizzazione.html\">Ressorts</a> und den Freiwilligen.")
+    elif en():
+        body = page_hero([("The Section", "en/Introduzione.html"), ("Committee", None)], "The committee",
+                         "Eight people, each with a clear area of responsibility, lead the section together with the <a href=\"en/Organizzazione.html\">departments</a> and the volunteers.")
     else:
         body = page_hero([("La Sezione", "index.html#sezione"), ("Comitato", None)], "Il comitato",
                          "Otto persone, ognuna con un ambito preciso, che guidano la sezione insieme ai <a href=\"Organizzazione.html\">dicasteri</a> e ai volontari.")
     body += f"""
 
-<section class="section" aria-label="{"Mitglieder des Vorstands" if de() else "Membri del comitato"}">
+<section class="section" aria-label="{tr("Membri del comitato", "Mitglieder des Vorstands", "Committee members")}">
 <div class="container">
 <div class="people" data-reveal>
 {chr(10).join(people)}
@@ -938,10 +974,13 @@ def comitato():
 </div>
 </section>
 
-{subnav("Die Sektion" if de() else "La Sezione", L("Comitato.html"))}"""
+{subnav(tr("La Sezione", "Die Sektion", "The Section"), L("Comitato.html"))}"""
     if de():
         return sezione_page("Comitato.html", "Vorstand | CAS Ticino",
                             "Der Vorstand der Sektion Ticino des Schweizer Alpen-Clubs: Präsident, Vizepräsident, Sekretärin und Verantwortliche, mit Kontakten.", body)
+    if en():
+        return sezione_page("Comitato.html", "Committee | CAS Ticino",
+                            "The committee of the Ticino Section of the Swiss Alpine Club: president, vice-president, secretary and heads of area, with contacts.", body)
     return page("Comitato.html", "Comitato | CAS Ticino",
                 "Il comitato della Sezione Ticino del Club Alpino Svizzero: presidente, vicepresidente, segretaria e responsabili, con i recapiti.",
                 body)
@@ -1014,6 +1053,19 @@ DICASTERI_DE = {
         "Betreut das halbjährliche Bulletin, das Jahrbuch, die Website und die sozialen Medien. Organisiert, auch mit Partnern, Anlässe und Initiativen zur Bergkultur."),
 }
 
+DICASTERI_EN = {
+    "Dicastero infrastruttura": ("Infrastructure department",
+        "Looks after the section’s infrastructure: huts and trails. Supports the committee on all matters and projects concerning the huts. Through the hut supervisors it oversees the work of the hut keepers, coordinates routine and extraordinary maintenance, handles administrative and contractual matters with the keepers and promotes the huts."),
+    "Dicastero sport di montagna": ("Mountain sports department",
+        "Puts together the annual trip programme, updates and prepares training material, advises and supports trip leaders in their continuing training and manages the section’s technical equipment."),
+    "Dicastero giovani": ("Youth department",
+        "Organises week-long camps and climbing activities for girls and boys aged 10 to 22 and promotes the training of Youth+Sport instructors."),
+    "Dicastero senior": ("Seniors department",
+        "Coordinates the annual programme of the Seniors group: day trips, weekends and holidays of several days. Always looking for new trip leaders."),
+    "Dicastero comunicazione": ("Communication department",
+        "Looks after the half-yearly bulletin, the yearbook, the website and social media. Organises events and initiatives, also with partners, that promote mountain culture."),
+}
+
 CARTELLE_DICASTERI = {"Dicastero infrastruttura": "infrastruttura", "Dicastero sport di montagna": "sport-di-montagna",
                       "Dicastero giovani": "giovani", "Dicastero senior": "senior", "Dicastero comunicazione": "comunicazione"}
 
@@ -1031,18 +1083,18 @@ def organizzazione():
             role = ruolo(role)
             if name is None:
                 ms.append(f'<div class="member member--tbd"><div class="member-photo" aria-hidden="true"><span>?</span></div>'
-                          f'<div class="member-body"><strong>{"Noch offen" if de() else "Da definire"}</strong><span>{role}</span></div></div>')
+                          f'<div class="member-body"><strong>{tr("Da definire", "Noch offen", "To be appointed")}</strong><span>{role}</span></div></div>')
                 continue
             foto = f"assets/img/persone/{CARTELLE_DICASTERI[title]}/{slug_nome(name)}.webp"
-            ph = (f'<img src="{foto}" alt="{"Porträt von" if de() else "Ritratto di"} {name}" width="60" height="60" loading="lazy" decoding="async">'
+            ph = (f'<img src="{foto}" alt="{tr("Ritratto di", "Porträt von", "Portrait of")} {name}" width="60" height="60" loading="lazy" decoding="async">'
                   if os.path.exists(os.path.join(ROOT, foto)) else f'<span aria-hidden="true">{initials(name)}</span>')
             m = f'<a href="mailto:{mail}">{mail}</a>' if mail else ""
             ms.append(f'<div class="member"><div class="member-photo">{ph}</div>'
                       f'<div class="member-body"><strong>{name}</strong><span>{role}</span>{m}</div></div>')
-        titolo, testo = DICASTERI_DE[title] if de() else (title, text)
+        titolo, testo = {"it": (title, text), "de": DICASTERI_DE.get(title), "en": DICASTERI_EN.get(title)}[LINGUA["lang"]]
         depts.append(f"""<article class="dept" id="{CARTELLE_DICASTERI[title]}" aria-labelledby="d{i}-h" data-reveal>
 <div class="dept-intro">
-<span class="dept-count">{len(members)} {"Mitglieder" if de() else "membri"}</span>
+<span class="dept-count">{len(members)} {tr("membri", "Mitglieder", "members")}</span>
 <h2 id="d{i}-h" class="h2">{titolo}</h2>
 <p>{testo}</p>
 </div>
@@ -1053,21 +1105,27 @@ def organizzazione():
     if de():
         body = page_hero([("Die Sektion", "de/Introduzione.html"), ("Organisation", None)], "Organisation",
                          'Der <a href="de/Comitato.html">Vorstand</a> stützt sich auf fünf Ressorts, die je für einen Bereich des Sektionslebens verantwortlich sind.')
+    elif en():
+        body = page_hero([("The Section", "en/Introduzione.html"), ("Organisation", None)], "Organisation",
+                         'The <a href="en/Comitato.html">committee</a> relies on five departments, each responsible for one area of the section’s life.')
     else:
         body = page_hero([("La Sezione", "index.html#sezione"), ("Organizzazione", None)], "Organizzazione",
                          'Il <a href="Comitato.html">comitato</a> si appoggia a cinque dicasteri, ognuno responsabile di un ambito della vita della sezione.')
     body += f"""
 
-<section class="section" aria-label="{"Ressorts" if de() else "Dicasteri"}">
+<section class="section" aria-label="{tr("Dicasteri", "Ressorts", "Departments")}">
 <div class="container">
 {chr(10).join(depts)}
 </div>
 </section>
 
-{subnav("Die Sektion" if de() else "La Sezione", L("Organizzazione.html"))}"""
+{subnav(tr("La Sezione", "Die Sektion", "The Section"), L("Organizzazione.html"))}"""
     if de():
         return sezione_page("Organizzazione.html", "Organisation | CAS Ticino",
                             "Die fünf Ressorts der Sektion Ticino des SAC (Infrastruktur, Bergsport, Jugend, Senioren, Kommunikation) mit ihren Mitgliedern und Kontakten.", body)
+    if en():
+        return sezione_page("Organizzazione.html", "Organisation | CAS Ticino",
+                            "The five departments of the Ticino Section of the SAC (infrastructure, mountain sports, youth, seniors, communication) with their members and contacts.", body)
     return page("Organizzazione.html", "Organizzazione | CAS Ticino",
                 "I cinque dicasteri della Sezione Ticino del CAS (infrastruttura, sport di montagna, giovani, senior, comunicazione) con i loro membri e recapiti.",
                 body)
@@ -1076,6 +1134,8 @@ def organizzazione():
 RUOLI_CAPIGITA = [("estivo", "Estivo"), ("invernale", "Invernale"), ("arrampicata", "Arrampicata"),
                   ("escursionismo", "Escursionismo"), ("seniori", "Seniori"), ("aiuto", "Aiuto capogita"),
                   ("soccorso", "Soccorso alpino")]
+RUOLI_CAPIGITA_EN = {"estivo": "Summer", "invernale": "Winter", "arrampicata": "Climbing", "escursionismo": "Hiking",
+                     "seniori": "Seniors", "aiuto": "Assistant leader", "soccorso": "Mountain rescue"}
 RUOLI_CAPIGITA_DE = {"estivo": "Sommer", "invernale": "Winter", "arrampicata": "Klettern", "escursionismo": "Wandern",
                      "seniori": "Senioren", "aiuto": "Hilfsleitung", "soccorso": "Bergrettung"}
 CAPIGITA_T = {
@@ -1093,6 +1153,13 @@ CAPIGITA_T = {
                box="<strong>Für Tourenleitende.</strong> Die Touren werden im Droptour-Portal veröffentlicht; das Merkblatt fasst Aufgaben und Abläufe der Tourenleitung zusammen.",
                portale="Droptour-Portal", promemoria="Merkblatt Tourenleitung (PDF, italienisch)",
                desc="Die {n} Tourenleitenden des SAC Ticino, die die Touren der Sektion vorbereiten und leiten: Sommer- und Wintertouren, Klettern, Wandern und Senioren."),
+    "en": dict(titolo="Trip leaders", sezione="The Section", sezione_href="en/Introduzione.html", ritratto="Portrait of",
+               dal="Trip leader since", tutti="All", filtra="Filter by role", elenco="List of trip leaders",
+               uno="trip leader", molti="trip leaders",
+               lead="The section’s trips are prepared and led by volunteer members trained in SAC courses: {n} active trip leaders, each with their own disciplines.",
+               box="<strong>For trip leaders.</strong> Trips are published on the Droptour portal; the guidelines cover the trip leader’s tasks and procedures.",
+               portale="Droptour portal", promemoria="Trip leader guidelines (PDF, in Italian)",
+               desc="The {n} trip leaders of CAS Ticino who prepare and lead the section’s trips: summer and winter, climbing, hiking and seniors."),
 }
 
 
@@ -1110,7 +1177,7 @@ def capigita():
     """Capigita da data/capigita.json (lo scrive scripts/capigita.py dall'export Droptour, senza dati personali)."""
     persone = json.load(open(os.path.join(ROOT, "data", "capigita.json"), encoding="utf-8"))["capigita"]
     tx = CAPIGITA_T[LINGUA["lang"]]
-    nomi = {k: (RUOLI_CAPIGITA_DE[k] if de() else n) for k, n in RUOLI_CAPIGITA}
+    nomi = {k: tr(n, RUOLI_CAPIGITA_DE[k], RUOLI_CAPIGITA_EN[k]) for k, n in RUOLI_CAPIGITA}
     schede = []
     for p in persone:
         foto = foto_persona(p["nome"], "capigita")
@@ -1250,25 +1317,45 @@ STORIA_DE = [
 ]
 
 
+STORIA_EN = [
+    ("1886", "On 11 April, at the Birraria Gambrinus in Bellinzona, the Club Alpino Ticinese is founded, in the centenary year of the first ascent of Mont Blanc. Its first president is the lawyer Curzio Curti. Its aim: to visit, study and make known the mountains of the canton and the neighbouring regions."),
+    ("1887", "On 20 March the club joins the Swiss Alpine Club as its Ticino section, based in Lugano."),
+    ("1911", "The section banner is inaugurated in Lanzo d’Intelvi."),
+    ("1913", "The Lugano section of the Swiss Women’s Alpine Club is founded, chaired by Adelina Rossi-Baragiola."),
+    ("1918", "Mountain rescue stations are set up in Faido, Airolo and Olivone. Training the guides is the section’s task; appointing them is up to the cantonal government."),
+    ("1930s", "Rock climbing grows: Emilio Comici, the leading Italian alpinist of the day, is invited to the Denti della Vecchia. In 1932 Tita Calvi, Don Giugni and Aldo Balmelli open the north-east face of Piz Prevat; Bruno Primi “Stüva” becomes a guide and climbs great classics, from the Civetta to the Matterhorn."),
+    ("1936", "First members in the central Himalaya, followed by Lapland (1959), Huascarán (1977) and Pumori (1978)."),
+    ("1940", "The Seniors group is founded."),
+    ("1960s", "The OG youth group is founded and the Sottoceneri rescue team goes into service. In 1963 the climber Aldo Fontana brings new energy; in 1964 the Gruppo Scoiattoli is founded."),
+    ("1980", "The men’s and women’s sections merge."),
+    ("1982", "First edition of the “mini week” for the youngest children."),
+    ("2003", "The new Capanna Cristallina, designed by Baserga and Mozzetti, is inaugurated."),
+    ("2016", "The rebuilding of Capanna Monte Bar is completed."),
+]
+
+
 def storia():
-    tl = "\n".join(f'<li><span class="year">{y}</span><span>{t}</span></li>' for y, t in (STORIA_DE if de() else STORIA))
+    tl = "\n".join(f'<li><span class="year">{y}</span><span>{t}</span></li>' for y, t in tr(STORIA, STORIA_DE, STORIA_EN))
     if de():
         body = page_hero([("Die Sektion", "de/Introduzione.html"), ("Geschichte", None)], "Seit 1886<br>zu Fuss unterwegs.",
                          "Mehr als ein Jahrhundert Besteigungen, Hütten, Rettung und Bergkultur: die Geschichte der Sektion in Etappen.")
+    elif en():
+        body = page_hero([("The Section", "en/Introduzione.html"), ("History", None)], "Since 1886,<br>on foot.",
+                         "More than a century of climbs, huts, rescue and mountain culture: the history of the section in milestones.")
     else:
         body = page_hero([("La Sezione", "index.html#sezione"), ("Storia", None)], "Dal 1886,<br>a piedi.",
                          "Più di un secolo di salite, rifugi, soccorso e cultura alpina: la storia della sezione in tappe.")
     body += f"""
 
 <figure class="band">
-{pic("paesaggi/seraccata", "Gletscherbruch unter blauem Himmel" if de() else "Seraccata di un ghiacciaio sotto il cielo azzurro", mobile="paesaggi/seraccata-4x3", w=2000, h=1125, lazy=False)}
+{pic("paesaggi/seraccata", tr("Seraccata di un ghiacciaio sotto il cielo azzurro", "Gletscherbruch unter blauem Himmel", "Glacier icefall under a blue sky"), mobile="paesaggi/seraccata-4x3", w=2000, h=1125, lazy=False)}
 </figure>
 
 <section class="section" aria-labelledby="tappe-h">
 <div class="container split">
 <div class="split-intro">
-<h2 id="tappe-h" class="h2">{"Die Etappen" if de() else "Le tappe"}</h2>
-<p class="lead">{"Neben den Touren hat die Sektion immer Vorführungen, Vorträge und Diskussionen organisiert und ihr Leben in zahlreichen Publikationen und in den Jahrbüchern festgehalten." if de() else "Accanto all’attività sul terreno, la sezione ha sempre organizzato proiezioni, conferenze e dibattiti, e documentato la propria vita in numerose pubblicazioni e negli annuari."}</p>
+<h2 id="tappe-h" class="h2">{tr("Le tappe", "Die Etappen", "Milestones")}</h2>
+<p class="lead">{tr("Accanto all’attività sul terreno, la sezione ha sempre organizzato proiezioni, conferenze e dibattiti, e documentato la propria vita in numerose pubblicazioni e negli annuari.", "Neben den Touren hat die Sektion immer Vorführungen, Vorträge und Diskussionen organisiert und ihr Leben in zahlreichen Publikationen und in den Jahrbüchern festgehalten.", "Alongside its activity in the mountains, the section has always organised slide shows, talks and debates, and recorded its life in many publications and in its yearbooks.")}</p>
 </div>
 <ol class="timeline" data-reveal>
 {tl}
@@ -1276,10 +1363,13 @@ def storia():
 </div>
 </section>
 
-{subnav("Die Sektion" if de() else "La Sezione", L("Storia.html"))}"""
+{subnav(tr("La Sezione", "Die Sektion", "The Section"), L("Storia.html"))}"""
     if de():
         return sezione_page("Storia.html", "Geschichte | CAS Ticino",
                             "Die Geschichte der Sektion Ticino des Schweizer Alpen-Clubs seit 1886: Gründung, Bergrettung, Expeditionen, Jugend- und Seniorengruppen, Hütten.", body)
+    if en():
+        return sezione_page("Storia.html", "History | CAS Ticino",
+                            "The history of the Ticino Section of the Swiss Alpine Club since 1886: foundation, mountain rescue, expeditions, youth and seniors groups, huts.", body)
     return page("Storia.html", "Storia | CAS Ticino",
                 "La storia della Sezione Ticino del Club Alpino Svizzero dal 1886: fondazione, soccorso alpino, spedizioni, gruppi giovani e seniori, capanne.",
                 body)
@@ -1341,11 +1431,32 @@ LINKS_DE = {"Capigita": "Tourenleiter", "Meteo e neve": "Wetter und Schnee", "Co
             "Reset password": "Passwort zurücksetzen"}
 
 
+LINKS_EN = {"Capigita": "Trip leaders", "Meteo e neve": "Weather and snow", "Condizioni e resoconti": "Conditions and trip reports",
+            "Mappe e guide": "Maps and guidebooks", "Società alpinistiche ticinesi": "Ticino mountaineering clubs", "Formazione": "Training",
+            "Capanne, guide e soccorso": "Huts, guides and rescue", "Eventi e altre società": "Events and other clubs",
+            "News di montagna": "Mountain news",
+            "SLF, bollettini valanghe in Svizzera": "SLF, Swiss avalanche bulletin", "MeteoSvizzera": "MeteoSwiss",
+            "Meteoblue, previsioni a 7 giorni": "Meteoblue, 7-day forecast", "Bollettino valanghe Tirolo": "Tyrol avalanche bulletin",
+            "Servizio valanghe italiano (CAI-SVI)": "Italian avalanche service (CAI-SVI)", "Météo-France, meteo e valanghe": "Météo-France, weather and avalanches",
+            "On-ice, nord Italia": "On-ice, northern Italy", "OHM Chamonix, Monte Bianco": "OHM Chamonix, Mont Blanc",
+            "Montagne in Valle d’Aosta": "Mountains in the Aosta Valley", "Piz Bube, guide e cartine": "Piz Bube, guidebooks and maps",
+            "Edizioni CAS (SAC-Verlag)": "SAC publishing (SAC-Verlag)", "Federazione Alpinistica Ticinese": "Ticino Mountaineering Federation (FAT)",
+            "CAS Centrale": "SAC central association", "Gioventù+Sport": "Youth+Sport", "Ufficio cantonale G+S": "Cantonal Youth+Sport office",
+            "Capanne CAS in Svizzera": "SAC huts in Switzerland", "Capanneti, rifugi Ticino e Mesolcina": "Capanneti, huts in Ticino and Mesolcina",
+            "Gruppo Guide Alpine Ticino": "Ticino mountain guides", "Soccorso Alpino Svizzero": "Swiss Alpine Rescue",
+            "PicAlciot, vie d’arrampicata in Ticino": "PicAlciot, climbing routes in Ticino", "Portale DropTour": "DropTour portal",
+            "Reset password": "Reset password"}
+
+
 def link():
     if de():
         gruppi = [(LINKS_DE.get(g, g), [(LINKS_DE.get(n, n), u) for n, u in links]) for g, links in LINKS]
         hero = page_hero([("Die Sektion", "de/Introduzione.html"), ("Nützliche Links", None)], "Nützliche Links",
                          "Wetter, Lawinenbulletins, Verhältnisse, Karten und die anderen Bergsteigervereine der Region.")
+    elif en():
+        gruppi = [(LINKS_EN.get(g, g), [(LINKS_EN.get(n, n), u) for n, u in links]) for g, links in LINKS]
+        hero = page_hero([("The Section", "en/Introduzione.html"), ("Useful links", None)], "Useful links",
+                         "Weather, avalanche bulletins, conditions, maps and the other mountaineering clubs in the region.")
     else:
         gruppi = LINKS
         hero = page_hero([("La Sezione", "index.html#sezione"), ("Link utili", None)], "Link utili",
@@ -1358,10 +1469,13 @@ def link():
 </div>
 </section>
 
-{subnav("Die Sektion" if de() else "La Sezione", L("Link.html"))}"""
+{subnav(tr("La Sezione", "Die Sektion", "The Section"), L("Link.html"))}"""
     if de():
         return sezione_page("Link.html", "Nützliche Links | CAS Ticino",
                             "Nützliche Links für die Berge: Wetter und Lawinenbulletins, Verhältnisse, Karten, Tessiner Bergsteigervereine, Ausbildung und Rettung.", body)
+    if en():
+        return sezione_page("Link.html", "Useful links | CAS Ticino",
+                            "Useful links for the mountains: weather and avalanche bulletins, conditions, maps, Ticino mountaineering clubs, training and rescue.", body)
     return page("Link.html", "Link utili | CAS Ticino",
                 "Link utili per la montagna: meteo e bollettini valanghe, condizioni, cartine, società alpinistiche ticinesi, formazione e soccorso.",
                 body)
@@ -1987,47 +2101,209 @@ def noleggio():
                 body)
 
 
-# ------------------------------------------------------------------ versione tedesca (de/)
+# ------------------------------------------------------------------ versioni tradotte (de/, en/)
 # Solo La Sezione, le capanne e Adesione sono tradotte; news, attività, media e PDF restano in italiano.
-# I testi sono scritti con i percorsi dalla radice del sito: i link alle pagine tedesche hanno de/ davanti.
+# I testi sono scritti con i percorsi dalla radice del sito; i link alle pagine tradotte passano da L() (de/…, en/…).
+# Home, Introduzione, Sede e Adesione hanno un testo proprio per lingua in TRADOTTE; le altre pagine della sezione
+# usano le stesse funzioni dell'italiano (comitato(), storia()…), con tr() e i dizionari *_DE / *_EN.
 
-def home_de():
-    huts = "\n".join(f"""<a class="hut{' hut--big' if big else ''}" href="de/{f}" data-reveal>
+TRADOTTE = {
+    "de": dict(
+        # home
+        home_title="CAS Ticino | Schweizer Alpen-Club, Sektion Ticino",
+        home_desc="Sechs Hütten vom Cristallinapass bis zu den Denti della Vecchia, Kurse mit Profis und ein Tourenprogramm für jedes Alter. Seit über hundert Jahren das Zuhause des Tessiner Alpinismus.",
+        hero_h="In die Berge<br>mit <span class=\"accent\">uns</span>.",
+        hero_lead="Sechs Hütten vom Cristallinapass bis zu den Denti della Vecchia, Kurse mit Profis und ein Tourenprogramm für jedes Alter.",
+        diventa="Mitglied werden", le_capanne="Die Hütten",
+        hero_alt="Skitourengeher im Aufstieg zu einem verschneiten Dorf",
+        cifre="Die Sektion in Zahlen",
+        stat_home=["Gründungsjahr", "Mitglieder", "Hütten, 362 Schlafplätze", "Disziplinen in den Kursen"],
+        sez_h="Seit 1886<br>zu Fuss unterwegs.",
+        sez_lead="Gegründet in der Birraria Gambrinus in Bellinzona, im Jubiläumsjahr der Erstbesteigung des Mont Blanc, um die Berge des Kantons «zu besuchen, zu erforschen und bekannt zu machen».",
+        sezione="Die Sektion", storia="Geschichte",
+        solo_it="<strong>Vieles gibt es nur auf Italienisch.</strong> Tourenprogramm, News, Kurse, Jugend- und Seniorengruppen, Fotos und Dokumente der Sektion sind nur auf Italienisch verfügbar.",
+        gite="Tourenprogramm", corsi="Kurse",
+        capanne_h="Sechs Hütten, ein Tessin",
+        capanne_lead="Immer offen, bewartet, wenn die Hüttenwarte da sind. Melden Sie sich vor dem Aufbruch beim Hüttenwart, um Anwesenheit und Verhältnisse am Berg zu prüfen.",
+        accesso="Zugang ab",
+        cta_h="Kommen Sie mit.",
+        cta_p="Günstigere Preise in den SAC-Hütten der ganzen Schweiz, Kurse, Touren und eine Gemeinschaft, die die Berge so liebt wie Sie.",
+        # introduzione
+        intro_crumb="Einführung", intro_h="Die Sektion",
+        intro_lead="Am 11. April 1886 in Bellinzona gegründet, zählt die Sektion Ticino des Schweizer Alpen-Clubs fast 3000 Mitglieder und bietet ein vielfältiges Programm für jedes Alter: von den Jüngsten bis zu den Senioren.",
+        intro_alt="Eine Gruppe Bergsteiger unterwegs auf einem Gletscher",
+        stat_intro=["am 11. April in Bellinzona gegründet", "Mitglieder, von den Jüngsten bis zu den Senioren", "Hütten im Besitz der Sektion", "Ressorts neben dem Vorstand"],
+        cosa_h="In den Bergen,<br>zu jeder Jahreszeit",
+        alt_cresta="Bergsteiger auf einem Felsgrat",
+        discipline_h="Disziplinen", discipline_p="Wandern, Bergsteigen, Klettern, Skitouren, Schneeschuhwandern und Eisklettern.",
+        inizia_h="Für Einsteiger", inizia_p="Einführungskurse in Bergsteigen, Skitouren, Schneeschuhwandern und Klettern im Gelände (auf Italienisch).",
+        vedi_corsi="Zu den Kursen",
+        alt_montebar="Die Capanna Monte Bar",
+        capanne_h3="Hütten", capanne_p="Die Sektion besitzt sechs Hütten: {huts}.", e="und",
+        oltre_h="Mehr als Sport", oltre_p="Sie koordiniert die Bergrettung im Sottoceneri, setzt sich für den Schutz der alpinen Umwelt ein und fördert die Bergkultur.",
+        come_h="So funktioniert es",
+        come_p="Ein <a href=\"de/Comitato.html\">Vorstand</a> koordiniert die verschiedenen Aktivitäten, unterstützt von fünf <a href=\"de/Organizzazione.html\">Ressorts</a> und der Freiwilligenarbeit der Mitglieder.",
+        alt_racchette="Verschneiter Grat über einem Nebelmeer",
+        com_h="Kommunikation", com_p="Tourenprogramm, Website, ein halbjährliches Bulletin und das Jahrbuch, das vom Leben der Sektion erzählt (auf Italienisch).",
+        doc_h="Statuten, Vision und Strategie, Organigramm",
+        doc_p="Die massgebenden Dokumente der Sektion, als PDF auf Italienisch. Weitere finden Sie auf der Seite <a href=\"Documenti.html\">Dokumente</a>.",
+        statuto="Statuten", visione="Vision und Strategie", organigramma="Organigramm",
+        intro_title="Die Sektion | CAS Ticino",
+        intro_desc="Die Sektion Ticino des Schweizer Alpen-Clubs: 1886 gegründet, fast 3000 Mitglieder, sechs Hütten, Kurse, Touren und Aktivitäten für jedes Alter.",
+        # sede
+        sede_rows=[
+            ("Postadresse", "Schweizer Alpen-Club<br>Sektion Ticino<br>Postfach 112<br>6998 Monteggio 2"),
+            ("E-Mail", '<a href="mailto:info@casticino.ch">info@casticino.ch</a>'),
+            ("Sitz", "Gebäude Canvetto Luganese, Molino Nuovo (Lugano)<br>2. Stock, auf der Galerie"),
+            ("Bibliothek", 'Führer und Karten zum Nachschlagen, Bücher zum Ausleihen; Bücher und T-Shirts zu kaufen. Für einen Besuch schreiben Sie dem Sekretariat: <a href="mailto:info@casticino.ch">info@casticino.ch</a>.'),
+            ("Bankverbindung", 'Banca Stato, Lugano<br><span class="num">IBAN CH09 0076 4128 9526 1200 6</span>'),
+        ],
+        sede_crumb="Sitz und Kontakt",
+        sede_lead="Der Sitz der Sektion befindet sich im Gebäude Canvetto Luganese in Molino Nuovo, mit Büro und Sitzungszimmer im zweiten Stock auf der Galerie.",
+        sede_h="Der Canvetto Luganese",
+        sede_p="Hier treffen sich der Vorstand und die Ressorts, hier finden die Informationsabende der Kurse und verschiedene kulturelle Anlässe statt: Bilder von Touren, Reisen und Expeditionen der Mitglieder, Abende mit Fachleuten für Wetter, Lawinen und Erste Hilfe.",
+        scrivi="Der Sektion schreiben",
+        sede_title="Sitz und Kontakt | CAS Ticino",
+        sede_desc="Sitz des CAS Ticino im Canvetto Luganese (Molino Nuovo), Postadresse, E-Mail, Bibliothek und Bankverbindung.",
+        # adesione
+        prezzi=[("Einzel", "Einzelmitglied", "105", "30"),
+                ("Familie", "Eltern und Kinder bis 17 Jahre", "179", "50"),
+                ("Jugend", "Bis 22 Jahre", "50", "30")],
+        tassa="+ CHF {fee} beim ersten Beitritt",
+        vantaggi=[("Hütten", "Bis 50 % Rabatt in den Hütten der ganzen Schweiz und in einigen europäischen Ländern"),
+                  ("Tourenportal", "Kostenloser Zugang zu Karten und Routen im SAC-Tourenportal"),
+                  ("Ausbildung", "Vergünstigungen bei den Kursen"),
+                  ("Publikationen", "Die Zeitschrift «Die Alpen», das Bulletin der Sektion und Rabatte auf SAC-Publikationen"),
+                  ("Klettern", "Freier Eintritt in die Kletterhalle San Paolo")],
+        join="https://www.sac-cas.ch/de/mitgliedschaft/mitglied-werden/?section=5100",
+        ade_crumb="Mitgliedschaft", ade_h="Mitglied werden",
+        ade_lead="Treten Sie der Tessiner Sektion des Schweizer Alpen-Clubs bei: Touren, Kurse, Hütten und eine Gemeinschaft, die die Berge liebt.",
+        iscriviti="Auf der SAC-Website beitreten",
+        ade_alt="Bergsee zwischen Felsen, im Hintergrund die Berge",
+        quote_h="Jahresbeiträge",
+        doppia="Sie sind schon Mitglied einer anderen SAC-Sektion? Sie können eine Doppelmitgliedschaft beantragen und zahlen nur den Beitrag der Sektion Ticino.",
+        vantaggi_h="Ihre Vorteile",
+        ade_title="Mitglied werden | CAS Ticino",
+        ade_desc="Werden Sie Mitglied der Sektion Ticino des Schweizer Alpen-Clubs: Jahresbeiträge für Einzelne, Familien und Jugendliche, und die Vorteile für Mitglieder.",
+    ),
+    "en": dict(
+        home_title="CAS Ticino | Swiss Alpine Club, Ticino Section",
+        home_desc="Six huts from the Cristallina Pass to the Denti della Vecchia, courses run by professionals and a trip programme for all ages. For more than a century, the home of mountaineering in Ticino.",
+        hero_h="Into the mountains<br>with <span class=\"accent\">us</span>.",
+        hero_lead="Six huts from the Cristallina Pass to the Denti della Vecchia, courses run by professionals and a trip programme for all ages.",
+        diventa="Become a member", le_capanne="The huts",
+        hero_alt="Ski tourers climbing towards a snow-covered village",
+        cifre="The section in numbers",
+        stat_home=["year founded", "members", "huts, 362 beds", "disciplines taught in courses"],
+        sez_h="Since 1886,<br>on foot.",
+        sez_lead="Founded at the Birraria Gambrinus in Bellinzona, in the centenary year of the first ascent of Mont Blanc, to “visit, study and make known” the mountains of the canton.",
+        sezione="The Section", storia="History",
+        solo_it="<strong>Much is only in Italian.</strong> The trip programme, news, courses, youth and seniors groups, photos and documents of the section are only available in Italian.",
+        gite="Trip programme", corsi="Courses",
+        capanne_h="Six huts, one Ticino",
+        capanne_lead="Always open, staffed when the hut keepers are there. Check with the hut keeper before you set out, to make sure they are there and to ask about conditions in the mountains.",
+        accesso="Access from",
+        cta_h="Come with us.",
+        cta_p="Lower rates in SAC huts all over Switzerland, courses, trips and a community that loves the mountains as much as you do.",
+        intro_crumb="Introduction", intro_h="The section",
+        intro_lead="Founded in Bellinzona on 11 April 1886, the Ticino Section of the Swiss Alpine Club has almost 3000 members and offers a varied programme for all ages: from the youngest to seniors.",
+        intro_alt="A group of climbers walking on a glacier",
+        stat_intro=["founded in Bellinzona on 11 April", "members, from the youngest to seniors", "huts owned by the section", "departments alongside the committee"],
+        cosa_h="In the mountains,<br>in every season",
+        alt_cresta="Climbers on a rocky ridge",
+        discipline_h="Disciplines", discipline_p="Hiking, mountaineering, climbing, ski touring, snowshoeing and ice climbing.",
+        inizia_h="For beginners", inizia_p="Introductory courses in mountaineering, ski touring, snowshoeing and outdoor climbing (in Italian).",
+        vedi_corsi="See the courses",
+        alt_montebar="Capanna Monte Bar",
+        capanne_h3="Huts", capanne_p="The section owns six huts: {huts}.", e="and",
+        oltre_h="Beyond sport", oltre_p="It coordinates mountain rescue in the Sottoceneri, works to protect the alpine environment and promotes mountain culture.",
+        come_h="How it works",
+        come_p="A <a href=\"en/Comitato.html\">committee</a> coordinates the various activities, supported by five <a href=\"en/Organizzazione.html\">departments</a> and the volunteer work of the members.",
+        alt_racchette="Snowy ridge above a sea of clouds",
+        com_h="Communication", com_p="Trip programme, website, a half-yearly bulletin and the yearbook that tells the story of the section (in Italian).",
+        doc_h="Statutes, vision and strategy, organisation chart",
+        doc_p="The section’s key documents, as PDFs in Italian. You will find more on the <a href=\"Documenti.html\">Documents</a> page.",
+        statuto="Statutes", visione="Vision and strategy", organigramma="Organisation chart",
+        intro_title="The section | CAS Ticino",
+        intro_desc="The Ticino Section of the Swiss Alpine Club: founded in 1886, almost 3000 members, six huts, courses, trips and activities for all ages.",
+        sede_rows=[
+            ("Postal address", "Swiss Alpine Club<br>Ticino Section<br>PO Box 112<br>6998 Monteggio 2"),
+            ("E-mail", '<a href="mailto:info@casticino.ch">info@casticino.ch</a>'),
+            ("Office", "Canvetto Luganese building, Molino Nuovo (Lugano)<br>2nd floor, on the gallery"),
+            ("Library", 'Guidebooks and maps to consult, books to borrow; books and T-shirts for sale. To visit, write to the secretariat: <a href="mailto:info@casticino.ch">info@casticino.ch</a>.'),
+            ("Bank details", 'Banca Stato, Lugano<br><span class="num">IBAN CH09 0076 4128 9526 1200 6</span>'),
+        ],
+        sede_crumb="Office and contacts",
+        sede_lead="The section’s office is in the Canvetto Luganese building in Molino Nuovo, with an office and meeting room on the second floor, on the gallery.",
+        sede_h="The Canvetto Luganese",
+        sede_p="This is where the committee and the departments meet, and where course information evenings and various cultural events take place: talks on members’ trips, travels and expeditions, and evenings with experts on weather, avalanches and first aid.",
+        scrivi="Write to the section",
+        sede_title="Office and contacts | CAS Ticino",
+        sede_desc="The CAS Ticino office at the Canvetto Luganese (Molino Nuovo), postal address, e-mail, library and bank details.",
+        prezzi=[("Individual", "Individual member", "105", "30"),
+                ("Family", "Parents and children up to 17", "179", "50"),
+                ("Youth", "Up to 22", "50", "30")],
+        tassa="+ CHF {fee} when you first join",
+        vantaggi=[("Huts", "Up to 50% off in huts all over Switzerland and in some European countries"),
+                  ("Tour portal", "Free access to maps and routes on the SAC tour portal"),
+                  ("Training", "Reduced prices on courses"),
+                  ("Publications", "The SAC magazine “Die Alpen”, the section bulletin and discounts on SAC publications"),
+                  ("Climbing", "Free entry to the San Paolo climbing gym")],
+        join="https://www.sac-cas.ch/en/membership/become-a-member/?section=5100",
+        ade_crumb="Membership", ade_h="Become a member",
+        ade_lead="Join the Ticino Section of the Swiss Alpine Club: trips, courses, huts and a community that loves the mountains.",
+        iscriviti="Join on the SAC website",
+        ade_alt="Mountain lake among rocks, with mountains behind",
+        quote_h="Annual fees",
+        doppia="Already a member of another SAC section? You can apply for dual membership and pay only the Ticino Section fee.",
+        vantaggi_h="Your benefits",
+        ade_title="Become a member | CAS Ticino",
+        ade_desc="Become a member of the Ticino Section of the Swiss Alpine Club: annual fees for individuals, families and young people, and the benefits for members.",
+    ),
+}
+
+
+def tx_tradotte():
+    return TRADOTTE[LINGUA["lang"]]
+
+
+def home_tradotta():
+    tx = tx_tradotte()
+    lang = LINGUA["lang"]
+    huts = "\n".join(f"""<a class="hut{' hut--big' if big else ''}" href="{lang}/{f}" data-reveal>
 <figure>{img(im, f'Capanna {n}', w, h)}</figure>
 <div class="hut-head"><h3 class="h3">{n}</h3><span class="hut-alt">{q} m</span></div>
 <div class="hut-meta"><span>{v}</span><span class="status">{st}</span></div>
 <p>{t}</p>
-<div class="hut-meta"><span>{posti}</span><span>Zugang ab {acc}</span></div>
-</a>""" for f, n, q, v, st, t, posti, acc, im, (w, h), big in HUTS_DE)
-    html = head("CAS Ticino | Schweizer Alpen-Club, Sektion Ticino",
-                "Sechs Hütten vom Cristallinapass bis zu den Denti della Vecchia, Kurse mit Profis und ein Tourenprogramm für jedes Alter. Seit über hundert Jahren das Zuhause des Tessiner Alpinismus.",
+<div class="hut-meta"><span>{posti}</span><span>{tx['accesso']} {acc}</span></div>
+</a>""" for f, n, q, v, st, t, posti, acc, im, (w, h), big in {"de": HUTS_DE, "en": HUTS_EN}[lang])
+    stats = "\n".join(f'<div class="stat"><strong>{n}</strong><span>{x}</span></div>'
+                      for n, x in zip(("1886", "≈3000", "6", "5"), tx["stat_home"]))
+    html = head(tx["home_title"], tx["home_desc"],
                 '<meta property="og:image" content="assets/img/paesaggi/sciatori-villaggio-2000.webp">\n')
-    html += "\n<body>\n" + nav("de/index.html") + f"""
+    html += "\n<body>\n" + nav(f"{lang}/index.html") + f"""
 <main id="contenuto">
 
 <section class="hero" aria-labelledby="hero-h">
 <div class="container">
-<h1 id="hero-h" class="display">In die Berge<br>mit <span class="accent">uns</span>.</h1>
+<h1 id="hero-h" class="display">{tx['hero_h']}</h1>
 <div class="hero-foot">
-<p class="lead">Sechs Hütten vom Cristallinapass bis zu den Denti della Vecchia, Kurse mit Profis und ein Tourenprogramm für jedes Alter.</p>
+<p class="lead">{tx['hero_lead']}</p>
 <div class="actions">
-<a class="btn btn--primary" href="de/Adesione.html">Mitglied werden <span class="arrow" aria-hidden="true">→</span></a>
-<a class="btn btn--secondary" href="#capanne">Die Hütten</a>
+<a class="btn btn--primary" href="{lang}/Adesione.html">{tx['diventa']} <span class="arrow" aria-hidden="true">→</span></a>
+<a class="btn btn--secondary" href="#capanne">{tx['le_capanne']}</a>
 </div>
 </div>
 </div>
 <figure class="band">
-{pic("paesaggi/sciatori-villaggio", "Skitourengeher im Aufstieg zu einem verschneiten Dorf", mobile="paesaggi/sciatori-villaggio-4x3", w=2000, h=901, lazy=False, cls="pos-low")}
+{pic("paesaggi/sciatori-villaggio", tx['hero_alt'], mobile="paesaggi/sciatori-villaggio-4x3", w=2000, h=901, lazy=False, cls="pos-low")}
 </figure>
 </section>
 
-<section class="section section--tight section--stats" id="sezione" aria-label="Die Sektion in Zahlen">
+<section class="section section--tight section--stats" id="sezione" aria-label="{tx['cifre']}">
 <div class="container">
 <div class="stats" data-reveal>
-<div class="stat"><strong>1886</strong><span>Gründungsjahr</span></div>
-<div class="stat"><strong>≈3000</strong><span>Mitglieder</span></div>
-<div class="stat"><strong>6</strong><span>Hütten, 362 Schlafplätze</span></div>
-<div class="stat"><strong>5</strong><span>Disziplinen in den Kursen</span></div>
+{stats}
 </div>
 </div>
 </section>
@@ -2035,13 +2311,13 @@ def home_de():
 <section class="section section--tight section--after-stats" aria-labelledby="sektion-h">
 <div class="container split">
 <div class="split-intro">
-<h2 id="sektion-h" class="h2">Seit 1886<br>zu Fuss unterwegs.</h2>
-<p class="lead">Gegründet in der Birraria Gambrinus in Bellinzona, im Jubiläumsjahr der Erstbesteigung des Mont Blanc, um die Berge des Kantons «zu besuchen, zu erforschen und bekannt zu machen».</p>
-<div class="links"><a class="link" href="de/Introduzione.html">Die Sektion</a><a class="link" href="de/Storia.html">Geschichte</a></div>
+<h2 id="sektion-h" class="h2">{tx['sez_h']}</h2>
+<p class="lead">{tx['sez_lead']}</p>
+<div class="links"><a class="link" href="{lang}/Introduzione.html">{tx['sezione']}</a><a class="link" href="{lang}/Storia.html">{tx['storia']}</a></div>
 </div>
 <div class="callout" data-reveal>
-<p><strong>Vieles gibt es nur auf Italienisch.</strong> Tourenprogramm, News, Kurse, Jugend- und Seniorengruppen, Fotos und Dokumente der Sektion sind nur auf Italienisch verfügbar.</p>
-<div class="links"><a class="link" href="{GITE}">Tourenprogramm</a><a class="link" href="News.html">News</a><a class="link" href="Corsi.html">Kurse</a></div>
+<p>{tx['solo_it']}</p>
+<div class="links"><a class="link" href="{GITE}">{tx['gite']}</a><a class="link" href="News.html">News</a><a class="link" href="Corsi.html">{tx['corsi']}</a></div>
 </div>
 </div>
 </section>
@@ -2049,8 +2325,8 @@ def home_de():
 <section class="section" id="capanne" aria-labelledby="capanne-h">
 <div class="container">
 <div class="section-head">
-<h2 id="capanne-h" class="h2">Sechs Hütten, ein Tessin</h2>
-<p class="lead">Immer offen, bewartet, wenn die Hüttenwarte da sind. Melden Sie sich vor dem Aufbruch beim Hüttenwart, um Anwesenheit und Verhältnisse am Berg zu prüfen.</p>
+<h2 id="capanne-h" class="h2">{tx['capanne_h']}</h2>
+<p class="lead">{tx['capanne_lead']}</p>
 </div>
 <div class="huts">
 {huts}
@@ -2061,34 +2337,34 @@ def home_de():
 <section class="cta-band" id="adesione" aria-labelledby="adesione-h">
 {pic("paesaggi/tramonto-larici", "", mobile="paesaggi/tramonto-larici-4x3", w=2000, h=1126)}
 <div class="container">
-<h2 id="adesione-h" class="h2">Kommen Sie mit.</h2>
-<p>Günstigere Preise in den SAC-Hütten der ganzen Schweiz, Kurse, Touren und eine Gemeinschaft, die die Berge so liebt wie Sie.</p>
-<a class="btn btn--light" href="de/Adesione.html">Mitglied werden <span class="arrow" aria-hidden="true">→</span></a>
+<h2 id="adesione-h" class="h2">{tx['cta_h']}</h2>
+<p>{tx['cta_p']}</p>
+<a class="btn btn--light" href="{lang}/Adesione.html">{tx['diventa']} <span class="arrow" aria-hidden="true">→</span></a>
 </div>
 </section>
 
 </main>
 """ + footer()
-    return pubblica("de/index.html", html)
+    return pubblica(f"{lang}/index.html", html)
 
 
-def introduzione_de():
-    huts = ('<a href="de/CampoTencia.html">Campo Tencia</a>, <a href="de/Cristallina.html">Cristallina</a>, <a href="de/Adula.html">Adula</a>, '
-            '<a href="de/Motterascio.html">Motterascio (Michela)</a>, <a href="de/MonteBar.html">Monte Bar</a> und <a href="de/BaitaDelLuca.html">Baita del Luca</a>')
-    body = page_hero([("Die Sektion", "de/Introduzione.html"), ("Einführung", None)], "Die Sektion",
-                     "Am 11. April 1886 in Bellinzona gegründet, zählt die Sektion Ticino des Schweizer Alpen-Clubs fast 3000 Mitglieder und bietet ein vielfältiges Programm für jedes Alter: von den Jüngsten bis zu den Senioren.") + f"""
+def introduzione_tradotta():
+    tx = tx_tradotte()
+    lang = LINGUA["lang"]
+    huts = (f'<a href="{lang}/CampoTencia.html">Campo Tencia</a>, <a href="{lang}/Cristallina.html">Cristallina</a>, <a href="{lang}/Adula.html">Adula</a>, '
+            f'<a href="{lang}/Motterascio.html">Motterascio (Michela)</a>, <a href="{lang}/MonteBar.html">Monte Bar</a> {tx["e"]} <a href="{lang}/BaitaDelLuca.html">Baita del Luca</a>')
+    stats = "\n".join(f'<div class="stat"><strong>{n}</strong><span>{x}</span></div>'
+                      for n, x in zip(("1886", "≈3000", "6", "5"), tx["stat_intro"]))
+    body = page_hero([(tx["sezione"], f"{lang}/Introduzione.html"), (tx["intro_crumb"], None)], tx["intro_h"], tx["intro_lead"]) + f"""
 
 <figure class="band">
-{pic("paesaggi/gruppo-ghiacciaio", "Eine Gruppe Bergsteiger unterwegs auf einem Gletscher", mobile="paesaggi/gruppo-ghiacciaio-4x3", w=2000, h=1500, lazy=False, cls="pos-low")}
+{pic("paesaggi/gruppo-ghiacciaio", tx['intro_alt'], mobile="paesaggi/gruppo-ghiacciaio-4x3", w=2000, h=1500, lazy=False, cls="pos-low")}
 </figure>
 
-<section class="section--accent" aria-label="Die Sektion in Zahlen">
+<section class="section--accent" aria-label="{tx['cifre']}">
 <div class="container">
 <div class="stats" data-reveal>
-<div class="stat"><strong>1886</strong><span>am 11. April in Bellinzona gegründet</span></div>
-<div class="stat"><strong>≈3000</strong><span>Mitglieder, von den Jüngsten bis zu den Senioren</span></div>
-<div class="stat"><strong>6</strong><span>Hütten im Besitz der Sektion</span></div>
-<div class="stat"><strong>5</strong><span>Ressorts neben dem Vorstand</span></div>
+{stats}
 </div>
 </div>
 </section>
@@ -2096,129 +2372,110 @@ def introduzione_de():
 <section class="section" aria-labelledby="cosa-h">
 <div class="container">
 <div class="section-head">
-<h2 id="cosa-h" class="h2">In den Bergen,<br>zu jeder Jahreszeit</h2>
+<h2 id="cosa-h" class="h2">{tx['cosa_h']}</h2>
 </div>
 <div class="pillars" data-reveal>
 <article class="pillar pillar--photo pillar--wide">
-{img("paesaggi/cresta-lugano-2000", "Bergsteiger auf einem Felsgrat", 2000, 580)}
-<h3>Disziplinen</h3>
-<p>Wandern, Bergsteigen, Klettern, Skitouren, Schneeschuhwandern und Eisklettern.</p>
+{img("paesaggi/cresta-lugano-2000", tx['alt_cresta'], 2000, 580)}
+<h3>{tx['discipline_h']}</h3>
+<p>{tx['discipline_p']}</p>
 </article>
 <article class="pillar pillar--accent">
-<h3>Für Einsteiger</h3>
-<p>Einführungskurse in Bergsteigen, Skitouren, Schneeschuhwandern und Klettern im Gelände (auf Italienisch).</p>
-<a class="link" href="Corsi.html">Zu den Kursen</a>
+<h3>{tx['inizia_h']}</h3>
+<p>{tx['inizia_p']}</p>
+<a class="link" href="Corsi.html">{tx['vedi_corsi']}</a>
 </article>
 <article class="pillar pillar--photo">
-{img("capanne/montebar-3x2", "Die Capanna Monte Bar", 663, 442)}
-<h3>Hütten</h3>
-<p>Die Sektion besitzt sechs Hütten: {huts}.</p>
+{img("capanne/montebar-3x2", tx['alt_montebar'], 663, 442)}
+<h3>{tx['capanne_h3']}</h3>
+<p>{tx['capanne_p'].format(huts=huts)}</p>
 </article>
 <article class="pillar">
-<h3>Mehr als Sport</h3>
-<p>Sie koordiniert die Bergrettung im Sottoceneri, setzt sich für den Schutz der alpinen Umwelt ein und fördert die Bergkultur.</p>
+<h3>{tx['oltre_h']}</h3>
+<p>{tx['oltre_p']}</p>
 </article>
 <article class="pillar">
-<h3>So funktioniert es</h3>
-<p>Ein <a href="de/Comitato.html">Vorstand</a> koordiniert die verschiedenen Aktivitäten, unterstützt von fünf <a href="de/Organizzazione.html">Ressorts</a> und der Freiwilligenarbeit der Mitglieder.</p>
+<h3>{tx['come_h']}</h3>
+<p>{tx['come_p']}</p>
 </article>
 <article class="pillar pillar--photo pillar--wide-md">
-{img("corsi/racchette-4x5", "Verschneiter Grat über einem Nebelmeer", 800, 1000)}
-<h3>Kommunikation</h3>
-<p>Tourenprogramm, Website, ein halbjährliches Bulletin und das Jahrbuch, das vom Leben der Sektion erzählt (auf Italienisch).</p>
+{img("corsi/racchette-4x5", tx['alt_racchette'], 800, 1000)}
+<h3>{tx['com_h']}</h3>
+<p>{tx['com_p']}</p>
 </article>
 <article class="pillar pillar--dark pillar--wide">
-<h3>Statuten, Vision und Strategie, Organigramm</h3>
-<p>Die massgebenden Dokumente der Sektion, als PDF auf Italienisch. Weitere finden Sie auf der Seite <a href="Documenti.html">Dokumente</a>.</p>
-<div class="actions"><a class="btn btn--primary" href="{DOC}statuto-visione/statuto-2025.pdf">Statuten <span class="arrow" aria-hidden="true">→</span></a><a class="btn btn--ghost-dark" href="{DOC}statuto-visione/visione-strategia-2025.pdf">Vision und Strategie</a><a class="btn btn--ghost-dark" href="{DOC}statuto-visione/organigramma-2025.pdf">Organigramm</a></div>
+<h3>{tx['doc_h']}</h3>
+<p>{tx['doc_p']}</p>
+<div class="actions"><a class="btn btn--primary" href="{DOC}statuto-visione/statuto-2025.pdf">{tx['statuto']} <span class="arrow" aria-hidden="true">→</span></a><a class="btn btn--ghost-dark" href="{DOC}statuto-visione/visione-strategia-2025.pdf">{tx['visione']}</a><a class="btn btn--ghost-dark" href="{DOC}statuto-visione/organigramma-2025.pdf">{tx['organigramma']}</a></div>
 </article>
 </div>
 </div>
 </section>
 
-{subnav("Die Sektion", "de/Introduzione.html")}"""
-    return sezione_page("Introduzione.html", "Die Sektion | CAS Ticino",
-                        "Die Sektion Ticino des Schweizer Alpen-Clubs: 1886 gegründet, fast 3000 Mitglieder, sechs Hütten, Kurse, Touren und Aktivitäten für jedes Alter.",
-                        body, og="paesaggi/gruppo-ghiacciaio-2000")
+{subnav(tx["sezione"], f"{lang}/Introduzione.html")}"""
+    return sezione_page("Introduzione.html", tx["intro_title"], tx["intro_desc"], body, og="paesaggi/gruppo-ghiacciaio-2000")
 
 
-def sede_de():
-    rows = [
-        ("Postadresse", "Schweizer Alpen-Club<br>Sektion Ticino<br>Postfach 112<br>6998 Monteggio 2"),
-        ("E-Mail", '<a href="mailto:info@casticino.ch">info@casticino.ch</a>'),
-        ("Sitz", "Gebäude Canvetto Luganese, Molino Nuovo (Lugano)<br>2. Stock, auf der Galerie"),
-        ("Bibliothek", 'Führer und Karten zum Nachschlagen, Bücher zum Ausleihen; Bücher und T-Shirts zu kaufen. Für einen Besuch schreiben Sie dem Sekretariat: <a href="mailto:info@casticino.ch">info@casticino.ch</a>.'),
-        ("Bankverbindung", 'Banca Stato, Lugano<br><span class="num">IBAN CH09 0076 4128 9526 1200 6</span>'),
-    ]
-    body = page_hero([("Die Sektion", "de/Introduzione.html"), ("Sitz und Kontakt", None)], "Sitz und Kontakt",
-                     "Der Sitz der Sektion befindet sich im Gebäude Canvetto Luganese in Molino Nuovo, mit Büro und Sitzungszimmer im zweiten Stock auf der Galerie.") + f"""
+def sede_tradotta():
+    tx = tx_tradotte()
+    lang = LINGUA["lang"]
+    body = page_hero([(tx["sezione"], f"{lang}/Introduzione.html"), (tx["sede_crumb"], None)], tx["sede_crumb"], tx["sede_lead"]) + f"""
 
 <section class="section" aria-labelledby="sede-h">
 <div class="container">
 <div class="contact" data-reveal>
 <div class="contact-intro">
-<h2 id="sede-h" class="h2">Der Canvetto Luganese</h2>
-<p>Hier treffen sich der Vorstand und die Ressorts, hier finden die Informationsabende der Kurse und verschiedene kulturelle Anlässe statt: Bilder von Touren, Reisen und Expeditionen der Mitglieder, Abende mit Fachleuten für Wetter, Lawinen und Erste Hilfe.</p>
-<div><a class="btn btn--primary" href="mailto:info@casticino.ch">Der Sektion schreiben <span class="arrow" aria-hidden="true">→</span></a></div>
+<h2 id="sede-h" class="h2">{tx['sede_h']}</h2>
+<p>{tx['sede_p']}</p>
+<div><a class="btn btn--primary" href="mailto:info@casticino.ch">{tx['scrivi']} <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
-{facts(rows)}
+{facts(tx['sede_rows'])}
 </div>
 </div>
 </section>
 
-{subnav("Die Sektion", "de/Sede.html")}"""
-    return sezione_page("Sede.html", "Sitz und Kontakt | CAS Ticino",
-                        "Sitz des CAS Ticino im Canvetto Luganese (Molino Nuovo), Postadresse, E-Mail, Bibliothek und Bankverbindung.", body)
+{subnav(tx["sezione"], f"{lang}/Sede.html")}"""
+    return sezione_page("Sede.html", tx["sede_title"], tx["sede_desc"], body)
 
 
-def adesione_de():
-    prices = [("Einzel", "Einzelmitglied", "105", "30"),
-              ("Familie", "Eltern und Kinder bis 17 Jahre", "179", "50"),
-              ("Jugend", "Bis 22 Jahre", "50", "30")]
+def adesione_tradotta():
+    tx = tx_tradotte()
     cards = "\n".join(f"""<article class="price">
 <h3 class="h3">{t}</h3>
 <p>{who}</p>
 <div class="amount"><small>CHF</small>{amt}</div>
-<p class="small">+ CHF {fee} beim ersten Beitritt</p>
-</article>""" for t, who, amt, fee in prices)
-    rows = [("Hütten", "Bis 50 % Rabatt in den Hütten der ganzen Schweiz und in einigen europäischen Ländern"),
-            ("Tourenportal", "Kostenloser Zugang zu Karten und Routen im SAC-Tourenportal"),
-            ("Ausbildung", "Vergünstigungen bei den Kursen"),
-            ("Publikationen", "Die Zeitschrift «Die Alpen», das Bulletin der Sektion und Rabatte auf SAC-Publikationen"),
-            ("Klettern", "Freier Eintritt in die Kletterhalle San Paolo")]
-    join = "https://www.sac-cas.ch/de/mitgliedschaft/mitglied-werden/?section=5100"
-    body = page_hero([("Mitgliedschaft", None)], "Mitglied werden",
-                     "Treten Sie der Tessiner Sektion des Schweizer Alpen-Clubs bei: Touren, Kurse, Hütten und eine Gemeinschaft, die die Berge liebt.",
-                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="{join}">Auf der SAC-Website beitreten <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
+<p class="small">{tx['tassa'].format(fee=fee)}</p>
+</article>""" for t, who, amt, fee in tx["prezzi"])
+    join = tx["join"]
+    body = page_hero([(tx["ade_crumb"], None)], tx["ade_h"], tx["ade_lead"],
+                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="{join}">{tx["iscriviti"]} <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
 
 <figure class="band">
-{pic("paesaggi/laghetto-alpino", "Bergsee zwischen Felsen, im Hintergrund die Berge", mobile="paesaggi/laghetto-alpino-4x3", w=2000, h=1126, lazy=False)}
+{pic("paesaggi/laghetto-alpino", tx['ade_alt'], mobile="paesaggi/laghetto-alpino-4x3", w=2000, h=1126, lazy=False)}
 </figure>
 
 <section class="section" aria-labelledby="quote-h">
 <div class="container">
-<div class="section-head"><h2 id="quote-h" class="h2">Jahresbeiträge</h2></div>
+<div class="section-head"><h2 id="quote-h" class="h2">{tx['quote_h']}</h2></div>
 <div class="prices" data-reveal>
 {cards}
 </div>
-<p class="note">Sie sind schon Mitglied einer anderen SAC-Sektion? Sie können eine Doppelmitgliedschaft beantragen und zahlen nur den Beitrag der Sektion Ticino.</p>
+<p class="note">{tx['doppia']}</p>
 </div>
 </section>
 
 <section class="section--surface" aria-labelledby="vantaggi-h">
 <div class="container detail">
 <div class="detail-intro">
-<h2 id="vantaggi-h" class="h2">Ihre Vorteile</h2>
-<div><a class="btn btn--primary" href="{join}">Auf der SAC-Website beitreten <span class="arrow" aria-hidden="true">→</span></a></div>
+<h2 id="vantaggi-h" class="h2">{tx['vantaggi_h']}</h2>
+<div><a class="btn btn--primary" href="{join}">{tx['iscriviti']} <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
 <div data-reveal>
-{facts(rows)}
+{facts(tx['vantaggi'])}
 </div>
 </div>
 </section>"""
-    return sezione_page("Adesione.html", "Mitglied werden | CAS Ticino",
-                        "Werden Sie Mitglied der Sektion Ticino des Schweizer Alpen-Clubs: Jahresbeiträge für Einzelne, Familien und Jugendliche, und die Vorteile für Mitglieder.",
-                        body, og="paesaggi/laghetto-alpino-2000")
+    return sezione_page("Adesione.html", tx["ade_title"], tx["ade_desc"], body, og="paesaggi/laghetto-alpino-2000")
 
 
 # ------------------------------------------------------------------ ricerca
@@ -2254,7 +2511,7 @@ def voce_pagina(file, page_html):
 
 
 def indice_ricerca(pagine):
-    voci = [voce_pagina(f, h) for f, h in pagine.items() if f not in FUORI_INDICE and not f.startswith("de/")]
+    voci = [voce_pagina(f, h) for f, h in pagine.items() if f not in FUORI_INDICE and not f.startswith(("de/", "en/"))]
     for gruppo, links in DOCS:
         for nome, url in links:
             voci.append({"t": nome, "u": url, "k": "PDF", "x": f"Documenti, {gruppo}"})
@@ -2313,10 +2570,10 @@ for _i, _n in enumerate(NEWS):
     PAGES[_n["file"]] = (lambda i: lambda: news_article(i))(_i)
 
 
-def in_tedesco(fn):
-    """Genera una pagina con la lingua impostata a tedesco."""
+def in_lingua_pagina(lang, fn):
+    """Genera una pagina con la lingua impostata a `lang` (de, en)."""
     def genera():
-        LINGUA["lang"] = "de"
+        LINGUA["lang"] = lang
         try:
             return fn()
         finally:
@@ -2324,19 +2581,22 @@ def in_tedesco(fn):
     return genera
 
 
-PAGES_DE = {"index.html": home_de, "Introduzione.html": introduzione_de, "Comitato.html": comitato,
-            "Organizzazione.html": organizzazione, "Capigita.html": capigita, "Sede.html": sede_de, "Storia.html": storia, "Link.html": link,
-            "Adesione.html": adesione_de}
-for _f in HUT_PAGES:
-    PAGES_DE[_f] = (lambda f: lambda: hut(f))(_f)
-for _f, _c in CONTENUTI_DE.items():
-    for _p in _c["pagine"] + ([_c["storia"]] if _c.get("storia") else []):
-        PAGES_DE[f"capanne/{_c['cartella']}/{_p['file']}.html"] = (lambda f, p: lambda: hut_page(f, p))(_f, _p)
-    if _c.get("foto"):
-        PAGES_DE[f"capanne/{_c['cartella']}/foto.html"] = (lambda f: lambda: hut_foto(f))(_f)
-PAGINE_DE.update(PAGES_DE)  # per il selettore di lingua e per i link L()
-for _f, _fn in PAGES_DE.items():
-    PAGES["de/" + _f] = in_tedesco(_fn)
+# Versioni tradotte (de/, en/): La Sezione, le capanne con le loro sotto-pagine e Adesione.
+for _lang, _contenuti in (("de", CONTENUTI_DE), ("en", CONTENUTI_EN)):
+    _pagine = {"index.html": home_tradotta, "Introduzione.html": introduzione_tradotta, "Comitato.html": comitato,
+               "Organizzazione.html": organizzazione, "Capigita.html": capigita, "Sede.html": sede_tradotta,
+               "Storia.html": storia, "Link.html": link, "Adesione.html": adesione_tradotta}
+    for _f in HUT_PAGES:
+        _pagine[_f] = (lambda f: lambda: hut(f))(_f)
+    for _f, _c in _contenuti.items():
+        for _p in _c["pagine"] + ([_c["storia"]] if _c.get("storia") else []):
+            _pagine[f"capanne/{_c['cartella']}/{_p['file']}.html"] = (lambda f, p: lambda: hut_page(f, p))(_f, _p)
+        if _c.get("foto"):
+            _pagine[f"capanne/{_c['cartella']}/foto.html"] = (lambda f: lambda: hut_foto(f))(_f)
+    PAGINE_LINGUA[_lang].update(_pagine)  # per il selettore di lingua e per i link L()
+    for _f, _fn in _pagine.items():
+        PAGES[f"{_lang}/" + _f] = in_lingua_pagina(_lang, _fn)
+
 
 def scrivi(name, contenuto):
     os.makedirs(os.path.dirname(os.path.join(ROOT, name)), exist_ok=True)

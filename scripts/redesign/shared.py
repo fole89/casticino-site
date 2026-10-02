@@ -46,8 +46,23 @@ MENU_DE = [
     ("Mitgliedschaft", "de/Adesione.html", None),
 ]
 
-LINGUA = {"lang": "it"}   # lingua della pagina che si sta generando: "it" o "de"
-PAGINE_DE = set()         # pagine (percorso italiano dalla radice) che hanno anche la versione tedesca; lo riempie pages.py
+# Versione inglese: come quella tedesca, in en/ (stesse pagine, stessi nomi di file).
+MENU_EN = [
+    ("The Section", "en/Introduzione.html", [
+        ("Introduction", "en/Introduzione.html"), ("Committee", "en/Comitato.html"),
+        ("Organisation", "en/Organizzazione.html"), ("Trip leaders", "en/Capigita.html"),
+        ("Office and contacts", "en/Sede.html"),
+        ("History", "en/Storia.html"), ("Useful links", "en/Link.html")]),
+    ("Huts", "en/index.html#capanne", [
+        ("Campo Tencia", "en/CampoTencia.html"), ("Cristallina", "en/Cristallina.html"), ("Adula", "en/Adula.html"),
+        ("Motterascio", "en/Motterascio.html"), ("Monte Bar", "en/MonteBar.html"), ("Baita del Luca", "en/BaitaDelLuca.html")]),
+    ("Membership", "en/Adesione.html", None),
+]
+
+LINGUE = ("it", "de", "en")  # l'italiano è la lingua principale; le altre hanno solo La Sezione, le capanne e Adesione
+LINGUA = {"lang": "it"}      # lingua della pagina che si sta generando
+PAGINE_LINGUA = {"de": set(), "en": set()}  # pagine (percorso italiano dalla radice) tradotte in ogni lingua; le riempie pages.py
+NOMI_LINGUE = {"it": "Italiano", "de": "Deutsch", "en": "English"}
 
 # testi fissi dell'interfaccia (quelli delle capanne sono in capanne_de.py)
 T = {
@@ -62,7 +77,13 @@ T = {
                lingua="Italiano", percorso="Pfad", seguici="Folgen Sie uns", sostegno="Mit Unterstützung von",
                indirizzo="Schweizer Alpen-Club SAC, Sektion Ticino<br>Postfach 112, 6998 Monteggio 2<br>Sitz: Canvetto Luganese, Molino Nuovo",
                sezione="Schweizer Alpen-Club SAC, Sektion Ticino", su_instagram="CAS Ticino auf Instagram", su_facebook="CAS Ticino auf Facebook",
-               redazione="Redaktion", locale="de_CH"),
+               redazione="Redaktion", locale="de_CH", adesione="Mitgliedschaft"),
+    "en": dict(skip="Skip to content", nav="Main", menu_apri="Open menu", menu_chiudi="Close menu", menu="Menu",
+               logo_sotto="Swiss Alpine Club", cerca="Search (in Italian)", gite="Trip programme",
+               lingua="English", percorso="Breadcrumb", seguici="Follow us", sostegno="With the support of",
+               indirizzo="Swiss Alpine Club SAC, Ticino Section<br>PO Box 112, 6998 Monteggio 2<br>Office: Canvetto Luganese, Molino Nuovo",
+               sezione="Swiss Alpine Club SAC, Ticino Section", su_instagram="CAS Ticino on Instagram", su_facebook="CAS Ticino on Facebook",
+               redazione="Editors", locale="en_GB", adesione="Membership"),
 }
 
 
@@ -70,26 +91,37 @@ def de():
     return LINGUA["lang"] == "de"
 
 
+def en():
+    return LINGUA["lang"] == "en"
+
+
+def tr(it, de_, en_):
+    """Lo stesso testo nelle tre lingue: restituisce quello della lingua corrente."""
+    return {"it": it, "de": de_, "en": en_}[LINGUA["lang"]]
+
+
 def t(chiave):
     return T[LINGUA["lang"]][chiave]
 
 
 def menu():
-    return MENU_DE if de() else MENU
+    return {"it": MENU, "de": MENU_DE, "en": MENU_EN}[LINGUA["lang"]]
 
 
 def L(href):
-    """Link a una pagina del sito (percorso dalla radice): nella versione tedesca porta alla pagina tedesca, se c'è."""
-    if de() and href.split("#")[0] in PAGINE_DE:
-        return "de/" + href
+    """Link a una pagina del sito (percorso dalla radice): nelle versioni tradotte porta alla pagina tradotta, se c'è."""
+    lang = LINGUA["lang"]
+    if lang != "it" and href.split("#")[0] in PAGINE_LINGUA[lang]:
+        return f"{lang}/" + href
     return href
 
 
-def altra_lingua(pagina):
-    """La stessa pagina nell'altra lingua (o la home tedesca, se la pagina italiana non è tradotta)."""
-    if de():
-        return pagina[3:] if pagina.startswith("de/") else "index.html"
-    return "de/" + pagina if pagina in PAGINE_DE else "de/index.html"
+def in_lingua(pagina, lang):
+    """La stessa pagina in un'altra lingua (la home di quella lingua, se la pagina non è tradotta)."""
+    base = pagina[3:] if pagina[:3] in ("de/", "en/") else pagina
+    if lang == "it":
+        return base
+    return f"{lang}/{base}" if base in PAGINE_LINGUA[lang] else f"{lang}/index.html"
 
 
 CARET = '<span class="caret" aria-hidden="true"></span>'
@@ -132,7 +164,8 @@ def nav(current_page, current_section=None):
                 cls = "navlink is-current" if label == current_section else "navlink"
                 items.append(f'<a class="{cls}" href="{href}">{label}</a>')
     links = "\n".join(items)
-    altra = "it" if de() else "de"
+    lingue = "\n".join(f'<a class="nav-lang" href="{in_lingua(current_page, l)}" hreflang="{l}" lang="{l}" title="{NOMI_LINGUE[l]}">{l.upper()}</a>'
+                       for l in LINGUE if l != LINGUA["lang"])
     return f"""<a class="skip-link" href="#contenuto">{t('skip')}</a>
 <header class="site-nav">
 <nav aria-label="{t('nav')}" class="container nav-inner">
@@ -144,7 +177,9 @@ def nav(current_page, current_section=None):
 {links}
 </div>
 <div class="nav-end">
-<a class="nav-lang" href="{altra_lingua(current_page)}" hreflang="{altra}" lang="{altra}" title="{t('lingua')}">{altra.upper()}</a>
+<div class="nav-langs">
+{lingue}
+</div>
 <a class="nav-search" href="Cerca.html" aria-label="{t('cerca')}" title="{t('cerca')}"{' aria-current="page"' if current_page == "Cerca.html" else ""}><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="m13 13 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a>
 <a class="btn btn--primary" href="{GITE}">{t('gite')}</a>
 <button class="menu-toggle" type="button" aria-label="{t('menu_apri')}" data-chiudi="{t('menu_chiudi')}" data-titolo="{t('menu')}"><span class="burger" aria-hidden="true"></span></button>
@@ -181,8 +216,8 @@ def footer():
         name = label
         extra = [("News", "News.html")] if label == "Attività" else []
         extra_end = [("Adesione", "Adesione.html")] if label == "Attività" else []
-        if label == "Die Sektion":
-            extra_end = [("Mitgliedschaft", "de/Adesione.html")]
+        if LINGUA["lang"] != "it" and not cols:  # versioni tradotte: Adesione in fondo alla prima colonna
+            extra_end = [(t("adesione"), L("Adesione.html"))]
         links = "\n".join(f'<a href="{h}">{l}</a>' for l, h in extra + sub + extra_end)
         cols.append(f'<nav class="footer-col" aria-label="{name}">\n<h2>{name}</h2>\n{links}\n</nav>')
     cols = "\n".join(cols)
