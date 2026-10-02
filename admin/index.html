@@ -11,8 +11,10 @@
 <link href="admin/config.yml" type="text/yaml" rel="cms-config-url">
 </head>
 <body>
-<!-- Area di redazione delle news: Decap CMS, configurazione in config.yml. -->
-<script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+<!-- Area di redazione delle news: Decap CMS, configurazione in config.yml.
+     integrity: il browser esegue lo script solo se è identico a quello verificato; aggiornando la versione va ricalcolata
+     (curl -s <url> | openssl dgst -sha384 -binary | openssl base64 -A). -->
+<script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js" integrity="sha384-A/Gdn928CNLufmnGWGs9RM4Q9o8bSNLeJERqBFrBjwzL7FRpoLT3MPF8Tl0+Wd2p" crossorigin="anonymous"></script>
 <script>
 // Anteprima della news con lo stile del sito: come apparirà la pagina dell'articolo.
 CMS.registerPreviewStyle("assets/site.css");

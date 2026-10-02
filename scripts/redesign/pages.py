@@ -10,7 +10,8 @@ GITE_FILTRO = GITE + "?page=touren&amp;year=&amp;typ=&amp;gruppe={gruppe}&amp;an
 GITE_GIOVANI = GITE_FILTRO.format(gruppe="Giovani", tipo="")
 GITE_SENIORI = GITE_FILTRO.format(gruppe="Seniori", tipo="")
 GITE_CORSI = GITE_FILTRO.format(gruppe="", tipo="Corso")
-from shared import LINGUA, PAGINE_LINGUA, de, en, tr, L
+from shared import LINGUA, PAGINE_LINGUA, SITO, de, en, tr, L
+from urllib.parse import urljoin
 from capanne import CONTENUTI, PRENOTA
 from capanne_de import CONTENUTI_DE, HUT_DE, HUTS_DE
 from capanne_en import CONTENUTI_EN, HUT_EN, HUTS_EN
@@ -1392,26 +1393,26 @@ def linkgroups(groups, tag):
 LINKS = [
     ("Capigita", [("Portale DropTour", "https://ssl.dropnet.ch/casticino/manager/touren/index.php"),
                   ("Reset password", "https://ssl.dropnet.ch/casticino/gite/index.php?page=order_password")]),
-    ("Meteo e neve", [("SLF, bollettini valanghe in Svizzera", "http://www.slf.ch/"), ("MeteoSvizzera", "http://www.meteosvizzera.ch/"),
-                      ("Meteoblue, previsioni a 7 giorni", "http://www.meteoblue.com/"), ("MeteoCentrale", "http://www.meteocentrale.ch/it/"),
-                      ("Bollettino valanghe Tirolo", "http://lawine.tirol.gv.at/"), ("Servizio valanghe italiano (CAI-SVI)", "http://www.cai-svi.it/j15/"),
-                      ("Météo-France, meteo e valanghe", "http://france.meteofrance.com/france/accueil/")]),
-    ("Condizioni e resoconti", [("Bergtour", "http://www.bergtour.ch/"), ("Hikr", "http://www.hikr.org/"), ("On-ice, nord Italia", "http://www.on-ice.it/"),
-                                ("OHM Chamonix, Monte Bianco", "http://www.ohm-chamonix.com/"), ("Camptocamp", "http://www.camptocamp.org/"),
-                                ("Montagne in Valle d’Aosta", "http://www.montagneinvalledaosta.com/"), ("MonteRosa4000", "http://www.monterosa4000.it/"),
-                                ("ViaFerrata.org", "http://www.viaferrata.org/")]),
-    ("Mappe e guide", [("MapPlus", "http://www.mapplus.ch/"), ("swisstopo", "http://www.swisstopo.ch/"),
-                       ("Piz Bube, guide e cartine", "http://www.pizbube.ch/"), ("Edizioni CAS (SAC-Verlag)", "http://www.sac-verlag.ch/")]),
-    ("Società alpinistiche ticinesi", [("CAS Bellinzona e valli", "http://www.casbellinzona.ch/"), ("CAS Locarno", "http://www.cas-locarno.ch/"),
-                                       ("Federazione Alpinistica Ticinese", "http://www.fat-ti.ch/"), ("Società Escursionistica Verzaschese", "http://www.verzasca.com/sev"),
-                                       ("Gruppo Scoiattoli Denti della Vecchia", "http://www.scoiattoli.ch/")]),
-    ("Formazione", [("CAS Centrale", "http://www.sac-cas.ch/"), ("Gioventù+Sport", "http://www.jugendundsport.ch/"),
-                    ("Ufficio cantonale G+S", "http://www4.ti.ch/decs/sa/ugs/")]),
-    ("Capanne, guide e soccorso", [("Capanne CAS in Svizzera", "http://www.sac-cas.ch/huetten.html"), ("Capanneti, rifugi Ticino e Mesolcina", "http://www.capanneti.ch/"),
-                                   ("Gruppo Guide Alpine Ticino", "http://www.guidealpineticino.ch/"), ("Soccorso Alpino Svizzero", "http://www.alpinerettung.ch/")]),
-    ("Eventi e altre società", [("Tris Rotondo", "http://www.trisrotondo.ch/"), ("Skyrace Lodrino Lavertezzo", "http://www.lodrino-lavertezzo.ch/"),
-                                ("Sci Club Lodrino-Prosito", "http://www.sclp.ch/"), ("PicAlciot, vie d’arrampicata in Ticino", "http://www.picalciot.ch/")]),
-    ("News di montagna", [("PlanetMountain", "http://www.planetmountain.com/"), ("Montagna.tv", "http://www.montagna.tv/")]),
+    ("Meteo e neve", [("SLF, bollettini valanghe in Svizzera", "https://www.slf.ch/"), ("MeteoSvizzera", "https://www.meteosvizzera.ch/"),
+                      ("Meteoblue, previsioni a 7 giorni", "https://www.meteoblue.com/"),
+                      ("Bollettino valanghe Euregio (Tirolo, Alto Adige, Trentino)", "https://lawinen.report/"), ("Servizio valanghe italiano (CAI-SVI)", "https://www.cai-svi.it/j15/"),
+                      ("Météo-France, meteo e valanghe", "https://meteofrance.com/meteo-montagne")]),
+    ("Condizioni e resoconti", [("Hikr", "https://www.hikr.org/"), ("On-ice, nord Italia", "http://www.on-ice.it/"),
+                                ("OHM Chamonix, Monte Bianco", "https://www.ohm-chamonix.com/"), ("Camptocamp", "https://www.camptocamp.org/"),
+                                ("Montagne in Valle d’Aosta", "https://www.montagneinvalledaosta.com/"), ("MonteRosa4000", "https://www.monterosa4000.it/"),
+                                ("ViaFerrata.org", "https://www.viaferrata.org/")]),
+    ("Mappe e guide", [("MapPlus", "https://www.mapplus.ch/"), ("swisstopo", "https://www.swisstopo.ch/"),
+                       ("Piz Bube, guide e cartine", "https://www.pizbube.ch/"), ("Edizioni CAS (SAC-Verlag)", "https://www.sac-verlag.ch/")]),
+    ("Società alpinistiche ticinesi", [("CAS Bellinzona e valli", "https://www.casbellinzona.ch/"), ("CAS Locarno", "https://www.cas-locarno.ch/"),
+                                       ("Federazione Alpinistica Ticinese", "https://www.fat-ti.ch/"), ("Società Escursionistica Verzaschese", "https://www.sev-verzasca.ch/"),
+                                       ("Gruppo Scoiattoli Denti della Vecchia", "https://www.scoiattoli.ch/")]),
+    ("Formazione", [("CAS Centrale", "https://www.sac-cas.ch/"), ("Gioventù+Sport", "https://www.jugendundsport.ch/"),
+                    ("Ufficio cantonale G+S", "https://www4.ti.ch/decs/sa/us/ufficio")]),
+    ("Capanne, guide e soccorso", [("Capanne CAS in Svizzera", "https://www.sac-cas.ch/huetten.html"), ("Capanneti, rifugi Ticino e Mesolcina", "https://www.capanneti.ch/"),
+                                   ("Gruppo Guide Alpine Ticino", "https://www.guidealpineticino.ch/"), ("Soccorso Alpino Svizzero", "https://www.alpinerettung.ch/")]),
+    ("Eventi e altre società", [("Skyrace Lodrino Lavertezzo", "https://www.lodrino-lavertezzo.ch/"),
+                                ("Sci Club Lodrino-Prosito", "https://www.sclp.ch/"), ("PicAlciot, vie d’arrampicata in Ticino", "https://www.picalciot.ch/")]),
+    ("News di montagna", [("PlanetMountain", "https://www.planetmountain.com/"), ("Montagna.tv", "https://www.montagna.tv/")]),
 ]
 
 
@@ -1420,7 +1421,7 @@ LINKS_DE = {"Capigita": "Tourenleiter", "Meteo e neve": "Wetter und Schnee", "Co
             "Capanne, guide e soccorso": "Hütten, Bergführer und Rettung", "Eventi e altre società": "Anlässe und andere Vereine",
             "News di montagna": "Bergnews",
             "SLF, bollettini valanghe in Svizzera": "SLF, Lawinenbulletin Schweiz", "MeteoSvizzera": "MeteoSchweiz",
-            "Meteoblue, previsioni a 7 giorni": "Meteoblue, 7-Tage-Prognose", "Bollettino valanghe Tirolo": "Lawinenwarndienst Tirol",
+            "Meteoblue, previsioni a 7 giorni": "Meteoblue, 7-Tage-Prognose", "Bollettino valanghe Euregio (Tirolo, Alto Adige, Trentino)": "Lawinenbulletin Euregio (Tirol, Südtirol, Trentino)",
             "Servizio valanghe italiano (CAI-SVI)": "Italienischer Lawinendienst (CAI-SVI)", "Météo-France, meteo e valanghe": "Météo-France, Wetter und Lawinen",
             "On-ice, nord Italia": "On-ice, Norditalien", "OHM Chamonix, Monte Bianco": "OHM Chamonix, Mont Blanc",
             "Montagne in Valle d’Aosta": "Berge im Aostatal", "Piz Bube, guide e cartine": "Piz Bube, Führer und Karten",
@@ -1437,7 +1438,7 @@ LINKS_EN = {"Capigita": "Trip leaders", "Meteo e neve": "Weather and snow", "Con
             "Capanne, guide e soccorso": "Huts, guides and rescue", "Eventi e altre società": "Events and other clubs",
             "News di montagna": "Mountain news",
             "SLF, bollettini valanghe in Svizzera": "SLF, Swiss avalanche bulletin", "MeteoSvizzera": "MeteoSwiss",
-            "Meteoblue, previsioni a 7 giorni": "Meteoblue, 7-day forecast", "Bollettino valanghe Tirolo": "Tyrol avalanche bulletin",
+            "Meteoblue, previsioni a 7 giorni": "Meteoblue, 7-day forecast", "Bollettino valanghe Euregio (Tirolo, Alto Adige, Trentino)": "Euregio avalanche bulletin (Tyrol, South Tyrol, Trentino)",
             "Servizio valanghe italiano (CAI-SVI)": "Italian avalanche service (CAI-SVI)", "Météo-France, meteo e valanghe": "Météo-France, weather and avalanches",
             "On-ice, nord Italia": "On-ice, northern Italy", "OHM Chamonix, Monte Bianco": "OHM Chamonix, Mont Blanc",
             "Montagne in Valle d’Aosta": "Mountains in the Aosta Valley", "Piz Bube, guide e cartine": "Piz Bube, guidebooks and maps",
@@ -2598,6 +2599,47 @@ for _lang, _contenuti in (("de", CONTENUTI_DE), ("en", CONTENUTI_EN)):
         PAGES[f"{_lang}/" + _f] = in_lingua_pagina(_lang, _fn)
 
 
+def indirizzo(name):
+    """Indirizzo pubblico di una pagina, senza .html (come lo mostra site.js nella barra degli indirizzi)."""
+    return SITO + re.sub(r"(^|/)index\.html$", r"\1", name).removesuffix(".html")
+
+
+def metadati(name, html):
+    """Aggiunge alla testa canonical, og:url, og:image con indirizzo completo e, se la pagina è tradotta, gli hreflang."""
+    url = indirizzo(name)
+    html = re.sub(r'(<meta property="og:image" content=")([^"]+)"', lambda m: m.group(1) + urljoin(SITO + name, m.group(2)) + '"', html, count=1)
+    righe = [f'<link rel="canonical" href="{url}">', f'<meta property="og:url" content="{url}">']
+    it = name[3:] if name[:3] in ("de/", "en/") else name
+    lingue = [lang for lang in ("de", "en") if it in PAGINE_LINGUA[lang]]
+    if lingue:
+        righe += [f'<link rel="alternate" hreflang="it" href="{indirizzo(it)}">']
+        righe += [f'<link rel="alternate" hreflang="{lang}" href="{indirizzo(lang + "/" + it)}">' for lang in lingue]
+        righe += [f'<link rel="alternate" hreflang="x-default" href="{indirizzo(it)}">']
+    return html.replace("</head>", "\n".join(righe) + "\n</head>", 1)
+
+
+def pagina_404():
+    """Pagina mostrata da GitHub Pages per ogni indirizzo che non esiste, a qualsiasi profondità:
+    <base> fa partire i percorsi relativi dalla radice del sito."""
+    body = page_hero([("Pagina non trovata", None)], "Pagina non trovata",
+                     "La pagina che cerchi non esiste o è stata spostata. Dal nuovo sito alcuni indirizzi sono cambiati: prova dalla home o con la ricerca.",
+                     """<form class="cerca-form" role="search" action="cerca.html">
+<label class="visually-hidden" for="cerca-q">Cerca nel sito</label>
+<input id="cerca-q" name="q" type="search" placeholder="Es. Cristallina, corso racchette, statuto…" autocomplete="off">
+<button class="btn btn--primary" type="submit">Cerca</button>
+</form>
+<div class="actions"><a class="btn btn--secondary" href="index.html">Vai alla home</a></div>
+<p class="small" lang="de">Seite nicht gefunden. <a href="de/index.html">Zur Startseite</a></p>
+<p class="small" lang="en">Page not found. <a href="en/index.html">Go to the home page</a></p>""")
+    html = page("404.html", "Pagina non trovata | CAS Ticino", "La pagina cercata non esiste sul sito del CAS Ticino.", body)
+    return html.replace("<head>\n", f'<head>\n<base href="{SITO}">\n<meta name="robots" content="noindex">\n', 1)
+
+
+def sitemap(nomi):
+    righe = "\n".join(f"<url><loc>{indirizzo(n)}</loc></url>" for n in sorted(nomi))
+    return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{righe}\n</urlset>\n'
+
+
 def scrivi(name, contenuto):
     os.makedirs(os.path.dirname(os.path.join(ROOT, name)), exist_ok=True)
     with open(os.path.join(ROOT, name), "w", encoding="utf-8", newline="\n") as f:
@@ -2608,12 +2650,17 @@ def scrivi(name, contenuto):
 if __name__ == "__main__":
     only = sys.argv[1:]
     # tutte le pagine vengono generate comunque: servono per l'indice della ricerca
-    pagine = {name: fn() for name, fn in PAGES.items()}
+    pagine = {name: metadati(name, fn()) for name, fn in PAGES.items()}
     for name, contenuto in pagine.items():
         if not only or name in only:
             scrivi(name, contenuto)
+    if not only or "404.html" in only:
+        scrivi("404.html", pagina_404())
+    # sempre, come cerca.json: cambia quando si aggiunge o toglie una pagina (es. una news)
+    scrivi("sitemap.xml", sitemap(list(pagine) + ["cerca.html"]))
+    scrivi("robots.txt", f"User-agent: *\nDisallow: /admin/\n\nSitemap: {SITO}sitemap.xml\n")
     with open(os.path.join(ROOT, "data", "cerca.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(indice_ricerca(pagine), f, ensure_ascii=False, separators=(",", ":"))
     print("scritto data/cerca.json")
     if not only or "cerca.html" in only:
-        scrivi("cerca.html", cerca_pagina())  # dopo l'indice: il link porta l'impronta di cerca.json
+        scrivi("cerca.html", metadati("cerca.html", cerca_pagina()))  # dopo l'indice: il link porta l'impronta di cerca.json

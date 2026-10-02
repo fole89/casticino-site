@@ -67,7 +67,9 @@ Note sul CNAME:
 
 Al momento del cambio DNS rimetti il dominio: crea nella cartella principale il file `CNAME` con dentro solo `casticino.ch` e fai push. In alternativa scrivi `casticino.ch` in **Settings › Pages › Custom domain**: GitHub crea il file da solo.
 
-Quando il DNS si è propagato (da qualche minuto fino a 48 ore), torna in **Settings › Pages** e attiva **Enforce HTTPS**.
+Nello stesso commit cambia `SITO` in `scripts/redesign/shared.py` in `"https://casticino.ch/"` e rigenera tutte le pagine (`python scripts/redesign/pages.py`): da lì vengono gli indirizzi completi di canonical, anteprima nelle condivisioni (`og:image`), versioni nelle altre lingue (`hreflang`), `sitemap.xml`, `robots.txt` e la pagina `404.html`. Cambia anche `site_url` e `display_url` in `admin/config.yml` e controlla che `ALLOWED_ORIGINS` del servizio di accesso all'area news contenga `https://casticino.ch` (vedi `scripts/cms-auth/LEGGIMI.md`).
+
+Quando il DNS si è propagato (da qualche minuto fino a 48 ore), torna in **Settings › Pages** e attiva **Enforce HTTPS**. Poi registra il sito in Google Search Console e invia `https://casticino.ch/sitemap.xml`.
 
 Consigliato: in **Settings (dell'account o dell'organizzazione) › Pages › Verified domains** verifica casticino.ch, così nessun altro può usarlo su GitHub.
 

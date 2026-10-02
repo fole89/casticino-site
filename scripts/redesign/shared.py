@@ -14,6 +14,10 @@ def asset(path):
 
 GITE = "https://ssl.dropnet.ch/casticino/gite/index.php"
 
+# Indirizzo pubblico del sito, con la barra finale: serve per canonical, og:image, hreflang, sitemap e per la pagina 404.
+# Al passaggio del dominio diventa "https://casticino.ch/" (poi rigenerare tutte le pagine).
+SITO = "https://fole89.github.io/casticino-site/"
+
 MENU = [
     ("La Sezione", "index.html#sezione", [
         ("Introduzione", "introduzione.html"), ("Comitato", "comitato.html"),
