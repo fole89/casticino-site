@@ -27,7 +27,7 @@ MENU = [
         ("Campo Tencia", "CampoTencia.html"), ("Cristallina", "Cristallina.html"), ("Adula", "Adula.html"),
         ("Motterascio", "Motterascio.html"), ("Monte Bar", "MonteBar.html"), ("Baita del Luca", "BaitaDelLuca.html")]),
     ("Media", "index.html#media", [
-        ("Foto", "Foto.html"), ("Annuari", "Annuari.html"), ("Informazione", "Informazione.html"),
+        ("Foto e resoconti", "Foto.html"), ("Annuari", "Annuari.html"), ("Informazione", "Informazione.html"),
         ("Documenti", "Documenti.html")]),
     ("Adesione", "Adesione.html", None),
 ]

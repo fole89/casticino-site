@@ -4,6 +4,12 @@ Uso: python scripts/redesign/pages.py [Pagina.html ...]  (senza argomenti rigene
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from shared import head, nav, footer, pic, img, GITE, page_hero, subnav, asset, in_sottocartella, crumbs
+
+# Programma gite su Droptour già filtrato per gruppo o per tipo di attività (i link dei singoli corsi cambiano ogni anno)
+GITE_FILTRO = GITE + "?page=touren&amp;year=&amp;typ=&amp;gruppe={gruppe}&amp;anlasstyp={tipo}&amp;selected_anf_tech=&amp;selected_anf_kond=&amp;zusatz=&amp;search="
+GITE_GIOVANI = GITE_FILTRO.format(gruppe="Giovani", tipo="")
+GITE_SENIORI = GITE_FILTRO.format(gruppe="Seniori", tipo="")
+GITE_CORSI = GITE_FILTRO.format(gruppe="", tipo="Corso")
 from shared import LINGUA, PAGINE_DE, de, L
 from capanne import CONTENUTI, PRENOTA
 from capanne_de import CONTENUTI_DE, HUT_DE, HUTS_DE
@@ -82,7 +88,7 @@ def home():
 </figure>
 </section>
 
-<section class="section section--tight" id="sezione" aria-label="La sezione in cifre">
+<section class="section section--tight section--stats" id="sezione" aria-label="La sezione in cifre">
 <div class="container">
 <div class="stats" data-reveal>
 <div class="stat"><strong>1886</strong><span>anno di fondazione</span></div>
@@ -93,14 +99,14 @@ def home():
 </div>
 </section>
 
-<section class="section section--tight" id="storia" aria-labelledby="storia-h">
+<section class="section section--tight section--after-stats" id="storia" aria-labelledby="storia-h">
 <div class="container split">
 <div class="split-intro">
 <h2 id="storia-h" class="h2">Dal 1886,<br>a piedi.</h2>
 <p class="lead">Fondato alla Birraria Gambrinus di Bellinzona nell’anno del centenario della prima salita al Monte Bianco, per «visitare, studiare e far conoscere» le montagne del Cantone.</p>
 <div><a class="link" href="Storia.html">Leggi la storia completa</a></div>
 </div>
-<ol class="timeline" data-reveal>
+<ol class="timeline timeline--compact" data-reveal>
 {timeline}
 </ol>
 </div>
@@ -110,7 +116,7 @@ def home():
 <div class="container">
 <div class="section-row">
 <h2 id="news-h" class="h2">Dalla sezione</h2>
-<div class="links"><a class="link" href="News.html">Tutte le news</a><a class="link" href="Foto.html">Galleria foto</a></div>
+<div class="links"><a class="link" href="News.html">Tutte le news</a><a class="link" href="Foto.html">Foto e resoconti</a></div>
 </div>
 <div class="news-grid" data-reveal>
 {chr(10).join(news_card(n) for n in NEWS[:3])}
@@ -131,7 +137,7 @@ def home():
 <span class="label">Programma gite 2026</span>
 <h3 class="h2">Gite, escursioni e uscite della sezione</h3>
 <p>Escursionismo, alpinismo, sci alpinismo, racchette e arrampicata: il calendario completo con iscrizioni online.</p>
-<div class="actions"><a class="btn btn--primary" href="{GITE}">Programma gite</a><a class="btn btn--ghost-light" href="Foto.html">Galleria foto</a></div>
+<div class="actions"><a class="btn btn--primary" href="{GITE}">Programma gite</a><a class="btn btn--ghost-light" href="Foto.html">Foto e resoconti</a></div>
 </div>
 </article>
 <article class="tile tile--tall" data-reveal>
@@ -232,7 +238,7 @@ def band_img(name, alt, w, h):
 HUT_PAGES = {
     "CampoTencia.html": dict(
         name="Campo Tencia", where="Val Piumogna, Leventina", alt_m="2140", beds="80", custody="da metà giugno a metà ottobre",
-        mail="campotencia@casticino.ch", booking=PRENOTA.format(36),
+        mail="campotencia@casticino.ch", booking=PRENOTA.format(36), facebook="https://www.facebook.com/61559861696010",
         description="Capanna Campo Tencia, 2140 m, in Val Piumogna (Leventina): 80 posti letto, custodita da metà giugno a metà ottobre. Contatti e prenotazioni.",
         band=("capanne/campotencia", "La Capanna Campo Tencia al tramonto, sopra la Val Piumogna", 658),
         intro="Adagiata su un terrazzo che domina l’alta Val Piumogna, è la base ideale per escursioni, traversate verso altre capanne e salite come quella al Pizzo Campo Tencia, che con i suoi 3071 m è la cima più alta interamente in territorio ticinese.",
@@ -250,7 +256,7 @@ HUT_PAGES = {
                  ("E-mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
     "Cristallina.html": dict(
         name="Cristallina", where="Passo Cristallina, Valle Bedretto", alt_m="2575", beds="100", custody="da giugno a metà ottobre",
-        mail="cristallina@casticino.ch", booking=PRENOTA.format(20),
+        mail="cristallina@casticino.ch", booking=PRENOTA.format(20), facebook="https://www.facebook.com/capannacristallinacas/",
         description="Capanna Cristallina, 2575 m, sul Passo Cristallina tra Leventina e Valle Maggia: 100 posti letto, custodita da giugno a metà ottobre. Contatti e prenotazioni.",
         band=("capanne/cristallina", "La Capanna Cristallina sul passo, tra Leventina e Valle Maggia", 558),
         intro="Progettata dagli architetti Baserga e Mozzetti e inaugurata nel 2003, è il primo rifugio moderno costruito dal Club Alpino Svizzero. Sorge sul passo, in un punto strategico tra Leventina e Valle Maggia: tappa panoramica sulle traversate verso Robiei, il Naret, il Campo Tencia e il San Giacomo. Il giro dei laghi del Cristallina, di uno o due giorni, è adatto anche alle famiglie; in un’ora si raggiungono il Cristallina e la Cima di Lago. D’inverno, raggiungibile soprattutto da nord, apre pendii splendidi verso la Valle Bedretto, Robiei e la Val Formazza.",
@@ -267,7 +273,7 @@ HUT_PAGES = {
                  ("E-mail", '<a href="mailto:cristallina@casticino.ch">cristallina@casticino.ch</a>')]),
     "Adula.html": dict(
         name="Adula", where="Alta Val Carassino, Val Soi, Blenio", alt_m="2012", beds="24", custody="da fine maggio a metà ottobre",
-        mail="adula@casticino.ch", booking=PRENOTA.format(42),
+        mail="adula@casticino.ch", booking=PRENOTA.format(42), facebook="https://www.facebook.com/CapannaAdulaCAS",
         description="Capanna Adula, 2012 m, tra Val Carassino e Val Soi (Blenio): 24 posti letto, aperta tutto l’anno, custodita da fine maggio a metà ottobre. Contatti e prenotazioni.",
         img=("capanne/adula-3x2", "La Capanna Adula, rifugio in pietra affacciato sulla Valle di Blenio", 1000, 667),
         intro="La «Bassa», come la si chiama da sempre, ha il fascino del rifugio d’altri tempi: costruzione in pietra, un soggiorno che trasuda storia, dormitori che hanno visto passare migliaia di alpinisti, accoglienza calorosa e cucina nostrana. Da questo balcone sulla Valle di Blenio si parte per la cima dell’Adula o, su comodi sentieri, verso altre capanne; i selvaggi itinerari della Val Carassino offrono un escursionismo avventuroso. Per i meno ambiziosi: una passeggiata in valle, un buon pranzo e un pisolino al sole.",
@@ -285,7 +291,7 @@ HUT_PAGES = {
                  ("E-mail", '<a href="mailto:adula@casticino.ch">adula@casticino.ch</a>')]),
     "Motterascio.html": dict(
         name="Motterascio", where="Alpe Motterascio, Greina, Blenio", alt_m="2172", beds="70", custody="da metà giugno a metà ottobre",
-        mail="motterascio@casticino.ch", booking=PRENOTA.format(221),
+        mail="motterascio@casticino.ch", booking=PRENOTA.format(221), facebook="https://www.facebook.com/michelamotterascio",
         description="Capanna Motterascio, 2172 m, al margine della Greina (Blenio): 70 posti letto, aperta tutto l’anno, custodita da metà giugno a metà ottobre. Contatti e prenotazioni.",
         band=("capanne/motterascio", "La Capanna Motterascio sull’altopiano della Greina", 649),
         intro="Capanna nuova, al margine di una riserva naturale straordinaria: la Greina, con le sue paludi, torbiere, alpeggi e una flora incontaminata. Punto di partenza per itinerari interessanti, tra cui spicca l’arco della Greina, il più grande arco naturale del Canton Ticino.",
@@ -303,7 +309,7 @@ HUT_PAGES = {
                  ("E-mail", '<a href="mailto:motterascio@casticino.ch">motterascio@casticino.ch</a>')]),
     "MonteBar.html": dict(
         name="Monte Bar", where="Alta Capriasca, Luganese", alt_m="1620", beds="42", custody="tutto l’anno",
-        mail="montebar@casticino.ch", booking=PRENOTA.format(168),
+        mail="montebar@casticino.ch", booking=PRENOTA.format(168), facebook="https://www.facebook.com/CapannaMonteBarCAS/",
         description="Capanna Monte Bar, 1620 m, in Alta Capriasca: 42 posti letto in camere da 2, 4 e 6, custodita tutto l’anno, standard Bike Hotel. Contatti e prenotazioni.",
         band=("capanne/montebar", "La Capanna Monte Bar con vista sul Luganese", 442),
         intro="Su un poggio di eccezionale bellezza, con una vista a 180 gradi dai Denti della Vecchia al Tamaro e, a ovest, sui 4000 vallesani dal Mischabel al Monte Rosa. Ricostruita nell’autunno 2016: camere da 2, 4 e 6 posti, servizi ai piani, refettorio per circa 80 persone, saletta riunioni per 20, ampia terrazza e un locale chiuso con caricatori per e-bike e piccola officina, secondo lo standard Bike Hotel.",
@@ -350,7 +356,10 @@ TC = {
                posti="Posti letto", custodia="Custodia", apertura="Apertura", la_capanna="La capanna",
                soggiorno="Soggiorno", arrivare="Arrivare", contatti_h="Senti il guardiano prima di partire",
                contatti_p="Verifica sempre la presenza del guardiano e le condizioni della montagna.",
-               altre="Le altre capanne", capanna="Capanna", n_foto="foto", accesso_da="Accesso da", pdf=""),
+               altre="Le altre capanne", capanna="Capanna", n_foto="foto", accesso_da="Accesso da", pdf="",
+               fb_h="Dalla capanna", fb_notizie="Ultime notizie", fb_p="Le ultime notizie della capanna, pubblicate dai guardiani su Facebook.",
+               fb_carica="Mostra i post", fb_privacy="I post vengono caricati da Facebook solo dopo il clic: da quel momento Facebook riceve dati sulla tua visita.",
+               fb_apri="Apri la pagina Facebook"),
     "de": dict(prenota="Reservieren", cucina="Die Küche", team="Ihre Gastgeber", vita="Küche und Hüttenteam",
                tariffe="Preise und Reservation", accessi="Anreise", attivita="Aktivitäten", sostenitori="Unterstützer",
                storia="Geschichte", storia_link="Die Geschichte der Hütte", foto="Fotos", tutte_foto="Alle Fotos",
@@ -360,7 +369,10 @@ TC = {
                posti="Schlafplätze", custodia="Bewartet", apertura="Öffnung", la_capanna="Die Hütte",
                soggiorno="Aufenthalt", arrivare="Zugang", contatti_h="Vor dem Aufbruch beim Hüttenwart melden",
                contatti_p="Erkundigen Sie sich immer, ob der Hüttenwart da ist, und informieren Sie sich über die Verhältnisse am Berg.",
-               altre="Die anderen Hütten", capanna="Capanna", n_foto="Foto", accesso_da="Zugang ab", pdf=" (italienisch)"),
+               altre="Die anderen Hütten", capanna="Capanna", n_foto="Foto", accesso_da="Zugang ab", pdf=" (italienisch)",
+               fb_h="Aus der Hütte", fb_notizie="Aktuelles", fb_p="Die neusten Nachrichten der Hütte, vom Hüttenteam auf Facebook veröffentlicht (meist italienisch).",
+               fb_carica="Beiträge anzeigen", fb_privacy="Die Beiträge werden erst nach dem Klick von Facebook geladen: ab dann erhält Facebook Daten über Ihren Besuch.",
+               fb_apri="Facebook-Seite öffnen"),
 }
 
 
@@ -658,6 +670,30 @@ def hut_foto(file):
     return pubblica(nome, html)
 
 
+def facebook(d):
+    """Ultimi post della pagina Facebook della capanna: il riquadro ufficiale di Facebook
+    (Page Plugin) viene caricato da site.js solo dopo il clic, così senza consenso non parte nessuna richiesta a Facebook."""
+    if not d.get("facebook"):
+        return ""
+    return f"""
+<section class="section" id="notizie" aria-labelledby="fb-h">
+<div class="container">
+<div class="fb" data-reveal>
+<div class="contact-intro">
+<h2 id="fb-h" class="h2">{tc('fb_h')}</h2>
+<p>{tc('fb_p')}</p>
+<a class="link" href="{d['facebook']}" rel="noopener">{tc('fb_apri')} <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+<div class="fb-feed" data-fb="{d['facebook']}" data-lang="{'de_DE' if de() else 'it_IT'}" data-titolo="Facebook {d['name']}">
+<button type="button" class="btn btn--secondary">{tc('fb_carica')}</button>
+<p class="small">{tc('fb_privacy')}</p>
+</div>
+</div>
+</div>
+</section>
+"""
+
+
 def hut(file):
     d = capanna(file)
     c = contenuti(file)
@@ -673,13 +709,16 @@ def hut(file):
         band = band_img(name, alt, w, h)
         og = name
     custody_dt = tc("apertura") if file == "BaitaDelLuca.html" else tc("custodia")
+    # «Ultime notizie» porta alla sezione Facebook e la carica subito (site.js), senza il secondo clic
+    azioni = (f'<div class="actions">{prenota(d)}<a class="btn btn--secondary" href="#notizie" data-fb-apri>{tc("fb_notizie")}</a></div>'
+              if d.get("facebook") else prenota(d))
     extra = f"""<div class="keyfacts">
 <dl>
 <div><dt>{tc('altitudine')}</dt><dd class="num">{d['alt_m']} m</dd></div>
 <div><dt>{tc('posti')}</dt><dd class="num">{d['beds']}</dd></div>
 <div><dt>{custody_dt}</dt><dd>{d['custody']}</dd></div>
 </dl>
-{prenota(d)}
+{azioni}
 </div>"""
     avviso = f"""
 
@@ -716,6 +755,7 @@ def hut(file):
 </section>
 
 {hut_extra(file) if c else ""}
+{facebook(d)}
 
 <section class="section" aria-labelledby="contatti-h">
 <div class="container">
@@ -1413,7 +1453,7 @@ def news_article(i):
 
 
 def foto():
-    body = page_hero([("Media", "index.html#media"), ("Foto", None)], "Foto", "Gli scatti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.") + f"""
+    body = page_hero([("Media", "index.html#media"), ("Foto e resoconti", None)], "Foto e resoconti", "Le foto e i resoconti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.") + f"""
 
 <section class="section" aria-label="Ultime gite">
 <div class="container">
@@ -1425,7 +1465,7 @@ def foto():
 </section>
 
 {subnav("Media", "index.html#media")}"""
-    return page("Foto.html", "Foto delle gite | CAS Ticino",
+    return page("Foto.html", "Foto e resoconti delle gite | CAS Ticino",
                 "Le foto delle ultime gite della Sezione Ticino del Club Alpino Svizzero, con i resoconti dei capigita.",
                 body, og="attivita/gite-2x1", scripts=f'<script src="{asset("assets/foto.js")}" defer></script>\n')
 
@@ -1481,7 +1521,7 @@ def media_section():
     n_doc = sum(len(g[1]) for g in DOCS)
     foto_fig = (f'<figure><img src="{foto["photos"][0]["large"]}" alt="" loading="lazy" decoding="async"></figure>'
                 if foto else f'<figure>{img("attivita/gite-2x1", "", 1400, 700)}</figure>')
-    foto_txt = f"Ultima gita: {esc(foto['title'])}" if foto else "Le foto delle gite della sezione"
+    foto_txt = f"Ultima gita: {esc(foto['title'])}" if foto else "Le foto e i resoconti delle gite della sezione"
     return f"""<section class="section" id="media" aria-labelledby="media-h">
 <div class="container">
 <div class="section-row">
@@ -1490,7 +1530,7 @@ def media_section():
 <div class="media-grid" data-reveal>
 <a class="media-card" href="Foto.html">
 {foto_fig}
-<div class="media-card-body"><h3>Foto</h3><p>{foto_txt}</p></div>
+<div class="media-card-body"><h3>Foto e resoconti</h3><p>{foto_txt}</p></div>
 </a>
 <a class="media-card media-card--cover" href="Annuari.html">
 <figure><img src="{ann['cover']}" alt="" width="{ann['w']}" height="{ann['h']}" loading="lazy" decoding="async"></figure>
@@ -1626,7 +1666,7 @@ def giovani():
             ("Ritrovo", '<a href="BaitaDelLuca.html">Baita del Luca</a>, ai piedi dei Denti della Vecchia')]
     body = page_hero([("Attività", "index.html#attivita"), ("Giovani", None)], "Giovani",
                      "Uscite di un giorno, fine settimana e campi di più giorni: alpinismo, arrampicata, sci alpinismo e molto altro, con monitori formati e guide alpine.",
-                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="{GITE}">Programma giovani <span class="arrow" aria-hidden="true">→</span></a></div>',
+                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="{GITE_GIOVANI}">Programma giovani <span class="arrow" aria-hidden="true">→</span></a></div>',
                      figure=img("attivita/giovani-3x4", "Giovane arrampicatore su una parete dei Denti della Vecchia", 800, 1066, lazy=False)) + f"""
 
 <section class="section" aria-labelledby="fasce-h">
@@ -1642,7 +1682,7 @@ def giovani():
 <div class="container detail">
 <div class="detail-intro">
 <h2 id="iscr-h" class="h2">Iscrizioni<br>e costi</h2>
-<div><a class="link" href="{GITE}">Programma giovani su Droptour</a></div>
+<div><a class="link" href="{GITE_GIOVANI}">Programma giovani su Droptour</a></div>
 </div>
 <div data-reveal>
 {facts(rows)}
@@ -1673,7 +1713,7 @@ def senior():
 <span class="label">Il gruppo, dal 1940</span>
 <h2 id="gruppo-h" class="h2">Ogni giovedì<br>in cammino</h2>
 <p>Escursioni, gite di più giorni, mountain bike e racchette, con percorsi adatti a diversi livelli di allenamento.</p>
-<div><a class="btn btn--primary" href="{GITE}">Programma senior <span class="arrow" aria-hidden="true">→</span></a></div>
+<div><a class="btn btn--primary" href="{GITE_SENIORI}">Programma senior <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
 <div data-reveal>
 {facts(rows)}
@@ -1690,39 +1730,75 @@ def senior():
 CORSO_SLUG = {"Alpinismo": "alpinismo", "Sci alpinismo": "scialpinismo", "Arrampicata": "arrampicata",
               "Tecnica di sci fuori pista": "fuoripista", "Freeride": "fuoripista", "Racchette": "racchette"}
 
+def pdf_corso(cartella, file, testo):
+    """Link a un PDF del corso in docs/corsi/<cartella>/."""
+    return f'<a href="{DOC}corsi/{cartella}/{file}.pdf">{testo} (PDF)</a>'
+
+
+def schede_corso(c, struttura, requisiti, partecipanti, materiale, programma):
+    """Le cinque righe di ogni corso: struttura, materiale e programma rimandano ai PDF in docs/corsi/<c>/
+    (il link al programma compare solo quando c'è il PDF dell'anno)."""
+    prog = programma
+    if os.path.exists(os.path.join(ROOT, "docs", "corsi", c, "programma-2027.pdf")):
+        prog += " " + pdf_corso(c, "programma-2027", "Programma 2027")
+    return [("Struttura", f'{struttura} {pdf_corso(c, "obiettivi", "Obiettivi del corso")}'),
+            ("Requisiti", requisiti),
+            ("Partecipanti", partecipanti),
+            ("Materiale", f'{materiale} {pdf_corso(c, "materiale", "Lista del materiale")}'),
+            ("Programma", prog)]
+
+
 CORSI = [
     ("Estate", "Alpinismo", "corsi/alpinismo-4x5", (594, 742), "Cordata su una cresta di neve",
      "Il ponte tra escursionismo e alpinismo: legarsi correttamente su ghiacciaio e in cresta, tecniche di assicurazione, uso della corda in arrampicata e dei diversi attrezzi di progressione. Teoria e pratica, con lettura della carta, pianificazione, primo soccorso e salite in vetta su roccia e ghiaccio.",
-     GITE,
-     [("Struttura", "Tre uscite: la prima di solito in una capanna della sezione, le altre due vicino a un ghiacciaio adatto all’istruzione su roccia e ghiaccio. Nell’ultima si applicano le tecniche sotto la supervisione degli istruttori."),
-      ("Programma", 'Programma 2027, obiettivi, lista del materiale e regolamento gite in PDF. <span class="small">In preparazione.</span>')]),
+     GITE_CORSI,
+     schede_corso("alpinismo",
+                  "Sette giorni in tre uscite: tre giorni alla Capanna Piansecco, in Valle Bedretto, per nodi, corda, ramponi e piccozza; un fine settimana tra il granito del Furka e il ghiacciaio del Rodano; uno al Passo del Susten, con una gita alpinistica finale. Alla fine si partecipa da secondi di cordata a gite fino al grado PD+/III.",
+                  "Discreta condizione fisica: 4-5 ore di cammino con uno zaino di circa 10 kg, a 350-400 m di dislivello all’ora. Esperienza escursionistica, nessuna vertigine, età minima 16 anni (con il consenso dei genitori).",
+                  "Iscrizioni online dal 1° dicembre 2026. Numero di posti limitato per ragioni di sicurezza (in definizione); precedenza in ordine d’iscrizione e ai soci CAS, poi lista d’attesa. L’iscrizione è definitiva con il pagamento della quota. Serata di presentazione e uscite obbligatorie, con qualsiasi tempo.",
+                  "L’equipaggiamento personale spetta al partecipante; il materiale tecnico lo presta il CAS a chi non ce l’ha. Alla serata di presentazione si vede cosa serve: meglio aspettarla prima di comprare.",
+                  'Serata di presentazione il 12 marzo 2027 a Bellinzona; uscite il 28-30 maggio, il 12-13 giugno e il 3-4 luglio 2027. CHF 700 per i soci, 800 per i non soci, 450 per i giovani G+S e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing escluse.')),
     ("Inverno", "Sci alpinismo", "corsi/scialpinismo-4x5", (582, 728), "Sci alpinisti in salita su un pendio innevato",
      "Per muoversi in sicurezza e in autonomia nelle gite della sezione: salita con le pelli su pendii ripidi, discesa fuori pista, uso del materiale di sicurezza, valutazione del pericolo valanghe e pianificazione.",
-     GITE + "?page=detail&amp;touren_nummer=2096",
-     [("Struttura", "Tre fine settimana più una giornata di prova per valutare forma e tecnica. Sabato istruzione, domenica applicazione con salita in vetta."),
-      ("Requisiti", "Sciare bene su piste nere e reggere 4-5 ore di salita con 1200 m di dislivello. Età minima 16 anni; presenza obbligatoria a tutte le uscite."),
-      ("Partecipanti", "Al massimo 30, con precedenza ai principianti e in ordine d’iscrizione. ARTVA, pala e sonda prestati gratuitamente su richiesta."),
-      ("Programma", f'<a href="{DOC}corsi/sci-alpinismo-base-2027.pdf">Programma 2027 (PDF)</a>')]),
+     GITE_CORSI,
+     schede_corso("sci-alpinismo",
+                  "Sette giorni: una giornata introduttiva ad Airolo per verificare forma e tecnica, una serata di teoria su neve, ARTVA e autosoccorso, poi tre fine settimana alla Capanna Piansecco, all’Hotel Tiefenbach sul Furka e alla Camona da Maighels, con istruzione e gite fino a 800-1200 m di dislivello.",
+                  "Sciare bene su piste nere e reggere una gita di 1200 m di dislivello con uno zaino di 5 kg in al massimo 4 ore. Età minima 16 anni. Aperto anche agli snowboarder con splitboard. Chi dopo la giornata introduttiva non risulta idoneo riceve l’80% della quota.",
+                  'Al massimo 30. Iscrizioni dal 1° ottobre al 1° dicembre 2026, o fino a esaurimento dei posti; la quota va versata entro il 10 dicembre. Uscite obbligatorie, con qualsiasi tempo; assenze e ritiri non danno diritto a rimborsi.',
+                  "Attrezzatura completa da sci alpinismo. ARTVA, pala e sonda prestati su richiesta, compresi nella quota.",
+                  'Presentazione il 3 dicembre 2026 (anche via Teams); giornata introduttiva il 9 gennaio, teoria il 12 gennaio, uscite il 16-17 gennaio, il 20-21 febbraio e il 6-7 marzo 2027. CHF 650 per i soci, 750 per i non soci, 400 per i giovani G+S fino a 20 anni e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing (circa CHF 100) escluse.')),
     ("Primavera", "Arrampicata", "corsi/arrampicata-4x5", (594, 742), "Cordata su una parete di roccia accanto a un ghiacciaio",
      "Per principianti che vogliono avvicinarsi all’arrampicata in ambiente e per chi vuole consolidare la tecnica: sicurezza, manovre di corda, progressione su vie di più tiri. Dopo le basi, sempre più autonomia sotto la supervisione di un istruttore di arrampicata.",
-     GITE,
-     [("Obiettivo", "Praticare in sicurezza e in autonomia l’arrampicata sportiva su vie di uno o più tiri."),
-      ("Materiale", 'Programma, lista del materiale e regolamento gite in PDF. <span class="small">In preparazione.</span>')]),
+     GITE_CORSI,
+     schede_corso("arrampicata",
+                  "Sette giorni in tre fine settimana: prime arrampicate in falesia in Piemonte, vie di più tiri nel Locarnese, gite di applicazione nelle Alpi centrali; tra maggio e giugno, a volte, serate di arrampicata e ripasso dei nodi. Alla fine si arrampica in autonomia in falesia e su vie di più tiri: da secondi fino al 5a, da primi fino al 4b, con discesa in corda doppia.",
+                  "Nessun prerequisito tecnico: il corso è pensato per chi comincia. Età minima 16 anni.",
+                  "Al massimo 26, in ordine d’iscrizione. All’iscrizione si versa un anticipo di CHF 300; l’iscrizione è definitiva con il saldo alla serata di presentazione. Serata e uscite obbligatorie, con qualsiasi tempo; le assenze vanno annunciate al capocorso entro il martedì prima.",
+                  "Il CAS presta il materiale tecnico a chi non ce l’ha; alla serata di presentazione si vede cosa serve.",
+                  'Presentazione il 12 aprile 2027 alle 20:00 alla Scuola professionale di Trevano; uscite il 1-2 maggio, il 15-17 maggio e il 12-13 giugno 2027. CHF 600 per i soci, 650 per i non soci, 400 per i giovani dai 16 ai 20 anni; trasferte in car sharing (CHF 40) escluse.')),
     ("Inverno", "Tecnica di sci fuori pista", "corsi/freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio",
      "Per chi fatica a scendere su pendii non preparati: trucchi e consigli per affrontare la neve fuori dalle piste battute. Adatto ai soci che vogliono migliorare, a chi si avvicina allo sci alpinismo e agli sciatori esperti in cerca di strategie per le condizioni difficili.",
-     GITE + "?page=detail&amp;touren_nummer=2167",
-     [("Date", "Seguono informazioni."),
-      ("Materiale", 'Attrezzatura da fuori pista completa; lista dettagliata nella scheda del corso. <span class="small">PDF in preparazione.</span>')]),
+     GITE_CORSI,
+     schede_corso("freeride",
+                  "Quattro giorni per affinare la tecnica su diversi tipi di neve e di terreno, leggere il pendio e scegliere la tattica giusta per il gruppo, applicare le misure di riduzione del rischio e consolidare il soccorso in valanga.",
+                  "Le basi dello sci alpinismo (salire con le pelli, autosoccorso in valanga) e una discreta tecnica di sci fuori pista.",
+                  'Numero di posti e condizioni d’iscrizione in definizione.',
+                  "Attrezzatura completa da fuori pista e sci alpinismo, con ARTVA, pala e sonda.",
+                  'Programma 2027 in definizione: date e costi seguono.')),
     ("Inverno", "Racchette", "corsi/racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole",
      "Introduzione all’escursionismo con le racchette, tra teoria e pratica: riconoscere i segnali di pericolo, valutare il rischio valanghe e il terreno, pianificare con gli strumenti disponibili, ricerca dei sepolti e primo soccorso.",
-     GITE,
-     [("Struttura", "Sei giornate: una serata di teoria sulla nivologia, una giornata dedicata alla sicurezza e due fine settimana di pratica."),
-      ("Materiale", 'Obiettivi del corso, lista del materiale, regolamento gite e programma 2027 in PDF. <span class="small">In preparazione.</span>')]),
+     GITE_CORSI,
+     schede_corso("racchette",
+                  "Sei giorni: una serata di nivologia, una giornata sulla sicurezza con ARTVA, pala e sonda, poi due fine settimana in capanna, alla Capanna Piansecco e alla Capanna Maighels, tra tecnica di progressione, metodo 3x3, orientamento e dinamiche di gruppo. Alla fine si sale e si scende in sicurezza su terreni semplici, segnati e non.",
+                  "Discreta condizione fisica: escursioni di 4-5 ore con 500-700 m di dislivello. Età minima 16 anni.",
+                  "Al massimo 20, in ordine d’iscrizione. L’iscrizione è definitiva con il pagamento della quota alla serata introduttiva. Serata e uscite obbligatorie, con qualsiasi tempo; la meta può cambiare secondo le condizioni.",
+                  "L’equipaggiamento personale viene controllato il primo giorno. ARTVA, pala e sonda prestati a chi ne ha bisogno.",
+                  'Serata introduttiva martedì 15 dicembre 2026 nel Luganese; nivologia il 12 gennaio 2027 a Mezzovico, sicurezza il 16 gennaio ad Airolo, uscite il 23-24 gennaio e il 13-14 febbraio 2027. CHF 650 per i soci, 700 per i non soci, 375 per i giovani OG dai 16 ai 20 anni, trasferte comprese.')),
 ]
 
 
 def corsi():
-    rows = "\n".join(f"""<article class="course-row" id="corso-{CORSO_SLUG[title]}" aria-labelledby="corso-{CORSO_SLUG[title]}-h" data-reveal>
+    rows = "\n".join(f"""<article class="course-row course-row--corso" id="corso-{CORSO_SLUG[title]}" aria-labelledby="corso-{CORSO_SLUG[title]}-h" data-reveal>
 <figure>{img(im, alt, w, h)}</figure>
 <div class="course-text">
 <span class="label">{season}</span>
@@ -1822,7 +1898,7 @@ def home_de():
 </figure>
 </section>
 
-<section class="section section--tight" id="sezione" aria-label="Die Sektion in Zahlen">
+<section class="section section--tight section--stats" id="sezione" aria-label="Die Sektion in Zahlen">
 <div class="container">
 <div class="stats" data-reveal>
 <div class="stat"><strong>1886</strong><span>Gründungsjahr</span></div>
@@ -1833,7 +1909,7 @@ def home_de():
 </div>
 </section>
 
-<section class="section section--tight" aria-labelledby="sektion-h">
+<section class="section section--tight section--after-stats" aria-labelledby="sektion-h">
 <div class="container split">
 <div class="split-intro">
 <h2 id="sektion-h" class="h2">Seit 1886<br>zu Fuss unterwegs.</h2>
@@ -2070,7 +2146,7 @@ def indice_ricerca(pagine):
     albums = json.load(open(os.path.join(ROOT, "data", "foto.json"), encoding="utf-8")).get("albums", [])
     for a in albums:
         if a.get("photos"):
-            voci.append({"t": a["title"], "u": a.get("link") or "Foto.html", "k": "Foto della gita", "d": a.get("date", ""),
+            voci.append({"t": a["title"], "u": a.get("link") or "Foto.html", "k": "Foto e resoconto gita", "d": a.get("date", ""),
                          "dt": data_it(a["date"]) if a.get("date") else "", "x": " ".join(filter(None, [a.get("place"), a.get("text")]))[:3000]})
     return {"voci": voci}
 

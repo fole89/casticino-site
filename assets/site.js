@@ -125,3 +125,33 @@
   panel.addEventListener('click', function (e) { if (e.target.tagName === 'A') shut(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) shut(); });
 })();
+
+// CAS Ticino - post Facebook delle capanne: il riquadro di Facebook si carica solo quando il visitatore lo chiede
+// Il pulsante «Ultime notizie» in cima (o un link diretto a #notizie) vale come clic: il riquadro si carica subito.
+(function () {
+  var carica = [];
+  Array.prototype.forEach.call(document.querySelectorAll('.fb-feed[data-fb]'), function (box) {
+    var btn = box.querySelector('button');
+    if (!btn) return;
+    carica.push(function () { if (box.contains(btn)) btn.click(); });
+    btn.addEventListener('click', function () {
+      var w = Math.min(500, Math.max(180, Math.floor(box.clientWidth)));
+      var src = 'https://www.facebook.com/plugins/page.php?tabs=timeline&small_header=true&hide_cover=true' +
+        '&adapt_container_width=true&show_facepile=false&width=' + w + '&height=640' +
+        '&locale=' + encodeURIComponent(box.dataset.lang || 'it_IT') + '&href=' + encodeURIComponent(box.dataset.fb);
+      var f = document.createElement('iframe');
+      f.src = src;
+      f.title = box.dataset.titolo || 'Facebook';
+      f.setAttribute('loading', 'lazy');
+      f.setAttribute('allow', 'encrypted-media');
+      box.innerHTML = '';
+      box.appendChild(f);
+    });
+  });
+  if (!carica.length) return;
+  function tutti() { carica.forEach(function (fn) { fn(); }); }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-fb-apri]'), function (a) {
+    a.addEventListener('click', tutti);
+  });
+  if (location.hash === '#notizie') tutti();
+})();
