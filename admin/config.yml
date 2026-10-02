@@ -50,6 +50,7 @@ collections:
       - label: Titolo
         name: title
         widget: string
+        hint: "Breve e in minuscolo normale (niente parole TUTTE MAIUSCOLE): si legge meglio nelle schede."
       - label: Data
         name: date
         widget: datetime

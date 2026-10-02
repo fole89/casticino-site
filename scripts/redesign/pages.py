@@ -50,6 +50,13 @@ TIMELINE = [
     ("2003", "Inaugurata la nuova Capanna Cristallina."),
     ("2016", "Conclusa la ricostruzione della Capanna Monte Bar."),
 ]
+# sul telefono la cronologia della home mostra solo questi anni (le altre voci restano nella pagina Storia)
+TIMELINE_BREVE = {"1886", "1918", "1980", "2016"}
+
+
+def num(t):
+    """Cifre in Geist Mono (posti, tempi): «80 posti» → «<span class="num">80</span> posti»."""
+    return re.sub(r"\d+(?:[.,:’']\d+)*(?:h\d*)?", lambda m: f'<span class="num">{m.group()}</span>', t)
 
 
 def home():
@@ -58,7 +65,7 @@ def home():
 <div class="hut-head"><h3 class="h3">{n}</h3><span class="hut-alt">{q} m</span></div>
 <div class="hut-meta"><span>{v}</span><span class="status">{st}</span></div>
 <p>{t}</p>
-<div class="hut-meta"><span>{posti}</span><span>Accesso da {acc}</span></div>
+<div class="hut-meta"><span>{num(posti)}</span><span>Accesso da {num(acc)}</span></div>
 </a>""" for f, n, q, v, st, t, posti, acc, im, (w, h), big in HUTS)
     courses = "\n".join(f"""<a class="course" href="corsi.html#corso-{CORSO_SLUG[title]}">
 <figure>{img(im, alt, w, h)}</figure>
@@ -66,7 +73,8 @@ def home():
 <h3 class="h3">{title}</h3>
 <p>{text}</p>
 </a>""" for season, title, text, im, (w, h), alt in COURSES)
-    timeline = "\n".join(f'<li><span class="year">{y}</span><span>{t}</span></li>' for y, t in TIMELINE)
+    extra = ' class="tl-extra"'
+    timeline = "\n".join(f'<li{"" if y in TIMELINE_BREVE else extra}><span class="year">{y}</span><span>{t}</span></li>' for y, t in TIMELINE)
 
     html = head("CAS Ticino | Club Alpino Svizzero, Sezione Ticino",
                 "Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età. Da oltre un secolo, la casa dell’alpinismo ticinese.",
@@ -94,8 +102,8 @@ def home():
 <div class="container">
 <div class="stats" data-reveal>
 <div class="stat"><strong>1886</strong><span>anno di fondazione</span></div>
-<div class="stat"><strong>≈3000</strong><span>soci</span></div>
-<div class="stat"><strong>6</strong><span>rifugi, 362 posti letto</span></div>
+<div class="stat"><strong>3000</strong><span>soci</span></div>
+<div class="stat"><strong>6</strong><span>rifugi, {num("362")} posti letto</span></div>
 <div class="stat"><strong>5</strong><span>discipline insegnate nei corsi</span></div>
 </div>
 </div>
@@ -167,7 +175,7 @@ def home():
 </div>
 </section>
 
-<section class="section" id="corsi" aria-labelledby="corsi-h">
+<section class="section--surface" id="corsi" aria-labelledby="corsi-h">
 <div class="container">
 <div class="section-head">
 <h2 id="corsi-h" class="h2">Impara la montagna</h2>
@@ -178,7 +186,7 @@ def home():
 </div>
 <div class="rail-foot">
 <p class="small">Corsi avanzati per futuri capigita CAS e monitori G+S.</p>
-<a class="link" href="noleggio.html">Noleggio</a>
+<div class="links"><a class="link" href="corsi.html">Tutti i corsi</a><a class="link" href="noleggio.html">Noleggio materiale</a></div>
 </div>
 </div>
 </section>
@@ -192,9 +200,9 @@ def home():
 <div class="huts">
 {huts}
 </div>
-<div class="callout">
+<div class="callout callout--accent">
 <p><strong>Cerchiamo «api operaie».</strong> I volontari aiutano i guardiani ad aprire, chiudere e mantenere le capanne, e passano qualche bella serata in quota.</p>
-<a class="btn btn--secondary" href="mailto:info@casticino.ch">Voglio aiutare</a>
+<a class="btn btn--light" href="mailto:info@casticino.ch">Voglio aiutare <span class="arrow" aria-hidden="true">→</span></a>
 </div>
 </div>
 </section>
@@ -815,7 +823,7 @@ def introduzione():
 <div class="container">
 <div class="stats" data-reveal>
 <div class="stat"><strong>1886</strong><span>fondata a Bellinzona l’11 aprile</span></div>
-<div class="stat"><strong>≈3000</strong><span>soci, dai più giovani ai seniori</span></div>
+<div class="stat"><strong>3000</strong><span>soci, dai più giovani ai seniori</span></div>
 <div class="stat"><strong>6</strong><span>capanne gestite dalla sezione</span></div>
 <div class="stat"><strong>5</strong><span>dicasteri accanto al comitato</span></div>
 </div>
@@ -1754,10 +1762,11 @@ def media_section():
     foto_fig = (f'<figure><img src="{foto["photos"][0]["large"]}" alt="" loading="lazy" decoding="async"></figure>'
                 if foto else f'<figure>{img("attivita/gite-2x1", "", 1400, 700)}</figure>')
     foto_txt = f"Ultima gita: {esc(foto['title'])}" if foto else "Le foto e i resoconti delle gite della sezione"
-    return f"""<section class="section" id="media" aria-labelledby="media-h">
+    return f"""<section class="section--surface" id="media" aria-labelledby="media-h">
 <div class="container">
-<div class="section-row">
+<div class="section-head">
 <h2 id="media-h" class="h2">Media</h2>
+<p class="lead">Foto e resoconti delle gite, l’annuario, il bollettino Informazione e i documenti della sezione da scaricare.</p>
 </div>
 <div class="media-grid" data-reveal>
 <a class="media-card" href="foto.html">
@@ -2276,10 +2285,10 @@ def home_tradotta():
 <div class="hut-head"><h3 class="h3">{n}</h3><span class="hut-alt">{q} m</span></div>
 <div class="hut-meta"><span>{v}</span><span class="status">{st}</span></div>
 <p>{t}</p>
-<div class="hut-meta"><span>{posti}</span><span>{tx['accesso']} {acc}</span></div>
+<div class="hut-meta"><span>{num(posti)}</span><span>{tx['accesso']} {num(acc)}</span></div>
 </a>""" for f, n, q, v, st, t, posti, acc, im, (w, h), big in {"de": HUTS_DE, "en": HUTS_EN}[lang])
-    stats = "\n".join(f'<div class="stat"><strong>{n}</strong><span>{x}</span></div>'
-                      for n, x in zip(("1886", "≈3000", "6", "5"), tx["stat_home"]))
+    stats = "\n".join(f'<div class="stat"><strong>{n}</strong><span>{num(x)}</span></div>'
+                      for n, x in zip(("1886", "3000", "6", "5"), tx["stat_home"]))
     html = head(tx["home_title"], tx["home_desc"],
                 '<meta property="og:image" content="assets/img/paesaggi/sciatori-villaggio-2000.webp">\n')
     html += "\n<body>\n" + nav(f"{lang}/index.html") + f"""
@@ -2354,8 +2363,8 @@ def introduzione_tradotta():
     lang = LINGUA["lang"]
     huts = (f'<a href="{lang}/campotencia.html">Campo Tencia</a>, <a href="{lang}/cristallina.html">Cristallina</a>, <a href="{lang}/adula.html">Adula</a>, '
             f'<a href="{lang}/motterascio.html">Motterascio (Michela)</a>, <a href="{lang}/montebar.html">Monte Bar</a> {tx["e"]} <a href="{lang}/baitadelluca.html">Baita del Luca</a>')
-    stats = "\n".join(f'<div class="stat"><strong>{n}</strong><span>{x}</span></div>'
-                      for n, x in zip(("1886", "≈3000", "6", "5"), tx["stat_intro"]))
+    stats = "\n".join(f'<div class="stat"><strong>{n}</strong><span>{num(x)}</span></div>'
+                      for n, x in zip(("1886", "3000", "6", "5"), tx["stat_intro"]))
     body = page_hero([(tx["sezione"], f"{lang}/introduzione.html"), (tx["intro_crumb"], None)], tx["intro_h"], tx["intro_lead"]) + f"""
 
 <figure class="band">
@@ -2489,7 +2498,7 @@ FUORI_INDICE = {"news.html", "cerca.html"}  # elenchi che ripetono il contenuto 
 def solo_testo(frammento):
     t = re.sub(r"<(script|style|svg)\b.*?</\1>", " ", frammento, flags=re.S)
     t = re.sub(r"<[^>]+>", " ", t)
-    return re.sub(r"\s+", " ", html_unescape(t).replace("→", " ")).strip()
+    return re.sub(r" ([,.;:!?])", r"\1", re.sub(r"\s+", " ", html_unescape(t).replace("→", " "))).strip()
 
 
 def voce_pagina(file, page_html):

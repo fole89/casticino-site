@@ -48,7 +48,7 @@ con ruolo **Write**. Ognuno riceve un invito via e-mail da accettare.
 1. Vai su `…/admin/` e clicca **Accedi con GitHub** (la prima volta GitHub chiede di autorizzare l’applicazione).
 2. **News › + news**.
 3. Compila:
-   - **Titolo** e **Data** (l’ora serve solo a mettere in ordine le news dello stesso giorno);
+   - **Titolo** e **Data** (l’ora serve solo a mettere in ordine le news dello stesso giorno); il titolo breve e in minuscolo normale, senza parole TUTTE MAIUSCOLE;
    - **Foto principale** (JPG o PNG, anche grande: viene ridimensionata) e la sua **descrizione**;
    - **Riassunto** (facoltativo: due righe per la scheda in home; se vuoto si usa l’inizio del testo);
    - **Testo**, con grassetto, corsivo, link, titoletti, elenchi; con **+** si inserisce una foto nel testo;

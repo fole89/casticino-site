@@ -196,7 +196,7 @@ dl,dd{margin:0}
 .timeline--compact{gap:24px 28px}
 .timeline--compact li{padding-top:12px;align-content:start;gap:4px;font-size:15px;line-height:1.5}
 @media (min-width:1100px){.timeline--compact{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:560px){.timeline{grid-template-columns:1fr;gap:24px}}
+@media (max-width:560px){.timeline{grid-template-columns:1fr;gap:24px}.timeline--compact .tl-extra{display:none}}
 
 /* ------------------------------------------------------------------ news */
 .news{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(40px,6vw,96px)}
@@ -234,7 +234,7 @@ dl,dd{margin:0}
 }
 
 /* ------------------------------------------------------------------ corsi (fila orizzontale) */
-.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,calc((100% - 64px) / 5));gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,calc((100% - 64px) / 5));gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 0 24px;margin-top:-8px;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
 .rail:focus-visible{outline-offset:6px}
 .course{scroll-snap-align:start;display:grid;gap:12px;align-content:start;text-decoration:none;color:var(--ink)}
 .course figure{margin:0;overflow:hidden;background:var(--surface-2)}
@@ -264,17 +264,30 @@ dl,dd{margin:0}
 .status{font-weight:600;color:var(--accent)}
 .hut p{font-size:15.5px;color:var(--ink-2)}
 @media (max-width:1000px){.hut,.hut--big{grid-column:span 6}}
-@media (max-width:600px){.huts{grid-template-columns:minmax(0,1fr);gap:40px}.hut,.hut--big{grid-column:auto}}
+@media (max-width:600px){
+  .huts{grid-template-columns:minmax(0,1fr);gap:32px}.hut,.hut--big{grid-column:auto}
+  /* telefono: le quattro capanne piccole diventano righe compatte (foto quadrata a sinistra, senza testo) */
+  .hut:not(.hut--big){grid-template-columns:104px minmax(0,1fr);gap:6px 16px;align-items:start}
+  .hut:not(.hut--big) figure{grid-row:1/span 3}
+  .hut:not(.hut--big) img{aspect-ratio:1}
+  .hut:not(.hut--big) p{display:none}
+  .hut:not(.hut--big) .hut-head{flex-wrap:wrap;gap:0 12px}
+  .hut:not(.hut--big) .hut-head h3{font-size:21px}
+  .hut:not(.hut--big) .hut-meta{font-size:13.5px;gap:2px 12px}
+}
 .callout{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px;margin-top:clamp(48px,6vw,80px);padding:clamp(24px,3vw,36px);background:var(--surface)}
 .callout p{max-width:62ch;color:var(--ink-2)}
 .callout strong{color:var(--ink)}
 .container>.callout:first-child{margin-top:0}
+.callout--accent{background:var(--accent);color:var(--accent-ink)}
+.callout--accent p,.callout--accent strong{color:var(--accent-ink)}
+.callout--accent :focus-visible{outline-color:var(--accent-ink)}
 
 /* ------------------------------------------------------------------ banda adesione */
 .cta-band{position:relative;isolation:isolate;color:var(--on-photo);overflow:hidden;background:#1B2420}
 .cta-band>picture img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .cta-band::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(9,13,11,.82) 0%,rgba(9,13,11,.55) 45%,rgba(9,13,11,.1) 100%)}
-.cta-band .container{min-height:clamp(420px,46vw,620px);display:grid;align-content:center;gap:22px;justify-items:start;padding-block:64px}
+.cta-band .container{min-height:clamp(380px,36vw,520px);display:grid;align-content:center;gap:22px;justify-items:start;padding-block:64px}
 .cta-band h2{color:var(--on-photo)}
 .cta-band p{max-width:44ch;font-size:clamp(18px,1.5vw,21px);color:rgba(244,245,242,.9)}
 
@@ -397,7 +410,7 @@ dl,dd{margin:0}
 /* persone: comitato */
 .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px}
 .person{display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;align-items:center;padding:16px;background:var(--surface)}
-.person-photo{width:96px;height:96px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;overflow:hidden}
+.person-photo{width:96px;height:96px;border-radius:30%;background:var(--surface-2);display:grid;place-items:center;overflow:hidden}
 .person-photo img{width:96px;height:96px;object-fit:cover;object-position:center 22%}
 .person-photo span{font-size:30px;font-weight:700;letter-spacing:-.04em;color:var(--muted)}
 .person-body{display:grid;gap:4px;min-width:0}
@@ -414,7 +427,9 @@ dl,dd{margin:0}
 .dept-count{font-family:var(--mono);font-size:14px;color:var(--accent);font-weight:550}
 .members{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 28px;align-content:start}
 .member{display:grid;grid-template-columns:60px minmax(0,1fr);gap:14px;align-items:center;padding-top:12px;border-top:1px solid var(--line);min-width:0}
-.member-photo{width:60px;height:60px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;overflow:hidden}
+/* ritratti a squircle: angolo superellittico dove il browser lo supporta, altrimenti quadrato arrotondato */
+@supports (corner-shape:squircle){.person-photo,.member-photo{border-radius:50%;corner-shape:squircle}}
+.member-photo{width:60px;height:60px;border-radius:30%;background:var(--surface-2);display:grid;place-items:center;overflow:hidden}
 .member-photo img{width:60px;height:60px;object-fit:cover;object-position:center 22%}
 .member-photo span{font-size:19px;font-weight:700;letter-spacing:-.03em;color:var(--muted)}
 .member-body{display:grid;gap:2px;min-width:0}
@@ -555,6 +570,10 @@ dl,dd{margin:0}
 .news-card-body{display:grid;gap:8px}
 .news-card h2,.news-card h3{font-size:clamp(20px,1.7vw,24px);letter-spacing:-.025em;line-height:1.12;transition:color .2s var(--ease)}
 .news-card:hover h2,.news-card:hover h3{color:var(--accent)}
+/* schede con foto (capanne, corsi, news): la foto si solleva al passaggio e torna giù quando si preme */
+.hut figure,.course figure,.news-card figure{transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.hut:hover figure,.course:hover figure,.news-card:hover figure{transform:translateY(-4px);box-shadow:var(--shadow)}
+.hut:active figure,.course:active figure,.news-card:active figure{transform:translateY(-1px);transition-duration:.1s}
 .news-card p{font-size:15px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .news-card .news-meta{-webkit-line-clamp:unset;display:flex}
 .news-noimg{display:grid!important;align-content:end;gap:4px;padding:20px;background:var(--accent)!important;color:var(--accent-ink)}
@@ -625,6 +644,7 @@ dl,dd{margin:0}
 .media-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .media-card{position:relative;display:grid;grid-template-rows:auto 1fr;text-decoration:none;color:var(--ink);background:var(--surface);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
 .media-card:hover{color:var(--ink);transform:translateY(-3px);box-shadow:var(--shadow)}
+.section--surface .media-card:not(.media-card--docs){background:var(--bg)}
 .media-card figure{margin:0;aspect-ratio:4/5;overflow:hidden;display:grid;place-items:center;background:var(--surface-2)}
 .media-card figure img{width:100%;height:100%;object-fit:cover}
 .media-card--cover figure{position:relative}
@@ -687,7 +707,7 @@ a.sponsor:hover{transform:translateY(-2px)}
 .footer-bottom a{color:var(--muted)}
 .footer-bottom a:hover{color:var(--accent)}
 @media (max-width:900px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-brand{grid-column:1/-1}}
-@media (max-width:480px){.footer-grid{grid-template-columns:1fr}}
+@media (max-width:480px){.footer-grid{gap:32px 20px}}
 
 /* ------------------------------------------------------------------ feste (site.js aggiunge .festa--<nome> a <html>) */
 .festa-icona{display:inline-block;width:.7em;height:.7em;margin-left:.1em;vertical-align:-.02em;pointer-events:none;transform-origin:50% 90%}

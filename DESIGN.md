@@ -197,9 +197,9 @@ Square corners everywhere (0px radius): buttons, cards, images, inputs, tiles, m
 - **Style:** 600 15px, no underline, trailing →, min height 44px; turn red on hover.
 
 ### Cards / Containers
-- **Hut and course cards:** whole card is the link; photo in a granite frame above, title turns red on hover, metadata in lichene, altitude in mono.
+- **Hut, course and news cards:** whole card is the link; photo in a granite frame above, title turns red on hover, metadata in lichene, numbers (altitude, beds, times) in mono. On hover the photo lifts 4px with the rilievo shadow and settles back when pressed. On phones the four small huts of the home become compact rows (square photo left, no description).
 - **Photo tiles (bento):** image fills the tile under a bottom-up dark gradient; text in bianco-su-foto.
-- **Callout / contact:** granite-chiaro block, generous fluid padding, no border.
+- **Callout / contact:** granite-chiaro block, generous fluid padding, no border. `.callout--accent` is the red variant (white text, light button, white focus ring) for a call to action such as the home's volunteer appeal.
 
 ### Navigation
 - Fixed top bar, 72px, translucent neve with blur; gains a hairline and soft shadow once scrolled. Logo: the crest `assets/logo-cas-stemma.webp` (44px tall in the bar, 52px in the footer) with HTML text in Geist beside it, «CAS Ticino» 20px bold on top and «Club Alpino Svizzero» 12px in ardesia-2 below (23/13.5px in the footer). Links in ardesia-2, current page in red; dropdowns are square panels with the rilievo shadow. Under 1180px the links fold into a full-screen menu (large 30px group titles) built by `site.js`; the red CTA stays at the bottom.
@@ -210,7 +210,7 @@ Hut pages open with a row of big facts (quota, posti, tempo d'accesso) at clamp(
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep every corner at 0px radius. The one exception, chosen by the section: profile portraits (Comitato, Organizzazione) are circles.
+- **Do** keep every corner at 0px radius. The one exception, chosen by the section: profile portraits (Comitato, Organizzazione, Capigita) are squircles (`corner-shape: squircle` at 50% radius, falling back to a 30% rounded square).
 - **Do** set altitudes, years, times and counts in Geist Mono or tabular figures.
 - **Do** use real photographs from `assets/img/` and Droptour; put text on photos only over the dark scrim gradients.
 - **Do** give interactive elements weight: pressed states, hover lift, firm borders.

@@ -168,7 +168,8 @@ def allegati_html(allegati):
 def solo_testo(frammento):
     t = re.sub(r"<(br|/p|/li|/h[23])>", " ", frammento)
     t = re.sub(r"<[^>]+>", " ", t)
-    return re.sub(r"\s+", " ", html.unescape(t)).strip()
+    # «<strong>titolo</strong>, …» non deve diventare «titolo , …»
+    return re.sub(r" ([,.;:!?])", r"\1", re.sub(r"\s+", " ", html.unescape(t))).strip()
 
 
 def estratto(corpo, maxlen=220):
