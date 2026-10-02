@@ -228,34 +228,26 @@
   var scelta = null;
   try { scelta = new URLSearchParams(location.search).get('festa'); } catch (e) {}
   var nome = scelta ? (scelta === 'no' ? null : scelta) : festa(new Date());
-  var ICONE = {
-    natale: '<svg viewBox="0 0 32 32"><path class="f-rosso" d="M4 24 C8 12 16 4 26 8 L22 12 C16 10 12 16 12 24 Z"/><rect class="f-bianco" x="2" y="22" width="13" height="5" rx="2.5"/><circle class="f-bianco" cx="26" cy="9" r="3.6"/></svg>',
-    halloween: '<svg viewBox="0 0 32 32"><path class="f-verde" d="M15 9 C15 5 17 3 20 3 L20 5 C18 5 17 6 17 9 Z"/><ellipse class="f-arancio" cx="16" cy="19" rx="12" ry="10"/><path class="f-scuro" d="M9 16 L12 13 L14 17 Z M23 16 L20 13 L18 17 Z M9 21 Q16 27 23 21 L21 22 L19 21 L16 23 L13 21 L11 22 Z"/></svg>',
-    pasqua: '<svg viewBox="0 0 32 32"><ellipse class="f-giallo" cx="16" cy="17" rx="10" ry="13"/><path class="f-rosso" d="M6.4 14 L11 11 L16 14 L21 11 L25.6 14 L25.9 17 L21 14 L16 17 L11 14 L6.1 17 Z"/><circle class="f-blu" cx="12" cy="22" r="1.6"/><circle class="f-blu" cx="16" cy="24" r="1.6"/><circle class="f-blu" cx="20" cy="22" r="1.6"/></svg>',
-    carnevale: '<svg viewBox="0 0 32 32"><path class="f-viola" d="M2 12 C8 9 12 10 16 13 C20 10 24 9 30 12 C30 20 26 23 21 23 C18 23 17 20 16 19 C15 20 14 23 11 23 C6 23 2 20 2 12 Z"/><ellipse class="f-bianco" cx="9.5" cy="15.5" rx="3" ry="2"/><ellipse class="f-bianco" cx="22.5" cy="15.5" rx="3" ry="2"/><path class="f-giallo" d="M27 10 C28 5 30 3 31 2 C31 6 30 9 28.5 11 Z"/></svg>',
-    agosto: '<svg viewBox="0 0 32 32"><path class="f-scuro" d="M15 0 H17 V5 H15 Z"/><path class="f-rosso" d="M8 7 H24 C26 11 26 21 24 25 H8 C6 21 6 11 8 7 Z"/><path class="f-bianco" d="M14 11 H18 V14 H21 V18 H18 V21 H14 V18 H11 V14 H14 Z"/><path class="f-scuro" d="M9 5 H23 V7 H9 Z M9 25 H23 V27 H9 Z"/></svg>'
-  };
-  if (!nome || !ICONE[nome]) return;
+  var FESTE = ['carnevale', 'pasqua', 'agosto', 'halloween', 'natale'];
+  if (!nome || FESTE.indexOf(nome) === -1) return;
+  // icone 3D in assets/img/feste/ (Fluent Emoji, licenza MIT); il percorso parte da quello di site.js, che conosce la profondità della pagina
+  var script = document.querySelector('script[src*="assets/site.js"]');
+  var radice = script ? script.getAttribute('src').split('assets/site.js')[0] : '';
+  function icona(cls) {
+    var el = document.createElement('span');
+    el.className = cls;
+    el.setAttribute('aria-hidden', 'true');
+    el.innerHTML = '<img src="' + radice + 'assets/img/feste/' + nome + '.webp" alt="" width="128" height="128" decoding="async">';
+    return el;
+  }
   document.documentElement.classList.add('festa', 'festa--' + nome);
 
   var brand = document.querySelector('.site-nav .brand');
-  if (brand) {
-    var icona = document.createElement('span');
-    icona.className = 'festa-icona';
-    icona.setAttribute('aria-hidden', 'true');
-    icona.innerHTML = ICONE[nome];
-    brand.appendChild(icona);
-  }
+  if (brand) brand.appendChild(icona('festa-icona'));
 
   // in home la stessa icona, più grande, dopo il titolo «In montagna con noi.»
   var titolo = document.querySelector('.hero h1');
-  if (titolo) {
-    var grande = document.createElement('span');
-    grande.className = 'festa-icona festa-icona--titolo';
-    grande.setAttribute('aria-hidden', 'true');
-    grande.innerHTML = ICONE[nome];
-    titolo.appendChild(grande);
-  }
+  if (titolo) titolo.appendChild(icona('festa-icona festa-icona--titolo'));
 
   // effetto sulla foto della home, solo se il sistema non chiede di ridurre il movimento
   var foto = document.querySelector('.hero .band');

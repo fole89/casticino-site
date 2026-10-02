@@ -21,11 +21,10 @@
   --accent:#EF1C24;        /* rosso CAS */
   --accent-hover:#C9141B;
   --accent-ink:#FFFFFF;
-  --festa-arancio:#F28C1B; /* feste (site.js): icona accanto al logo ed effetto sulla foto della home */
+  /* feste (site.js): colori degli effetti sulla foto della home */
   --festa-giallo:#F6C445;
   --festa-verde:#3E8E4F;
   --festa-blu:#2F6FD0;
-  --festa-viola:#7A3FB0;
   --festa-scuro:#1E1B22;
   --festa-rosa:#F4B6C8;
   --on-photo:#F4F5F2;
@@ -692,21 +691,14 @@ a.sponsor:hover{transform:translateY(-2px)}
 
 /* ------------------------------------------------------------------ feste (site.js aggiunge .festa--<nome> a <html>) */
 .site-nav .brand{position:relative}
-.festa-icona{position:absolute;left:21px;top:-9px;width:24px;height:24px;pointer-events:none;transform-origin:50% 90%}
-.festa-icona svg{display:block;width:100%;height:100%;overflow:visible}
-.festa--natale .festa-icona{left:-2px;top:-12px;width:28px;height:28px;transform:rotate(-14deg)}
-.festa--agosto .festa-icona{top:-5px;transform-origin:50% 0}
-.festa-icona--titolo{position:relative;display:inline-block;left:auto;top:auto;width:.62em;height:.62em;margin-left:.12em;vertical-align:.05em}
-.festa--natale .festa-icona--titolo,.festa--agosto .festa-icona--titolo{left:auto;top:auto;width:.62em;height:.62em}
-.festa--agosto .festa-icona--titolo{vertical-align:.12em}
-.f-rosso{fill:var(--accent)}.f-bianco{fill:var(--bg)}.f-arancio{fill:var(--festa-arancio)}.f-giallo{fill:var(--festa-giallo)}
-.f-verde{fill:var(--festa-verde)}.f-blu{fill:var(--festa-blu)}.f-viola{fill:var(--festa-viola)}.f-scuro{fill:var(--festa-scuro)}
-.festa--natale .festa-icona .f-bianco,.festa--pasqua .festa-icona .f-giallo{stroke:var(--line-strong);stroke-width:.8}
+.festa-icona{position:absolute;left:17px;top:-11px;width:26px;height:26px;pointer-events:none;transform-origin:50% 90%}
+.festa-icona img{display:block;width:100%;height:100%;filter:drop-shadow(0 2px 3px rgba(18,24,22,.18))}
+.festa-icona--titolo{position:relative;display:inline-block;left:auto;top:auto;width:.7em;height:.7em;margin-left:.1em;vertical-align:-.02em}
+.festa-icona--titolo img{filter:drop-shadow(0 6px 10px rgba(18,24,22,.18))}
 .festa-strato{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .festa-strato i{position:absolute;display:block}
 @media (prefers-reduced-motion:no-preference){
   .festa-icona{animation:festa-dondola 3.2s ease-in-out infinite}
-  .festa--natale .festa-icona{animation:none}
   .festa--pasqua .festa-icona{animation:festa-traballa 2.4s ease-in-out infinite}
   .festa--halloween .festa-icona{animation:festa-salta 2.8s var(--ease) infinite}
 }
