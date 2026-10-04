@@ -119,7 +119,6 @@ HUTS_DE = [
 CONTENUTI_DE = {
     "campotencia.html": dict(
         cartella="campotencia",
-        avviso="""<strong>Sommersaison 2026.</strong> Die Hütte ist bis etwa Mitte Oktober offen und bewartet.""",
         capanna="""<p>Die erste Hütte der Tessiner Berge wurde 1912 am Fuss des gleichnamigen Gipfels gebaut, auf der Leventiner Seite im oberen Val Piumogna. Sie ist ein Basislager für Familien, Wanderer und Bergsteiger: Naturwanderungen, der Lago Morghirolo ganz in der Nähe, die Klettergärten und die grossen Touren der Campo-Tencia-Gruppe mit der klassischen Überschreitung der Cresta dei Corni.</p>
 <p>Das heutige Gebäude, entworfen vom Sektionsarchitekten Oscar Hofmann und 1977 eingeweiht, hat drei Stockwerke: im Erdgeschoss Eingang, Schuhraum, Toiletten und Keller; im ersten Stock eine helle Stube mit 70 Plätzen und die Küche; im zweiten rund 70 Schlafplätze in 7 Lagern, einige mit 4 bis 8 Plätzen, ideal für Familien.</p>
 <p>Die Betten haben Duvets; <strong>der Hüttenschlafsack ist obligatorisch</strong>. Die Hütte hat den Charakter der 1980er-Jahre bewahrt: keine Einzelzimmer mit Bad und keine Föhns!</p>""",
@@ -299,8 +298,6 @@ CONTENUTI_DE = {
 
     "cristallina.html": dict(
         cartella="cristallina",
-        avviso="""<strong>Die Sommersaison läuft.</strong> Alle wichtigen Zugänge sind schneefrei und gut begehbar.
-Reservationen bitte online.""",
         capanna="""<p>Die erste moderne Hütte des Schweizer Alpen-Clubs steht auf 2575 m auf dem Cristallinapass, in einem Gebiet, das im Sommer wie im Winter zum Wandern einlädt. Im Sommer ist sie Stützpunkt für die umliegenden Gipfel und für Übergänge ins Maggiatal, ins Val Formazza und ins Gotthardgebiet; im Winter bietet die schneereiche Gegend herrliche Abfahrten und Gipfelkombinationen.</p>
 <p>Sie hat 100 Schlafplätze in Kojen mit Duvets, in 6 Zimmern mit 4, 9 mit 8 und 2 Lagern mit 12 Plätzen, einen Panorama-Speisesaal mit Terrasse, Toiletten mit warmem Wasser im Haus, Dusche, Trocknungsraum und einen Schuhraum mit Hüttenschuhen. Der Hüttenschlafsack ist obligatorisch. Guter Swisscom-Empfang bei der Hütte.</p>
 <p>Die Hütte ist immer offen und zugänglich. Bewartet ist sie im Sommer, von Juni bis Mitte Oktober; im Winter, von Dezember bis Ende April, ist der Hüttenwart bei guten Verhältnissen, an Wochenenden, über die Feiertage und für Gruppen mit Reservation da.</p>""",
@@ -412,8 +409,6 @@ Reservationen bitte online.""",
 
     "adula.html": dict(
         cartella="adula",
-        avviso="""<strong>Saison 2026: Die Hütte ist offen.</strong> Alle Zugangswege sind begehbar; auch fürs Mittagessen ist eine Reservation willkommen.
-Für Auskünfte rufen Sie uns an. Bis bald in der Höhe, Lele, Miri und das Team.""",
         capanna="""<p>Die «Bassa», wie sie seit jeher heisst, wurde 1924 eingeweiht und hat alle Merkmale des ursprünglichen Baus aus Stein und Holz bewahrt: eine Stube voller Geschichte, Schlafräume, in denen Tausende von Bergsteigern übernachtet haben, herzlicher Empfang und eine einheimische Küche, die Magen und Seele füllt.</p>
 <p>Sie hat 24 Schlafplätze in vier kleinen Lagern mit 4, 5 und 7 Plätzen, auch für Familien geeignet, und zwei Doppelzimmer mit Aufpreis; zwei gemütliche Gaststuben mit 20 Plätzen, Toiletten im Haus, Dusche, Solarstrom für die Beleuchtung und Küche mit Holz und Gas. Die Betten haben Duvets; der Hüttenschlafsack ist obligatorisch. Mässiger Handyempfang bei der Hütte.</p>
 <p>Die Hütte ist ganzjährig offen und von Ende Mai bis Mitte Oktober bewartet; der Winterraum ist immer offen, mit Getränken und Brennholz.</p>""",
@@ -542,8 +537,6 @@ Für Auskünfte rufen Sie uns an. Bis bald in der Höhe, Lele, Miri und das Team
 
     "motterascio.html": dict(
         cartella="motterascio",
-        avviso="""<strong>Die Hütte ist offen: Wir freuen uns auf Sie!</strong> Wir sind von Samstag, 13. Juni, bis Samstag, 10. Oktober 2026 für Sie da.
-Bitte reservieren Sie online; für Auskünfte schreiben oder rufen Sie uns an. Bis bald, Fabio und Vanessa.""",
         capanna="""<p>Mitten in einem Netz von Wegen zwischen einigen der schönsten Orte der Südschweiz steht die Capanna Michela Motterascio auf 2172 m auf der Alpe Motterascio, am Südrand der Greina-Hochebene, im Einklang von Holz, Kupfer und Stein. Unter den Gipfeln von Piz Terri, Pizzo Coroi, Piz Vial, Gaglianera und Piz Valdraus verbringt man Tage voller Wanderungen, Stille und Erholung. Man muss kein erfahrener Bergsteiger sein: Neugier, Begeisterung und etwas Energie genügen.</p>
 <p>Die Hütte ist geräumig: 70 Schlafplätze mit Duvets, ein Panorama-Speisesaal mit 55 Plätzen und Fensterfront zu den Alpen, eine «romantische» Stube mit 20 Plätzen, getrennte Toiletten für Frauen und Männer im Haus, eine Dusche, wenn das Quellwasser reicht, Trocknungsraum und Hüttenschuhe beim Eingang, auch für die Kleinen. Das Wasser ist trinkbares Quellwasser; der Strom kommt von der Photovoltaik, mit einem Generator als Reserve. Der Hüttenschlafsack ist obligatorisch, auch zum Mieten. Kein Handyempfang.</p>
 <p><strong>Winterraum:</strong> offen, wenn die Hütte nicht bewartet ist, von Mitte Oktober bis Ende Mai, mit 10 Schlafplätzen mit Duvets, Getränken, Brennholz und dem Nötigsten (Salz, Zucker, Pulverkaffee). Essen bitte selber mitbringen; Wasser ist nicht garantiert (Brunnen auf der Terrasse, wenn nicht gefroren), und es gibt keine Wintertoilette. Die Reservation ist obligatorisch, online; die Bestätigung enthält alle Informationen.</p>""",
@@ -656,8 +649,6 @@ Bitte reservieren Sie online; für Auskünfte schreiben oder rufen Sie uns an. B
 
     "montebar.html": dict(
         cartella="montebar",
-        avviso="""<strong>Strasse gesperrt:</strong> Wegen des Neubaus der Brücke über den Fiume Bello ist die Strasse von Bidogno zum Parkplatz Monte Bar («strada da Boris») für Fahrzeuge gesperrt.
-Die Hütte ist nur ab Corticiasca erreichbar. Bis 8. November täglich offen.""",
         capanna="""<p>Die neue Hütte im Besitz des CAS Ticino wurde 2016 eingeweiht, genau 80 Jahre nach dem ersten Bau. Das Projekt «Barlume» der Architekten Oliviero Piffaretti und Carlo Romano (Atelier PeR, Mendrisio), unter dreissig ausgewählt, ist ein einfacher, kubischer Baukörper aus Lärchenholz rund um die Feuerstelle: eine Laterne in der Landschaft, im Dialog mit den Hütten auf den Gipfeln ringsum.</p>
 <p>Der Speisesaal, das Herz der Hütte, hat Fenster auf allen Seiten und bis zu 60 Plätze; die Terrasse ist vom Speisesaal und von der Küche aus zugänglich. In den oberen Stockwerken liegen Zimmer mit 2, 4 und 6 Betten in Kajütenbetten, mit Toiletten auf der Etage; es gibt einen Workshop-Raum für Sitzungen, Kurse und Schulen. Im Untergeschoss liegen die Sanitärräume, der Raum, der Wanderern offensteht, wenn die Hütte geschlossen ist, und der Veloraum mit Akku-Ladestationen und kleiner Werkstatt nach Bike-Hotel-Standard.</p>
 <p>Über ein dichtes Netz von Wander- und Mountainbikewegen leicht erreichbar, mit überraschender Natur, Geschichte und Landschaft, ist sie das ideale Ziel für Familien und Schulen, oder für eine Nacht in der Hütte nach einem geselligen Abendessen.</p>""",

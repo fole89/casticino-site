@@ -120,7 +120,6 @@ HUTS_EN = [
 CONTENUTI_EN = {
     "campotencia.html": dict(
         cartella="campotencia",
-        avviso="""<strong>Summer season 2026.</strong> The hut is open and staffed until about mid-October.""",
         capanna="""<p>The first hut in the mountains of Ticino was built in 1912 at the foot of the peak of the same name, on the Leventina side, in the upper Val Piumogna. It is a base camp for families, hikers and climbers: nature walks, Lago Morghirolo close by, the climbing crags and the great routes of the Campo Tencia group, with the classic traverse of the Cresta dei Corni.</p>
 <p>The present building, designed by the section’s architect Oscar Hofmann and inaugurated in 1977, has three floors: on the ground floor the entrance, boot room, toilets and cellar; on the first floor a bright common room with 70 places and the kitchen; on the second about 70 beds in 7 dormitories, some with 4 to 8 places, ideal for families.</p>
 <p>The beds have duvets; <strong>a sleeping-bag liner is compulsory</strong>. The hut has kept its 1980s character: no single rooms with bathroom and no hairdryers!</p>""",
@@ -300,8 +299,6 @@ CONTENUTI_EN = {
 
     "cristallina.html": dict(
         cartella="cristallina",
-        avviso="""<strong>The summer season is under way.</strong> All the main access routes are free of snow and easy to walk.
-Please book online.""",
         capanna="""<p>The first modern hut of the Swiss Alpine Club stands at 2575 m on the Cristallina Pass, in an area that invites you to explore in summer and winter alike. In summer it is a base for the surrounding peaks and for traverses into Valle Maggia, Val Formazza and the Gotthard area; in winter the snowy surroundings offer superb descents and combinations of summits.</p>
 <p>It has 100 beds in bunks with duvets, in 6 rooms of 4, 9 of 8 and 2 dormitories of 12, a panoramic dining room with terrace, indoor toilets with hot water, a shower, a drying room and a boot room with hut slippers. A sleeping-bag liner is compulsory. Good Swisscom reception at the hut.</p>
 <p>The hut is always open and accessible. It is staffed in summer, from June to mid-October; in winter, from December to the end of April, the hut keeper is there in good conditions, at weekends, over the holidays and for groups on booking.</p>""",
@@ -413,8 +410,6 @@ Please book online.""",
 
     "adula.html": dict(
         cartella="adula",
-        avviso="""<strong>2026 season: the hut is open.</strong> All access paths are passable; booking is welcome for lunch too.
-For information, give us a call. See you up there soon, Lele, Miri and the team.""",
         capanna="""<p>The “Bassa”, as it has always been known, was inaugurated in 1924 and has kept all the features of the original building in stone and wood: a common room full of history, dormitories where thousands of climbers have slept, a warm welcome and local cooking that fills both stomach and soul.</p>
 <p>It has 24 beds in four small dormitories of 4, 5 and 7 places, also suitable for families, and two double rooms at extra cost; two cosy dining rooms with 20 places, indoor toilets, a shower, solar power for the lighting and a kitchen running on wood and gas. The beds have duvets; a sleeping-bag liner is compulsory. Moderate mobile reception at the hut.</p>
 <p>The hut is open all year round and staffed from the end of May to mid-October; the winter room is always open, with drinks and firewood.</p>""",
@@ -543,8 +538,6 @@ For information, give us a call. See you up there soon, Lele, Miri and the team.
 
     "motterascio.html": dict(
         cartella="motterascio",
-        avviso="""<strong>The hut is open: we look forward to seeing you!</strong> We are here for you from Saturday 13 June to Saturday 10 October 2026.
-Please book online; for information write to us or give us a call. See you soon, Fabio and Vanessa.""",
         capanna="""<p>In the middle of a network of paths between some of the most beautiful places in southern Switzerland, Capanna Michela Motterascio stands at 2172 m on Alpe Motterascio, on the southern edge of the Greina plateau, in harmony with wood, copper and stone. Below the peaks of Piz Terri, Pizzo Coroi, Piz Vial, Gaglianera and Piz Valdraus you spend days full of walks, silence and rest. You don’t need to be an experienced climber: curiosity, enthusiasm and a little energy are enough.</p>
 <p>The hut is spacious: 70 beds with duvets, a panoramic dining room with 55 places and a wall of windows onto the Alps, a “romantic” common room with 20 places, separate indoor toilets for women and men, a shower when the spring water is sufficient, a drying room and hut slippers at the entrance, for the little ones too. The water is drinkable spring water; electricity comes from photovoltaics, with a generator as back-up. A sleeping-bag liner is compulsory and can also be hired. No mobile reception.</p>
 <p><strong>Winter room:</strong> open when the hut is not staffed, from mid-October to the end of May, with 10 beds with duvets, drinks, firewood and the basics (salt, sugar, instant coffee). Please bring your own food; water is not guaranteed (fountain on the terrace, if not frozen), and there is no winter toilet. Booking is compulsory, online; the confirmation contains all the information.</p>""",
@@ -657,8 +650,6 @@ Please book online; for information write to us or give us a call. See you soon,
 
     "montebar.html": dict(
         cartella="montebar",
-        avviso="""<strong>Road closed:</strong> because the bridge over the Fiume Bello is being rebuilt, the road from Bidogno to the Monte Bar car park (“strada da Boris”) is closed to vehicles.
-The hut can only be reached from Corticiasca. Open every day until 8 November.""",
         capanna="""<p>The new hut owned by CAS Ticino was inaugurated in 2016, exactly 80 years after the first building. The “Barlume” project by the architects Oliviero Piffaretti and Carlo Romano (Atelier PeR, Mendrisio), chosen from thirty entries, is a simple, cubic building in larch wood around the fireplace: a lantern in the landscape, in dialogue with the huts on the surrounding summits.</p>
 <p>The dining room, the heart of the hut, has windows on all sides and up to 60 places; the terrace can be reached from the dining room and from the kitchen. On the upper floors are rooms with 2, 4 and 6 beds in bunks, with toilets on each floor; there is a workshop room for meetings, courses and schools. In the basement are the washrooms, the room open to hikers when the hut is closed and the bike room with battery charging points and a small workshop, to Bike Hotel standard.</p>
 <p>Easy to reach on a dense network of hiking and mountain bike trails, with surprising nature, history and scenery, it is the ideal destination for families and schools, or for a night at the hut after a convivial dinner.</p>""",

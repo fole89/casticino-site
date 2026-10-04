@@ -351,6 +351,16 @@ dl,dd{margin:0}
 .rate .small{color:var(--muted);margin-bottom:8px}
 .rate .facts{grid-template-columns:minmax(0,1fr) auto}
 .rate .facts dd{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.listini{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.listini-col{display:grid;gap:16px}
+@media (max-width:820px){.listini{grid-template-columns:1fr}}
+.listino{width:100%;border-collapse:collapse;font-size:16px}
+.listino thead th{padding:0 0 10px;font-size:13px;font-weight:550;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;border-bottom:1px solid var(--line-strong)}
+.listino thead th:last-child,.listino td{text-align:right}
+.listino tbody th,.listino td{padding:11px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+.listino tbody th{font-weight:inherit;text-align:left;color:var(--ink);padding-right:16px}
+.listino td{font-variant-numeric:tabular-nums;white-space:nowrap}
+.listino tbody tr:last-child>*{border-bottom:0}
 .rates-note{margin-top:clamp(32px,4vw,48px);font-size:16.5px}
 .hut-activities{margin-bottom:clamp(36px,5vw,64px)}
 .hut-activities .prose{font-size:16.5px}
@@ -443,6 +453,17 @@ dl,dd{margin:0}
 /* Capigita: griglia su più colonne e filtro per ruolo (site.js) */
 .members--griglia{grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr))}
 .members [hidden]{display:none}
+/* capigita: presentazione nel box che si apre sulla foto (hover, focus o tocco: site.js) */
+.member--bio{position:relative}
+.bio-toggle{position:relative;width:60px;height:60px;padding:0;border:0;background:none;cursor:pointer;color:inherit;font:inherit}
+.bio-toggle .member-photo{transition:box-shadow .18s var(--ease)}
+.bio-toggle:hover .member-photo,.bio-toggle:focus-visible .member-photo,.member--bio.is-open .member-photo{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
+.bio-toggle:focus-visible{outline:none}
+.bio-segno{position:absolute;right:-3px;bottom:-3px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.bio{position:absolute;left:0;top:calc(100% + 12px);z-index:30;width:min(360px,100%);padding:16px 18px;background:var(--bg);border:1px solid var(--line);border-top:3px solid var(--accent);box-shadow:var(--shadow);font-size:15px;line-height:1.55;color:var(--ink-2);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s var(--ease),transform .18s var(--ease),visibility 0s linear .2s}
+.bio::before{content:"";position:absolute;left:22px;top:-9px;border:6px solid transparent;border-bottom-color:var(--accent)}
+.member--bio:has(.bio-toggle:hover) .bio,.bio:hover,.bio-toggle:focus-visible~.bio,.member--bio.is-open .bio{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+@media (prefers-reduced-motion:reduce){.bio,.bio-toggle .member-photo{transition:none}}
 .filtro{display:flex;flex-wrap:wrap;gap:8px}
 .filtro[hidden]{display:none}
 .filtro button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1.5px solid var(--line-strong);background:transparent;color:var(--ink-2);font:inherit;font-size:15px;font-weight:550;cursor:pointer;transition:border-color .2s var(--ease),color .2s var(--ease),background-color .2s var(--ease)}

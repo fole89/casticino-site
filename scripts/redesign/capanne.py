@@ -17,7 +17,6 @@ CT_DOC = "docs/capanne/campotencia/"
 CONTENUTI = {
     "campotencia.html": dict(
         cartella="campotencia",
-        avviso="""<strong>Stagione estiva 2026.</strong> La capanna è aperta e custodita fino a metà ottobre circa.""",
         capanna="""<p>La prima capanna delle montagne ticinesi fu costruita nel 1912 ai piedi del pizzo omonimo, sul versante leventinese in alta Val Piumogna. È un campo base per famiglie, escursionisti e alpinisti: escursioni naturalistiche, il Lago Morghirolo a due passi, i giardini d’arrampicata e le grandi ascensioni del gruppo del Campo Tencia, con la classica traversata della Cresta dei Corni.</p>
 <p>L’edificio attuale, progettato dall’architetto sezionale Oscar Hofmann e inaugurato nel 1977, è su tre piani: al pianterreno entrata, locale scarpe, servizi e cantina; al primo piano un luminoso soggiorno da 70 posti e la cucina; al secondo circa 70 posti letto in 7 camerate, alcune da 4-8 posti, ideali per le famiglie.</p>
 <p>I letti hanno piumoni nordici; <strong>il sacco lenzuolo è obbligatorio</strong>. La capanna mantiene il carattere degli anni ’80: niente camere singole con bagno, né asciugacapelli!</p>""",
@@ -197,8 +196,6 @@ CONTENUTI = {
 
     "cristallina.html": dict(
         cartella="cristallina",
-        avviso="""<strong>Stagione estiva a pieno regime.</strong> Tutti i principali collegamenti sono liberi dalla neve e ben percorribili.
-Le prenotazioni si fanno online.""",
         capanna="""<p>La prima capanna moderna del Club Alpino Svizzero sorge a 2575 m sul Passo Cristallina, in una zona molto bella per l’escursionismo estivo e invernale. D’estate è il punto d’appoggio per le cime vicine e per le traversate verso la Valle Maggia, la Val Formazza e il Gottardo; d’inverno la regione, ricca di neve, offre splendide discese e concatenamenti di vette.</p>
 <p>Ha 100 posti letto in cuccette con piumone, in 6 camere da 4, 9 da 8 e 2 dormitori da 12, un refettorio panoramico con terrazza, servizi interni con acqua calda, doccia, locale essiccatoio e locale scarponi con ciabatte per gli ospiti. Il sacco lenzuolo è obbligatorio. Buona ricezione Swisscom vicino alla capanna.</p>
 <p>La capanna è sempre aperta e accessibile. È custodita d’estate, da giugno a metà ottobre; d’inverno, da dicembre a fine aprile, il guardiano c’è con buone condizioni, nei fine settimana, durante le feste e per i gruppi che hanno riservato.</p>""",
@@ -311,8 +308,6 @@ Le prenotazioni si fanno online.""",
 
     "adula.html": dict(
         cartella="adula",
-        avviso="""<strong>Stagione 2026: la capanna è aperta.</strong> Tutti i sentieri di accesso sono percorribili; gradita la riservazione anche per il pranzo.
-Per qualsiasi informazione chiamateci. A presto in quota, Lele, Miri e il team.""",
         capanna="""<p>La «Bassa», come la si chiama da sempre, è stata inaugurata nel 1924 e ha conservato tutte le caratteristiche dell’edificio originale in pietra e legno: un soggiorno che trasuda storia, dormitori che hanno visto passare migliaia di alpinisti, accoglienza calorosa e una cucina nostrana che riempie lo stomaco e lo spirito.</p>
 <p>Ha 24 posti letto in quattro piccoli dormitori da 4, 5 e 7 posti, adatti anche alle famiglie, e due stanzette matrimoniali con sovrapprezzo; due refettori accoglienti da 20 posti, servizi interni, doccia, pannelli solari per l’illuminazione e cucina a legna e a gas. I letti hanno piumoni; il sacco lenzuolo è obbligatorio. Ricezione discreta vicino alla capanna.</p>
 <p>È aperta tutto l’anno e custodita da fine maggio a metà ottobre; il locale invernale è sempre aperto, con bibite e legna.</p>""",
@@ -440,8 +435,6 @@ Per qualsiasi informazione chiamateci. A presto in quota, Lele, Miri e il team."
 
     "motterascio.html": dict(
         cartella="motterascio",
-        avviso="""<strong>Capanna aperta: vi aspettiamo!</strong> Siamo aperti da sabato 13 giugno a sabato 10 ottobre 2026.
-Riservate il soggiorno online; per informazioni scriveteci o chiamateci. A presto, Fabio e Vanessa.""",
         capanna="""<p>Al centro di una costellazione di sentieri tra alcuni dei luoghi più belli della Svizzera meridionale, la Capanna Michela Motterascio sorge a 2172 m sull’Alpe Motterascio, al margine sud dell’altopiano della Greina, in un’armonia di legno, rame e sasso. Sotto i pizzi Terri, Coroi, Vial, Gaglianera e Valdraus si passano giornate tra passeggiate, silenzi e relax. Non serve essere alpinisti esperti: bastano curiosità, passione e un po’ di energia.</p>
 <p>La capanna è ampia: 70 posti letto con piumoni, un refettorio panoramico da 55 posti con vetrata sulle Alpi, un refettorio «romantico» da 20, servizi interni separati per donne e uomini, doccia quando l’acqua di sorgente basta, locale essiccatoio e ciabatte all’ingresso, anche per i più piccoli. L’acqua è di sorgente, potabile; l’elettricità viene dal fotovoltaico, con un generatore di riserva. Il sacco lenzuolo è obbligatorio, anche a noleggio. Non c’è ricezione telefonica.</p>
 <p><strong>Locale invernale:</strong> aperto quando la capanna non è custodita, da metà ottobre a fine maggio, con 10 posti letto con piumoni, bevande, legna e beni di prima necessità (sale, zucchero, caffè in polvere). Il cibo va portato; l’acqua non è garantita (fontana sulla terrazza, se non è ghiacciata) e non c’è WC invernale. La riservazione è obbligatoria, online; la conferma contiene tutte le informazioni.</p>""",
@@ -554,8 +547,6 @@ Riservate il soggiorno online; per informazioni scriveteci o chiamateci. A prest
 
     "montebar.html": dict(
         cartella="montebar",
-        avviso="""<strong>Strada chiusa:</strong> per il rifacimento del ponte sul fiume Bello la strada da Bidogno al posteggio Monte Bar («strada da Boris») è chiusa ai veicoli.
-La capanna si raggiunge solo da Corticiasca. Aperta tutti i giorni fino all’8 novembre.""",
         capanna="""<p>La nuova capanna, di proprietà del CAS Ticino, è stata inaugurata nel 2016, esattamente 80 anni dopo il primo rifugio. Il progetto «Barlume» degli architetti Oliviero Piffaretti e Carlo Romano (Atelier PeR, Mendrisio), scelto tra trenta, è un volume semplice e cubico in legno di larice che ruota intorno al focolare: una lanterna nel paesaggio, in dialogo con le capanne sulle cime vicine.</p>
 <p>Il refettorio, cuore della capanna, ha vetrate su tutti i lati e fino a 60 posti; la terrazza è accessibile dal refettorio e dalla cucina. Ai piani superiori camerette da 2, 4 e 6 posti con letti a castello e servizi al piano; c’è una sala workshop per riunioni, corsi e scuole. Al piano inferiore i servizi, il locale aperto agli escursionisti quando la capanna è chiusa e il deposito biciclette, con ricarica delle batterie e piccola officina secondo gli standard Bike Hotel.</p>
 <p>Facile da raggiungere su una ricca rete di sentieri e di percorsi in mountain bike, con aspetti naturalistici, storici e paesaggistici sorprendenti, è la meta ideale per famiglie e scuole, o per una notte in rifugio dopo una cena in compagnia.</p>""",

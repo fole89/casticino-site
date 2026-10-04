@@ -199,6 +199,27 @@
   });
 })();
 
+// CAS Ticino - capigita: la presentazione si apre passando sulla foto (CSS) e, per i touch, toccandola;
+// si chiude toccando fuori o con Esc.
+(function () {
+  var aperti = document.getElementsByClassName('is-open');
+  function chiudi(tranne) {
+    Array.prototype.slice.call(aperti).forEach(function (m) {
+      if (m === tranne || !m.classList.contains('member--bio')) return;
+      m.classList.remove('is-open');
+      m.querySelector('.bio-toggle').setAttribute('aria-expanded', 'false');
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.bio-toggle');
+    if (!b) { if (!e.target.closest('.bio')) chiudi(); return; }
+    var m = b.closest('.member--bio'), aperto = m.classList.toggle('is-open');
+    b.setAttribute('aria-expanded', aperto ? 'true' : 'false');
+    chiudi(m);
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') chiudi(); });
+})();
+
 // CAS Ticino - feste: nella settimana prima di Carnevale, Pasqua, 1° agosto, Halloween e Natale un'icona dopo il titolo
 // della home e un effetto leggero sulla sua foto. Solo decorazione (aria-hidden), nessuna pagina in più.
 // Per provarle in qualsiasi giorno: ?festa=carnevale | pasqua | agosto | halloween | natale (?festa=no le spegne).

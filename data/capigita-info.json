@@ -1,0 +1,4 @@
+{
+ "_nota": "Presentazioni dei capigita, scritte da loro: una o due frasi. Chiave = nome come in capigita.json. Il testo si vede passando o toccando la foto in capigita.html (anche in de/ ed en/, in italiano). Poi: python scripts/redesign/pages.py capigita.html de/capigita.html en/capigita.html cerca.html",
+ "Michele Foletti": "Mi sono avvicinato alla montagna verso i 30 anni, frequentando il corso di alpinismo del CAS Ticino. Da allora mi sono formato come monitore G+S di alpinismo e arrampicata. Sono inoltre membro del dicastero sport di montagna e gestisco il magazzino."
+}

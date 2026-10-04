@@ -18,7 +18,7 @@ from capanne_en import CONTENUTI_EN, HUT_EN, HUTS_EN
 import json, re, unicodedata
 import news_util
 from news_util import webp_size
-from html import unescape as html_unescape
+from html import unescape as html_unescape, escape as html_escape
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -866,7 +866,7 @@ def introduzione():
 </article>
 <article class="pillar pillar--dark pillar--wide">
 <h3>Statuto, visione e strategia, organigramma</h3>
-<p>I documenti di riferimento della sezione, in PDF. Gli altri sono nella pagina <a href="documenti.html">Documenti</a>.</p>
+<p>I documenti di riferimento della sezione. Altri documenti utili sono disponibili nella pagina <a href="documenti.html">Documenti</a>.</p>
 <div class="actions"><a class="btn btn--primary" href="{DOC}statuto-visione/statuto-2025.pdf">Statuto <span class="arrow" aria-hidden="true">→</span></a><a class="btn btn--ghost-dark" href="{DOC}statuto-visione/visione-strategia-2025.pdf">Visione e strategia</a><a class="btn btn--ghost-dark" href="{DOC}statuto-visione/organigramma-2025.pdf">Organigramma</a></div>
 </article>
 </div>
@@ -880,14 +880,14 @@ def introduzione():
 
 
 COMITATO = [
-    ("Presidente", "Giovanni Galli", "giovanni.galli1@gmail.com", "giovanni-galli"),
-    ("Capanne e vicepresidente", "Richard Knupfer", "richard@knupferarredamenti.ch", "richard-knupfer"),
-    ("Segretaria", "Melanie Becchi", "melanie.becchi@gmail.com", "melanie-becchi"),
-    ("Consigliere giuridico", "Costantino Castelli", "castelli@csnlaw.com", "costantino-castelli"),
-    ("Finanze e sponsoring", "Claudio Roncoroni", "roncoroni.claudio@hotmail.com", "claudio-roncoroni"),
-    ("Coordinazione gruppi", "Nadir Caduff", "nadir.caduff@bluewin.ch", "nadir-caduff"),
-    ("Sport di montagna", "Geoffroy Jolly", "Geo155@gmail.com", None),
-    ("Comunicazione", "Flavia Spinelli", "flavia.spinelli@bluewin.ch", None),
+    ("Presidente", "Giovanni Galli", "giovanni-galli"),
+    ("Capanne e vicepresidente", "Richard Knupfer", "richard-knupfer"),
+    ("Segretaria", "Melanie Becchi", "melanie-becchi"),
+    ("Consigliere giuridico", "Costantino Castelli", "costantino-castelli"),
+    ("Finanze e sponsoring", "Claudio Roncoroni", "claudio-roncoroni"),
+    ("Coordinazione gruppi", "Nadir Caduff", "nadir-caduff"),
+    ("Sport di montagna", "Geoffroy Jolly", None),
+    ("Comunicazione", "Flavia Spinelli", None),
 ]
 
 
@@ -952,7 +952,7 @@ def sezione_page(file, title, description, body, **kw):
 def comitato():
     people = []
     ritratto = tr("Ritratto di", "Porträt von", "Portrait of")
-    for role, name, mail, photo in COMITATO:
+    for role, name, photo in COMITATO:
         role = ruolo(role)
         ph = (f'<img src="assets/img/persone/comitato/{photo}.webp" alt="{ritratto} {name}" width="96" height="96" loading="lazy">'
               if photo else f'<span aria-hidden="true">{initials(name)}</span>')
@@ -961,18 +961,17 @@ def comitato():
 <div class="person-body">
 <span class="role">{role}</span>
 <h2>{name}</h2>
-<a href="mailto:{mail}">{mail}</a>
 </div>
 </article>""")
     if de():
         body = page_hero([("Die Sektion", "de/introduzione.html"), ("Vorstand", None)], "Der Vorstand",
-                         "Acht Personen, jede mit einem klaren Aufgabenbereich, führen die Sektion zusammen mit den <a href=\"de/organizzazione.html\">Ressorts</a> und den Freiwilligen.")
+                         "Acht Personen, jede mit einem klaren Aufgabenbereich, führen die Sektion zusammen mit den <a href=\"de/organizzazione.html\">Ressorts</a> und den Freiwilligen. Kontakt: <a href=\"mailto:info@casticino.ch\">info@casticino.ch</a>.")
     elif en():
         body = page_hero([("The Section", "en/introduzione.html"), ("Committee", None)], "The committee",
-                         "Eight people, each with a clear area of responsibility, lead the section together with the <a href=\"en/organizzazione.html\">departments</a> and the volunteers.")
+                         "Eight people, each with a clear area of responsibility, lead the section together with the <a href=\"en/organizzazione.html\">departments</a> and the volunteers. Contact: <a href=\"mailto:info@casticino.ch\">info@casticino.ch</a>.")
     else:
         body = page_hero([("La Sezione", "index.html#sezione"), ("Comitato", None)], "Il comitato",
-                         "Otto persone, ognuna con un ambito preciso, che guidano la sezione insieme ai <a href=\"organizzazione.html\">dicasteri</a> e ai volontari.")
+                         "Otto persone, ognuna con un ambito preciso, che guidano la sezione insieme ai <a href=\"organizzazione.html\">dicasteri</a> e ai volontari. Per scrivere al comitato: <a href=\"mailto:info@casticino.ch\">info@casticino.ch</a>.")
     body += f"""
 
 <section class="section" aria-label="{tr("Membri del comitato", "Mitglieder des Vorstands", "Committee members")}">
@@ -998,54 +997,54 @@ def comitato():
 DICASTERI = [
     ("Dicastero infrastruttura",
      "Si occupa delle infrastrutture della sezione: capanne e sentieri. Affianca il comitato su tutte le questioni e i progetti legati ai rifugi. Tramite gli ispettori segue l’operato dei guardiani, coordina la manutenzione ordinaria e straordinaria, cura gli aspetti amministrativi e contrattuali con i guardiani e sviluppa la promozione delle capanne.",
-     [("Richard Knupfer", "Responsabile capanne", "richard@knupferarredamenti.ch"),
-      ("Ulisse Conrengia", "Responsabile sentieri", None),
-      ("Stefano Olgiati", "Responsabile sentieri", None),
-      ("Edgardo Bulloni", "Responsabile tecnico capanne", "e_bulloni@bluewin.ch"),
-      (None, "Ispettore Capanna Michela Motterascio", None),
-      ("Edy Galli", "Ispettore Capanna Campo Tencia", "tgmgalli@yahoo.it"),
-      ("Fabio Savoldelli", "Ispettore Capanna Adula", "fabio.savoldelli@bmsuisse.ch"),
-      ("Marzio Pagani", "Ispettore Capanna Cristallina e Baita del Luca", "ma.pa@bluewin.ch"),
-      ("Francesco Mattinelli", "Ispettore Capanna Cristallina", "f.mattinelli70@gmail.com"),
-      ("Erico Fogliada", "Ispettore Capanna Monte Bar", "ericofo@bluewin.ch"),
-      ("Mauro Scalmanini", "Ispettore Capanna Monte Bar", "mascate@bluewin.ch"),
-      ("Roberto Grassi", "Ispettore Capanna Monte Bar", "roby.grassi@live.com")]),
+     [("Richard Knupfer", "Responsabile capanne"),
+      ("Ulisse Conrengia", "Responsabile sentieri"),
+      ("Stefano Olgiati", "Responsabile sentieri"),
+      ("Edgardo Bulloni", "Responsabile tecnico capanne"),
+      (None, "Ispettore Capanna Michela Motterascio"),
+      ("Edy Galli", "Ispettore Capanna Campo Tencia"),
+      ("Fabio Savoldelli", "Ispettore Capanna Adula"),
+      ("Marzio Pagani", "Ispettore Capanna Cristallina e Baita del Luca"),
+      ("Francesco Mattinelli", "Ispettore Capanna Cristallina"),
+      ("Erico Fogliada", "Ispettore Capanna Monte Bar"),
+      ("Mauro Scalmanini", "Ispettore Capanna Monte Bar"),
+      ("Roberto Grassi", "Ispettore Capanna Monte Bar")]),
     ("Dicastero sport di montagna",
      "Oltre a comporre il programma annuale delle gite, aggiorna e prepara materiale formativo, consiglia e sostiene i capigita promuovendone la formazione continua e gestisce il materiale tecnico della sezione.",
-     [("Geoffroy Jolly", "Coordinatore e responsabile attività", "Geo155@gmail.com"),
-      ("Enrico Zamboni", "Responsabile formazione", "zamboni.e.89@gmail.com"),
-      ("David Stracquadanio", "Membro", "d.stracqua@bluewin.ch"),
-      ("Michele Foletti", "Responsabile magazzino", "fole89@gmail.com"),
-      ("Valeria Demarta", "Amministratrice sito web", "valeria.demarta@gmail.com"),
-      ("Sara Della Frera", "Membro", "sara.dellafrera@gmail.com"),
-      ("Thomas Arn", "Membro", "thomas.arn@ticino.com"),
-      ("Alessandro Docimo", "Membro", "alessandro.docimo@outlook.com")]),
+     [("Geoffroy Jolly", "Coordinatore e responsabile attività"),
+      ("Enrico Zamboni", "Responsabile formazione"),
+      ("David Stracquadanio", "Membro"),
+      ("Michele Foletti", "Responsabile magazzino"),
+      ("Valeria Demarta", "Amministratrice sito web"),
+      ("Sara Della Frera", "Membro"),
+      ("Thomas Arn", "Membro"),
+      ("Alessandro Docimo", "Membro")]),
     ("Dicastero giovani",
      "Organizza campi settimanali e attività di arrampicata per ragazze e ragazzi dai 2 ai 25 anni e promuove la formazione di monitori Gioventù+Sport.",
-     [("Diego Romelli", "Coordinatore e comunicazione", "diego.romelli15@gmail.com"),
-      ("Claudio Petrini", "Coach", "claudio@petrininet.ch"),
-      ("Nicola Martinoni", "Cassiere", "nicola.martinoni@bluewin.ch"),
-      ("Giosiana Codoni", "Segretariato, giovanissimi e Spider", "giosiana.codoni@bluewin.ch"),
-      ("Deborah Acierno", "Attività del mercoledì sera e arrampicata", "debo.ooacierno@gmail.com"),
-      ("Kilian Knupfer", "Attività estive", "kilian.knupfer@gmail.com"),
-      ("Jacopo Soldini", "Attività invernali", "soldini.jacopo@gmail.com")]),
+     [("Diego Romelli", "Coordinatore e comunicazione"),
+      ("Claudio Petrini", "Coach"),
+      ("Nicola Martinoni", "Cassiere"),
+      ("Giosiana Codoni", "Segretariato, giovanissimi e Spider"),
+      ("Deborah Acierno", "Attività del mercoledì sera e arrampicata"),
+      ("Kilian Knupfer", "Attività estive"),
+      ("Jacopo Soldini", "Attività invernali")]),
     ("Dicastero senior",
      "Coordina il programma annuale del gruppo Senior: gite di un giorno, fine settimana e vacanze di più giorni. È sempre alla ricerca di nuovi capigita.",
-     [("Luca Salzborn", "Presidente", "lsalzborn@gmail.com"),
-      ("Cati Eisenhut", "Segretaria", "segretariato.seniori@casticino.ch"),
-      ("Christoph Rudolf von Rohr", "Cassiere", "vonrohr55@gmail.com"),
-      ("Fausto Cattalini", "Coordinatore gite", "laca2@bluewin.ch"),
-      ("Fabrizio Gastori", "Informatica", "biciog@bluewin.ch"),
-      ("Walter Baumgartner", "Membro", "Walterbaumgartner51@gmail.com")]),
+     [("Luca Salzborn", "Presidente"),
+      ("Cati Eisenhut", "Segretaria"),
+      ("Christoph Rudolf von Rohr", "Cassiere"),
+      ("Fausto Cattalini", "Coordinatore gite"),
+      ("Fabrizio Gastori", "Informatica"),
+      ("Walter Baumgartner", "Membro")]),
     ("Dicastero comunicazione",
      "Cura il periodico semestrale, l’annuario, il sito e i canali social. Organizza, anche con altri partner, eventi e iniziative che promuovono la cultura della montagna.",
-     [("Dario Lanfranconi", "Responsabile comunicazione", "dario.lanfranconi@gmail.com"),
-      ("Alessandro Romelli", "Redazione annuario", "alessandro.romelli@outlook.com"),
-      ("Katia Papa", "Eventi", "katiapa@bluewin.ch"),
-      ("Roberto Grizzi", "Grafica", "bodesign@bluewin.ch"),
-      ("Zita Sartori", "Responsabile ambiente", "zita.sartori@gmail.com"),
-      ("Maria Jannuzzi", "Membro", "maria.jannuzzi@rsi.ch"),
-      ("Tiziano Allevi", "Membro", "tiziano.allevi@bluewin.ch")]),
+     [("Dario Lanfranconi", "Responsabile comunicazione"),
+      ("Alessandro Romelli", "Redazione annuario"),
+      ("Katia Papa", "Eventi"),
+      ("Roberto Grizzi", "Grafica"),
+      ("Zita Sartori", "Responsabile ambiente"),
+      ("Maria Jannuzzi", "Membro"),
+      ("Tiziano Allevi", "Membro")]),
 ]
 
 
@@ -1077,6 +1076,9 @@ DICASTERI_EN = {
 
 CARTELLE_DICASTERI = {"Dicastero infrastruttura": "infrastruttura", "Dicastero sport di montagna": "sport-di-montagna",
                       "Dicastero giovani": "giovani", "Dicastero senior": "senior", "Dicastero comunicazione": "comunicazione"}
+MAIL_DICASTERI = {"Dicastero infrastruttura": "infrastruttura@casticino.ch", "Dicastero sport di montagna": "sport@casticino.ch",
+                  "Dicastero giovani": "giovani@casticino.ch", "Dicastero senior": "senior@casticino.ch",
+                  "Dicastero comunicazione": "comunicazione@casticino.ch"}
 
 
 def slug_nome(nome):
@@ -1088,7 +1090,7 @@ def organizzazione():
     depts = []
     for i, (title, text, members) in enumerate(DICASTERI, 1):
         ms = []
-        for name, role, mail in members:
+        for name, role in members:
             role = ruolo(role)
             if name is None:
                 ms.append(f'<div class="member member--tbd"><div class="member-photo" aria-hidden="true"><span>?</span></div>'
@@ -1097,15 +1099,15 @@ def organizzazione():
             foto = f"assets/img/persone/{CARTELLE_DICASTERI[title]}/{slug_nome(name)}.webp"
             ph = (f'<img src="{foto}" alt="{tr("Ritratto di", "Porträt von", "Portrait of")} {name}" width="60" height="60" loading="lazy" decoding="async">'
                   if os.path.exists(os.path.join(ROOT, foto)) else f'<span aria-hidden="true">{initials(name)}</span>')
-            m = f'<a href="mailto:{mail}">{mail}</a>' if mail else ""
             ms.append(f'<div class="member"><div class="member-photo">{ph}</div>'
-                      f'<div class="member-body"><strong>{name}</strong><span>{role}</span>{m}</div></div>')
+                      f'<div class="member-body"><strong>{name}</strong><span>{role}</span></div></div>')
         titolo, testo = {"it": (title, text), "de": DICASTERI_DE.get(title), "en": DICASTERI_EN.get(title)}[LINGUA["lang"]]
         depts.append(f"""<article class="dept" id="{CARTELLE_DICASTERI[title]}" aria-labelledby="d{i}-h" data-reveal>
 <div class="dept-intro">
 <span class="dept-count">{len(members)} {tr("membri", "Mitglieder", "members")}</span>
 <h2 id="d{i}-h" class="h2">{titolo}</h2>
 <p>{testo}</p>
+<p><a href="mailto:{MAIL_DICASTERI[title]}">{MAIL_DICASTERI[title]}</a></p>
 </div>
 <div class="members">
 {chr(10).join(ms)}
@@ -1148,21 +1150,21 @@ RUOLI_CAPIGITA_EN = {"estivo": "Summer", "invernale": "Winter", "arrampicata": "
 RUOLI_CAPIGITA_DE = {"estivo": "Sommer", "invernale": "Winter", "arrampicata": "Klettern", "escursionismo": "Wandern",
                      "seniori": "Senioren", "aiuto": "Hilfsleitung", "soccorso": "Bergrettung"}
 CAPIGITA_T = {
-    "it": dict(titolo="Capigita", sezione="La Sezione", sezione_href="index.html#sezione", ritratto="Ritratto di",
+    "it": dict(titolo="Capigita", sezione="La Sezione", sezione_href="index.html#sezione", ritratto="Ritratto di", chi="Chi è",
                dal="Capogita dal", tutti="Tutti", filtra="Filtra per ruolo", elenco="Elenco dei capigita",
                uno="capogita", molti="capigita",
                lead="Le gite della sezione sono preparate e guidate da soci volontari, formati nei corsi del CAS: {n} capigita attivi, ognuno con le sue discipline.",
                box="<strong>Per i capigita.</strong> Le gite si pubblicano sul portale Droptour; il promemoria raccoglie compiti e procedure del capogita.",
                portale="Portale Droptour", promemoria="Promemoria capigita (PDF)",
                desc="I {n} capigita del CAS Ticino che preparano e guidano le gite della sezione: estive e invernali, arrampicata, escursionismo e seniori."),
-    "de": dict(titolo="Tourenleitende", sezione="Die Sektion", sezione_href="de/introduzione.html", ritratto="Porträt von",
+    "de": dict(titolo="Tourenleitende", sezione="Die Sektion", sezione_href="de/introduzione.html", ritratto="Porträt von", chi="Wer ist",
                dal="Tourenleitung seit", tutti="Alle", filtra="Nach Rolle filtern", elenco="Liste der Tourenleitenden",
                uno="Tourenleitende", molti="Tourenleitende",
                lead="Die Touren der Sektion werden von ehrenamtlichen Mitgliedern vorbereitet und geleitet, ausgebildet in den Kursen des SAC: {n} aktive Tourenleitende, alle mit ihren eigenen Disziplinen.",
                box="<strong>Für Tourenleitende.</strong> Die Touren werden im Droptour-Portal veröffentlicht; das Merkblatt fasst Aufgaben und Abläufe der Tourenleitung zusammen.",
                portale="Droptour-Portal", promemoria="Merkblatt Tourenleitung (PDF, italienisch)",
                desc="Die {n} Tourenleitenden des SAC Ticino, die die Touren der Sektion vorbereiten und leiten: Sommer- und Wintertouren, Klettern, Wandern und Senioren."),
-    "en": dict(titolo="Trip leaders", sezione="The Section", sezione_href="en/introduzione.html", ritratto="Portrait of",
+    "en": dict(titolo="Trip leaders", sezione="The Section", sezione_href="en/introduzione.html", ritratto="Portrait of", chi="Who is",
                dal="Trip leader since", tutti="All", filtra="Filter by role", elenco="List of trip leaders",
                uno="trip leader", molti="trip leaders",
                lead="The section’s trips are prepared and led by volunteer members trained in SAC courses: {n} active trip leaders, each with their own disciplines.",
@@ -1185,6 +1187,8 @@ def foto_persona(nome, gruppo):
 def capigita():
     """Capigita da data/capigita.json (lo scrive scripts/capigita.py dall'export Droptour, senza dati personali)."""
     persone = json.load(open(os.path.join(ROOT, "data", "capigita.json"), encoding="utf-8"))["capigita"]
+    # presentazioni scritte dai capigita (in italiano anche nelle pagine tradotte): box sulla foto
+    info = json.load(open(os.path.join(ROOT, "data", "capigita-info.json"), encoding="utf-8"))
     tx = CAPIGITA_T[LINGUA["lang"]]
     nomi = {k: tr(n, RUOLI_CAPIGITA_DE[k], RUOLI_CAPIGITA_EN[k]) for k, n in RUOLI_CAPIGITA}
     schede = []
@@ -1194,8 +1198,17 @@ def capigita():
               if foto else f'<span aria-hidden="true">{initials(p["nome"])}</span>')
         ruoli = " · ".join(nomi[r] for r in p["ruoli"])
         dal = f'<span>{tx["dal"]} <span class="num">{p["dal"]}</span></span>' if p.get("dal") else ""
-        schede.append(f'<div class="member" data-ruoli="{" ".join(p["ruoli"])}"><div class="member-photo">{ph}</div>'
-                      f'<div class="member-body"><strong>{p["nome"]}</strong><span>{ruoli}</span>{dal}</div></div>')
+        corpo = f'<div class="member-body"><strong>{p["nome"]}</strong><span>{ruoli}</span>{dal}</div>'
+        bio = info.get(p["nome"])
+        if bio:
+            id_bio = "bio-" + slug_nome(p["nome"])
+            lang = "" if LINGUA["lang"] == "it" else ' lang="it"'
+            schede.append(f'<div class="member member--bio" data-ruoli="{" ".join(p["ruoli"])}">'
+                          f'<button type="button" class="bio-toggle" aria-expanded="false" aria-controls="{id_bio}" aria-label="{tx["chi"]} {p["nome"]}">'
+                          f'<span class="member-photo">{ph}</span><span class="bio-segno" aria-hidden="true"></span></button>'
+                          f'{corpo}<p class="bio" id="{id_bio}"{lang}>{html_escape(bio)}</p></div>')
+        else:
+            schede.append(f'<div class="member" data-ruoli="{" ".join(p["ruoli"])}"><div class="member-photo">{ph}</div>{corpo}</div>')
     conta = {k: sum(k in p["ruoli"] for p in persone) for k, _ in RUOLI_CAPIGITA}
     filtri = "\n".join([f'<button type="button" data-filtro="" aria-pressed="true">{tx["tutti"]} <span class="num">{len(persone)}</span></button>'] +
                        [f'<button type="button" data-filtro="{k}" aria-pressed="false">{nomi[k]} <span class="num">{conta[k]}</span></button>'
@@ -1358,7 +1371,7 @@ def storia():
     body += f"""
 
 <figure class="band">
-{pic("paesaggi/seraccata", tr("Seraccata di un ghiacciaio sotto il cielo azzurro", "Gletscherbruch unter blauem Himmel", "Glacier icefall under a blue sky"), mobile="paesaggi/seraccata-4x3", w=2000, h=1125, lazy=False)}
+{pic("paesaggi/capanna-tencia", tr("La Capanna Campo Tencia all’alba, con la bandiera svizzera e le montagne in controluce", "Die Campo-Tencia-Hütte bei Sonnenaufgang, mit Schweizer Fahne und Bergen im Gegenlicht", "Campo Tencia hut at sunrise, with the Swiss flag and backlit mountains"), mobile="paesaggi/capanna-tencia-4x3", w=2000, h=658, lazy=False)}
 </figure>
 
 <section class="section" aria-labelledby="tappe-h">
@@ -1938,7 +1951,7 @@ def giovani():
 
 def senior():
     rows = [("Chi può partecipare", 'Dai 60 anni, con l’affiliazione al CAS Ticino. Non c’è una tassa aggiuntiva, e tutti i soci della sezione possono partecipare alle attività. <a href="adesione.html">Diventa socio</a>'),
-            ("Come aderire", 'Scrivi a <a href="mailto:segretariato.seniori@casticino.ch">segretariato.seniori@casticino.ch</a> con nome, data di nascita, numero di socio CAS, indirizzo, telefono ed e-mail.'),
+            ("Come aderire", 'Scrivi a <a href="mailto:senior@casticino.ch">senior@casticino.ch</a> con nome, data di nascita, numero di socio CAS, indirizzo, telefono ed e-mail.'),
             ("Uscite", "Di norma il giovedì. Il calendario aggiornato è sul programma gite online."),
             ("Pranzi", 'Il secondo e il quarto mercoledì del mese al Bistrot Vecchio Torchio di Viganello. Iscrizioni entro il lunedì presso Hanni Vanossi (<a class="num" href="tel:+41763973390">+41 76 397 33 90</a>) o direttamente al ristorante (<a class="num" href="tel:+41919721010">+41 91 972 10 10</a>).'),
             ("Capigita", "Il dicastero cerca sempre nuovi capigita.")]
@@ -2059,7 +2072,7 @@ def corsi():
                      "Corsi nei fine settimana, diretti da professionisti della montagna con monitori esperti: le basi per partecipare in sicurezza alle attività della sezione. Il programma dell’anno successivo esce entro novembre.") + f"""
 
 <figure class="band">
-{pic("paesaggi/traccia-ghiacciaio", "Traccia di sci su un ghiacciaio, sotto una cima innevata", mobile="paesaggi/traccia-ghiacciaio-4x3", w=2000, h=901, lazy=False)}
+{pic("paesaggi/salita-prato", "Un gruppo sale in fila su un sentiero tra prati fioriti, sotto il cielo azzurro", mobile="paesaggi/salita-prato-4x3", w=2000, h=1125, lazy=False)}
 </figure>
 
 <section class="section" aria-label="Corsi base">
@@ -2082,22 +2095,60 @@ def corsi():
                 body, og="corsi/scialpinismo-4x5")
 
 
+MATERIALE = [  # prezzo giornaliero in franchi
+    ("Alpinismo e arrampicata", [
+        ("Ramponi", 5), ("Piccozza", 5), ("Imbracatura (S, M, L, XL)", 5), ("Casco", 5), ("Pedule", 5),
+        ("Moschettone a ghiera", 3), ("Discensore e moschettone", 5), ("Jul e moschettone", 5),
+        ("Cordino prussik", 1), ("Cordino 3–5 m", 1), ("Longe", 2), ("Set di rinvii", 5)]),
+    ("Scialpinismo", [
+        ("Set ARVA, sonda e pala", 10), ("ARVA", 5), ("Sonda", 5), ("Pala", 5),
+        ("Slittino di pronto soccorso", 5), ("Pelli di riserva", 5)]),
+    ("Altro", [
+        ("Bussola", 5), ("Occhiali da sole", 5), ("Kit ferrata", 10), ("Crash pad", 10)]),
+]
+
+
 def noleggio():
-    rows = [("Come funziona", "Prendi direttamente contatto con il responsabile materiale. Con la conferma ricevi le istruzioni per il ritiro. Si paga in contanti o TWINT alla riconsegna."),
+    tabelle = []
+    for gruppo, articoli in MATERIALE:
+        righe = "\n".join(f'<tr><th scope="row">{nome}</th><td>Fr. {prezzo}.–</td></tr>' for nome, prezzo in articoli)
+        tabelle.append(f"""<div class="rate">
+<h3 class="h3">{gruppo}</h3>
+<table class="listino">
+<thead><tr><th scope="col">Articolo</th><th scope="col">Al giorno</th></tr></thead>
+<tbody>
+{righe}
+</tbody>
+</table>
+</div>""")
+    # la lista lunga a sinistra, le altre impilate a destra
+    tabelle = tabelle[0] + '\n<div class="listini-col">\n' + "\n".join(tabelle[1:]) + "\n</div>"
+    rows = [("Come funziona", 'Scrivi a <a href="mailto:noleggio@casticino.ch">noleggio@casticino.ch</a>. Con la conferma ricevi le istruzioni per il ritiro. Si paga in contanti o TWINT alla riconsegna.'),
             ("Richiesta", "Una settimana prima dell’attività"),
             ("Ritiro", 'A partire dal mercoledì alle <span class="num">19:00</span>'),
             ("Riconsegna", "Entro il martedì sera successivo"),
             ("Magazzino", "Manno"),
-            ("Responsabile", 'Michele Foletti, <a class="num" href="tel:+41792416955">+41 79 241 69 55</a>, <a href="mailto:fole89@gmail.com">fole89@gmail.com</a>')]
+            ("E-mail", '<a href="mailto:noleggio@casticino.ch">noleggio@casticino.ch</a>')]
     body = page_hero([("Attività", "index.html#attivita"), ("Noleggio", None)], "Noleggio",
-                     "Materiale in affitto per le attività della sezione e per le uscite private.") + f"""
+                     "Materiale in affitto per le attività della sezione e per le uscite private: alpinismo, cascate di ghiaccio, scialpinismo, arrampicata, racchette, escursionismo e bouldering.",
+                     '<div class="actions hero-actions"><a class="btn btn--primary" href="#come">Come noleggiare <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
 
-<section class="section" aria-labelledby="cosa-h">
+<section class="section--surface section--tight" id="listino" aria-labelledby="listino-h">
+<div class="container">
+<div class="section-row">
+<h2 id="listino-h" class="h2">Listino</h2>
+<p class="small">Prezzi per giorno di noleggio, in franchi.</p>
+</div>
+<div class="listini" data-reveal>
+{tabelle}
+</div>
+</div>
+</section>
+
+<section class="section" id="come" aria-labelledby="come-h">
 <div class="container detail">
-<div class="detail-intro split-intro">
-<h2 id="cosa-h" class="h2">Dall’arrampicata<br>al bouldering</h2>
-<p>Alpinismo, cascate di ghiaccio, sci alpinismo, arrampicata, racchette, escursionismo e bouldering. Consulta l’elenco completo con i prezzi giornalieri.</p>
-<div><a class="btn btn--primary" href="{DOC}noleggio/lista-materiale.pdf">Lista materiale (PDF) <span class="arrow" aria-hidden="true">→</span></a></div>
+<div class="detail-intro">
+<h2 id="come-h" class="h2">Come funziona</h2>
 </div>
 <div data-reveal>
 {facts(rows)}
