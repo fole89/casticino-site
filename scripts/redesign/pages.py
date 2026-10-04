@@ -59,6 +59,7 @@ def num(t):
 
 
 def home():
+    prossime = prossime_gite()
     huts = "\n".join(f"""<a class="hut{' hut--big' if big else ''}" href="{f}" data-reveal>
 <figure>{img(im, f'Capanna {n}', w, h)}</figure>
 <div class="hut-head"><h3 class="h3">{n}</h3><span class="hut-alt">{q} m</span></div>
@@ -171,6 +172,15 @@ def home():
 </div>
 </article>
 </div>
+{f"""<div class="prossime" data-reveal>
+<div class="section-row">
+<h3 class="h3">Prossime gite</h3>
+<a class="link" href="{GITE}">Tutto il programma</a>
+</div>
+<div class="prossime-grid">
+{prossime}
+</div>
+</div>""" if prossime else ""}
 </div>
 </section>
 
@@ -1737,6 +1747,11 @@ def gita_stato(g, oggi):
     return "aperte", "Iscrizioni aperte"
 
 
+def fino_al(giorno):
+    """«fino al 3», ma «fino all'1», «all'8», «all'11»."""
+    return f"fino all’{giorno}" if giorno in (1, 8, 11) else f"fino al {giorno}"
+
+
 def data_breve(iso):
     y, m, d = (int(x) for x in iso.split("-"))
     return f"{d} {MESI_BREVI[m - 1]}"
@@ -1751,7 +1766,7 @@ def gita_html(g, oggi):
         if d2.month == d1.month:
             giorno, sotto = f"{d1.day}–{d2.day}", f"{sotto}–{GIORNI_BREVI[d2.weekday()]}"
         else:
-            sotto += f", fino al {d2.day} {MESI_BREVI[d2.month - 1]}"
+            sotto += f", {fino_al(d2.day)} {MESI_BREVI[d2.month - 1]}"
     classe, stato = gita_stato(g, oggi)
     gruppi = [x for x in g["gruppi"] if x != "Tutti"] or ["Tutti"]
     tipo = " · ".join(dict.fromkeys(filter(None, [esc(g["tipo"]), esc(", ".join(gruppi))])))
@@ -1795,6 +1810,32 @@ def gite_lista(gite, oggi):
     if mese:
         out.append("</div>\n</section>")
     return "\n".join(out)
+
+
+
+def prossime_gite(n=3):
+    """Le prossime gite per la home: senza annullate e senza le serate della colonna di soccorso."""
+    import datetime
+    oggi = datetime.date.today().isoformat()
+    scelte = [g for g in gite_dati() if (g["al"] or g["dal"]) >= oggi and g["stato"] != "annullata"
+              and "colonna di soccorso" not in g["titolo"].lower()][:n]
+    schede = []
+    for g in scelte:
+        d = datetime.date.fromisoformat(g["dal"])
+        quando = f"{GIORNI_BREVI[d.weekday()]} {MESI[d.month - 1]}"
+        if g["al"] and g["al"] != g["dal"]:
+            d2 = datetime.date.fromisoformat(g["al"])
+            quando += f", {fino_al(d2.day)}" + ("" if d2.month == d.month else f" {MESI_BREVI[d2.month - 1]}")
+        classe, stato = gita_stato(g, oggi)
+        gruppi = [x for x in g["gruppi"] if x != "Tutti"] or ["Tutti"]
+        tipo = " · ".join(dict.fromkeys(filter(None, [esc(g["tipo"]), esc(", ".join(gruppi))])))
+        schede.append(f"""<a class="prossima" href="gita.html?id={g['id']}">
+<p class="prossima-data"><span class="prossima-giorno num">{d.day}</span><span>{quando}</span></p>
+<p class="gita-tipo">{tipo}</p>
+<h3 class="prossima-titolo">{esc(g['titolo'])}</h3>
+<span class="stato{' stato--' + classe if classe else ''}">{stato}</span>
+</a>""")
+    return "\n".join(schede)
 
 
 def gite():

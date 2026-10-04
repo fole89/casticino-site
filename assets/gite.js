@@ -78,7 +78,7 @@
     if (g.al && g.al !== g.dal) {
       var d2 = giorno(g.al);
       if (d2.getMonth() === d1.getMonth()) { gg += '–' + d2.getDate(); sotto += '–' + GIORNI[d2.getDay()]; }
-      else sotto += ', fino al ' + d2.getDate() + ' ' + MESI_BREVI[d2.getMonth()];
+      else sotto += ', fino ' + ([1, 8, 11].indexOf(d2.getDate()) !== -1 ? 'all’' : 'al ') + d2.getDate() + ' ' + MESI_BREVI[d2.getMonth()];
     }
     var st = statoGita(g, o), classe = st[0];
     var gruppi = g.gruppi.filter(function (x) { return x !== 'Tutti'; });
@@ -184,22 +184,44 @@
       .replace(/(^|[\s(])(www\.[^\s<]+[^\s<.,;:)])/g, '$1<a href="https://$2" rel="noopener">$2</a>');
   }
 
-  function righeScheda(html) {  // [etichetta, testo] dalla tabella #droptours-detail della scheda Droptour
+  // link della scheda da tenere (file allegati come i PDF, pagine esterne); quelli interni all'interfaccia Droptour
+  // (scheda del capogita, scala delle esigenze) restano solo testo
+  function linkBuono(a) {
+    try {
+      var u = new URL(a.getAttribute('href') || '', 'https://ssl.dropnet.ch/');
+      return /^https?:$/.test(u.protocol) && u.pathname.indexOf('/api/') === -1 ? u.href : '';
+    } catch (e) { return ''; }
+  }
+
+  function righeScheda(html) {  // [etichetta, HTML sicuro] dalla tabella #droptours-detail della scheda Droptour
     var doc = new DOMParser().parseFromString(html, 'text/html'), out = [];
     Array.prototype.forEach.call(doc.querySelectorAll('#droptours-detail tr'), function (tr) {
       var td = tr.querySelectorAll('td');
       if (td.length < 2) return;
       var et = td[0].textContent.replace(/\s+/g, ' ').trim().replace(/:$/, '');
       if (!et || /^Capogita/.test(et) || ETICHETTE_FUORI.indexOf(et) !== -1) return;
+      var link = [];
       var t = Array.prototype.slice.call(td, 1).map(function (c) {
         Array.prototype.forEach.call(c.querySelectorAll('img, script, style'), function (x) { x.remove(); });
+        // i link buoni diventano segnaposto (\u0001n\u0002), rimessi come <a> dopo aver ridotto il resto a testo
+        Array.prototype.forEach.call(c.querySelectorAll('a[href]'), function (x) {
+          var href = linkBuono(x), nome = x.textContent.replace(/\s+/g, ' ').trim().replace(/\.pdf$/i, '');  // «Gita 44 Castagnata.pdf» → «Gita 44 Castagnata»
+          if (!href || !nome) return;
+          link.push('<a href="' + esc(href) + '" rel="noopener">' + esc(nome) + '</a>');
+          x.replaceWith('\u0001' + (link.length - 1) + '\u0002');
+        });
         // gli a capo del sorgente sono solo spazi: contano solo i <br>
         var h = c.innerHTML.replace(/[\r\n]+/g, ' ').replace(/<br\s*\/?>/gi, '\n');
         return new DOMParser().parseFromString(h, 'text/html').body.textContent;
       }).join('\n').split('\n').map(function (r) { return r.replace(/[ \t ]+/g, ' ').trim(); })
         .filter(function (r) { return !/^(Cond|Tecn)\.$/.test(r); })  // esigenza senza valore
         .join('\n').replace(/\n{3,}/g, '\n\n').trim();
-      if (t) out.push([et, t]);
+      if (!t) return;
+      t = t.split(/(\u0001\d+\u0002)/).map(function (pezzo) {
+        var m = /^\u0001(\d+)\u0002$/.exec(pezzo);
+        return m ? link[+m[1]] : conLink(esc(pezzo));
+      }).join('');
+      out.push([et, t]);
     });
     return out;
   }
@@ -221,10 +243,11 @@
     if (g.capigita.length) fatti.push([g.capigita.length > 1 ? 'Capigita' : 'Capogita', esc(g.capigita.join(', '))]);
     fatti.push(['Iscrizione', esc(iscr)]);
     if (g.posti || g.iscritti) fatti.push(['Iscritti', '<span class="num">' + g.iscritti + (g.posti ? ' / ' + g.posti : '') + '</span>']);
-    (righe || []).forEach(function (r) { fatti.push([esc(r[0]), '<span class="gita-testo">' + conLink(esc(r[1])) + '</span>']); });
+    (righe || []).forEach(function (r) { fatti.push([esc(r[0]), '<span class="gita-testo">' + r[1] + '</span>']); });
     document.getElementById('gita-dati').innerHTML = '<dl class="facts">' +
       fatti.map(function (f) { return '<dt>' + f[0] + '</dt><dd>' + f[1] + '</dd>'; }).join('') + '</dl>' +
-      (righe ? '' : '<p class="small gita-avviso">I dettagli della gita non sono disponibili in questo momento: li trovi su Droptour.</p>');
+      (righe === undefined ? '<p class="small gita-avviso">Caricamento dei dettagli da Droptour…</p>'
+        : righe ? '' : '<p class="small gita-avviso">I dettagli della gita non sono disponibili in questo momento: li trovi su Droptour.</p>');
 
     document.getElementById('gita-stato').innerHTML = '<span class="stato' + (classe ? ' stato--' + classe : '') + '">' + st[1] + '</span>';
     var az = classe === 'aperte'
@@ -242,21 +265,38 @@
     document.getElementById('gita-dati').innerHTML = '';
   }
 
+  // gite già lette in tempo reale nella pagina del programma (sessionStorage, 10 minuti): il dettaglio parte subito
+  var MEMO = 'casticino-gite';
+  function ricorda(lista) { try { sessionStorage.setItem(MEMO, JSON.stringify({ t: Date.now(), gite: lista })); } catch (e) {} }
+  function ricordate() {
+    try { var m = JSON.parse(sessionStorage.getItem(MEMO)); return m && Date.now() - m.t < 600000 ? m.gite : null; } catch (e) { return null; }
+  }
+
   function dettaglio() {
     var id = new URLSearchParams(location.search).get('id') || '';
     if (!/^\d+$/.test(id)) { nonTrovata(''); return; }
-    var elenco = fetch(dett.dataset.api)
+    // si mostra subito la gita dalla fonte più rapida (memoria, poi copia locale), poi si aggiorna: la scheda Droptour
+    // (~0,4 s) aggiunge i testi, l'elenco in tempo reale (~1,5 s) aggiorna stato e iscritti
+    var g = null, righe, finito = { vive: false, copia: false };
+    function trova(lista) { return (lista || []).filter(function (x) { return x.id === id; })[0] || null; }
+    function aggiorna(nuova) { if (nuova) g = nuova; if (g) mostraGita(g, righe); }
+    function forseNonTrovata() { if (!g && finito.vive && finito.copia) nonTrovata(id); }
+
+    aggiorna(trova(ricordate()));
+    fetch(dett.dataset.copia).then(function (r) { return r.json(); })
+      .then(function (d) { if (!g) aggiorna(trova(d.gite)); })
+      .catch(function () {})
+      .then(function () { finito.copia = true; forseNonTrovata(); });
+    fetch(dett.dataset.api)
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-      .then(function (t) { return daXml(new DOMParser().parseFromString(t, 'text/xml')); })
-      .catch(function () { return fetch(dett.dataset.copia).then(function (r) { return r.json(); }).then(function (d) { return d.gite || []; }); });
-    var scheda = fetch(dett.dataset.dettaglio + id)
+      .then(function (t) { var lista = daXml(new DOMParser().parseFromString(t, 'text/xml')); ricorda(lista); aggiorna(trova(lista)); })
+      .catch(function () {})
+      .then(function () { finito.vive = true; forseNonTrovata(); });
+    fetch(dett.dataset.dettaglio + id)
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(righeScheda)
-      .catch(function () { return null; });
-    Promise.all([elenco, scheda]).then(function (x) {
-      var g = (x[0] || []).filter(function (g) { return g.id === id; })[0];
-      if (g) mostraGita(g, x[1]); else nonTrovata(id);
-    }).catch(function () { nonTrovata(id); });
+      .catch(function () { return null; })
+      .then(function (x) { righe = x; aggiorna(); });
   }
 
   if (box) {
@@ -289,7 +329,8 @@
       .then(function (t) {
         var lista = daXml(new DOMParser().parseFromString(t, 'text/xml'));
         if (!lista.length) throw new Error('vuoto');
-        pronto(lista, true);
+        ricorda(lista);
+      pronto(lista, true);
       })
       .catch(function () {
         // Droptour non risponde: si resta all'elenco generato e si prendono i dati per i filtri dalla copia

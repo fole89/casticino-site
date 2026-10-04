@@ -501,7 +501,18 @@ dl,dd{margin:0}
 .gita-posti,.gita-nota{font-size:14px;color:var(--muted)}
 .gita-link{min-height:36px}
 .gita--annullata .gita-titolo a{text-decoration:line-through;text-decoration-thickness:1.5px;color:var(--muted)}
-.display--gita{font-size:clamp(36px,4.4vw,64px);line-height:1;letter-spacing:-.04em;max-width:24ch}
+.display--gita{font-size:clamp(36px,4.4vw,64px);line-height:1;letter-spacing:-.04em}
+/* home: prossime gite */
+.prossime{margin-top:clamp(48px,6vw,80px)}
+.prossime-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.prossima{display:grid;gap:10px;align-content:start;padding:clamp(20px,2.4vw,28px);background:var(--surface);color:var(--ink);text-decoration:none;border-top:3px solid transparent;transition:border-color .2s var(--ease),background-color .2s var(--ease)}
+.prossima:hover{border-top-color:var(--accent);background:var(--surface-2)}
+.prossima:hover .prossima-titolo{color:var(--accent)}
+.prossima-data{display:flex;align-items:baseline;gap:10px;color:var(--muted);font-size:15px}
+.prossima-giorno{font-size:clamp(30px,3vw,40px);font-weight:650;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.prossima-titolo{font-size:clamp(18px,1.5vw,21px);font-weight:620;letter-spacing:-.02em;line-height:1.25;transition:color .2s var(--ease)}
+.prossima .stato{margin-top:4px}
+@media (max-width:820px){.prossime-grid{grid-template-columns:1fr}}
 .gita-dettaglio .detail-intro{position:sticky;top:calc(var(--nav-h) + 32px);align-content:start}
 .gita-dettaglio .stato{font-size:16px}
 .gita-testo{white-space:pre-line;overflow-wrap:anywhere}

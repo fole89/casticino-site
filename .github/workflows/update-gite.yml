@@ -1,7 +1,8 @@
 name: Aggiorna programma gite da Droptour
 
 # gite.html legge le gite in tempo reale da Droptour (assets/gite.js); qui si aggiorna solo la copia di riserva
-# (data/gite.json), l'elenco già pronto nella pagina (per chi non ha JavaScript) e l'indice della ricerca.
+# (data/gite.json), l'elenco già pronto nella pagina (per chi non ha JavaScript), le prossime gite in home
+# e l'indice della ricerca.
 on:
   schedule:
     - cron: "47 4 * * *"   # ogni giorno alle 04:47 UTC (06:47 ora estiva svizzera)
@@ -30,17 +31,17 @@ jobs:
 
       - name: Rigenera la pagina e la ricerca
         # sempre: anche senza gite nuove, le gite passate escono dall'elenco e gli stati delle iscrizioni cambiano con la data
-        run: python scripts/redesign/pages.py gite.html cerca.html
+        run: python scripts/redesign/pages.py gite.html index.html cerca.html
 
       - name: Pubblica se ci sono novità
         run: |
-          if git diff --quiet -- data/gite.json data/cerca.json gite.html cerca.html; then
+          if git diff --quiet -- data/gite.json data/cerca.json gite.html index.html cerca.html; then
             echo "Nessuna novità."
             exit 0
           fi
           git config user.name  "casticino-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/gite.json data/cerca.json gite.html cerca.html
+          git add data/gite.json data/cerca.json gite.html index.html cerca.html
           git commit -m "Gite: aggiornamento automatico da Droptour"
           git pull --rebase
           git push
