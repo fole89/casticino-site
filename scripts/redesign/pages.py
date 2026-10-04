@@ -3,13 +3,12 @@
 Uso: python scripts/redesign/pages.py [Pagina.html ...]  (senza argomenti rigenera tutto)"""
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from shared import head, nav, footer, social, pic, img, GITE, page_hero, subnav, asset, in_sottocartella, crumbs
+from shared import head, nav, footer, social, pic, img, GITE, GITE_DROPTOUR, page_hero, subnav, asset, in_sottocartella, crumbs
 
 # Programma gite su Droptour già filtrato per gruppo o per tipo di attività (i link dei singoli corsi cambiano ogni anno)
-GITE_FILTRO = GITE + "?page=touren&amp;year=&amp;typ=&amp;gruppe={gruppe}&amp;anlasstyp={tipo}&amp;selected_anf_tech=&amp;selected_anf_kond=&amp;zusatz=&amp;search="
-GITE_GIOVANI = GITE_FILTRO.format(gruppe="Giovani", tipo="")
-GITE_SENIORI = GITE_FILTRO.format(gruppe="Seniori", tipo="")
-GITE_CORSI = GITE_FILTRO.format(gruppe="", tipo="Corso")
+GITE_GIOVANI = GITE + "?gruppo=Giovani"   # gite.html con il filtro già scelto (gite.js)
+GITE_SENIORI = GITE + "?gruppo=Seniori"
+GITE_CORSI = GITE + "?tipo=COR"
 from shared import LINGUA, PAGINE_LINGUA, SITO, de, en, tr, L
 from urllib.parse import urljoin
 from capanne import CONTENUTI, PRENOTA
@@ -1705,6 +1704,150 @@ def news_article(i):
                                  og=og_name(n), section="News"), su=su)
 
 
+# ------------------------------------------------------------------ programma gite (copia da Droptour)
+# data/gite.json lo scrive scripts/update_gite.py; nella pagina assets/gite.js rilegge le gite in tempo reale
+# dall'interfaccia pubblica di Droptour e le ridisegna con lo stesso markup di gita_html() (tenerli allineati).
+GITE_ICS = "webcal://ssl.dropnet.ch/casticino/dropnetapps/tours/index.php?page=ics&amp;type=&amp;group=&amp;eventtype="
+GITE_DETTAGLIO = "https://ssl.dropnet.ch/casticino/dropnetapps/tours/api/?action=command&command=getItem&language=it&item_id="
+GITE_API = "https://ssl.dropnet.ch/casticino/dropnetapps/tours/api/?action=command&command=getItems&limit=500&language=it"
+GIORNI_BREVI = ["lun", "mar", "mer", "gio", "ven", "sab", "dom"]
+MESI_BREVI = ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"]
+IMPEGNO = {"A": "poco impegnativo", "B": "abbastanza impegnativo", "C": "impegnativo", "D": "molto impegnativo"}
+
+
+def gite_dati():
+    try:
+        return json.load(open(os.path.join(ROOT, "data", "gite.json"), encoding="utf-8")).get("gite", [])
+    except OSError:
+        return []
+
+
+def gita_stato(g, oggi):
+    """(classe, testo) dello stato delle iscrizioni, calcolato come in gite.js."""
+    if g["stato"] == "annullata":
+        return "annullata", "Annullata"
+    if g["stato"] == "completa":
+        return "completa", "Completa"
+    if not g["iscrizione"]:
+        return "", "Senza iscrizione online"
+    if g["iscrizione_dal"] and oggi < g["iscrizione_dal"]:
+        return "", f"Iscrizioni dal {data_breve(g['iscrizione_dal'])}"
+    if g["iscrizione_al"] and oggi > g["iscrizione_al"]:
+        return "", "Iscrizioni chiuse"
+    return "aperte", "Iscrizioni aperte"
+
+
+def data_breve(iso):
+    y, m, d = (int(x) for x in iso.split("-"))
+    return f"{d} {MESI_BREVI[m - 1]}"
+
+
+def gita_html(g, oggi):
+    import datetime
+    d1 = datetime.date.fromisoformat(g["dal"])
+    giorno, sotto = str(d1.day), GIORNI_BREVI[d1.weekday()]
+    if g["al"] and g["al"] != g["dal"]:
+        d2 = datetime.date.fromisoformat(g["al"])
+        if d2.month == d1.month:
+            giorno, sotto = f"{d1.day}–{d2.day}", f"{sotto}–{GIORNI_BREVI[d2.weekday()]}"
+        else:
+            sotto += f", fino al {d2.day} {MESI_BREVI[d2.month - 1]}"
+    classe, stato = gita_stato(g, oggi)
+    gruppi = [x for x in g["gruppi"] if x != "Tutti"] or ["Tutti"]
+    tipo = " · ".join(dict.fromkeys(filter(None, [esc(g["tipo"]), esc(", ".join(gruppi))])))
+    meta = []
+    if g["cond"]:
+        meta.append(f'<span title="{IMPEGNO.get(g["cond"], "")}">Impegno {esc(g["cond"])}</span>')
+    if g["tecn"]:
+        meta.append(f'<span>Difficoltà {esc(g["tecn"])}</span>')
+    if g["capigita"]:
+        meta.append(f'<span>{"Capigita" if len(g["capigita"]) > 1 else "Capogita"}: {esc(", ".join(g["capigita"]))}</span>')
+    posti = (f'{g["iscritti"]}/{g["posti"]} iscritti' if g["posti"] else f'{g["iscritti"]} iscritti' if g["iscritti"] else "")
+    modalita = (f'<span class="gita-nota">Iscrizione{"" if g["modalita"].startswith("tramite") else ":"} {esc(g["modalita"])}</span>'
+                if g["modalita"] and classe != "annullata" else "")
+    return f"""<article class="gita{' gita--annullata' if classe == 'annullata' else ''}" id="gita-{g['id']}" data-gruppi="{esc(' '.join(g['gruppi']))}" data-tipo="{esc(g['sigla'])}">
+<p class="gita-data"><span class="gita-giorno num">{giorno}</span><span class="gita-sotto">{sotto}</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">{tipo}</p>
+<h3 class="gita-titolo"><a href="gita.html?id={g['id']}">{esc(g['titolo'])}</a></h3>
+{f'<p class="gita-meta">{"".join(meta)}</p>' if meta else ""}
+</div>
+<div class="gita-stato">
+<span class="stato{' stato--' + classe if classe else ''}">{stato}</span>
+{f'<span class="gita-posti num">{posti}</span>' if posti else ""}{modalita}
+<a class="link gita-link" href="gita.html?id={g['id']}">{"Dettagli" if classe == "annullata" or not g["iscrizione"] else "Dettagli e iscrizione"}</a>
+</div>
+</article>"""
+
+
+def gite_lista(gite, oggi):
+    """Gite raggruppate per mese (ogni mese è una sezione con titolo, nascosta da gite.js se il filtro la svuota)."""
+    out, mese = [], None
+    for g in gite:
+        m = g["dal"][:7]
+        if m != mese:
+            if mese:
+                out.append("</div>\n</section>")
+            y, mm = (int(x) for x in m.split("-"))
+            out.append(f'<section class="gite-mese" aria-labelledby="mese-{m}">\n<h2 id="mese-{m}" class="h3">{MESI[mm - 1].capitalize()} {y}</h2>\n<div class="gite-righe">')
+            mese = m
+        out.append(gita_html(g, oggi))
+    if mese:
+        out.append("</div>\n</section>")
+    return "\n".join(out)
+
+
+def gite():
+    import datetime
+    oggi = datetime.date.today().isoformat()
+    lista = [g for g in gite_dati() if (g["al"] or g["dal"]) >= oggi]
+    body = page_hero([("Attività", "index.html#attivita"), ("Programma gite", None)], "Programma gite",
+                     "Gite, corsi ed eventi della sezione, aggiornati in tempo reale dal portale Droptour, dove ci si iscrive.") + f"""
+
+<section class="section" aria-label="Elenco delle gite">
+<div class="container">
+<div class="gite-filtri" id="gite-filtri" hidden>
+<div class="filtro" role="group" aria-label="Filtra per gruppo" data-campo="gruppi"></div>
+<div class="filtro" role="group" aria-label="Filtra per tipo" data-campo="tipo"></div>
+</div>
+<p class="small filtro-stato" id="gite-stato" aria-live="polite"></p>
+<div class="gite" id="gite" data-api="{GITE_API}" data-copia="{asset('data/gite.json')}">
+{gite_lista(lista, oggi) if lista else '<p>Il programma non è disponibile in questo momento: lo trovi su <a href="' + GITE_DROPTOUR + '">Droptour</a>.</p>'}
+</div>
+<div class="callout">
+<p>Le iscrizioni, l’accesso per soci e capigita e i dettagli di ogni gita sono sul portale Droptour. Per le domande su una gita scrivi al capogita, dalla pagina della gita.</p>
+<div class="actions"><a class="btn btn--secondary" href="{GITE_DROPTOUR}" rel="noopener">Programma completo su Droptour</a><a class="btn btn--secondary" href="{GITE_ICS}">Calendario (iCal)</a><a class="btn btn--secondary" href="documenti.html">Scale di difficoltà</a></div>
+</div>
+</div>
+</section>
+
+{subnav("Attività", "gite.html")}"""
+    return page("gite.html", "Programma gite | CAS Ticino",
+                "Il programma delle gite, dei corsi e degli eventi della Sezione Ticino del Club Alpino Svizzero, con le iscrizioni su Droptour.",
+                body, og="attivita/gite-2x1", section="Attività", scripts=f'<script src="{asset("assets/gite.js")}" defer></script>\n')
+
+
+def gita_pagina():
+    """Dettaglio di una gita: gita.html?id=<numero Droptour>, riempita da gite.js (dati in tempo reale da Droptour)."""
+    body = page_hero([("Attività", "index.html#attivita"), ("Programma gite", "gite.html"), ("Gita", None)], "Gita",
+                     "Caricamento della gita…").replace('class="display fit"', 'class="display display--gita fit"') + f"""
+
+<section class="section" aria-label="Dettagli della gita">
+<div class="container detail gita-dettaglio" id="gita" data-api="{GITE_API}" data-dettaglio="{GITE_DETTAGLIO}"
+ data-droptour="{GITE_DROPTOUR}" data-copia="{asset('data/gite.json')}">
+<div class="detail-intro">
+<p id="gita-stato"></p>
+<div class="actions" id="gita-azioni"><a class="btn btn--secondary" href="gite.html">Programma gite</a></div>
+</div>
+<div id="gita-dati"><noscript><p>Per vedere la gita serve JavaScript: la trovi nel <a href="{GITE_DROPTOUR}">programma su Droptour</a>.</p></noscript></div>
+</div>
+</section>
+
+{subnav("Attività", "gita.html")}"""
+    return page("gita.html", "Gita | CAS Ticino", "Dettagli di una gita della Sezione Ticino del CAS, con l’iscrizione su Droptour.",
+                body, og="attivita/gite-2x1", section="Attività", scripts=f'<script src="{asset("assets/gite.js")}" defer></script>\n')
+
+
 def foto():
     body = page_hero([("Media", "index.html#media"), ("Foto e resoconti", None)], "Foto e resoconti", "Le foto e i resoconti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.") + f"""
 
@@ -1935,7 +2078,7 @@ def giovani():
 <div class="container detail">
 <div class="detail-intro">
 <h2 id="iscr-h" class="h2">Iscrizioni<br>e costi</h2>
-<div><a class="link" href="{GITE_GIOVANI}">Programma giovani su Droptour</a></div>
+<div><a class="link" href="{GITE_GIOVANI}">Programma giovani</a></div>
 </div>
 <div data-reveal>
 {facts(rows)}
@@ -2543,7 +2686,7 @@ def adesione_tradotta():
 
 TIPI = {"news/": "Notizia", "capanne/": "Capanna", "campotencia.html": "Capanna", "cristallina.html": "Capanna", "adula.html": "Capanna",
         "motterascio.html": "Capanna", "montebar.html": "Capanna", "baitadelluca.html": "Capanna"}
-FUORI_INDICE = {"news.html", "cerca.html"}  # elenchi che ripetono il contenuto di altre pagine
+FUORI_INDICE = {"gita.html", "news.html", "cerca.html"}  # elenchi che ripetono il contenuto di altre pagine
 
 
 def solo_testo(frammento):
@@ -2589,6 +2732,9 @@ def indice_ricerca(pagine):
         if a.get("photos"):
             voci.append({"t": a["title"], "u": a.get("link") or "foto.html", "k": "Foto e resoconto gita", "d": a.get("date", ""),
                          "dt": data_it(a["date"]) if a.get("date") else "", "x": " ".join(filter(None, [a.get("place"), a.get("text")]))[:3000]})
+    for g in gite_dati():
+        voci.append({"t": g["titolo"], "u": f"gita.html?id={g['id']}", "k": "Gita", "d": g["dal"], "dt": data_it(g["dal"]),
+                     "x": " ".join(filter(None, [g["tipo"], ", ".join(g["gruppi"]), ", ".join(g["capigita"]), g["descrizione"]]))})
     return {"voci": voci}
 
 
@@ -2615,7 +2761,7 @@ PAGES = {
     "index.html": home,
     "introduzione.html": introduzione, "comitato.html": comitato, "organizzazione.html": organizzazione,
     "sede.html": sede, "storia.html": storia, "link.html": link, "documenti.html": documenti,
-    "news.html": news, "foto.html": foto, "annuari.html": annuari, "informazione.html": informazione,
+    "news.html": news, "gite.html": gite, "gita.html": gita_pagina, "foto.html": foto, "annuari.html": annuari, "informazione.html": informazione,
     "adesione.html": adesione,
     "giovani.html": giovani, "senior.html": senior, "corsi.html": corsi, "noleggio.html": noleggio,
     "soccorso.html": soccorso, "capigita.html": capigita,
@@ -2721,7 +2867,7 @@ if __name__ == "__main__":
     if not only or "404.html" in only:
         scrivi("404.html", pagina_404())
     # sempre, come cerca.json: cambia quando si aggiunge o toglie una pagina (es. una news)
-    scrivi("sitemap.xml", sitemap(list(pagine) + ["cerca.html"]))
+    scrivi("sitemap.xml", sitemap([p for p in pagine if p != "gita.html"] + ["cerca.html"]))  # gita.html vale solo con ?id=
     scrivi("robots.txt", f"User-agent: *\nDisallow: /admin/\n\nSitemap: {SITO}sitemap.xml\n")
     with open(os.path.join(ROOT, "data", "cerca.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(indice_ricerca(pagine), f, ensure_ascii=False, separators=(",", ":"))

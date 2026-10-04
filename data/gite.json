@@ -1,0 +1,990 @@
+{
+ "gite": [
+  {
+   "id": "2174",
+   "titolo": "Gita MTB con Banca Stato",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2174",
+   "dal": "2026-10-04",
+   "al": "",
+   "tipo": "Mountain-Bike",
+   "sigla": "MTB",
+   "gruppi": [
+    "Attivi"
+   ],
+   "capigita": [
+    "Marco Buck"
+   ],
+   "cond": "B",
+   "tecn": "",
+   "descrizione": "",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-09-29",
+   "modalita": "tramite www.viviiltuoticino.ch",
+   "iscritti": 0,
+   "posti": 20,
+   "stato": "completa"
+  },
+  {
+   "id": "2088",
+   "titolo": "Colonna di soccorso - Primo martedì del mese",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2088",
+   "dal": "2026-10-06",
+   "al": "",
+   "tipo": "Soccorso",
+   "sigla": "SOC",
+   "gruppi": [
+    "Soccorso"
+   ],
+   "capigita": [
+    "Simon Vanoncini",
+    "Matteo Umiker"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "Primo martedì del mese",
+   "iscrizione": false,
+   "iscrizione_dal": "",
+   "iscrizione_al": "",
+   "modalita": "www.soccorsoalpino-ti.ch",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2171",
+   "titolo": "Capanne - Chiusura capanne",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2171",
+   "dal": "2026-10-10",
+   "al": "2026-10-11",
+   "tipo": "Evento",
+   "sigla": "EVE",
+   "gruppi": [
+    "Attivi"
+   ],
+   "capigita": [
+    "Richard Knupfer"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "Diamo una mano ai nostri guardiani per i lavori di chiusura delle capanne",
+   "iscrizione": false,
+   "iscrizione_dal": "",
+   "iscrizione_al": "",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "1947",
+   "titolo": "Teambuilding capigita - Arrampicata Val di Mello",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=1947",
+   "dal": "2026-10-10",
+   "al": "",
+   "tipo": "Evento",
+   "sigla": "EVE",
+   "gruppi": [
+    "Monitori"
+   ],
+   "capigita": [
+    "Andrea Ghidotti"
+   ],
+   "cond": "B",
+   "tecn": "5c",
+   "descrizione": "Arrampicata tra monitori e aiuto in Val di Mello su granito spaziale. Le vie verranno selezionate in base al numero di partecipanti e alle capacità. (Ad esempio ferrocinetica, tunnel diagonale, cunicolo acuto, alba del Nirvana, lamone e le sue placche, magic lina e sfera di cristallo, vortice di fiabe, ecc.) Partenza presto dal Ticino e trasferta a San Martino in Val Masino. Arrampicata su un paio di vie in Val di Mello. Cena valtellinese per concludere insieme la giornata. Rientro in Ticino. Nota: indispensabile conoscenza impiego protezioni mobili (friends, nuts)",
+   "iscrizione": true,
+   "iscrizione_dal": "2025-12-01",
+   "iscrizione_al": "2026-10-09",
+   "modalita": "",
+   "iscritti": 4,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2036",
+   "titolo": "Visita alla Miniera di Sessa",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2036",
+   "dal": "2026-10-10",
+   "al": "",
+   "tipo": "Cultura",
+   "sigla": "CUL",
+   "gruppi": [
+    "Tutti"
+   ],
+   "capigita": [
+    "Franco Bertoni",
+    "Nadir Caduff"
+   ],
+   "cond": "A",
+   "tecn": "T1",
+   "descrizione": "Visita alla Miniera di Sessa",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-09-30",
+   "modalita": "",
+   "iscritti": 16,
+   "posti": 0,
+   "stato": "completa"
+  },
+  {
+   "id": "2159",
+   "titolo": "Giovanissimi - Rovine del Castelliere - Locarnese",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2159",
+   "dal": "2026-10-11",
+   "al": "",
+   "tipo": "Arrampicata",
+   "sigla": "ARR",
+   "gruppi": [
+    "Tutti"
+   ],
+   "capigita": [
+    "Giosiana Codoni",
+    "Nadir Caduff"
+   ],
+   "cond": "A",
+   "tecn": "4a",
+   "descrizione": "Gita familiare, giornata ricreativa in falesia con i nostri bimbi. I bambini arrampicano sotto la responsabilità dei propri genitori.",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "",
+   "modalita": "",
+   "iscritti": 4,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2037",
+   "titolo": "Lago di Carì 2255 m - Valle Leventina",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2037",
+   "dal": "2026-10-15",
+   "al": "",
+   "tipo": "Escursionismo",
+   "sigla": "ESC",
+   "gruppi": [
+    "Seniori"
+   ],
+   "capigita": [
+    "Milvia Carelli"
+   ],
+   "cond": "B",
+   "tecn": "T2",
+   "descrizione": "Da Carì al laghetto e ritorno.",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-10-13",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 20,
+   "stato": ""
+  },
+  {
+   "id": "2157",
+   "titolo": "Topografia dalla carta al digitale, serata d'istru",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2157",
+   "dal": "2026-10-15",
+   "al": "",
+   "tipo": "Corso di formazione",
+   "sigla": "COR",
+   "gruppi": [
+    "Tutti"
+   ],
+   "capigita": [
+    "David Stracquadanio"
+   ],
+   "cond": "",
+   "tecn": "LCI",
+   "descrizione": "Luogo _ Coordinate 2.712.016 1.093.279 Ore 19:45 Partecipanti con un minimo di dimestichezza con uso della carta topografica 1:25000 e dei sistemi informatici come PC - iPhone - iPad Inizieremo utilizzando la carta topografica, Azimut, dopodiché ci concentreremo con i sistemi informatici, applicazione SwissTopo. Allarme Rega ?. Piccoli consigli ? video sui soccorsi ... dopo un'eventuale richiesta d'intervento Durata al massimo fino alle 22:30 Parcheggi in zona",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "",
+   "modalita": "",
+   "iscritti": 3,
+   "posti": 20,
+   "stato": ""
+  },
+  {
+   "id": "2089",
+   "titolo": "Colonna di soccorso - Corso sezionale estivo",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2089",
+   "dal": "2026-10-17",
+   "al": "2026-10-18",
+   "tipo": "Soccorso",
+   "sigla": "SOC",
+   "gruppi": [
+    "Soccorso"
+   ],
+   "capigita": [
+    "Simon Vanoncini",
+    "Matteo Umiker"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "Corso sezionale estivo",
+   "iscrizione": false,
+   "iscrizione_dal": "",
+   "iscrizione_al": "",
+   "modalita": "www.soccorsoalpino-ti.ch",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2038",
+   "titolo": "Giro ad anello in Valsolda 580 m - Italia",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2038",
+   "dal": "2026-10-22",
+   "al": "",
+   "tipo": "Escursionismo",
+   "sigla": "ESC",
+   "gruppi": [
+    "Seniori"
+   ],
+   "capigita": [
+    "Walter Baumgartner"
+   ],
+   "cond": "B",
+   "tecn": "T2",
+   "descrizione": "Giro ad anello: da Dasio saliamo alla Forcola, passando all'alpe di Cima saliamo alla Bocchetta di Pessina per poi scendere al Passo Stretto. Da quì scenderemo e ritorneremo a Dasio.",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-10-20",
+   "modalita": "",
+   "iscritti": 3,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "1915",
+   "titolo": "Vie lunghe - Bellinzonese e Locarnese",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=1915",
+   "dal": "2026-10-24",
+   "al": "2026-10-25",
+   "tipo": "Arrampicata",
+   "sigla": "ARR",
+   "gruppi": [
+    "Attivi",
+    "Giovani"
+   ],
+   "capigita": [
+    "Loris Carpineti",
+    "Nadir Caduff"
+   ],
+   "cond": "B",
+   "tecn": "5b",
+   "descrizione": "",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-10-22",
+   "modalita": "",
+   "iscritti": 13,
+   "posti": 12,
+   "stato": ""
+  },
+  {
+   "id": "2039",
+   "titolo": "Castagnata",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2039",
+   "dal": "2026-10-29",
+   "al": "",
+   "tipo": "Evento",
+   "sigla": "EVE",
+   "gruppi": [
+    "Seniori"
+   ],
+   "capigita": [
+    "Fausto Cattalini"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-09-01",
+   "iscrizione_al": "2026-10-27",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2149",
+   "titolo": "Giovani Spider e Junior - Denti della Vecchia",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2149",
+   "dal": "2026-10-31",
+   "al": "2026-11-03",
+   "tipo": "Arrampicata",
+   "sigla": "ARR",
+   "gruppi": [
+    "Giovani"
+   ],
+   "capigita": [
+    "Nicola Martinoni",
+    "Giosiana Codoni"
+   ],
+   "cond": "A",
+   "tecn": "4a",
+   "descrizione": "",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-10-28",
+   "modalita": "",
+   "iscritti": 19,
+   "posti": 0,
+   "stato": "completa"
+  },
+  {
+   "id": "2090",
+   "titolo": "Colonna di soccorso - Primo martedì del mese",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2090",
+   "dal": "2026-11-03",
+   "al": "",
+   "tipo": "Soccorso",
+   "sigla": "SOC",
+   "gruppi": [
+    "Soccorso"
+   ],
+   "capigita": [
+    "Simon Vanoncini",
+    "Matteo Umiker"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "Primo martedì del mese",
+   "iscrizione": false,
+   "iscrizione_dal": "",
+   "iscrizione_al": "",
+   "modalita": "www.soccorsoalpino-ti.ch",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2207",
+   "titolo": "Giovani, OG - Finale Ligure - Italia",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2207",
+   "dal": "2026-11-05",
+   "al": "2026-11-08",
+   "tipo": "Arrampicata",
+   "sigla": "ARR",
+   "gruppi": [
+    "Giovani"
+   ],
+   "capigita": [
+    "Alessandro Piazzoli",
+    "Diego Romelli"
+   ],
+   "cond": "A",
+   "tecn": "5c",
+   "descrizione": "",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-09-03",
+   "iscrizione_al": "2026-10-18",
+   "modalita": "",
+   "iscritti": 12,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2040",
+   "titolo": "Monti di Lego 1100 m - Locarnese",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2040",
+   "dal": "2026-11-05",
+   "al": "",
+   "tipo": "Escursionismo",
+   "sigla": "ESC",
+   "gruppi": [
+    "Seniori"
+   ],
+   "capigita": [
+    "Fausto Cattalini"
+   ],
+   "cond": "A",
+   "tecn": "T2",
+   "descrizione": "Da Viona comoda salita fino ai Monti di Lego, balcone panoramico sul Lago Maggiore. Discesa lungo il sentiero percorso in salita.",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-11-03",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "1914",
+   "titolo": "Arrampicate a Finale Ligure - Italia",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=1914",
+   "dal": "2026-11-06",
+   "al": "2026-11-08",
+   "tipo": "Arrampicata",
+   "sigla": "ARR",
+   "gruppi": [
+    "Attivi",
+    "Giovani"
+   ],
+   "capigita": [
+    "Loris Carpineti",
+    "Chiara Crivelli"
+   ],
+   "cond": "A",
+   "tecn": "4b",
+   "descrizione": "",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-11-04",
+   "modalita": "",
+   "iscritti": 21,
+   "posti": 20,
+   "stato": "completa"
+  },
+  {
+   "id": "2041",
+   "titolo": "Trekking in Valle Maggia",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2041",
+   "dal": "2026-11-12",
+   "al": "",
+   "tipo": "Escursionismo",
+   "sigla": "ESC",
+   "gruppi": [
+    "Seniori"
+   ],
+   "capigita": [
+    "Fausto Cattalini"
+   ],
+   "cond": "A",
+   "tecn": "T2",
+   "descrizione": "Avegno - Ponte Brolla - Avegno",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-11-10",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2063",
+   "titolo": "Corso avanzato di arrampicata, 2a uscita",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2063",
+   "dal": "2026-11-14",
+   "al": "",
+   "tipo": "Corso di formazione",
+   "sigla": "COR",
+   "gruppi": [
+    "Attivi",
+    "Giovani"
+   ],
+   "capigita": [
+    "Loris Carpineti",
+    "Chiara Crivelli"
+   ],
+   "cond": "",
+   "tecn": "LCII",
+   "descrizione": "Vitto e alloggio del weekend e il costo dei due maestri per i quattro giorni. Il programma prevede una giornata di istruzione sull'arrampicata Trad e una giornata di tecnica di arrampicata mentre negli altri due giorni, manipolazioni di corda e sarà fatto un allenamento specifico personalizzato. Requisiti richiesti: essere in chiaro al 100% su tutte le manovre di corda e essere in grado di arrampicare un 5c6a da primo di cordata.",
+   "iscrizione": false,
+   "iscrizione_dal": "",
+   "iscrizione_al": "",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 12,
+   "stato": ""
+  },
+  {
+   "id": "2163",
+   "titolo": "Ferrata Monte Grona",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2163",
+   "dal": "2026-11-14",
+   "al": "",
+   "tipo": "Via ferrata",
+   "sigla": "FER",
+   "gruppi": [
+    "Attivi",
+    "Giovani"
+   ],
+   "capigita": [
+    "Giovanni Galli",
+    "Sila Cittadini Ghiringhelli"
+   ],
+   "cond": "B",
+   "tecn": "K3",
+   "descrizione": "Via ferrata nella zona del lago di como, rivolto a Sud.",
+   "iscrizione": true,
+   "iscrizione_dal": "2025-12-01",
+   "iscrizione_al": "",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 12,
+   "stato": ""
+  },
+  {
+   "id": "2091",
+   "titolo": "Colonna di soccorso - PCI Lugano Campagna",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2091",
+   "dal": "2026-11-17",
+   "al": "",
+   "tipo": "Soccorso",
+   "sigla": "SOC",
+   "gruppi": [
+    "Soccorso"
+   ],
+   "capigita": [
+    "Simon Vanoncini",
+    "Matteo Umiker"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "PCI Lugano Campagna",
+   "iscrizione": false,
+   "iscrizione_dal": "",
+   "iscrizione_al": "",
+   "modalita": "www.soccorsoalpino-ti.ch",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2167",
+   "titolo": "Corso di sci fuori pista (presentazione)",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2167",
+   "dal": "2026-11-18",
+   "al": "",
+   "tipo": "Corso di formazione",
+   "sigla": "COR",
+   "gruppi": [
+    "Attivi",
+    "Giovani"
+   ],
+   "capigita": [
+    "Thomas Arn",
+    "Chiara Medolago"
+   ],
+   "cond": "",
+   "tecn": "LCII",
+   "descrizione": "Serata di presentazione del corso *tecnica di sci fuori pista, edizione 2027.",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-10-01",
+   "iscrizione_al": "2026-11-18",
+   "modalita": "",
+   "iscritti": 3,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2042",
+   "titolo": "Giro della valle di Lodano 1300 m - Valle Maggia",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2042",
+   "dal": "2026-11-19",
+   "al": "",
+   "tipo": "Escursionismo",
+   "sigla": "ESC",
+   "gruppi": [
+    "Seniori"
+   ],
+   "capigita": [
+    "Monica Stoppani",
+    "Emanuela Gastori"
+   ],
+   "cond": "B",
+   "tecn": "T2",
+   "descrizione": "Giro ad anello Val Lodano",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-11-17",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": "annullata"
+  },
+  {
+   "id": "1952",
+   "titolo": "Arrampicata al caldo - Locarnese",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=1952",
+   "dal": "2026-11-22",
+   "al": "",
+   "tipo": "Arrampicata",
+   "sigla": "ARR",
+   "gruppi": [
+    "Attivi",
+    "Giovani",
+    "Seniori"
+   ],
+   "capigita": [
+    "Marco Da Rold",
+    "Giosiana Codoni"
+   ],
+   "cond": "A",
+   "tecn": "5a",
+   "descrizione": "Arrampicate in compagnia in una falesia calda del Locarnese, Verbano, Valle Maggia a dipendenza del...caldo.",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-11-20",
+   "modalita": "",
+   "iscritti": 4,
+   "posti": 20,
+   "stato": ""
+  },
+  {
+   "id": "2092",
+   "titolo": "Colonna di soccorso - Simulazione intervento",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2092",
+   "dal": "2026-11-24",
+   "al": "",
+   "tipo": "Soccorso",
+   "sigla": "SOC",
+   "gruppi": [
+    "Soccorso"
+   ],
+   "capigita": [
+    "Simon Vanoncini",
+    "Matteo Umiker"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "Simulazione intervento",
+   "iscrizione": false,
+   "iscrizione_dal": "",
+   "iscrizione_al": "",
+   "modalita": "www.soccorsoalpino-ti.ch",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2044",
+   "titolo": "Percorso basso Morcote 600 m - Luganese",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2044",
+   "dal": "2026-11-26",
+   "al": "",
+   "tipo": "Escursionismo",
+   "sigla": "ESC",
+   "gruppi": [
+    "Seniori"
+   ],
+   "capigita": [
+    "Piergiorgio Gin Vassalli"
+   ],
+   "cond": "A",
+   "tecn": "T2",
+   "descrizione": "Percorso basso da Melide a Morcote",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-11-24",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2105",
+   "titolo": "Serata di introduzione a manutenzione e cura sci",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2105",
+   "dal": "2026-11-27",
+   "al": "",
+   "tipo": "Corso di formazione",
+   "sigla": "COR",
+   "gruppi": [
+    "Attivi",
+    "Giovani",
+    "Seniori"
+   ],
+   "capigita": [
+    "Marco Da Rold",
+    "Richard Knupfer"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "Mostriamo come preparare i nostri amati e costosi sci alla nuova imminente stagione; come si toglie la ruggine dagli spigoli, che poi verranno affilati come rasoi. Quindi il fondo verrà riportato allo splendore che aveva appena uscito dal negozio e quindi impregnato da un sottile strato di cera, rigorosamente priva di fluoro, che li renderà dei missili su ogni tipo di neve. Sperando che la neve appunto arrivi....",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-11-25",
+   "modalita": "",
+   "iscritti": 1,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2145",
+   "titolo": "Teambuilding capigita - Weekend di sci - VS",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2145",
+   "dal": "2026-11-28",
+   "al": "2026-11-29",
+   "tipo": "Evento",
+   "sigla": "EVE",
+   "gruppi": [
+    "Attivi"
+   ],
+   "capigita": [
+    "Alessandro Docimo",
+    "Nicolò Poretti"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "Weekend a Zermatt.",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-11-26",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": "annullata"
+  },
+  {
+   "id": "2093",
+   "titolo": "Colonna di soccorso - Conviviale di fine anno",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2093",
+   "dal": "2026-12-01",
+   "al": "",
+   "tipo": "Soccorso",
+   "sigla": "SOC",
+   "gruppi": [
+    "Soccorso"
+   ],
+   "capigita": [
+    "Simon Vanoncini",
+    "Matteo Umiker"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "Conviviale di fine anno",
+   "iscrizione": false,
+   "iscrizione_dal": "",
+   "iscrizione_al": "",
+   "modalita": "www.soccorsoalpino-ti.ch",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2096",
+   "titolo": "Corso base di sci alpinismo (presentazione)",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2096",
+   "dal": "2026-12-03",
+   "al": "",
+   "tipo": "Corso di formazione",
+   "sigla": "COR",
+   "gruppi": [
+    "Attivi",
+    "Giovani"
+   ],
+   "capigita": [
+    "Geoffroy Jolly",
+    "Alessandro Vanoni"
+   ],
+   "cond": "",
+   "tecn": "LCI",
+   "descrizione": "Gio 03.12.2026 (ore 18:15): Serata di presentazione (LuganeseBellinzonese o Teams) Sab 09.01.2027 (ore 08:00): Giornata introduttiva tecnica (Airolo) Mar 12.01.2027 (ore 18:30): Teoria: nivologia, ARTVA e autosoccorso (Mezzovico-Vira) 16-17.01.2027: 1 uscita (Val Bedretto, Capanna Piansecco) 20-21.02.2027: 2 uscita (Furkapass, Hotel Tiefenbach) 06-07.03.2027: 3 uscita (Camona da Maighels Capanna Maighels)",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-10-01",
+   "iscrizione_al": "2026-12-01",
+   "modalita": "",
+   "iscritti": 19,
+   "posti": 30,
+   "stato": ""
+  },
+  {
+   "id": "2045",
+   "titolo": "Monte Piambello 1125 m - Italia",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2045",
+   "dal": "2026-12-03",
+   "al": "",
+   "tipo": "Escursionismo",
+   "sigla": "ESC",
+   "gruppi": [
+    "Seniori"
+   ],
+   "capigita": [
+    "Luca Salzborn"
+   ],
+   "cond": "A",
+   "tecn": "T2",
+   "descrizione": "Da alpe Tedesco (in Val Ganna) percorso panoramico attorno al Monte Piambello",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-12-01",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "1985",
+   "titolo": "Festa conviviale della Sezione",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=1985",
+   "dal": "2026-12-09",
+   "al": "",
+   "tipo": "Evento",
+   "sigla": "EVE",
+   "gruppi": [
+    "Tutti"
+   ],
+   "capigita": [
+    "Comitato CAS Ticino"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-11-01",
+   "iscrizione_al": "2026-12-02",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2046",
+   "titolo": "Strecc da Vignun 2586 m - GR",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2046",
+   "dal": "2026-12-09",
+   "al": "",
+   "tipo": "Scialpinismo",
+   "sigla": "SA",
+   "gruppi": [
+    "Seniori"
+   ],
+   "capigita": [
+    "Luca Salzborn"
+   ],
+   "cond": "B",
+   "tecn": "PD",
+   "descrizione": "Da San Bernardino facile salita verso il passo e per chi se la sente si prosegue verso quota 2586 m.",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-12-07",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2147",
+   "titolo": "Corso di aggiornamento invernale per monitori",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2147",
+   "dal": "2026-12-13",
+   "al": "",
+   "tipo": "Corso di formazione",
+   "sigla": "COR",
+   "gruppi": [
+    "Monitori"
+   ],
+   "capigita": [
+    "Pierre Crivelli",
+    "Geoffroy Jolly"
+   ],
+   "cond": "A",
+   "tecn": "LCI",
+   "descrizione": "",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-05-01",
+   "iscrizione_al": "2026-12-11",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": ""
+  },
+  {
+   "id": "2165",
+   "titolo": "Corso avanzato racchette (presentazione)",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2165",
+   "dal": "2026-12-15",
+   "al": "",
+   "tipo": "Corso di formazione",
+   "sigla": "COR",
+   "gruppi": [
+    "Attivi",
+    "Giovani"
+   ],
+   "capigita": [
+    "Pierre Crivelli"
+   ],
+   "cond": "B",
+   "tecn": "WT3",
+   "descrizione": "Il corso è adatto a tutte le persone le quali svolgo già attività con le racchette e desiderano approfondire le conoscenze invernali come: pianificazione, gestione del rischio valanghe, valutazione della situazione in inverno. Durante il corso vengo consolidate le tecniche e tattiche per come mouversi in sicurezza in ambiente invernale in montagna. Questo su percorsi non segnati in racchette. Il corso dura 3 giornata consegutivi, Febbraio 2027",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-10-01",
+   "iscrizione_al": "",
+   "modalita": "La conferma dell'iscrizione avverrà alla serata di presentazione",
+   "iscritti": 0,
+   "posti": 7,
+   "stato": ""
+  },
+  {
+   "id": "2164",
+   "titolo": "Corso base racchette (presentazione)",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2164",
+   "dal": "2026-12-15",
+   "al": "",
+   "tipo": "Corso di formazione",
+   "sigla": "COR",
+   "gruppi": [
+    "Attivi",
+    "Giovani"
+   ],
+   "capigita": [
+    "Jessica Poretti",
+    "Laura Ortelli"
+   ],
+   "cond": "",
+   "tecn": "",
+   "descrizione": "Lun 15.12.2026 (ore 19:00): Serata introduttiva (Luganese) Mar 12.01.2027 (ore 18:30): Serata teorica: nivologia e bollettino valanghe (Mezzovico o online) Sab 16.01.2027: 1 giornata: sicurezza ARTVA, pala e sonda (Airolo) 23-24.01.2027: 1 uscita (Val Bedretto, Capanna Piansecco) 13-14.02.2027: 2 uscita (Regione Oberalp, Capanna Maighels)",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-10-01",
+   "iscrizione_al": "",
+   "modalita": "La conferma dell'iscrizione avverrà alla serata di presentazione il 16 Dicembre 2026 con il pagamento in contanti della quota",
+   "iscritti": 0,
+   "posti": 20,
+   "stato": ""
+  },
+  {
+   "id": "2239",
+   "titolo": "Giovani: OG, Junior - Tecnica sci e valanghe",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2239",
+   "dal": "2026-12-19",
+   "al": "",
+   "tipo": "Corso di formazione",
+   "sigla": "COR",
+   "gruppi": [
+    "Giovani"
+   ],
+   "capigita": [
+    "Niccolò Galliani",
+    "Marco Buck"
+   ],
+   "cond": "A",
+   "tecn": "PD",
+   "descrizione": "Giornata di tecnica di sci & valanghe in pista e fuori pista; l'obiettivo è quello di togliere la ruggine dell'estate e migliorare in vista delle uscite di sci alpinismo.",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-10-01",
+   "iscrizione_al": "2026-12-06",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 15,
+   "stato": ""
+  },
+  {
+   "id": "2242",
+   "titolo": "Giovani: OG,Junior - Corso Sci alpinismo,1a uscita",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2242",
+   "dal": "2027-01-09",
+   "al": "",
+   "tipo": "Corso di formazione",
+   "sigla": "COR",
+   "gruppi": [
+    "Giovani"
+   ],
+   "capigita": [
+    "Jacopo Soldini",
+    "Nicola Martinoni"
+   ],
+   "cond": "B",
+   "tecn": "AD",
+   "descrizione": "Un corso volto ad imparare le basi dello sci alpinismo, nell'arco di due giornate ed un weekend; sia per quanto riguarda la tecnica di progressione che le conoscenze nivologiche e di utilizzo della strumentazione di ricerca. 2a uscita: 23012027 3a uscita: 13-14022027",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-10-01",
+   "iscrizione_al": "2026-12-20",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 12,
+   "stato": ""
+  }
+ ]
+}

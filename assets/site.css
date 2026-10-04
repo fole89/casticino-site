@@ -21,6 +21,7 @@
   --accent:#EF1C24;        /* rosso CAS */
   --accent-hover:#C9141B;
   --accent-ink:#FFFFFF;
+  --ok:#2F7A4A;            /* iscrizioni aperte (programma gite) */
   /* feste (site.js): colori degli effetti sulla foto della home */
   --festa-giallo:#F6C445;
   --festa-verde:#3E8E4F;
@@ -471,6 +472,50 @@ dl,dd{margin:0}
 .filtro button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
 .filtro button .num{font-size:13px;opacity:.7}
 .filtro-stato{margin:14px 0 24px;min-height:1.5em}
+
+/* ------------------------------------------------------------------ programma gite (gite.html, gite.js) */
+.gite-filtri{display:grid;gap:10px}
+.gite-filtri[hidden]{display:none}
+.gite{display:grid;gap:clamp(40px,5vw,64px)}
+.gite-mese{display:grid;gap:12px}
+.gite-mese[hidden],.gita[hidden]{display:none}
+.gite-mese>h2{padding-bottom:12px;border-bottom:1.5px solid var(--ink)}
+.gite-righe{display:grid}
+.gita{display:grid;grid-template-columns:100px minmax(0,1fr) minmax(200px,auto);gap:12px 28px;align-items:start;padding:20px 0;border-bottom:1px solid var(--line);scroll-margin-top:calc(var(--nav-h) + 24px)}
+.gita-data{display:grid;gap:2px}
+.gita-giorno{white-space:nowrap;font-size:clamp(24px,2.2vw,30px);font-weight:650;letter-spacing:-.04em;line-height:1}
+.gita-sotto{font-size:14px;color:var(--muted)}
+.gita-corpo{display:grid;gap:6px;min-width:0}
+.gita-tipo{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+.gita-titolo{font-size:clamp(18px,1.5vw,21px);font-weight:620;letter-spacing:-.02em;line-height:1.25;overflow-wrap:anywhere}
+.gita-titolo a{color:var(--ink);text-decoration:none}
+.gita-titolo a:hover{color:var(--accent)}
+.gita-meta{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:14.5px;color:var(--muted)}
+.gita-stato{display:grid;gap:4px;justify-items:end;text-align:right}
+.stato{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;color:var(--ink-2)}
+.stato::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--line-strong)}
+.stato--aperte{color:var(--ok)}
+.stato--aperte::before{background:var(--ok)}
+.stato--completa,.stato--annullata{color:var(--accent)}
+.stato--completa::before,.stato--annullata::before{background:var(--accent)}
+.gita-posti,.gita-nota{font-size:14px;color:var(--muted)}
+.gita-link{min-height:36px}
+.gita--annullata .gita-titolo a{text-decoration:line-through;text-decoration-thickness:1.5px;color:var(--muted)}
+.display--gita{font-size:clamp(36px,4.4vw,64px);line-height:1;letter-spacing:-.04em;max-width:24ch}
+.gita-dettaglio .detail-intro{position:sticky;top:calc(var(--nav-h) + 32px);align-content:start}
+.gita-dettaglio .stato{font-size:16px}
+.gita-testo{white-space:pre-line;overflow-wrap:anywhere}
+.gita-avviso{margin-top:20px}
+@media (max-width:900px){.gita-dettaglio .detail-intro{position:static}}
+.gita--evidenza{background:linear-gradient(90deg,var(--surface),transparent)}
+@media (max-width:760px){
+  .gita{grid-template-columns:76px minmax(0,1fr);gap:10px 16px}
+  .gita-giorno{font-size:22px}
+  .gite-filtri .filtro{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter)}
+  .gite-filtri .filtro::-webkit-scrollbar{display:none}
+  .gite-filtri .filtro button{flex-shrink:0}
+  .gita-stato{grid-column:2;justify-items:start;text-align:left}
+}
 
 /* fasce d'età (giovani) */
 .groups{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
