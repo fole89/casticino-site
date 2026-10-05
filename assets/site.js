@@ -34,9 +34,11 @@
   var h = window.innerHeight;
   Array.prototype.forEach.call(els, function (el) { if (el.getBoundingClientRect().top < h) el.classList.add('is-in'); });
   document.documentElement.classList.add('reveal-on');
+  // i blocchi che entrano insieme (schede delle capanne, colonne) compaiono a cascata, 50 ms l'uno dall'altro (al massimo 4)
   var io = new IntersectionObserver(function (entries) {
+    var k = 0;
     entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      if (e.isIntersecting) { e.target.style.setProperty('--i', Math.min(k++, 4)); e.target.classList.add('is-in'); io.unobserve(e.target); }
     });
   }, { rootMargin: '0px 0px -8% 0px' });
   Array.prototype.forEach.call(els, function (el) { if (!el.classList.contains('is-in')) io.observe(el); });
@@ -148,8 +150,11 @@
 
   btn.setAttribute('aria-controls', 'mobile-nav');
   btn.setAttribute('aria-expanded', 'false');
-  function open() { panel.hidden = false; btn.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; close.focus(); }
-  function shut() { panel.hidden = true; btn.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; btn.focus(); }
+  // con il pannello aperto il resto della pagina non è raggiungibile (Tab resta nel menu)
+  var fuori = document.querySelectorAll('body > header, body > main, body > footer, body > .skip-link');
+  function inerte(si) { Array.prototype.forEach.call(fuori, function (el) { if (si) el.setAttribute('inert', ''); else el.removeAttribute('inert'); }); }
+  function open() { panel.hidden = false; inerte(true); btn.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; close.focus(); }
+  function shut() { panel.hidden = true; inerte(false); btn.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; btn.focus(); }
   btn.addEventListener('click', open);
   close.addEventListener('click', shut);
   panel.addEventListener('click', function (e) { if (e.target.tagName === 'A') shut(); });
@@ -221,9 +226,11 @@
 
 // CAS Ticino - home, news e prossime gite: la fila (.scorri) scorre da destra a sinistra in loop. Le schede si
 // duplicano (le copie nascoste a lettori di schermo e tastiera) e la traccia si sposta di metà: il giro non ha stacchi.
-// Si ferma al passaggio del mouse e col focus; con movimento ridotto resta da scorrere a mano.
+// Si ferma al passaggio del mouse e col focus. Solo con un mouse: sui touch (dove non si può fermare) e con movimento
+// ridotto resta da scorrere col dito.
 (function () {
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   var PX_AL_SECONDO = 40;
   Array.prototype.forEach.call(document.querySelectorAll('.scorri'), function (box) {
     var traccia = box.querySelector('.scorri-traccia');

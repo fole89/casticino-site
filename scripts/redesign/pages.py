@@ -182,7 +182,7 @@ def home():
 <span class="label">{tr("Gruppo giovani, dagli anni ’60", "Jugendgruppe, seit den 1960er-Jahren", "Youth group, since the 1960s")}</span>
 <h3 class="h2">{tr("Giovani", "Jugend", "Youth")}</h3>
 <p>{tr("Arrampicata, escursioni e settimane in montagna con monitori della sezione.", "Klettern, Wanderungen und Bergwochen mit Leitenden der Sektion.", "Climbing, hikes and mountain weeks with the section’s instructors.")}</p>
-<div class="links"><a class="link" href="giovani.html">{tr("Gruppo giovani", "Jugendgruppe", "Youth group")}</a><a class="link" href="organizzazione.html#giovani">{tr("Organizzazione", "Organisation", "Organisation")}</a></div>
+<div class="links"><a class="link" href="giovani.html">{tr("Gruppo giovani", "Jugendgruppe", "Youth group")}</a><a class="link" href="organizzazione.html#giovani">{tr("Organizzazione", "Organisation", "Organisation")}<span class="visually-hidden"> {tr("del gruppo giovani", "der Jugendgruppe", "of the youth group")}</span></a></div>
 </div>
 </article>
 <article class="tile tile--bottom-1" data-reveal>
@@ -193,7 +193,7 @@ def home():
 <p>{tr("Uscite settimanali con capigita esperti, al ritmo giusto e in buona compagnia, dalla Capriasca alle Alpi.",
        "Wöchentliche Touren mit erfahrenen Tourenleitenden, im richtigen Tempo und in guter Gesellschaft, von der Capriasca bis in die Alpen.",
        "Weekly outings with experienced trip leaders, at the right pace and in good company, from the Capriasca to the Alps.")}</p>
-<div class="links"><a class="link" href="senior.html">{tr("Gruppo senior", "Seniorengruppe", "Seniors group")}</a><a class="link" href="organizzazione.html#senior">{tr("Organizzazione", "Organisation", "Organisation")}</a></div>
+<div class="links"><a class="link" href="senior.html">{tr("Gruppo senior", "Seniorengruppe", "Seniors group")}</a><a class="link" href="organizzazione.html#senior">{tr("Organizzazione", "Organisation", "Organisation")}<span class="visually-hidden"> {tr("del gruppo senior", "der Seniorengruppe", "of the seniors group")}</span></a></div>
 </div>
 </article>
 <article class="tile tile--bottom-2" id="corsi" data-reveal>
@@ -2004,7 +2004,7 @@ def gita_html(g, oggi):
 <div class="gita-stato">
 <span class="stato{' stato--' + classe if classe else ''}">{stato}</span>
 {f'<span class="gita-posti num">{posti}</span>' if posti else ""}{modalita}
-<a class="link gita-link" href="{link}">{dettagli}</a>
+<a class="link gita-link" href="{link}">{dettagli}<span class="visually-hidden">: <span{'' if LINGUA["lang"] == "it" else ' lang="it"'}>{esc(g['titolo'])}</span></span></a>
 </div>
 </article>"""
 

@@ -61,10 +61,13 @@
     ]);
 
     var photo = el('img', { alt: '', decoding: 'async' });
+    photo.addEventListener('load', function () { photo.classList.remove('cambia'); });
+    photo.addEventListener('error', function () { photo.classList.remove('cambia'); });
     var counter = el('span', { class: 'album-count' });
     var thumbs = [];
     function show(k) {
       idx = (k + n) % n;
+      if (photo.getAttribute('src')) photo.classList.add('cambia');  // dissolvenza breve tra una foto e l'altra (CSS)
       photo.src = a.photos[idx].large;
       photo.alt = a.title + ', ' + (idx + 1) + ' ' + TX.di + ' ' + n;
       counter.textContent = (idx + 1) + ' / ' + n;

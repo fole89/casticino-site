@@ -174,7 +174,8 @@
       (meta ? '<p class="gita-meta">' + meta + '</p>' : '') + '</div>' +
       '<div class="gita-stato"><span class="stato' + (classe ? ' stato--' + classe : '') + '">' + st[1] + '</span>' +
       (posti ? '<span class="gita-posti num">' + posti + '</span>' : '') + modalita +
-      '<a class="link gita-link" href="gita.html?id=' + esc(g.id) + '">' + (classe === 'annullata' || !g.iscrizione ? TX.dettagli : TX.dettagliIscr) + '</a></div></article>';
+      '<a class="link gita-link" href="gita.html?id=' + esc(g.id) + '">' + (classe === 'annullata' || !g.iscrizione ? TX.dettagli : TX.dettagliIscr) +
+        '<span class="visually-hidden">: <span' + (LINGUA === 'it' ? '' : ' lang="it"') + '>' + esc(g.titolo) + '</span></span></a></div></article>';
   }
 
   function disegna() {

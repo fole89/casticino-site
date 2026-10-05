@@ -175,7 +175,7 @@ def nav(current_page, current_section=None):
             links = "\n".join(
                 f'<a href="{h}"{" aria-current=\"page\"" if h == current_page else ""}>{l}</a>' for l, h in sub)
             cls = "navlink dd-trigger is-current" if is_cur else "navlink dd-trigger"
-            items.append(f'<div class="dd">\n<a class="{cls}" href="{href}" aria-haspopup="true">{label} {CARET}</a>\n<div class="dd-menu">\n{links}\n</div>\n</div>')
+            items.append(f'<div class="dd">\n<a class="{cls}" href="{href}">{label} {CARET}</a>\n<div class="dd-menu">\n{links}\n</div>\n</div>')
         else:
             if href == current_page:
                 items.append(f'<a class="navlink" href="{href}" aria-current="page">{label}</a>')
