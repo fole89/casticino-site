@@ -140,7 +140,7 @@
   function riga(chiave, etichetta, nomeCompleto, sotto) {
     var d = disponibili[chiave] || [0, 0];
     if (!d[0]) { delete scelte[chiave]; return null; }   // non a magazzino
-    var liberi = d[1], max = Math.min(liberi, 20);
+    var liberi = d[1], max = liberi;
     if ((scelte[chiave] || 0) > max) scelte[chiave] = max;
     var sel = el('select', { 'aria-label': T.quantita + ': ' + nomeCompleto, 'data-chiave': chiave });
     for (var i = 0; i <= max; i++) sel.appendChild(el('option', { value: i, text: String(i) }));

@@ -153,7 +153,7 @@ async function richiesta(request, env, ctx) {
   const righe = [];
   for (const r of Array.isArray(d.righe) ? d.righe.slice(0, 40) : []) {
     const a = inv[r && r.articolo], q = Number(r && r.quantita);
-    if (!a || !Number.isInteger(q) || q < 1 || q > 20) return json({ errore: "materiale" }, 400);
+    if (!a || !Number.isInteger(q) || q < 1) return json({ errore: "materiale" }, 400);   // il massimo lo dà la disponibilità
     const taglia = a.taglie ? String(r.taglia || "") : null;
     if (a.taglie && !(taglia in a.taglie)) return json({ errore: "materiale" }, 400);
     if (righe.some((x) => x.articolo === a.id && x.taglia === taglia)) return json({ errore: "materiale" }, 400);
