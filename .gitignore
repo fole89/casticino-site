@@ -11,3 +11,8 @@ assets/img/originali/
 # elenchi con dati personali (es. capogita-attivi-2027.xlsx): mai sul sito né su git
 *.xls
 *.xlsx
+
+# skill per gli assistenti AI (npx skills add …): solo in locale, non vanno sul sito
+.agents/
+.claude/skills/
+skills-lock.json

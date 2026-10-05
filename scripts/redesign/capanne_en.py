@@ -29,7 +29,7 @@ HUT_EN = {
                  ("E-mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
     "cristallina.html": dict(
         where="Passo Cristallina, Valle Bedretto", custody="June to mid-October; in winter at weekends and on public holidays",
-        description="Capanna Cristallina, 2575 m, on the Cristallina Pass between Leventina and Valle Maggia: 100 beds, staffed from June to mid-October and in winter at weekends and on public holidays. Contacts and booking.",
+        description="Capanna Cristallina, 2575 m, on the pass between Leventina and Valle Maggia: 100 beds, staffed from June to mid-October and at winter weekends and holidays. Contacts and booking.",
         intro="Designed by the architects Baserga and Mozzetti and opened in 2003, it is the first modern hut built by the Swiss Alpine Club. It stands on the pass, at a strategic point between Leventina and Valle Maggia: a panoramic stage on the traverses to Robiei, the Naret, Campo Tencia and San Giacomo. The Cristallina lakes circuit, over one or two days, is also suitable for families; in an hour you can reach the Cristallina and the Cima di Lago. In winter, reached mainly from the north, it opens up superb slopes towards Valle Bedretto, Robiei and Val Formazza.",
         stay=[("Opening", "Always open and accessible"),
               ("Staffed", "June to mid-October; in winter, from December to the end of April, in good conditions, at weekends, on public holidays and for groups"),

@@ -28,7 +28,7 @@ HUT_DE = {
                  ("E-Mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
     "cristallina.html": dict(
         where="Passo Cristallina, Valle Bedretto", custody="Juni bis Mitte Oktober; im Winter an Wochenenden und Feiertagen",
-        description="Capanna Cristallina, 2575 m, auf dem Cristallinapass zwischen Leventina und Maggiatal: 100 Schlafplätze, bewartet von Juni bis Mitte Oktober und im Winter an Wochenenden und Feiertagen. Kontakt und Reservation.",
+        description="Capanna Cristallina, 2575 m, auf dem Pass zwischen Leventina und Maggiatal: 100 Plätze, bewartet von Juni bis Mitte Oktober und im Winter an Wochenenden und Feiertagen. Kontakt und Reservation.",
         intro="Von den Architekten Baserga und Mozzetti entworfen und 2003 eröffnet, ist sie die erste moderne Hütte des Schweizer Alpen-Clubs. Sie steht auf dem Pass, an einer strategischen Stelle zwischen Leventina und Maggiatal: aussichtsreiche Etappe auf den Übergängen nach Robiei, zum Naret, zum Campo Tencia und zum San Giacomo. Die Seenrunde am Cristallina, an einem oder zwei Tagen, eignet sich auch für Familien; in einer Stunde erreicht man den Cristallina und die Cima di Lago. Im Winter, vor allem von Norden her erreichbar, öffnen sich herrliche Hänge ins Bedrettotal, nach Robiei und ins Val Formazza.",
         stay=[("Öffnung", "Immer offen und zugänglich"),
               ("Bewartet", "Juni bis Mitte Oktober; im Winter, von Dezember bis Ende April, bei guten Verhältnissen, an Wochenenden, Feiertagen und für Gruppen"),

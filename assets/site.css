@@ -151,6 +151,11 @@ dl,dd{margin:0}
 @media (max-width:560px){
   .nav-end .btn{display:none}
   .nav-end{gap:4px}
+  .nav-inner{gap:12px}
+}
+/* telefoni stretti: i pulsanti con testo lungo vanno a capo invece di uscire dallo schermo */
+@media (max-width:480px){
+  .actions .btn{max-width:100%;white-space:normal;text-align:center;line-height:1.25;padding-block:10px}
 }
 /* sotto i 480px le lingue non stanno nella barra: le mostra il menu mobile (site.js) */
 @media (max-width:480px){
@@ -196,9 +201,8 @@ dl,dd{margin:0}
 .timeline li{display:grid;gap:6px;align-content:start;padding-top:16px;border-top:1px solid var(--line)}
 .timeline .year{font-family:var(--mono);font-size:15px;font-weight:550;color:var(--accent)}
 @media (max-width:900px){.split{grid-template-columns:1fr}.split-intro{position:static}}
-/* Home: cifre e riquadro sotto (home tradotte) ravvicinati */
+/* Home: cifre più vicine alla sezione che segue */
 .section--stats{padding-bottom:clamp(28px,3vw,44px)}
-.section--stats + .section--after-stats{padding-top:clamp(28px,3vw,44px);border-top:0}
 @media (max-width:560px){.timeline{grid-template-columns:1fr;gap:24px}}
 
 /* ------------------------------------------------------------------ news */

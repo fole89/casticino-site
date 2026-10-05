@@ -346,7 +346,7 @@ HUT_PAGES = {
     "cristallina.html": dict(
         name="Cristallina", where="Passo Cristallina, Valle Bedretto", alt_m="2575", beds="100", custody="da giugno a metà ottobre; d’inverno nei fine settimana e nei festivi",
         mail="cristallina@casticino.ch", booking=PRENOTA.format(20), facebook="https://www.facebook.com/capannacristallinacas/",
-        description="Capanna Cristallina, 2575 m, sul Passo Cristallina tra Leventina e Valle Maggia: 100 posti letto, custodita da giugno a metà ottobre e d’inverno nei fine settimana e nei festivi. Contatti e prenotazioni.",
+        description="Capanna Cristallina, 2575 m, sul passo tra Leventina e Valle Maggia: 100 posti letto, custodita da giugno a metà ottobre e d’inverno nei fine settimana e festivi. Contatti e prenotazioni.",
         band=("capanne/cristallina", "La Capanna Cristallina sul passo, tra Leventina e Valle Maggia", 558),
         intro="Progettata dagli architetti Baserga e Mozzetti e inaugurata nel 2003, è il primo rifugio moderno costruito dal Club Alpino Svizzero. Sorge sul passo, in un punto strategico tra Leventina e Valle Maggia: tappa panoramica sulle traversate verso Robiei, il Naret, il Campo Tencia e il San Giacomo. Il giro dei laghi del Cristallina, di uno o due giorni, è adatto anche alle famiglie; in un’ora si raggiungono il Cristallina e la Cima di Lago. D’inverno, raggiungibile soprattutto da nord, apre pendii splendidi verso la Valle Bedretto, Robiei e la Val Formazza.",
         stay=[("Apertura", "Sempre aperta e accessibile"),
@@ -1730,6 +1730,9 @@ def carica_news():
     for n in news_util.leggi_tutte():
         corpo = news_util.md_html(n["testo"]) if (n.get("testo") or "").strip() else n.get("html", "")
         corpo = "\n".join(x for x in (corpo, news_util.allegati_html(n.get("allegati"))) if x)
+        corpo = re.sub(r"<a\b[^>]*>\s*</a>", "", corpo)  # link vuoti rimasti dall'import da WordPress
+        if "<h2" not in corpo:  # sotto il titolo della pagina (h1) i sottotitoli partono da h2
+            corpo = re.sub(r"<(/?)h3\b", r"<\1h2", corpo)
         immagine = None
         if n.get("image") and n["image"].endswith(".webp") and os.path.exists(os.path.join(ROOT, n["image"])):
             w, h = webp_size(os.path.join(ROOT, n["image"]))
@@ -1879,7 +1882,7 @@ def news_article(i):
 </div>
 </div>
 </section>"""
-    return sezione_page(n["file"], f"{esc(n['title'])} | CAS Ticino", esc(n["excerpt"][:155]), body,
+    return sezione_page(n["file"], f"{esc(n['title'])} | CAS Ticino", esc((n["excerpt"] or n["title"])[:155]), body,
                         og=og_name(n), section=NM_MENU())
 
 
@@ -2801,7 +2804,7 @@ def annuncio_html(a):
 {fig}
 <div class="annuncio-corpo">
 <p class="annuncio-tipo annuncio-tipo--{tipo.lower()}">{tipo_l(tipo)}</p>
-<h3 class="annuncio-titolo"{it}>{esc(a['title'])}</h3>
+<h2 class="annuncio-titolo"{it}>{esc(a['title'])}</h2>
 {f'<p class="annuncio-prezzo">{esc(a["prezzo"])}</p>' if a.get("prezzo") else ""}
 {f'<div class="annuncio-testo"{it}>{testo}</div>' if testo else ""}
 <p class="small">{meta}</p>
@@ -2893,15 +2896,11 @@ TRADOTTE = {
         home_desc="Sechs Hütten vom Cristallinapass bis zu den Denti della Vecchia, Kurse mit Profis und ein Tourenprogramm für jedes Alter. Seit über hundert Jahren das Zuhause des Tessiner Alpinismus.",
         hero_h="In die Berge<br>mit <span class=\"accent\">uns</span>.",
         hero_lead="Sechs Hütten vom Cristallinapass bis zu den Denti della Vecchia, Kurse mit Profis und ein Tourenprogramm für jedes Alter.",
-        diventa="Mitglied werden", le_capanne="Die Hütten",
+        diventa="Mitglied werden",
         hero_alt="Skitourengeher im Aufstieg zu einem verschneiten Dorf",
         cifre="Die Sektion in Zahlen",
         stat_home=["Gründungsjahr", "Mitglieder", "Hütten, 362 Schlafplätze", "Disziplinen in den Kursen"],
-        sez_h="Seit 1886<br>zu Fuss unterwegs.",
-        sez_lead="Gegründet in der Birraria Gambrinus in Bellinzona, im Jubiläumsjahr der Erstbesteigung des Mont Blanc, um die Berge des Kantons «zu besuchen, zu erforschen und bekannt zu machen».",
-        sezione="Die Sektion", storia="Geschichte",
-        solo_it="<strong>Vieles gibt es nur auf Italienisch.</strong> News, Kurse, Jugend- und Seniorengruppen, Fotos und Dokumente der Sektion sind nur auf Italienisch verfügbar. Das Tourenprogramm gibt es auch auf Deutsch, die Touren selbst sind auf Italienisch beschrieben.",
-        gite="Tourenprogramm", corsi="Kurse",
+        sezione="Die Sektion",
         capanne_h="Sechs Hütten, ein Tessin",
         capanne_lead="Immer offen, bewartet, wenn die Hüttenwarte da sind. Melden Sie sich vor dem Aufbruch beim Hüttenwart, um Anwesenheit und Verhältnisse am Berg zu prüfen.",
         accesso="Zugang ab",
@@ -2970,15 +2969,11 @@ TRADOTTE = {
         home_desc="Six huts from the Cristallina Pass to the Denti della Vecchia, courses run by professionals and a trip programme for all ages. For more than a century, the home of mountaineering in Ticino.",
         hero_h="Into the mountains<br>with <span class=\"accent\">us</span>.",
         hero_lead="Six huts from the Cristallina Pass to the Denti della Vecchia, courses run by professionals and a trip programme for all ages.",
-        diventa="Become a member", le_capanne="The huts",
+        diventa="Become a member",
         hero_alt="Ski tourers climbing towards a snow-covered village",
         cifre="The section in numbers",
         stat_home=["year founded", "members", "huts, 362 beds", "disciplines taught in courses"],
-        sez_h="Since 1886,<br>on foot.",
-        sez_lead="Founded at the Birraria Gambrinus in Bellinzona, in the centenary year of the first ascent of Mont Blanc, to “visit, study and make known” the mountains of the canton.",
-        sezione="The Section", storia="History",
-        solo_it="<strong>Much is only in Italian.</strong> News, courses, youth and seniors groups, photos and documents of the section are only available in Italian. The trip programme is also in English, but the trips themselves are described in Italian.",
-        gite="Trip programme", corsi="Courses",
+        sezione="The Section",
         capanne_h="Six huts, one Ticino",
         capanne_lead="Always open, staffed when the hut keepers are there. Check with the hut keeper before you set out, to make sure they are there and to ask about conditions in the mountains.",
         accesso="Access from",
