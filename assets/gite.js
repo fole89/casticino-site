@@ -91,7 +91,7 @@
     var posti = g.posti ? g.iscritti + '/' + g.posti + ' iscritti' : g.iscritti ? g.iscritti + ' iscritti' : '';
     var modalita = g.modalita && classe !== 'annullata'
       ? '<span class="gita-nota">Iscrizione' + (g.modalita.indexOf('tramite') === 0 ? ' ' : ': ') + esc(g.modalita) + '</span>' : '';
-    return '<article class="gita' + (classe === 'annullata' ? ' gita--annullata' : '') + '" id="gita-' + esc(g.id) + '" data-gruppi="' + esc(g.gruppi.join(' ')) + '" data-tipo="' + esc(g.sigla) + '">' +
+    return '<article class="gita' + (classe === 'annullata' ? ' gita--annullata' : '') + '" id="gita-' + esc(g.id) + '" data-fine="' + esc(g.al || g.dal) + '" data-gruppi="' + esc(g.gruppi.join(' ')) + '" data-tipo="' + esc(g.sigla) + '">' +
       '<p class="gita-data"><span class="gita-giorno num">' + gg + '</span><span class="gita-sotto">' + sotto + '</span></p>' +
       '<div class="gita-corpo"><p class="gita-tipo">' + tipo + '</p>' +
       '<h3 class="gita-titolo"><a href="gita.html?id=' + esc(g.id) + '">' + esc(g.titolo) + '</a></h3>' +
@@ -117,13 +117,27 @@
     if (html) box.innerHTML = html;
   }
 
+  // bottoni (schermo largo) e menu a tendina (telefono) con le stesse voci
   function pulsanti(campo, voci, tutti) {
-    var bar = filtri.querySelector('[data-campo="' + campo + '"]');
+    var bar = filtri.querySelector('.filtro[data-campo="' + campo + '"]');
     bar.innerHTML = '<button type="button" data-valore="" aria-pressed="' + (!scelta[campo]) + '">' + tutti + '</button>' +
       voci.map(function (v) {
         return '<button type="button" data-valore="' + esc(v[0]) + '" aria-pressed="' + (scelta[campo] === v[0]) + '">' + esc(v[1]) +
           ' <span class="num">' + v[2] + '</span></button>';
       }).join('');
+    var sel = filtri.querySelector('select[data-campo="' + campo + '"]');
+    sel.innerHTML = '<option value="">' + tutti + '</option>' +
+      voci.map(function (v) { return '<option value="' + esc(v[0]) + '">' + esc(v[1]) + ' (' + v[2] + ')</option>'; }).join('');
+    sel.value = scelta[campo];
+  }
+
+  function scegli(campo, valore) {
+    scelta[campo] = valore;
+    Array.prototype.forEach.call(filtri.querySelectorAll('.filtro[data-campo="' + campo + '"] button'), function (x) {
+      x.setAttribute('aria-pressed', x.dataset.valore === valore ? 'true' : 'false');
+    });
+    filtri.querySelector('select[data-campo="' + campo + '"]').value = valore;
+    applica();
   }
 
   function corrisponde(g, campo, v) {
@@ -165,7 +179,7 @@
     Array.prototype.forEach.call(box.querySelectorAll('.gite-mese'), function (m) {
       m.hidden = !m.querySelector('.gita:not([hidden])');
     });
-    var attivi = [scelta.gruppi, scelta.tipo && filtri.querySelector('[data-campo="tipo"] [aria-pressed="true"]').firstChild.textContent.trim()].filter(Boolean);
+    var attivi = [scelta.gruppi, scelta.tipo && filtri.querySelector('.filtro[data-campo="tipo"] [aria-pressed="true"]').firstChild.textContent.trim()].filter(Boolean);
     stato.textContent = attivi.length ? n + (n === 1 ? ' gita' : ' gite') + ': ' + attivi.join(', ') : '';
     var q = [];
     if (scelta.gruppi) q.push('gruppo=' + encodeURIComponent(scelta.gruppi));
@@ -250,8 +264,10 @@
         : righe ? '' : '<p class="small gita-avviso">I dettagli della gita non sono disponibili in questo momento: li trovi su Droptour.</p>');
 
     document.getElementById('gita-stato').innerHTML = '<span class="stato' + (classe ? ' stato--' + classe : '') + '">' + st[1] + '</span>';
+    // iscrizioni aperte: direttamente al modulo d'iscrizione di Droptour (tourFID = numero della gita)
+    var modulo = dett.dataset.droptour + '?page=anmeldung&tourFID=' + encodeURIComponent(g.id);
     var az = classe === 'aperte'
-      ? '<a class="btn btn--primary" href="' + esc(g.link) + '">Iscriviti su Droptour <span class="arrow" aria-hidden="true">→</span></a>'
+      ? '<a class="btn btn--primary" href="' + esc(modulo) + '">Iscriviti su Droptour <span class="arrow" aria-hidden="true">→</span></a>'
       : '<a class="btn btn--secondary" href="' + esc(g.link) + '">Apri su Droptour</a>';
     document.getElementById('gita-azioni').innerHTML = az + '<a class="btn btn--secondary" href="gite.html">Programma gite</a>';
   }
@@ -300,23 +316,30 @@
   }
 
   if (box) {
+    // l'elenco nella pagina è di quando è stata generata (ogni mattina): le gite già passate si tolgono subito
+    var o0 = oggi();
+    Array.prototype.forEach.call(box.querySelectorAll('.gita[data-fine]'), function (el) { if (el.dataset.fine < o0) el.remove(); });
+    Array.prototype.forEach.call(box.querySelectorAll('.gite-mese'), function (m) { if (!m.querySelector('.gita')) m.remove(); });
+
     filtri.addEventListener('click', function (e) {
       var b = e.target.closest('button[data-valore]');
-      if (!b) return;
-      var campo = b.parentNode.dataset.campo;
-      scelta[campo] = b.dataset.valore;
-      Array.prototype.forEach.call(b.parentNode.querySelectorAll('button'), function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      applica();
+      if (b) scegli(b.parentNode.dataset.campo, b.dataset.valore);
+    });
+    filtri.addEventListener('change', function (e) {
+      if (e.target.matches('select[data-campo]')) scegli(e.target.dataset.campo, e.target.value);
     });
 
-    function pronto(lista, vive) {
+    // i filtri compaiono subito dalla fonte più rapida (memoria della sessione, poi copia locale) e si aggiornano
+    // quando arrivano le gite in tempo reale da Droptour
+    var vive = false, evidenziata = false;
+    function pronto(lista, nuove) {
       gite = lista;
-      if (vive) disegna();
+      if (nuove) disegna();
       costruisciFiltri();
       applica();
-      if (location.hash) {
+      if (location.hash && !evidenziata) {
         var t = document.getElementById(location.hash.slice(1));
-        if (t) { t.classList.add('gita--evidenza'); t.scrollIntoView(); }
+        if (t) { evidenziata = true; t.classList.add('gita--evidenza'); t.scrollIntoView(); }
       }
     }
 
@@ -324,20 +347,24 @@
     scelta.gruppi = p.get('gruppo') || '';
     scelta.tipo = p.get('tipo') || '';
 
+    var memo = ricordate();
+    if (memo && memo.length) pronto(memo, true);
+    else {
+      // l'elenco generato viene dalla stessa copia: basta costruire i filtri (se Droptour non risponde si resta così)
+      fetch(box.dataset.copia).then(function (r) { return r.json(); })
+        .then(function (d) { if (!vive) pronto(d.gite || [], false); })
+        .catch(function () {});
+    }
     fetch(box.dataset.api)
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(function (t) {
         var lista = daXml(new DOMParser().parseFromString(t, 'text/xml'));
         if (!lista.length) throw new Error('vuoto');
+        vive = true;
         ricorda(lista);
-      pronto(lista, true);
+        pronto(lista, true);
       })
-      .catch(function () {
-        // Droptour non risponde: si resta all'elenco generato e si prendono i dati per i filtri dalla copia
-        fetch(box.dataset.copia).then(function (r) { return r.json(); })
-          .then(function (d) { pronto(d.gite || [], false); })
-          .catch(function () {});
-      });
+      .catch(function () {});
   } else {
     dettaglio();
   }

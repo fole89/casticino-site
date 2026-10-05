@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo-cas.webp">
 <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=da3a8422">
+<link rel="stylesheet" href="assets/site.css?v=b31e2920">
 <script>document.documentElement.classList.add('js')</script>
 <meta property="og:image" content="https://fole89.github.io/casticino-site/assets/img/attivita/gite-2x1.webp">
 <link rel="canonical" href="https://fole89.github.io/casticino-site/gite">
@@ -62,7 +62,7 @@
 </div>
 </div>
 <div class="dd">
-<a class="navlink dd-trigger" href="index.html#media" aria-haspopup="true">Media <span class="caret" aria-hidden="true"></span></a>
+<a class="navlink dd-trigger" href="foto.html" aria-haspopup="true">Media <span class="caret" aria-hidden="true"></span></a>
 <div class="dd-menu">
 <a href="foto.html">Foto e resoconti</a>
 <a href="annuari.html">Annuari</a>
@@ -99,26 +99,17 @@
 <div class="gite-filtri" id="gite-filtri" hidden>
 <div class="filtro" role="group" aria-label="Filtra per gruppo" data-campo="gruppi"></div>
 <div class="filtro" role="group" aria-label="Filtra per tipo" data-campo="tipo"></div>
+<div class="filtri-tendina">
+<label><span class="label">Gruppo</span><select data-campo="gruppi"></select></label>
+<label><span class="label">Tipo</span><select data-campo="tipo"></select></label>
+</div>
 </div>
 <p class="small filtro-stato" id="gite-stato" aria-live="polite"></p>
 <div class="gite" id="gite" data-api="https://ssl.dropnet.ch/casticino/dropnetapps/tours/api/?action=command&command=getItems&limit=500&language=it" data-copia="data/gite.json?v=130922f1">
 <section class="gite-mese" aria-labelledby="mese-2026-10">
 <h2 id="mese-2026-10" class="h3">Ottobre 2026</h2>
 <div class="gite-righe">
-<article class="gita" id="gita-2174" data-gruppi="Attivi" data-tipo="MTB">
-<p class="gita-data"><span class="gita-giorno num">4</span><span class="gita-sotto">dom</span></p>
-<div class="gita-corpo">
-<p class="gita-tipo">Mountain-Bike · Attivi</p>
-<h3 class="gita-titolo"><a href="gita.html?id=2174">Gita MTB con Banca Stato</a></h3>
-<p class="gita-meta"><span title="abbastanza impegnativo">Impegno B</span><span>Capogita: Marco Buck</span></p>
-</div>
-<div class="gita-stato">
-<span class="stato stato--completa">Completa</span>
-<span class="gita-posti num">0/20 iscritti</span><span class="gita-nota">Iscrizione tramite www.viviiltuoticino.ch</span>
-<a class="link gita-link" href="gita.html?id=2174">Dettagli e iscrizione</a>
-</div>
-</article>
-<article class="gita" id="gita-2088" data-gruppi="Soccorso" data-tipo="SOC">
+<article class="gita" id="gita-2088" data-fine="2026-10-06" data-gruppi="Soccorso" data-tipo="SOC">
 <p class="gita-data"><span class="gita-giorno num">6</span><span class="gita-sotto">mar</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Soccorso</p>
@@ -131,7 +122,7 @@
 <a class="link gita-link" href="gita.html?id=2088">Dettagli</a>
 </div>
 </article>
-<article class="gita" id="gita-2171" data-gruppi="Attivi" data-tipo="EVE">
+<article class="gita" id="gita-2171" data-fine="2026-10-11" data-gruppi="Attivi" data-tipo="EVE">
 <p class="gita-data"><span class="gita-giorno num">10–11</span><span class="gita-sotto">sab–dom</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Evento · Attivi</p>
@@ -144,7 +135,7 @@
 <a class="link gita-link" href="gita.html?id=2171">Dettagli</a>
 </div>
 </article>
-<article class="gita" id="gita-1947" data-gruppi="Monitori" data-tipo="EVE">
+<article class="gita" id="gita-1947" data-fine="2026-10-10" data-gruppi="Monitori" data-tipo="EVE">
 <p class="gita-data"><span class="gita-giorno num">10</span><span class="gita-sotto">sab</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Evento · Monitori</p>
@@ -157,7 +148,7 @@
 <a class="link gita-link" href="gita.html?id=1947">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2036" data-gruppi="Tutti" data-tipo="CUL">
+<article class="gita" id="gita-2036" data-fine="2026-10-10" data-gruppi="Tutti" data-tipo="CUL">
 <p class="gita-data"><span class="gita-giorno num">10</span><span class="gita-sotto">sab</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Cultura · Tutti</p>
@@ -170,7 +161,7 @@
 <a class="link gita-link" href="gita.html?id=2036">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2159" data-gruppi="Tutti" data-tipo="ARR">
+<article class="gita" id="gita-2159" data-fine="2026-10-11" data-gruppi="Tutti" data-tipo="ARR">
 <p class="gita-data"><span class="gita-giorno num">11</span><span class="gita-sotto">dom</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Arrampicata · Tutti</p>
@@ -183,7 +174,7 @@
 <a class="link gita-link" href="gita.html?id=2159">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2037" data-gruppi="Seniori" data-tipo="ESC">
+<article class="gita" id="gita-2037" data-fine="2026-10-15" data-gruppi="Seniori" data-tipo="ESC">
 <p class="gita-data"><span class="gita-giorno num">15</span><span class="gita-sotto">gio</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Escursionismo · Seniori</p>
@@ -196,7 +187,7 @@
 <a class="link gita-link" href="gita.html?id=2037">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2157" data-gruppi="Tutti" data-tipo="COR">
+<article class="gita" id="gita-2157" data-fine="2026-10-15" data-gruppi="Tutti" data-tipo="COR">
 <p class="gita-data"><span class="gita-giorno num">15</span><span class="gita-sotto">gio</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Corso di formazione · Tutti</p>
@@ -209,7 +200,7 @@
 <a class="link gita-link" href="gita.html?id=2157">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2089" data-gruppi="Soccorso" data-tipo="SOC">
+<article class="gita" id="gita-2089" data-fine="2026-10-18" data-gruppi="Soccorso" data-tipo="SOC">
 <p class="gita-data"><span class="gita-giorno num">17–18</span><span class="gita-sotto">sab–dom</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Soccorso</p>
@@ -222,7 +213,7 @@
 <a class="link gita-link" href="gita.html?id=2089">Dettagli</a>
 </div>
 </article>
-<article class="gita" id="gita-2038" data-gruppi="Seniori" data-tipo="ESC">
+<article class="gita" id="gita-2038" data-fine="2026-10-22" data-gruppi="Seniori" data-tipo="ESC">
 <p class="gita-data"><span class="gita-giorno num">22</span><span class="gita-sotto">gio</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Escursionismo · Seniori</p>
@@ -235,7 +226,7 @@
 <a class="link gita-link" href="gita.html?id=2038">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-1915" data-gruppi="Attivi Giovani" data-tipo="ARR">
+<article class="gita" id="gita-1915" data-fine="2026-10-25" data-gruppi="Attivi Giovani" data-tipo="ARR">
 <p class="gita-data"><span class="gita-giorno num">24–25</span><span class="gita-sotto">sab–dom</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Arrampicata · Attivi, Giovani</p>
@@ -248,7 +239,7 @@
 <a class="link gita-link" href="gita.html?id=1915">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2039" data-gruppi="Seniori" data-tipo="EVE">
+<article class="gita" id="gita-2039" data-fine="2026-10-29" data-gruppi="Seniori" data-tipo="EVE">
 <p class="gita-data"><span class="gita-giorno num">29</span><span class="gita-sotto">gio</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Evento · Seniori</p>
@@ -261,7 +252,7 @@
 <a class="link gita-link" href="gita.html?id=2039">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2149" data-gruppi="Giovani" data-tipo="ARR">
+<article class="gita" id="gita-2149" data-fine="2026-11-03" data-gruppi="Giovani" data-tipo="ARR">
 <p class="gita-data"><span class="gita-giorno num">31</span><span class="gita-sotto">sab, fino al 3 nov</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Arrampicata · Giovani</p>
@@ -279,7 +270,7 @@
 <section class="gite-mese" aria-labelledby="mese-2026-11">
 <h2 id="mese-2026-11" class="h3">Novembre 2026</h2>
 <div class="gite-righe">
-<article class="gita" id="gita-2090" data-gruppi="Soccorso" data-tipo="SOC">
+<article class="gita" id="gita-2090" data-fine="2026-11-03" data-gruppi="Soccorso" data-tipo="SOC">
 <p class="gita-data"><span class="gita-giorno num">3</span><span class="gita-sotto">mar</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Soccorso</p>
@@ -292,7 +283,7 @@
 <a class="link gita-link" href="gita.html?id=2090">Dettagli</a>
 </div>
 </article>
-<article class="gita" id="gita-2207" data-gruppi="Giovani" data-tipo="ARR">
+<article class="gita" id="gita-2207" data-fine="2026-11-08" data-gruppi="Giovani" data-tipo="ARR">
 <p class="gita-data"><span class="gita-giorno num">5–8</span><span class="gita-sotto">gio–dom</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Arrampicata · Giovani</p>
@@ -305,7 +296,7 @@
 <a class="link gita-link" href="gita.html?id=2207">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2040" data-gruppi="Seniori" data-tipo="ESC">
+<article class="gita" id="gita-2040" data-fine="2026-11-05" data-gruppi="Seniori" data-tipo="ESC">
 <p class="gita-data"><span class="gita-giorno num">5</span><span class="gita-sotto">gio</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Escursionismo · Seniori</p>
@@ -318,7 +309,7 @@
 <a class="link gita-link" href="gita.html?id=2040">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-1914" data-gruppi="Attivi Giovani" data-tipo="ARR">
+<article class="gita" id="gita-1914" data-fine="2026-11-08" data-gruppi="Attivi Giovani" data-tipo="ARR">
 <p class="gita-data"><span class="gita-giorno num">6–8</span><span class="gita-sotto">ven–dom</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Arrampicata · Attivi, Giovani</p>
@@ -331,7 +322,7 @@
 <a class="link gita-link" href="gita.html?id=1914">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2041" data-gruppi="Seniori" data-tipo="ESC">
+<article class="gita" id="gita-2041" data-fine="2026-11-12" data-gruppi="Seniori" data-tipo="ESC">
 <p class="gita-data"><span class="gita-giorno num">12</span><span class="gita-sotto">gio</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Escursionismo · Seniori</p>
@@ -344,7 +335,7 @@
 <a class="link gita-link" href="gita.html?id=2041">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2063" data-gruppi="Attivi Giovani" data-tipo="COR">
+<article class="gita" id="gita-2063" data-fine="2026-11-14" data-gruppi="Attivi Giovani" data-tipo="COR">
 <p class="gita-data"><span class="gita-giorno num">14</span><span class="gita-sotto">sab</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Corso di formazione · Attivi, Giovani</p>
@@ -357,7 +348,7 @@
 <a class="link gita-link" href="gita.html?id=2063">Dettagli</a>
 </div>
 </article>
-<article class="gita" id="gita-2163" data-gruppi="Attivi Giovani" data-tipo="FER">
+<article class="gita" id="gita-2163" data-fine="2026-11-14" data-gruppi="Attivi Giovani" data-tipo="FER">
 <p class="gita-data"><span class="gita-giorno num">14</span><span class="gita-sotto">sab</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Via ferrata · Attivi, Giovani</p>
@@ -370,7 +361,7 @@
 <a class="link gita-link" href="gita.html?id=2163">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2091" data-gruppi="Soccorso" data-tipo="SOC">
+<article class="gita" id="gita-2091" data-fine="2026-11-17" data-gruppi="Soccorso" data-tipo="SOC">
 <p class="gita-data"><span class="gita-giorno num">17</span><span class="gita-sotto">mar</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Soccorso</p>
@@ -383,7 +374,7 @@
 <a class="link gita-link" href="gita.html?id=2091">Dettagli</a>
 </div>
 </article>
-<article class="gita" id="gita-2167" data-gruppi="Attivi Giovani" data-tipo="COR">
+<article class="gita" id="gita-2167" data-fine="2026-11-18" data-gruppi="Attivi Giovani" data-tipo="COR">
 <p class="gita-data"><span class="gita-giorno num">18</span><span class="gita-sotto">mer</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Corso di formazione · Attivi, Giovani</p>
@@ -396,7 +387,7 @@
 <a class="link gita-link" href="gita.html?id=2167">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita gita--annullata" id="gita-2042" data-gruppi="Seniori" data-tipo="ESC">
+<article class="gita gita--annullata" id="gita-2042" data-fine="2026-11-19" data-gruppi="Seniori" data-tipo="ESC">
 <p class="gita-data"><span class="gita-giorno num">19</span><span class="gita-sotto">gio</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Escursionismo · Seniori</p>
@@ -409,7 +400,7 @@
 <a class="link gita-link" href="gita.html?id=2042">Dettagli</a>
 </div>
 </article>
-<article class="gita" id="gita-1952" data-gruppi="Attivi Giovani Seniori" data-tipo="ARR">
+<article class="gita" id="gita-1952" data-fine="2026-11-22" data-gruppi="Attivi Giovani Seniori" data-tipo="ARR">
 <p class="gita-data"><span class="gita-giorno num">22</span><span class="gita-sotto">dom</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Arrampicata · Attivi, Giovani, Seniori</p>
@@ -422,7 +413,7 @@
 <a class="link gita-link" href="gita.html?id=1952">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2092" data-gruppi="Soccorso" data-tipo="SOC">
+<article class="gita" id="gita-2092" data-fine="2026-11-24" data-gruppi="Soccorso" data-tipo="SOC">
 <p class="gita-data"><span class="gita-giorno num">24</span><span class="gita-sotto">mar</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Soccorso</p>
@@ -435,7 +426,7 @@
 <a class="link gita-link" href="gita.html?id=2092">Dettagli</a>
 </div>
 </article>
-<article class="gita" id="gita-2044" data-gruppi="Seniori" data-tipo="ESC">
+<article class="gita" id="gita-2044" data-fine="2026-11-26" data-gruppi="Seniori" data-tipo="ESC">
 <p class="gita-data"><span class="gita-giorno num">26</span><span class="gita-sotto">gio</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Escursionismo · Seniori</p>
@@ -448,7 +439,7 @@
 <a class="link gita-link" href="gita.html?id=2044">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2105" data-gruppi="Attivi Giovani Seniori" data-tipo="COR">
+<article class="gita" id="gita-2105" data-fine="2026-11-27" data-gruppi="Attivi Giovani Seniori" data-tipo="COR">
 <p class="gita-data"><span class="gita-giorno num">27</span><span class="gita-sotto">ven</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Corso di formazione · Attivi, Giovani, Seniori</p>
@@ -461,7 +452,7 @@
 <a class="link gita-link" href="gita.html?id=2105">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita gita--annullata" id="gita-2145" data-gruppi="Attivi" data-tipo="EVE">
+<article class="gita gita--annullata" id="gita-2145" data-fine="2026-11-29" data-gruppi="Attivi" data-tipo="EVE">
 <p class="gita-data"><span class="gita-giorno num">28–29</span><span class="gita-sotto">sab–dom</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Evento · Attivi</p>
@@ -479,7 +470,7 @@
 <section class="gite-mese" aria-labelledby="mese-2026-12">
 <h2 id="mese-2026-12" class="h3">Dicembre 2026</h2>
 <div class="gite-righe">
-<article class="gita" id="gita-2093" data-gruppi="Soccorso" data-tipo="SOC">
+<article class="gita" id="gita-2093" data-fine="2026-12-01" data-gruppi="Soccorso" data-tipo="SOC">
 <p class="gita-data"><span class="gita-giorno num">1</span><span class="gita-sotto">mar</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Soccorso</p>
@@ -492,7 +483,7 @@
 <a class="link gita-link" href="gita.html?id=2093">Dettagli</a>
 </div>
 </article>
-<article class="gita" id="gita-2096" data-gruppi="Attivi Giovani" data-tipo="COR">
+<article class="gita" id="gita-2096" data-fine="2026-12-03" data-gruppi="Attivi Giovani" data-tipo="COR">
 <p class="gita-data"><span class="gita-giorno num">3</span><span class="gita-sotto">gio</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Corso di formazione · Attivi, Giovani</p>
@@ -505,7 +496,7 @@
 <a class="link gita-link" href="gita.html?id=2096">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2045" data-gruppi="Seniori" data-tipo="ESC">
+<article class="gita" id="gita-2045" data-fine="2026-12-03" data-gruppi="Seniori" data-tipo="ESC">
 <p class="gita-data"><span class="gita-giorno num">3</span><span class="gita-sotto">gio</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Escursionismo · Seniori</p>
@@ -518,7 +509,7 @@
 <a class="link gita-link" href="gita.html?id=2045">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-1985" data-gruppi="Tutti" data-tipo="EVE">
+<article class="gita" id="gita-1985" data-fine="2026-12-09" data-gruppi="Tutti" data-tipo="EVE">
 <p class="gita-data"><span class="gita-giorno num">9</span><span class="gita-sotto">mer</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Evento · Tutti</p>
@@ -531,7 +522,7 @@
 <a class="link gita-link" href="gita.html?id=1985">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2046" data-gruppi="Seniori" data-tipo="SA">
+<article class="gita" id="gita-2046" data-fine="2026-12-09" data-gruppi="Seniori" data-tipo="SA">
 <p class="gita-data"><span class="gita-giorno num">9</span><span class="gita-sotto">mer</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Scialpinismo · Seniori</p>
@@ -544,7 +535,7 @@
 <a class="link gita-link" href="gita.html?id=2046">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2147" data-gruppi="Monitori" data-tipo="COR">
+<article class="gita" id="gita-2147" data-fine="2026-12-13" data-gruppi="Monitori" data-tipo="COR">
 <p class="gita-data"><span class="gita-giorno num">13</span><span class="gita-sotto">dom</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Corso di formazione · Monitori</p>
@@ -557,7 +548,7 @@
 <a class="link gita-link" href="gita.html?id=2147">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2165" data-gruppi="Attivi Giovani" data-tipo="COR">
+<article class="gita" id="gita-2165" data-fine="2026-12-15" data-gruppi="Attivi Giovani" data-tipo="COR">
 <p class="gita-data"><span class="gita-giorno num">15</span><span class="gita-sotto">mar</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Corso di formazione · Attivi, Giovani</p>
@@ -570,7 +561,7 @@
 <a class="link gita-link" href="gita.html?id=2165">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2164" data-gruppi="Attivi Giovani" data-tipo="COR">
+<article class="gita" id="gita-2164" data-fine="2026-12-15" data-gruppi="Attivi Giovani" data-tipo="COR">
 <p class="gita-data"><span class="gita-giorno num">15</span><span class="gita-sotto">mar</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Corso di formazione · Attivi, Giovani</p>
@@ -583,7 +574,7 @@
 <a class="link gita-link" href="gita.html?id=2164">Dettagli e iscrizione</a>
 </div>
 </article>
-<article class="gita" id="gita-2239" data-gruppi="Giovani" data-tipo="COR">
+<article class="gita" id="gita-2239" data-fine="2026-12-19" data-gruppi="Giovani" data-tipo="COR">
 <p class="gita-data"><span class="gita-giorno num">19</span><span class="gita-sotto">sab</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Corso di formazione · Giovani</p>
@@ -601,7 +592,7 @@
 <section class="gite-mese" aria-labelledby="mese-2027-01">
 <h2 id="mese-2027-01" class="h3">Gennaio 2027</h2>
 <div class="gite-righe">
-<article class="gita" id="gita-2242" data-gruppi="Giovani" data-tipo="COR">
+<article class="gita" id="gita-2242" data-fine="2027-01-09" data-gruppi="Giovani" data-tipo="COR">
 <p class="gita-data"><span class="gita-giorno num">9</span><span class="gita-sotto">sab</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">Corso di formazione · Giovani</p>
@@ -638,7 +629,7 @@
 </section>
 
 </main>
-<script src="assets/gite.js?v=e7f6c2b0" defer></script>
+<script src="assets/gite.js?v=78d60333" defer></script>
 <footer class="site-footer">
 <div class="container">
 <div class="footer-grid">
@@ -702,6 +693,6 @@
 <div class="footer-bottom"><span>© 2026 CAS Ticino</span><span>Club Alpino Svizzero, Sezione Ticino</span><a href="admin/">Area redazione</a></div>
 </div>
 </footer>
-<script src="assets/site.js?v=a2cb4b8a" defer></script>
+<script src="assets/site.js?v=d359f2df" defer></script>
 </body>
 </html>

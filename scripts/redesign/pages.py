@@ -39,42 +39,43 @@ COURSES = [
     ("Inverno", "Racchette", "Muoversi sulla neve in sicurezza: meteo, orientamento, primi soccorsi.", "corsi/racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole"),
 ]
 
-TIMELINE = [
-    ("1886", "Nasce il Club Alpino Ticinese; primo presidente l’avv. Curzio Curti."),
-    ("1887", "Adesione al Club Alpino Svizzero come sezione ticinese, con sede a Lugano."),
-    ("1913", "Nasce la sezione di Lugano del Club Alpino Femminile Svizzero."),
-    ("1918", "Prime stazioni di soccorso alpino a Faido, Airolo e Olivone."),
-    ("1940", "Costituzione del gruppo Seniori."),
-    ("1980", "Le sezioni maschile e femminile si fondono."),
-    ("2003", "Inaugurata la nuova Capanna Cristallina."),
-    ("2016", "Conclusa la ricostruzione della Capanna Monte Bar."),
-]
-# sul telefono la cronologia della home mostra solo questi anni (le altre voci restano nella pagina Storia)
-TIMELINE_BREVE = {"1886", "1918", "1980", "2016"}
-
-
 def num(t):
     """Cifre in Geist Mono (posti, tempi): «80 posti» → «<span class="num">80</span> posti»."""
     return re.sub(r"\d+(?:[.,:’']\d+)*(?:h\d*)?", lambda m: f'<span class="num">{m.group()}</span>', t)
 
 
-def home():
-    prossime = prossime_gite()
-    huts = "\n".join(f"""<a class="hut{' hut--big' if big else ''}" href="{f}" data-reveal>
+def schede_capanne(lista, accesso="Accesso da", prefisso=""):
+    """Home: le sei capanne in schede compatte (foto, nome, quota, valle, stato, posti e accesso)."""
+    return "\n".join(f"""<a class="hut" href="{prefisso}{f}" data-reveal>
 <figure>{img(im, f'Capanna {n}', w, h)}</figure>
 <div class="hut-head"><h3 class="h3">{n}</h3><span class="hut-alt">{q} m</span></div>
 <div class="hut-meta"><span>{v}</span><span class="status">{st}</span></div>
-<p>{t}</p>
-<div class="hut-meta"><span>{num(posti)}</span><span>Accesso da {num(acc)}</span></div>
-</a>""" for f, n, q, v, st, t, posti, acc, im, (w, h), big in HUTS)
+<div class="hut-meta"><span>{num(posti)}</span><span>{accesso} {num(acc)}</span></div>
+</a>""" for f, n, q, v, st, t, posti, acc, im, (w, h), big in lista)
+
+
+def banda_adesione(titolo, testo, bottone, href):
+    """Home: banda «Diventa socio», bassa, con titolo e testo a sinistra e bottone a destra."""
+    return f"""<section class="cta-band" id="adesione" aria-labelledby="adesione-h">
+{pic("paesaggi/tramonto-larici", "", mobile="paesaggi/tramonto-larici-4x3", w=2000, h=1126)}
+<div class="container">
+<div class="cta-text">
+<h2 id="adesione-h" class="h2">{titolo}</h2>
+<p>{testo}</p>
+</div>
+<a class="btn btn--light" href="{href}">{bottone} <span class="arrow" aria-hidden="true">→</span></a>
+</div>
+</section>"""
+
+
+def home():
+    prossime = prossime_gite()
+    huts = schede_capanne(HUTS)
     courses = "\n".join(f"""<a class="course" href="corsi.html#corso-{CORSO_SLUG[title]}">
 <figure>{img(im, alt, w, h)}</figure>
 <span class="label">{season}</span>
 <h3 class="h3">{title}</h3>
-<p>{text}</p>
 </a>""" for season, title, text, im, (w, h), alt in COURSES)
-    extra = ' class="tl-extra"'
-    timeline = "\n".join(f'<li{"" if y in TIMELINE_BREVE else extra}><span class="year">{y}</span><span>{t}</span></li>' for y, t in TIMELINE)
 
     html = head("CAS Ticino | Club Alpino Svizzero, Sezione Ticino",
                 "Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età. Da oltre un secolo, la casa dell’alpinismo ticinese.",
@@ -109,23 +110,10 @@ def home():
 </div>
 </section>
 
-<section class="section section--tight section--after-stats" id="storia" aria-labelledby="storia-h">
-<div class="container split">
-<div class="split-intro">
-<h2 id="storia-h" class="h2">Dal 1886,<br>a piedi.</h2>
-<p class="lead">Fondato alla Birraria Gambrinus di Bellinzona nell’anno del centenario della prima salita al Monte Bianco, per «visitare, studiare e far conoscere» le montagne del Cantone.</p>
-<div><a class="link" href="storia.html">Leggi la storia completa</a></div>
-</div>
-<ol class="timeline timeline--compact" data-reveal>
-{timeline}
-</ol>
-</div>
-</section>
-
 <section class="section--surface section--tight" id="news" aria-labelledby="news-h">
 <div class="container">
 <div class="section-row">
-<h2 id="news-h" class="h2">Dalla sezione</h2>
+<h2 id="news-h" class="h2">News</h2>
 <div class="links"><a class="link" href="news.html">Tutte le news</a><a class="link" href="foto.html">Foto e resoconti</a></div>
 </div>
 <div class="news-grid" data-reveal>
@@ -181,21 +169,14 @@ def home():
 {prossime}
 </div>
 </div>""" if prossime else ""}
+<div class="corsi-mini" id="corsi" data-reveal>
+<div class="section-row">
+<h3 class="h3">Corsi</h3>
+<div class="links"><a class="link" href="corsi.html">Tutti i corsi</a><a class="link" href="noleggio.html">Noleggio materiale</a></div>
 </div>
-</section>
-
-<section class="section--surface" id="corsi" aria-labelledby="corsi-h">
-<div class="container">
-<div class="section-head">
-<h2 id="corsi-h" class="h2">Impara la montagna</h2>
-<p class="lead">Corsi nel fine settimana, diretti da professionisti con monitori esperti. Il programma del nuovo anno esce entro novembre.</p>
-</div>
-<div class="rail" tabindex="0" aria-label="Corsi">
+<div class="rail rail--mini" tabindex="0" aria-label="Corsi">
 {courses}
 </div>
-<div class="rail-foot">
-<p class="small">Corsi avanzati per futuri capigita CAS e monitori G+S.</p>
-<div class="links"><a class="link" href="corsi.html">Tutti i corsi</a><a class="link" href="noleggio.html">Noleggio materiale</a></div>
 </div>
 </div>
 </section>
@@ -216,16 +197,7 @@ def home():
 </div>
 </section>
 
-{media_section()}
-
-<section class="cta-band" id="adesione" aria-labelledby="adesione-h">
-{pic("paesaggi/tramonto-larici", "", mobile="paesaggi/tramonto-larici-4x3", w=2000, h=1126)}
-<div class="container">
-<h2 id="adesione-h" class="h2">Sali con noi.</h2>
-<p>Tariffe ridotte nelle capanne CAS di tutta la Svizzera, corsi, gite e una comunità che ama la montagna quanto te.</p>
-<a class="btn btn--light" href="adesione.html">Diventa socio <span class="arrow" aria-hidden="true">→</span></a>
-</div>
-</section>
+{banda_adesione("Sali con noi.", "Tariffe ridotte nelle capanne CAS di tutta la Svizzera, corsi, gite e una comunità che ama la montagna quanto te.", "Diventa socio", "adesione.html")}
 
 </main>
 """ + footer()
@@ -1541,7 +1513,7 @@ DOCS = [
 
 
 def documenti():
-    body = page_hero([("Media", "index.html#media"), ("Documenti", None)], "Documenti",
+    body = page_hero([("Media", "foto.html"), ("Documenti", None)], "Documenti",
                      "Statuto e documenti della sezione, scale di difficoltà, promemoria tecnici, documenti dei corsi, moduli e cartine da scaricare.") + f"""
 
 <section class="section" aria-label="Documenti">
@@ -1780,7 +1752,7 @@ def gita_html(g, oggi):
     posti = (f'{g["iscritti"]}/{g["posti"]} iscritti' if g["posti"] else f'{g["iscritti"]} iscritti' if g["iscritti"] else "")
     modalita = (f'<span class="gita-nota">Iscrizione{"" if g["modalita"].startswith("tramite") else ":"} {esc(g["modalita"])}</span>'
                 if g["modalita"] and classe != "annullata" else "")
-    return f"""<article class="gita{' gita--annullata' if classe == 'annullata' else ''}" id="gita-{g['id']}" data-gruppi="{esc(' '.join(g['gruppi']))}" data-tipo="{esc(g['sigla'])}">
+    return f"""<article class="gita{' gita--annullata' if classe == 'annullata' else ''}" id="gita-{g['id']}" data-fine="{g['al'] or g['dal']}" data-gruppi="{esc(' '.join(g['gruppi']))}" data-tipo="{esc(g['sigla'])}">
 <p class="gita-data"><span class="gita-giorno num">{giorno}</span><span class="gita-sotto">{sotto}</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">{tipo}</p>
@@ -1813,8 +1785,10 @@ def gite_lista(gite, oggi):
 
 
 
-def prossime_gite(n=3):
-    """Le prossime gite per la home: senza annullate e senza le serate della colonna di soccorso."""
+def prossime_gite(n=6):
+    """Le prossime gite per la home: senza annullate e senza le serate della colonna di soccorso.
+    Se ne scrivono alcune in più: la pagina può restare indietro di un giorno (si rigenera ogni mattina), quindi site.js
+    toglie quelle già passate (data-fine) e il CSS mostra solo le prime 3 rimaste."""
     import datetime
     oggi = datetime.date.today().isoformat()
     scelte = [g for g in gite_dati() if (g["al"] or g["dal"]) >= oggi and g["stato"] != "annullata"
@@ -1829,7 +1803,7 @@ def prossime_gite(n=3):
         classe, stato = gita_stato(g, oggi)
         gruppi = [x for x in g["gruppi"] if x != "Tutti"] or ["Tutti"]
         tipo = " · ".join(dict.fromkeys(filter(None, [esc(g["tipo"]), esc(", ".join(gruppi))])))
-        schede.append(f"""<a class="prossima" href="gita.html?id={g['id']}">
+        schede.append(f"""<a class="prossima" href="gita.html?id={g['id']}" data-fine="{g['al'] or g['dal']}">
 <p class="prossima-data"><span class="prossima-giorno num">{d.day}</span><span>{quando}</span></p>
 <p class="gita-tipo">{tipo}</p>
 <h3 class="prossima-titolo">{esc(g['titolo'])}</h3>
@@ -1850,6 +1824,10 @@ def gite():
 <div class="gite-filtri" id="gite-filtri" hidden>
 <div class="filtro" role="group" aria-label="Filtra per gruppo" data-campo="gruppi"></div>
 <div class="filtro" role="group" aria-label="Filtra per tipo" data-campo="tipo"></div>
+<div class="filtri-tendina">
+<label><span class="label">Gruppo</span><select data-campo="gruppi"></select></label>
+<label><span class="label">Tipo</span><select data-campo="tipo"></select></label>
+</div>
 </div>
 <p class="small filtro-stato" id="gite-stato" aria-live="polite"></p>
 <div class="gite" id="gite" data-api="{GITE_API}" data-copia="{asset('data/gite.json')}">
@@ -1890,7 +1868,7 @@ def gita_pagina():
 
 
 def foto():
-    body = page_hero([("Media", "index.html#media"), ("Foto e resoconti", None)], "Foto e resoconti", "Le foto e i resoconti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.") + f"""
+    body = page_hero([("Media", "foto.html"), ("Foto e resoconti", None)], "Foto e resoconti", "Le foto e i resoconti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.") + f"""
 
 <section class="section" aria-label="Ultime gite">
 <div class="container">
@@ -1901,7 +1879,7 @@ def foto():
 </div>
 </section>
 
-{subnav("Media", "index.html#media")}"""
+{subnav("Media", "foto.html")}"""
     return page("foto.html", "Foto e resoconti delle gite | CAS Ticino",
                 "Le foto delle ultime gite della Sezione Ticino del Club Alpino Svizzero, con i resoconti dei capigita.",
                 body, og="attivita/gite-2x1", scripts=f'<script src="{asset("assets/foto.js")}" defer></script>\n')
@@ -1949,48 +1927,10 @@ def pub_feature(x, titolo, testo):
 </div>"""
 
 
-def media_section():
-    """Home: un riquadro per ciascuna pagina di Media, con l'ultima foto, le ultime copertine e i documenti."""
-    foto = json.load(open(os.path.join(ROOT, "data", "foto.json"), encoding="utf-8")).get("albums", [])
-    foto = next((a for a in foto if a.get("photos")), None)
-    ann = pubblicazioni("annuari", "annuario")[0]
-    inf = pubblicazioni("informazione", "informazione")[0]
-    n_doc = sum(len(g[1]) for g in DOCS)
-    foto_fig = (f'<figure><img src="{foto["photos"][0]["large"]}" alt="" loading="lazy" decoding="async"></figure>'
-                if foto else f'<figure>{img("attivita/gite-2x1", "", 1400, 700)}</figure>')
-    foto_txt = f"Ultima gita: {esc(foto['title'])}" if foto else "Le foto e i resoconti delle gite della sezione"
-    return f"""<section class="section--surface" id="media" aria-labelledby="media-h">
-<div class="container">
-<div class="section-head">
-<h2 id="media-h" class="h2">Media</h2>
-<p class="lead">Foto e resoconti delle gite, l’annuario, il bollettino Informazione e i documenti della sezione da scaricare.</p>
-</div>
-<div class="media-grid" data-reveal>
-<a class="media-card" href="foto.html">
-{foto_fig}
-<div class="media-card-body"><h3>Foto e resoconti</h3><p>{foto_txt}</p></div>
-</a>
-<a class="media-card media-card--cover" href="annuari.html">
-<figure><img src="{ann['cover']}" alt="" width="{ann['w']}" height="{ann['h']}" loading="lazy" decoding="async"></figure>
-<div class="media-card-body"><h3>Annuari</h3><p>Annuario {ann['anno']} e annate precedenti</p></div>
-</a>
-<a class="media-card media-card--cover" href="informazione.html">
-<figure><img src="{inf['cover']}" alt="" width="{inf['w']}" height="{inf['h']}" loading="lazy" decoding="async"></figure>
-<div class="media-card-body"><h3>Informazione</h3><p>Il bollettino, numero di {inf['quando']}</p></div>
-</a>
-<a class="media-card media-card--docs" href="documenti.html">
-<figure aria-hidden="true"><strong>{n_doc}</strong><span>PDF da scaricare</span></figure>
-<div class="media-card-body"><h3>Documenti</h3><p>Statuto, scale di difficoltà, promemoria, cartine</p></div>
-</a>
-</div>
-</div>
-</section>"""
-
-
 def annuari():
     items = pubblicazioni("annuari", "annuario")
     ultimo, altri = items[0], items[1:]
-    body = page_hero([("Media", "index.html#media"), ("Annuari", None)], "Annuari",
+    body = page_hero([("Media", "foto.html"), ("Annuari", None)], "Annuari",
                      "L’annuario racconta la vita della sezione: un volume per ogni anno, da sfogliare in PDF.") + f"""
 
 <section class="section" aria-label="Annuari">
@@ -2016,7 +1956,7 @@ def informazione():
 <div class="pubs" data-reveal>
 {chr(10).join(pub_card(x, f"Informazione, {x['quando']}") for x in altri)}
 </div>""" if altri else "")
-    body = page_hero([("Media", "index.html#media"), ("Informazione", None)], "Informazione",
+    body = page_hero([("Media", "foto.html"), ("Informazione", None)], "Informazione",
                      "Il bollettino ufficiale della sezione: notizie, attività e appuntamenti, da sfogliare in PDF.") + f"""
 
 <section class="section" aria-label="Numeri di Informazione">
@@ -2515,13 +2455,7 @@ def tx_tradotte():
 def home_tradotta():
     tx = tx_tradotte()
     lang = LINGUA["lang"]
-    huts = "\n".join(f"""<a class="hut{' hut--big' if big else ''}" href="{lang}/{f}" data-reveal>
-<figure>{img(im, f'Capanna {n}', w, h)}</figure>
-<div class="hut-head"><h3 class="h3">{n}</h3><span class="hut-alt">{q} m</span></div>
-<div class="hut-meta"><span>{v}</span><span class="status">{st}</span></div>
-<p>{t}</p>
-<div class="hut-meta"><span>{num(posti)}</span><span>{tx['accesso']} {num(acc)}</span></div>
-</a>""" for f, n, q, v, st, t, posti, acc, im, (w, h), big in {"de": HUTS_DE, "en": HUTS_EN}[lang])
+    huts = schede_capanne({"de": HUTS_DE, "en": HUTS_EN}[lang], tx['accesso'], f"{lang}/")
     stats = "\n".join(f'<div class="stat"><strong>{n}</strong><span>{num(x)}</span></div>'
                       for n, x in zip(("1886", "3000", "6", "5"), tx["stat_home"]))
     html = head(tx["home_title"], tx["home_desc"],
@@ -2579,14 +2513,7 @@ def home_tradotta():
 </div>
 </section>
 
-<section class="cta-band" id="adesione" aria-labelledby="adesione-h">
-{pic("paesaggi/tramonto-larici", "", mobile="paesaggi/tramonto-larici-4x3", w=2000, h=1126)}
-<div class="container">
-<h2 id="adesione-h" class="h2">{tx['cta_h']}</h2>
-<p>{tx['cta_p']}</p>
-<a class="btn btn--light" href="{lang}/adesione.html">{tx['diventa']} <span class="arrow" aria-hidden="true">→</span></a>
-</div>
-</section>
+{banda_adesione(tx['cta_h'], tx['cta_p'], tx['diventa'], f"{lang}/adesione.html")}
 
 </main>
 """ + footer()

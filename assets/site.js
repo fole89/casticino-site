@@ -199,6 +199,16 @@
   });
 })();
 
+// CAS Ticino - home, prossime gite: la pagina si rigenera ogni mattina, quindi può contenere gite già passate; si tolgono
+// qui (data-fine) e il CSS mostra solo le prime 3 rimaste.
+(function () {
+  var d = new Date();
+  var oggi = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  Array.prototype.forEach.call(document.querySelectorAll('.prossima[data-fine]'), function (el) {
+    if (el.dataset.fine < oggi) el.remove();
+  });
+})();
+
 // CAS Ticino - capigita: la presentazione si apre passando sulla foto (CSS) e, per i touch, toccandola;
 // si chiude toccando fuori o con Esc.
 (function () {
