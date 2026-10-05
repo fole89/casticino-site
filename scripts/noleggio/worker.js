@@ -59,7 +59,8 @@ let cacheInv = null;
 // articoli per id: { id, nome, de, en, prezzo, gruppo, taglie: {taglia: n} | null, quantita, set: [id] | null }
 async function inventario(env) {
   if (cacheInv && Date.now() - cacheInv.quando < 5 * 60 * 1000) return cacheInv.articoli;
-  const r = await fetch(env.INVENTARIO_URL, { cf: { cacheTtl: 300 } });
+  // in cache solo le risposte riuscite: un errore (es. file non ancora pubblicato) non deve restare per 5 minuti
+  const r = await fetch(env.INVENTARIO_URL, { cf: { cacheTtlByStatus: { "200-299": 300, "300-599": 0 } } });
   if (!r.ok) throw new Error(`inventario: ${r.status}`);
   const dati = await r.json();
   const articoli = {};
