@@ -21,51 +21,64 @@ SITO = "https://fole89.github.io/casticino-site/"
 
 MENU = [
     ("La Sezione", "introduzione.html", [
-        ("Introduzione", "introduzione.html"), ("Comitato", "comitato.html"),
-        ("Organizzazione", "organizzazione.html"), ("Capigita", "capigita.html"), ("Sede e recapiti", "sede.html"),
-        ("Storia", "storia.html"), ("Link utili", "link.html")]),
-    ("News", "news.html", None),
+        ("Chi siamo", "introduzione.html"), ("Storia", "storia.html"), ("Comitato", "comitato.html"),
+        ("Organizzazione", "organizzazione.html"), ("Capigita", "capigita.html"),
+        ("Soccorso", "soccorso.html"), ("Mettiti in gioco", "volontariato.html"), ("Sede e contatti", "sede.html")]),
     ("Attività", "index.html#attivita", [
-        ("Giovani", "giovani.html"), ("Senior", "senior.html"),
-        ("Corsi", "corsi.html"), ("Soccorso", "soccorso.html"), ("Noleggio", "noleggio.html"),
-        ("Mercatino", "mercatino.html")]),
+        ("Partecipare", "partecipare.html"),
+        ("Corsi", "corsi.html"), ("Giovani", "giovani.html"), ("Senior", "senior.html")]),
     ("Capanne", "index.html#capanne", [
         ("Campo Tencia", "campotencia.html"), ("Cristallina", "cristallina.html"), ("Adula", "adula.html"),
         ("Motterascio", "motterascio.html"), ("Monte Bar", "montebar.html"), ("Baita del Luca", "baitadelluca.html")]),
-    ("Media", "foto.html", [
-        ("Foto e resoconti", "foto.html"), ("Annuari", "annuari.html"), ("Informazione", "informazione.html"),
-        ("Documenti", "documenti.html")]),
+    ("Servizi", "noleggio.html", [
+        ("Noleggio materiale", "noleggio.html"), ("Mercatino", "mercatino.html"), ("Documenti", "documenti.html"),
+        ("Link utili", "link.html")]),
+    ("News e media", "news.html", [
+        ("News", "news.html"), ("Foto e resoconti", "foto.html"), ("Annuari", "annuari.html"),
+        ("Informazione", "informazione.html")]),
     ("Adesione", "adesione.html", None),
 ]
 
-# Versione tedesca: le pagine tradotte sono in de/ (stesso nome di file). News, attività, media e PDF restano
-# solo in italiano e nel menu tedesco non compaiono.
+# Versioni tedesca (de/) e inglese (en/): stesse pagine e stessi nomi di file dell'italiano, stessa struttura del menu.
 MENU_DE = [
     ("Die Sektion", "de/introduzione.html", [
-        ("Einführung", "de/introduzione.html"), ("Vorstand", "de/comitato.html"),
-        ("Organisation", "de/organizzazione.html"), ("Tourenleitende", "de/capigita.html"),
-        ("Sitz und Kontakt", "de/sede.html"),
-        ("Geschichte", "de/storia.html"), ("Nützliche Links", "de/link.html")]),
+        ("Über uns", "de/introduzione.html"), ("Geschichte", "de/storia.html"), ("Vorstand", "de/comitato.html"),
+        ("Organisation", "de/organizzazione.html"), ("Tourenleitende", "de/capigita.html"), ("Bergrettung", "de/soccorso.html"),
+        ("Mithelfen", "de/volontariato.html"), ("Sitz und Kontakt", "de/sede.html")]),
+    ("Aktivitäten", "de/index.html#attivita", [
+        ("Teilnehmen", "de/partecipare.html"), ("Kurse", "de/corsi.html"), ("Jugend", "de/giovani.html"), ("Senioren", "de/senior.html")]),
     ("Hütten", "de/index.html#capanne", [
         ("Campo Tencia", "de/campotencia.html"), ("Cristallina", "de/cristallina.html"), ("Adula", "de/adula.html"),
         ("Motterascio", "de/motterascio.html"), ("Monte Bar", "de/montebar.html"), ("Baita del Luca", "de/baitadelluca.html")]),
+    ("Dienste", "de/noleggio.html", [
+        ("Materialvermietung", "de/noleggio.html"), ("Marktplatz", "de/mercatino.html"), ("Dokumente", "de/documenti.html"),
+        ("Nützliche Links", "de/link.html")]),
+    ("News und Medien", "de/news.html", [
+        ("News", "de/news.html"), ("Fotos und Berichte", "de/foto.html"), ("Jahrbücher", "de/annuari.html"),
+        ("Informazione", "de/informazione.html")]),
     ("Mitgliedschaft", "de/adesione.html", None),
 ]
 
-# Versione inglese: come quella tedesca, in en/ (stesse pagine, stessi nomi di file).
 MENU_EN = [
     ("The Section", "en/introduzione.html", [
-        ("Introduction", "en/introduzione.html"), ("Committee", "en/comitato.html"),
-        ("Organisation", "en/organizzazione.html"), ("Trip leaders", "en/capigita.html"),
-        ("Office and contacts", "en/sede.html"),
-        ("History", "en/storia.html"), ("Useful links", "en/link.html")]),
+        ("About us", "en/introduzione.html"), ("History", "en/storia.html"), ("Committee", "en/comitato.html"),
+        ("Organisation", "en/organizzazione.html"), ("Trip leaders", "en/capigita.html"), ("Mountain rescue", "en/soccorso.html"),
+        ("Get involved", "en/volontariato.html"), ("Office and contacts", "en/sede.html")]),
+    ("Activities", "en/index.html#attivita", [
+        ("Taking part", "en/partecipare.html"), ("Courses", "en/corsi.html"), ("Youth", "en/giovani.html"), ("Seniors", "en/senior.html")]),
     ("Huts", "en/index.html#capanne", [
         ("Campo Tencia", "en/campotencia.html"), ("Cristallina", "en/cristallina.html"), ("Adula", "en/adula.html"),
         ("Motterascio", "en/motterascio.html"), ("Monte Bar", "en/montebar.html"), ("Baita del Luca", "en/baitadelluca.html")]),
+    ("Services", "en/noleggio.html", [
+        ("Equipment hire", "en/noleggio.html"), ("Gear market", "en/mercatino.html"), ("Documents", "en/documenti.html"),
+        ("Useful links", "en/link.html")]),
+    ("News and media", "en/news.html", [
+        ("News", "en/news.html"), ("Photos and reports", "en/foto.html"), ("Yearbooks", "en/annuari.html"),
+        ("Informazione", "en/informazione.html")]),
     ("Membership", "en/adesione.html", None),
 ]
 
-LINGUE = ("it", "de", "en")  # l'italiano è la lingua principale; le altre hanno solo La Sezione, le capanne e Adesione
+LINGUE = ("it", "de", "en")  # l'italiano è la lingua principale; de e en hanno tutte le pagine tranne la ricerca
 LINGUA = {"lang": "it"}      # lingua della pagina che si sta generando
 PAGINE_LINGUA = {"de": set(), "en": set()}  # pagine (percorso italiano dalla radice) tradotte in ogni lingua; le riempie pages.py
 NOMI_LINGUE = {"it": "Italiano", "de": "Deutsch", "en": "English"}
@@ -77,19 +90,19 @@ T = {
                lingua="Deutsch", percorso="Percorso", seguici="Seguici", sostegno="Con il sostegno di",
                indirizzo="Club Alpino Svizzero, Sezione Ticino<br>Casella postale 112, 6998 Monteggio 2<br>Sede: Canvetto Luganese, Molino Nuovo",
                sezione="Club Alpino Svizzero, Sezione Ticino", su_instagram="CAS Ticino su Instagram", su_facebook="CAS Ticino su Facebook",
-               redazione="Area redazione", locale="it_CH"),
+               redazione="Area redazione", adesione="Adesione", privacy="Protezione dei dati", locale="it_CH"),
     "de": dict(skip="Zum Inhalt", nav="Hauptnavigation", menu_apri="Menü öffnen", menu_chiudi="Menü schliessen", menu="Menü",
                logo_sotto="Schweizer Alpen-Club", cerca="Suche (italienisch)", gite="Tourenprogramm",
                lingua="Italiano", percorso="Pfad", seguici="Folgen Sie uns", sostegno="Mit Unterstützung von",
                indirizzo="Schweizer Alpen-Club SAC, Sektion Ticino<br>Postfach 112, 6998 Monteggio 2<br>Sitz: Canvetto Luganese, Molino Nuovo",
                sezione="Schweizer Alpen-Club SAC, Sektion Ticino", su_instagram="CAS Ticino auf Instagram", su_facebook="CAS Ticino auf Facebook",
-               redazione="Redaktion", locale="de_CH", adesione="Mitgliedschaft"),
+               redazione="Redaktion", privacy="Datenschutz", locale="de_CH", adesione="Mitgliedschaft"),
     "en": dict(skip="Skip to content", nav="Main", menu_apri="Open menu", menu_chiudi="Close menu", menu="Menu",
                logo_sotto="Swiss Alpine Club", cerca="Search (in Italian)", gite="Trip programme",
                lingua="English", percorso="Breadcrumb", seguici="Follow us", sostegno="With the support of",
                indirizzo="Swiss Alpine Club SAC, Ticino Section<br>PO Box 112, 6998 Monteggio 2<br>Office: Canvetto Luganese, Molino Nuovo",
                sezione="Swiss Alpine Club SAC, Ticino Section", su_instagram="CAS Ticino on Instagram", su_facebook="CAS Ticino on Facebook",
-               redazione="Editors", locale="en_GB", adesione="Membership"),
+               redazione="Editors", privacy="Privacy", locale="en_GB", adesione="Membership"),
 }
 
 
@@ -220,11 +233,8 @@ def footer():
         if not sub:
             continue
         name = label
-        extra = [("News", "news.html")] if label == "Attività" else []
-        extra_end = [("Adesione", "adesione.html")] if label == "Attività" else []
-        if LINGUA["lang"] != "it" and not cols:  # versioni tradotte: Adesione in fondo alla prima colonna
-            extra_end = [(t("adesione"), L("adesione.html"))]
-        links = "\n".join(f'<a href="{h}">{l}</a>' for l, h in extra + sub + extra_end)
+        extra_end = [(t("adesione"), L("adesione.html"))] if not cols else []  # Adesione in fondo alla prima colonna
+        links = "\n".join(f'<a href="{h}">{l}</a>' for l, h in sub + extra_end)
         cols.append(f'<nav class="footer-col" aria-label="{name}">\n<h2>{name}</h2>\n{links}\n</nav>')
     cols = "\n".join(cols)
     return f"""<footer class="site-footer">
@@ -241,7 +251,7 @@ def footer():
 {cols}
 </div>
 {SPONSORS.replace("{sostegno}", t('sostegno'))}
-<div class="footer-bottom"><span>© 2026 CAS Ticino</span><span>{t('sezione')}</span><a href="admin/">{t('redazione')}</a></div>
+<div class="footer-bottom"><span>© 2026 CAS Ticino</span><span>{t('sezione')}</span><a href="{L('privacy.html')}">{t('privacy')}</a><a href="admin/">{t('redazione')}</a></div>
 </div>
 </footer>
 <script src="{asset("assets/site.js")}" defer></script>

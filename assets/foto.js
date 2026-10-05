@@ -1,10 +1,24 @@
-// CAS Ticino - pagina Foto: legge data/foto.json e mostra le ultime gite (stili in assets/site.css, blocco «foto delle gite»)
+// CAS Ticino - pagina Foto (foto.html, de/foto.html, en/foto.html): legge data/foto.json (#albums[data-json]) e mostra
+// le ultime gite (stili in assets/site.css, blocco «foto delle gite»)
 (function () {
   var root = document.getElementById('albums');
   var more = document.getElementById('load-more');
   if (!root) return;
   var PAGE = 5, shown = 0, albums = [];
-  var fmt = new Intl.DateTimeFormat('it-CH', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  // testi nella lingua della pagina (<html lang>); titoli e resoconti delle gite restano in italiano
+  var LINGUA = (document.documentElement.lang || 'it').slice(0, 2);
+  var TX = {
+    it: { foto: 'foto', di: 'di', resoconto: 'Resoconto: ', dettagli: 'Dettagli della gita', prec: 'Foto precedente', succ: 'Foto successiva',
+          mostra: 'Mostra foto ', nessuna: 'Nessuna foto pubblicata di recente.', errore: 'Le foto non sono disponibili al momento. Puoi consultarle sul portale Droptour.' },
+    de: { foto: 'Fotos', di: 'von', resoconto: 'Bericht: ', dettagli: 'Details der Tour', prec: 'Vorheriges Foto', succ: 'Nächstes Foto',
+          mostra: 'Foto anzeigen: ', nessuna: 'In letzter Zeit wurden keine Fotos veröffentlicht.', errore: 'Die Fotos sind im Moment nicht verfügbar. Sie finden sie auf dem Portal Droptour.' },
+    en: { foto: 'photos', di: 'of', resoconto: 'Report: ', dettagli: 'Trip details', prec: 'Previous photo', succ: 'Next photo',
+          mostra: 'Show photo ', nessuna: 'No photos published recently.', errore: 'The photos are not available at the moment. You can find them on the Droptour portal.' }
+  }[LINGUA] || null;
+  if (!TX) { LINGUA = 'it'; TX = { foto: 'foto', di: 'di', resoconto: 'Resoconto: ', dettagli: 'Dettagli della gita', prec: 'Foto precedente', succ: 'Foto successiva', mostra: 'Mostra foto ', nessuna: 'Nessuna foto pubblicata di recente.', errore: 'Le foto non sono disponibili al momento. Puoi consultarle sul portale Droptour.' }; }
+  var IT = LINGUA === 'it' ? {} : { lang: 'it' };  // attributo per i testi in italiano
+  var fmt = new Intl.DateTimeFormat({ it: 'it-CH', de: 'de-CH', en: 'en-GB' }[LINGUA], { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  function conIt(attrs) { Object.keys(IT).forEach(function (k) { attrs[k] = IT[k]; }); return attrs; }
 
   function el(tag, attrs, children) {
     var n = document.createElement(tag);
@@ -33,17 +47,17 @@
   function render(a) {
     var n = a.photos.length, idx = 0;
     var date = a.date ? fmt.format(new Date(a.date + 'T12:00:00')) : '';
-    var meta = (a.place ? a.place + ', ' : '') + n + ' foto';
+    var meta = (a.place ? a.place + ', ' : '') + n + ' ' + TX.foto;
 
     // resoconto intero in un riquadro ad altezza massima, scorrevole: il carosello resta vicino al titolo
-    var text = a.text ? el('div', { class: 'album-text', tabindex: '0', role: 'region', 'aria-label': 'Resoconto: ' + a.title, text: a.text }) : null;
+    var text = a.text ? el('div', conIt({ class: 'album-text', tabindex: '0', role: 'region', 'aria-label': TX.resoconto + a.title, text: a.text })) : null;
 
     var info = el('div', { class: 'album-info' }, [
       date ? el('span', { class: 'album-date', text: date }) : null,
-      el('h2', { class: 'h2', text: a.title }),
+      el('h2', conIt({ class: 'h2', text: a.title })),
       el('span', { class: 'small', text: meta }),
       text,
-      a.link ? el('a', { class: 'link', href: a.link, text: 'Dettagli della gita' }) : null
+      a.link ? el('a', { class: 'link', href: a.link, text: TX.dettagli }) : null
     ]);
 
     var photo = el('img', { alt: '', decoding: 'async' });
@@ -52,19 +66,19 @@
     function show(k) {
       idx = (k + n) % n;
       photo.src = a.photos[idx].large;
-      photo.alt = a.title + ', foto ' + (idx + 1) + ' di ' + n;
+      photo.alt = a.title + ', ' + (idx + 1) + ' ' + TX.di + ' ' + n;
       counter.textContent = (idx + 1) + ' / ' + n;
       thumbs.forEach(function (t, i) { t.classList.toggle('sel', i === idx); t.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
     }
     var frame = el('div', { class: 'album-frame' }, [
       photo,
-      n > 1 ? el('button', { type: 'button', class: 'album-nav album-nav--prev', 'aria-label': 'Foto precedente', onclick: function () { show(idx - 1); } }, [arrow(-1)]) : null,
-      n > 1 ? el('button', { type: 'button', class: 'album-nav album-nav--next', 'aria-label': 'Foto successiva', onclick: function () { show(idx + 1); } }, [arrow(1)]) : null,
+      n > 1 ? el('button', { type: 'button', class: 'album-nav album-nav--prev', 'aria-label': TX.prec, onclick: function () { show(idx - 1); } }, [arrow(-1)]) : null,
+      n > 1 ? el('button', { type: 'button', class: 'album-nav album-nav--next', 'aria-label': TX.succ, onclick: function () { show(idx + 1); } }, [arrow(1)]) : null,
       counter
     ]);
     var grid = el('div', { class: 'album-thumbs' });
     a.photos.forEach(function (p, k) {
-      var b = el('button', { type: 'button', 'aria-label': 'Mostra foto ' + (k + 1), onclick: function () { show(k); } },
+      var b = el('button', { type: 'button', 'aria-label': TX.mostra + (k + 1), onclick: function () { show(k); } },
         [el('img', { src: p.thumb, alt: '', loading: 'lazy', decoding: 'async' })]);
       thumbs.push(b); grid.appendChild(b);
     });
@@ -90,14 +104,14 @@
     if (more) more.hidden = shown >= albums.length;
   }
 
-  fetch('data/foto.json', { cache: 'no-cache' })
+  fetch(root.dataset.json || 'data/foto.json', { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (data) {
       albums = (data.albums || []).filter(function (a) { return a.photos && a.photos.length; });
-      if (!albums.length) { status('Nessuna foto pubblicata di recente.'); return; }
+      if (!albums.length) { status(TX.nessuna); return; }
       root.textContent = '';
       next();
     })
-    .catch(function () { status('Le foto non sono disponibili al momento. Puoi consultarle sul portale Droptour.'); });
+    .catch(function () { status(TX.errore); });
   if (more) more.addEventListener('click', next);
 })();

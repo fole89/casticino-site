@@ -9,7 +9,7 @@ from shared import head, nav, footer, social, pic, img, GITE, GITE_DROPTOUR, pag
 GITE_GIOVANI = GITE + "?gruppo=Giovani"   # gite.html con il filtro già scelto (gite.js)
 GITE_SENIORI = GITE + "?gruppo=Seniori"
 GITE_CORSI = GITE + "?tipo=COR"
-from shared import LINGUA, PAGINE_LINGUA, SITO, de, en, tr, L
+from shared import LINGUA, PAGINE_LINGUA, SITO, de, en, tr, t, L
 from urllib.parse import urljoin, quote
 from capanne import CONTENUTI, PRENOTA
 from capanne_de import CONTENUTI_DE, HUT_DE, HUTS_DE
@@ -63,56 +63,96 @@ def banda_adesione(titolo, testo, bottone, href):
 </section>"""
 
 
-def home():
-    prossime = prossime_gite()
-    huts = schede_capanne(HUTS)
+def ATT_MENU():
+    return tr("Attività", "Aktivitäten", "Activities")
 
-    html = head("CAS Ticino | Club Alpino Svizzero, Sezione Ticino",
-                "Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età. Da oltre un secolo, la casa dell’alpinismo ticinese.",
+
+def NM_MENU():
+    return tr("News e media", "News und Medien", "News and media")
+
+
+def SEZ_MENU():
+    return tr("La Sezione", "Die Sektion", "The Section")
+
+
+def att_crumb():
+    return (ATT_MENU(), L("index.html") + "#attivita")
+
+
+def nm_crumb():
+    return (NM_MENU(), L("news.html"))
+
+
+def sez_crumb():
+    return (SEZ_MENU(), L("introduzione.html"))
+
+
+def in_it():
+    """Attributo lang="it" per i testi che restano in italiano (news, annunci, gite) nelle pagine tradotte."""
+    return ' lang="it"' if LINGUA["lang"] != "it" else ""
+
+
+def localizza(html, lang):
+    """Pagina tradotta: i link alle pagine che esistono anche in questa lingua portano alla versione tradotta
+    (i testi possono così usare i nomi italiani delle pagine). Non tocca il selettore di lingua."""
+    def link(h):
+        if h.group(2) in PAGINE_LINGUA[lang]:
+            return f'href="{h.group(1)}{lang}/{h.group(2)}{h.group(3)}"'
+        return h.group(0)
+
+    def tag(m):
+        if 'class="nav-lang"' in m.group(0):
+            return m.group(0)
+        return re.sub(r'href="((?:\.\./)*)([^"#?]*)([^"]*)"', link, m.group(0))
+    return re.sub(r"<a\b[^>]*>", tag, html)
+
+
+def home():
+    lang = LINGUA["lang"]
+    tx = TRADOTTE.get(lang, {})
+    nome = L("index.html")
+    prossime = prossime_gite()
+    if lang == "it":
+        huts = schede_capanne(HUTS)
+        stats = [("1886", "anno di fondazione"), ("3000", "soci"), ("6", f'rifugi, {num("362")} posti letto'), ("5", "discipline insegnate nei corsi")]
+    else:
+        huts = schede_capanne({"de": HUTS_DE, "en": HUTS_EN}[lang], tx["accesso"], f"{lang}/")
+        stats = [(n, num(x)) for n, x in zip(("1886", "3000", "6", "5"), tx["stat_home"])]
+    stats = "\n".join(f'<div class="stat"><strong>{n}</strong><span>{x}</span></div>' for n, x in stats)
+    n_annunci = len(mercatino_util.attivi())
+    mercatino_conta = {0: "", 1: tr(" Un annuncio online.", " Ein Inserat online.", " One listing online.")}.get(
+        n_annunci, tr(f" {n_annunci} annunci online.", f" {n_annunci} Inserate online.", f" {n_annunci} listings online."))
+    corso_alt = {"it": "Cordata su una cresta di neve", "de": "Seilschaft auf einem Schneegrat", "en": "Rope team on a snow ridge"}[lang]
+
+    html = head(tx.get("home_title", "CAS Ticino | Club Alpino Svizzero, Sezione Ticino"),
+                tx.get("home_desc", "Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età. Da oltre un secolo, la casa dell’alpinismo ticinese."),
                 '<meta property="og:image" content="assets/img/paesaggi/sciatori-villaggio-2000.webp">\n<link rel="preload" as="image" href="assets/img/paesaggi/sciatori-villaggio-2000.webp" imagesrcset="assets/img/paesaggi/sciatori-villaggio-1000.webp 1000w, assets/img/paesaggi/sciatori-villaggio-2000.webp 2000w" imagesizes="100vw" media="(min-width: 701px)">\n')
-    html += "\n<body>\n" + nav("index.html") + f"""
+    html += "\n<body>\n" + nav(nome) + f"""
 <main id="contenuto">
 
 <section class="hero" aria-labelledby="hero-h">
 <div class="container">
-<h1 id="hero-h" class="display">In montagna<br>con <span class="accent">noi</span>.</h1>
+<h1 id="hero-h" class="display">{tx.get("hero_h", 'In montagna<br>con <span class="accent">noi</span>.')}</h1>
 <div class="hero-foot">
 <div class="hero-testo">
-<p class="lead">Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età.</p>
+<p class="lead">{tx.get("hero_lead", "Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età.")}</p>
 {social()}
 </div>
 <div class="actions">
-<a class="btn btn--primary" href="adesione.html">Diventa socio <span class="arrow" aria-hidden="true">→</span></a>
-<a class="btn btn--secondary" href="news.html">Ultime notizie</a>
+<a class="btn btn--primary" href="adesione.html">{tx.get("diventa", "Diventa socio")} <span class="arrow" aria-hidden="true">→</span></a>
+<a class="btn btn--secondary" href="news.html">{tr("Ultime notizie", "Neuigkeiten", "Latest news")}</a>
 </div>
 </div>
 </div>
 <figure class="band">
-{pic("paesaggi/sciatori-villaggio", "Scialpinisti in salita verso un villaggio innevato", mobile="paesaggi/sciatori-villaggio-4x3", w=2000, h=901, lazy=False, cls="pos-low")}
+{pic("paesaggi/sciatori-villaggio", tx.get("hero_alt", "Scialpinisti in salita verso un villaggio innevato"), mobile="paesaggi/sciatori-villaggio-4x3", w=2000, h=901, lazy=False, cls="pos-low")}
 </figure>
 </section>
 
-<section class="section section--tight section--stats" id="sezione" aria-label="La sezione in cifre">
+<section class="section section--tight section--stats" id="sezione" aria-label="{tx.get("cifre", "La sezione in cifre")}">
 <div class="container">
 <div class="stats" data-reveal>
-<div class="stat"><strong>1886</strong><span>anno di fondazione</span></div>
-<div class="stat"><strong>3000</strong><span>soci</span></div>
-<div class="stat"><strong>6</strong><span>rifugi, {num("362")} posti letto</span></div>
-<div class="stat"><strong>5</strong><span>discipline insegnate nei corsi</span></div>
-</div>
-</div>
-</section>
-
-<section class="section--surface section--tight" id="news" aria-labelledby="news-h">
-<div class="container">
-<div class="section-row">
-<h2 id="news-h" class="h2">News</h2>
-<a class="link" href="news.html">Tutte le news</a>
-</div>
-<div class="scorri scorri--news" data-reveal>
-<div class="scorri-traccia">
-{chr(10).join(news_card(n) for n in NEWS[:8])}
-</div>
+{stats}
 </div>
 </div>
 </section>
@@ -120,49 +160,57 @@ def home():
 <section class="section" id="attivita" aria-labelledby="attivita-h">
 <div class="container">
 <div class="section-head">
-<h2 id="attivita-h" class="h2">Fuori con la sezione</h2>
-<p class="lead">Gite per tutti i livelli, un gruppo per ogni età e corsi per imparare a muoversi in montagna in sicurezza.</p>
+<h2 id="attivita-h" class="h2">{tr("Fuori con la sezione", "Unterwegs mit der Sektion", "Out with the section")}</h2>
+<p class="lead">{tr("Gite per tutti i livelli, un gruppo per ogni età e corsi per imparare a muoversi in montagna in sicurezza.",
+                    "Touren für jedes Niveau, eine Gruppe für jedes Alter und Kurse, um sich sicher in den Bergen zu bewegen.",
+                    "Trips for every level, a group for every age and courses to learn to move safely in the mountains.")}</p>
 </div>
 <div class="bento" id="gruppi">
 <article class="tile tile--wide-top" data-reveal>
-{img("attivita/gite-2x1", "Gruppo in vetta con vista sulle Alpi innevate", 1400, 700)}
+{img("attivita/gite-2x1", tr("Gruppo in vetta con vista sulle Alpi innevate", "Gruppe auf dem Gipfel mit Blick auf die verschneiten Alpen", "Group on a summit overlooking the snowy Alps"), 1400, 700)}
 <div class="tile-body">
-<h3 class="h2">Gite, escursioni e uscite della sezione</h3>
-<p>Escursionismo, alpinismo, sci alpinismo, racchette e arrampicata: il calendario completo con iscrizioni online.</p>
-<div class="actions"><a class="btn btn--primary" href="{GITE}">Programma gite</a><a class="btn btn--ghost-light" href="foto.html">Foto e resoconti</a></div>
+<h3 class="h2">{tr("Gite, escursioni e uscite della sezione", "Touren, Wanderungen und Ausflüge der Sektion", "The section’s trips, hikes and outings")}</h3>
+<p>{tr("Escursionismo, alpinismo, sci alpinismo, racchette e arrampicata: il calendario completo con iscrizioni online.",
+       "Wandern, Hochtouren, Skitouren, Schneeschuhtouren und Klettern: das ganze Programm mit Online-Anmeldung.",
+       "Hiking, mountaineering, ski touring, snowshoeing and climbing: the full calendar with online registration.")}</p>
+<div class="actions"><a class="btn btn--primary" href="{GITE}">{t("gite")}</a><a class="btn btn--ghost-light" href="foto.html">{tr("Foto e resoconti", "Fotos und Berichte", "Photos and reports")}</a></div>
 </div>
 </article>
 <article class="tile tile--tall" data-reveal>
-{img("attivita/giovani-3x4", "Giovane arrampicatore su una parete dei Denti della Vecchia", 800, 1066)}
+{img("attivita/giovani-3x4", tr("Giovane arrampicatore su una parete dei Denti della Vecchia", "Junger Kletterer an einer Wand der Denti della Vecchia", "Young climber on a face of the Denti della Vecchia"), 800, 1066)}
 <div class="tile-body">
-<span class="label">Gruppo giovani, dagli anni ’60</span>
-<h3 class="h2">Giovani</h3>
-<p>Arrampicata, escursioni e settimane in montagna con monitori della sezione.</p>
-<div class="links"><a class="link" href="giovani.html">Gruppo giovani</a><a class="link" href="organizzazione.html#giovani">Organizzazione</a></div>
+<span class="label">{tr("Gruppo giovani, dagli anni ’60", "Jugendgruppe, seit den 1960er-Jahren", "Youth group, since the 1960s")}</span>
+<h3 class="h2">{tr("Giovani", "Jugend", "Youth")}</h3>
+<p>{tr("Arrampicata, escursioni e settimane in montagna con monitori della sezione.", "Klettern, Wanderungen und Bergwochen mit Leitenden der Sektion.", "Climbing, hikes and mountain weeks with the section’s instructors.")}</p>
+<div class="links"><a class="link" href="giovani.html">{tr("Gruppo giovani", "Jugendgruppe", "Youth group")}</a><a class="link" href="organizzazione.html#giovani">{tr("Organizzazione", "Organisation", "Organisation")}</a></div>
 </div>
 </article>
 <article class="tile tile--bottom-1" data-reveal>
-{img("attivita/senior-2x1", "Escursionisti su un sentiero di cresta", 1000, 500)}
+{img("attivita/senior-2x1", tr("Escursionisti su un sentiero di cresta", "Wandernde auf einem Gratweg", "Hikers on a ridge path"), 1000, 500)}
 <div class="tile-body">
-<span class="label">Gruppo senior, dal 1940</span>
-<h3 class="h2">Senior</h3>
-<p>Uscite settimanali con capigita esperti, al ritmo giusto e in buona compagnia, dalla Capriasca alle Alpi.</p>
-<div class="links"><a class="link" href="senior.html">Gruppo senior</a><a class="link" href="organizzazione.html#senior">Organizzazione</a></div>
+<span class="label">{tr("Gruppo senior, dal 1940", "Seniorengruppe, seit 1940", "Seniors group, since 1940")}</span>
+<h3 class="h2">{tr("Senior", "Senioren", "Seniors")}</h3>
+<p>{tr("Uscite settimanali con capigita esperti, al ritmo giusto e in buona compagnia, dalla Capriasca alle Alpi.",
+       "Wöchentliche Touren mit erfahrenen Tourenleitenden, im richtigen Tempo und in guter Gesellschaft, von der Capriasca bis in die Alpen.",
+       "Weekly outings with experienced trip leaders, at the right pace and in good company, from the Capriasca to the Alps.")}</p>
+<div class="links"><a class="link" href="senior.html">{tr("Gruppo senior", "Seniorengruppe", "Seniors group")}</a><a class="link" href="organizzazione.html#senior">{tr("Organizzazione", "Organisation", "Organisation")}</a></div>
 </div>
 </article>
 <article class="tile tile--bottom-2" id="corsi" data-reveal>
-{img("corsi/alpinismo-4x5", "Cordata su una cresta di neve", 594, 742)}
+{img("corsi/alpinismo-4x5", corso_alt, 594, 742)}
 <div class="tile-body">
-<h3 class="h2">Corsi</h3>
-<p>Alpinismo, sci alpinismo, arrampicata, freeride e racchette: per imparare a muoversi in montagna in sicurezza.</p>
-<div class="links"><a class="link" href="corsi.html">Tutti i corsi</a><a class="link" href="noleggio.html">Noleggio materiale</a></div>
+<h3 class="h2">{tr("Corsi", "Kurse", "Courses")}</h3>
+<p>{tr("Alpinismo, sci alpinismo, arrampicata, freeride e racchette: per imparare a muoversi in montagna in sicurezza.",
+       "Hochtouren, Skitouren, Klettern, Freeride und Schneeschuhtouren: um zu lernen, sich sicher in den Bergen zu bewegen.",
+       "Mountaineering, ski touring, climbing, freeride and snowshoeing: to learn to move safely in the mountains.")}</p>
+<div class="links"><a class="link" href="corsi.html">{tr("Tutti i corsi", "Alle Kurse", "All courses")}</a><a class="link" href="partecipare.html">{tr("Partecipare alle gite", "An Touren teilnehmen", "Taking part in trips")}</a></div>
 </div>
 </article>
 </div>
 {f"""<div class="prossime" data-reveal>
 <div class="section-row">
-<h3 class="h3">Prossime gite</h3>
-<a class="link" href="{GITE}">Tutto il programma</a>
+<h3 class="h3">{tr("Prossime gite", "Nächste Touren", "Upcoming trips")}</h3>
+<a class="link" href="{GITE}">{tr("Tutto il programma", "Ganzes Programm", "Full programme")}</a>
 </div>
 <div class="scorri scorri--gite">
 <div class="scorri-traccia">
@@ -176,24 +224,79 @@ def home():
 <section class="section--surface" id="capanne" aria-labelledby="capanne-h">
 <div class="container">
 <div class="section-head">
-<h2 id="capanne-h" class="h2">Sei capanne, un solo Ticino</h2>
-<p class="lead">Sempre aperte, custodite quando i guardiani sono presenti. Prima di partire, contatta il guardiano per verificare presenza e condizioni della montagna.</p>
+<h2 id="capanne-h" class="h2">{tx.get("capanne_h", "Sei capanne, un solo Ticino")}</h2>
+<p class="lead">{tx.get("capanne_lead", "Sempre aperte, custodite quando i guardiani sono presenti. Prima di partire, contatta il guardiano per verificare presenza e condizioni della montagna.")}</p>
 </div>
 <div class="huts">
 {huts}
 </div>
 <div class="callout callout--accent">
-<p><strong>Cerchiamo «api operaie».</strong> I volontari aiutano i guardiani ad aprire, chiudere e mantenere le capanne, e passano qualche bella serata in quota.</p>
-<a class="btn btn--light" href="mailto:info@casticino.ch">Voglio aiutare <span class="arrow" aria-hidden="true">→</span></a>
+<p>{tr("<strong>Cerchiamo «api operaie».</strong> I volontari aiutano i guardiani ad aprire, chiudere e mantenere le capanne, e passano qualche bella serata in quota.",
+       "<strong>Wir suchen «fleissige Bienen».</strong> Freiwillige helfen den Hüttenwarten beim Öffnen, Schliessen und Unterhalten der Hütten und verbringen schöne Abende in der Höhe.",
+       "<strong>We are looking for «busy bees».</strong> Volunteers help the hut keepers open, close and maintain the huts, and spend some fine evenings up high.")}</p>
+<a class="btn btn--light" href="volontariato.html">{tr("Voglio aiutare", "Ich helfe mit", "I want to help")} <span class="arrow" aria-hidden="true">→</span></a>
 </div>
 </div>
 </section>
 
-{banda_adesione("Sali con noi.", "Tariffe ridotte nelle capanne CAS di tutta la Svizzera, corsi, gite e una comunità che ama la montagna quanto te.", "Diventa socio", "adesione.html")}
+<section class="section" id="servizi" aria-labelledby="servizi-h">
+<div class="container">
+<div class="section-head">
+<h2 id="servizi-h" class="h2">{SERVIZI_MENU()}</h2>
+<p class="lead">{tr("Materiale a noleggio, un mercatino tra soci e tutto quello che serve consultare prima di partire.",
+                    "Material zur Miete, ein Marktplatz unter Mitgliedern und alles, was man vor dem Aufbruch nachschlagen sollte.",
+                    "Equipment for hire, a gear market between members and everything worth checking before you set off.")}</p>
+</div>
+<div class="pillars pillars--servizi" data-reveal>
+<article class="pillar pillar--dark pillar--wide">
+<h3>{tr("Noleggio materiale", "Materialvermietung", "Equipment hire")}</h3>
+<p>{tr("Ramponi, piccozze, imbragature, set ARVA con sonda e pala e molto altro, a pochi franchi al giorno: per le gite della sezione e per le uscite private.",
+       "Steigeisen, Pickel, Klettergurte, LVS-Sets mit Sonde und Schaufel und vieles mehr, für wenige Franken pro Tag: für die Touren der Sektion und für private Unternehmungen.",
+       "Crampons, ice axes, harnesses, transceiver sets with probe and shovel and much more, for a few francs a day: for section trips and private outings.")}</p>
+<a class="link" href="noleggio.html">{tr("Listino e condizioni", "Preise und Bedingungen", "Prices and conditions")}</a>
+</article>
+<article class="pillar pillar--accent">
+<h3>{tr("Mercatino", "Marktplatz", "Gear market")}</h3>
+<p>{tr("Attrezzatura di montagna tra privati: vendo, cerco, regalo.", "Bergausrüstung unter Privaten: verkaufen, suchen, verschenken.", "Mountain gear between private people: for sale, wanted, free.")}{mercatino_conta}</p>
+<a class="link" href="mercatino.html">{tr("Vedi gli annunci", "Zu den Inseraten", "See the listings")}</a>
+</article>
+<article class="pillar">
+<h3>{tr("Documenti", "Dokumente", "Documents")}</h3>
+<p>{tr("Regolamento gite, scale di difficoltà, promemoria tecnici, moduli e cartine da scaricare.",
+       "Tourenreglement, Schwierigkeitsskalen, technische Merkblätter, Formulare und Karten zum Herunterladen (italienisch).",
+       "Trip regulations, difficulty scales, technical fact sheets, forms and maps to download (in Italian).")}</p>
+<a class="link" href="documenti.html">{tr("Tutti i documenti", "Alle Dokumente", "All documents")}</a>
+</article>
+<article class="pillar pillar--wide">
+<h3>{tr("Link utili", "Nützliche Links", "Useful links")}</h3>
+<p>{tr("Meteo, bollettini valanghe, condizioni, cartine e le altre società alpinistiche del territorio: i siti da consultare prima di partire.",
+       "Wetter, Lawinenbulletins, Verhältnisse, Karten und die anderen Bergsportvereine der Region: die Websites für vor dem Aufbruch.",
+       "Weather, avalanche bulletins, conditions, maps and the other mountaineering clubs in the region: the sites to check before you set off.")}</p>
+<a class="link" href="link.html">{tr("Vai ai link", "Zu den Links", "Go to the links")}</a>
+</article>
+</div>
+</div>
+</section>
+
+<section class="section--surface" id="news" aria-labelledby="news-h">
+<div class="container">
+<div class="section-row">
+<h2 id="news-h" class="h2">News</h2>
+<a class="link" href="news.html">{tr("Tutte le news", "Alle News", "All news")}</a>
+</div>
+<div class="scorri scorri--news" data-reveal>
+<div class="scorri-traccia">
+{chr(10).join(news_card(n) for n in NEWS[:8])}
+</div>
+</div>
+</div>
+</section>
+
+{banda_adesione(tx.get("cta_h", "Sali con noi."), tx.get("cta_p", "Tariffe ridotte nelle capanne CAS di tutta la Svizzera, corsi, gite e una comunità che ama la montagna quanto te."), tx.get("diventa", "Diventa socio"), "adesione.html")}
 
 </main>
 """ + footer()
-    return html
+    return pubblica(nome, html)
 
 
 # ------------------------------------------------------------------ pagine interne
@@ -789,7 +892,7 @@ def hut(file):
 def introduzione():
     huts = ('<a href="campotencia.html">Campo Tencia</a>, <a href="cristallina.html">Cristallina</a>, <a href="adula.html">Adula</a>, '
             '<a href="motterascio.html">Motterascio (Michela)</a>, <a href="montebar.html">Monte Bar</a> e <a href="baitadelluca.html">Baita del Luca</a>')
-    body = page_hero([("La Sezione", "introduzione.html"), ("Introduzione", None)], "La sezione",
+    body = page_hero([("La Sezione", "introduzione.html"), ("Chi siamo", None)], "La sezione",
                      "Fondata a Bellinzona l’11 aprile 1886, la Sezione Ticino del Club Alpino Svizzero conta quasi 3000 soci e propone un’attività varia, pensata per tutte le età: dai più giovani ai seniori.") + f"""
 
 <figure class="band">
@@ -1214,19 +1317,26 @@ def capigita():
 
 
 def soccorso():
-    emergenza = [("Rega", '<a class="num" href="tel:1414">1414</a> <span class="small">dall’estero <a class="num" href="tel:+41333333333">+41 333 333 333</a></span>'),
-                 ("Ambulanza", '<a class="num" href="tel:144">144</a>'),
-                 ("Emergenza europeo", '<a class="num" href="tel:112">112</a>')]
-    body = page_hero([("Attività", "index.html#attivita"), ("Soccorso", None)], "Soccorso",
-                     "La sezione coordina il soccorso alpino nel Sottoceneri, con volontari formati che intervengono in montagna insieme al Soccorso Alpino Svizzero e alla Rega.",
-                     figure=img("attivita/soccorso-4x5", "Soccorritori con casco e imbragatura recuperano una persona in barella in una gola rocciosa", 525, 657, lazy=False)) + f"""
+    emergenza = [("Rega", f'<a class="num" href="tel:1414">1414</a> <span class="small">{tr("dall’estero", "aus dem Ausland", "from abroad")} <a class="num" href="tel:+41333333333">+41 333 333 333</a></span>'),
+                 (tr("Ambulanza", "Sanität", "Ambulance"), '<a class="num" href="tel:144">144</a>'),
+                 (tr("Emergenza europeo", "Europäischer Notruf", "European emergency number"), '<a class="num" href="tel:112">112</a>')]
+    titolo = tr("Soccorso", "Bergrettung", "Mountain rescue")
+    body = page_hero([sez_crumb(), (titolo, None)], titolo, tr(
+                         "La sezione coordina il soccorso alpino nel Sottoceneri, con volontari formati che intervengono in montagna insieme al Soccorso Alpino Svizzero e alla Rega.",
+                         "Die Sektion koordiniert die Bergrettung im Sottoceneri, mit ausgebildeten Freiwilligen, die zusammen mit der Alpinen Rettung Schweiz und der Rega im Gebirge im Einsatz sind.",
+                         "The section coordinates mountain rescue in the Sottoceneri, with trained volunteers who work in the mountains alongside Swiss Alpine Rescue and Rega."),
+                     figure=img("attivita/soccorso-4x5", tr("Soccorritori con casco e imbragatura recuperano una persona in barella in una gola rocciosa",
+                                                           "Retter mit Helm und Klettergurt bergen eine Person auf einer Trage in einer Felsschlucht",
+                                                           "Rescuers with helmets and harnesses recover a person on a stretcher in a rocky gorge"), 525, 657, lazy=False)) + f"""
 
 <section class="section" aria-labelledby="emergenza-h">
 <div class="container">
 <div class="contact" data-reveal>
 <div class="contact-intro">
-<h2 id="emergenza-h" class="h2">In caso di emergenza</h2>
-<p>Chiama subito: indica chi sei, dove ti trovi, cosa è successo e quante persone sono coinvolte. Resta raggiungibile al telefono.</p>
+<h2 id="emergenza-h" class="h2">{tr("In caso di emergenza", "Im Notfall", "In an emergency")}</h2>
+<p>{tr("Chiama subito: indica chi sei, dove ti trovi, cosa è successo e quante persone sono coinvolte. Resta raggiungibile al telefono.",
+       "Rufen Sie sofort an: Sagen Sie, wer Sie sind, wo Sie sich befinden, was passiert ist und wie viele Personen betroffen sind. Bleiben Sie telefonisch erreichbar.",
+       "Call immediately: say who you are, where you are, what has happened and how many people are involved. Stay reachable by phone.")}</p>
 </div>
 {facts(emergenza)}
 </div>
@@ -1236,21 +1346,61 @@ def soccorso():
 <section class="section" aria-labelledby="colonna-h">
 <div class="container detail">
 <div class="detail-intro">
-<h2 id="colonna-h" class="h2">La colonna<br>di soccorso</h2>
-<p>Dal 1918, quando nacquero le prime stazioni di soccorso alpino a Faido, Airolo e Olivone, la sezione è parte del soccorso in montagna in Ticino.</p>
+<h2 id="colonna-h" class="h2">{tr("La colonna<br>di soccorso", "Die Rettungs­<br>station", "The rescue<br>team")}</h2>
+<p>{tr("Dal 1918, quando nacquero le prime stazioni di soccorso alpino a Faido, Airolo e Olivone, la sezione è parte del soccorso in montagna in Ticino.",
+       "Seit 1918, als in Faido, Airolo und Olivone die ersten Bergrettungsstationen entstanden, ist die Sektion Teil der Bergrettung im Tessin.",
+       "Since 1918, when the first mountain rescue stations were set up in Faido, Airolo and Olivone, the section has been part of mountain rescue in Ticino.")}</p>
 </div>
 <div class="prose" data-reveal>
-<p>Qui troverai presto le informazioni sulla colonna di soccorso della sezione: chi la compone, come è organizzata, la formazione dei soccorritori e come entrare a farne parte.</p>
-<p class="small">Pagina in preparazione. Foto: Soccorso Alpino Svizzero / Urs Nett.</p>
-<div class="actions"><a class="btn btn--secondary" href="https://www.alpinerettung.ch" rel="noopener">Soccorso Alpino Svizzero</a><a class="btn btn--secondary" href="https://www.rega.ch" rel="noopener">Rega</a></div>
+<p>{tr("Qui troverai presto le informazioni sulla colonna di soccorso della sezione: chi la compone, come è organizzata, la formazione dei soccorritori e come entrare a farne parte.",
+       "Hier finden Sie bald Informationen über die Rettungsstation der Sektion: wer dazugehört, wie sie organisiert ist, die Ausbildung der Retterinnen und Retter und wie man mitmachen kann.",
+       "Information about the section’s rescue team will be here soon: who is in it, how it is organised, how rescuers are trained and how to join.")}</p>
+<p class="small">{tr("Pagina in preparazione. Foto: Soccorso Alpino Svizzero / Urs Nett.", "Seite in Vorbereitung. Foto: Alpine Rettung Schweiz / Urs Nett.", "Page in preparation. Photo: Swiss Alpine Rescue / Urs Nett.")}</p>
+<div class="actions"><a class="btn btn--secondary" href="https://www.alpinerettung.ch" rel="noopener">{tr("Soccorso Alpino Svizzero", "Alpine Rettung Schweiz", "Swiss Alpine Rescue")}</a><a class="btn btn--secondary" href="https://www.rega.ch" rel="noopener">Rega</a></div>
 </div>
 </div>
 </section>
 
-{subnav("Attività", "soccorso.html")}"""
-    return page("soccorso.html", "Soccorso | CAS Ticino",
-                "Il soccorso alpino del CAS Ticino nel Sottoceneri: numeri d’emergenza (Rega 1414, 144, 112) e la colonna di soccorso della sezione.",
-                body)
+{subnav(SEZ_MENU(), L("soccorso.html"))}"""
+    return sezione_page("soccorso.html", titolo + " | CAS Ticino", tr(
+        "Il soccorso alpino del CAS Ticino nel Sottoceneri: numeri d’emergenza (Rega 1414, 144, 112) e la colonna di soccorso della sezione.",
+        "Die Bergrettung der SAC-Sektion Ticino im Sottoceneri: Notrufnummern (Rega 1414, 144, 112) und die Rettungsstation der Sektion.",
+        "Mountain rescue by the SAC Ticino Section in the Sottoceneri: emergency numbers (Rega 1414, 144, 112) and the section’s rescue team."),
+        body)
+
+
+def rubrica():
+    """Indirizzi e-mail @casticino.ch della sezione (pagina Sede, in tutte le lingue): segretariato, dicasteri,
+    servizi e capanne. Gli indirizzi vengono da MAIL_DICASTERI, MERCATINO_MAIL e HUT_PAGES."""
+    def riga(etichetta, mail):
+        return (etichetta, f'<a href="mailto:{mail}">{mail}</a>')
+
+    def nome_dicastero(k):
+        return tr(k.removeprefix("Dicastero ").capitalize(), DICASTERI_DE[k][0], DICASTERI_EN[k][0])
+
+    gruppi = [
+        (tr("Sezione", "Sektion", "Section"),
+         [riga(tr("Segretariato e informazioni", "Sekretariat und Auskünfte", "Secretariat and information"), "info@casticino.ch")]),
+        (tr("Dicasteri", "Ressorts", "Departments"), [riga(nome_dicastero(k), m) for k, m in MAIL_DICASTERI.items()]),
+        (tr("Servizi", "Dienste", "Services"),
+         [riga(tr("Noleggio materiale", "Materialvermietung", "Equipment hire"), "noleggio@casticino.ch"),
+          riga(tr("Mercatino", "Mercatino (Marktplatz)", "Mercatino (gear exchange)"), MERCATINO_MAIL)]),
+        (tr("Capanne", "Hütten", "Huts"), [riga(d["name"], d["mail"]) for d in HUT_PAGES.values()]),
+    ]
+    blocchi = "\n".join(f'<div>\n<h3 class="h3">{titolo}</h3>\n{facts(righe)}\n</div>' for titolo, righe in gruppi)
+    return f"""<section class="section" aria-labelledby="rubrica-h">
+<div class="container detail">
+<div class="detail-intro">
+<h2 id="rubrica-h" class="h2">{tr("Indirizzi e-mail", "E-Mail-Adressen", "E-mail addresses")}</h2>
+<p>{tr("Per una domanda precisa scrivi direttamente a chi se ne occupa; per tutto il resto c’è il segretariato.",
+       "Für eine bestimmte Frage schreiben Sie direkt an die zuständige Stelle; für alles andere ans Sekretariat.",
+       "For a specific question, write directly to whoever deals with it; for anything else, write to the secretariat.")}</p>
+</div>
+<div class="rubrica" data-reveal>
+{blocchi}
+</div>
+</div>
+</section>"""
 
 
 def sede():
@@ -1261,7 +1411,7 @@ def sede():
         ("Biblioteca", 'Guide e cartine da consultare, libri in prestito; in vendita libri e magliette. Per visitarla scrivi al segretariato: <a href="mailto:info@casticino.ch">info@casticino.ch</a>.'),
         ("Coordinate bancarie", 'Banca Stato, Lugano<br><span class="num">IBAN CH09 0076 4128 9526 1200 6</span>'),
     ]
-    body = page_hero([("La Sezione", "introduzione.html"), ("Sede e recapiti", None)], "Sede e recapiti",
+    body = page_hero([("La Sezione", "introduzione.html"), ("Sede e contatti", None)], "Sede e contatti",
                      "La sede sociale si trova nello stabile del Canvetto Luganese a Molino Nuovo, con ufficio e sala riunioni al secondo piano in balconata.") + f"""
 
 <section class="section" aria-labelledby="sede-h">
@@ -1277,8 +1427,10 @@ def sede():
 </div>
 </section>
 
+{rubrica()}
+
 {subnav("La Sezione", "sede.html")}"""
-    return page("sede.html", "Sede e recapiti | CAS Ticino",
+    return page("sede.html", "Sede e contatti | CAS Ticino",
                 "Sede del CAS Ticino al Canvetto Luganese (Molino Nuovo), recapito postale, e-mail, biblioteca e coordinate bancarie.",
                 body)
 
@@ -1451,15 +1603,15 @@ LINKS_EN = {"Capigita": "Trip leaders", "Meteo e neve": "Weather and snow", "Con
 def link():
     if de():
         gruppi = [(LINKS_DE.get(g, g), [(LINKS_DE.get(n, n), u) for n, u in links]) for g, links in LINKS]
-        hero = page_hero([("Die Sektion", "de/introduzione.html"), ("Nützliche Links", None)], "Nützliche Links",
+        hero = page_hero([("Dienste", "de/noleggio.html"), ("Nützliche Links", None)], "Nützliche Links",
                          "Wetter, Lawinenbulletins, Verhältnisse, Karten und die anderen Bergsteigervereine der Region.")
     elif en():
         gruppi = [(LINKS_EN.get(g, g), [(LINKS_EN.get(n, n), u) for n, u in links]) for g, links in LINKS]
-        hero = page_hero([("The Section", "en/introduzione.html"), ("Useful links", None)], "Useful links",
+        hero = page_hero([("Services", "en/noleggio.html"), ("Useful links", None)], "Useful links",
                          "Weather, avalanche bulletins, conditions, maps and the other mountaineering clubs in the region.")
     else:
         gruppi = LINKS
-        hero = page_hero([("La Sezione", "introduzione.html"), ("Link utili", None)], "Link utili",
+        hero = page_hero([("Servizi", "noleggio.html"), ("Link utili", None)], "Link utili",
                          "Meteo, bollettini valanghe, condizioni, cartine e le altre realtà alpinistiche del territorio.")
     body = hero + f"""
 
@@ -1469,7 +1621,7 @@ def link():
 </div>
 </section>
 
-{subnav(tr("La Sezione", "Die Sektion", "The Section"), L("link.html"))}"""
+{subnav(SERVIZI_MENU(), L("link.html"))}"""
     if de():
         return sezione_page("link.html", "Nützliche Links | CAS Ticino",
                             "Nützliche Links für die Berge: Wetter und Lawinenbulletins, Verhältnisse, Karten, Tessiner Bergsteigervereine, Ausbildung und Rettung.", body)
@@ -1508,24 +1660,66 @@ DOCS = [
 ]
 
 
-def documenti():
-    body = page_hero([("Media", "foto.html"), ("Documenti", None)], "Documenti",
-                     "Statuto e documenti della sezione, scale di difficoltà, promemoria tecnici, documenti dei corsi, moduli e cartine da scaricare.") + f"""
+# nomi di gruppi e documenti nelle altre lingue (i PDF restano in italiano)
+DOCS_DE = {"La sezione": "Die Sektion", "Statuto": "Statuten", "Visione e strategia": "Vision und Strategie", "Organigramma": "Organigramm",
+           "Regolamento gite": "Tourenreglement", "Scale di difficoltà": "Schwierigkeitsskalen", "Arrampicata sportiva": "Sportklettern",
+           "Alpinismo": "Hochtouren", "Arrampicata artificiale": "Technisches Klettern", "Escursionismo e trekking": "Wandern und Trekking",
+           "Racchette": "Schneeschuhtouren", "Sci alpinismo": "Skitouren", "Vie ferrate": "Klettersteige", "Promemoria": "Merkblätter",
+           "Meteo": "Wetter", "Orientamento": "Orientierung", "Scalata su ghiaccio": "Eisklettern", "Tecnica alpina": "Alpine Technik",
+           "Incidente valanga e ARVA": "Lawinenunfall und LVS", "Promemoria capigita": "Merkblatt für Tourenleitende",
+           "Istruzioni DropTour": "DropTour-Anleitung", "Pianificazione": "Planung",
+           "Formulario pianificazione gite estive": "Planungsformular Sommertouren", "Cartine CH 1:25 000": "Landeskarten 1:25 000",
+           "Cartine CH 1:50 000": "Landeskarten 1:50 000", "Cartine CH 1:50 000 sci": "Skitourenkarten 1:50 000",
+           "Obiettivi corsi": "Kursziele", "Equipaggiamento": "Ausrüstung", "Arrampicata": "Klettern",
+           "Tecnica di sci fuori pista": "Off-Piste-Skitechnik"}
+DOCS_EN = {"La sezione": "The Section", "Statuto": "Statutes", "Visione e strategia": "Vision and strategy", "Organigramma": "Organisation chart",
+           "Regolamento gite": "Trip regulations", "Scale di difficoltà": "Difficulty scales", "Arrampicata sportiva": "Sport climbing",
+           "Alpinismo": "Mountaineering", "Arrampicata artificiale": "Aid climbing", "Escursionismo e trekking": "Hiking and trekking",
+           "Racchette": "Snowshoeing", "Sci alpinismo": "Ski touring", "Vie ferrate": "Via ferratas", "Promemoria": "Fact sheets",
+           "Meteo": "Weather", "Orientamento": "Navigation", "Scalata su ghiaccio": "Ice climbing", "Tecnica alpina": "Alpine technique",
+           "Incidente valanga e ARVA": "Avalanche accident and transceiver", "Promemoria capigita": "Trip leader checklist",
+           "Istruzioni DropTour": "DropTour instructions", "Pianificazione": "Planning",
+           "Formulario pianificazione gite estive": "Summer trip planning form", "Cartine CH 1:25 000": "Swiss maps 1:25,000",
+           "Cartine CH 1:50 000": "Swiss maps 1:50,000", "Cartine CH 1:50 000 sci": "Swiss ski touring maps 1:50,000",
+           "Obiettivi corsi": "Course objectives", "Equipaggiamento": "Equipment", "Arrampicata": "Climbing",
+           "Tecnica di sci fuori pista": "Off-piste ski technique"}
 
-<section class="section" aria-label="Documenti">
+
+def SERVIZI_MENU():
+    """Nome della voce Servizi nella lingua corrente (per percorso e sotto-menu)."""
+    return tr("Servizi", "Dienste", "Services")
+
+
+def servizi_crumb():
+    return (SERVIZI_MENU(), L("noleggio.html"))
+
+
+def documenti():
+    nomi = {"it": {}, "de": DOCS_DE, "en": DOCS_EN}[LINGUA["lang"]]
+    gruppi = [(nomi.get(g, g), [(nomi.get(n, n), u) for n, u in docs]) for g, docs in DOCS]
+    titolo = tr("Documenti", "Dokumente", "Documents")
+    body = page_hero([servizi_crumb(), (titolo, None)], titolo, tr(
+        "Statuto e documenti della sezione, scale di difficoltà, promemoria tecnici, documenti dei corsi, moduli e cartine da scaricare.",
+        "Statuten und Dokumente der Sektion, Schwierigkeitsskalen, technische Merkblätter, Formulare und Karten zum Herunterladen. Die Dokumente sind auf Italienisch.",
+        "The section’s statutes and documents, difficulty scales, technical fact sheets, forms and maps to download. The documents are in Italian.")) + f"""
+
+<section class="section" aria-label="{titolo}">
 <div class="container">
-{linkgroups(DOCS, "PDF")}
+{linkgroups(gruppi, "PDF")}
 <div class="callout">
-<p><strong>Annuari e Informazione</strong>, il bollettino della sezione, hanno una pagina propria.</p>
-<div class="actions"><a class="btn btn--secondary" href="annuari.html">Annuari</a><a class="btn btn--secondary" href="informazione.html">Informazione</a></div>
+<p>{tr("<strong>Annuari e Informazione</strong>, il bollettino della sezione, hanno una pagina propria.",
+       "<strong>Jahrbücher und «Informazione»</strong>, das Mitteilungsblatt der Sektion, haben eine eigene Seite (italienisch).",
+       "<strong>Yearbooks and «Informazione»</strong>, the section’s bulletin, have their own page (in Italian).")}</p>
+<div class="actions"><a class="btn btn--secondary" href="annuari.html">{tr("Annuari", "Jahrbücher", "Yearbooks")}</a><a class="btn btn--secondary" href="informazione.html">Informazione</a></div>
 </div>
 </div>
 </section>
 
-{subnav("Media", "documenti.html")}"""
-    return page("documenti.html", "Documenti | CAS Ticino",
-                "Documenti del CAS Ticino da scaricare: scale di difficoltà, promemoria tecnici, promemoria capigita, obiettivi ed equipaggiamento dei corsi, pianificazione e cartine.",
-                body)
+{subnav(SERVIZI_MENU(), L("documenti.html"))}"""
+    return sezione_page("documenti.html", tr("Documenti", "Dokumente", "Documents") + " | CAS Ticino", tr(
+        "Documenti del CAS Ticino da scaricare: scale di difficoltà, promemoria tecnici, promemoria capigita, obiettivi ed equipaggiamento dei corsi, pianificazione e cartine.",
+        "Dokumente der SAC-Sektion Ticino zum Herunterladen (italienisch): Statuten, Tourenreglement, Schwierigkeitsskalen, Merkblätter, Formulare und Karten.",
+        "Documents of the SAC Ticino Section to download (in Italian): statutes, trip regulations, difficulty scales, fact sheets, forms and maps."), body)
 
 
 # ------------------------------------------------------------------ news, foto, adesione
@@ -1567,26 +1761,26 @@ def og_name(n):
 
 
 def news_meta(n):
-    cat = f'<span>{esc(n["category"])}</span>' if n["category"] else ""
-    return f'<p class="news-meta"><time datetime="{n["date"]}">{data_it(n["date"])}</time>{cat}</p>'
+    cat = f'<span{in_it()}>{esc(n["category"])}</span>' if n["category"] else ""
+    return f'<p class="news-meta"><time datetime="{n["date"]}">{data_l(n["date"])}</time>{cat}</p>'
 
 
 def news_card(n, feature=False):
-    """Scheda di una notizia: foto (o blocco rosso con la data se manca), data, titolo, estratto."""
+    """Scheda di una notizia: foto (o blocco rosso con la data se manca), data, titolo, estratto (in italiano)."""
     if n["image"]:
         im = n["image"]
         fig = f'<figure><img src="{im["src"]}" alt="" width="{im["w"]}" height="{im["h"]}" loading="lazy" decoding="async"></figure>'
     else:
         y, m, d = n["date"].split("-")
-        fig = f'<figure class="news-noimg" aria-hidden="true"><strong>{int(d)}</strong><span>{MESI[int(m) - 1]} {y}</span></figure>'
+        fig = f'<figure class="news-noimg" aria-hidden="true"><strong>{int(d)}</strong><span>{MESI_L[LINGUA["lang"]][int(m) - 1]} {y}</span></figure>'
     cls = "news-card news-card--feature" if feature else "news-card"
     tag = "h2" if feature else "h3"
     return f"""<a class="{cls}" href="{n['file']}">
 {fig}
 <div class="news-card-body">
 {news_meta(n)}
-<{tag}>{esc(n['title'])}</{tag}>
-<p>{esc(n['excerpt'])}</p>
+<{tag}{in_it()}>{esc(n['title'])}</{tag}>
+<p{in_it()}>{esc(n['excerpt'])}</p>
 </div>
 </a>"""
 
@@ -1605,28 +1799,35 @@ def news():
 {chr(10).join(news_card(n) for n in items)}
 </div>
 </section>""" for y, items in anni)
-    body = page_hero([("News", None)], "News", "Serate, eventi, corsi e avvisi della sezione: tutte le notizie, dalla più recente.", social()) + f"""
+    body = page_hero([("News", None)], "News", tr(
+        "Serate, eventi, corsi e avvisi della sezione: tutte le notizie, dalla più recente.",
+        "Abende, Anlässe, Kurse und Hinweise der Sektion: alle Meldungen, die neuesten zuerst. Die News erscheinen auf Italienisch.",
+        "Evenings, events, courses and notices from the section: all the news, most recent first. The news is published in Italian."), social()) + f"""
 
-<section class="section" aria-label="Ultima notizia">
+<section class="section" aria-label="{tr("Ultima notizia", "Neueste Meldung", "Latest news")}">
 <div class="container">
 {news_card(NEWS[0], feature=True)}
 </div>
 </section>
 
-<section class="section section--tight" aria-label="Archivio delle notizie">
+<section class="section section--tight" aria-label="{tr("Archivio delle notizie", "Archiv der Meldungen", "News archive")}">
 <div class="container">
-<nav class="subnav news-years" aria-label="Anni">
-<h2 class="label">Archivio</h2>
+<nav class="subnav news-years" aria-label="{tr("Anni", "Jahre", "Years")}">
+<h2 class="label">{tr("Archivio", "Archiv", "Archive")}</h2>
 <div class="subnav-links">
 {salti}
 </div>
 </nav>
 {gruppi}
 </div>
-</section>"""
-    return page("news.html", "News | CAS Ticino",
-                "Le notizie della Sezione Ticino del Club Alpino Svizzero: serate, eventi, corsi, avvisi di sicurezza e vita delle capanne.",
-                body, og=og_name(NEWS[0]), section="News")
+</section>
+
+{subnav(NM_MENU(), L("news.html"))}"""
+    return sezione_page("news.html", "News | CAS Ticino", tr(
+        "Le notizie della Sezione Ticino del Club Alpino Svizzero: serate, eventi, corsi, avvisi di sicurezza e vita delle capanne.",
+        "Die Meldungen der SAC-Sektion Ticino (italienisch): Abende, Anlässe, Kurse, Sicherheitshinweise und das Leben in den Hütten.",
+        "News from the SAC Ticino Section (in Italian): evenings, events, courses, safety notices and life in the huts."),
+        body, og=og_name(NEWS[0]), section=NM_MENU())
 
 
 def news_article(i):
@@ -1643,23 +1844,24 @@ def news_article(i):
         fig = f'<figure class="article-figure"><img src="{im["src"]}" alt="{alt}" width="{im["w"]}" height="{im["h"]}" fetchpriority="high"></figure>'
     piu_recente = NEWS[i - 1] if i > 0 else None
     meno_recente = NEWS[i + 1] if i + 1 < len(NEWS) else None
-    prev = (f'<a class="article-prev" href="{meno_recente["file"]}"><span class="label">Notizia precedente</span><strong>{esc(meno_recente["title"])}</strong></a>'
+    prec, succ = tr("Notizia precedente", "Vorherige Meldung", "Previous news"), tr("Notizia successiva", "Nächste Meldung", "Next news")
+    prev = (f'<a class="article-prev" href="{meno_recente["file"]}"><span class="label">{prec}</span><strong{in_it()}>{esc(meno_recente["title"])}</strong></a>'
             if meno_recente else "<span></span>")
-    nxt = (f'<a class="article-next" href="{piu_recente["file"]}"><span class="label">Notizia successiva</span><strong>{esc(piu_recente["title"])}</strong></a>'
+    nxt = (f'<a class="article-next" href="{piu_recente["file"]}"><span class="label">{succ}</span><strong{in_it()}>{esc(piu_recente["title"])}</strong></a>'
            if piu_recente else "<span></span>")
     altre = [x for x in NEWS[max(0, i - 2):i + 4] if x is not n][:3]
     body = f"""<section class="page-hero article-hero" aria-labelledby="page-h">
 <div class="container">
-{crumbs(("News", "news.html"), (esc(n["title"]), None))}
+{crumbs(("News", "news.html"), (f'<span{in_it()}>{esc(n["title"])}</span>' if in_it() else esc(n["title"]), None))}
 {news_meta(n)}
-<h1 id="page-h" class="article-title">{esc(n["title"])}</h1>
+<h1 id="page-h" class="article-title"{in_it()}>{esc(n["title"])}</h1>
 </div>
 </section>
 
-<section class="section section--tight" aria-label="Testo">
+<section class="section section--tight" aria-label="{tr("Testo", "Text", "Text")}">
 <div class="container article{'' if fig else ' article--noimg'}">
 {fig}
-<div class="prose">
+<div class="prose"{in_it()}>
 {corpo}
 </div>
 </div>
@@ -1667,19 +1869,18 @@ def news_article(i):
 
 <section class="section section--tight" aria-labelledby="altre-h">
 <div class="container">
-<nav class="article-pager" aria-label="Notizia precedente e successiva">{prev}{nxt}</nav>
+<nav class="article-pager" aria-label="{prec} / {succ}">{prev}{nxt}</nav>
 <div class="section-row">
-<h2 id="altre-h" class="h3">Altre notizie</h2>
-<a class="link" href="news.html">Tutte le news</a>
+<h2 id="altre-h" class="h3">{tr("Altre notizie", "Weitere Meldungen", "More news")}</h2>
+<a class="link" href="news.html">{tr("Tutte le news", "Alle News", "All news")}</a>
 </div>
 <div class="news-grid">
 {chr(10).join(news_card(x) for x in altre)}
 </div>
 </div>
 </section>"""
-    su = "../" * n["file"].count("/")  # news/<anno>/… : due livelli sotto la radice
-    return in_sottocartella(page(n["file"], f"{esc(n['title'])} | CAS Ticino", esc(n["excerpt"][:155]), body,
-                                 og=og_name(n), section="News"), su=su)
+    return sezione_page(n["file"], f"{esc(n['title'])} | CAS Ticino", esc(n["excerpt"][:155]), body,
+                        og=og_name(n), section=NM_MENU())
 
 
 # ------------------------------------------------------------------ programma gite (copia da Droptour)
@@ -1703,6 +1904,18 @@ IMPEGNO_L = {"it": IMPEGNO, "de": {"A": "wenig anspruchsvoll", "B": "ziemlich an
              "en": {"A": "easy", "B": "fairly demanding", "C": "demanding", "D": "very demanding"}}
 GRUPPI_L = {"de": {"Tutti": "Alle", "Attivi": "Aktive", "Giovani": "Jugend", "Seniori": "Senioren", "Soccorso": "Bergrettung", "Monitori": "Leitende"},
             "en": {"Tutti": "All", "Attivi": "Active members", "Giovani": "Youth", "Seniori": "Seniors", "Soccorso": "Mountain rescue", "Monitori": "Instructors"}}
+
+
+# tipi di gita (category di Droptour, sempre in italiano) per codice; un codice nuovo resta in italiano.
+# Tenere allineato con TIPI in assets/gite.js
+TIPI_GITA_L = {"de": {"ALP": "Hochtour", "ARR": "Klettern", "COR": "Ausbildungskurs", "CUL": "Kultur", "ESC": "Wandern", "EVE": "Anlass",
+                      "FER": "Klettersteig", "MTB": "Mountainbike", "RAC": "Schneeschuhtour", "SA": "Skitour", "SOC": "Bergrettung"},
+               "en": {"ALP": "Mountaineering", "ARR": "Climbing", "COR": "Training course", "CUL": "Culture", "ESC": "Hiking", "EVE": "Event",
+                      "FER": "Via ferrata", "MTB": "Mountain biking", "RAC": "Snowshoeing", "SA": "Ski touring", "SOC": "Mountain rescue"}}
+
+
+def nome_tipo(g):
+    return TIPI_GITA_L.get(LINGUA["lang"], {}).get(g.get("sigla"), g["tipo"])
 
 
 def nome_gruppo(x):
@@ -1762,7 +1975,7 @@ def gita_html(g, oggi):
             sotto += f", {fino_data(d2)}"
     classe, stato = gita_stato(g, oggi)
     gruppi = [nome_gruppo(x) for x in g["gruppi"] if x != "Tutti"] or [nome_gruppo("Tutti")]
-    tipo = " · ".join(dict.fromkeys(filter(None, [esc(g["tipo"]), esc(", ".join(gruppi))])))
+    tipo = " · ".join(dict.fromkeys(filter(None, [esc(nome_tipo(g)), esc(", ".join(gruppi))])))
     meta = []
     if g["cond"]:
         meta.append(f'<span title="{IMPEGNO_L[LINGUA["lang"]].get(g["cond"], "")}">{tr("Impegno", "Kondition", "Fitness")} {esc(g["cond"])}</span>')
@@ -1815,23 +2028,24 @@ def prossime_gite(n=10):
     """Le prossime gite per la home, in una fila che scorre: senza annullate e senza le serate della colonna di soccorso.
     La pagina può restare indietro di un giorno (si rigenera ogni mattina), quindi site.js toglie quelle già passate (data-fine)."""
     import datetime
+    lang = LINGUA["lang"]
     oggi = datetime.date.today().isoformat()
     scelte = [g for g in gite_dati() if (g["al"] or g["dal"]) >= oggi and g["stato"] != "annullata"
               and "colonna di soccorso" not in g["titolo"].lower()][:n]
     schede = []
     for g in scelte:
         d = datetime.date.fromisoformat(g["dal"])
-        quando = f"{GIORNI_BREVI[d.weekday()]} {MESI[d.month - 1]}"
+        quando = f"{GIORNI_BREVI_L[lang][d.weekday()]} {MESI_L[lang][d.month - 1]}"
         if g["al"] and g["al"] != g["dal"]:
             d2 = datetime.date.fromisoformat(g["al"])
-            quando += f", {fino_al(d2.day)}" + ("" if d2.month == d.month else f" {MESI_BREVI[d2.month - 1]}")
+            quando += ", " + (fino_data(d2) if d2.month != d.month else tr(fino_al(d2.day), f"bis {d2.day}.", f"to {d2.day}"))
         classe, stato = gita_stato(g, oggi)
-        gruppi = [x for x in g["gruppi"] if x != "Tutti"] or ["Tutti"]
-        tipo = " · ".join(dict.fromkeys(filter(None, [esc(g["tipo"]), esc(", ".join(gruppi))])))
+        gruppi = [nome_gruppo(x) for x in g["gruppi"] if x != "Tutti"] or [nome_gruppo("Tutti")]
+        tipo = " · ".join(dict.fromkeys(filter(None, [esc(nome_tipo(g)), esc(", ".join(gruppi))])))
         schede.append(f"""<a class="prossima" href="gita.html?id={g['id']}" data-fine="{g['al'] or g['dal']}">
 <p class="prossima-data"><span class="prossima-giorno num">{d.day}</span><span>{quando}</span></p>
 <p class="gita-tipo">{tipo}</p>
-<h3 class="prossima-titolo">{esc(g['titolo'])}</h3>
+<h3 class="prossima-titolo"{in_it()}>{esc(g['titolo'])}</h3>
 <span class="stato{' stato--' + classe if classe else ''}">{stato}</span>
 </a>""")
     return "\n".join(schede)
@@ -1869,7 +2083,7 @@ def gite():
 <p>{tr("Le iscrizioni, l’accesso per soci e capigita e i dettagli di ogni gita sono sul portale Droptour. Per le domande su una gita scrivi al capogita, dalla pagina della gita.",
        "Anmeldungen, Zugang für Mitglieder und Tourenleitende und alle Details zu jeder Tour finden Sie auf dem Portal Droptour (italienisch). Fragen zu einer Tour richten Sie an die Tourenleitung, über die Seite der Tour.",
        "Registration, access for members and trip leaders and the details of every trip are on the Droptour portal (in Italian). For questions about a trip, write to the trip leader from the trip’s page.")}</p>
-<div class="actions"><a class="btn btn--secondary" href="{GITE_DROPTOUR}" rel="noopener">{tr("Programma completo su Droptour", "Ganzes Programm auf Droptour", "Full programme on Droptour")}</a><a class="btn btn--secondary" href="{GITE_ICS}">{tr("Calendario (iCal)", "Kalender (iCal)", "Calendar (iCal)")}</a><a class="btn btn--secondary" href="documenti.html">{tr("Scale di difficoltà", "Schwierigkeitsskalen (italienisch)", "Difficulty scales (in Italian)")}</a></div>
+<div class="actions"><a class="btn btn--secondary" href="{GITE_DROPTOUR}" rel="noopener">{tr("Programma completo su Droptour", "Ganzes Programm auf Droptour", "Full programme on Droptour")}</a><a class="btn btn--secondary" href="{GITE_ICS}">{tr("Calendario (iCal)", "Kalender (iCal)", "Calendar (iCal)")}</a>{'<a class="btn btn--secondary" href="partecipare.html">Come partecipare</a>' if it else ""}<a class="btn btn--secondary" href="documenti.html">{tr("Scale di difficoltà", "Schwierigkeitsskalen (italienisch)", "Difficulty scales (in Italian)")}</a></div>
 </div>
 </div>
 </section>
@@ -1912,21 +2126,28 @@ def gita_pagina():
 
 
 def foto():
-    body = page_hero([("Media", "foto.html"), ("Foto e resoconti", None)], "Foto e resoconti", "Le foto e i resoconti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.") + f"""
+    su = "" if LINGUA["lang"] == "it" else "../"  # data-json non passa da pubblica()
+    titolo = tr("Foto e resoconti", "Fotos und Tourenberichte", "Photos and trip reports")
+    body = page_hero([nm_crumb(), (titolo, None)], titolo, tr(
+        "Le foto e i resoconti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.",
+        "Fotos und Berichte der letzten Touren der Sektion, von den Tourenleitenden auf dem Portal Droptour veröffentlicht. Die Berichte sind auf Italienisch.",
+        "Photos and reports from the section’s latest trips, published by the trip leaders on the Droptour portal. The reports are in Italian.")) + f"""
 
-<section class="section" aria-label="Ultime gite">
+<section class="section" aria-label="{tr("Ultime gite", "Letzte Touren", "Latest trips")}">
 <div class="container">
-<div id="albums" aria-live="polite"><p class="albums-status">Caricamento delle foto…</p></div>
+<div id="albums" aria-live="polite" data-json="{su}data/foto.json"><p class="albums-status">{tr("Caricamento delle foto…", "Fotos werden geladen…", "Loading photos…")}</p></div>
 <div class="albums-more">
-<button type="button" class="btn btn--secondary" id="load-more" hidden>Carica altre gite</button>
+<button type="button" class="btn btn--secondary" id="load-more" hidden>{tr("Carica altre gite", "Weitere Touren laden", "Load more trips")}</button>
 </div>
 </div>
 </section>
 
-{subnav("Media", "foto.html")}"""
-    return page("foto.html", "Foto e resoconti delle gite | CAS Ticino",
-                "Le foto delle ultime gite della Sezione Ticino del Club Alpino Svizzero, con i resoconti dei capigita.",
-                body, og="attivita/gite-2x1", scripts=f'<script src="{asset("assets/foto.js")}" defer></script>\n')
+{subnav(NM_MENU(), L("foto.html"))}"""
+    return sezione_page("foto.html", tr("Foto e resoconti delle gite", "Fotos und Tourenberichte", "Photos and trip reports") + " | CAS Ticino", tr(
+        "Le foto delle ultime gite della Sezione Ticino del Club Alpino Svizzero, con i resoconti dei capigita.",
+        "Die Fotos der letzten Touren der SAC-Sektion Ticino, mit den Berichten der Tourenleitenden (italienisch).",
+        "Photos from the latest trips of the SAC Ticino Section, with the trip leaders’ reports (in Italian)."),
+        body, og="attivita/gite-2x1", scripts=f'<script src="{asset("assets/foto.js")}" defer></script>\n')
 
 
 def pubblicazioni(cartella, prefisso):
@@ -1952,7 +2173,7 @@ def pubblicazioni(cartella, prefisso):
 
 def pub_card(x, titolo):
     return f"""<a class="pub" href="{x['pdf']}">
-<figure><img src="{x['cover']}" alt="Copertina: {titolo}" width="{x['w']}" height="{x['h']}" loading="lazy" decoding="async"></figure>
+<figure><img src="{x['cover']}" alt="{tr("Copertina", "Titelseite", "Cover")}: {titolo}" width="{x['w']}" height="{x['h']}" loading="lazy" decoding="async"></figure>
 <strong>{titolo}</strong>
 <span class="small">PDF {x['mb']}MB</span>
 </a>"""
@@ -1960,12 +2181,12 @@ def pub_card(x, titolo):
 
 def pub_feature(x, titolo, testo):
     return f"""<div class="pub-feature" data-reveal>
-<figure><img src="{x['cover']}" alt="Copertina: {titolo}" width="{x['w']}" height="{x['h']}"></figure>
+<figure><img src="{x['cover']}" alt="{tr("Copertina", "Titelseite", "Cover")}: {titolo}" width="{x['w']}" height="{x['h']}"></figure>
 <div class="pub-feature-body">
-<span class="label">Ultimo numero</span>
+<span class="label">{tr("Ultimo numero", "Neueste Ausgabe", "Latest issue")}</span>
 <h2 class="h2">{titolo}</h2>
 <p>{testo}</p>
-<a class="btn btn--primary" href="{x['pdf']}">Leggi il PDF <span class="arrow" aria-hidden="true">→</span></a>
+<a class="btn btn--primary" href="{x['pdf']}">{tr("Leggi il PDF", "PDF lesen (italienisch)", "Read the PDF (in Italian)")} <span class="arrow" aria-hidden="true">→</span></a>
 <span class="small">PDF {x['mb']}MB</span>
 </div>
 </div>"""
@@ -1974,46 +2195,60 @@ def pub_feature(x, titolo, testo):
 def annuari():
     items = pubblicazioni("annuari", "annuario")
     ultimo, altri = items[0], items[1:]
-    body = page_hero([("Media", "foto.html"), ("Annuari", None)], "Annuari",
-                     "L’annuario racconta la vita della sezione: un volume per ogni anno, da sfogliare in PDF.") + f"""
+    nome = tr("Annuario", "Jahrbuch", "Yearbook")
+    titolo = tr("Annuari", "Jahrbücher", "Yearbooks")
+    body = page_hero([nm_crumb(), (titolo, None)], titolo, tr(
+        "L’annuario racconta la vita della sezione: un volume per ogni anno, da sfogliare in PDF.",
+        "Das Jahrbuch erzählt vom Leben der Sektion: ein Band pro Jahr, als PDF zum Durchblättern (italienisch).",
+        "The yearbook tells the story of the section’s life: one volume a year, to browse as a PDF (in Italian).")) + f"""
 
-<section class="section" aria-label="Annuari">
+<section class="section" aria-label="{titolo}">
 <div class="container">
-{pub_feature(ultimo, f"Annuario {ultimo['anno']}", "L’ultimo annuario pubblicato dalla sezione.")}
-<div class="section-row"><h2 class="h3">Annate precedenti</h2></div>
+{pub_feature(ultimo, f"{nome} {ultimo['anno']}", tr("L’ultimo annuario pubblicato dalla sezione.", "Das neueste Jahrbuch der Sektion.", "The section’s latest yearbook."))}
+<div class="section-row"><h2 class="h3">{tr("Annate precedenti", "Frühere Jahrgänge", "Previous years")}</h2></div>
 <div class="pubs" data-reveal>
-{chr(10).join(pub_card(x, f"Annuario {x['anno']}") for x in altri)}
+{chr(10).join(pub_card(x, f"{nome} {x['anno']}") for x in altri)}
 </div>
 </div>
 </section>
 
-{subnav("Media", "annuari.html")}"""
-    return page("annuari.html", "Annuari | CAS Ticino",
-                "Gli annuari della Sezione Ticino del Club Alpino Svizzero da scaricare in PDF.",
-                body, og=ultimo["cover"][len("assets/img/"):-len(".webp")])
+{subnav(NM_MENU(), L("annuari.html"))}"""
+    return sezione_page("annuari.html", titolo + " | CAS Ticino", tr(
+        "Gli annuari della Sezione Ticino del Club Alpino Svizzero da scaricare in PDF.",
+        "Die Jahrbücher der SAC-Sektion Ticino als PDF zum Herunterladen (italienisch).",
+        "The yearbooks of the SAC Ticino Section to download as PDFs (in Italian)."),
+        body, og=ultimo["cover"][len("assets/img/"):-len(".webp")])
 
 
 def informazione():
     items = pubblicazioni("informazione", "informazione")
     ultimo, altri = items[0], items[1:]
-    griglia = (f"""<div class="section-row"><h2 class="h3">Numeri precedenti</h2></div>
-<div class="pubs" data-reveal>
-{chr(10).join(pub_card(x, f"Informazione, {x['quando']}") for x in altri)}
-</div>""" if altri else "")
-    body = page_hero([("Media", "foto.html"), ("Informazione", None)], "Informazione",
-                     "Il bollettino ufficiale della sezione: notizie, attività e appuntamenti, da sfogliare in PDF.") + f"""
 
-<section class="section" aria-label="Numeri di Informazione">
+    def quando(x):
+        mese = MESI_L[LINGUA["lang"]][MESI.index(x["mese"])] if x["mese"] else ""
+        return f"Informazione, {mese} {x['anno']}".replace(",  ", ", ").strip()
+    griglia = (f"""<div class="section-row"><h2 class="h3">{tr("Numeri precedenti", "Frühere Ausgaben", "Previous issues")}</h2></div>
+<div class="pubs" data-reveal>
+{chr(10).join(pub_card(x, quando(x)) for x in altri)}
+</div>""" if altri else "")
+    body = page_hero([nm_crumb(), ("Informazione", None)], "Informazione", tr(
+        "Il bollettino ufficiale della sezione: notizie, attività e appuntamenti, da sfogliare in PDF.",
+        "Das offizielle Mitteilungsblatt der Sektion: Neuigkeiten, Aktivitäten und Termine, als PDF zum Durchblättern (italienisch).",
+        "The section’s official bulletin: news, activities and dates, to browse as a PDF (in Italian).")) + f"""
+
+<section class="section" aria-label="Informazione">
 <div class="container">
-{pub_feature(ultimo, f"Informazione, {ultimo['quando']}", "Il numero più recente del bollettino ufficiale della Sezione Ticino.")}
+{pub_feature(ultimo, quando(ultimo), tr("Il numero più recente del bollettino ufficiale della Sezione Ticino.", "Die neueste Ausgabe des offiziellen Mitteilungsblatts der Sektion Ticino.", "The latest issue of the Ticino Section’s official bulletin."))}
 {griglia}
 </div>
 </section>
 
-{subnav("Media", "informazione.html")}"""
-    return page("informazione.html", "Informazione | CAS Ticino",
-                "Informazione, il bollettino ufficiale della Sezione Ticino del Club Alpino Svizzero, da scaricare in PDF.",
-                body, og=ultimo["cover"][len("assets/img/"):-len(".webp")])
+{subnav(NM_MENU(), L("informazione.html"))}"""
+    return sezione_page("informazione.html", "Informazione | CAS Ticino", tr(
+        "Informazione, il bollettino ufficiale della Sezione Ticino del Club Alpino Svizzero, da scaricare in PDF.",
+        "«Informazione», das offizielle Mitteilungsblatt der SAC-Sektion Ticino, als PDF zum Herunterladen (italienisch).",
+        "«Informazione», the official bulletin of the SAC Ticino Section, to download as a PDF (in Italian)."),
+        body, og=ultimo["cover"][len("assets/img/"):-len(".webp")])
 
 
 def adesione():
@@ -2069,30 +2304,56 @@ def adesione():
 # ------------------------------------------------------------------ attività
 
 def giovani():
-    groups = [("2-10", "Giovanissimi e famiglie", "Arrampicata in famiglia: i bambini imparano a muoversi in corda, gli adulti ad assicurare."),
-              ("9-14", "Spider", "Arrampicata, nevai, lettura della carta e scoperta della natura, tra gioco, divertimento e spirito di gruppo."),
-              ("13-17", "Junior", "D’inverno sci alpinismo e splitboard, d’estate creste e arrampicata: prima il divertimento e la sicurezza, poi l’autonomia."),
-              ("16-25", "OG", "Sci alpinismo impegnativo, cascate di ghiaccio e arrampicata tecnica in tutto l’arco alpino. Chi vuole può formarsi come monitore.")]
+    groups = [("2-10", tr("Giovanissimi e famiglie", "Die Jüngsten und Familien", "Youngest and families"),
+               tr("Arrampicata in famiglia: i bambini imparano a muoversi in corda, gli adulti ad assicurare.",
+                  "Klettern mit der Familie: Die Kinder lernen, sich am Seil zu bewegen, die Erwachsenen das Sichern.",
+                  "Family climbing: children learn to move on the rope, adults learn to belay.")),
+              ("9-14", "Spider", tr("Arrampicata, nevai, lettura della carta e scoperta della natura, tra gioco, divertimento e spirito di gruppo.",
+                                    "Klettern, Schneefelder, Kartenlesen und Naturentdeckung, mit Spiel, Spass und Teamgeist.",
+                                    "Climbing, snowfields, map reading and discovering nature, with games, fun and team spirit.")),
+              ("13-17", "Junior", tr("D’inverno sci alpinismo e splitboard, d’estate creste e arrampicata: prima il divertimento e la sicurezza, poi l’autonomia.",
+                                     "Im Winter Skitouren und Splitboard, im Sommer Grate und Klettern: zuerst Spass und Sicherheit, dann Selbständigkeit.",
+                                     "Ski touring and splitboarding in winter, ridges and climbing in summer: fun and safety first, then independence.")),
+              ("16-25", "OG", tr("Sci alpinismo impegnativo, cascate di ghiaccio e arrampicata tecnica in tutto l’arco alpino. Chi vuole può formarsi come monitore.",
+                                 "Anspruchsvolle Skitouren, Eisfälle und technisches Klettern im ganzen Alpenbogen. Wer will, kann sich zur Leiterin oder zum Leiter ausbilden.",
+                                 "Demanding ski touring, ice falls and technical climbing across the Alps. Those who wish can train as instructors."))]
+    anni = tr("anni", "Jahre", "years")
     cards = "\n".join(f"""<article class="group">
-<div class="age">{a}<span>anni</span></div>
-<h3 class="h3">{t}</h3>
+<div class="age">{a}<span>{anni}</span></div>
+<h3 class="h3">{t_}</h3>
 <p>{p}</p>
-</article>""" for a, t, p in groups)
-    rows = [("Iscrizione", "Su Droptour, almeno due settimane prima per le singole attività, oppure dal coordinatore per iscrizioni a blocchi."),
-            ("Requisiti", 'Serve essere soci del CAS Ticino, tranne per le uscite di prova. <a href="adesione.html">Diventa socio</a>'),
-            ("Costi", "Coprono vitto e alloggio a mezza pensione, guida e trasporto in furgone. Dai 21 ai 25 anni si aggiungono CHF 30 al giorno, perché non ci sono contributi G+S."),
-            ("Inclusione", "Ragazze e ragazzi con disabilità fisica o psichica sono i benvenuti: contatta il coordinatore per trovare insieme la soluzione giusta."),
-            ("Coordinatore", 'Diego Romelli, <a class="num" href="tel:+393485731549">+39 348 573 1549</a>'),
-            ("Cassiere", 'Nicola Martinoni, <a class="num" href="tel:+41794391691">+41 79 439 16 91</a>'),
+</article>""" for a, t_, p in groups)
+    rows = [(tr("Iscrizione", "Anmeldung", "Registration"), tr(
+                "Su Droptour, almeno due settimane prima per le singole attività, oppure dal coordinatore per iscrizioni a blocchi.",
+                "Auf Droptour, mindestens zwei Wochen im Voraus für einzelne Aktivitäten, oder beim Koordinator für Blockanmeldungen.",
+                "On Droptour, at least two weeks in advance for single activities, or through the coordinator for block registrations.")),
+            (tr("Requisiti", "Voraussetzungen", "Requirements"), tr(
+                'Serve essere soci del CAS Ticino, tranne per le uscite di prova. <a href="adesione.html">Diventa socio</a>',
+                'Mitgliedschaft bei der SAC-Sektion Ticino, ausser für Schnuppertouren. <a href="adesione.html">Mitglied werden</a>',
+                'Membership of the SAC Ticino Section, except for trial outings. <a href="adesione.html">Become a member</a>')),
+            (tr("Costi", "Kosten", "Costs"), tr(
+                "Coprono vitto e alloggio a mezza pensione, guida e trasporto in furgone. Dai 21 ai 25 anni si aggiungono CHF 30 al giorno, perché non ci sono contributi G+S.",
+                "Sie decken Unterkunft mit Halbpension, Bergführer und Transport im Kleinbus. Von 21 bis 25 Jahren kommen CHF 30 pro Tag dazu, weil es keine J+S-Beiträge gibt.",
+                "They cover half-board food and lodging, guide and minibus transport. From 21 to 25, CHF 30 a day is added, as there are no Youth+Sport contributions.")),
+            (tr("Inclusione", "Inklusion", "Inclusion"), tr(
+                "Ragazze e ragazzi con disabilità fisica o psichica sono i benvenuti: contatta il coordinatore per trovare insieme la soluzione giusta.",
+                "Mädchen und Jungen mit körperlicher oder psychischer Beeinträchtigung sind willkommen: Kontaktieren Sie den Koordinator, um gemeinsam die richtige Lösung zu finden.",
+                "Girls and boys with physical or mental disabilities are welcome: contact the coordinator to find the right solution together.")),
+            (tr("Coordinatore", "Koordinator", "Coordinator"), 'Diego Romelli, <a class="num" href="tel:+393485731549">+39 348 573 1549</a>'),
+            (tr("Cassiere", "Kassier", "Treasurer"), 'Nicola Martinoni, <a class="num" href="tel:+41794391691">+41 79 439 16 91</a>'),
             ("Spider", "Giosiana Codoni")]
-    body = page_hero([("Attività", "index.html#attivita"), ("Giovani", None)], "Giovani",
-                     "Uscite di un giorno, fine settimana e campi di più giorni: alpinismo, arrampicata, sci alpinismo e molto altro, con monitori formati e guide alpine.",
-                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="{GITE_GIOVANI}">Programma giovani <span class="arrow" aria-hidden="true">→</span></a></div>',
-                     figure=img("attivita/giovani-3x4", "Giovane arrampicatore su una parete dei Denti della Vecchia", 800, 1066, lazy=False)) + f"""
+    titolo = tr("Giovani", "Jugend", "Youth")
+    programma = tr("Programma giovani", "Jugendprogramm", "Youth programme")
+    body = page_hero([att_crumb(), (titolo, None)], titolo, tr(
+                         "Uscite di un giorno, fine settimana e campi di più giorni: alpinismo, arrampicata, sci alpinismo e molto altro, con monitori formati e guide alpine.",
+                         "Tagestouren, Wochenenden und mehrtägige Lager: Hochtouren, Klettern, Skitouren und vieles mehr, mit ausgebildeten Leitenden und Bergführern.",
+                         "Day trips, weekends and camps of several days: mountaineering, climbing, ski touring and much more, with trained instructors and mountain guides."),
+                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="{GITE_GIOVANI}">{programma} <span class="arrow" aria-hidden="true">→</span></a></div>',
+                     figure=img("attivita/giovani-3x4", tr("Giovane arrampicatore su una parete dei Denti della Vecchia", "Junger Kletterer an einer Wand der Denti della Vecchia", "Young climber on a face of the Denti della Vecchia"), 800, 1066, lazy=False)) + f"""
 
 <section class="section" aria-labelledby="fasce-h">
 <div class="container">
-<div class="section-head"><h2 id="fasce-h" class="h2">Quattro fasce d’età</h2></div>
+<div class="section-head"><h2 id="fasce-h" class="h2">{tr("Quattro fasce d’età", "Vier Altersgruppen", "Four age groups")}</h2></div>
 <div class="groups" data-reveal>
 {cards}
 </div>
@@ -2102,8 +2363,8 @@ def giovani():
 <section class="section--surface" aria-labelledby="iscr-h">
 <div class="container detail">
 <div class="detail-intro">
-<h2 id="iscr-h" class="h2">Iscrizioni<br>e costi</h2>
-<div><a class="link" href="{GITE_GIOVANI}">Programma giovani</a></div>
+<h2 id="iscr-h" class="h2">{tr("Iscrizioni<br>e costi", "Anmeldung<br>und Kosten", "Registration<br>and costs")}</h2>
+<div><a class="link" href="{GITE_GIOVANI}">{programma}</a></div>
 </div>
 <div data-reveal>
 {facts(rows)}
@@ -2111,30 +2372,52 @@ def giovani():
 </div>
 </section>
 
-{subnav("Attività", "giovani.html")}"""
-    return page("giovani.html", "Giovani | CAS Ticino",
-                "Il gruppo giovani del CAS Ticino: arrampicata, sci alpinismo, campi e uscite per ragazze e ragazzi dai 2 ai 25 anni, con monitori e guide alpine.",
-                body, og="attivita/giovani-3x4")
+{subnav(ATT_MENU(), L("giovani.html"))}"""
+    return sezione_page("giovani.html", titolo + " | CAS Ticino", tr(
+        "Il gruppo giovani del CAS Ticino: arrampicata, sci alpinismo, campi e uscite per ragazze e ragazzi dai 2 ai 25 anni, con monitori e guide alpine.",
+        "Die Jugendgruppe der SAC-Sektion Ticino: Klettern, Skitouren, Lager und Touren für Mädchen und Jungen von 2 bis 25 Jahren, mit Leitenden und Bergführern.",
+        "The SAC Ticino Section’s youth group: climbing, ski touring, camps and outings for girls and boys aged 2 to 25, with instructors and mountain guides."),
+        body, og="attivita/giovani-3x4")
 
 
 def senior():
-    rows = [("Chi può partecipare", 'Dai 60 anni, con l’affiliazione al CAS Ticino. Non c’è una tassa aggiuntiva, e tutti i soci della sezione possono partecipare alle attività. <a href="adesione.html">Diventa socio</a>'),
-            ("Come aderire", 'Scrivi a <a href="mailto:senior@casticino.ch">senior@casticino.ch</a> con nome, data di nascita, numero di socio CAS, indirizzo, telefono ed e-mail.'),
-            ("Uscite", "Di norma il giovedì. Il calendario aggiornato è sul programma gite online."),
-            ("Pranzi", 'Il secondo e il quarto mercoledì del mese al Bistrot Vecchio Torchio di Viganello. Iscrizioni entro il lunedì presso Hanni Vanossi (<a class="num" href="tel:+41763973390">+41 76 397 33 90</a>) o direttamente al ristorante (<a class="num" href="tel:+41919721010">+41 91 972 10 10</a>).'),
-            ("Capigita", "Il dicastero cerca sempre nuovi capigita.")]
-    body = page_hero([("Attività", "index.html#attivita"), ("Senior", None)], "Senior",
-                     "Un gruppo di non più giovani con la passione per la montagna: la bellezza della natura, i piaceri della tavola e la nostra storia.") + f"""
+    mail = '<a href="mailto:senior@casticino.ch">senior@casticino.ch</a>'
+    tel = ('<a class="num" href="tel:+41763973390">+41 76 397 33 90</a>', '<a class="num" href="tel:+41919721010">+41 91 972 10 10</a>')
+    rows = [(tr("Chi può partecipare", "Wer mitmachen kann", "Who can join"), tr(
+                'Dai 60 anni, con l’affiliazione al CAS Ticino. Non c’è una tassa aggiuntiva, e tutti i soci della sezione possono partecipare alle attività. <a href="adesione.html">Diventa socio</a>',
+                'Ab 60 Jahren, mit Mitgliedschaft bei der SAC-Sektion Ticino. Es gibt keinen Zusatzbeitrag, und alle Mitglieder der Sektion können an den Aktivitäten teilnehmen. <a href="adesione.html">Mitglied werden</a>',
+                'From age 60, with membership of the SAC Ticino Section. There is no extra fee, and all the section’s members can take part in the activities. <a href="adesione.html">Become a member</a>')),
+            (tr("Come aderire", "Beitritt", "How to join"), tr(
+                f"Scrivi a {mail} con nome, data di nascita, numero di socio CAS, indirizzo, telefono ed e-mail.",
+                f"Schreiben Sie an {mail} mit Name, Geburtsdatum, SAC-Mitgliedernummer, Adresse, Telefon und E-Mail.",
+                f"Write to {mail} with your name, date of birth, SAC membership number, address, phone and e-mail.")),
+            (tr("Uscite", "Touren", "Outings"), tr(
+                "Di norma il giovedì. Il calendario aggiornato è sul programma gite online.",
+                "In der Regel am Donnerstag. Der aktuelle Kalender steht im Online-Tourenprogramm.",
+                "Usually on Thursdays. The up-to-date calendar is in the online trip programme.")),
+            (tr("Pranzi", "Mittagessen", "Lunches"), tr(
+                f"Il secondo e il quarto mercoledì del mese al Bistrot Vecchio Torchio di Viganello. Iscrizioni entro il lunedì presso Hanni Vanossi ({tel[0]}) o direttamente al ristorante ({tel[1]}).",
+                f"Am zweiten und vierten Mittwoch im Monat im Bistrot Vecchio Torchio in Viganello. Anmeldung bis Montag bei Hanni Vanossi ({tel[0]}) oder direkt im Restaurant ({tel[1]}).",
+                f"On the second and fourth Wednesday of the month at the Bistrot Vecchio Torchio in Viganello. Book by Monday with Hanni Vanossi ({tel[0]}) or directly with the restaurant ({tel[1]}).")),
+            (tr("Capigita", "Tourenleitende", "Trip leaders"), tr(
+                "Il dicastero cerca sempre nuovi capigita.", "Das Ressort sucht immer neue Tourenleitende.", "The department is always looking for new trip leaders."))]
+    titolo = tr("Senior", "Senioren", "Seniors")
+    body = page_hero([att_crumb(), (titolo, None)], titolo, tr(
+        "Un gruppo di non più giovani con la passione per la montagna: la bellezza della natura, i piaceri della tavola e la nostra storia.",
+        "Eine Gruppe nicht mehr ganz Junger mit Leidenschaft für die Berge: die Schönheit der Natur, die Freuden der Tafel und unsere Geschichte.",
+        "A group of the no-longer-young with a passion for the mountains: the beauty of nature, the pleasures of the table and our history.")) + f"""
 
-{band_img("attivita/senior-2x1", "Escursionisti del gruppo senior su un sentiero di cresta", 1000, 500)}
+{band_img("attivita/senior-2x1", tr("Escursionisti del gruppo senior su un sentiero di cresta", "Wandernde der Seniorengruppe auf einem Gratweg", "Hikers from the seniors group on a ridge path"), 1000, 500)}
 
 <section class="section" aria-labelledby="gruppo-h">
 <div class="container detail">
 <div class="detail-intro split-intro">
-<span class="label">Il gruppo, dal 1940</span>
-<h2 id="gruppo-h" class="h2">Ogni giovedì<br>in cammino</h2>
-<p>Escursioni, gite di più giorni, mountain bike e racchette, con percorsi adatti a diversi livelli di allenamento.</p>
-<div><a class="btn btn--primary" href="{GITE_SENIORI}">Programma senior <span class="arrow" aria-hidden="true">→</span></a></div>
+<span class="label">{tr("Il gruppo, dal 1940", "Die Gruppe, seit 1940", "The group, since 1940")}</span>
+<h2 id="gruppo-h" class="h2">{tr("Ogni giovedì<br>in cammino", "Jeden Donnerstag<br>unterwegs", "On the trail<br>every Thursday")}</h2>
+<p>{tr("Escursioni, gite di più giorni, mountain bike e racchette, con percorsi adatti a diversi livelli di allenamento.",
+       "Wanderungen, mehrtägige Touren, Mountainbike und Schneeschuhe, auf Routen für verschiedene Trainingsstände.",
+       "Hikes, trips of several days, mountain biking and snowshoeing, on routes suited to different levels of fitness.")}</p>
+<div><a class="btn btn--primary" href="{GITE_SENIORI}">{tr("Programma senior", "Seniorenprogramm", "Seniors’ programme")} <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
 <div data-reveal>
 {facts(rows)}
@@ -2142,79 +2425,141 @@ def senior():
 </div>
 </section>
 
-{subnav("Attività", "senior.html")}"""
-    return page("senior.html", "Senior | CAS Ticino",
-                "Il gruppo senior del CAS Ticino, dal 1940: escursioni il giovedì, gite di più giorni, mountain bike e racchette per soci dai 60 anni.",
-                body, og="attivita/senior-2x1")
+{subnav(ATT_MENU(), L("senior.html"))}"""
+    return sezione_page("senior.html", titolo + " | CAS Ticino", tr(
+        "Il gruppo senior del CAS Ticino, dal 1940: escursioni il giovedì, gite di più giorni, mountain bike e racchette per soci dai 60 anni.",
+        "Die Seniorengruppe der SAC-Sektion Ticino, seit 1940: Wanderungen am Donnerstag, mehrtägige Touren, Mountainbike und Schneeschuhe für Mitglieder ab 60.",
+        "The SAC Ticino Section’s seniors group, since 1940: Thursday hikes, trips of several days, mountain biking and snowshoeing for members aged 60 and over."),
+        body, og="attivita/senior-2x1")
 
 
 CORSO_SLUG = {"Alpinismo": "alpinismo", "Sci alpinismo": "scialpinismo", "Arrampicata": "arrampicata",
               "Tecnica di sci fuori pista": "fuoripista", "Freeride": "fuoripista", "Racchette": "racchette"}
 
 def pdf_corso(cartella, file, testo):
-    """Link a un PDF del corso in docs/corsi/<cartella>/."""
-    return f'<a href="{DOC}corsi/{cartella}/{file}.pdf">{testo} (PDF)</a>'
+    """Link a un PDF del corso in docs/corsi/<cartella>/ (in italiano)."""
+    return f'<a href="{DOC}corsi/{cartella}/{file}.pdf">{testo} ({tr("PDF", "PDF, italienisch", "PDF, in Italian")})</a>'
 
 
-def schede_corso(c, struttura, requisiti, partecipanti, materiale, programma):
+def schede_corso(c, x):
     """Le cinque righe di ogni corso: struttura, materiale e programma rimandano ai PDF in docs/corsi/<c>/
     (il link al programma compare solo quando c'è il PDF dell'anno)."""
-    prog = programma
+    prog = x["programma"]
     if os.path.exists(os.path.join(ROOT, "docs", "corsi", c, "programma-2027.pdf")):
-        prog += " " + pdf_corso(c, "programma-2027", "Programma 2027")
-    return [("Struttura", f'{struttura} {pdf_corso(c, "obiettivi", "Obiettivi del corso")}'),
-            ("Requisiti", requisiti),
-            ("Partecipanti", partecipanti),
-            ("Materiale", f'{materiale} {pdf_corso(c, "materiale", "Lista del materiale")}'),
-            ("Programma", prog)]
+        prog += " " + pdf_corso(c, "programma-2027", tr("Programma 2027", "Programm 2027", "Programme 2027"))
+    return [(tr("Struttura", "Aufbau", "Structure"), f'{x["struttura"]} {pdf_corso(c, "obiettivi", tr("Obiettivi del corso", "Kursziele", "Course objectives"))}'),
+            (tr("Requisiti", "Voraussetzungen", "Requirements"), x["requisiti"]),
+            (tr("Partecipanti", "Teilnehmende", "Participants"), x["partecipanti"]),
+            (tr("Materiale", "Material", "Equipment"), f'{x["materiale"]} {pdf_corso(c, "materiale", tr("Lista del materiale", "Materialliste", "Equipment list"))}'),
+            (tr("Programma", "Programm", "Programme"), prog)]
 
 
 CORSI = [
-    ("Estate", "Alpinismo", "corsi/alpinismo-4x5", (594, 742), "Cordata su una cresta di neve",
-     "Il ponte tra escursionismo e alpinismo: legarsi correttamente su ghiacciaio e in cresta, tecniche di assicurazione, uso della corda in arrampicata e dei diversi attrezzi di progressione. Teoria e pratica, con lettura della carta, pianificazione, primo soccorso e salite in vetta su roccia e ghiaccio.",
-     GITE_CORSI,
-     schede_corso("alpinismo",
-                  "Sette giorni in tre uscite: tre giorni alla Capanna Piansecco, in Valle Bedretto, per nodi, corda, ramponi e piccozza; un fine settimana tra il granito del Furka e il ghiacciaio del Rodano; uno al Passo del Susten, con una gita alpinistica finale. Alla fine si partecipa da secondi di cordata a gite fino al grado PD+/III.",
-                  "Discreta condizione fisica: 4-5 ore di cammino con uno zaino di circa 10 kg, a 350-400 m di dislivello all’ora. Esperienza escursionistica, nessuna vertigine, età minima 16 anni (con il consenso dei genitori).",
-                  "Iscrizioni online dal 1° dicembre 2026. Numero di posti limitato per ragioni di sicurezza (in definizione); precedenza in ordine d’iscrizione e ai soci CAS, poi lista d’attesa. L’iscrizione è definitiva con il pagamento della quota. Serata di presentazione e uscite obbligatorie, con qualsiasi tempo.",
-                  "L’equipaggiamento personale spetta al partecipante; il materiale tecnico lo presta il CAS a chi non ce l’ha. Alla serata di presentazione si vede cosa serve: meglio aspettarla prima di comprare.",
-                  'Serata di presentazione il 12 marzo 2027 a Bellinzona; uscite il 28-30 maggio, il 12-13 giugno e il 3-4 luglio 2027. CHF 700 per i soci, 800 per i non soci, 450 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing escluse.')),
-    ("Inverno", "Sci alpinismo", "corsi/scialpinismo-4x5", (582, 728), "Sci alpinisti in salita su un pendio innevato",
-     "Per muoversi in sicurezza e in autonomia nelle gite della sezione: salita con le pelli su pendii ripidi, discesa fuori pista, uso del materiale di sicurezza, valutazione del pericolo valanghe e pianificazione.",
-     GITE_CORSI,
-     schede_corso("sci-alpinismo",
-                  "Sette giorni: una giornata introduttiva ad Airolo per verificare forma e tecnica, una serata di teoria su neve, ARTVA e autosoccorso, poi tre fine settimana alla Capanna Piansecco, all’Hotel Tiefenbach sul Furka e alla Camona da Maighels, con istruzione e gite fino a 800-1200 m di dislivello.",
-                  "Sciare bene su piste nere e reggere una gita di 1200 m di dislivello con uno zaino di 5 kg in al massimo 4 ore. Età minima 16 anni. Aperto anche agli snowboarder con splitboard. Chi dopo la giornata introduttiva non risulta idoneo riceve l’80% della quota.",
-                  'Al massimo 30. Iscrizioni dal 1° ottobre al 1° dicembre 2026, o fino a esaurimento dei posti; la quota va versata entro il 10 dicembre. Uscite obbligatorie, con qualsiasi tempo; assenze e ritiri non danno diritto a rimborsi.',
-                  "Attrezzatura completa da sci alpinismo. ARTVA, pala e sonda prestati su richiesta, compresi nella quota.",
-                  'Presentazione il 3 dicembre 2026 (anche via Teams); giornata introduttiva il 9 gennaio, teoria il 12 gennaio, uscite il 16-17 gennaio, il 20-21 febbraio e il 6-7 marzo 2027. CHF 650 per i soci, 750 per i non soci, 400 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing (circa CHF 100) escluse.')),
-    ("Primavera", "Arrampicata", "corsi/arrampicata-4x5", (594, 742), "Cordata su una parete di roccia accanto a un ghiacciaio",
-     "Per principianti che vogliono avvicinarsi all’arrampicata in ambiente e per chi vuole consolidare la tecnica: sicurezza, manovre di corda, progressione su vie di più tiri. Dopo le basi, sempre più autonomia sotto la supervisione di un istruttore di arrampicata.",
-     GITE_CORSI,
-     schede_corso("arrampicata",
-                  "Sette giorni in tre fine settimana: prime arrampicate in falesia in Piemonte, vie di più tiri nel Locarnese, gite di applicazione nelle Alpi centrali; tra maggio e giugno, a volte, serate di arrampicata e ripasso dei nodi. Alla fine si arrampica in autonomia in falesia e su vie di più tiri: da secondi fino al 5a, da primi fino al 4b, con discesa in corda doppia.",
-                  "Nessun prerequisito tecnico: il corso è pensato per chi comincia. Età minima 16 anni.",
-                  "Al massimo 26, in ordine d’iscrizione. All’iscrizione si versa un anticipo di CHF 300; l’iscrizione è definitiva con il saldo alla serata di presentazione. Serata e uscite obbligatorie, con qualsiasi tempo; le assenze vanno annunciate al capocorso entro il martedì prima.",
-                  "Il CAS presta il materiale tecnico a chi non ce l’ha; alla serata di presentazione si vede cosa serve.",
-                  'Presentazione il 12 aprile 2027 alle 20:00 alla Scuola professionale di Trevano; uscite il 1-2 maggio, il 15-17 maggio e il 12-13 giugno 2027. CHF 600 per i soci, 650 per i non soci, 400 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing (CHF 40) escluse.')),
-    ("Inverno", "Tecnica di sci fuori pista", "corsi/freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio",
-     "Per chi fatica a scendere su pendii non preparati: trucchi e consigli per affrontare la neve fuori dalle piste battute. Adatto ai soci che vogliono migliorare, a chi si avvicina allo sci alpinismo e agli sciatori esperti in cerca di strategie per le condizioni difficili.",
-     GITE_CORSI,
-     schede_corso("freeride",
-                  "Quattro giorni per affinare la tecnica su diversi tipi di neve e di terreno, leggere il pendio e scegliere la tattica giusta per il gruppo, applicare le misure di riduzione del rischio e consolidare il soccorso in valanga.",
-                  "Le basi dello sci alpinismo (salire con le pelli, autosoccorso in valanga) e una discreta tecnica di sci fuori pista.",
-                  'Numero di posti e condizioni d’iscrizione in definizione.',
-                  "Attrezzatura completa da fuori pista e sci alpinismo, con ARTVA, pala e sonda.",
-                  'Programma 2027 in definizione: date e costi seguono.')),
-    ("Inverno", "Racchette", "corsi/racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole",
-     "Introduzione all’escursionismo con le racchette, tra teoria e pratica: riconoscere i segnali di pericolo, valutare il rischio valanghe e il terreno, pianificare con gli strumenti disponibili, ricerca dei sepolti e primo soccorso.",
-     GITE_CORSI,
-     schede_corso("racchette",
-                  "Sei giorni: una serata di nivologia, una giornata sulla sicurezza con ARTVA, pala e sonda, poi due fine settimana in capanna, alla Capanna Piansecco e alla Capanna Maighels, tra tecnica di progressione, metodo 3x3, orientamento e dinamiche di gruppo. Alla fine si sale e si scende in sicurezza su terreni semplici, segnati e non.",
-                  "Discreta condizione fisica: escursioni di 4-5 ore con 500-700 m di dislivello. Età minima 16 anni.",
-                  "Al massimo 20, in ordine d’iscrizione. L’iscrizione è definitiva con il pagamento della quota alla serata introduttiva. Serata e uscite obbligatorie, con qualsiasi tempo; la meta può cambiare secondo le condizioni.",
-                  "L’equipaggiamento personale viene controllato il primo giorno. ARTVA, pala e sonda prestati a chi ne ha bisogno.",
-                  'Serata introduttiva martedì 15 dicembre 2026 nel Luganese; nivologia il 12 gennaio 2027 a Mezzovico, sicurezza il 16 gennaio ad Airolo, uscite il 23-24 gennaio e il 13-14 febbraio 2027. CHF 650 per i soci, 700 per i non soci, 375 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni, trasferte comprese.')),
+    dict(stagione="Estate", titolo="Alpinismo", cartella="alpinismo", img="corsi/alpinismo-4x5", dim=(594, 742), alt="Cordata su una cresta di neve",
+         testo="Il ponte tra escursionismo e alpinismo: legarsi correttamente su ghiacciaio e in cresta, tecniche di assicurazione, uso della corda in arrampicata e dei diversi attrezzi di progressione. Teoria e pratica, con lettura della carta, pianificazione, primo soccorso e salite in vetta su roccia e ghiaccio.",
+         struttura="Sette giorni in tre uscite: tre giorni alla Capanna Piansecco, in Valle Bedretto, per nodi, corda, ramponi e piccozza; un fine settimana tra il granito del Furka e il ghiacciaio del Rodano; uno al Passo del Susten, con una gita alpinistica finale. Alla fine si partecipa da secondi di cordata a gite fino al grado PD+/III.",
+         requisiti="Discreta condizione fisica: 4-5 ore di cammino con uno zaino di circa 10 kg, a 350-400 m di dislivello all’ora. Esperienza escursionistica, nessuna vertigine, età minima 16 anni (con il consenso dei genitori).",
+         partecipanti="Iscrizioni online dal 1° dicembre 2026. Numero di posti limitato per ragioni di sicurezza (in definizione); precedenza in ordine d’iscrizione e ai soci CAS, poi lista d’attesa. L’iscrizione è definitiva con il pagamento della quota. Serata di presentazione e uscite obbligatorie, con qualsiasi tempo.",
+         materiale="L’equipaggiamento personale spetta al partecipante; il materiale tecnico lo presta il CAS a chi non ce l’ha. Alla serata di presentazione si vede cosa serve: meglio aspettarla prima di comprare.",
+         programma="Serata di presentazione il 12 marzo 2027 a Bellinzona; uscite il 28-30 maggio, il 12-13 giugno e il 3-4 luglio 2027. CHF 700 per i soci, 800 per i non soci, 450 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing escluse.",
+         de=dict(titolo="Hochtouren", alt="Seilschaft auf einem Schneegrat",
+                 testo="Die Brücke zwischen Wandern und Hochtouren: sich auf Gletscher und Grat richtig anseilen, Sicherungstechniken, Seilhandhabung beim Klettern und der Gebrauch der verschiedenen Geräte. Theorie und Praxis, mit Kartenlesen, Planung, Erster Hilfe und Gipfelbesteigungen auf Fels und Eis.",
+                 struttura="Sieben Tage in drei Blöcken: drei Tage in der Capanna Piansecco im Bedrettotal für Knoten, Seil, Steigeisen und Pickel; ein Wochenende zwischen dem Granit der Furka und dem Rhonegletscher; eines am Sustenpass, mit einer abschliessenden Hochtour. Danach nimmt man als Seilzweite oder Seilzweiter an Touren bis zum Grad ZS+/III teil.",
+                 requisiti="Gute Kondition: 4–5 Stunden Gehzeit mit einem Rucksack von etwa 10 kg, bei 350–400 Höhenmetern pro Stunde. Wandererfahrung, schwindelfrei, Mindestalter 16 Jahre (mit Einverständnis der Eltern).",
+                 partecipanti="Online-Anmeldung ab 1. Dezember 2026. Aus Sicherheitsgründen beschränkte Platzzahl (noch offen); Vorrang nach Anmeldeeingang und für SAC-Mitglieder, danach Warteliste. Die Anmeldung ist mit der Bezahlung definitiv. Informationsabend und Kurstage obligatorisch, bei jedem Wetter.",
+                 materiale="Die persönliche Ausrüstung bringen die Teilnehmenden selbst mit; technisches Material leiht der SAC allen, die keines haben. Am Informationsabend sieht man, was es braucht: Am besten erst danach einkaufen.",
+                 programma="Informationsabend am 12. März 2027 in Bellinzona; Kurstage 28.–30. Mai, 12.–13. Juni und 3.–4. Juli 2027. CHF 700 für Mitglieder, 800 für Nichtmitglieder, 450 für JO-Jugendliche bis 20 Jahre und studierende Mitglieder von 21 bis 25 Jahren; Fahrten in Fahrgemeinschaften nicht inbegriffen."),
+         en=dict(titolo="Mountaineering", alt="Rope team on a snow ridge",
+                 testo="The bridge between hiking and mountaineering: roping up correctly on glaciers and ridges, belaying techniques, rope work when climbing and the use of the various tools. Theory and practice, with map reading, planning, first aid and summit climbs on rock and ice.",
+                 struttura="Seven days in three sessions: three days at Capanna Piansecco in Valle Bedretto for knots, rope, crampons and ice axe; a weekend between the Furka granite and the Rhone glacier; one at the Susten Pass, with a final mountaineering tour. Afterwards you can take part as a second on the rope in tours up to grade PD+/III.",
+                 requisiti="Reasonable fitness: 4–5 hours’ walking with a pack of about 10 kg, at 350–400 m of ascent per hour. Hiking experience, no fear of heights, minimum age 16 (with parental consent).",
+                 partecipanti="Online registration from 1 December 2026. Places limited for safety reasons (number to be confirmed); priority in order of registration and to SAC members, then a waiting list. Registration is final once the fee is paid. The presentation evening and outings are compulsory, whatever the weather.",
+                 materiale="Personal equipment is the participant’s responsibility; the SAC lends technical gear to those who don’t have it. The presentation evening covers what you need: best wait for it before buying.",
+                 programma="Presentation evening on 12 March 2027 in Bellinzona; outings on 28–30 May, 12–13 June and 3–4 July 2027. CHF 700 for members, 800 for non-members, 450 for OG youth up to 20 and student members aged 21 to 25; car-sharing travel not included.")),
+    dict(stagione="Inverno", titolo="Sci alpinismo", cartella="sci-alpinismo", img="corsi/scialpinismo-4x5", dim=(582, 728), alt="Sci alpinisti in salita su un pendio innevato",
+         testo="Per muoversi in sicurezza e in autonomia nelle gite della sezione: salita con le pelli su pendii ripidi, discesa fuori pista, uso del materiale di sicurezza, valutazione del pericolo valanghe e pianificazione.",
+         struttura="Sette giorni: una giornata introduttiva ad Airolo per verificare forma e tecnica, una serata di teoria su neve, ARTVA e autosoccorso, poi tre fine settimana alla Capanna Piansecco, all’Hotel Tiefenbach sul Furka e alla Camona da Maighels, con istruzione e gite fino a 800-1200 m di dislivello.",
+         requisiti="Sciare bene su piste nere e reggere una gita di 1200 m di dislivello con uno zaino di 5 kg in al massimo 4 ore. Età minima 16 anni. Aperto anche agli snowboarder con splitboard. Chi dopo la giornata introduttiva non risulta idoneo riceve l’80% della quota.",
+         partecipanti="Al massimo 30. Iscrizioni dal 1° ottobre al 1° dicembre 2026, o fino a esaurimento dei posti; la quota va versata entro il 10 dicembre. Uscite obbligatorie, con qualsiasi tempo; assenze e ritiri non danno diritto a rimborsi.",
+         materiale="Attrezzatura completa da sci alpinismo. ARTVA, pala e sonda prestati su richiesta, compresi nella quota.",
+         programma="Presentazione il 3 dicembre 2026 (anche via Teams); giornata introduttiva il 9 gennaio, teoria il 12 gennaio, uscite il 16-17 gennaio, il 20-21 febbraio e il 6-7 marzo 2027. CHF 650 per i soci, 750 per i non soci, 400 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing (circa CHF 100) escluse.",
+         de=dict(titolo="Skitouren", alt="Skitourengeher im Aufstieg an einem verschneiten Hang",
+                 testo="Um sich auf den Touren der Sektion sicher und selbständig zu bewegen: Aufstieg mit Fellen an steilen Hängen, Abfahrt abseits der Piste, Umgang mit dem Sicherheitsmaterial, Beurteilung der Lawinengefahr und Planung.",
+                 struttura="Sieben Tage: ein Einführungstag in Airolo, um Form und Technik zu prüfen, ein Theorieabend über Schnee, LVS und Kameradenrettung, dann drei Wochenenden in der Capanna Piansecco, im Hotel Tiefenbach an der Furka und in der Camona da Maighels, mit Ausbildung und Touren bis 800–1200 Höhenmeter.",
+                 requisiti="Sicheres Skifahren auf schwarzen Pisten und eine Tour von 1200 Höhenmetern mit 5 kg Rucksack in höchstens 4 Stunden. Mindestalter 16 Jahre. Auch für Snowboarder mit Splitboard offen. Wer sich nach dem Einführungstag als nicht geeignet erweist, erhält 80 % des Kursgelds zurück.",
+                 partecipanti="Höchstens 30. Anmeldung vom 1. Oktober bis 1. Dezember 2026 oder bis die Plätze vergeben sind; das Kursgeld ist bis 10. Dezember zu bezahlen. Kurstage obligatorisch, bei jedem Wetter; Abwesenheiten und Rückzüge geben kein Recht auf Rückerstattung.",
+                 materiale="Vollständige Skitourenausrüstung. LVS, Schaufel und Sonde auf Anfrage leihweise, im Kursgeld inbegriffen.",
+                 programma="Präsentation am 3. Dezember 2026 (auch über Teams); Einführungstag am 9. Januar, Theorie am 12. Januar, Kurstage 16.–17. Januar, 20.–21. Februar und 6.–7. März 2027. CHF 650 für Mitglieder, 750 für Nichtmitglieder, 400 für JO-Jugendliche bis 20 Jahre und studierende Mitglieder von 21 bis 25 Jahren; Fahrten in Fahrgemeinschaften (etwa CHF 100) nicht inbegriffen."),
+         en=dict(titolo="Ski touring", alt="Ski tourers climbing a snowy slope",
+                 testo="To move safely and independently on the section’s trips: skinning up steep slopes, off-piste descents, use of safety equipment, avalanche risk assessment and planning.",
+                 struttura="Seven days: an introductory day in Airolo to check fitness and technique, a theory evening on snow, transceivers and companion rescue, then three weekends at Capanna Piansecco, Hotel Tiefenbach on the Furka and Camona da Maighels, with instruction and tours of up to 800–1200 m of ascent.",
+                 requisiti="Ski well on black runs and manage a 1200 m tour with a 5 kg pack in at most 4 hours. Minimum age 16. Also open to snowboarders with a splitboard. Anyone found unsuitable after the introductory day gets 80% of the fee back.",
+                 partecipanti="Maximum 30. Registration from 1 October to 1 December 2026, or until places run out; the fee is due by 10 December. Outings are compulsory, whatever the weather; absences and withdrawals give no right to a refund.",
+                 materiale="Full ski touring equipment. Transceiver, shovel and probe lent on request, included in the fee.",
+                 programma="Presentation on 3 December 2026 (also via Teams); introductory day on 9 January, theory on 12 January, outings on 16–17 January, 20–21 February and 6–7 March 2027. CHF 650 for members, 750 for non-members, 400 for OG youth up to 20 and student members aged 21 to 25; car-sharing travel (about CHF 100) not included.")),
+    dict(stagione="Primavera", titolo="Arrampicata", cartella="arrampicata", img="corsi/arrampicata-4x5", dim=(594, 742), alt="Cordata su una parete di roccia accanto a un ghiacciaio",
+         testo="Per principianti che vogliono avvicinarsi all’arrampicata in ambiente e per chi vuole consolidare la tecnica: sicurezza, manovre di corda, progressione su vie di più tiri. Dopo le basi, sempre più autonomia sotto la supervisione di un istruttore di arrampicata.",
+         struttura="Sette giorni in tre fine settimana: prime arrampicate in falesia in Piemonte, vie di più tiri nel Locarnese, gite di applicazione nelle Alpi centrali; tra maggio e giugno, a volte, serate di arrampicata e ripasso dei nodi. Alla fine si arrampica in autonomia in falesia e su vie di più tiri: da secondi fino al 5a, da primi fino al 4b, con discesa in corda doppia.",
+         requisiti="Nessun prerequisito tecnico: il corso è pensato per chi comincia. Età minima 16 anni.",
+         partecipanti="Al massimo 26, in ordine d’iscrizione. All’iscrizione si versa un anticipo di CHF 300; l’iscrizione è definitiva con il saldo alla serata di presentazione. Serata e uscite obbligatorie, con qualsiasi tempo; le assenze vanno annunciate al capocorso entro il martedì prima.",
+         materiale="Il CAS presta il materiale tecnico a chi non ce l’ha; alla serata di presentazione si vede cosa serve.",
+         programma="Presentazione il 12 aprile 2027 alle 20:00 alla Scuola professionale di Trevano; uscite il 1-2 maggio, il 15-17 maggio e il 12-13 giugno 2027. CHF 600 per i soci, 650 per i non soci, 400 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni; trasferte in car sharing (CHF 40) escluse.",
+         de=dict(titolo="Klettern", alt="Seilschaft an einer Felswand neben einem Gletscher",
+                 testo="Für Einsteigerinnen und Einsteiger, die das Klettern draussen kennenlernen möchten, und für alle, die ihre Technik festigen wollen: Sicherheit, Seilmanöver, Mehrseillängenrouten. Nach den Grundlagen immer mehr Selbständigkeit unter Aufsicht eines Kletterlehrers.",
+                 struttura="Sieben Tage an drei Wochenenden: erste Klettereien im Klettergarten im Piemont, Mehrseillängenrouten im Locarnese, Anwendungstouren in den Zentralalpen; zwischen Mai und Juni manchmal Kletterabende und Knotenrepetition. Am Ende klettert man selbständig im Klettergarten und in Mehrseillängenrouten: im Nachstieg bis 5a, im Vorstieg bis 4b, mit Abseilen.",
+                 requisiti="Keine technischen Voraussetzungen: Der Kurs ist für Einsteiger gedacht. Mindestalter 16 Jahre.",
+                 partecipanti="Höchstens 26, nach Anmeldeeingang. Bei der Anmeldung ist eine Anzahlung von CHF 300 zu leisten; definitiv ist die Anmeldung mit der Restzahlung am Informationsabend. Abend und Kurstage obligatorisch, bei jedem Wetter; Abwesenheiten sind dem Kursleiter bis zum Dienstag davor zu melden.",
+                 materiale="Der SAC leiht technisches Material allen, die keines haben; am Informationsabend sieht man, was es braucht.",
+                 programma="Präsentation am 12. April 2027 um 20:00 Uhr in der Berufsschule Trevano; Kurstage 1.–2. Mai, 15.–17. Mai und 12.–13. Juni 2027. CHF 600 für Mitglieder, 650 für Nichtmitglieder, 400 für JO-Jugendliche bis 20 Jahre und studierende Mitglieder von 21 bis 25 Jahren; Fahrten in Fahrgemeinschaften (CHF 40) nicht inbegriffen."),
+         en=dict(titolo="Climbing", alt="Rope team on a rock face next to a glacier",
+                 testo="For beginners who want to get into outdoor climbing and for those who want to consolidate their technique: safety, rope work, multi-pitch routes. After the basics, more and more independence under the supervision of a climbing instructor.",
+                 struttura="Seven days over three weekends: first climbs at a crag in Piedmont, multi-pitch routes around Locarno, applied trips in the Central Alps; between May and June, sometimes, climbing evenings and knot practice. By the end you climb independently at crags and on multi-pitch routes: seconding up to 5a, leading up to 4b, with abseiling.",
+                 requisiti="No technical prerequisites: the course is designed for beginners. Minimum age 16.",
+                 partecipanti="Maximum 26, in order of registration. A deposit of CHF 300 is due on registration; registration is final with the balance paid at the presentation evening. The evening and outings are compulsory, whatever the weather; absences must be reported to the course leader by the Tuesday before.",
+                 materiale="The SAC lends technical gear to those who don’t have it; the presentation evening covers what you need.",
+                 programma="Presentation on 12 April 2027 at 20:00 at the Trevano vocational school; outings on 1–2 May, 15–17 May and 12–13 June 2027. CHF 600 for members, 650 for non-members, 400 for OG youth up to 20 and student members aged 21 to 25; car-sharing travel (CHF 40) not included.")),
+    dict(stagione="Inverno", titolo="Tecnica di sci fuori pista", cartella="freeride", img="corsi/freeride-4x5", dim=(594, 742), alt="Sciatori in discesa su un ghiacciaio",
+         testo="Per chi fatica a scendere su pendii non preparati: trucchi e consigli per affrontare la neve fuori dalle piste battute. Adatto ai soci che vogliono migliorare, a chi si avvicina allo sci alpinismo e agli sciatori esperti in cerca di strategie per le condizioni difficili.",
+         struttura="Quattro giorni per affinare la tecnica su diversi tipi di neve e di terreno, leggere il pendio e scegliere la tattica giusta per il gruppo, applicare le misure di riduzione del rischio e consolidare il soccorso in valanga.",
+         requisiti="Le basi dello sci alpinismo (salire con le pelli, autosoccorso in valanga) e una discreta tecnica di sci fuori pista.",
+         partecipanti="Numero di posti e condizioni d’iscrizione in definizione.",
+         materiale="Attrezzatura completa da fuori pista e sci alpinismo, con ARTVA, pala e sonda.",
+         programma="Programma 2027 in definizione: date e costi seguono.",
+         de=dict(titolo="Off-Piste-Skitechnik", alt="Skifahrer in der Abfahrt auf einem Gletscher",
+                 testo="Für alle, die sich an unpräparierten Hängen schwertun: Tricks und Tipps für den Schnee abseits der Pisten. Für Mitglieder, die sich verbessern wollen, für Einsteiger ins Skitourengehen und für erfahrene Skifahrer, die Strategien für schwierige Verhältnisse suchen.",
+                 struttura="Vier Tage, um die Technik in verschiedenen Schnee- und Geländearten zu verfeinern, den Hang zu lesen und die richtige Taktik für die Gruppe zu wählen, Massnahmen zur Risikominderung anzuwenden und die Lawinenrettung zu festigen.",
+                 requisiti="Die Grundlagen des Skitourengehens (Aufstieg mit Fellen, Kameradenrettung) und eine ordentliche Technik abseits der Piste.",
+                 partecipanti="Platzzahl und Anmeldebedingungen noch offen.",
+                 materiale="Vollständige Freeride- und Skitourenausrüstung mit LVS, Schaufel und Sonde.",
+                 programma="Programm 2027 in Vorbereitung: Daten und Kosten folgen."),
+         en=dict(titolo="Off-piste ski technique", alt="Skiers descending a glacier",
+                 testo="For those who struggle on ungroomed slopes: tips and tricks for snow away from the pistes. For members who want to improve, for newcomers to ski touring and for experienced skiers looking for strategies for difficult conditions.",
+                 struttura="Four days to refine technique on different kinds of snow and terrain, read the slope and choose the right tactics for the group, apply risk-reduction measures and consolidate avalanche rescue.",
+                 requisiti="The basics of ski touring (skinning, avalanche companion rescue) and a reasonable off-piste technique.",
+                 partecipanti="Number of places and registration conditions to be confirmed.",
+                 materiale="Full off-piste and ski touring equipment, with transceiver, shovel and probe.",
+                 programma="2027 programme in preparation: dates and costs to follow.")),
+    dict(stagione="Inverno", titolo="Racchette", cartella="racchette", img="corsi/racchette-4x5", dim=(800, 1000), alt="Cresta innevata sopra un mare di nuvole",
+         testo="Introduzione all’escursionismo con le racchette, tra teoria e pratica: riconoscere i segnali di pericolo, valutare il rischio valanghe e il terreno, pianificare con gli strumenti disponibili, ricerca dei sepolti e primo soccorso.",
+         struttura="Sei giorni: una serata di nivologia, una giornata sulla sicurezza con ARTVA, pala e sonda, poi due fine settimana in capanna, alla Capanna Piansecco e alla Capanna Maighels, tra tecnica di progressione, metodo 3x3, orientamento e dinamiche di gruppo. Alla fine si sale e si scende in sicurezza su terreni semplici, segnati e non.",
+         requisiti="Discreta condizione fisica: escursioni di 4-5 ore con 500-700 m di dislivello. Età minima 16 anni.",
+         partecipanti="Al massimo 20, in ordine d’iscrizione. L’iscrizione è definitiva con il pagamento della quota alla serata introduttiva. Serata e uscite obbligatorie, con qualsiasi tempo; la meta può cambiare secondo le condizioni.",
+         materiale="L’equipaggiamento personale viene controllato il primo giorno. ARTVA, pala e sonda prestati a chi ne ha bisogno.",
+         programma="Serata introduttiva martedì 15 dicembre 2026 nel Luganese; nivologia il 12 gennaio 2027 a Mezzovico, sicurezza il 16 gennaio ad Airolo, uscite il 23-24 gennaio e il 13-14 febbraio 2027. CHF 650 per i soci, 700 per i non soci, 375 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni, trasferte comprese.",
+         de=dict(titolo="Schneeschuhtouren", alt="Verschneiter Grat über einem Nebelmeer",
+                 testo="Einführung ins Schneeschuhwandern, in Theorie und Praxis: Gefahrenzeichen erkennen, Lawinenrisiko und Gelände beurteilen, mit den verfügbaren Hilfsmitteln planen, Verschüttetensuche und Erste Hilfe.",
+                 struttura="Sechs Tage: ein Abend Schnee- und Lawinenkunde, ein Sicherheitstag mit LVS, Schaufel und Sonde, dann zwei Wochenenden in der Capanna Piansecco und der Capanna Maighels, mit Gehtechnik, 3x3-Methode, Orientierung und Gruppendynamik. Am Ende steigt man sicher auf und ab in einfachem Gelände, markiert und unmarkiert.",
+                 requisiti="Gute Kondition: Touren von 4–5 Stunden mit 500–700 Höhenmetern. Mindestalter 16 Jahre.",
+                 partecipanti="Höchstens 20, nach Anmeldeeingang. Definitiv ist die Anmeldung mit der Bezahlung am Einführungsabend. Abend und Kurstage obligatorisch, bei jedem Wetter; das Ziel kann je nach Verhältnissen ändern.",
+                 materiale="Die persönliche Ausrüstung wird am ersten Tag kontrolliert. LVS, Schaufel und Sonde werden bei Bedarf ausgeliehen.",
+                 programma="Einführungsabend am Dienstag, 15. Dezember 2026, im Luganese; Schnee- und Lawinenkunde am 12. Januar 2027 in Mezzovico, Sicherheitstag am 16. Januar in Airolo, Kurstage 23.–24. Januar und 13.–14. Februar 2027. CHF 650 für Mitglieder, 700 für Nichtmitglieder, 375 für JO-Jugendliche bis 20 Jahre und studierende Mitglieder von 21 bis 25 Jahren, Fahrten inbegriffen."),
+         en=dict(titolo="Snowshoeing", alt="Snowy ridge above a sea of clouds",
+                 testo="An introduction to snowshoeing, in theory and practice: recognising danger signs, assessing avalanche risk and terrain, planning with the tools available, searching for buried people and first aid.",
+                 struttura="Six days: an evening on snow science, a safety day with transceiver, shovel and probe, then two weekends at Capanna Piansecco and Capanna Maighels, covering walking technique, the 3x3 method, navigation and group dynamics. By the end you can go up and down safely on easy terrain, marked and unmarked.",
+                 requisiti="Reasonable fitness: outings of 4–5 hours with 500–700 m of ascent. Minimum age 16.",
+                 partecipanti="Maximum 20, in order of registration. Registration is final once the fee is paid at the introductory evening. The evening and outings are compulsory, whatever the weather; the destination may change according to conditions.",
+                 materiale="Personal equipment is checked on the first day. Transceiver, shovel and probe lent to those who need them.",
+                 programma="Introductory evening on Tuesday 15 December 2026 in the Lugano area; snow science on 12 January 2027 in Mezzovico, safety day on 16 January in Airolo, outings on 23–24 January and 13–14 February 2027. CHF 650 for members, 700 for non-members, 375 for OG youth up to 20 and student members aged 21 to 25, travel included.")),
 ]
 
 # PDF dei corsi anche nella pagina Documenti (e quindi nella ricerca): un gruppo per tipo di documento
@@ -2226,41 +2571,53 @@ for gruppo, file in [("Obiettivi corsi", "obiettivi"), ("Equipaggiamento", "mate
 
 
 def corsi():
-    rows = "\n".join(f"""<article class="course-row course-row--corso" id="corso-{CORSO_SLUG[title]}" aria-labelledby="corso-{CORSO_SLUG[title]}-h" data-reveal>
-<figure>{img(im, alt, w, h)}</figure>
+    lang = LINGUA["lang"]
+    stagioni = {"Estate": tr("Estate", "Sommer", "Summer"), "Inverno": tr("Inverno", "Winter", "Winter"), "Primavera": tr("Primavera", "Frühling", "Spring")}
+    articoli = []
+    for c in CORSI:
+        x = c if lang == "it" else {**c, **c[lang]}
+        articoli.append(f"""<article class="course-row course-row--corso" id="corso-{CORSO_SLUG[c['titolo']]}" aria-labelledby="corso-{CORSO_SLUG[c['titolo']]}-h" data-reveal>
+<figure>{img(c['img'], x['alt'], *c['dim'])}</figure>
 <div class="course-text">
-<span class="label">{season}</span>
-<h2 id="corso-{CORSO_SLUG[title]}-h" class="h2">{title}</h2>
-<p>{text}</p>
-<a class="btn btn--primary" href="{href}">Iscriviti <span class="arrow" aria-hidden="true">→</span></a>
+<span class="label">{stagioni[c['stagione']]}</span>
+<h2 id="corso-{CORSO_SLUG[c['titolo']]}-h" class="h2">{x['titolo']}</h2>
+<p>{x['testo']}</p>
+<a class="btn btn--primary" href="{GITE_CORSI}">{tr("Iscriviti", "Anmelden", "Register")} <span class="arrow" aria-hidden="true">→</span></a>
 </div>
-{facts(fs)}
-</article>""" for i, (season, title, im, (w, h), alt, text, href, fs) in enumerate(CORSI, 1))
-    body = page_hero([("Attività", "index.html#attivita"), ("Corsi", None)], "Corsi",
-                     "Corsi nei fine settimana, diretti da professionisti della montagna con monitori esperti: le basi per partecipare in sicurezza alle attività della sezione. Il programma dell’anno successivo esce entro novembre.") + f"""
+{facts(schede_corso(c['cartella'], x))}
+</article>""")
+    titolo = tr("Corsi", "Kurse", "Courses")
+    body = page_hero([att_crumb(), (titolo, None)], titolo, tr(
+        "Corsi nei fine settimana, diretti da professionisti della montagna con monitori esperti: le basi per partecipare in sicurezza alle attività della sezione. Il programma dell’anno successivo esce entro novembre.",
+        "Kurse an Wochenenden, geleitet von Bergprofis mit erfahrenen Leitenden: die Grundlagen, um sicher an den Aktivitäten der Sektion teilzunehmen. Das Programm des folgenden Jahres erscheint bis November; die Kursunterlagen (PDF) sind auf Italienisch.",
+        "Weekend courses led by mountain professionals with experienced instructors: the basics for taking part safely in the section’s activities. The following year’s programme comes out by November; the course documents (PDF) are in Italian.")) + f"""
 
 <figure class="band">
-{pic("paesaggi/salita-prato", "Un gruppo sale in fila su un sentiero tra prati fioriti, sotto il cielo azzurro", mobile="paesaggi/salita-prato-4x3", w=2000, h=1125, lazy=False)}
+{pic("paesaggi/salita-prato", tr("Un gruppo sale in fila su un sentiero tra prati fioriti, sotto il cielo azzurro", "Eine Gruppe steigt im Gänsemarsch auf einem Weg durch Blumenwiesen, unter blauem Himmel", "A group climbs in single file along a path through flowering meadows, under a blue sky"), mobile="paesaggi/salita-prato-4x3", w=2000, h=1125, lazy=False)}
 </figure>
 
-<section class="section" aria-label="Corsi base">
+<section class="section" aria-label="{tr("Corsi base", "Grundkurse", "Basic courses")}">
 <div class="container">
-{rows}
+{chr(10).join(articoli)}
 </div>
 </section>
 
 <section class="section" aria-labelledby="avanzati-h">
 <div class="container">
 <div class="callout">
-<p><strong id="avanzati-h">Verso capogita e monitore G+S.</strong> Per chi vuole approfondire o prepararsi ai corsi capogita CAS e monitore Gioventù+Sport, la sezione propone corsi avanzati di alpinismo, sci alpinismo e arrampicata, di regola ad anni alterni, e serate di formazione teorica con specialisti.</p>
+<p>{tr("<strong id=\"avanzati-h\">Verso capogita e monitore G+S.</strong> Per chi vuole approfondire o prepararsi ai corsi capogita CAS e monitore Gioventù+Sport, la sezione propone corsi avanzati di alpinismo, sci alpinismo e arrampicata, di regola ad anni alterni, e serate di formazione teorica con specialisti.",
+       "<strong id=\"avanzati-h\">Auf dem Weg zur Tourenleitung und J+S-Leitung.</strong> Wer sich vertiefen oder auf die Tourenleiterkurse des SAC und die Jugend+Sport-Leiterkurse vorbereiten will, findet bei der Sektion Fortgeschrittenenkurse in Hochtouren, Skitouren und Klettern, in der Regel alle zwei Jahre, und Theorieabende mit Fachleuten.",
+       "<strong id=\"avanzati-h\">Towards trip leader and Youth+Sport instructor.</strong> For those who want to go further or prepare for the SAC trip leader and Youth+Sport instructor courses, the section offers advanced courses in mountaineering, ski touring and climbing, usually every other year, and theory evenings with specialists.")}</p>
 </div>
 </div>
 </section>
 
-{subnav("Attività", "corsi.html")}"""
-    return page("corsi.html", "Corsi | CAS Ticino",
-                "Corsi del CAS Ticino diretti da professionisti: sci alpinismo, racchette, tecnica di sci fuori pista, arrampicata e alpinismo.",
-                body, og="corsi/scialpinismo-4x5")
+{subnav(ATT_MENU(), L("corsi.html"))}"""
+    return sezione_page("corsi.html", titolo + " | CAS Ticino", tr(
+        "Corsi del CAS Ticino diretti da professionisti: sci alpinismo, racchette, tecnica di sci fuori pista, arrampicata e alpinismo.",
+        "Kurse der SAC-Sektion Ticino mit Bergprofis: Skitouren, Schneeschuhtouren, Off-Piste-Skitechnik, Klettern und Hochtouren.",
+        "Courses of the SAC Ticino Section led by professionals: ski touring, snowshoeing, off-piste ski technique, climbing and mountaineering."),
+        body, og="corsi/scialpinismo-4x5")
 
 
 MATERIALE = [  # prezzo giornaliero in franchi
@@ -2276,14 +2633,34 @@ MATERIALE = [  # prezzo giornaliero in franchi
 ]
 
 
+# nomi del materiale nelle altre lingue
+MATERIALE_DE = {"Alpinismo e arrampicata": "Hochtouren und Klettern", "Scialpinismo": "Skitouren", "Altro": "Weiteres",
+                "Ramponi": "Steigeisen", "Piccozza": "Pickel", "Imbracatura (S, M, L, XL)": "Klettergurt (S, M, L, XL)", "Casco": "Helm",
+                "Pedule": "Bergschuhe", "Moschettone a ghiera": "Schraubkarabiner", "Discensore e moschettone": "Abseilgerät und Karabiner",
+                "Jul e moschettone": "Jul und Karabiner", "Cordino prussik": "Prusikschlinge", "Cordino 3–5 m": "Reepschnur 3–5 m",
+                "Longe": "Selbstsicherungsschlinge", "Set di rinvii": "Expressschlingen-Set", "Set ARVA, sonda e pala": "LVS-Set mit Sonde und Schaufel",
+                "ARVA": "LVS-Gerät", "Sonda": "Sonde", "Pala": "Schaufel", "Slittino di pronto soccorso": "Rettungsschlitten",
+                "Pelli di riserva": "Ersatzfelle", "Bussola": "Kompass", "Occhiali da sole": "Sonnenbrille", "Kit ferrata": "Klettersteigset",
+                "Crash pad": "Crashpad"}
+MATERIALE_EN = {"Alpinismo e arrampicata": "Mountaineering and climbing", "Scialpinismo": "Ski touring", "Altro": "Other",
+                "Ramponi": "Crampons", "Piccozza": "Ice axe", "Imbracatura (S, M, L, XL)": "Harness (S, M, L, XL)", "Casco": "Helmet",
+                "Pedule": "Mountain boots", "Moschettone a ghiera": "Screwgate karabiner", "Discensore e moschettone": "Belay device and karabiner",
+                "Jul e moschettone": "Jul and karabiner", "Cordino prussik": "Prusik cord", "Cordino 3–5 m": "Accessory cord 3–5 m",
+                "Longe": "Lanyard", "Set di rinvii": "Set of quickdraws", "Set ARVA, sonda e pala": "Transceiver, probe and shovel set",
+                "ARVA": "Avalanche transceiver", "Sonda": "Probe", "Pala": "Shovel", "Slittino di pronto soccorso": "Rescue sledge",
+                "Pelli di riserva": "Spare skins", "Bussola": "Compass", "Occhiali da sole": "Sunglasses", "Kit ferrata": "Via ferrata kit",
+                "Crash pad": "Crash pad"}
+
+
 def noleggio():
+    nomi = {"it": {}, "de": MATERIALE_DE, "en": MATERIALE_EN}[LINGUA["lang"]]
     tabelle = []
     for gruppo, articoli in MATERIALE:
-        righe = "\n".join(f'<tr><th scope="row">{nome}</th><td>Fr. {prezzo}.–</td></tr>' for nome, prezzo in articoli)
+        righe = "\n".join(f'<tr><th scope="row">{nomi.get(nome, nome)}</th><td>Fr. {prezzo}.–</td></tr>' for nome, prezzo in articoli)
         tabelle.append(f"""<div class="rate">
-<h3 class="h3">{gruppo}</h3>
+<h3 class="h3">{nomi.get(gruppo, gruppo)}</h3>
 <table class="listino">
-<thead><tr><th scope="col">Articolo</th><th scope="col">Al giorno</th></tr></thead>
+<thead><tr><th scope="col">{tr("Articolo", "Artikel", "Item")}</th><th scope="col">{tr("Al giorno", "Pro Tag", "Per day")}</th></tr></thead>
 <tbody>
 {righe}
 </tbody>
@@ -2291,21 +2668,29 @@ def noleggio():
 </div>""")
     # la lista lunga a sinistra, le altre impilate a destra
     tabelle = tabelle[0] + '\n<div class="listini-col">\n' + "\n".join(tabelle[1:]) + "\n</div>"
-    rows = [("Come funziona", 'Scrivi a <a href="mailto:noleggio@casticino.ch">noleggio@casticino.ch</a>. Con la conferma ricevi le istruzioni per il ritiro. Si paga in contanti o TWINT alla riconsegna.'),
-            ("Richiesta", "Una settimana prima dell’attività"),
-            ("Ritiro", 'A partire dal mercoledì alle <span class="num">19:00</span>'),
-            ("Riconsegna", "Entro il martedì sera successivo"),
-            ("Magazzino", "Manno"),
-            ("E-mail", '<a href="mailto:noleggio@casticino.ch">noleggio@casticino.ch</a>')]
-    body = page_hero([("Attività", "index.html#attivita"), ("Noleggio", None)], "Noleggio",
-                     "Materiale in affitto per le attività della sezione e per le uscite private: alpinismo, cascate di ghiaccio, scialpinismo, arrampicata, racchette, escursionismo e bouldering.",
-                     '<div class="actions hero-actions"><a class="btn btn--primary" href="#come">Come noleggiare <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
+    mail = '<a href="mailto:noleggio@casticino.ch">noleggio@casticino.ch</a>'
+    rows = [(tr("Come funziona", "So funktioniert’s", "How it works"), tr(
+                f"Scrivi a {mail}. Con la conferma ricevi le istruzioni per il ritiro. Si paga in contanti o TWINT alla riconsegna.",
+                f"Schreiben Sie an {mail}. Mit der Bestätigung erhalten Sie die Angaben zur Abholung. Bezahlt wird bei der Rückgabe, bar oder mit TWINT.",
+                f"Write to {mail}. With the confirmation you receive the pick-up instructions. Payment in cash or by TWINT on return.")),
+            (tr("Richiesta", "Anfrage", "Request"), tr("Una settimana prima dell’attività", "Eine Woche vor der Aktivität", "One week before the activity")),
+            (tr("Ritiro", "Abholung", "Pick-up"), tr('A partire dal mercoledì alle <span class="num">19:00</span>',
+                                                     'Ab Mittwoch, <span class="num">19:00</span> Uhr', 'From Wednesday at <span class="num">19:00</span>')),
+            (tr("Riconsegna", "Rückgabe", "Return"), tr("Entro il martedì sera successivo", "Bis am folgenden Dienstagabend", "By the following Tuesday evening")),
+            (tr("Magazzino", "Lager", "Store"), "Manno"),
+            ("E-mail", mail)]
+    titolo = tr("Noleggio materiale", "Materialvermietung", "Equipment hire")
+    body = page_hero([servizi_crumb(), (titolo, None)], tr("Noleggio", "Materialvermietung", "Equipment hire"), tr(
+                         "Materiale in affitto per le attività della sezione e per le uscite private: alpinismo, cascate di ghiaccio, scialpinismo, arrampicata, racchette, escursionismo e bouldering.",
+                         "Material zur Miete für die Aktivitäten der Sektion und für private Touren: Hochtouren, Eisfälle, Skitouren, Klettern, Schneeschuhtouren, Wandern und Bouldern.",
+                         "Equipment for hire for the section’s activities and for private outings: mountaineering, ice falls, ski touring, climbing, snowshoeing, hiking and bouldering."),
+                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="#come">{tr("Come noleggiare", "So funktioniert’s", "How to hire")} <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
 
 <section class="section--surface section--tight" id="listino" aria-labelledby="listino-h">
 <div class="container">
 <div class="section-row">
-<h2 id="listino-h" class="h2">Listino</h2>
-<p class="small">Prezzi per giorno di noleggio, in franchi.</p>
+<h2 id="listino-h" class="h2">{tr("Listino", "Preisliste", "Price list")}</h2>
+<p class="small">{tr("Prezzi per giorno di noleggio, in franchi.", "Preise pro Miettag, in Franken.", "Prices per day of hire, in Swiss francs.")}</p>
 </div>
 <div class="listini" data-reveal>
 {tabelle}
@@ -2316,7 +2701,7 @@ def noleggio():
 <section class="section" id="come" aria-labelledby="come-h">
 <div class="container detail">
 <div class="detail-intro">
-<h2 id="come-h" class="h2">Come funziona</h2>
+<h2 id="come-h" class="h2">{tr("Come funziona", "So funktioniert’s", "How it works")}</h2>
 </div>
 <div data-reveal>
 {facts(rows)}
@@ -2324,10 +2709,11 @@ def noleggio():
 </div>
 </section>
 
-{subnav("Attività", "noleggio.html")}"""
-    return page("noleggio.html", "Noleggio | CAS Ticino",
-                "Noleggio materiale del CAS Ticino: alpinismo, sci alpinismo, arrampicata, racchette e altro, con ritiro al magazzino di Manno.",
-                body)
+{subnav(SERVIZI_MENU(), L("noleggio.html"))}"""
+    return sezione_page("noleggio.html", tr("Noleggio", "Materialvermietung", "Equipment hire") + " | CAS Ticino", tr(
+        "Noleggio materiale del CAS Ticino: alpinismo, sci alpinismo, arrampicata, racchette e altro, con ritiro al magazzino di Manno.",
+        "Materialvermietung der SAC-Sektion Ticino: Hochtouren, Skitouren, Klettern, Schneeschuhe und mehr, Abholung im Lager in Manno.",
+        "Equipment hire from the SAC Ticino Section: mountaineering, ski touring, climbing, snowshoeing and more, collected from the store in Manno."), body)
 
 
 # ------------------------------------------------------------------ mercatino
@@ -2335,7 +2721,7 @@ def noleggio():
 # campi e scadenza in mercatino_util.py. La pagina si rigenera ogni mattina (update-gite.yml): gli scaduti escono da soli.
 
 MERCATINO_MAIL = "mercatino@casticino.ch"
-MERCATINO_MODULO = """Tipo (vendo / cerco / regalo):
+MERCATINO_MODULO = {"it": """Tipo (vendo / cerco / regalo):
 Titolo:
 Prezzo:
 Luogo:
@@ -2344,7 +2730,38 @@ Descrizione:
 Nome:
 Contatto da pubblicare (e-mail e/o telefono):
 
-Allego fino a 3 foto."""
+Allego fino a 3 foto.""", "de": """Art (verkaufe / suche / verschenke):
+Titel:
+Preis:
+Ort:
+Beschreibung:
+
+Name:
+Zu veröffentlichender Kontakt (E-Mail und/oder Telefon):
+
+Ich lege bis zu 3 Fotos bei.""", "en": """Type (for sale / wanted / free):
+Title:
+Price:
+Place:
+Description:
+
+Name:
+Contact to publish (e-mail and/or phone):
+
+I attach up to 3 photos."""}
+# tipi d'annuncio nelle altre lingue (il testo degli annunci resta come è stato scritto)
+TIPI_L = {"it": {}, "de": {"Vendo": "Verkaufe", "Cerco": "Suche", "Regalo": "Zu verschenken"},
+          "en": {"Vendo": "For sale", "Cerco": "Wanted", "Regalo": "Free"}}
+
+
+def tipo_l(tipo):
+    return TIPI_L[LINGUA["lang"]].get(tipo, tipo)
+
+
+def data_l(iso):
+    y, m, d = (int(x) for x in iso.split("-"))
+    mese = MESI_L[LINGUA["lang"]][m - 1]
+    return tr(f"{d} {mese} {y}", f"{d}. {mese} {y}", f"{d} {mese} {y}")
 
 
 def contatto_html(t):
@@ -2368,7 +2785,7 @@ def annuncio_html(a):
     fig = ""
     if foto:
         w, h = webp_size(os.path.join(ROOT, foto[0])) if foto[0].endswith(".webp") else (1200, 900)
-        altre = "".join(f'<a href="{esc(f)}" aria-label="Foto {i + 2} di «{esc(a["title"])}»"><img src="{esc(f)}" alt="" loading="lazy" decoding="async"></a>'
+        altre = "".join(f'<a href="{esc(f)}" aria-label="{tr("Foto", "Foto", "Photo")} {i + 2} {tr("di", "von", "of")} «{esc(a["title"])}»"><img src="{esc(f)}" alt="" loading="lazy" decoding="async"></a>'
                         for i, f in enumerate(foto[1:]))
         fig = f"""<figure class="annuncio-foto">
 <a href="{esc(foto[0])}"><img src="{esc(foto[0])}" alt="{esc(a['title'])}" width="{w}" height="{h}" loading="lazy" decoding="async"></a>
@@ -2376,16 +2793,17 @@ def annuncio_html(a):
 </figure>"""
     tipo = a.get("tipo") if a.get("tipo") in mercatino_util.TIPI else "Vendo"
     testo = "".join(f"<p>{esc(par).replace(chr(10), '<br>')}</p>" for par in re.split(r"\n\s*\n", (a.get("testo") or "").strip()) if par.strip())
-    meta = " · ".join(filter(None, [esc(a.get("luogo") or ""), f'pubblicato il {data_it(a["date"][:10])}']))
+    meta = " · ".join(filter(None, [esc(a.get("luogo") or ""), tr("pubblicato il", "veröffentlicht am", "published on") + " " + data_l(a["date"][:10])]))
+    it = ' lang="it"' if LINGUA["lang"] != "it" else ""  # titolo e testo restano come li ha scritti chi pubblica
     contatto = "".join(filter(None, [esc(a["nome"]) + (": " if a.get("contatto") else "") if a.get("nome") else "",
                                      contatto_html(a["contatto"]) if a.get("contatto") else ""]))
     return f"""<article class="annuncio" id="{nome}" data-ruoli="{tipo.lower()}" data-scade="{mercatino_util.scadenza(a)}">
 {fig}
 <div class="annuncio-corpo">
-<p class="annuncio-tipo annuncio-tipo--{tipo.lower()}">{tipo}</p>
-<h3 class="annuncio-titolo">{esc(a['title'])}</h3>
+<p class="annuncio-tipo annuncio-tipo--{tipo.lower()}">{tipo_l(tipo)}</p>
+<h3 class="annuncio-titolo"{it}>{esc(a['title'])}</h3>
 {f'<p class="annuncio-prezzo">{esc(a["prezzo"])}</p>' if a.get("prezzo") else ""}
-{f'<div class="annuncio-testo">{testo}</div>' if testo else ""}
+{f'<div class="annuncio-testo"{it}>{testo}</div>' if testo else ""}
 <p class="small">{meta}</p>
 {f'<p class="annuncio-contatto">{contatto}</p>' if contatto else ""}
 </div>
@@ -2395,13 +2813,14 @@ def annuncio_html(a):
 def mercatino():
     annunci = mercatino_util.attivi()
     conta = {t: sum(1 for a in annunci if (a.get("tipo") if a.get("tipo") in mercatino_util.TIPI else "Vendo") == t) for t in mercatino_util.TIPI}
-    mailto = f"mailto:{MERCATINO_MAIL}?subject={quote('Annuncio per il mercatino')}&body={quote(MERCATINO_MODULO)}"
-    bottone = f'<a class="btn btn--primary" href="{esc(mailto)}">Pubblica un annuncio <span class="arrow" aria-hidden="true">→</span></a>'
+    oggetto = tr("Annuncio per il mercatino", "Inserat für den Marktplatz", "Listing for the gear market")
+    mailto = f"mailto:{MERCATINO_MAIL}?subject={quote(oggetto)}&body={quote(MERCATINO_MODULO[LINGUA['lang']])}"
+    bottone = f'<a class="btn btn--primary" href="{esc(mailto)}">{tr("Pubblica un annuncio", "Inserat aufgeben", "Post a listing")} <span class="arrow" aria-hidden="true">→</span></a>'
     if annunci:
-        filtri = "\n".join([f'<button type="button" data-filtro="" aria-pressed="true">Tutti <span class="num">{len(annunci)}</span></button>'] +
-                           [f'<button type="button" data-filtro="{t.lower()}" aria-pressed="false">{t} <span class="num">{conta[t]}</span></button>'
+        filtri = "\n".join([f'<button type="button" data-filtro="" aria-pressed="true">{tr("Tutti", "Alle", "All")} <span class="num">{len(annunci)}</span></button>'] +
+                           [f'<button type="button" data-filtro="{t.lower()}" aria-pressed="false">{tipo_l(t)} <span class="num">{conta[t]}</span></button>'
                             for t in mercatino_util.TIPI if conta[t]])
-        elenco = f"""<div class="filtro" role="group" aria-label="Filtra per tipo di annuncio" data-filtra="#annunci" data-uno="annuncio" data-molti="annunci" hidden>
+        elenco = f"""<div class="filtro" role="group" aria-label="{tr("Filtra per tipo di annuncio", "Nach Art filtern", "Filter by type")}" data-filtra="#annunci" data-uno="{tr("annuncio", "Inserat", "listing")}" data-molti="{tr("annunci", "Inserate", "listings")}" hidden>
 {filtri}
 </div>
 <p class="small filtro-stato" id="filtro-stato" aria-live="polite"></p>
@@ -2410,19 +2829,34 @@ def mercatino():
 </div>"""
     else:
         elenco = f"""<div class="callout">
-<p><strong>Al momento non ci sono annunci.</strong> Hai dell’attrezzatura che non usi più, o cerchi qualcosa? Mandaci il tuo annuncio.</p>
+<p>{tr("<strong>Al momento non ci sono annunci.</strong> Hai dell’attrezzatura che non usi più, o cerchi qualcosa? Mandaci il tuo annuncio.",
+       "<strong>Im Moment gibt es keine Inserate.</strong> Haben Sie Ausrüstung, die Sie nicht mehr brauchen, oder suchen Sie etwas? Senden Sie uns Ihr Inserat.",
+       "<strong>There are no listings at the moment.</strong> Have some gear you no longer use, or looking for something? Send us your listing.")}</p>
 {bottone.replace("btn--primary", "btn--secondary")}
 </div>"""
-    rows = [("Cosa", "Materiale e abbigliamento per la montagna, da vendere, cercare o regalare tra privati."),
-            ("Come", f'Scrivi a <a href="{esc(mailto)}">{MERCATINO_MAIL}</a> con tipo, titolo, prezzo, luogo, descrizione, il contatto da pubblicare e fino a 3 foto: la redazione lo mette online.'),
-            ("Durata", f"Ogni annuncio resta online {mercatino_util.GIORNI_DEFAULT // 30} mesi. Se l’oggetto è venduto, trovato o regalato prima, avvisaci e lo togliamo."),
-            ("Costo", "Gratuito"),
-            ("Trattative", "Si accordano direttamente le persone interessate: la sezione pubblica gli annunci ma non partecipa alla vendita e non risponde del materiale.")]
-    body = page_hero([("Attività", "index.html#attivita"), ("Mercatino", None)], "Mercatino",
-                     "Attrezzatura di montagna tra soci e appassionati: vendo, cerco, regalo. Dai una seconda vita al materiale che non usi più.",
+    mail = f'<a href="{esc(mailto)}">{MERCATINO_MAIL}</a>'
+    mesi = mercatino_util.GIORNI_DEFAULT // 30
+    rows = [(tr("Cosa", "Was", "What"), tr("Materiale e abbigliamento per la montagna, da vendere, cercare o regalare tra privati.",
+                                         "Bergausrüstung und -bekleidung, die Private verkaufen, suchen oder verschenken.",
+                                         "Mountain gear and clothing to sell, find or give away between private people.")),
+            (tr("Come", "Wie", "How"), tr(f"Scrivi a {mail} con tipo, titolo, prezzo, luogo, descrizione, il contatto da pubblicare e fino a 3 foto: la redazione lo mette online.",
+                                        f"Schreiben Sie an {mail} mit Art, Titel, Preis, Ort, Beschreibung, dem zu veröffentlichenden Kontakt und bis zu 3 Fotos: Die Redaktion schaltet das Inserat auf.",
+                                        f"Write to {mail} with type, title, price, place, description, the contact to publish and up to 3 photos: the editors put it online.")),
+            (tr("Durata", "Dauer", "Duration"), tr(f"Ogni annuncio resta online {mesi} mesi. Se l’oggetto è venduto, trovato o regalato prima, avvisaci e lo togliamo.",
+                                                  f"Jedes Inserat bleibt {mesi} Monate online. Ist der Gegenstand vorher verkauft, gefunden oder verschenkt, melden Sie es uns und wir entfernen es.",
+                                                  f"Each listing stays online for {mesi} months. If the item is sold, found or given away sooner, let us know and we will remove it.")),
+            (tr("Costo", "Kosten", "Cost"), tr("Gratuito", "Gratis", "Free")),
+            (tr("Trattative", "Abwicklung", "Deals"), tr("Si accordano direttamente le persone interessate: la sezione pubblica gli annunci ma non partecipa alla vendita e non risponde del materiale.",
+                                                         "Die Interessierten einigen sich direkt: Die Sektion veröffentlicht die Inserate, ist aber nicht am Verkauf beteiligt und haftet nicht für das Material.",
+                                                         "The people concerned deal directly with each other: the section publishes the listings but takes no part in the sale and is not liable for the gear."))]
+    titolo = tr("Mercatino", "Marktplatz", "Gear market")
+    body = page_hero([servizi_crumb(), (titolo, None)], titolo, tr(
+                         "Attrezzatura di montagna tra soci e appassionati: vendo, cerco, regalo. Dai una seconda vita al materiale che non usi più.",
+                         "Bergausrüstung unter Mitgliedern und Bergbegeisterten: verkaufen, suchen, verschenken. Die Inserate erscheinen so, wie sie geschrieben wurden, meist auf Italienisch.",
+                         "Mountain gear between members and enthusiasts: for sale, wanted, free. Listings appear as they were written, mostly in Italian."),
                      f'<div class="actions hero-actions">{bottone}</div>') + f"""
 
-<section class="section" aria-label="Annunci">
+<section class="section" aria-label="{tr("Annunci", "Inserate", "Listings")}">
 <div class="container">
 {elenco}
 </div>
@@ -2431,7 +2865,7 @@ def mercatino():
 <section class="section--surface" id="come" aria-labelledby="come-h">
 <div class="container detail">
 <div class="detail-intro">
-<h2 id="come-h" class="h2">Come funziona</h2>
+<h2 id="come-h" class="h2">{tr("Come funziona", "So funktioniert’s", "How it works")}</h2>
 </div>
 <div data-reveal>
 {facts(rows)}
@@ -2439,10 +2873,11 @@ def mercatino():
 </div>
 </section>
 
-{subnav("Attività", "mercatino.html")}"""
-    return page("mercatino.html", "Mercatino | CAS Ticino",
-                "Il mercatino del CAS Ticino: annunci di attrezzatura di montagna tra privati, da vendere, cercare o regalare.",
-                body)
+{subnav(SERVIZI_MENU(), L("mercatino.html"))}"""
+    return sezione_page("mercatino.html", titolo + " | CAS Ticino", tr(
+        "Il mercatino del CAS Ticino: annunci di attrezzatura di montagna tra privati, da vendere, cercare o regalare.",
+        "Der Marktplatz der SAC-Sektion Ticino: Inserate für Bergausrüstung unter Privaten, zum Verkaufen, Suchen oder Verschenken.",
+        "The SAC Ticino Section’s gear market: listings of mountain gear between private people, for sale, wanted or free."), body)
 
 
 # ------------------------------------------------------------------ versioni tradotte (de/, en/)
@@ -2473,14 +2908,14 @@ TRADOTTE = {
         cta_h="Kommen Sie mit.",
         cta_p="Günstigere Preise in den SAC-Hütten der ganzen Schweiz, Kurse, Touren und eine Gemeinschaft, die die Berge so liebt wie Sie.",
         # introduzione
-        intro_crumb="Einführung", intro_h="Die Sektion",
+        intro_crumb="Über uns", intro_h="Die Sektion",
         intro_lead="Am 11. April 1886 in Bellinzona gegründet, zählt die Sektion Ticino des Schweizer Alpen-Clubs fast 3000 Mitglieder und bietet ein vielfältiges Programm für jedes Alter: von den Jüngsten bis zu den Senioren.",
         intro_alt="Eine Gruppe Bergsteiger unterwegs auf einem Gletscher",
         stat_intro=["am 11. April in Bellinzona gegründet", "Mitglieder, von den Jüngsten bis zu den Senioren", "Hütten im Besitz der Sektion", "Ressorts neben dem Vorstand"],
         cosa_h="In den Bergen,<br>zu jeder Jahreszeit",
         alt_cresta="Bergsteiger auf einem Felsgrat",
         discipline_h="Disziplinen", discipline_p="Wandern, Bergsteigen, Klettern, Skitouren, Schneeschuhwandern und Eisklettern.",
-        inizia_h="Für Einsteiger", inizia_p="Einführungskurse in Bergsteigen, Skitouren, Schneeschuhwandern und Klettern im Gelände (auf Italienisch).",
+        inizia_h="Für Einsteiger", inizia_p="Einführungskurse in Bergsteigen, Skitouren, Schneeschuhwandern und Klettern im Gelände.",
         vedi_corsi="Zu den Kursen",
         alt_montebar="Die Capanna Monte Bar",
         capanne_h3="Hütten", capanne_p="Die Sektion besitzt sechs Hütten: {huts}.", e="und",
@@ -2549,14 +2984,14 @@ TRADOTTE = {
         accesso="Access from",
         cta_h="Come with us.",
         cta_p="Lower rates in SAC huts all over Switzerland, courses, trips and a community that loves the mountains as much as you do.",
-        intro_crumb="Introduction", intro_h="The section",
+        intro_crumb="About us", intro_h="The section",
         intro_lead="Founded in Bellinzona on 11 April 1886, the Ticino Section of the Swiss Alpine Club has almost 3000 members and offers a varied programme for all ages: from the youngest to seniors.",
         intro_alt="A group of climbers walking on a glacier",
         stat_intro=["founded in Bellinzona on 11 April", "members, from the youngest to seniors", "huts owned by the section", "departments alongside the committee"],
         cosa_h="In the mountains,<br>in every season",
         alt_cresta="Climbers on a rocky ridge",
         discipline_h="Disciplines", discipline_p="Hiking, mountaineering, climbing, ski touring, snowshoeing and ice climbing.",
-        inizia_h="For beginners", inizia_p="Introductory courses in mountaineering, ski touring, snowshoeing and outdoor climbing (in Italian).",
+        inizia_h="For beginners", inizia_p="Introductory courses in mountaineering, ski touring, snowshoeing and outdoor climbing.",
         vedi_corsi="See the courses",
         alt_montebar="Capanna Monte Bar",
         capanne_h3="Huts", capanne_p="The section owns six huts: {huts}.", e="and",
@@ -2609,77 +3044,6 @@ TRADOTTE = {
 
 def tx_tradotte():
     return TRADOTTE[LINGUA["lang"]]
-
-
-def home_tradotta():
-    tx = tx_tradotte()
-    lang = LINGUA["lang"]
-    huts = schede_capanne({"de": HUTS_DE, "en": HUTS_EN}[lang], tx['accesso'], f"{lang}/")
-    stats = "\n".join(f'<div class="stat"><strong>{n}</strong><span>{num(x)}</span></div>'
-                      for n, x in zip(("1886", "3000", "6", "5"), tx["stat_home"]))
-    html = head(tx["home_title"], tx["home_desc"],
-                '<meta property="og:image" content="assets/img/paesaggi/sciatori-villaggio-2000.webp">\n')
-    html += "\n<body>\n" + nav(f"{lang}/index.html") + f"""
-<main id="contenuto">
-
-<section class="hero" aria-labelledby="hero-h">
-<div class="container">
-<h1 id="hero-h" class="display">{tx['hero_h']}</h1>
-<div class="hero-foot">
-<div class="hero-testo">
-<p class="lead">{tx['hero_lead']}</p>
-{social()}
-</div>
-<div class="actions">
-<a class="btn btn--primary" href="{lang}/adesione.html">{tx['diventa']} <span class="arrow" aria-hidden="true">→</span></a>
-<a class="btn btn--secondary" href="#capanne">{tx['le_capanne']}</a>
-</div>
-</div>
-</div>
-<figure class="band">
-{pic("paesaggi/sciatori-villaggio", tx['hero_alt'], mobile="paesaggi/sciatori-villaggio-4x3", w=2000, h=901, lazy=False, cls="pos-low")}
-</figure>
-</section>
-
-<section class="section section--tight section--stats" id="sezione" aria-label="{tx['cifre']}">
-<div class="container">
-<div class="stats" data-reveal>
-{stats}
-</div>
-</div>
-</section>
-
-<section class="section section--tight section--after-stats" aria-labelledby="sektion-h">
-<div class="container split">
-<div class="split-intro">
-<h2 id="sektion-h" class="h2">{tx['sez_h']}</h2>
-<p class="lead">{tx['sez_lead']}</p>
-<div class="links"><a class="link" href="{lang}/introduzione.html">{tx['sezione']}</a><a class="link" href="{lang}/storia.html">{tx['storia']}</a></div>
-</div>
-<div class="callout" data-reveal>
-<p>{tx['solo_it']}</p>
-<div class="links"><a class="link" href="{lang}/gite.html">{tx['gite']}</a><a class="link" href="news.html">News</a><a class="link" href="corsi.html">{tx['corsi']}</a></div>
-</div>
-</div>
-</section>
-
-<section class="section--surface" id="capanne" aria-labelledby="capanne-h">
-<div class="container">
-<div class="section-head">
-<h2 id="capanne-h" class="h2">{tx['capanne_h']}</h2>
-<p class="lead">{tx['capanne_lead']}</p>
-</div>
-<div class="huts">
-{huts}
-</div>
-</div>
-</section>
-
-{banda_adesione(tx['cta_h'], tx['cta_p'], tx['diventa'], f"{lang}/adesione.html")}
-
-</main>
-""" + footer()
-    return pubblica(f"{lang}/index.html", html)
 
 
 def introduzione_tradotta():
@@ -2767,6 +3131,8 @@ def sede_tradotta():
 </div>
 </div>
 </section>
+
+{rubrica()}
 
 {subnav(tx["sezione"], f"{lang}/sede.html")}"""
     return sezione_page("sede.html", tx["sede_title"], tx["sede_desc"], body)
@@ -2887,6 +3253,408 @@ def cerca_pagina():
                 body, scripts=f'<script src="{asset("assets/cerca.js")}" defer></script>\n')
 
 
+def blocco(id_, titolo, intro, corpo):
+    """Sezione a due colonne: titolo e frase a sinistra, testo a destra (pagine Partecipare e Mettiti in gioco)."""
+    return f"""<section class="section" aria-labelledby="{id_}">
+<div class="container detail">
+<div class="detail-intro">
+<h2 id="{id_}" class="h2">{titolo}</h2>
+<p>{intro}</p>
+</div>
+<div class="prose" data-reveal>
+{corpo}
+</div>
+</div>
+</section>"""
+
+
+REGOLAMENTO_GITE = DOC + "statuto-visione/regolamento-gite-2026.pdf"
+
+
+def partecipare():
+    """Le regole per chi partecipa alle gite, in breve, dal regolamento gite (docs/statuto-visione/regolamento-gite-*.pdf):
+    quando cambia il regolamento, aggiornare anche questo testo (nelle tre lingue)."""
+    nomi = {"it": {}, "de": DOCS_DE, "en": DOCS_EN}[LINGUA["lang"]]
+    scale = ", ".join(f'<a href="{h}">{nomi.get(l, l).lower() if LINGUA["lang"] != "de" else nomi.get(l, l)}</a>' for l, h in DOCS[1][1])
+    pdf = tc("pdf")
+    sezioni = [
+        blocco("prima-h", tr("Prima di iscriverti", "Vor der Anmeldung", "Before you register"),
+               tr("Le gite sono aperte a tutti, anche a chi non è socio. Scegli quelle adatte a te.",
+                  "Die Touren stehen allen offen, auch Nichtmitgliedern. Wählen Sie diejenigen, die zu Ihnen passen.",
+                  "Trips are open to everyone, members or not. Choose the ones that suit you."),
+               tr(f"""<p>Per ogni gita il programma indica le esigenze tecniche e di condizione fisica, l’itinerario in breve, l’equipaggiamento necessario e il numero massimo di partecipanti. Le difficoltà seguono le scale del CAS: {scale}.</p>
+<ul>
+<li>Devi avere la preparazione tecnica e fisica richiesta dalla gita.</li>
+<li>Alcune gite chiedono una gita di preparazione o un corso; il capogita può chiederti le tue gite recenti.</li>
+<li>Le attività del gruppo giovani hanno limiti d’età.</li>
+<li>Per qualsiasi dubbio scrivi al capogita, dalla pagina della gita.</li>
+</ul>""", f"""<p>Für jede Tour nennt das Programm die technischen und konditionellen Anforderungen, die Route in Kürze, die nötige Ausrüstung und die maximale Teilnehmerzahl. Die Schwierigkeiten folgen den Skalen des SAC (PDF, italienisch): {scale}.</p>
+<ul>
+<li>Sie müssen die technische und körperliche Vorbereitung mitbringen, die die Tour verlangt.</li>
+<li>Einige Touren setzen eine Vorbereitungstour oder einen Kurs voraus; die Tourenleitung kann nach Ihren letzten Touren fragen.</li>
+<li>Die Aktivitäten der Jugendgruppe haben Altersgrenzen.</li>
+<li>Bei Fragen schreiben Sie der Tourenleitung, über die Seite der Tour.</li>
+</ul>""", f"""<p>For each trip the programme gives the technical and fitness requirements, a short description of the route, the equipment needed and the maximum number of participants. Difficulty follows the SAC scales (PDF, in Italian): {scale}.</p>
+<ul>
+<li>You must have the technical and physical preparation the trip requires.</li>
+<li>Some trips require a preparatory trip or a course; the trip leader may ask about your recent trips.</li>
+<li>Youth group activities have age limits.</li>
+<li>If in doubt, write to the trip leader from the trip’s page.</li>
+</ul>""")),
+        blocco("iscrizione-h", tr("Iscrizione e conferma", "Anmeldung und Bestätigung", "Registration and confirmation"),
+               tr("Ci si iscrive su Droptour, nei termini indicati per ogni gita.", "Angemeldet wird auf Droptour, innerhalb der Fristen jeder Tour.", "You register on Droptour, within the deadlines given for each trip."),
+               tr("""<ul>
+<li>I posti vengono assegnati in ordine d’iscrizione, con la precedenza ai soci della sezione e poi ai soci di altre associazioni alpinistiche con cui vale la reciprocità.</li>
+<li>Al più tardi 20 giorni prima della gita il capogita conferma l’iscrizione su Droptour: <strong>sei iscritto solo quando ricevi la conferma per e-mail</strong>.</li>
+<li>Nella settimana prima della gita il capogita manda i dettagli ai partecipanti.</li>
+<li>Se non puoi più partecipare, avvisa subito i capigita: il posto passa a chi è in lista d’attesa.</li>
+</ul>""", """<ul>
+<li>Die Plätze werden nach Anmeldeeingang vergeben, mit Vorrang für Mitglieder der Sektion und danach für Mitglieder anderer Bergsportvereine mit Gegenrecht.</li>
+<li>Spätestens 20 Tage vor der Tour bestätigt die Tourenleitung die Anmeldung auf Droptour: <strong>Angemeldet sind Sie erst, wenn Sie die Bestätigung per E-Mail erhalten</strong>.</li>
+<li>In der Woche vor der Tour schickt die Tourenleitung die Einzelheiten an die Teilnehmenden.</li>
+<li>Wenn Sie nicht mehr teilnehmen können, melden Sie es sofort der Tourenleitung: Der Platz geht an jemanden auf der Warteliste.</li>
+</ul>""", """<ul>
+<li>Places are allocated in order of registration, with priority for section members and then for members of other mountaineering clubs with reciprocal agreements.</li>
+<li>No later than 20 days before the trip the leader confirms your registration on Droptour: <strong>you are registered only once you receive the confirmation e-mail</strong>.</li>
+<li>In the week before the trip the leader sends the details to the participants.</li>
+<li>If you can no longer take part, tell the trip leaders straight away: the place goes to someone on the waiting list.</li>
+</ul>""") + f"""
+<p><a class="file-link" href="{DOC}promemoria/istruzioni-droptour-2026.pdf">{tr("Come iscriversi su Droptour", "So melden Sie sich auf Droptour an", "How to register on Droptour")}{pdf}</a></p>"""),
+        blocco("gita-h", tr("Durante la gita", "Während der Tour", "During the trip"),
+               tr("Il capogita, di regola affiancato da un co-capogita, organizza e conduce la gita.",
+                  "Die Tourenleitung, in der Regel mit einer Co-Leitung, organisiert und führt die Tour.",
+                  "The trip leader, usually with a co-leader, organises and leads the trip."),
+               tr("""<ul>
+<li>La gita si fa se ci sono almeno tre partecipanti, capigita esclusi.</li>
+<li>Di regola si parte anche con un tempo non ideale; con condizioni pessime o un rischio evidente il capogita può cambiare meta, rinviare o annullare, anche a gita in corso.</li>
+<li>Si seguono le indicazioni dei capigita. Chi non le segue, o non è all’altezza della gita, può esserne escluso; il rientro in sicurezza resta comunque garantito.</li>
+<li>Chi si separa dal gruppo di sua iniziativa lo fa a proprio rischio e deve dirlo chiaramente al capogita.</li>
+<li>I trasporti li organizzano i capigita: quando si può, mezzi pubblici o auto in comune.</li>
+<li>Ognuno porta il proprio materiale tecnico; quello che manca si può <a href="noleggio.html">noleggiare dalla sezione</a>.</li>
+</ul>""", """<ul>
+<li>Die Tour findet statt, wenn mindestens drei Personen teilnehmen, Leitende nicht mitgezählt.</li>
+<li>In der Regel wird auch bei nicht idealem Wetter gestartet; bei sehr schlechten Verhältnissen oder offensichtlicher Gefahr kann die Tourenleitung das Ziel ändern, die Tour verschieben oder absagen, auch unterwegs.</li>
+<li>Den Anweisungen der Tourenleitung ist zu folgen. Wer das nicht tut oder der Tour nicht gewachsen ist, kann ausgeschlossen werden; eine sichere Rückkehr bleibt gewährleistet.</li>
+<li>Wer sich aus eigenem Entschluss von der Gruppe trennt, tut das auf eigene Gefahr und muss es der Tourenleitung klar mitteilen.</li>
+<li>Die Anreise organisiert die Tourenleitung: wenn möglich mit öffentlichen Verkehrsmitteln oder in Fahrgemeinschaften.</li>
+<li>Alle bringen ihr eigenes technisches Material mit; was fehlt, kann man <a href="noleggio.html">bei der Sektion mieten</a>.</li>
+</ul>""", """<ul>
+<li>A trip goes ahead with at least three participants, not counting the leaders.</li>
+<li>As a rule trips start even in less than ideal weather; in very bad conditions or with an obvious risk the leader may change the objective, postpone or cancel, even during the trip.</li>
+<li>Follow the leaders’ instructions. Anyone who does not, or who is not up to the trip, may be excluded; a safe return is still ensured.</li>
+<li>Anyone who leaves the group on their own initiative does so at their own risk and must tell the leader clearly.</li>
+<li>The leaders organise transport: public transport or shared cars wherever possible.</li>
+<li>Everyone brings their own technical gear; anything missing can be <a href="noleggio.html">hired from the section</a>.</li>
+</ul>""")),
+        blocco("rischi-h", tr("Rischi e assicurazione", "Risiken und Versicherung", "Risks and insurance"),
+               tr("Nessuna attività in montagna è priva di rischi: si partecipa a proprio rischio e pericolo.",
+                  "Keine Aktivität in den Bergen ist ohne Risiko: Die Teilnahme erfolgt auf eigene Gefahr.",
+                  "No mountain activity is free of risk: you take part at your own risk."),
+               tr("""<p>Iscrivendoti dichiari di conoscere i pericoli, di avere capacità adatte alla gita, di saper usare il tuo materiale e di esserti informato sul percorso.</p>
+<p><strong>La sezione non ha assicurazioni per le sue attività.</strong> Ogni partecipante deve avere una propria copertura: infortuni, responsabilità civile, protezione giuridica e spese di soccorso e recupero. Salvo i casi previsti dalla legge, la sezione e i capigita non rispondono di infortuni o danni.</p>""",
+                  """<p>Mit der Anmeldung erklären Sie, die Gefahren zu kennen, über die für die Tour nötigen Fähigkeiten zu verfügen, mit Ihrem Material umgehen zu können und sich über die Route informiert zu haben.</p>
+<p><strong>Die Sektion hat für ihre Aktivitäten keine Versicherungen abgeschlossen.</strong> Alle Teilnehmenden brauchen einen eigenen Versicherungsschutz: Unfall, Haftpflicht, Rechtsschutz sowie Rettungs- und Bergungskosten. Ausser in den gesetzlich vorgesehenen Fällen haften die Sektion und die Tourenleitenden nicht für Unfälle oder Schäden.</p>""",
+                  """<p>By registering you declare that you are aware of the dangers, have the skills the trip requires, know how to use your gear and have found out about the route.</p>
+<p><strong>The section has no insurance for its activities.</strong> Every participant needs their own cover: accident, third-party liability, legal protection, and rescue and recovery costs. Except where the law provides otherwise, the section and the trip leaders are not liable for accidents or damage.</p>""")),
+        blocco("costi-h", tr("Costi", "Kosten", "Costs"),
+               tr("I partecipanti si dividono i costi della gita; i capigita sono volontari.",
+                  "Die Teilnehmenden teilen sich die Kosten der Tour; die Tourenleitenden sind ehrenamtlich.",
+                  "Participants share the costs of the trip; the trip leaders are volunteers."),
+               tr("""<ul>
+<li>In auto privata ogni partecipante versa 10 centesimi al chilometro, divisi tra chi mette a disposizione l’auto.</li>
+<li>Se c’è una guida o un altro professionista della montagna, il suo compenso è diviso tra i partecipanti.</li>
+<li>Il capogita può chiedere un acconto.</li>
+<li>Se la gita è annullata non ci sono rimborsi: le spese di annullamento della capanna sono divise tra i partecipanti, gli acconti restituiti, tranne quanto trattenuto da terzi.</li>
+<li>Se rinunci e nessuno in lista d’attesa prende il tuo posto, il capogita può chiederti i costi già sostenuti, per esempio la caparra della capanna.</li>
+</ul>""", """<ul>
+<li>Bei Fahrten mit Privatautos zahlen alle Teilnehmenden 10 Rappen pro Kilometer, die unter den Fahrzeughaltern aufgeteilt werden.</li>
+<li>Ist ein Bergführer oder eine andere Bergsportfachperson dabei, wird das Honorar unter den Teilnehmenden aufgeteilt.</li>
+<li>Die Tourenleitung kann eine Anzahlung verlangen.</li>
+<li>Wird die Tour abgesagt, gibt es keine Rückerstattung: Annullierungskosten der Hütte werden unter den Teilnehmenden aufgeteilt, Anzahlungen zurückerstattet, ausser was Dritte einbehalten.</li>
+<li>Wenn Sie absagen und niemand von der Warteliste Ihren Platz übernimmt, kann die Tourenleitung die bereits entstandenen Kosten verlangen, etwa die Anzahlung für die Hütte.</li>
+</ul>""", """<ul>
+<li>When travelling by private car, each participant pays 10 centimes per kilometre, shared among those who provide a car.</li>
+<li>If a mountain guide or other mountain professional takes part, their fee is shared among the participants.</li>
+<li>The leader may ask for a deposit.</li>
+<li>If the trip is cancelled there are no refunds: hut cancellation fees are shared among the participants and deposits returned, except for amounts kept by third parties.</li>
+<li>If you withdraw and nobody on the waiting list takes your place, the leader may ask you to pay costs already incurred, such as the hut deposit.</li>
+</ul>""")),
+        blocco("dati-h", tr("Dati e foto", "Daten und Fotos", "Data and photos"),
+               tr("Con l’iscrizione accetti alcune regole sui tuoi dati.", "Mit der Anmeldung akzeptieren Sie einige Regeln zu Ihren Daten.", "By registering you accept a few rules about your data."),
+               tr("""<p>I tuoi dati servono ai capigita e alla sezione per organizzare la gita e per la sicurezza; la lista dei partecipanti può essere data agli altri partecipanti. Le foto di gruppo e personali scattate in gita possono comparire su annuario, Informazione, sito e social della sezione: se non vuoi, dillo al capogita. Più dettagli nella pagina sulla <a href="privacy.html">protezione dei dati</a>.</p>""",
+                  """<p>Ihre Daten dienen der Tourenleitung und der Sektion zur Organisation der Tour und zur Sicherheit; die Teilnehmerliste kann an die anderen Teilnehmenden weitergegeben werden. Gruppen- und Einzelfotos von der Tour können im Jahrbuch, in «Informazione», auf der Website und in den sozialen Medien der Sektion erscheinen: Wenn Sie das nicht möchten, sagen Sie es der Tourenleitung. Mehr dazu auf der Seite <a href="privacy.html">Datenschutz</a>.</p>""",
+                  """<p>Your data is used by the leaders and the section to organise the trip and for safety; the list of participants may be given to the other participants. Group and individual photos taken on the trip may appear in the yearbook, «Informazione», the website and the section’s social media: if you would rather they didn’t, tell the trip leader. More on the <a href="privacy.html">privacy</a> page.</p>""")),
+    ]
+    titolo = tr("Partecipare alle gite", "An Touren teilnehmen", "Taking part in trips")
+    regolamento = tr("Regolamento gite (PDF)", "Tourenreglement (PDF, italienisch)", "Trip regulations (PDF, in Italian)")
+    body = page_hero([att_crumb(), (titolo, None)], titolo, tr(
+                         "Le regole principali per chi partecipa alle gite e ai corsi della sezione, soci e non soci, in breve. Il testo completo è nel regolamento gite.",
+                         "Die wichtigsten Regeln für alle, die an Touren und Kursen der Sektion teilnehmen, Mitglieder und Nichtmitglieder, kurz gefasst. Der vollständige Text steht im Tourenreglement (italienisch).",
+                         "The main rules for anyone taking part in the section’s trips and courses, members and non-members, in brief. The full text is in the trip regulations (in Italian)."),
+                     extra=f"""<div class="actions"><a class="btn btn--primary" href="{GITE}">{t("gite")} <span class="arrow" aria-hidden="true">→</span></a><a class="btn btn--secondary" href="{REGOLAMENTO_GITE}">{regolamento}</a></div>""",
+                     figure=img("paesaggi/gruppo-ghiacciaio-4x3", tr("Gruppo di alpinisti in cammino su un ghiacciaio", "Eine Gruppe Bergsteiger unterwegs auf einem Gletscher", "A group of mountaineers walking on a glacier"), 1000, 750, lazy=False).replace("<img ", '<img class="orizzontale" ', 1)) + "\n\n" + "\n\n".join(sezioni) + f"""
+
+<section class="section" aria-label="{tr("Regolamento gite", "Tourenreglement", "Trip regulations")}">
+<div class="container">
+<div class="callout">
+<p>{tr("<strong>Questa pagina riassume il regolamento gite</strong> approvato dal comitato il 31 marzo 2026. Vale per tutte le gite della sezione, compresi i gruppi Senior e giovani; per i corsi alcune regole possono cambiare.",
+       "<strong>Diese Seite fasst das Tourenreglement zusammen</strong>, das der Vorstand am 31. März 2026 genehmigt hat. Es gilt für alle Touren der Sektion, auch für die Senioren- und die Jugendgruppe; für Kurse können einzelne Regeln abweichen. Massgebend ist der italienische Text.",
+       "<strong>This page summarises the trip regulations</strong> approved by the committee on 31 March 2026. They apply to all the section’s trips, including the seniors and youth groups; some rules may differ for courses. The Italian text is binding.")}</p>
+<div class="actions"><a class="btn btn--secondary" href="{REGOLAMENTO_GITE}">{regolamento}</a><a class="btn btn--secondary" href="documenti.html">{tr("Altri documenti", "Weitere Dokumente", "More documents")}</a></div>
+</div>
+</div>
+</section>
+
+{subnav(ATT_MENU(), L("partecipare.html"))}"""
+    return sezione_page("partecipare.html", titolo + " | CAS Ticino", tr(
+        "Come partecipare alle gite del CAS Ticino: iscrizione e conferma su Droptour, requisiti, svolgimento, assicurazione, costi e foto, in breve dal regolamento gite.",
+        "So nehmen Sie an den Touren der SAC-Sektion Ticino teil: Anmeldung und Bestätigung auf Droptour, Voraussetzungen, Ablauf, Versicherung, Kosten und Fotos, kurz aus dem Tourenreglement.",
+        "How to take part in SAC Ticino Section trips: registration and confirmation on Droptour, requirements, conduct, insurance, costs and photos, in brief from the trip regulations."),
+        body, og="paesaggi/gruppo-ghiacciaio-2000")
+
+
+def volontariato():
+    def mail(m, testo=None):
+        return f'<a class="link" href="mailto:{m}">{testo or tr("Scrivi a", "Schreiben Sie an", "Write to")} {m}</a>'
+
+    titolo = tr("Mettiti in gioco", "Mithelfen", "Get involved")
+    body = page_hero([sez_crumb(), (titolo, None)], titolo, tr(
+                         "La sezione vive del volontariato: capigita, monitori, aiuti in capanna, chi scrive e chi fotografa. Non serve essere esperti, basta un po’ di tempo e voglia di montagna.",
+                         "Die Sektion lebt von der Freiwilligenarbeit: Tourenleitende, Jugendleitende, Helferinnen und Helfer in den Hütten, wer schreibt und wer fotografiert. Man muss kein Profi sein, es braucht nur etwas Zeit und Lust auf Berge.",
+                         "The section runs on volunteers: trip leaders, instructors, helpers in the huts, writers and photographers. You don’t need to be an expert, just some time and a love of the mountains."),
+                     figure=img("paesaggi/salita-prato-4x3", tr("Un gruppo sale in fila su un sentiero tra prati fioriti, sotto il cielo azzurro", "Eine Gruppe steigt im Gänsemarsch auf einem Weg durch Blumenwiesen, unter blauem Himmel", "A group climbs in single file along a path through flowering meadows, under a blue sky"), 1000, 750, lazy=False).replace("<img ", '<img class="orizzontale" ', 1)) + f"""
+
+<section class="section" aria-labelledby="ruoli-h">
+<div class="container">
+<div class="section-head">
+<h2 id="ruoli-h" class="h2">{tr("Dove c’è bisogno", "Wo es Hilfe braucht", "Where help is needed")}</h2>
+</div>
+<div class="pillars" data-reveal>
+<article class="pillar pillar--photo pillar--wide">
+{img("paesaggi/capanna-tencia-2000", tr("La Capanna Campo Tencia all’alba, con la bandiera svizzera e le montagne in controluce", "Die Campo-Tencia-Hütte bei Sonnenaufgang, mit Schweizer Fahne und Bergen im Gegenlicht", "Campo Tencia hut at sunrise, with the Swiss flag and backlit mountains"), 2000, 658)}
+<h3>{tr("Api operaie in capanna", "Fleissige Bienen in den Hütten", "Busy bees in the huts")}</h3>
+<p>{tr("Aiuti i guardiani ad aprire e chiudere la stagione e nei lavori di manutenzione delle capanne, e passi qualche bella serata in quota.",
+       "Sie helfen den Hüttenwarten beim Öffnen und Schliessen der Saison und bei Unterhaltsarbeiten in den Hütten und verbringen schöne Abende in der Höhe.",
+       "Help the hut keepers open and close the season and with maintenance work in the huts, and spend some fine evenings up high.")}</p>
+<a class="link" href="#capanne-h">{tr("Come dare una mano", "So helfen Sie mit", "How to help")}</a>
+</article>
+<article class="pillar pillar--accent">
+<h3>{tr("Capogita e co-capogita", "Tourenleitung und Co-Leitung", "Trip leader and co-leader")}</h3>
+<p>{tr("Si comincia affiancando un capogita come co-capogita; con i corsi avanzati e la formazione del CAS si diventa capogita.",
+       "Man beginnt als Co-Leitung an der Seite einer Tourenleitung; mit Fortgeschrittenenkursen und der SAC-Ausbildung wird man Tourenleiterin oder Tourenleiter.",
+       "You start as co-leader alongside a trip leader; with advanced courses and SAC training you become a trip leader.")}</p>
+{mail(MAIL_DICASTERI["Dicastero sport di montagna"])}
+</article>
+<article class="pillar pillar--photo">
+{img("attivita/giovani-3x4", tr("Giovane arrampicatore su una parete dei Denti della Vecchia", "Junger Kletterer an einer Wand der Denti della Vecchia", "Young climber on a face of the Denti della Vecchia"), 800, 1066)}
+<h3>{tr("Monitore G+S", "J+S-Leitung", "Youth+Sport instructor")}</h3>
+<p>{tr("Accompagni ragazze e ragazzi in falesia, nei campi e in montagna. La sezione promuove la formazione di monitori Gioventù+Sport.",
+       "Sie begleiten Mädchen und Jungen in den Klettergarten, in Lager und in die Berge. Die Sektion fördert die Ausbildung von Jugend+Sport-Leitenden.",
+       "Take girls and boys climbing, to camps and into the mountains. The section supports Youth+Sport instructor training.")}</p>
+{mail(MAIL_DICASTERI["Dicastero giovani"])}
+</article>
+<article class="pillar">
+<h3>{tr("Gite Senior", "Seniorentouren", "Seniors’ trips")}</h3>
+<p>{tr("Il gruppo Senior cerca sempre nuovi capigita per gite di un giorno, fine settimana e vacanze in montagna.",
+       "Die Seniorengruppe sucht immer neue Tourenleitende für Tagestouren, Wochenenden und Bergferien.",
+       "The seniors group is always looking for new trip leaders for day trips, weekends and mountain holidays.")}</p>
+{mail(MAIL_DICASTERI["Dicastero senior"])}
+</article>
+<article class="pillar pillar--dark">
+<h3>{tr("Comunicazione ed eventi", "Kommunikation und Anlässe", "Communication and events")}</h3>
+<p>{tr("Testi, foto e resoconti per il sito, i social, l’annuario e Informazione; serate ed eventi sulla cultura della montagna.",
+       "Texte, Fotos und Berichte für Website, soziale Medien, Jahrbuch und «Informazione»; Abende und Anlässe zur Bergkultur.",
+       "Texts, photos and reports for the website, social media, the yearbook and «Informazione»; evenings and events on mountain culture.")}</p>
+{mail(MAIL_DICASTERI["Dicastero comunicazione"])}
+</article>
+</div>
+</div>
+</section>
+
+""" + blocco("capanne-h", tr("Lavori in capanna", "Arbeiten in den Hütten", "Work in the huts"),
+             tr("Le sei capanne della sezione si tengono in ordine anche grazie ai soci volontari, insieme ai guardiani e al dicastero infrastruttura.",
+                "Die sechs Hütten der Sektion werden auch dank freiwilliger Mitglieder in Schuss gehalten, zusammen mit den Hüttenwarten und dem Ressort Infrastruktur.",
+                "The section’s six huts are kept in shape partly thanks to volunteer members, together with the hut keepers and the infrastructure department."),
+             tr("""<p>Ogni anno servono mani per lavori di ogni genere, per una giornata o per un fine settimana:</p>
+<ul>
+<li>apertura e chiusura della stagione: pulizie, coperte e materassi, messa in sicurezza per l’inverno;</li>
+<li>manutenzione e piccole riparazioni: falegnameria, pittura, impianti, serramenti;</li>
+<li>pulizia delle fosse biologiche e degli impianti di depurazione;</li>
+<li>legna, trasporti di materiale e sgombero dei dintorni;</li>
+<li>lavori più grandi e cantieri, quando una capanna viene rinnovata.</li>
+</ul>
+<p>Non serve essere artigiani: basta la voglia di fare. Chi ha un mestiere (falegname, idraulico, elettricista, muratore…) è particolarmente prezioso. I lavori si organizzano con il guardiano e il dicastero infrastruttura, che ti dice dove e quando c’è bisogno.</p>""",
+                """<p>Jedes Jahr braucht es Hände für Arbeiten aller Art, für einen Tag oder ein Wochenende:</p>
+<ul>
+<li>Saisoneröffnung und -schluss: Putzen, Decken und Matratzen, Wintersicherung;</li>
+<li>Unterhalt und kleine Reparaturen: Schreinerarbeiten, Malen, Installationen, Fenster und Türen;</li>
+<li>Reinigung der Klärgruben und Abwasseranlagen;</li>
+<li>Holz, Materialtransporte und Aufräumen rund um die Hütte;</li>
+<li>grössere Arbeiten und Baustellen, wenn eine Hütte erneuert wird.</li>
+</ul>
+<p>Handwerkliches Können ist keine Voraussetzung, es braucht nur Tatkraft. Wer einen Beruf hat (Schreiner, Sanitär, Elektriker, Maurer…), ist besonders wertvoll. Die Einsätze werden mit dem Hüttenwart und dem Ressort Infrastruktur organisiert, das Ihnen sagt, wo und wann Hilfe nötig ist.</p>""",
+                """<p>Every year hands are needed for all kinds of jobs, for a day or a weekend:</p>
+<ul>
+<li>opening and closing the season: cleaning, blankets and mattresses, making the hut safe for winter;</li>
+<li>maintenance and small repairs: carpentry, painting, installations, windows and doors;</li>
+<li>cleaning the septic tanks and wastewater systems;</li>
+<li>firewood, carrying materials and clearing up around the hut;</li>
+<li>bigger jobs and building work when a hut is renovated.</li>
+</ul>
+<p>You don’t need to be a tradesperson, just willing. Anyone with a trade (carpenter, plumber, electrician, bricklayer…) is especially valuable. The work is organised with the hut keeper and the infrastructure department, who will tell you where and when help is needed.</p>""")
+             + f'\n<p>{mail(MAIL_DICASTERI["Dicastero infrastruttura"])}</p>') + "\n\n" + blocco(
+        "capogita-h", tr("Diventare capogita", "Tourenleiter werden", "Becoming a trip leader"),
+        tr("Il percorso per chi vuole guidare le gite della sezione.", "Der Weg für alle, die Touren der Sektion leiten möchten.", "The path for those who want to lead the section’s trips."),
+        tr("""<ol>
+<li><strong>Partecipa</strong> alle gite e ai <a href="corsi.html">corsi</a> della sezione, per fare esperienza.</li>
+<li><strong>Fatti avanti come co-capogita</strong>: può esserlo ogni socio che vuole dare una mano o che segue, o vuole seguire, la formazione da capogita.</li>
+<li><strong>Formati</strong>: i corsi avanzati di alpinismo, sci alpinismo e arrampicata della sezione preparano a fare da capocordata e ai corsi capogita del CAS centrale o monitore Gioventù+Sport.</li>
+<li><strong>Guida le tue gite</strong>, con il sostegno del dicastero sport di montagna, e tieniti aggiornato con i corsi di perfezionamento.</li>
+</ol>
+<p>Le attività della sezione sono volontarie; ai capigita vengono rimborsate le spese vive. Conosci già <a href="capigita.html">i nostri capigita</a>?</p>""",
+           """<ol>
+<li><strong>Machen Sie mit</strong> bei Touren und <a href="corsi.html">Kursen</a> der Sektion, um Erfahrung zu sammeln.</li>
+<li><strong>Melden Sie sich als Co-Leitung</strong>: Das kann jedes Mitglied, das mithelfen möchte oder die Tourenleiterausbildung macht oder machen will.</li>
+<li><strong>Bilden Sie sich aus</strong>: Die Fortgeschrittenenkurse der Sektion in Hochtouren, Skitouren und Klettern bereiten auf die Rolle als Seilschaftsführer und auf die Tourenleiterkurse des SAC oder die Jugend+Sport-Leiterkurse vor.</li>
+<li><strong>Leiten Sie Ihre eigenen Touren</strong>, mit der Unterstützung des Ressorts Bergsport, und bleiben Sie mit Fortbildungskursen auf dem Laufenden.</li>
+</ol>
+<p>Die Aktivitäten der Sektion sind ehrenamtlich; den Tourenleitenden werden die Auslagen vergütet. Kennen Sie schon <a href="capigita.html">unsere Tourenleitenden</a>?</p>""",
+           """<ol>
+<li><strong>Take part</strong> in the section’s trips and <a href="corsi.html">courses</a> to gain experience.</li>
+<li><strong>Step forward as co-leader</strong>: any member can, whether to lend a hand or because they are following, or want to follow, trip leader training.</li>
+<li><strong>Train</strong>: the section’s advanced courses in mountaineering, ski touring and climbing prepare you to lead a rope and for the SAC trip leader or Youth+Sport instructor courses.</li>
+<li><strong>Lead your own trips</strong>, with the support of the mountain sports department, and keep up to date with refresher courses.</li>
+</ol>
+<p>The section’s activities are voluntary; trip leaders are reimbursed for out-of-pocket expenses. Have you met <a href="capigita.html">our trip leaders</a>?</p>""")
+        + f'\n<p><a class="file-link" href="{DOC}promemoria/capigita.pdf">{tr("Promemoria capigita", "Merkblatt für Tourenleitende", "Trip leader checklist")}{tc("pdf")}</a></p>') + f"""
+
+{subnav(SEZ_MENU(), L("volontariato.html"))}"""
+    return sezione_page("volontariato.html", titolo + " | CAS Ticino", tr(
+        "Volontariato nel CAS Ticino: api operaie in capanna, capogita e co-capogita, monitori G+S, capigita Senior, comunicazione ed eventi. Come cominciare.",
+        "Freiwilligenarbeit in der SAC-Sektion Ticino: Arbeiten in den Hütten, Tourenleitung und Co-Leitung, J+S-Leitende, Seniorentouren, Kommunikation und Anlässe. So fangen Sie an.",
+        "Volunteering with the SAC Ticino Section: work in the huts, trip leader and co-leader, Youth+Sport instructors, seniors’ trips, communication and events. How to start."),
+        body, og="paesaggi/salita-prato-2000")
+
+
+# ------------------------------------------------------------------ protezione dei dati (privacy.html, de/, en/)
+# Testo per lingua: titolo, descrizione, sommario e corpo (HTML, percorsi dalla radice). Tenere allineate le tre versioni
+# quando il sito cambia (nuovi servizi esterni, cookie, moduli…) e aggiornare PRIVACY_AGGIORNATA.
+
+PRIVACY_AGGIORNATA = {"it": "ottobre 2026", "de": "Oktober 2026", "en": "October 2026"}
+
+PRIVACY = {
+    "it": dict(
+        title="Protezione dei dati | CAS Ticino", h1="Protezione dei dati",
+        desc="Informativa sulla protezione dei dati del sito del CAS Ticino: quali dati si trattano, cookie, servizi esterni e i tuoi diritti.",
+        lead="Il sito del CAS Ticino non usa cookie né strumenti di statistica. Qui trovi quali dati vengono comunque trattati quando lo visiti o ci scrivi, da chi e perché.",
+        corpo="""<h2>Chi è responsabile</h2>
+<p>Club Alpino Svizzero, Sezione Ticino<br>Casella postale 112, 6998 Monteggio 2<br><a href="mailto:info@casticino.ch">info@casticino.ch</a></p>
+<p>Ci atteniamo alla legge federale sulla protezione dei dati (LPD).</p>
+
+<h2>Visita del sito</h2>
+<p>Il sito è ospitato da GitHub Pages (GitHub Inc., USA). Come ogni server web, GitHub registra per ogni visita l’indirizzo IP, la data e l’ora, la pagina richiesta e il tipo di browser, per far funzionare il servizio e per la sicurezza. La sezione non riceve questi dati. GitHub aderisce al Data Privacy Framework Svizzera–USA; i dettagli sono nella <a href="https://docs.github.com/it/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">dichiarazione sulla privacy di GitHub</a>.</p>
+
+<h2>Cookie e memoria del browser</h2>
+<p>Il sito non imposta cookie e non usa strumenti di statistica, pubblicità o profilazione. I caratteri tipografici sono caricati dal sito stesso. Solo il programma gite tiene per 10 minuti l’elenco delle gite nella memoria della scheda del browser (sessionStorage), per aprire più in fretta il dettaglio di una gita: non contiene dati personali e si cancella chiudendo la scheda.</p>
+
+<h2>Programma gite e foto</h2>
+<p>Il programma gite e le foto delle uscite vengono caricati da Droptour (ssl.dropnet.ch, in Svizzera), il servizio con cui la sezione gestisce gite e iscrizioni: aprendo queste pagine il tuo browser si collega a Droptour, che riceve il tuo indirizzo IP. L’iscrizione alle gite avviene su Droptour; i dati che inserisci lì servono a organizzare la gita e sono visibili ai capigita.</p>
+
+<h2>Facebook</h2>
+<p>Nelle pagine delle capanne i post da Facebook vengono caricati solo se clicchi «Mostra i post». Prima di quel clic a Facebook non arriva nulla; dopo, Meta Platforms riceve dati sulla tua visita (tra cui l’indirizzo IP) e può impostare cookie, secondo la sua <a href="https://www.facebook.com/privacy/policy/" rel="noopener">informativa sulla privacy</a>. I link a Instagram, Facebook, hut-reservation.org e ad altri siti sono semplici link: i tuoi dati li tratta il sito che apri.</p>
+
+<h2>Contatti e annunci</h2>
+<p>Se ci scrivi per e-mail usiamo il tuo messaggio solo per rispondere e per dare seguito alla richiesta (per esempio inoltrandolo al custode di una capanna o al responsabile di un corso). Gli annunci del Mercatino vengono pubblicati con il nome e il contatto che indichi tu e restano online fino alla scadenza; puoi chiederne la rimozione in ogni momento.</p>
+
+<h2>Persone sul sito</h2>
+<p>Nomi, foto e presentazioni dei membri del comitato, dei dicasteri e dei capigita sono pubblicati con il loro consenso. Nelle news e nei resoconti delle gite possono comparire foto di partecipanti. Se vuoi che una tua foto o il tuo nome venga tolto, scrivici.</p>
+
+<h2>Soci</h2>
+<p>L’adesione e i dati dei soci sono gestiti con il Club Alpino Svizzero (portal.sac-cas.ch), secondo la sua <a href="https://www.sac-cas.ch/it/datenschutz/" rel="noopener">informativa sulla protezione dei dati</a>.</p>
+
+<h2>I tuoi diritti</h2>
+<p>Puoi chiedere quali dati abbiamo su di te, farli correggere o cancellare e opporti al loro uso, scrivendo a <a href="mailto:info@casticino.ch">info@casticino.ch</a>. Puoi anche rivolgerti all’<a href="https://www.edoeb.admin.ch/it" rel="noopener">Incaricato federale della protezione dei dati e della trasparenza (IFPDT)</a>.</p>"""),
+    "de": dict(
+        title="Datenschutz | CAS Ticino", h1="Datenschutz",
+        desc="Datenschutzerklärung der Website der SAC-Sektion Ticino: welche Daten bearbeitet werden, Cookies, externe Dienste und Ihre Rechte.",
+        lead="Die Website der Sektion Ticino verwendet weder Cookies noch Statistik-Werkzeuge. Hier steht, welche Daten trotzdem bearbeitet werden, wenn Sie sie besuchen oder uns schreiben, von wem und weshalb.",
+        corpo="""<h2>Verantwortlich</h2>
+<p>Schweizer Alpen-Club SAC, Sektion Ticino<br>Postfach 112, 6998 Monteggio 2<br><a href="mailto:info@casticino.ch">info@casticino.ch</a></p>
+<p>Wir halten uns an das Bundesgesetz über den Datenschutz (DSG).</p>
+
+<h2>Besuch der Website</h2>
+<p>Die Website wird von GitHub Pages (GitHub Inc., USA) betrieben. Wie jeder Webserver speichert GitHub bei jedem Besuch die IP-Adresse, Datum und Uhrzeit, die aufgerufene Seite und den Browsertyp, für den Betrieb und die Sicherheit des Dienstes. Die Sektion erhält diese Daten nicht. GitHub ist dem Swiss-U.S. Data Privacy Framework beigetreten; Einzelheiten in der <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
+
+<h2>Cookies und Browserspeicher</h2>
+<p>Die Website setzt keine Cookies und verwendet keine Werkzeuge für Statistik, Werbung oder Profiling. Die Schriften werden von der Website selbst geladen. Nur das Tourenprogramm speichert die Tourenliste 10 Minuten lang im Speicher des Browser-Tabs (sessionStorage), damit die Einzelheiten einer Tour schneller erscheinen: Sie enthält keine Personendaten und wird beim Schliessen des Tabs gelöscht.</p>
+
+<h2>Tourenprogramm und Fotos</h2>
+<p>Das Tourenprogramm und die Tourenfotos werden von Droptour geladen (ssl.dropnet.ch, Schweiz), dem Dienst, mit dem die Sektion Touren und Anmeldungen verwaltet: Beim Öffnen dieser Seiten verbindet sich Ihr Browser mit Droptour, das Ihre IP-Adresse erhält. Die Anmeldung zu den Touren erfolgt auf Droptour; die dort eingegebenen Daten dienen der Organisation der Tour und sind für die Tourenleitenden sichtbar.</p>
+
+<h2>Facebook</h2>
+<p>Auf den Hüttenseiten werden die Facebook-Beiträge erst geladen, wenn Sie auf «Beiträge anzeigen» klicken. Vorher geht nichts an Facebook; danach erhält Meta Platforms Daten über Ihren Besuch (darunter die IP-Adresse) und kann Cookies setzen, gemäss seiner <a href="https://www.facebook.com/privacy/policy/" rel="noopener">Datenschutzrichtlinie</a>. Links zu Instagram, Facebook, hut-reservation.org und anderen Websites sind einfache Links: Ihre Daten bearbeitet dann die Website, die Sie öffnen.</p>
+
+<h2>Kontakt und Inserate</h2>
+<p>Wenn Sie uns per E-Mail schreiben, verwenden wir Ihre Nachricht nur, um zu antworten und Ihr Anliegen zu bearbeiten (zum Beispiel durch Weiterleitung an das Hüttenteam oder an die Kursleitung). Inserate auf dem Mercatino werden mit dem Namen und dem Kontakt veröffentlicht, die Sie angeben, und bleiben bis zum Ablaufdatum online; Sie können jederzeit die Entfernung verlangen.</p>
+
+<h2>Personen auf der Website</h2>
+<p>Namen, Fotos und Vorstellungen der Mitglieder von Vorstand und Ressorts sowie der Tourenleitenden werden mit ihrem Einverständnis veröffentlicht. In News und Tourenberichten können Fotos von Teilnehmenden erscheinen. Wenn ein Foto von Ihnen oder Ihr Name entfernt werden soll, schreiben Sie uns.</p>
+
+<h2>Mitglieder</h2>
+<p>Mitgliedschaft und Mitgliederdaten werden mit dem Schweizer Alpen-Club verwaltet (portal.sac-cas.ch), gemäss dessen <a href="https://www.sac-cas.ch/de/meta/datenschutz/" rel="noopener">Datenschutzerklärung</a>.</p>
+
+<h2>Ihre Rechte</h2>
+<p>Sie können Auskunft über Ihre Daten verlangen, sie berichtigen oder löschen lassen und der Bearbeitung widersprechen: Schreiben Sie an <a href="mailto:info@casticino.ch">info@casticino.ch</a>. Sie können sich auch an den <a href="https://www.edoeb.admin.ch/de" rel="noopener">Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB)</a> wenden.</p>"""),
+    "en": dict(
+        title="Privacy policy | CAS Ticino", h1="Privacy policy",
+        desc="Privacy policy of the website of the Ticino Section of the Swiss Alpine Club: what data is processed, cookies, external services and your rights.",
+        lead="The Ticino Section’s website uses no cookies and no analytics tools. This page explains what data is nevertheless processed when you visit it or write to us, by whom and why.",
+        corpo="""<h2>Who is responsible</h2>
+<p>Swiss Alpine Club SAC, Ticino Section<br>PO Box 112, 6998 Monteggio 2<br><a href="mailto:info@casticino.ch">info@casticino.ch</a></p>
+<p>We comply with the Swiss Federal Act on Data Protection (FADP).</p>
+
+<h2>Visiting the website</h2>
+<p>The website is hosted by GitHub Pages (GitHub Inc., USA). Like any web server, GitHub logs the IP address, date and time, page requested and browser type of each visit, to run the service and for security. The Section does not receive this data. GitHub participates in the Swiss-U.S. Data Privacy Framework; details are in <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub’s privacy statement</a>.</p>
+
+<h2>Cookies and browser storage</h2>
+<p>The website sets no cookies and uses no analytics, advertising or profiling tools. Fonts are served by the website itself. Only the trip programme keeps the list of trips for 10 minutes in the browser tab’s storage (sessionStorage), so that a trip’s details open faster: it contains no personal data and is deleted when you close the tab.</p>
+
+<h2>Trip programme and photos</h2>
+<p>The trip programme and the trip photos are loaded from Droptour (ssl.dropnet.ch, Switzerland), the service the Section uses to manage trips and registrations: when you open these pages, your browser connects to Droptour, which receives your IP address. Registration for trips takes place on Droptour; the data you enter there is used to organise the trip and is visible to the trip leaders.</p>
+
+<h2>Facebook</h2>
+<p>On the hut pages, posts from Facebook are only loaded if you click «Show posts». Before that click nothing is sent to Facebook; afterwards Meta Platforms receives data about your visit (including your IP address) and may set cookies, under its <a href="https://www.facebook.com/privacy/policy/" rel="noopener">privacy policy</a>. Links to Instagram, Facebook, hut-reservation.org and other websites are plain links: your data is then processed by the website you open.</p>
+
+<h2>Contacts and listings</h2>
+<p>If you e-mail us, we use your message only to reply and to deal with your request (for example by forwarding it to a hut keeper or to a course leader). Mercatino listings are published with the name and contact details you give us and stay online until they expire; you can ask for removal at any time.</p>
+
+<h2>People on the website</h2>
+<p>Names, photos and introductions of the members of the committee, the departments and the trip leaders are published with their consent. Photos of participants may appear in the news and trip reports. If you would like a photo of you or your name removed, write to us.</p>
+
+<h2>Members</h2>
+<p>Membership and members’ data are managed with the Swiss Alpine Club (portal.sac-cas.ch), under its <a href="https://www.sac-cas.ch/en/meta/data-protection/" rel="noopener">privacy policy</a>.</p>
+
+<h2>Your rights</h2>
+<p>You can ask what data we hold about you, have it corrected or deleted, and object to its use, by writing to <a href="mailto:info@casticino.ch">info@casticino.ch</a>. You can also contact the <a href="https://www.edoeb.admin.ch/en" rel="noopener">Federal Data Protection and Information Commissioner (FDPIC)</a>.</p>"""),
+}
+
+
+def privacy():
+    tx = PRIVACY[LINGUA["lang"]]
+    agg = tr("Ultimo aggiornamento", "Letzte Änderung", "Last updated") + ": " + PRIVACY_AGGIORNATA[LINGUA["lang"]]
+    body = page_hero([(tx["h1"], None)], tx["h1"], tx["lead"]) + f"""
+
+<section class="section section--tight" aria-label="{tx['h1']}">
+<div class="container article article--noimg">
+<div class="prose">
+{tx["corpo"]}
+<p class="small">{agg}</p>
+</div>
+</div>
+</section>"""
+    return sezione_page("privacy.html", tx["title"], tx["desc"], body)
+
+
 PAGES = {
     "index.html": home,
     "introduzione.html": introduzione, "comitato.html": comitato, "organizzazione.html": organizzazione,
@@ -2894,7 +3662,8 @@ PAGES = {
     "news.html": news, "gite.html": gite, "gita.html": gita_pagina, "foto.html": foto, "annuari.html": annuari, "informazione.html": informazione,
     "adesione.html": adesione,
     "giovani.html": giovani, "senior.html": senior, "corsi.html": corsi, "noleggio.html": noleggio, "mercatino.html": mercatino,
-    "soccorso.html": soccorso, "capigita.html": capigita,
+    "soccorso.html": soccorso, "capigita.html": capigita, "privacy.html": privacy,
+    "partecipare.html": partecipare, "volontariato.html": volontariato,
 }
 for _f in HUT_PAGES:
     PAGES[_f] = (lambda f: lambda: hut(f))(_f)
@@ -2912,19 +3681,25 @@ def in_lingua_pagina(lang, fn):
     def genera():
         LINGUA["lang"] = lang
         try:
-            return fn()
+            return localizza(fn(), lang)
         finally:
             LINGUA["lang"] = "it"
     return genera
 
 
-# Versioni tradotte (de/, en/): La Sezione, le capanne con le loro sotto-pagine, Adesione e il programma gite
-# (solo i testi della pagina: le gite restano in italiano).
+# Versioni tradotte (de/, en/): tutte le pagine tranne la ricerca. Restano in italiano i contenuti scritti da altri
+# (news, annunci del mercatino, gite e resoconti di Droptour) e i PDF; nelle pagine tradotte sono marcati lang="it".
 for _lang, _contenuti in (("de", CONTENUTI_DE), ("en", CONTENUTI_EN)):
-    _pagine = {"index.html": home_tradotta, "introduzione.html": introduzione_tradotta, "comitato.html": comitato,
+    _pagine = {"index.html": home, "introduzione.html": introduzione_tradotta, "comitato.html": comitato,
                "organizzazione.html": organizzazione, "capigita.html": capigita, "sede.html": sede_tradotta,
                "storia.html": storia, "link.html": link, "adesione.html": adesione_tradotta,
-               "gite.html": gite, "gita.html": gita_pagina}
+               "gite.html": gite, "gita.html": gita_pagina, "privacy.html": privacy,
+               "noleggio.html": noleggio, "mercatino.html": mercatino, "documenti.html": documenti,
+               "partecipare.html": partecipare, "corsi.html": corsi, "giovani.html": giovani, "senior.html": senior,
+               "soccorso.html": soccorso, "volontariato.html": volontariato,
+               "news.html": news, "foto.html": foto, "annuari.html": annuari, "informazione.html": informazione}
+    for _i, _n in enumerate(NEWS):
+        _pagine[_n["file"]] = (lambda i: lambda: news_article(i))(_i)
     for _f in HUT_PAGES:
         _pagine[_f] = (lambda f: lambda: hut(f))(_f)
     for _f, _c in _contenuti.items():

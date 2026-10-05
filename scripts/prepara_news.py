@@ -130,11 +130,11 @@ def main():
         with open(p, "w", encoding="utf-8", newline="\n") as f:
             f.write(nuovo)
 
-    # news eliminate dall'area di redazione: via anche la loro pagina
+    # news eliminate dall'area di redazione: via anche la loro pagina (in italiano e nelle versioni de/, en/)
     valide = {n["file"] for n in news_util.leggi_tutte()}
-    for pagina in glob.glob(os.path.join(ROOT, "news", "*", "*.html")):
+    for pagina in glob.glob(os.path.join(ROOT, "news", "*", "*.html")) + glob.glob(os.path.join(ROOT, "*", "news", "*", "*.html")):
         rel = os.path.relpath(pagina, ROOT).replace(os.sep, "/")
-        if rel not in valide:
+        if re.sub(r"^(de|en)/", "", rel) not in valide:
             os.remove(pagina)
             print("pagina tolta:", rel)
     togli_orfani()

@@ -32,17 +32,17 @@ jobs:
       - name: Rigenera la pagina e la ricerca
         # sempre: anche senza gite nuove, le gite passate escono dall'elenco, gli stati delle iscrizioni cambiano con la data
         # e gli annunci scaduti del mercatino spariscono; anche gita.html (e de/, en/), che punta alla copia con l'impronta aggiornata
-        run: python scripts/redesign/pages.py gite.html de/gite.html en/gite.html gita.html de/gita.html en/gita.html index.html mercatino.html cerca.html
+        run: python scripts/redesign/pages.py gite.html de/gite.html en/gite.html gita.html de/gita.html en/gita.html index.html de/index.html en/index.html mercatino.html de/mercatino.html en/mercatino.html cerca.html
 
       - name: Pubblica se ci sono novità
         run: |
-          if git diff --quiet -- data/gite.json data/cerca.json gite.html de/gite.html en/gite.html gita.html de/gita.html en/gita.html index.html mercatino.html cerca.html; then
+          if git diff --quiet -- data/gite.json data/cerca.json gite.html de/gite.html en/gite.html gita.html de/gita.html en/gita.html index.html de/index.html en/index.html mercatino.html de/mercatino.html en/mercatino.html cerca.html; then
             echo "Nessuna novità."
             exit 0
           fi
           git config user.name  "casticino-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/gite.json data/cerca.json gite.html de/gite.html en/gite.html gita.html de/gita.html en/gita.html index.html mercatino.html cerca.html
+          git add data/gite.json data/cerca.json gite.html de/gite.html en/gite.html gita.html de/gita.html en/gita.html index.html de/index.html en/index.html mercatino.html de/mercatino.html en/mercatino.html cerca.html
           git commit -m "Gite: aggiornamento automatico da Droptour"
           git pull --rebase
           git push

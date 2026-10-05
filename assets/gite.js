@@ -30,7 +30,7 @@
       capogita: 'Capogita', capigita: 'Capigita', iscritti: ' iscritti', iscrizione: 'Iscrizione',
       dettagli: 'Dettagli', dettagliIscr: 'Dettagli e iscrizione', tuttiGruppi: 'Tutti i gruppi', tuttiTipi: 'Tutti i tipi',
       gita: ' gita', gite: ' gite', titolo: ' | Programma gite | CAS Ticino', perTutti: 'Per tutti', data: 'Data',
-      iscrittiT: 'Iscritti', onlineDal: 'Online su Droptour', dalT: ' dal ', alT: ' al ', laGita: 'La gita',
+      iscrittiT: 'Iscritti', onlineDal: 'Online', dalT: ' da ', alT: ' a ', soloDalT: ' da ', soloAlT: ' fino a ', laGita: 'La gita',
       caricamento: 'Caricamento dei dettagli da Droptour…',
       nonDisp: 'I dettagli della gita non sono disponibili in questo momento: li trovi su Droptour.',
       iscriviti: 'Iscriviti su Droptour', apri: 'Apri su Droptour', programma: 'Programma gite', cerca: 'Cerca su Droptour',
@@ -51,7 +51,7 @@
       capogita: 'Leitung', capigita: 'Leitung', iscritti: ' Angemeldete', iscrizione: 'Anmeldung',
       dettagli: 'Details', dettagliIscr: 'Details und Anmeldung', tuttiGruppi: 'Alle Gruppen', tuttiTipi: 'Alle Arten',
       gita: ' Tour', gite: ' Touren', titolo: ' | Tourenprogramm | CAS Ticino', perTutti: 'Für alle', data: 'Datum',
-      iscrittiT: 'Angemeldet', onlineDal: 'Online auf Droptour', dalT: ' vom ', alT: ' bis ', laGita: 'Die Tour (italienisch)',
+      iscrittiT: 'Angemeldet', onlineDal: 'Online', dalT: ' von ', alT: ' bis ', soloDalT: ' ab ', soloAlT: ' bis ', laGita: 'Die Tour (italienisch)',
       caricamento: 'Details werden von Droptour geladen…',
       nonDisp: 'Die Details der Tour sind im Moment nicht verfügbar: Sie finden sie auf Droptour.',
       iscriviti: 'Auf Droptour anmelden', apri: 'Auf Droptour öffnen', programma: 'Tourenprogramm', cerca: 'Auf Droptour suchen',
@@ -72,7 +72,7 @@
       capogita: 'Leader', capigita: 'Leaders', iscritti: ' registered', iscrizione: 'Registration',
       dettagli: 'Details', dettagliIscr: 'Details and registration', tuttiGruppi: 'All groups', tuttiTipi: 'All types',
       gita: ' trip', gite: ' trips', titolo: ' | Trip programme | CAS Ticino', perTutti: 'For everyone', data: 'Date',
-      iscrittiT: 'Registered', onlineDal: 'Online on Droptour', dalT: ' from ', alT: ' to ', laGita: 'The trip (in Italian)',
+      iscrittiT: 'Registered', onlineDal: 'Online', dalT: ' from ', alT: ' to ', soloDalT: ' from ', soloAlT: ' until ', laGita: 'The trip (in Italian)',
       caricamento: 'Loading the details from Droptour…',
       nonDisp: 'The trip details are not available at the moment: you can find them on Droptour.',
       iscriviti: 'Register on Droptour', apri: 'Open on Droptour', programma: 'Trip programme', cerca: 'Search on Droptour',
@@ -81,6 +81,15 @@
   };
   var LINGUA = (document.documentElement.lang || 'it').slice(0, 2);
   var TX = TESTI[LINGUA] || TESTI.it;
+  // tipi di gita (category di Droptour, sempre in italiano): tradotti dal codice; un codice nuovo resta in italiano.
+  // Tenere allineato con TIPI_GITA_L in pages.py
+  var TIPI = {
+    de: { ALP: 'Hochtour', ARR: 'Klettern', COR: 'Ausbildungskurs', CUL: 'Kultur', ESC: 'Wandern', EVE: 'Anlass', FER: 'Klettersteig',
+          MTB: 'Mountainbike', RAC: 'Schneeschuhtour', SA: 'Skitour', SOC: 'Bergrettung' },
+    en: { ALP: 'Mountaineering', ARR: 'Climbing', COR: 'Training course', CUL: 'Culture', ESC: 'Hiking', EVE: 'Event', FER: 'Via ferrata',
+          MTB: 'Mountain biking', RAC: 'Snowshoeing', SA: 'Ski touring', SOC: 'Mountain rescue' }
+  }[LINGUA] || {};
+  function nomeTipo(g) { return TIPI[g.sigla] || g.tipo; }
   var GIORNI = TX.giorni, MESI = TX.mesi, MESI_BREVI = TX.mesiBrevi, IMPEGNO = TX.impegno;
   function nomeGruppo(x) { return TX.gruppi[x] || x; }
   var STATO = { '3': 'completa', '2': 'annullata' };
@@ -150,7 +159,7 @@
     var st = statoGita(g, o), classe = st[0];
     var gruppi = g.gruppi.filter(function (x) { return x !== 'Tutti'; }).map(nomeGruppo);
     if (!gruppi.length) gruppi = [nomeGruppo('Tutti')];
-    var tipo = [esc(g.tipo), esc(gruppi.join(', '))].filter(function (x, i, a) { return x && a.indexOf(x) === i; }).join(' · ');
+    var tipo = [esc(nomeTipo(g)), esc(gruppi.join(', '))].filter(function (x, i, a) { return x && a.indexOf(x) === i; }).join(' · ');
     var meta = '';
     if (g.cond) meta += '<span title="' + (IMPEGNO[g.cond] || '') + '">' + TX.impegnoT + ' ' + esc(g.cond) + '</span>';
     if (g.tecn) meta += '<span>' + TX.difficolta + ' ' + esc(g.tecn) + '</span>';
@@ -218,7 +227,7 @@
     var gruppi = {}, tipi = {};
     future.forEach(function (g) {
       g.gruppi.forEach(function (x) { if (x !== 'Tutti') gruppi[x] = 1; });
-      if (g.sigla) tipi[g.sigla] = g.tipo || g.sigla;
+      if (g.sigla) tipi[g.sigla] = nomeTipo(g) || g.sigla;
     });
     var nomiGruppi = Object.keys(gruppi).sort(function (a, b) {
       var ia = ORDINE_GRUPPI.indexOf(a), ib = ORDINE_GRUPPI.indexOf(b);
@@ -256,7 +265,18 @@
 
   // ------------------------------------------------------------------ dettaglio (gita.html)
   var ETICHETTE_FUORI = ['Data', 'Gruppo', 'Tipo di attività', 'Tipo/Aggiunta', 'Iscrizione'];  // già nell'intestazione
-  function lungo(iso) { var d = giorno(iso); return TX.lungo(TX.giorniLunghi[d.getDay()], d.getDate(), MESI[d.getMonth()], d.getFullYear()); }
+  function lungo(iso, senzaAnno) {
+    var d = giorno(iso), t = TX.lungo(TX.giorniLunghi[d.getDay()], d.getDate(), MESI[d.getMonth()], d.getFullYear());
+    return senzaAnno ? t.slice(0, -(' ' + d.getFullYear()).length) : t;
+  }
+
+  // periodo d'iscrizione: «Online da domenica 1 novembre a mercoledì 2 dicembre 2026» (anno una volta sola se è lo stesso)
+  function periodoIscrizione(dal, al) {
+    if (dal && al) return TX.onlineDal + TX.dalT + lungo(dal, dal.slice(0, 4) === al.slice(0, 4)) + TX.alT + lungo(al);
+    if (dal) return TX.onlineDal + TX.soloDalT + lungo(dal);
+    if (al) return TX.onlineDal + TX.soloAlT + lungo(al);
+    return TX.onlineDal;
+  }
 
   function conLink(t) {  // testo già sicuro (esc) con gli indirizzi web resi cliccabili
     return t.replace(/\b(https?:\/\/[^\s<]+[^\s<.,;:)])/g, '<a href="$1" rel="noopener">$1</a>')
@@ -311,14 +331,14 @@
     document.title = g.titolo + TX.titolo;
     document.getElementById('page-h').textContent = g.titolo;
     if (LINGUA !== 'it') document.getElementById('page-h').lang = 'it';
-    document.querySelector('.page-hero .lead').textContent = [g.tipo, gruppi.length ? gruppi.join(', ') : TX.perTutti].filter(Boolean).join(' · ');
+    document.querySelector('.page-hero .lead').textContent = [nomeTipo(g), gruppi.length ? gruppi.join(', ') : TX.perTutti].filter(Boolean).join(' · ');
     var crumb = document.querySelector('.crumbs [aria-current]');
     if (crumb) crumb.textContent = g.titolo;
     window.dispatchEvent(new Event('resize'));  // site.js riadatta il titolo lungo
 
     var quando = lungo(g.dal) + (g.al && g.al !== g.dal ? ' – ' + lungo(g.al) : '');
     var iscr = !g.iscrizione ? TX.senza
-      : TX.onlineDal + (g.iscrizione_dal ? TX.dalT + lungo(g.iscrizione_dal) : '') + (g.iscrizione_al ? TX.alT + lungo(g.iscrizione_al) : '');
+      : periodoIscrizione(g.iscrizione_dal, g.iscrizione_al);
     // a sinistra, nel riquadro «in breve»: data, capogita, iscritti (con barra dei posti) e iscrizione
     var chiave = [[TX.data, '<span class="gita-quando">' + esc(quando) + '</span>']];
     if (g.capigita.length) chiave.push([g.capigita.length > 1 ? TX.capigita : TX.capogita, esc(g.capigita.join(', '))]);
