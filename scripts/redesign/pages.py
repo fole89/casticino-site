@@ -3271,7 +3271,6 @@ def partecipare():
     quando cambia il regolamento, aggiornare anche questo testo (nelle tre lingue)."""
     nomi = {"it": {}, "de": DOCS_DE, "en": DOCS_EN}[LINGUA["lang"]]
     scale = ", ".join(f'<a href="{h}">{nomi.get(l, l).lower() if LINGUA["lang"] != "de" else nomi.get(l, l)}</a>' for l, h in DOCS[1][1])
-    pdf = tc("pdf")
     sezioni = [
         blocco("prima-h", tr("Prima di iscriverti", "Vor der Anmeldung", "Before you register"),
                tr("Le gite sono aperte a tutti, anche a chi non è socio. Scegli quelle adatte a te.",
@@ -3313,8 +3312,7 @@ def partecipare():
 <li>No later than 20 days before the trip the leader confirms your registration on Droptour: <strong>you are registered only once you receive the confirmation e-mail</strong>.</li>
 <li>In the week before the trip the leader sends the details to the participants.</li>
 <li>If you can no longer take part, tell the trip leaders straight away: the place goes to someone on the waiting list.</li>
-</ul>""") + f"""
-<p><a class="file-link" href="{DOC}promemoria/istruzioni-droptour-2026.pdf">{tr("Come iscriversi su Droptour", "So melden Sie sich auf Droptour an", "How to register on Droptour")}{pdf}</a></p>"""),
+</ul>""")),
         blocco("gita-h", tr("Durante la gita", "Während der Tour", "During the trip"),
                tr("Il capogita, di regola affiancato da un co-capogita, organizza e conduce la gita.",
                   "Die Tourenleitung, in der Regel mit einer Co-Leitung, organisiert und führt die Tour.",
