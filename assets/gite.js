@@ -253,23 +253,32 @@
     var quando = lungo(g.dal) + (g.al && g.al !== g.dal ? ' – ' + lungo(g.al) : '');
     var iscr = !g.iscrizione ? 'Senza iscrizione online'
       : 'Online su Droptour' + (g.iscrizione_dal ? ' dal ' + lungo(g.iscrizione_dal) : '') + (g.iscrizione_al ? ' al ' + lungo(g.iscrizione_al) : '');
-    var fatti = [['Data', esc(quando)]];
-    if (g.capigita.length) fatti.push([g.capigita.length > 1 ? 'Capigita' : 'Capogita', esc(g.capigita.join(', '))]);
-    fatti.push(['Iscrizione', esc(iscr)]);
-    if (g.posti || g.iscritti) fatti.push(['Iscritti', '<span class="num">' + g.iscritti + (g.posti ? ' / ' + g.posti : '') + '</span>']);
-    (righe || []).forEach(function (r) { fatti.push([esc(r[0]), '<span class="gita-testo">' + r[1] + '</span>']); });
-    document.getElementById('gita-dati').innerHTML = '<dl class="facts">' +
-      fatti.map(function (f) { return '<dt>' + f[0] + '</dt><dd>' + f[1] + '</dd>'; }).join('') + '</dl>' +
+    // a sinistra, nel riquadro «in breve»: data, capogita, iscritti (con barra dei posti) e iscrizione
+    var chiave = [['Data', '<span class="gita-quando">' + esc(quando) + '</span>']];
+    if (g.capigita.length) chiave.push([g.capigita.length > 1 ? 'Capigita' : 'Capogita', esc(g.capigita.join(', '))]);
+    if (g.posti || g.iscritti) {
+      var pieno = g.posti ? Math.min(100, Math.round(g.iscritti / g.posti * 100)) : 0;
+      chiave.push(['Iscritti', '<span class="num">' + g.iscritti + (g.posti ? ' / ' + g.posti : '') + '</span>' +
+        (g.posti ? '<span class="gita-barra" aria-hidden="true"><span style="width:' + pieno + '%"></span></span>' : '')]);
+    }
+    chiave.push(['Iscrizione', esc(iscr)]);
+    document.getElementById('gita-chiave').innerHTML = chiave.map(function (f) { return '<div><dt>' + f[0] + '</dt><dd>' + f[1] + '</dd></div>'; }).join('');
+
+    // a destra: il resto della scheda Droptour
+    var fatti = (righe || []).map(function (r) { return [esc(r[0]), '<span class="gita-testo">' + r[1] + '</span>']; });
+    document.getElementById('gita-dati').innerHTML =
+      (fatti.length ? '<h2 class="h3 gita-dati-h">La gita</h2><dl class="facts">' +
+        fatti.map(function (f) { return '<dt>' + f[0] + '</dt><dd>' + f[1] + '</dd>'; }).join('') + '</dl>' : '') +
       (righe === undefined ? '<p class="small gita-avviso">Caricamento dei dettagli da Droptour…</p>'
         : righe ? '' : '<p class="small gita-avviso">I dettagli della gita non sono disponibili in questo momento: li trovi su Droptour.</p>');
 
     document.getElementById('gita-stato').innerHTML = '<span class="stato' + (classe ? ' stato--' + classe : '') + '">' + st[1] + '</span>';
     // iscrizioni aperte: direttamente al modulo d'iscrizione di Droptour (tourFID = numero della gita)
     var modulo = dett.dataset.droptour + '?page=anmeldung&tourFID=' + encodeURIComponent(g.id);
-    var az = classe === 'aperte'
+    document.getElementById('gita-azioni').innerHTML = classe === 'aperte'
       ? '<a class="btn btn--primary" href="' + esc(modulo) + '">Iscriviti su Droptour <span class="arrow" aria-hidden="true">→</span></a>'
       : '<a class="btn btn--secondary" href="' + esc(g.link) + '">Apri su Droptour</a>';
-    document.getElementById('gita-azioni').innerHTML = az + '<a class="btn btn--secondary" href="gite.html">Programma gite</a>';
+    document.querySelector('.gita-riepilogo').hidden = false;
   }
 
   function nonTrovata(id) {
@@ -278,7 +287,10 @@
     var link = dett.dataset.droptour + '?page=detail&touren_nummer=' + encodeURIComponent(id);
     document.getElementById('gita-azioni').innerHTML = '<a class="btn btn--primary" href="gite.html">Programma gite</a>' +
       (id ? '<a class="btn btn--secondary" href="' + esc(link) + '">Cerca su Droptour</a>' : '');
+    document.getElementById('gita-chiave').innerHTML = '';
+    document.getElementById('gita-stato').innerHTML = '';
     document.getElementById('gita-dati').innerHTML = '';
+    document.querySelector('.gita-riepilogo').hidden = false;
   }
 
   // gite già lette in tempo reale nella pagina del programma (sessionStorage, 10 minuti): il dettaglio parte subito

@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo-cas.webp">
 <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=b31e2920">
+<link rel="stylesheet" href="assets/site.css?v=a2ddfc91">
 <script>document.documentElement.classList.add('js')</script>
 <meta property="og:image" content="https://fole89.github.io/casticino-site/assets/img/attivita/gite-2x1.webp">
 <link rel="canonical" href="https://fole89.github.io/casticino-site/gita">
@@ -48,6 +48,7 @@
 <a href="corsi.html">Corsi</a>
 <a href="soccorso.html">Soccorso</a>
 <a href="noleggio.html">Noleggio</a>
+<a href="mercatino.html">Mercatino</a>
 </div>
 </div>
 <div class="dd">
@@ -97,10 +98,11 @@
 <section class="section" aria-label="Dettagli della gita">
 <div class="container detail gita-dettaglio" id="gita" data-api="https://ssl.dropnet.ch/casticino/dropnetapps/tours/api/?action=command&command=getItems&limit=500&language=it" data-dettaglio="https://ssl.dropnet.ch/casticino/dropnetapps/tours/api/?action=command&command=getItem&language=it&item_id="
  data-droptour="https://ssl.dropnet.ch/casticino/gite/index.php" data-copia="data/gite.json?v=130922f1">
-<div class="detail-intro">
+<aside class="gita-riepilogo" aria-label="La gita in breve" hidden>
 <p id="gita-stato"></p>
-<div class="actions" id="gita-azioni"><a class="btn btn--secondary" href="gite.html">Programma gite</a></div>
-</div>
+<dl class="gita-chiave" id="gita-chiave"></dl>
+<div class="actions" id="gita-azioni"></div>
+</aside>
 <div id="gita-dati"><noscript><p>Per vedere la gita serve JavaScript: la trovi nel <a href="https://ssl.dropnet.ch/casticino/gite/index.php">programma su Droptour</a>.</p></noscript></div>
 </div>
 </section>
@@ -114,12 +116,13 @@
 <a href="corsi.html">Corsi</a>
 <a href="soccorso.html">Soccorso</a>
 <a href="noleggio.html">Noleggio</a>
+<a href="mercatino.html">Mercatino</a>
 </div>
 </div>
 </section>
 
 </main>
-<script src="assets/gite.js?v=78d60333" defer></script>
+<script src="assets/gite.js?v=2a7e7f69" defer></script>
 <footer class="site-footer">
 <div class="container">
 <div class="footer-grid">
@@ -153,6 +156,7 @@
 <a href="corsi.html">Corsi</a>
 <a href="soccorso.html">Soccorso</a>
 <a href="noleggio.html">Noleggio</a>
+<a href="mercatino.html">Mercatino</a>
 <a href="adesione.html">Adesione</a>
 </nav>
 <nav class="footer-col" aria-label="Capanne">
@@ -183,6 +187,6 @@
 <div class="footer-bottom"><span>© 2026 CAS Ticino</span><span>Club Alpino Svizzero, Sezione Ticino</span><a href="admin/">Area redazione</a></div>
 </div>
 </footer>
-<script src="assets/site.js?v=d359f2df" defer></script>
+<script src="assets/site.js?v=216a6a9c" defer></script>
 </body>
 </html>

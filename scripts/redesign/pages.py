@@ -10,12 +10,13 @@ GITE_GIOVANI = GITE + "?gruppo=Giovani"   # gite.html con il filtro già scelto 
 GITE_SENIORI = GITE + "?gruppo=Seniori"
 GITE_CORSI = GITE + "?tipo=COR"
 from shared import LINGUA, PAGINE_LINGUA, SITO, de, en, tr, L
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
 from capanne import CONTENUTI, PRENOTA
 from capanne_de import CONTENUTI_DE, HUT_DE, HUTS_DE
 from capanne_en import CONTENUTI_EN, HUT_EN, HUTS_EN
 import json, re, unicodedata
 import news_util
+import mercatino_util
 from news_util import webp_size
 from html import unescape as html_unescape, escape as html_escape
 
@@ -29,14 +30,6 @@ HUTS = [
     ("motterascio.html", "Motterascio", "2172", "Greina", "Custodita", "Al margine della riserva della Greina: torbiere, alpeggi e l’arco naturale più grande del Ticino.", "70 posti", "Garzott 2h", "capanne/motterascio-3x2", (974, 649), False),
     ("montebar.html", "Monte Bar", "1602", "Alta Capriasca", "Tutto l’anno", "Il balcone sul Luganese, ricostruito nel 2016: vista dal Monte Rosa ai Denti della Vecchia, standard Bike Hotel.", "42 posti", "Corticiasca 1h30", "capanne/montebar-3x2", (663, 442), False),
     ("baitadelluca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Su riservazione", "Sopra Sonvico, ai piedi dei Denti della Vecchia. Ideale per famiglie e arrampicata.", "16 posti, autogestita", "Rosone 45 min", "capanne/baitadelluca-3x2", (1000, 667), False),
-]
-
-COURSES = [
-    ("Estate", "Alpinismo", "Progressione su neve e roccia per escursionisti che vogliono salire più in alto.", "corsi/alpinismo-4x5", (594, 742), "Cordata su una cresta di neve"),
-    ("Inverno", "Sci alpinismo", "Salita e discesa fuori pista, nivologia, prevenzione valanghe, ricerca ARTVA.", "corsi/scialpinismo-4x5", (582, 728), "Sci alpinisti in salita su un pendio innevato"),
-    ("Primavera", "Arrampicata", "Vie a uno o più tiri: assicurazione, gestione della sosta, corda doppia.", "corsi/arrampicata-4x5", (594, 742), "Cordata su una parete di roccia accanto a un ghiacciaio"),
-    ("Inverno", "Freeride", "Tecnica di sci fuori pista per chi vuole scendere con più sicurezza.", "corsi/freeride-4x5", (594, 742), "Sciatori in discesa su un ghiacciaio"),
-    ("Inverno", "Racchette", "Muoversi sulla neve in sicurezza: meteo, orientamento, primi soccorsi.", "corsi/racchette-4x5", (800, 1000), "Cresta innevata sopra un mare di nuvole"),
 ]
 
 def num(t):
@@ -71,11 +64,6 @@ def banda_adesione(titolo, testo, bottone, href):
 def home():
     prossime = prossime_gite()
     huts = schede_capanne(HUTS)
-    courses = "\n".join(f"""<a class="course" href="corsi.html#corso-{CORSO_SLUG[title]}">
-<figure>{img(im, alt, w, h)}</figure>
-<span class="label">{season}</span>
-<h3 class="h3">{title}</h3>
-</a>""" for season, title, text, im, (w, h), alt in COURSES)
 
     html = head("CAS Ticino | Club Alpino Svizzero, Sezione Ticino",
                 "Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età. Da oltre un secolo, la casa dell’alpinismo ticinese.",
@@ -87,7 +75,10 @@ def home():
 <div class="container">
 <h1 id="hero-h" class="display">In montagna<br>con <span class="accent">noi</span>.</h1>
 <div class="hero-foot">
+<div class="hero-testo">
 <p class="lead">Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età.</p>
+{social()}
+</div>
 <div class="actions">
 <a class="btn btn--primary" href="adesione.html">Diventa socio <span class="arrow" aria-hidden="true">→</span></a>
 <a class="btn btn--secondary" href="news.html">Ultime news</a>
@@ -116,11 +107,10 @@ def home():
 <h2 id="news-h" class="h2">News</h2>
 <div class="links"><a class="link" href="news.html">Tutte le news</a><a class="link" href="foto.html">Foto e resoconti</a></div>
 </div>
-<div class="news-grid" data-reveal>
-{chr(10).join(news_card(n) for n in NEWS[:3])}
+<div class="scorri scorri--news" data-reveal>
+<div class="scorri-traccia">
+{chr(10).join(news_card(n) for n in NEWS[:8])}
 </div>
-<div class="rail-foot">
-{social()}
 </div>
 </div>
 </section>
@@ -150,7 +140,7 @@ def home():
 <div class="links"><a class="link" href="giovani.html">Gruppo giovani</a><a class="link" href="organizzazione.html#giovani">Organizzazione</a></div>
 </div>
 </article>
-<article class="tile tile--wide-bottom" data-reveal>
+<article class="tile tile--bottom-1" data-reveal>
 {img("attivita/senior-2x1", "Escursionisti su un sentiero di cresta", 1000, 500)}
 <div class="tile-body">
 <span class="label">Gruppo senior, dal 1940</span>
@@ -159,29 +149,31 @@ def home():
 <div class="links"><a class="link" href="senior.html">Gruppo senior</a><a class="link" href="organizzazione.html#senior">Organizzazione</a></div>
 </div>
 </article>
+<article class="tile tile--bottom-2" id="corsi" data-reveal>
+{img("corsi/alpinismo-4x5", "Cordata su una cresta di neve", 594, 742)}
+<div class="tile-body">
+<span class="label">Tenuti da professionisti</span>
+<h3 class="h2">Corsi</h3>
+<p>Alpinismo, sci alpinismo, arrampicata, freeride e racchette: per imparare a muoversi in montagna in sicurezza.</p>
+<div class="links"><a class="link" href="corsi.html">Tutti i corsi</a><a class="link" href="noleggio.html">Noleggio materiale</a></div>
+</div>
+</article>
 </div>
 {f"""<div class="prossime" data-reveal>
 <div class="section-row">
 <h3 class="h3">Prossime gite</h3>
 <a class="link" href="{GITE}">Tutto il programma</a>
 </div>
-<div class="prossime-grid">
+<div class="scorri scorri--gite">
+<div class="scorri-traccia">
 {prossime}
 </div>
+</div>
 </div>""" if prossime else ""}
-<div class="corsi-mini" id="corsi" data-reveal>
-<div class="section-row">
-<h3 class="h3">Corsi</h3>
-<div class="links"><a class="link" href="corsi.html">Tutti i corsi</a><a class="link" href="noleggio.html">Noleggio materiale</a></div>
-</div>
-<div class="rail rail--mini" tabindex="0" aria-label="Corsi">
-{courses}
-</div>
-</div>
 </div>
 </section>
 
-<section class="section" id="capanne" aria-labelledby="capanne-h">
+<section class="section--surface" id="capanne" aria-labelledby="capanne-h">
 <div class="container">
 <div class="section-head">
 <h2 id="capanne-h" class="h2">Sei capanne, un solo Ticino</h2>
@@ -1785,10 +1777,9 @@ def gite_lista(gite, oggi):
 
 
 
-def prossime_gite(n=6):
-    """Le prossime gite per la home: senza annullate e senza le serate della colonna di soccorso.
-    Se ne scrivono alcune in più: la pagina può restare indietro di un giorno (si rigenera ogni mattina), quindi site.js
-    toglie quelle già passate (data-fine) e il CSS mostra solo le prime 3 rimaste."""
+def prossime_gite(n=10):
+    """Le prossime gite per la home, in una fila che scorre: senza annullate e senza le serate della colonna di soccorso.
+    La pagina può restare indietro di un giorno (si rigenera ogni mattina), quindi site.js toglie quelle già passate (data-fine)."""
     import datetime
     oggi = datetime.date.today().isoformat()
     scelte = [g for g in gite_dati() if (g["al"] or g["dal"]) >= oggi and g["stato"] != "annullata"
@@ -1854,10 +1845,11 @@ def gita_pagina():
 <section class="section" aria-label="Dettagli della gita">
 <div class="container detail gita-dettaglio" id="gita" data-api="{GITE_API}" data-dettaglio="{GITE_DETTAGLIO}"
  data-droptour="{GITE_DROPTOUR}" data-copia="{asset('data/gite.json')}">
-<div class="detail-intro">
+<aside class="gita-riepilogo" aria-label="La gita in breve" hidden>
 <p id="gita-stato"></p>
-<div class="actions" id="gita-azioni"><a class="btn btn--secondary" href="gite.html">Programma gite</a></div>
-</div>
+<dl class="gita-chiave" id="gita-chiave"></dl>
+<div class="actions" id="gita-azioni"></div>
+</aside>
 <div id="gita-dati"><noscript><p>Per vedere la gita serve JavaScript: la trovi nel <a href="{GITE_DROPTOUR}">programma su Droptour</a>.</p></noscript></div>
 </div>
 </section>
@@ -2283,6 +2275,121 @@ def noleggio():
 {subnav("Attività", "noleggio.html")}"""
     return page("noleggio.html", "Noleggio | CAS Ticino",
                 "Noleggio materiale del CAS Ticino: alpinismo, sci alpinismo, arrampicata, racchette e altro, con ritiro al magazzino di Manno.",
+                body)
+
+
+# ------------------------------------------------------------------ mercatino
+# Annunci di materiale tra privati, inseriti dalla redazione (admin/, raccolta «Mercatino») da data/mercatino/*.json:
+# campi e scadenza in mercatino_util.py. La pagina si rigenera ogni mattina (update-gite.yml): gli scaduti escono da soli.
+
+MERCATINO_MAIL = "mercatino@casticino.ch"
+MERCATINO_MODULO = """Tipo (vendo / cerco / regalo):
+Titolo:
+Prezzo:
+Luogo:
+Descrizione:
+
+Nome:
+Contatto da pubblicare (e-mail e/o telefono):
+
+Allego fino a 3 foto."""
+
+
+def contatto_html(t):
+    """Contatto scritto da chi pubblica: e-mail e numeri di telefono diventano link, il resto resta testo."""
+    pezzi = []
+    for x in re.split(r"\s*(?:,|;|/|\n| oppure | o )\s*", t.strip()):
+        if not x:
+            continue
+        if re.fullmatch(r"[^@\s]+@[^@\s]+\.[a-z]{2,}", x, flags=re.I):
+            pezzi.append(f'<a href="mailto:{esc(x)}">{esc(x)}</a>')
+        elif re.fullmatch(r"\+?[\d ().-]{7,}", x):
+            pezzi.append(f'<a href="tel:{re.sub(r"[^0-9+]", "", x)}">{esc(x)}</a>')
+        else:
+            pezzi.append(esc(x))
+    return " · ".join(pezzi)
+
+
+def annuncio_html(a):
+    nome = os.path.splitext(os.path.basename(a["percorso"]))[0]
+    foto = [f for f in a.get("foto") or [] if f and os.path.exists(os.path.join(ROOT, f))][:3]
+    fig = ""
+    if foto:
+        w, h = webp_size(os.path.join(ROOT, foto[0])) if foto[0].endswith(".webp") else (1200, 900)
+        altre = "".join(f'<a href="{esc(f)}" aria-label="Foto {i + 2} di «{esc(a["title"])}»"><img src="{esc(f)}" alt="" loading="lazy" decoding="async"></a>'
+                        for i, f in enumerate(foto[1:]))
+        fig = f"""<figure class="annuncio-foto">
+<a href="{esc(foto[0])}"><img src="{esc(foto[0])}" alt="{esc(a['title'])}" width="{w}" height="{h}" loading="lazy" decoding="async"></a>
+{f'<div class="annuncio-altre">{altre}</div>' if altre else ""}
+</figure>"""
+    tipo = a.get("tipo") if a.get("tipo") in mercatino_util.TIPI else "Vendo"
+    testo = "".join(f"<p>{esc(par).replace(chr(10), '<br>')}</p>" for par in re.split(r"\n\s*\n", (a.get("testo") or "").strip()) if par.strip())
+    meta = " · ".join(filter(None, [esc(a.get("luogo") or ""), f'pubblicato il {data_it(a["date"][:10])}']))
+    contatto = "".join(filter(None, [esc(a["nome"]) + (": " if a.get("contatto") else "") if a.get("nome") else "",
+                                     contatto_html(a["contatto"]) if a.get("contatto") else ""]))
+    return f"""<article class="annuncio" id="{nome}" data-ruoli="{tipo.lower()}" data-scade="{mercatino_util.scadenza(a)}">
+{fig}
+<div class="annuncio-corpo">
+<p class="annuncio-tipo annuncio-tipo--{tipo.lower()}">{tipo}</p>
+<h3 class="annuncio-titolo">{esc(a['title'])}</h3>
+{f'<p class="annuncio-prezzo">{esc(a["prezzo"])}</p>' if a.get("prezzo") else ""}
+{f'<div class="annuncio-testo">{testo}</div>' if testo else ""}
+<p class="small">{meta}</p>
+{f'<p class="annuncio-contatto">{contatto}</p>' if contatto else ""}
+</div>
+</article>"""
+
+
+def mercatino():
+    annunci = mercatino_util.attivi()
+    conta = {t: sum(1 for a in annunci if (a.get("tipo") if a.get("tipo") in mercatino_util.TIPI else "Vendo") == t) for t in mercatino_util.TIPI}
+    mailto = f"mailto:{MERCATINO_MAIL}?subject={quote('Annuncio per il mercatino')}&body={quote(MERCATINO_MODULO)}"
+    bottone = f'<a class="btn btn--primary" href="{esc(mailto)}">Pubblica un annuncio <span class="arrow" aria-hidden="true">→</span></a>'
+    if annunci:
+        filtri = "\n".join([f'<button type="button" data-filtro="" aria-pressed="true">Tutti <span class="num">{len(annunci)}</span></button>'] +
+                           [f'<button type="button" data-filtro="{t.lower()}" aria-pressed="false">{t} <span class="num">{conta[t]}</span></button>'
+                            for t in mercatino_util.TIPI if conta[t]])
+        elenco = f"""<div class="filtro" role="group" aria-label="Filtra per tipo di annuncio" data-filtra="#annunci" data-uno="annuncio" data-molti="annunci" hidden>
+{filtri}
+</div>
+<p class="small filtro-stato" id="filtro-stato" aria-live="polite"></p>
+<div class="annunci" id="annunci">
+{chr(10).join(annuncio_html(a) for a in annunci)}
+</div>"""
+    else:
+        elenco = f"""<div class="callout">
+<p><strong>Al momento non ci sono annunci.</strong> Hai dell’attrezzatura che non usi più, o cerchi qualcosa? Mandaci il tuo annuncio.</p>
+{bottone.replace("btn--primary", "btn--secondary")}
+</div>"""
+    rows = [("Cosa", "Materiale e abbigliamento per la montagna, da vendere, cercare o regalare tra privati."),
+            ("Come", f'Scrivi a <a href="{esc(mailto)}">{MERCATINO_MAIL}</a> con tipo, titolo, prezzo, luogo, descrizione, il contatto da pubblicare e fino a 3 foto: la redazione lo mette online.'),
+            ("Durata", f"Ogni annuncio resta online {mercatino_util.GIORNI_DEFAULT // 30} mesi. Se l’oggetto è venduto, trovato o regalato prima, avvisaci e lo togliamo."),
+            ("Costo", "Gratuito"),
+            ("Trattative", "Si accordano direttamente le persone interessate: la sezione pubblica gli annunci ma non partecipa alla vendita e non risponde del materiale.")]
+    body = page_hero([("Attività", "index.html#attivita"), ("Mercatino", None)], "Mercatino",
+                     "Attrezzatura di montagna tra soci e appassionati: vendo, cerco, regalo. Dai una seconda vita al materiale che non usi più.",
+                     f'<div class="actions hero-actions">{bottone}</div>') + f"""
+
+<section class="section" aria-label="Annunci">
+<div class="container">
+{elenco}
+</div>
+</section>
+
+<section class="section--surface" id="come" aria-labelledby="come-h">
+<div class="container detail">
+<div class="detail-intro">
+<h2 id="come-h" class="h2">Come funziona</h2>
+</div>
+<div data-reveal>
+{facts(rows)}
+</div>
+</div>
+</section>
+
+{subnav("Attività", "mercatino.html")}"""
+    return page("mercatino.html", "Mercatino | CAS Ticino",
+                "Il mercatino del CAS Ticino: annunci di attrezzatura di montagna tra privati, da vendere, cercare o regalare.",
                 body)
 
 
@@ -2731,7 +2838,7 @@ PAGES = {
     "sede.html": sede, "storia.html": storia, "link.html": link, "documenti.html": documenti,
     "news.html": news, "gite.html": gite, "gita.html": gita_pagina, "foto.html": foto, "annuari.html": annuari, "informazione.html": informazione,
     "adesione.html": adesione,
-    "giovani.html": giovani, "senior.html": senior, "corsi.html": corsi, "noleggio.html": noleggio,
+    "giovani.html": giovani, "senior.html": senior, "corsi.html": corsi, "noleggio.html": noleggio, "mercatino.html": mercatino,
     "soccorso.html": soccorso, "capigita.html": capigita,
 }
 for _f in HUT_PAGES:

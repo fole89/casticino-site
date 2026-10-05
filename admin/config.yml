@@ -1,6 +1,7 @@
-# Area di redazione delle news (Decap CMS). Si apre su …/admin/ e salva le news direttamente nel repository:
-# ogni news è un file data/news/<data>-<titolo>.json; il workflow .github/workflows/news.yml prepara le foto,
-# rigenera le pagine e le pubblica. Vedi scripts/cms-auth/LEGGIMI.md per il login.
+# Area di redazione delle news e del mercatino (Decap CMS). Si apre su …/admin/ e salva direttamente nel repository:
+# ogni news è un file data/news/<data>-<titolo>.json, ogni annuncio del mercatino data/mercatino/<data>-<titolo>.json;
+# il workflow .github/workflows/news.yml prepara le foto, rigenera le pagine e le pubblica.
+# Vedi scripts/cms-auth/LEGGIMI.md per il login.
 
 backend:
   name: github
@@ -9,12 +10,12 @@ backend:
   auth_scope: public_repo          # il repository è pubblico: basta il permesso minimo
   base_url: https://casticino-cms-auth.fole89.workers.dev   # indirizzo del servizio di login (scripts/cms-auth/)
   auth_endpoint: auth
-  commit_messages:
-    create: "News: nuova «{{slug}}»"
-    update: "News: modifica «{{slug}}»"
-    delete: "News: eliminata «{{slug}}»"
-    uploadMedia: "News: caricato {{path}}"
-    deleteMedia: "News: tolto {{path}}"
+  commit_messages:             # {{collection}} = nome della raccolta (news o annuncio, label_singular qui sotto)
+    create: "Redazione: nuovo {{collection}} «{{slug}}»"
+    update: "Redazione: modifica {{collection}} «{{slug}}»"
+    delete: "Redazione: eliminato {{collection}} «{{slug}}»"
+    uploadMedia: "Redazione: caricato {{path}}"
+    deleteMedia: "Redazione: tolto {{path}}"
 
 locale: it
 site_url: https://fole89.github.io/casticino-site/
@@ -111,3 +112,88 @@ collections:
         name: category
         widget: hidden
         required: false
+
+  - name: mercatino
+    label: Mercatino
+    label_singular: annuncio
+    description: "Annunci di materiale tra privati (arrivano per e-mail a info@casticino.ch). Restano online fino alla scadenza (se vuota: 3 mesi dalla pubblicazione), poi spariscono da soli dalla pagina. Dopo «Pubblica» l’annuncio è online in uno o due minuti."
+    folder: data/mercatino
+    extension: json
+    format: json
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{date | date('DD.MM.YYYY')}} · {{tipo}} · {{title}}"
+    sortable_fields:
+      - field: date
+        default_sort: desc
+      - title
+    fields:
+      - label: Tipo
+        name: tipo
+        widget: select
+        options: ["Vendo", "Cerco", "Regalo"]
+        default: "Vendo"
+      - label: Titolo
+        name: title
+        widget: string
+        hint: "Cosa si vende, cerca o regala, breve (es. «Scarponi da sci alpinismo Scarpa, 42»)."
+      - label: Pubblicato il
+        name: date
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "DD.MM.YYYY"
+        time_format: false
+        default: "{{now}}"
+      - label: Scade il
+        name: scadenza
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "DD.MM.YYYY"
+        time_format: false
+        required: false
+        hint: "Se resta vuota, l’annuncio resta online 3 mesi dalla pubblicazione. Per rinnovarlo basta spostare la data."
+      - label: Concluso (venduto, trovato o regalato)
+        name: concluso
+        widget: boolean
+        default: false
+        required: false
+        hint: "Acceso: l’annuncio sparisce subito dalla pagina (il file resta qui e si può riattivare)."
+      - label: Prezzo
+        name: prezzo
+        widget: string
+        required: false
+        hint: "Testo libero, es. «Fr. 120.–» o «da concordare». Vuoto per «Cerco» e «Regalo»."
+      - label: Luogo
+        name: luogo
+        widget: string
+        required: false
+        hint: "Dove si trova l’oggetto, es. «Bellinzona»."
+      - label: Descrizione
+        name: testo
+        widget: text
+        required: false
+        hint: "Stato, misure, anno… Gli a capo restano; una riga vuota separa i paragrafi."
+      - label: Foto
+        name: foto
+        widget: list
+        required: false
+        max: 3
+        label_singular: foto
+        hint: "Fino a 3 foto, JPG o PNG: vengono ridimensionate e convertite in automatico. La prima è quella grande."
+        field:
+          label: Foto
+          name: src
+          widget: image
+          choose_url: false
+          media_folder: /assets/img/mercatino
+          public_folder: assets/img/mercatino
+      - label: Nome
+        name: nome
+        widget: string
+        required: false
+        hint: "Chi pubblica, come vuole comparire (es. «Laura»)."
+      - label: Contatto
+        name: contatto
+        widget: string
+        hint: "E-mail e/o telefono da pubblicare, solo con il consenso di chi ha mandato l’annuncio (es. «laura@esempio.ch, 079 123 45 67»)."

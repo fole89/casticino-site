@@ -1,7 +1,7 @@
-name: Pubblica news
+name: Pubblica news e mercatino
 
-# Parte quando cambia una news (di solito salvata dall'area di redazione admin/): prepara foto e nomi,
-# rigenera tutte le pagine e pubblica il risultato.
+# Parte quando cambia una news o un annuncio del mercatino (di solito salvati dall'area di redazione admin/):
+# prepara foto e nomi, rigenera tutte le pagine e pubblica il risultato.
 on:
   push:
     branches: [main]
@@ -9,6 +9,8 @@ on:
       - "data/news/**"
       - "assets/img/news/**"
       - "docs/news/**"
+      - "data/mercatino/**"
+      - "assets/img/mercatino/**"
   workflow_dispatch:        # avvio manuale da GitHub › Actions › "Run workflow"
 
 permissions:
@@ -36,6 +38,9 @@ jobs:
           pip install --quiet pillow
           python scripts/prepara_news.py
 
+      - name: Prepara il mercatino (foto in WebP con il nome dell’annuncio)
+        run: python scripts/prepara_mercatino.py
+
       - name: Rigenera le pagine
         run: python scripts/redesign/pages.py > /dev/null
 
@@ -48,7 +53,7 @@ jobs:
           fi
           git config user.name  "casticino-bot"
           git config user.email "actions@users.noreply.github.com"
-          git commit -m "News: pagine aggiornate"
+          git commit -m "Redazione: pagine aggiornate"
           # se nel frattempo è arrivata un'altra modifica, ci si mette in coda
           git pull --rebase
           git push

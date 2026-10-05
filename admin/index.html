@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Redazione news | CAS Ticino</title>
+<title>Redazione | CAS Ticino</title>
 <!-- i percorsi partono dalla radice del sito, come nelle news (assets/…, docs/…): così si vedono anche le foto già pubblicate -->
 <base href="../">
 <link rel="icon" href="assets/logo-cas.webp">
 <link href="admin/config.yml" type="text/yaml" rel="cms-config-url">
 </head>
 <body>
-<!-- Area di redazione delle news: Decap CMS, configurazione in config.yml.
+<!-- Area di redazione delle news e del mercatino: Decap CMS, configurazione in config.yml.
      integrity: il browser esegue lo script solo se è identico a quello verificato; aggiornando la versione va ricalcolata
      (curl -s <url> | openssl dgst -sha384 -binary | openssl base64 -A). -->
 <script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js" integrity="sha384-A/Gdn928CNLufmnGWGs9RM4Q9o8bSNLeJERqBFrBjwzL7FRpoLT3MPF8Tl0+Wd2p" crossorigin="anonymous"></script>
@@ -55,6 +55,36 @@ var NewsPreview = createClass({
   }
 });
 CMS.registerPreviewTemplate("news", NewsPreview);
+
+// Anteprima di un annuncio del mercatino: la scheda come apparirà in mercatino.html.
+var AnnuncioPreview = createClass({
+  render: function () {
+    var props = this.props, d = props.entry.get("data");
+    var foto = (d.get("foto") && d.get("foto").toJS ? d.get("foto").toJS() : []).filter(Boolean).slice(0, 3)
+      .map(function (f) { return indirizzo(props, f); });
+    var tipo = d.get("tipo") || "Vendo";
+    var testo = (d.get("testo") || "").split(/\n\s*\n/).filter(function (p) { return p.trim(); });
+    var meta = [d.get("luogo"), d.get("date") ? "pubblicato il " + dataIt(d.get("date")) : ""].filter(Boolean).join(" · ");
+    var contatto = [d.get("nome"), d.get("contatto")].filter(Boolean).join(": ");
+    return h("main", {},
+      h("section", { className: "section section--tight" },
+        h("div", { className: "container" },
+          h("div", { className: "annunci" },
+            h("article", { className: "annuncio" },
+              foto.length ? h("figure", { className: "annuncio-foto" },
+                h("a", {}, h("img", { src: foto[0], alt: "" })),
+                foto.length > 1 ? h("div", { className: "annuncio-altre" }, foto.slice(1).map(function (f, i) { return h("a", { key: i }, h("img", { src: f, alt: "" })); })) : null) : null,
+              h("div", { className: "annuncio-corpo" },
+                h("p", { className: "annuncio-tipo annuncio-tipo--" + tipo.toLowerCase() }, tipo),
+                h("h3", { className: "annuncio-titolo" }, d.get("title") || "Titolo dell’annuncio"),
+                d.get("prezzo") ? h("p", { className: "annuncio-prezzo" }, d.get("prezzo")) : null,
+                testo.length ? h("div", { className: "annuncio-testo" }, testo.map(function (p, i) { return h("p", { key: i, style: { whiteSpace: "pre-line" } }, p); })) : null,
+                h("p", { className: "small" }, meta),
+                contatto ? h("p", { className: "annuncio-contatto" }, contatto) : null,
+                d.get("concluso") ? h("p", { className: "small" }, h("strong", {}, "Concluso: non compare sulla pagina.")) : null))))));
+  }
+});
+CMS.registerPreviewTemplate("mercatino", AnnuncioPreview);
 </script>
 </body>
 </html>

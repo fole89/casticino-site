@@ -177,7 +177,17 @@
   if (location.hash === '#notizie') tutti();
 })();
 
-// CAS Ticino - filtro per ruolo (pagina Capigita): ogni pulsante [data-filtro] mostra solo gli elementi
+// CAS Ticino - home, prossime gite, e mercatino: le pagine si rigenerano ogni mattina, quindi possono contenere gite già
+// passate (data-fine) o annunci scaduti (data-scade); si tolgono qui, prima che la fila che scorre (sotto) duplichi le schede.
+(function () {
+  var d = new Date();
+  var oggi = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  Array.prototype.forEach.call(document.querySelectorAll('.prossima[data-fine], .annuncio[data-scade]'), function (el) {
+    if ((el.dataset.fine || el.dataset.scade) < oggi) el.remove();
+  });
+})();
+
+// CAS Ticino - filtro per ruolo (pagine Capigita e Mercatino): ogni pulsante [data-filtro] mostra solo gli elementi
 // [data-ruoli] che contengono quel ruolo; senza JavaScript il filtro resta nascosto e si vede l'elenco completo.
 (function () {
   var bar = document.querySelector('.filtro[data-filtra]');
@@ -199,13 +209,25 @@
   });
 })();
 
-// CAS Ticino - home, prossime gite: la pagina si rigenera ogni mattina, quindi può contenere gite già passate; si tolgono
-// qui (data-fine) e il CSS mostra solo le prime 3 rimaste.
+
+// CAS Ticino - home, news e prossime gite: la fila (.scorri) scorre da destra a sinistra in loop. Le schede si
+// duplicano (le copie nascoste a lettori di schermo e tastiera) e la traccia si sposta di metà: il giro non ha stacchi.
+// Si ferma al passaggio del mouse e col focus; con movimento ridotto resta da scorrere a mano.
 (function () {
-  var d = new Date();
-  var oggi = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
-  Array.prototype.forEach.call(document.querySelectorAll('.prossima[data-fine]'), function (el) {
-    if (el.dataset.fine < oggi) el.remove();
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var PX_AL_SECONDO = 40;
+  Array.prototype.forEach.call(document.querySelectorAll('.scorri'), function (box) {
+    var traccia = box.querySelector('.scorri-traccia');
+    if (!traccia || traccia.children.length < 2 || traccia.scrollWidth <= box.clientWidth) return;
+    Array.prototype.slice.call(traccia.children).forEach(function (scheda) {
+      var copia = scheda.cloneNode(true);
+      copia.setAttribute('aria-hidden', 'true');
+      copia.setAttribute('tabindex', '-1');
+      Array.prototype.forEach.call(copia.querySelectorAll('a, button'), function (el) { el.setAttribute('tabindex', '-1'); });
+      traccia.appendChild(copia);
+    });
+    box.style.setProperty('--scorri-durata', Math.round(traccia.scrollWidth / 2 / PX_AL_SECONDO) + 's');
+    box.classList.add('is-animato');
   });
 })();
 

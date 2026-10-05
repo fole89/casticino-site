@@ -1,4 +1,4 @@
-# Area di redazione delle news
+# Area di redazione delle news e del mercatino
 
 L’area di redazione è su **https://fole89.github.io/casticino-site/admin/** (dopo il cambio di dominio: `https://casticino.ch/admin/`).
 Si entra con un account GitHub che ha accesso in scrittura al repository `fole89/casticino-site`.
@@ -6,7 +6,8 @@ Si entra con un account GitHub che ha accesso in scrittura al repository `fole89
 Come funziona: l’area di redazione (Decap CMS, configurazione in `admin/config.yml`) salva ogni news come file
 `data/news/<data>-<titolo>.json` direttamente nel repository. Il workflow `.github/workflows/news.yml` parte da solo,
 converte le foto (`scripts/prepara_news.py`), rigenera il sito (`scripts/redesign/pages.py`) e lo pubblica:
-la news è online in uno o due minuti.
+la news è online in uno o due minuti. Allo stesso modo gli annunci del mercatino sono file
+`data/mercatino/<data>-<titolo>.json`, con le foto preparate da `scripts/prepara_mercatino.py`.
 
 ## Attivazione (una volta sola)
 
@@ -59,3 +60,22 @@ con ruolo **Write**. Ognuno riceve un invito via e-mail da accettare.
 
 Per correggere una news la si apre dalla lista, si modifica e si ripubblica. **Cancella voce** la toglie dal sito.
 Le news importate dal vecchio sito hanno il testo nel campo «Testo HTML»: si possono correggere lì.
+
+## Guida per il mercatino
+
+Gli annunci arrivano per e-mail a info@casticino.ch (il bottone «Pubblica un annuncio» della pagina Mercatino apre
+un messaggio già impostato con i campi da compilare e invita ad allegare fino a 3 foto).
+
+1. **Mercatino › + annuncio**.
+2. Compila:
+   - **Tipo** (Vendo, Cerco, Regalo) e **Titolo**, breve;
+   - **Pubblicato il** (di solito oggi) e, se serve, **Scade il**: se resta vuota l’annuncio resta online 3 mesi;
+   - **Prezzo** (testo libero, es. «Fr. 120.–» o «da concordare»), **Luogo** e **Descrizione**;
+   - **Foto**: fino a 3, JPG o PNG anche grandi (vengono ridimensionate); la prima è quella grande;
+   - **Nome** e **Contatto** (e-mail e/o telefono): si pubblicano così come li scrivi, quindi solo quelli che
+     chi ha mandato l’annuncio ha chiesto di mettere. E-mail e numeri diventano link.
+3. **Pubblica › Pubblica ora**: dopo uno o due minuti l’annuncio è sulla pagina Mercatino.
+
+Quando l’oggetto è venduto, trovato o regalato, apri l’annuncio e accendi **Concluso**: sparisce subito dalla pagina.
+Alla scadenza sparisce da solo (la pagina si rigenera ogni mattina). Per rinnovarlo basta spostare la data di
+scadenza; **Cancella voce** lo elimina del tutto, con le sue foto.
