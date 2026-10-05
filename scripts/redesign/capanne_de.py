@@ -27,8 +27,8 @@ HUT_DE = {
                  ("Mobile", '<a class="num" href="tel:+41767212572">+41 76 721 25 72</a>'),
                  ("E-Mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
     "cristallina.html": dict(
-        where="Passo Cristallina, Valle Bedretto", custody="Juni bis Mitte Oktober",
-        description="Capanna Cristallina, 2575 m, auf dem Cristallinapass zwischen Leventina und Maggiatal: 100 Schlafplätze, bewartet von Juni bis Mitte Oktober. Kontakt und Reservation.",
+        where="Passo Cristallina, Valle Bedretto", custody="Juni bis Mitte Oktober; im Winter an Wochenenden und Feiertagen",
+        description="Capanna Cristallina, 2575 m, auf dem Cristallinapass zwischen Leventina und Maggiatal: 100 Schlafplätze, bewartet von Juni bis Mitte Oktober und im Winter an Wochenenden und Feiertagen. Kontakt und Reservation.",
         intro="Von den Architekten Baserga und Mozzetti entworfen und 2003 eröffnet, ist sie die erste moderne Hütte des Schweizer Alpen-Clubs. Sie steht auf dem Pass, an einer strategischen Stelle zwischen Leventina und Maggiatal: aussichtsreiche Etappe auf den Übergängen nach Robiei, zum Naret, zum Campo Tencia und zum San Giacomo. Die Seenrunde am Cristallina, an einem oder zwei Tagen, eignet sich auch für Familien; in einer Stunde erreicht man den Cristallina und die Cima di Lago. Im Winter, vor allem von Norden her erreichbar, öffnen sich herrliche Hänge ins Bedrettotal, nach Robiei und ins Val Formazza.",
         stay=[("Öffnung", "Immer offen und zugänglich"),
               ("Bewartet", "Juni bis Mitte Oktober; im Winter, von Dezember bis Ende April, bei guten Verhältnissen, an Wochenenden, Feiertagen und für Gruppen"),
@@ -109,7 +109,7 @@ HUT_DE = {
 # schede della home tedesca e delle «altre capanne»: stessi campi di HUTS in pages.py
 HUTS_DE = [
     ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Bewartet Juni–Okt.", "Auf einer Terrasse über dem Val Piumogna, Ausgangspunkt für den Pizzo Campo Tencia, den höchsten ganz im Tessin gelegenen Gipfel.", "80 Plätze", "Dalpe 3 h", "capanne/campotencia-3x2", (987, 658), True),
-    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Bewartet Juni–Okt.", "Auf dem gleichnamigen Pass zwischen Leventina und Maggiatal. 2003 eröffnet, die erste moderne SAC-Hütte.", "100 Plätze", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
+    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Bewartet Sommer und Winter", "Auf dem gleichnamigen Pass zwischen Leventina und Maggiatal. 2003 eröffnet, die erste moderne SAC-Hütte.", "100 Plätze", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
     ("adula.html", "Adula", "2012", "Val Carassino", "Bewartet Mai–Okt.", "Die klassische Steinhütte hoch über dem Bleniotal: Geschichte, herzlicher Empfang und einheimische Küche.", "24 Plätze", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
     ("motterascio.html", "Motterascio", "2172", "Greina", "Bewartet Juni–Okt.", "Am Rand der geschützten Greina-Ebene: Moore, Alpweiden und der grösste natürliche Felsbogen im Tessin.", "70 Plätze", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
     ("montebar.html", "Monte Bar", "1602", "Alta Capriasca", "Ganzjährig", "Der Balkon über Lugano, 2016 neu gebaut: Blick vom Monte Rosa bis zu den Denti della Vecchia, Bike-Hotel-Standard.", "42 Plätze", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),

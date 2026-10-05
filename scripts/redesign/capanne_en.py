@@ -28,8 +28,8 @@ HUT_EN = {
                  ("Mobile", '<a class="num" href="tel:+41767212572">+41 76 721 25 72</a>'),
                  ("E-mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
     "cristallina.html": dict(
-        where="Passo Cristallina, Valle Bedretto", custody="June to mid-October",
-        description="Capanna Cristallina, 2575 m, on the Cristallina Pass between Leventina and Valle Maggia: 100 beds, staffed from June to mid-October. Contacts and booking.",
+        where="Passo Cristallina, Valle Bedretto", custody="June to mid-October; in winter at weekends and on public holidays",
+        description="Capanna Cristallina, 2575 m, on the Cristallina Pass between Leventina and Valle Maggia: 100 beds, staffed from June to mid-October and in winter at weekends and on public holidays. Contacts and booking.",
         intro="Designed by the architects Baserga and Mozzetti and opened in 2003, it is the first modern hut built by the Swiss Alpine Club. It stands on the pass, at a strategic point between Leventina and Valle Maggia: a panoramic stage on the traverses to Robiei, the Naret, Campo Tencia and San Giacomo. The Cristallina lakes circuit, over one or two days, is also suitable for families; in an hour you can reach the Cristallina and the Cima di Lago. In winter, reached mainly from the north, it opens up superb slopes towards Valle Bedretto, Robiei and Val Formazza.",
         stay=[("Opening", "Always open and accessible"),
               ("Staffed", "June to mid-October; in winter, from December to the end of April, in good conditions, at weekends, on public holidays and for groups"),
@@ -110,7 +110,7 @@ HUT_EN = {
 # schede della home inglese e delle «altre capanne»: stessi campi di HUTS in pages.py
 HUTS_EN = [
     ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Staffed Jun–Oct", "On a terrace above Val Piumogna, the base for Pizzo Campo Tencia, the highest peak lying entirely in Ticino.", "80 beds", "Dalpe 3 h", "capanne/campotencia-3x2", (987, 658), True),
-    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Staffed Jun–Oct", "On the pass of the same name between Leventina and Valle Maggia. Opened in 2003, the first modern SAC hut.", "100 beds", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
+    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Staffed summer and winter", "On the pass of the same name between Leventina and Valle Maggia. Opened in 2003, the first modern SAC hut.", "100 beds", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
     ("adula.html", "Adula", "2012", "Val Carassino", "Staffed May–Oct", "The classic stone hut high above Valle di Blenio: history, a warm welcome and local cooking.", "24 beds", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
     ("motterascio.html", "Motterascio", "2172", "Greina", "Staffed Jun–Oct", "On the edge of the protected Greina plateau: peat bogs, alpine pastures and the largest natural rock arch in Ticino.", "70 beds", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
     ("montebar.html", "Monte Bar", "1602", "Alta Capriasca", "All year", "The balcony above Lugano, rebuilt in 2016: views from Monte Rosa to the Denti della Vecchia, Bike Hotel standard.", "42 beds", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),

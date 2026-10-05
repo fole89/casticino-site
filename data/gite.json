@@ -1,31 +1,6 @@
 {
  "gite": [
   {
-   "id": "2174",
-   "titolo": "Gita MTB con Banca Stato",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2174",
-   "dal": "2026-10-04",
-   "al": "",
-   "tipo": "Mountain-Bike",
-   "sigla": "MTB",
-   "gruppi": [
-    "Attivi"
-   ],
-   "capigita": [
-    "Marco Buck"
-   ],
-   "cond": "B",
-   "tecn": "",
-   "descrizione": "",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-09-29",
-   "modalita": "tramite www.viviiltuoticino.ch",
-   "iscritti": 0,
-   "posti": 20,
-   "stato": "completa"
-  },
-  {
    "id": "2088",
    "titolo": "Colonna di soccorso - Primo martedì del mese",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2088",
@@ -49,7 +24,17 @@
    "modalita": "www.soccorsoalpino-ti.ch",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Percorso / Dettagli",
+     "Primo martedì del mese"
+    ],
+    [
+     "Formalità di iscrizione",
+     "<a href=\"https://www.soccorsoalpino-ti.ch\" rel=\"noopener\">www.soccorsoalpino-ti.ch</a>"
+    ]
+   ]
   },
   {
    "id": "2171",
@@ -74,7 +59,13 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Percorso / Dettagli",
+     "Diamo una mano ai nostri guardiani per i lavori di chiusura delle capanne"
+    ]
+   ]
   },
   {
    "id": "1947",
@@ -99,7 +90,17 @@
    "modalita": "",
    "iscritti": 4,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. B (abbastanza impegnativo)\nTecn. 5c (Difficoltà straordinarie)"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Arrampicata tra monitori e aiuto in Val di Mello su granito spaziale.\nLe vie verranno selezionate in base al numero di partecipanti e alle capacità.\n(Ad esempio ferrocinetica, tunnel diagonale, cunicolo acuto, alba del Nirvana, lamone e le sue placche, magic lina e sfera di cristallo, vortice di fiabe, ecc.)\n\nPartenza presto dal Ticino e trasferta a San Martino in Val Masino. Arrampicata su un paio di vie in Val di Mello.\nCena valtellinese per concludere insieme la giornata.\nRientro in Ticino.\n\nNota: indispensabile conoscenza impiego protezioni mobili (friends, nuts)"
+    ]
+   ]
   },
   {
    "id": "2036",
@@ -125,7 +126,21 @@
    "modalita": "",
    "iscritti": 16,
    "posti": 0,
-   "stato": "completa"
+   "stato": "completa",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. T1 (Escursione)"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Visita alla Miniera di Sessa"
+    ],
+    [
+     "Descrizione",
+     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/2036/Gita%2041%20Miniera%20di%20Sessa.pdf\" rel=\"noopener\">Gita 41 Miniera di Sessa</a>"
+    ]
+   ]
   },
   {
    "id": "2159",
@@ -151,7 +166,17 @@
    "modalita": "",
    "iscritti": 4,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. 4a (Grandi difficoltà)"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Gita familiare, giornata ricreativa in falesia con i nostri bimbi.\nI bambini arrampicano sotto la responsabilità dei propri genitori."
+    ]
+   ]
   },
   {
    "id": "2037",
@@ -176,7 +201,29 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 20,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. B (abbastanza impegnativo)\nTecn. T2 (Escursione di montagna)"
+    ],
+    [
+     "Tempo della gita, salita/discesa",
+     "5 h"
+    ],
+    [
+     "Carte",
+     "1252 Ambrì Piotta"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Da Carì al laghetto e ritorno."
+    ],
+    [
+     "Descrizione",
+     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/2037/Gita%2042%20Lago%20di%20Car%C3%AC.pdf\" rel=\"noopener\">Gita 42 Lago di Carì</a>"
+    ]
+   ]
   },
   {
    "id": "2157",
@@ -201,7 +248,21 @@
    "modalita": "",
    "iscritti": 3,
    "posti": 20,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Tecn. LCI (Livello corso I)"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Luogo _ Coordinate\n2.712.016 / 1.093.279\n\nOre 19:45\n\nPartecipanti con un minimo di dimestichezza con uso della carta topografica 1:25000 e dei sistemi informatici come PC - iPhone - iPad\n\nInizieremo utilizzando la carta topografica, Azimut, dopodiché ci concentreremo con i sistemi informatici, applicazione SwissTopo.\n\nAllarme Rega ?. Piccoli consigli ? video sui soccorsi ... dopo un&#x27;eventuale richiesta d&#x27;intervento\n\nDurata al massimo fino alle 22:30\n\nParcheggi in zona"
+    ],
+    [
+     "Equipaggiamento",
+     "PC - iPhone - iPad\n\nCarta topografica\n1:25000 - Bellinzona 1313 - Tesserete 1333 - Lugano 1353\n\nBussola , scalimetro (righetta)\nMatita, gomma"
+    ]
+   ]
   },
   {
    "id": "2089",
@@ -227,7 +288,17 @@
    "modalita": "www.soccorsoalpino-ti.ch",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Percorso / Dettagli",
+     "Corso sezionale estivo"
+    ],
+    [
+     "Formalità di iscrizione",
+     "<a href=\"https://www.soccorsoalpino-ti.ch\" rel=\"noopener\">www.soccorsoalpino-ti.ch</a>"
+    ]
+   ]
   },
   {
    "id": "2038",
@@ -252,7 +323,29 @@
    "modalita": "",
    "iscritti": 3,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. B (abbastanza impegnativo)\nTecn. T2 (Escursione di montagna)"
+    ],
+    [
+     "Tempo della gita, salita/discesa",
+     "5.5 h"
+    ],
+    [
+     "Carte",
+     "1334 Porlezza"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Giro ad anello: da Dasio saliamo alla Forcola, passando all&#x27;alpe di Cima saliamo alla Bocchetta di Pessina per poi scendere al Passo Stretto. Da quì scenderemo e ritorneremo a Dasio."
+    ],
+    [
+     "Descrizione",
+     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/2038/Gita%2043%20Dasio-Valsolda.pdf\" rel=\"noopener\">Gita 43 Dasio-Valsolda</a>"
+    ]
+   ]
   },
   {
    "id": "1915",
@@ -279,7 +372,13 @@
    "modalita": "",
    "iscritti": 13,
    "posti": 12,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. B (abbastanza impegnativo)\nTecn. 5b (Difficoltà molto grandi)"
+    ]
+   ]
   },
   {
    "id": "2039",
@@ -304,7 +403,13 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Descrizione",
+     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/2039/Gita%2044%20Castagnata.pdf\" rel=\"noopener\">Gita 44 Castagnata</a>"
+    ]
+   ]
   },
   {
    "id": "2149",
@@ -330,7 +435,17 @@
    "modalita": "",
    "iscritti": 19,
    "posti": 0,
-   "stato": "completa"
+   "stato": "completa",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. 4a (Grandi difficoltà)"
+    ],
+    [
+     "Carte",
+     "1333 Tesserete"
+    ]
+   ]
   },
   {
    "id": "2090",
@@ -356,7 +471,17 @@
    "modalita": "www.soccorsoalpino-ti.ch",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Percorso / Dettagli",
+     "Primo martedì del mese"
+    ],
+    [
+     "Formalità di iscrizione",
+     "<a href=\"https://www.soccorsoalpino-ti.ch\" rel=\"noopener\">www.soccorsoalpino-ti.ch</a>"
+    ]
+   ]
   },
   {
    "id": "2207",
@@ -382,7 +507,17 @@
    "modalita": "",
    "iscritti": 12,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. 5c (Difficoltà straordinarie)"
+    ],
+    [
+     "Alloggio / Ristorazione",
+     "Pernottamento in campeggio"
+    ]
+   ]
   },
   {
    "id": "2040",
@@ -407,7 +542,25 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. T2 (Escursione di montagna)"
+    ],
+    [
+     "Tempo della gita, salita/discesa",
+     "3 h"
+    ],
+    [
+     "Carte",
+     "1312 Locarno"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Da Viona comoda salita fino ai Monti di Lego, balcone panoramico sul Lago Maggiore. Discesa lungo il sentiero percorso in salita."
+    ]
+   ]
   },
   {
    "id": "1914",
@@ -434,7 +587,13 @@
    "modalita": "",
    "iscritti": 21,
    "posti": 20,
-   "stato": "completa"
+   "stato": "completa",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. 4b (Grandi difficoltà)"
+    ]
+   ]
   },
   {
    "id": "2041",
@@ -459,7 +618,25 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. T2 (Escursione di montagna)"
+    ],
+    [
+     "Tempo della gita, salita/discesa",
+     "3.5 h"
+    ],
+    [
+     "Carte",
+     "1312 Locarno"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Avegno - Ponte Brolla - Avegno"
+    ]
+   ]
   },
   {
    "id": "2063",
@@ -486,7 +663,25 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 12,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Tecn. LCII (Livello corso II)"
+    ],
+    [
+     "Alloggio / Ristorazione",
+     "Ticino"
+    ],
+    [
+     "Costi",
+     "CHF 480.-"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Vitto e alloggio del weekend e il costo dei due maestri per i quattro giorni.\nIl programma prevede una giornata di istruzione sull&#x27;arrampicata Trad e una giornata di tecnica di arrampicata mentre negli altri due giorni, manipolazioni di corda e sarà fatto un allenamento specifico personalizzato.\nRequisiti richiesti: essere in chiaro al 100% su tutte le manovre di corda e essere in grado di arrampicare un 5c/6a da primo di cordata."
+    ]
+   ]
   },
   {
    "id": "2163",
@@ -513,7 +708,21 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 12,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. B (abbastanza impegnativo)\nTecn. K3 (Abbastanza difficile)"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Via ferrata nella zona del lago di como, rivolto a Sud."
+    ],
+    [
+     "Equipaggiamento",
+     "Kit da ferrata"
+    ]
+   ]
   },
   {
    "id": "2091",
@@ -539,7 +748,17 @@
    "modalita": "www.soccorsoalpino-ti.ch",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Percorso / Dettagli",
+     "PCI Lugano Campagna"
+    ],
+    [
+     "Formalità di iscrizione",
+     "<a href=\"https://www.soccorsoalpino-ti.ch\" rel=\"noopener\">www.soccorsoalpino-ti.ch</a>"
+    ]
+   ]
   },
   {
    "id": "2167",
@@ -566,7 +785,33 @@
    "modalita": "",
    "iscritti": 3,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Ritrovo",
+     "20:00 Ora / Luogo comunicato in seguito."
+    ],
+    [
+     "Esigenze",
+     "Tecn. LCII (Livello corso II)"
+    ],
+    [
+     "Alloggio / Ristorazione",
+     "Luogo comunicato in seguito."
+    ],
+    [
+     "Percorso / Dettagli",
+     "Serata di presentazione del corso *tecnica di sci fuori pista&quot;, edizione 2027."
+    ],
+    [
+     "Informazione supplementare",
+     "L&#x27;iscrizione alla serata di presentazione del corso non è automaticamente l&#x27;iscrizione al corso.\nAlla serata stessa o dopo la serata, dopo aver valutato tutti gli aspetti, gli interessati potranno iscriversi al corso vero e proprio."
+    ],
+    [
+     "Equipaggiamento",
+     "Nessuno."
+    ]
+   ]
   },
   {
    "id": "2042",
@@ -592,7 +837,25 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": "annullata"
+   "stato": "annullata",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. B (abbastanza impegnativo)\nTecn. T2 (Escursione di montagna)"
+    ],
+    [
+     "Tempo della gita, salita/discesa",
+     "4 h"
+    ],
+    [
+     "Carte",
+     "1292 Maggia"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Giro ad anello Val Lodano"
+    ]
+   ]
   },
   {
    "id": "1952",
@@ -620,7 +883,37 @@
    "modalita": "",
    "iscritti": 4,
    "posti": 20,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Ritrovo",
+     "8:00 Ora / Bioggio"
+    ],
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. 5a (Difficoltà molto grandi)"
+    ],
+    [
+     "Costi",
+     "Franchi (1/2 pensione + visita)"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Arrampicate in compagnia in una falesia &quot;calda&quot; del Locarnese, Verbano, Valle Maggia a dipendenza del...caldo."
+    ],
+    [
+     "Informazione supplementare",
+     "A dipendenza delle temperature di fine novembre sceglieremo una falesia con vie per tutti, magari andando alla scoperta di nuovi settori poco conosciuti sulle sponde del Verbano o in Valle Maggia."
+    ],
+    [
+     "Equipaggiamento",
+     "A0"
+    ],
+    [
+     "Descrizione",
+     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/1952/Palestra_di_roccia_Maccagno.pdf\" rel=\"noopener\">Palestra_di_roccia_Maccagno</a>"
+    ]
+   ]
   },
   {
    "id": "2092",
@@ -646,7 +939,17 @@
    "modalita": "www.soccorsoalpino-ti.ch",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Percorso / Dettagli",
+     "Simulazione intervento"
+    ],
+    [
+     "Formalità di iscrizione",
+     "<a href=\"https://www.soccorsoalpino-ti.ch\" rel=\"noopener\">www.soccorsoalpino-ti.ch</a>"
+    ]
+   ]
   },
   {
    "id": "2044",
@@ -671,7 +974,25 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. T2 (Escursione di montagna)"
+    ],
+    [
+     "Tempo della gita, salita/discesa",
+     "3 h"
+    ],
+    [
+     "Carte",
+     "1353 Lugano"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Percorso basso da Melide a Morcote"
+    ]
+   ]
   },
   {
    "id": "2105",
@@ -699,7 +1020,21 @@
    "modalita": "",
    "iscritti": 1,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Ritrovo",
+     "Canvetto luganese"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Mostriamo come preparare i nostri amati e costosi sci alla nuova imminente stagione; come si toglie la ruggine dagli spigoli, che poi verranno affilati come rasoi. Quindi il fondo verrà riportato allo splendore che aveva appena uscito dal negozio e quindi impregnato da un sottile strato di cera, rigorosamente priva di fluoro, che li renderà dei missili su ogni tipo di neve. Sperando che la neve appunto arrivi...."
+    ],
+    [
+     "Informazione supplementare",
+     "Serata di preparazione sci: sciolina, spigoli e buchi sul fondo, cura delle pelli e dell&#x27;equipaggiamentodi sicurezza (pala, Sonda, ARTVA)\nCanvetto luganese ore 19.00"
+    ]
+   ]
   },
   {
    "id": "2145",
@@ -725,7 +1060,17 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": "annullata"
+   "stato": "annullata",
+   "scheda": [
+    [
+     "Costi",
+     "CHF 200.- ostello e giornaliera inclusa"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Weekend a Zermatt."
+    ]
+   ]
   },
   {
    "id": "2093",
@@ -751,7 +1096,17 @@
    "modalita": "www.soccorsoalpino-ti.ch",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Percorso / Dettagli",
+     "Conviviale di fine anno"
+    ],
+    [
+     "Formalità di iscrizione",
+     "<a href=\"https://www.soccorsoalpino-ti.ch\" rel=\"noopener\">www.soccorsoalpino-ti.ch</a>"
+    ]
+   ]
   },
   {
    "id": "2096",
@@ -778,7 +1133,21 @@
    "modalita": "",
    "iscritti": 19,
    "posti": 30,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Ritrovo",
+     "18:30 Ora / Da definire"
+    ],
+    [
+     "Esigenze",
+     "Tecn. LCI (Livello corso I)"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Gio 03.12.2026 (ore 18:15): Serata di presentazione (Luganese/Bellinzonese o Teams)\nSab 09.01.2027 (ore 08:00): Giornata introduttiva tecnica (Airolo)\nMar 12.01.2027 (ore 18:30): Teoria: nivologia, ARTVA e autosoccorso (Mezzovico-Vira)\n16-17.01.2027: 1ª uscita (Val Bedretto, Capanna Piansecco)\n20-21.02.2027: 2ª uscita (Furkapass, Hotel Tiefenbach)\n06-07.03.2027: 3ª uscita (Camona da Maighels / Capanna Maighels)"
+    ]
+   ]
   },
   {
    "id": "2045",
@@ -803,7 +1172,21 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. T2 (Escursione di montagna)"
+    ],
+    [
+     "Carte",
+     "1353 Lugano 1373 Mendrisio"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Da alpe Tedesco (in Val Ganna) percorso panoramico attorno al Monte Piambello"
+    ]
+   ]
   },
   {
    "id": "1985",
@@ -828,7 +1211,8 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": []
   },
   {
    "id": "2046",
@@ -853,7 +1237,25 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. B (abbastanza impegnativo)\nTecn. PD (Poco difficile)"
+    ],
+    [
+     "Tempo della gita, salita/discesa",
+     "5 h"
+    ],
+    [
+     "Carte",
+     "267S San Bernardino"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Da San Bernardino facile salita verso il passo e per chi se la sente si prosegue verso quota 2586 m."
+    ]
+   ]
   },
   {
    "id": "2147",
@@ -879,7 +1281,13 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. LCI (Livello corso I)"
+    ]
+   ]
   },
   {
    "id": "2165",
@@ -905,7 +1313,37 @@
    "modalita": "La conferma dell'iscrizione avverrà alla serata di presentazione",
    "iscritti": 0,
    "posti": 7,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Ritrovo",
+     "19:00 Ora"
+    ],
+    [
+     "Guida alpina",
+     "Pierre Crivelli"
+    ],
+    [
+     "Esigenze",
+     "Cond. B (abbastanza impegnativo)\nTecn. WT3 (Escursione impegnativa con ciaspole)"
+    ],
+    [
+     "Costi",
+     "CHF 420.-"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Il corso è adatto a tutte le persone le quali svolgo già attività con le racchette e desiderano approfondire le conoscenze invernali come: pianificazione, gestione del rischio valanghe, valutazione della situazione in inverno.\nDurante il corso vengo consolidate le tecniche e tattiche per come mouversi in sicurezza in ambiente invernale in montagna. Questo su percorsi non segnati in racchette.\n\nIl corso dura 3 giornata consegutivi, Febbraio 2027"
+    ],
+    [
+     "Informazione supplementare",
+     "Il corso è adatto a tutte le persone le quali svolgo già attività con le racchette e desiderano approfondire le conoscenze invernali come: pianificazione, gestione del rischio valanghe, valutazione della situazione in inverno.\nDurante il corso vengo consolidate le tecniche e tattiche per come mouversi in sicurezza in ambiente invernale in montagna. Questo su percorsi non segnati in racchette.\n\nIl corso dura 3 giornata consegutivi, Febbraio 2027"
+    ],
+    [
+     "Formalità di iscrizione",
+     "La conferma dell&#x27;iscrizione avverrà alla serata di presentazione"
+    ]
+   ]
   },
   {
    "id": "2164",
@@ -932,7 +1370,29 @@
    "modalita": "La conferma dell'iscrizione avverrà alla serata di presentazione il 16 Dicembre 2026 con il pagamento in contanti della quota",
    "iscritti": 0,
    "posti": 20,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Ritrovo",
+     "19:00 Ora / TBD"
+    ],
+    [
+     "Alloggio / Ristorazione",
+     "TBD"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Lun 15.12.2026 (ore 19:00): Serata introduttiva (Luganese)\nMar 12.01.2027 (ore 18:30): Serata teorica: nivologia e bollettino valanghe (Mezzovico o online)\nSab 16.01.2027: 1ª giornata: sicurezza ARTVA, pala e sonda (Airolo)\n23-24.01.2027: 1ª uscita (Val Bedretto, Capanna Piansecco)\n13-14.02.2027: 2ª uscita (Regione Oberalp, Capanna Maighels)"
+    ],
+    [
+     "Informazione supplementare",
+     "Il corso è adatto a tutte le persone le quali svolgo attività con le racchette o desiderano continuare l&#x27;attività escursionistica in inverno.\nDurante il corso vengo apprese le tecniche e tattiche per come mouversi in sicurezza in ambiente invernale (con neve) e in montagna, sia su sentieri segnalati in Rosa come pure fuori traccia in racchette.\n\nSi porta un accento particolare alla sicurezza, la pianificazione, alla comprensione del bolletino valanghe e meteo, i rischi per le attività invernali fuori da zone controllate.\n\nIl corso dura 1 giornata sicurezza e 2 fine settimana tra gennaio e marzo 2027"
+    ],
+    [
+     "Formalità di iscrizione",
+     "La conferma dell&#x27;iscrizione avverrà alla serata di presentazione il 16 Dicembre 2026 con il pagamento in contanti della quota"
+    ]
+   ]
   },
   {
    "id": "2239",
@@ -958,7 +1418,21 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 15,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. A (poco impegnativo)\nTecn. PD (Poco difficile)"
+    ],
+    [
+     "Costi",
+     "Skipass a carico dei partecipanti"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Giornata di tecnica di sci &amp; valanghe in pista e fuori pista; l&#x27;obiettivo è quello di togliere la ruggine dell&#x27;estate e migliorare in vista delle uscite di sci alpinismo."
+    ]
+   ]
   },
   {
    "id": "2242",
@@ -984,7 +1458,17 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 12,
-   "stato": ""
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Cond. B (abbastanza impegnativo)\nTecn. AD (Abbastanza difficile)"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Un corso volto ad imparare le basi dello sci alpinismo, nell&#x27;arco di due giornate ed un weekend; sia per quanto riguarda la tecnica di progressione che le conoscenze nivologiche e di utilizzo della strumentazione di ricerca.\n2a uscita: 23/01/2027\n3a uscita: 13-14/02/2027"
+    ]
+   ]
   }
  ]
 }

@@ -24,7 +24,7 @@ MENU = [
         ("Introduzione", "introduzione.html"), ("Comitato", "comitato.html"),
         ("Organizzazione", "organizzazione.html"), ("Capigita", "capigita.html"), ("Sede e recapiti", "sede.html"),
         ("Storia", "storia.html"), ("Link utili", "link.html")]),
-    ("News", "index.html#news", None),
+    ("News", "news.html", None),
     ("Attività", "index.html#attivita", [
         ("Giovani", "giovani.html"), ("Senior", "senior.html"),
         ("Corsi", "corsi.html"), ("Soccorso", "soccorso.html"), ("Noleggio", "noleggio.html"),

@@ -4,7 +4,7 @@
 // copia di data/gite.json (#gite[data-copia]); senza JavaScript resta l'elenco generato. Filtri per gruppo e tipo,
 // anche da indirizzo: gite.html?gruppo=Giovani&tipo=COR
 // gita.html: intestazione e stato dall'elenco, testi (percorso, ritrovo, costi…) dalla scheda Droptour (getItem),
-// ridotti a testo semplice. L'iscrizione resta su Droptour (pulsante «Iscriviti su Droptour»).
+// ridotti a testo semplice; finché Droptour non risponde si mostra la scheda salvata in data/gite.json. L'iscrizione resta su Droptour (pulsante «Iscriviti su Droptour»).
 // Dei capigita si prende solo il nome: l'interfaccia contiene anche dati che il sito non deve mostrare.
 // Le stesse pagine esistono in de/ e en/: i testi della pagina vengono da TESTI (lingua di <html lang>), le gite
 // (titoli, tipi, dettagli della scheda Droptour) restano in italiano. Testi allineati con gita_html() in pages.py.
@@ -370,15 +370,23 @@
     var id = new URLSearchParams(location.search).get('id') || '';
     if (!/^\d+$/.test(id)) { nonTrovata(''); return; }
     // si mostra subito la gita dalla fonte più rapida (memoria, poi copia locale), poi si aggiorna: la scheda Droptour
-    // (~0,4 s) aggiunge i testi, l'elenco in tempo reale (~1,5 s) aggiorna stato e iscritti
-    var g = null, righe, finito = { vive: false, copia: false };
+    // (di solito ~0,5 s, a volte molto di più) sostituisce quella della copia locale (data/gite.json, «scheda», scritta
+    // ogni mattina da scripts/update_gite.py), l'elenco in tempo reale (~1,5 s) aggiorna stato e iscritti.
+    // Se dopo ATTESA ms la scheda non è arrivata e non c'è copia, si smette di dire «Caricamento…».
+    var ATTESA = 8000;
+    var g = null, righe, copia, finito = { vive: false, copia: false };
     function trova(lista) { return (lista || []).filter(function (x) { return x.id === id; })[0] || null; }
-    function aggiorna(nuova) { if (nuova) g = nuova; if (g) mostraGita(g, righe); }
+    function aggiorna(nuova) { if (nuova) g = nuova; if (g) mostraGita(g, righe !== undefined ? righe : copia); }
     function forseNonTrovata() { if (!g && finito.vive && finito.copia) nonTrovata(id); }
 
     aggiorna(trova(ricordate()));
     fetch(dett.dataset.copia).then(function (r) { return r.json(); })
-      .then(function (d) { if (!g) aggiorna(trova(d.gite)); })
+      .then(function (d) {
+        var c = trova(d.gite);
+        if (c && c.scheda && c.scheda.length) copia = c.scheda;
+        if (copia && righe === null) righe = copia;  // Droptour ha già rinunciato: meglio la copia che niente
+        aggiorna(g ? null : c);
+      })
       .catch(function () {})
       .then(function () { finito.copia = true; forseNonTrovata(); });
     fetch(dett.dataset.api)
@@ -390,7 +398,8 @@
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(righeScheda)
       .catch(function () { return null; })
-      .then(function (x) { righe = x; aggiorna(); });
+      .then(function (x) { if (x || righe === undefined) righe = x || copia || null; aggiorna(); });
+    setTimeout(function () { if (righe === undefined) { righe = copia || null; aggiorna(); } }, ATTESA);
   }
 
   if (box) {

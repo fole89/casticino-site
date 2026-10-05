@@ -25,7 +25,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 HUTS = [
     # file, nome, quota, valle, stato, testo, posti, accesso, img 3x2 (w,h), grande
     ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Custodita giu–ott", "Su un terrazzo sopra la Val Piumogna, base per il Pizzo Campo Tencia: la cima più alta interamente ticinese.", "80 posti", "Dalpe 3h", "capanne/campotencia-3x2", (987, 658), True),
-    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Custodita giu–ott", "Sull’omonimo passo, tra Leventina e Valle Maggia. Inaugurata nel 2003, primo rifugio moderno del CAS.", "100 posti", "Ossasco 3h30", "capanne/cristallina-3x2", (837, 558), True),
+    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Custodita estate e inverno", "Sull’omonimo passo, tra Leventina e Valle Maggia. Inaugurata nel 2003, primo rifugio moderno del CAS.", "100 posti", "Ossasco 3h30", "capanne/cristallina-3x2", (837, 558), True),
     ("adula.html", "Adula", "2012", "Val Carassino", "Custodita mag–ott", "Il classico rifugio in pietra affacciato sulla Valle di Blenio: storia, accoglienza calorosa e cucina nostrana.", "24 posti", "Compietto 2h40", "capanne/adula-3x2", (1000, 667), False),
     ("motterascio.html", "Motterascio", "2172", "Greina", "Custodita giu–ott", "Al margine della riserva della Greina: torbiere, alpeggi e l’arco naturale più grande del Ticino.", "70 posti", "Garzott 2h", "capanne/motterascio-3x2", (974, 649), False),
     ("montebar.html", "Monte Bar", "1602", "Alta Capriasca", "Tutto l’anno", "Il balcone sul Luganese, ricostruito nel 2016: vista dal Monte Rosa ai Denti della Vecchia, standard Bike Hotel.", "42 posti", "Corticiasca 1h30", "capanne/montebar-3x2", (663, 442), False),
@@ -107,7 +107,7 @@ def home():
 <div class="container">
 <div class="section-row">
 <h2 id="news-h" class="h2">News</h2>
-<div class="links"><a class="link" href="news.html">Tutte le news</a><a class="link" href="foto.html">Foto e resoconti</a></div>
+<a class="link" href="news.html">Tutte le news</a>
 </div>
 <div class="scorri scorri--news" data-reveal>
 <div class="scorri-traccia">
@@ -241,9 +241,9 @@ HUT_PAGES = {
                  ("Cellulare", '<a class="num" href="tel:+41767212572">+41 76 721 25 72</a>'),
                  ("E-mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
     "cristallina.html": dict(
-        name="Cristallina", where="Passo Cristallina, Valle Bedretto", alt_m="2575", beds="100", custody="da giugno a metà ottobre",
+        name="Cristallina", where="Passo Cristallina, Valle Bedretto", alt_m="2575", beds="100", custody="da giugno a metà ottobre; d’inverno nei fine settimana e nei festivi",
         mail="cristallina@casticino.ch", booking=PRENOTA.format(20), facebook="https://www.facebook.com/capannacristallinacas/",
-        description="Capanna Cristallina, 2575 m, sul Passo Cristallina tra Leventina e Valle Maggia: 100 posti letto, custodita da giugno a metà ottobre. Contatti e prenotazioni.",
+        description="Capanna Cristallina, 2575 m, sul Passo Cristallina tra Leventina e Valle Maggia: 100 posti letto, custodita da giugno a metà ottobre e d’inverno nei fine settimana e nei festivi. Contatti e prenotazioni.",
         band=("capanne/cristallina", "La Capanna Cristallina sul passo, tra Leventina e Valle Maggia", 558),
         intro="Progettata dagli architetti Baserga e Mozzetti e inaugurata nel 2003, è il primo rifugio moderno costruito dal Club Alpino Svizzero. Sorge sul passo, in un punto strategico tra Leventina e Valle Maggia: tappa panoramica sulle traversate verso Robiei, il Naret, il Campo Tencia e il San Giacomo. Il giro dei laghi del Cristallina, di uno o due giorni, è adatto anche alle famiglie; in un’ora si raggiungono il Cristallina e la Cima di Lago. D’inverno, raggiungibile soprattutto da nord, apre pendii splendidi verso la Valle Bedretto, Robiei e la Val Formazza.",
         stay=[("Apertura", "Sempre aperta e accessibile"),
