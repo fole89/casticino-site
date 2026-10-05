@@ -517,6 +517,42 @@ dl,dd{margin:0}
 .annuncio-testo{display:grid;gap:.6em;font-size:15.5px;color:var(--ink-2);overflow-wrap:anywhere}
 .annuncio-contatto{font-size:15.5px;font-weight:550;overflow-wrap:anywhere}
 
+/* ------------------------------------------------------------------ noleggio (noleggio.html, noleggio.js) */
+.nol{display:grid;gap:clamp(32px,4vw,48px)}
+.nol[hidden],.nol-alt[hidden]{display:none}
+.nol fieldset{display:grid;gap:16px;min-width:0;margin:0;padding:0;border:0}
+.nol legend{padding:0;margin-bottom:16px}
+.campi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.campo{display:grid;gap:6px;min-width:0;font-size:15px;font-weight:550;color:var(--ink-2)}
+.campo--pieno{grid-column:1/-1}
+@media (max-width:560px){.campi{grid-template-columns:minmax(0,1fr)}}
+.campo input,.campo textarea,.nol-riga select{width:100%;min-width:0;min-height:48px;padding:0 12px;border:1.5px solid var(--line-strong);border-radius:0;background:var(--bg);color:var(--ink);font:500 16px var(--font)}
+.campo textarea{min-height:96px;padding:10px 12px;line-height:1.5;resize:vertical}
+.campo input:focus,.campo textarea:focus,.nol-riga select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(239,28,36,.18)}
+.nol-articoli{display:grid;gap:24px}
+.nol-articoli[aria-busy="true"]{opacity:.6;transition:opacity .2s var(--ease)}
+.nol-gruppo{display:grid;background:var(--bg);padding:clamp(16px,2vw,24px)}
+.nol-gruppo-titolo{font-size:13px;font-weight:550;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--line-strong)}
+.nol-riga{display:grid;grid-template-columns:minmax(0,1fr) auto 76px;align-items:center;gap:8px 16px;padding:8px 0;border-bottom:1px solid var(--line)}
+.nol-gruppo>:last-child,.nol-gruppo-taglie>:last-child{border-bottom:0}
+.nol-gruppo-taglie{border-bottom:1px solid var(--line)}
+.nol-gruppo-taglie>.nol-nome{padding:12px 0 4px}
+.nol-riga--taglia{padding-left:16px;border-bottom-style:dashed}
+.nol-nome{display:grid;gap:0;color:var(--ink);overflow-wrap:break-word;hyphens:auto}
+.nol-prezzo{font-size:14px;color:var(--muted)}
+.nol-liberi{font-size:14px;font-variant-numeric:tabular-nums;color:var(--ok);text-align:right;white-space:nowrap}
+.nol-riga.is-occupato .nol-liberi,.nol-riga.is-occupato .nol-nome{color:var(--muted)}
+.nol-riga select{padding:0 8px}
+.nol-avviso{padding:16px 20px;background:var(--bg);color:var(--ink-2)}
+.nol-invio{display:grid;gap:16px;justify-items:start}
+.nol-totale{font-size:18px;font-weight:600;color:var(--ink)}
+.nol-totale:empty,.nol-esito:empty{display:none}
+.nol-verifica:empty{display:none}
+.nol-esito{padding:14px 18px;background:var(--bg);border-left:3px solid var(--ok);color:var(--ink)}
+.nol-esito.is-errore{border-left-color:var(--accent)}
+.nol-fatto{display:grid;gap:20px;justify-items:start;padding:clamp(24px,3vw,36px);background:var(--bg);border-left:3px solid var(--ok)}
+.nol-fatto p{font-size:18px;color:var(--ink)}
+
 /* ------------------------------------------------------------------ programma gite (gite.html, gite.js) */
 .gite-filtri{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
 .gite-filtri[hidden]{display:none}

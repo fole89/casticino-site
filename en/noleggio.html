@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="../assets/logo-cas.webp">
 <link rel="preload" href="../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/site.css?v=8c397e8e">
+<link rel="stylesheet" href="../assets/site.css?v=5d918c2d">
 <script>document.documentElement.classList.add('js')</script>
 <meta property="og:image" content="https://fole89.github.io/casticino-site/assets/img/paesaggi/sciatori-villaggio-2000.webp">
 <link rel="canonical" href="https://fole89.github.io/casticino-site/en/noleggio">
@@ -102,7 +102,7 @@
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../en/index.html">Home</a><span aria-hidden="true">/</span><a href="../en/noleggio.html">Services</a><span aria-hidden="true">/</span><span aria-current="page">Equipment hire</span></nav>
 <h1 id="page-h" class="display fit">Equipment hire</h1>
 <p class="lead">Equipment for hire for the section’s activities and for private outings: mountaineering, ice falls, ski touring, climbing, snowshoeing, hiking and bouldering.</p>
-<div class="actions hero-actions"><a class="btn btn--primary" href="#come">How to hire <span class="arrow" aria-hidden="true">→</span></a></div>
+<div class="actions hero-actions"><a class="btn btn--primary" href="#richiesta">Request equipment <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
 </section>
 
@@ -120,9 +120,9 @@
 <tbody>
 <tr><th scope="row">Crampons</th><td>Fr. 5.–</td></tr>
 <tr><th scope="row">Ice axe</th><td>Fr. 5.–</td></tr>
-<tr><th scope="row">Harness (S, M, L, XL)</th><td>Fr. 5.–</td></tr>
+<tr><th scope="row">Harness (Kids, S, M, L, XL)</th><td>Fr. 5.–</td></tr>
 <tr><th scope="row">Helmet</th><td>Fr. 5.–</td></tr>
-<tr><th scope="row">Mountain boots</th><td>Fr. 5.–</td></tr>
+<tr><th scope="row">Mountain boots (36–44)</th><td>Fr. 5.–</td></tr>
 <tr><th scope="row">Screwgate karabiner</th><td>Fr. 3.–</td></tr>
 <tr><th scope="row">Belay device and karabiner</th><td>Fr. 5.–</td></tr>
 <tr><th scope="row">Jul and karabiner</th><td>Fr. 5.–</td></tr>
@@ -172,13 +172,55 @@
 </div>
 <div data-reveal>
 <dl class="facts">
-<dt>How it works</dt><dd>Write to <a href="mailto:noleggio@casticino.ch">noleggio@casticino.ch</a>. With the confirmation you receive the pick-up instructions. Payment in cash or by TWINT on return.</dd>
+<dt>How it works</dt><dd>Choose the dates and the equipment in the form below: you see straight away what is free. The request stands once we confirm it by e-mail, which also tells you when to pick up the equipment. Payment in cash or by TWINT on return.</dd>
 <dt>Request</dt><dd>One week before the activity</dd>
-<dt>Pick-up</dt><dd>From Wednesday at <span class="num">19:00</span></dd>
-<dt>Return</dt><dd>By the following Tuesday evening</dd>
-<dt>Store</dt><dd>Manno</dd>
-<dt>E-mail</dt><dd><a href="mailto:noleggio@casticino.ch">noleggio@casticino.ch</a></dd>
+<dt>Duration</dt><dd>1 to 30 days: the price is per day of hire</dd>
+<dt>Pick-up and return</dt><dd>At the store in Manno, at the time given in the confirmation</dd>
+<dt>E-mail</dt><dd><a href="mailto:fole89@gmail.com">fole89@gmail.com</a></dd>
 </dl>
+</div>
+</div>
+</section>
+
+<section class="section--surface" id="richiesta" aria-labelledby="richiesta-h">
+<div class="container detail">
+<div class="detail-intro">
+<h2 id="richiesta-h" class="h2">Request</h2>
+<p>Choose the dates, then the equipment that is still free. We reply by e-mail.</p>
+</div>
+<div>
+<p class="nol-alt" id="nol-alt">To request equipment, write to <a href="mailto:fole89@gmail.com">fole89@gmail.com</a> with the dates, items and sizes.</p>
+<form class="nol" id="nol" data-api="https://casticino-noleggio.fole89.workers.dev/" data-sitekey="0x4AAAAAAFOZV05i6cz8NupF" data-max-giorni="30" hidden novalidate>
+<fieldset>
+<legend class="h3">1. When</legend>
+<div class="campi">
+<label class="campo">First day<input type="date" name="dal" required></label>
+<label class="campo">Last day<input type="date" name="al" required></label>
+</div>
+<p class="small" id="nol-giorni" aria-live="polite"></p>
+</fieldset>
+<fieldset>
+<legend class="h3">2. Equipment</legend>
+<div class="nol-articoli" id="nol-articoli" aria-live="polite"><p class="small">Choose the dates first: the free equipment appears here.</p></div>
+</fieldset>
+<fieldset>
+<legend class="h3">3. Your details</legend>
+<div class="campi">
+<label class="campo">Full name<input name="nome" autocomplete="name" maxlength="100" required></label>
+<label class="campo">Phone<input type="tel" name="telefono" autocomplete="tel" maxlength="40" required></label>
+<label class="campo campo--pieno">E-mail<input type="email" name="email" autocomplete="email" maxlength="200" required></label>
+<label class="campo campo--pieno">Notes (optional)<textarea name="note" rows="3" maxlength="2000" placeholder="For example the activity or a question"></textarea></label>
+</div>
+</fieldset>
+<div class="nol-invio">
+<p class="nol-totale" id="nol-totale" aria-live="polite"></p>
+<div class="nol-verifica" id="nol-verifica"></div>
+<button class="btn btn--primary" type="submit">Send request <span class="arrow" aria-hidden="true">→</span></button>
+<p class="small">Your details are used only to handle the hire: <a href="../en/privacy.html#noleggio">privacy policy</a>.</p>
+</div>
+<p class="nol-esito" id="nol-esito" role="status" tabindex="-1"></p>
+</form>
+<script type="application/json" id="nol-dati">[{"nome": "Mountaineering and climbing", "articoli": [{"id": "ramponi", "nome": "Crampons", "prezzo": 5, "taglie": null}, {"id": "piccozza", "nome": "Ice axe", "prezzo": 5, "taglie": null}, {"id": "imbracatura", "nome": "Harness", "prezzo": 5, "taglie": ["Kids", "S", "M", "L", "XL"]}, {"id": "casco", "nome": "Helmet", "prezzo": 5, "taglie": null}, {"id": "pedule", "nome": "Mountain boots", "prezzo": 5, "taglie": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47"]}, {"id": "moschettone-ghiera", "nome": "Screwgate karabiner", "prezzo": 3, "taglie": null}, {"id": "discensore", "nome": "Belay device and karabiner", "prezzo": 5, "taglie": null}, {"id": "jul", "nome": "Jul and karabiner", "prezzo": 5, "taglie": null}, {"id": "cordino-prussik", "nome": "Prusik cord", "prezzo": 1, "taglie": null}, {"id": "cordino", "nome": "Accessory cord 3–5 m", "prezzo": 1, "taglie": null}, {"id": "longe", "nome": "Lanyard", "prezzo": 2, "taglie": null}, {"id": "rinvii", "nome": "Set of quickdraws", "prezzo": 5, "taglie": null}]}, {"nome": "Ski touring", "articoli": [{"id": "set-arva", "nome": "Transceiver, probe and shovel set", "prezzo": 10, "taglie": null}, {"id": "arva", "nome": "Avalanche transceiver", "prezzo": 5, "taglie": null}, {"id": "sonda", "nome": "Probe", "prezzo": 5, "taglie": null}, {"id": "pala", "nome": "Shovel", "prezzo": 5, "taglie": null}, {"id": "slittino", "nome": "Rescue sledge", "prezzo": 5, "taglie": null}, {"id": "pelli", "nome": "Spare skins", "prezzo": 5, "taglie": null}]}, {"nome": "Other", "articoli": [{"id": "bussola", "nome": "Compass", "prezzo": 5, "taglie": null}, {"id": "occhiali", "nome": "Sunglasses", "prezzo": 5, "taglie": null}, {"id": "kit-ferrata", "nome": "Via ferrata kit", "prezzo": 10, "taglie": null}, {"id": "crash-pad", "nome": "Crash pad", "prezzo": 10, "taglie": null}]}]</script>
 </div>
 </div>
 </section>
@@ -196,6 +238,7 @@
 </section>
 
 </main>
+<script src="../assets/noleggio.js?v=b8606d7e" defer></script>
 <footer class="site-footer">
 <div class="container">
 <div class="footer-grid">

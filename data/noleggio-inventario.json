@@ -1,0 +1,49 @@
+{
+  "_istruzioni": [
+      "Inventario del noleggio materiale: lo leggono la pagina noleggio.html (listino e modulo) e il servizio delle richieste (scripts/noleggio/).",
+      "quantita = numero di pezzi disponibili per il noleggio (0 = l'articolo non compare nel modulo, ma resta nel listino).",
+      "taglie = quantità per taglia (solo imbracature e pedule); si possono togliere le taglie che non ci sono o aggiungerne (es. \"42.5\").",
+      "set = articolo composto da altri: non ha una quantità sua, si noleggia se sono liberi tutti i pezzi elencati.",
+      "id = nome tecnico, non cambiarlo per un articolo che esiste già (le richieste lo usano); nome (de, en = nome in tedesco e in inglese) e prezzo (franchi al giorno) si possono cambiare.",
+      "Dopo una modifica: python scripts/redesign/pages.py noleggio.html de/noleggio.html en/noleggio.html, poi commit e push."
+  ],
+  "gruppi": [
+    {
+      "gruppo": "Alpinismo e arrampicata", "de": "Hochtouren und Klettern", "en": "Mountaineering and climbing",
+      "articoli": [
+        {"id": "ramponi", "nome": "Ramponi", "de": "Steigeisen", "en": "Crampons", "prezzo": 5, "quantita": 20},
+        {"id": "piccozza", "nome": "Piccozza", "de": "Pickel", "en": "Ice axe", "prezzo": 5, "quantita": 10},
+        {"id": "imbracatura", "nome": "Imbracatura", "de": "Klettergurt", "en": "Harness", "prezzo": 5, "taglie": {"Kids": 6, "S": 8, "M": 10, "L": 10, "XL": 8}},
+        {"id": "casco", "nome": "Casco", "de": "Helm", "en": "Helmet", "prezzo": 5, "quantita": 25},
+        {"id": "pedule", "nome": "Pedule", "de": "Bergschuhe", "en": "Mountain boots", "prezzo": 5, "taglie": {"36": 2, "37": 2, "38": 2, "39": 2, "40": 2, "41": 2, "42": 2, "43": 2, "44": 2, "45": 0, "46": 0, "47": 0}},
+        {"id": "moschettone-ghiera", "nome": "Moschettone a ghiera", "de": "Schraubkarabiner", "en": "Screwgate karabiner", "prezzo": 3, "quantita": 40},
+        {"id": "discensore", "nome": "Discensore e moschettone", "de": "Abseilgerät und Karabiner", "en": "Belay device and karabiner", "prezzo": 5, "quantita": 20},
+        {"id": "jul", "nome": "Jul e moschettone", "de": "Jul und Karabiner", "en": "Jul and karabiner", "prezzo": 5, "quantita": 0},
+        {"id": "cordino-prussik", "nome": "Cordino prussik", "de": "Prusikschlinge", "en": "Prusik cord", "prezzo": 1, "quantita": 25},
+        {"id": "cordino", "nome": "Cordino 3–5 m", "de": "Reepschnur 3–5 m", "en": "Accessory cord 3–5 m", "prezzo": 1, "quantita": 5},
+        {"id": "longe", "nome": "Longe", "de": "Selbstsicherungsschlinge", "en": "Lanyard", "prezzo": 2, "quantita": 25},
+        {"id": "rinvii", "nome": "Set di rinvii", "de": "Expressschlingen-Set", "en": "Set of quickdraws", "prezzo": 5, "quantita": 2}
+      ]
+    },
+    {
+      "gruppo": "Scialpinismo", "de": "Skitouren", "en": "Ski touring",
+      "articoli": [
+        {"id": "set-arva", "nome": "Set ARVA, sonda e pala", "de": "LVS-Set mit Sonde und Schaufel", "en": "Transceiver, probe and shovel set", "prezzo": 10, "set": ["arva", "sonda", "pala"]},
+        {"id": "arva", "nome": "ARVA", "de": "LVS-Gerät", "en": "Avalanche transceiver", "prezzo": 5, "quantita": 25},
+        {"id": "sonda", "nome": "Sonda", "de": "Sonde", "en": "Probe", "prezzo": 5, "quantita": 25},
+        {"id": "pala", "nome": "Pala", "de": "Schaufel", "en": "Shovel", "prezzo": 5, "quantita": 25},
+        {"id": "slittino", "nome": "Slittino di pronto soccorso", "de": "Rettungsschlitten", "en": "Rescue sledge", "prezzo": 5, "quantita": 1},
+        {"id": "pelli", "nome": "Pelli di riserva", "de": "Ersatzfelle", "en": "Spare skins", "prezzo": 5, "quantita": 1}
+      ]
+    },
+    {
+      "gruppo": "Altro", "de": "Weiteres", "en": "Other",
+      "articoli": [
+        {"id": "bussola", "nome": "Bussola", "de": "Kompass", "en": "Compass", "prezzo": 5, "quantita": 5},
+        {"id": "occhiali", "nome": "Occhiali da sole", "de": "Sonnenbrille", "en": "Sunglasses", "prezzo": 5, "quantita": 5},
+        {"id": "kit-ferrata", "nome": "Kit ferrata", "de": "Klettersteigset", "en": "Via ferrata kit", "prezzo": 10, "quantita": 10},
+        {"id": "crash-pad", "nome": "Crash pad", "de": "Crashpad", "en": "Crash pad", "prezzo": 10, "quantita": 2 }
+      ]
+    }
+  ]
+}

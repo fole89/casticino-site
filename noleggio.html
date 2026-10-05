@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo-cas.webp">
 <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/site.css?v=8c397e8e">
+<link rel="stylesheet" href="assets/site.css?v=5d918c2d">
 <script>document.documentElement.classList.add('js')</script>
 <meta property="og:image" content="https://fole89.github.io/casticino-site/assets/img/paesaggi/sciatori-villaggio-2000.webp">
 <link rel="canonical" href="https://fole89.github.io/casticino-site/noleggio">
@@ -102,7 +102,7 @@
 <nav class="crumbs" aria-label="Percorso"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="noleggio.html">Servizi</a><span aria-hidden="true">/</span><span aria-current="page">Noleggio materiale</span></nav>
 <h1 id="page-h" class="display fit">Noleggio</h1>
 <p class="lead">Materiale in affitto per le attività della sezione e per le uscite private: alpinismo, cascate di ghiaccio, scialpinismo, arrampicata, racchette, escursionismo e bouldering.</p>
-<div class="actions hero-actions"><a class="btn btn--primary" href="#come">Come noleggiare <span class="arrow" aria-hidden="true">→</span></a></div>
+<div class="actions hero-actions"><a class="btn btn--primary" href="#richiesta">Richiedi il materiale <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
 </section>
 
@@ -120,9 +120,9 @@
 <tbody>
 <tr><th scope="row">Ramponi</th><td>Fr. 5.–</td></tr>
 <tr><th scope="row">Piccozza</th><td>Fr. 5.–</td></tr>
-<tr><th scope="row">Imbracatura (S, M, L, XL)</th><td>Fr. 5.–</td></tr>
+<tr><th scope="row">Imbracatura (Kids, S, M, L, XL)</th><td>Fr. 5.–</td></tr>
 <tr><th scope="row">Casco</th><td>Fr. 5.–</td></tr>
-<tr><th scope="row">Pedule</th><td>Fr. 5.–</td></tr>
+<tr><th scope="row">Pedule (36–44)</th><td>Fr. 5.–</td></tr>
 <tr><th scope="row">Moschettone a ghiera</th><td>Fr. 3.–</td></tr>
 <tr><th scope="row">Discensore e moschettone</th><td>Fr. 5.–</td></tr>
 <tr><th scope="row">Jul e moschettone</th><td>Fr. 5.–</td></tr>
@@ -172,13 +172,55 @@
 </div>
 <div data-reveal>
 <dl class="facts">
-<dt>Come funziona</dt><dd>Scrivi a <a href="mailto:noleggio@casticino.ch">noleggio@casticino.ch</a>. Con la conferma ricevi le istruzioni per il ritiro. Si paga in contanti o TWINT alla riconsegna.</dd>
+<dt>Come funziona</dt><dd>Scegli le date e il materiale nel modulo qui sotto: vedi subito cosa è libero. La richiesta vale con la nostra conferma per e-mail, che ti dice anche quando ritirare il materiale. Si paga in contanti o TWINT alla riconsegna.</dd>
 <dt>Richiesta</dt><dd>Una settimana prima dell’attività</dd>
-<dt>Ritiro</dt><dd>A partire dal mercoledì alle <span class="num">19:00</span></dd>
-<dt>Riconsegna</dt><dd>Entro il martedì sera successivo</dd>
-<dt>Magazzino</dt><dd>Manno</dd>
-<dt>E-mail</dt><dd><a href="mailto:noleggio@casticino.ch">noleggio@casticino.ch</a></dd>
+<dt>Durata</dt><dd>Da 1 a 30 giorni: il prezzo è per giorno di noleggio</dd>
+<dt>Ritiro e riconsegna</dt><dd>Al magazzino di Manno, all’orario indicato nella conferma</dd>
+<dt>E-mail</dt><dd><a href="mailto:fole89@gmail.com">fole89@gmail.com</a></dd>
 </dl>
+</div>
+</div>
+</section>
+
+<section class="section--surface" id="richiesta" aria-labelledby="richiesta-h">
+<div class="container detail">
+<div class="detail-intro">
+<h2 id="richiesta-h" class="h2">Richiesta</h2>
+<p>Scegli le date, poi il materiale tra quello ancora libero. Ti rispondiamo per e-mail.</p>
+</div>
+<div>
+<p class="nol-alt" id="nol-alt">Per chiedere il materiale scrivi a <a href="mailto:fole89@gmail.com">fole89@gmail.com</a> indicando le date, gli articoli e le taglie.</p>
+<form class="nol" id="nol" data-api="https://casticino-noleggio.fole89.workers.dev/" data-sitekey="0x4AAAAAAFOZV05i6cz8NupF" data-max-giorni="30" hidden novalidate>
+<fieldset>
+<legend class="h3">1. Quando</legend>
+<div class="campi">
+<label class="campo">Primo giorno<input type="date" name="dal" required></label>
+<label class="campo">Ultimo giorno<input type="date" name="al" required></label>
+</div>
+<p class="small" id="nol-giorni" aria-live="polite"></p>
+</fieldset>
+<fieldset>
+<legend class="h3">2. Materiale</legend>
+<div class="nol-articoli" id="nol-articoli" aria-live="polite"><p class="small">Scegli prima le date: qui compare il materiale libero.</p></div>
+</fieldset>
+<fieldset>
+<legend class="h3">3. I tuoi dati</legend>
+<div class="campi">
+<label class="campo">Nome e cognome<input name="nome" autocomplete="name" maxlength="100" required></label>
+<label class="campo">Telefono<input type="tel" name="telefono" autocomplete="tel" maxlength="40" required></label>
+<label class="campo campo--pieno">E-mail<input type="email" name="email" autocomplete="email" maxlength="200" required></label>
+<label class="campo campo--pieno">Note (facoltative)<textarea name="note" rows="3" maxlength="2000" placeholder="Per esempio l’attività o una domanda"></textarea></label>
+</div>
+</fieldset>
+<div class="nol-invio">
+<p class="nol-totale" id="nol-totale" aria-live="polite"></p>
+<div class="nol-verifica" id="nol-verifica"></div>
+<button class="btn btn--primary" type="submit">Invia la richiesta <span class="arrow" aria-hidden="true">→</span></button>
+<p class="small">I dati servono solo a gestire il noleggio: <a href="privacy.html#noleggio">protezione dei dati</a>.</p>
+</div>
+<p class="nol-esito" id="nol-esito" role="status" tabindex="-1"></p>
+</form>
+<script type="application/json" id="nol-dati">[{"nome": "Alpinismo e arrampicata", "articoli": [{"id": "ramponi", "nome": "Ramponi", "prezzo": 5, "taglie": null}, {"id": "piccozza", "nome": "Piccozza", "prezzo": 5, "taglie": null}, {"id": "imbracatura", "nome": "Imbracatura", "prezzo": 5, "taglie": ["Kids", "S", "M", "L", "XL"]}, {"id": "casco", "nome": "Casco", "prezzo": 5, "taglie": null}, {"id": "pedule", "nome": "Pedule", "prezzo": 5, "taglie": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47"]}, {"id": "moschettone-ghiera", "nome": "Moschettone a ghiera", "prezzo": 3, "taglie": null}, {"id": "discensore", "nome": "Discensore e moschettone", "prezzo": 5, "taglie": null}, {"id": "jul", "nome": "Jul e moschettone", "prezzo": 5, "taglie": null}, {"id": "cordino-prussik", "nome": "Cordino prussik", "prezzo": 1, "taglie": null}, {"id": "cordino", "nome": "Cordino 3–5 m", "prezzo": 1, "taglie": null}, {"id": "longe", "nome": "Longe", "prezzo": 2, "taglie": null}, {"id": "rinvii", "nome": "Set di rinvii", "prezzo": 5, "taglie": null}]}, {"nome": "Scialpinismo", "articoli": [{"id": "set-arva", "nome": "Set ARVA, sonda e pala", "prezzo": 10, "taglie": null}, {"id": "arva", "nome": "ARVA", "prezzo": 5, "taglie": null}, {"id": "sonda", "nome": "Sonda", "prezzo": 5, "taglie": null}, {"id": "pala", "nome": "Pala", "prezzo": 5, "taglie": null}, {"id": "slittino", "nome": "Slittino di pronto soccorso", "prezzo": 5, "taglie": null}, {"id": "pelli", "nome": "Pelli di riserva", "prezzo": 5, "taglie": null}]}, {"nome": "Altro", "articoli": [{"id": "bussola", "nome": "Bussola", "prezzo": 5, "taglie": null}, {"id": "occhiali", "nome": "Occhiali da sole", "prezzo": 5, "taglie": null}, {"id": "kit-ferrata", "nome": "Kit ferrata", "prezzo": 10, "taglie": null}, {"id": "crash-pad", "nome": "Crash pad", "prezzo": 10, "taglie": null}]}]</script>
 </div>
 </div>
 </section>
@@ -196,6 +238,7 @@
 </section>
 
 </main>
+<script src="assets/noleggio.js?v=b8606d7e" defer></script>
 <footer class="site-footer">
 <div class="container">
 <div class="footer-grid">

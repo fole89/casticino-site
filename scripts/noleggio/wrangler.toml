@@ -1,0 +1,23 @@
+# Servizio delle richieste di noleggio (worker.js). Istruzioni: LEGGIMI.md.
+name = "casticino-noleggio"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "casticino-noleggio"
+database_id = "6456db3c-47e0-48d6-936a-e4ebe2bdb863"   # lo stampa «npx wrangler d1 create casticino-noleggio»
+
+# pulizia notturna: via le richieste finite da più di 12 mesi
+[triggers]
+crons = ["30 2 * * *"]
+
+[vars]
+ALLOWED_ORIGINS = "https://fole89.github.io,https://casticino.ch"
+INVENTARIO_URL = "https://fole89.github.io/casticino-site/data/noleggio-inventario.json"
+SITO_URL = "https://fole89.github.io/casticino-site/"
+MAIL_GESTORE = "fole89@gmail.com"    # quando sarà attiva: noleggio@casticino.ch
+MAIL_MITTENTE = "fole89@gmail.com"   # deve essere un mittente verificato su Brevo
+
+# Per provare in locale (npx wrangler dev): .dev.vars con ADMIN_PASSWORD, TURNSTILE_SECRET (chiave di prova) e
+# le variabili sopra con l'indirizzo locale, es. INVENTARIO_URL = "http://localhost:8000/data/noleggio-inventario.json"

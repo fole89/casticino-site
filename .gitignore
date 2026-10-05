@@ -19,3 +19,11 @@ skills-lock.json
 
 # documenti di lavoro interni (es. convalida del sito): non vanno pubblicati
 interno/
+
+# Worker del noleggio: segreti per le prove in locale e file di wrangler
+.dev.vars
+.wrangler/
+
+.dev.vars*
+!.dev.vars.example
+!.env.example

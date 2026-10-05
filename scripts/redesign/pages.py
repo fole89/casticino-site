@@ -1383,7 +1383,7 @@ def rubrica():
          [riga(tr("Segretariato e informazioni", "Sekretariat und Auskünfte", "Secretariat and information"), "info@casticino.ch")]),
         (tr("Dicasteri", "Ressorts", "Departments"), [riga(nome_dicastero(k), m) for k, m in MAIL_DICASTERI.items()]),
         (tr("Servizi", "Dienste", "Services"),
-         [riga(tr("Noleggio materiale", "Materialvermietung", "Equipment hire"), "noleggio@casticino.ch"),
+         [riga(tr("Noleggio materiale", "Materialvermietung", "Equipment hire"), NOLEGGIO_MAIL),
           riga(tr("Mercatino", "Mercatino (Marktplatz)", "Mercatino (gear exchange)"), MERCATINO_MAIL)]),
         (tr("Capanne", "Hütten", "Huts"), [riga(d["name"], d["mail"]) for d in HUT_PAGES.values()]),
     ]
@@ -2623,45 +2623,43 @@ def corsi():
         body, og="corsi/scialpinismo-4x5")
 
 
-MATERIALE = [  # prezzo giornaliero in franchi
-    ("Alpinismo e arrampicata", [
-        ("Ramponi", 5), ("Piccozza", 5), ("Imbracatura (S, M, L, XL)", 5), ("Casco", 5), ("Pedule", 5),
-        ("Moschettone a ghiera", 3), ("Discensore e moschettone", 5), ("Jul e moschettone", 5),
-        ("Cordino prussik", 1), ("Cordino 3–5 m", 1), ("Longe", 2), ("Set di rinvii", 5)]),
-    ("Scialpinismo", [
-        ("Set ARVA, sonda e pala", 10), ("ARVA", 5), ("Sonda", 5), ("Pala", 5),
-        ("Slittino di pronto soccorso", 5), ("Pelli di riserva", 5)]),
-    ("Altro", [
-        ("Bussola", 5), ("Occhiali da sole", 5), ("Kit ferrata", 10), ("Crash pad", 10)]),
-]
+# ------------------------------------------------------------------ noleggio materiale
+# Articoli, prezzi, quantità e taglie in data/noleggio-inventario.json (lo legge anche il servizio delle richieste).
+# Il modulo (assets/noleggio.js) chiede la disponibilità e invia le richieste al Worker in scripts/noleggio/.
+
+NOLEGGIO_MAIL = "fole89@gmail.com"   # provvisorio: quando sarà attiva, noleggio@casticino.ch (anche MAIL_GESTORE in scripts/noleggio/wrangler.toml)
+NOLEGGIO_API = "https://casticino-noleggio.fole89.workers.dev/"   # indirizzo del Worker (scripts/noleggio/LEGGIMI.md)
+NOLEGGIO_TURNSTILE = "0x4AAAAAAFOZV05i6cz8NupF"   # chiave pubblica (Site Key) di Cloudflare Turnstile
+NOLEGGIO_MAX_GIORNI = 30   # come MAX_GIORNI in scripts/noleggio/worker.js
 
 
-# nomi del materiale nelle altre lingue
-MATERIALE_DE = {"Alpinismo e arrampicata": "Hochtouren und Klettern", "Scialpinismo": "Skitouren", "Altro": "Weiteres",
-                "Ramponi": "Steigeisen", "Piccozza": "Pickel", "Imbracatura (S, M, L, XL)": "Klettergurt (S, M, L, XL)", "Casco": "Helm",
-                "Pedule": "Bergschuhe", "Moschettone a ghiera": "Schraubkarabiner", "Discensore e moschettone": "Abseilgerät und Karabiner",
-                "Jul e moschettone": "Jul und Karabiner", "Cordino prussik": "Prusikschlinge", "Cordino 3–5 m": "Reepschnur 3–5 m",
-                "Longe": "Selbstsicherungsschlinge", "Set di rinvii": "Expressschlingen-Set", "Set ARVA, sonda e pala": "LVS-Set mit Sonde und Schaufel",
-                "ARVA": "LVS-Gerät", "Sonda": "Sonde", "Pala": "Schaufel", "Slittino di pronto soccorso": "Rettungsschlitten",
-                "Pelli di riserva": "Ersatzfelle", "Bussola": "Kompass", "Occhiali da sole": "Sonnenbrille", "Kit ferrata": "Klettersteigset",
-                "Crash pad": "Crashpad"}
-MATERIALE_EN = {"Alpinismo e arrampicata": "Mountaineering and climbing", "Scialpinismo": "Ski touring", "Altro": "Other",
-                "Ramponi": "Crampons", "Piccozza": "Ice axe", "Imbracatura (S, M, L, XL)": "Harness (S, M, L, XL)", "Casco": "Helmet",
-                "Pedule": "Mountain boots", "Moschettone a ghiera": "Screwgate karabiner", "Discensore e moschettone": "Belay device and karabiner",
-                "Jul e moschettone": "Jul and karabiner", "Cordino prussik": "Prusik cord", "Cordino 3–5 m": "Accessory cord 3–5 m",
-                "Longe": "Lanyard", "Set di rinvii": "Set of quickdraws", "Set ARVA, sonda e pala": "Transceiver, probe and shovel set",
-                "ARVA": "Avalanche transceiver", "Sonda": "Probe", "Pala": "Shovel", "Slittino di pronto soccorso": "Rescue sledge",
-                "Pelli di riserva": "Spare skins", "Bussola": "Compass", "Occhiali da sole": "Sunglasses", "Kit ferrata": "Via ferrata kit",
-                "Crash pad": "Crash pad"}
+def inventario_noleggio():
+    return json.load(open(os.path.join(ROOT, "data", "noleggio-inventario.json"), encoding="utf-8"))["gruppi"]
+
+
+def nome_l(d, chiave="nome"):
+    """Nome di un gruppo o articolo dell'inventario nella lingua corrente (campi de/en, altrimenti l'italiano)."""
+    return (LINGUA["lang"] != "it" and d.get(LINGUA["lang"])) or d[chiave]
+
+
+def taglie_listino(a):
+    """Taglie disponibili per il listino: « (Kids, S, M)» oppure, se sono numeri, « (38–46)»."""
+    tg = [t for t, n in (a.get("taglie") or {}).items() if n]
+    if not tg:
+        return ""
+    if all(re.fullmatch(r"\d+(\.\d)?", t) for t in tg):
+        num = sorted(tg, key=float)
+        return f" ({num[0]}–{num[-1]})" if len(num) > 1 else f" ({num[0]})"
+    return f" ({', '.join(tg)})"
 
 
 def noleggio():
-    nomi = {"it": {}, "de": MATERIALE_DE, "en": MATERIALE_EN}[LINGUA["lang"]]
+    gruppi = inventario_noleggio()
     tabelle = []
-    for gruppo, articoli in MATERIALE:
-        righe = "\n".join(f'<tr><th scope="row">{nomi.get(nome, nome)}</th><td>Fr. {prezzo}.–</td></tr>' for nome, prezzo in articoli)
+    for g in gruppi:
+        righe = "\n".join(f'<tr><th scope="row">{nome_l(a)}{taglie_listino(a)}</th><td>Fr. {a["prezzo"]}.–</td></tr>' for a in g["articoli"])
         tabelle.append(f"""<div class="rate">
-<h3 class="h3">{nomi.get(gruppo, gruppo)}</h3>
+<h3 class="h3">{nome_l(g, "gruppo")}</h3>
 <table class="listino">
 <thead><tr><th scope="col">{tr("Articolo", "Artikel", "Item")}</th><th scope="col">{tr("Al giorno", "Pro Tag", "Per day")}</th></tr></thead>
 <tbody>
@@ -2671,23 +2669,30 @@ def noleggio():
 </div>""")
     # la lista lunga a sinistra, le altre impilate a destra
     tabelle = tabelle[0] + '\n<div class="listini-col">\n' + "\n".join(tabelle[1:]) + "\n</div>"
-    mail = '<a href="mailto:noleggio@casticino.ch">noleggio@casticino.ch</a>'
+    mail = f'<a href="mailto:{NOLEGGIO_MAIL}">{NOLEGGIO_MAIL}</a>'
     rows = [(tr("Come funziona", "So funktioniert’s", "How it works"), tr(
-                f"Scrivi a {mail}. Con la conferma ricevi le istruzioni per il ritiro. Si paga in contanti o TWINT alla riconsegna.",
-                f"Schreiben Sie an {mail}. Mit der Bestätigung erhalten Sie die Angaben zur Abholung. Bezahlt wird bei der Rückgabe, bar oder mit TWINT.",
-                f"Write to {mail}. With the confirmation you receive the pick-up instructions. Payment in cash or by TWINT on return.")),
+                "Scegli le date e il materiale nel modulo qui sotto: vedi subito cosa è libero. La richiesta vale con la nostra conferma per e-mail, che ti dice anche quando ritirare il materiale. Si paga in contanti o TWINT alla riconsegna.",
+                "Wählen Sie im Formular unten die Daten und das Material: Sie sehen sofort, was frei ist. Die Anfrage gilt mit unserer Bestätigung per E-Mail, die Ihnen auch sagt, wann Sie das Material abholen können. Bezahlt wird bei der Rückgabe, bar oder mit TWINT.",
+                "Choose the dates and the equipment in the form below: you see straight away what is free. The request stands once we confirm it by e-mail, which also tells you when to pick up the equipment. Payment in cash or by TWINT on return.")),
             (tr("Richiesta", "Anfrage", "Request"), tr("Una settimana prima dell’attività", "Eine Woche vor der Aktivität", "One week before the activity")),
-            (tr("Ritiro", "Abholung", "Pick-up"), tr('A partire dal mercoledì alle <span class="num">19:00</span>',
-                                                     'Ab Mittwoch, <span class="num">19:00</span> Uhr', 'From Wednesday at <span class="num">19:00</span>')),
-            (tr("Riconsegna", "Rückgabe", "Return"), tr("Entro il martedì sera successivo", "Bis am folgenden Dienstagabend", "By the following Tuesday evening")),
-            (tr("Magazzino", "Lager", "Store"), "Manno"),
+            (tr("Durata", "Dauer", "Duration"), tr(f"Da 1 a {NOLEGGIO_MAX_GIORNI} giorni: il prezzo è per giorno di noleggio",
+                                                   f"1 bis {NOLEGGIO_MAX_GIORNI} Tage: Der Preis gilt pro Miettag",
+                                                   f"1 to {NOLEGGIO_MAX_GIORNI} days: the price is per day of hire")),
+            (tr("Ritiro e riconsegna", "Abholung und Rückgabe", "Pick-up and return"), tr(
+                "Al magazzino di Manno, all’orario indicato nella conferma", "Im Lager in Manno, zur Zeit, die in der Bestätigung steht",
+                "At the store in Manno, at the time given in the confirmation")),
             ("E-mail", mail)]
+    # dati del modulo nella lingua della pagina: le quantità le dà il servizio, con la disponibilità per le date scelte
+    dati = [{"nome": nome_l(g, "gruppo"), "articoli": [
+        {"id": a["id"], "nome": nome_l(a), "prezzo": a["prezzo"], "taglie": list(a["taglie"]) if a.get("taglie") else None}
+        for a in g["articoli"]]} for g in gruppi]
+    dati = json.dumps(dati, ensure_ascii=False).replace("</", "<\\/")
     titolo = tr("Noleggio materiale", "Materialvermietung", "Equipment hire")
     body = page_hero([servizi_crumb(), (titolo, None)], tr("Noleggio", "Materialvermietung", "Equipment hire"), tr(
                          "Materiale in affitto per le attività della sezione e per le uscite private: alpinismo, cascate di ghiaccio, scialpinismo, arrampicata, racchette, escursionismo e bouldering.",
                          "Material zur Miete für die Aktivitäten der Sektion und für private Touren: Hochtouren, Eisfälle, Skitouren, Klettern, Schneeschuhtouren, Wandern und Bouldern.",
                          "Equipment for hire for the section’s activities and for private outings: mountaineering, ice falls, ski touring, climbing, snowshoeing, hiking and bouldering."),
-                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="#come">{tr("Come noleggiare", "So funktioniert’s", "How to hire")} <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
+                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="#richiesta">{tr("Richiedi il materiale", "Material anfragen", "Request equipment")} <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
 
 <section class="section--surface section--tight" id="listino" aria-labelledby="listino-h">
 <div class="container">
@@ -2712,11 +2717,61 @@ def noleggio():
 </div>
 </section>
 
+<section class="section--surface" id="richiesta" aria-labelledby="richiesta-h">
+<div class="container detail">
+<div class="detail-intro">
+<h2 id="richiesta-h" class="h2">{tr("Richiesta", "Anfrage", "Request")}</h2>
+<p>{tr("Scegli le date, poi il materiale tra quello ancora libero. Ti rispondiamo per e-mail.",
+       "Wählen Sie die Daten, dann das Material, das noch frei ist. Wir antworten Ihnen per E-Mail.",
+       "Choose the dates, then the equipment that is still free. We reply by e-mail.")}</p>
+</div>
+<div>
+<p class="nol-alt" id="nol-alt">{tr(f"Per chiedere il materiale scrivi a {mail} indicando le date, gli articoli e le taglie.",
+                                    f"Für eine Anfrage schreiben Sie an {mail} mit Daten, Artikeln und Grössen.",
+                                    f"To request equipment, write to {mail} with the dates, items and sizes.")}</p>
+<form class="nol" id="nol" data-api="{NOLEGGIO_API}" data-sitekey="{NOLEGGIO_TURNSTILE}" data-max-giorni="{NOLEGGIO_MAX_GIORNI}" hidden novalidate>
+<fieldset>
+<legend class="h3">{tr("1. Quando", "1. Wann", "1. When")}</legend>
+<div class="campi">
+<label class="campo">{tr("Primo giorno", "Erster Tag", "First day")}<input type="date" name="dal" required></label>
+<label class="campo">{tr("Ultimo giorno", "Letzter Tag", "Last day")}<input type="date" name="al" required></label>
+</div>
+<p class="small" id="nol-giorni" aria-live="polite"></p>
+</fieldset>
+<fieldset>
+<legend class="h3">{tr("2. Materiale", "2. Material", "2. Equipment")}</legend>
+<div class="nol-articoli" id="nol-articoli" aria-live="polite"><p class="small">{tr("Scegli prima le date: qui compare il materiale libero.", "Wählen Sie zuerst die Daten: Hier erscheint das freie Material.", "Choose the dates first: the free equipment appears here.")}</p></div>
+</fieldset>
+<fieldset>
+<legend class="h3">{tr("3. I tuoi dati", "3. Ihre Angaben", "3. Your details")}</legend>
+<div class="campi">
+<label class="campo">{tr("Nome e cognome", "Vor- und Nachname", "Full name")}<input name="nome" autocomplete="name" maxlength="100" required></label>
+<label class="campo">{tr("Telefono", "Telefon", "Phone")}<input type="tel" name="telefono" autocomplete="tel" maxlength="40" required></label>
+<label class="campo campo--pieno">E-mail<input type="email" name="email" autocomplete="email" maxlength="200" required></label>
+<label class="campo campo--pieno">{tr("Note (facoltative)", "Bemerkungen (freiwillig)", "Notes (optional)")}<textarea name="note" rows="3" maxlength="2000" placeholder="{tr("Per esempio l’attività o una domanda", "Zum Beispiel die Aktivität oder eine Frage", "For example the activity or a question")}"></textarea></label>
+</div>
+</fieldset>
+<div class="nol-invio">
+<p class="nol-totale" id="nol-totale" aria-live="polite"></p>
+<div class="nol-verifica" id="nol-verifica"></div>
+<button class="btn btn--primary" type="submit">{tr("Invia la richiesta", "Anfrage senden", "Send request")} <span class="arrow" aria-hidden="true">→</span></button>
+<p class="small">{tr('I dati servono solo a gestire il noleggio: <a href="privacy.html#noleggio">protezione dei dati</a>.',
+                     'Die Angaben dienen nur der Abwicklung der Miete: <a href="privacy.html#noleggio">Datenschutz</a>.',
+                     'Your details are used only to handle the hire: <a href="privacy.html#noleggio">privacy policy</a>.')}</p>
+</div>
+<p class="nol-esito" id="nol-esito" role="status" tabindex="-1"></p>
+</form>
+<script type="application/json" id="nol-dati">{dati}</script>
+</div>
+</div>
+</section>
+
 {subnav(SERVIZI_MENU(), L("noleggio.html"))}"""
     return sezione_page("noleggio.html", tr("Noleggio", "Materialvermietung", "Equipment hire") + " | CAS Ticino", tr(
         "Noleggio materiale del CAS Ticino: alpinismo, sci alpinismo, arrampicata, racchette e altro, con ritiro al magazzino di Manno.",
         "Materialvermietung der SAC-Sektion Ticino: Hochtouren, Skitouren, Klettern, Schneeschuhe und mehr, Abholung im Lager in Manno.",
-        "Equipment hire from the SAC Ticino Section: mountaineering, ski touring, climbing, snowshoeing and more, collected from the store in Manno."), body)
+        "Equipment hire from the SAC Ticino Section: mountaineering, ski touring, climbing, snowshoeing and more, collected from the store in Manno."),
+        body, scripts=f'<script src="{asset("assets/noleggio.js")}" defer></script>\n')
 
 
 # ------------------------------------------------------------------ mercatino
@@ -3559,6 +3614,9 @@ PRIVACY = {
 <h2>Contatti e annunci</h2>
 <p>Se ci scrivi per e-mail usiamo il tuo messaggio solo per rispondere e per dare seguito alla richiesta (per esempio inoltrandolo al custode di una capanna o al responsabile di un corso). Gli annunci del Mercatino vengono pubblicati con il nome e il contatto che indichi tu e restano online fino alla scadenza; puoi chiederne la rimozione in ogni momento.</p>
 
+<h2 id="noleggio">Noleggio materiale</h2>
+<p>Il modulo del noleggio invia nome, e-mail, telefono, note, date e materiale scelto a un piccolo servizio della sezione su Cloudflare Workers (Cloudflare Inc., USA; dati salvati in Europa). Li vede solo il responsabile del noleggio, che li usa per confermare la richiesta e per il ritiro e la riconsegna. Le e-mail di ricevuta e di conferma partono tramite Brevo (Francia). Le richieste vengono cancellate 12 mesi dopo la fine del noleggio. Per proteggere il modulo dai programmi automatici, quando inizi a compilarlo viene caricato Cloudflare Turnstile, che riceve l’indirizzo IP e alcune informazioni tecniche sul browser, secondo l’<a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">informativa sulla privacy di Cloudflare</a> (in inglese). Cloudflare aderisce al Data Privacy Framework Svizzera–USA.</p>
+
 <h2>Persone sul sito</h2>
 <p>Nomi, foto e presentazioni dei membri del comitato, dei dicasteri e dei capigita sono pubblicati con il loro consenso. Nelle news e nei resoconti delle gite possono comparire foto di partecipanti. Se vuoi che una tua foto o il tuo nome venga tolto, scrivici.</p>
 
@@ -3590,6 +3648,9 @@ PRIVACY = {
 <h2>Kontakt und Inserate</h2>
 <p>Wenn Sie uns per E-Mail schreiben, verwenden wir Ihre Nachricht nur, um zu antworten und Ihr Anliegen zu bearbeiten (zum Beispiel durch Weiterleitung an das Hüttenteam oder an die Kursleitung). Inserate auf dem Mercatino werden mit dem Namen und dem Kontakt veröffentlicht, die Sie angeben, und bleiben bis zum Ablaufdatum online; Sie können jederzeit die Entfernung verlangen.</p>
 
+<h2 id="noleggio">Materialvermietung</h2>
+<p>Das Formular der Materialvermietung sendet Name, E-Mail, Telefon, Bemerkungen, Daten und das gewählte Material an einen kleinen Dienst der Sektion auf Cloudflare Workers (Cloudflare Inc., USA; Daten in Europa gespeichert). Sie sind nur für die Materialverantwortlichen sichtbar, die sie für die Bestätigung der Anfrage sowie für Abholung und Rückgabe verwenden. Die Empfangs- und Bestätigungs-E-Mails werden über Brevo (Frankreich) verschickt. Die Anfragen werden 12 Monate nach Ende der Miete gelöscht. Zum Schutz des Formulars vor automatisierten Programmen wird Cloudflare Turnstile geladen, sobald Sie mit dem Ausfüllen beginnen; Cloudflare erhält dabei die IP-Adresse und einige technische Angaben zum Browser, gemäss der <a href="https://www.cloudflare.com/de-de/privacypolicy/" rel="noopener">Datenschutzrichtlinie von Cloudflare</a>. Cloudflare ist dem Swiss-U.S. Data Privacy Framework beigetreten.</p>
+
 <h2>Personen auf der Website</h2>
 <p>Namen, Fotos und Vorstellungen der Mitglieder von Vorstand und Ressorts sowie der Tourenleitenden werden mit ihrem Einverständnis veröffentlicht. In News und Tourenberichten können Fotos von Teilnehmenden erscheinen. Wenn ein Foto von Ihnen oder Ihr Name entfernt werden soll, schreiben Sie uns.</p>
 
@@ -3620,6 +3681,9 @@ PRIVACY = {
 
 <h2>Contacts and listings</h2>
 <p>If you e-mail us, we use your message only to reply and to deal with your request (for example by forwarding it to a hut keeper or to a course leader). Mercatino listings are published with the name and contact details you give us and stay online until they expire; you can ask for removal at any time.</p>
+
+<h2 id="noleggio">Equipment hire</h2>
+<p>The equipment hire form sends your name, e-mail, phone number, notes, dates and the equipment chosen to a small service run by the Section on Cloudflare Workers (Cloudflare Inc., USA; data stored in Europe). Only the equipment manager sees it, and uses it to confirm the request and for pick-up and return. Receipt and confirmation e-mails are sent through Brevo (France). Requests are deleted 12 months after the end of the hire. To protect the form from automated programs, Cloudflare Turnstile is loaded when you start filling it in; Cloudflare receives your IP address and some technical information about your browser, under <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare’s privacy policy</a>. Cloudflare participates in the Swiss-U.S. Data Privacy Framework.</p>
 
 <h2>People on the website</h2>
 <p>Names, photos and introductions of the members of the committee, the departments and the trip leaders are published with their consent. Photos of participants may appear in the news and trip reports. If you would like a photo of you or your name removed, write to us.</p>
