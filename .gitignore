@@ -16,3 +16,6 @@ assets/img/originali/
 .agents/
 .claude/skills/
 skills-lock.json
+
+# documenti di lavoro interni (es. convalida del sito): non vanno pubblicati
+interno/

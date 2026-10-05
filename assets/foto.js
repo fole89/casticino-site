@@ -8,14 +8,14 @@
   // testi nella lingua della pagina (<html lang>); titoli e resoconti delle gite restano in italiano
   var LINGUA = (document.documentElement.lang || 'it').slice(0, 2);
   var TX = {
-    it: { foto: 'foto', di: 'di', resoconto: 'Resoconto: ', dettagli: 'Dettagli della gita', prec: 'Foto precedente', succ: 'Foto successiva',
+    it: { foto: 'foto', di: 'di', resoconto: 'Resoconto: ', prec: 'Foto precedente', succ: 'Foto successiva',
           mostra: 'Mostra foto ', nessuna: 'Nessuna foto pubblicata di recente.', errore: 'Le foto non sono disponibili al momento. Puoi consultarle sul portale Droptour.' },
-    de: { foto: 'Fotos', di: 'von', resoconto: 'Bericht: ', dettagli: 'Details der Tour', prec: 'Vorheriges Foto', succ: 'Nächstes Foto',
+    de: { foto: 'Fotos', di: 'von', resoconto: 'Bericht: ', prec: 'Vorheriges Foto', succ: 'Nächstes Foto',
           mostra: 'Foto anzeigen: ', nessuna: 'In letzter Zeit wurden keine Fotos veröffentlicht.', errore: 'Die Fotos sind im Moment nicht verfügbar. Sie finden sie auf dem Portal Droptour.' },
-    en: { foto: 'photos', di: 'of', resoconto: 'Report: ', dettagli: 'Trip details', prec: 'Previous photo', succ: 'Next photo',
+    en: { foto: 'photos', di: 'of', resoconto: 'Report: ', prec: 'Previous photo', succ: 'Next photo',
           mostra: 'Show photo ', nessuna: 'No photos published recently.', errore: 'The photos are not available at the moment. You can find them on the Droptour portal.' }
   }[LINGUA] || null;
-  if (!TX) { LINGUA = 'it'; TX = { foto: 'foto', di: 'di', resoconto: 'Resoconto: ', dettagli: 'Dettagli della gita', prec: 'Foto precedente', succ: 'Foto successiva', mostra: 'Mostra foto ', nessuna: 'Nessuna foto pubblicata di recente.', errore: 'Le foto non sono disponibili al momento. Puoi consultarle sul portale Droptour.' }; }
+  if (!TX) { LINGUA = 'it'; TX = { foto: 'foto', di: 'di', resoconto: 'Resoconto: ', prec: 'Foto precedente', succ: 'Foto successiva', mostra: 'Mostra foto ', nessuna: 'Nessuna foto pubblicata di recente.', errore: 'Le foto non sono disponibili al momento. Puoi consultarle sul portale Droptour.' }; }
   var IT = LINGUA === 'it' ? {} : { lang: 'it' };  // attributo per i testi in italiano
   var fmt = new Intl.DateTimeFormat({ it: 'it-CH', de: 'de-CH', en: 'en-GB' }[LINGUA], { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   function conIt(attrs) { Object.keys(IT).forEach(function (k) { attrs[k] = IT[k]; }); return attrs; }
@@ -56,8 +56,7 @@
       date ? el('span', { class: 'album-date', text: date }) : null,
       el('h2', conIt({ class: 'h2', text: a.title })),
       el('span', { class: 'small', text: meta }),
-      text,
-      a.link ? el('a', { class: 'link', href: a.link, text: TX.dettagli }) : null
+      text
     ]);
 
     var photo = el('img', { alt: '', decoding: 'async' });
