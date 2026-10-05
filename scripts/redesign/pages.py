@@ -2671,10 +2671,10 @@ def noleggio():
     tabelle = tabelle[0] + '\n<div class="listini-col">\n' + "\n".join(tabelle[1:]) + "\n</div>"
     mail = f'<a href="mailto:{NOLEGGIO_MAIL}">{NOLEGGIO_MAIL}</a>'
     rows = [(tr("Come funziona", "So funktioniert’s", "How it works"), tr(
-                "Scegli le date e il materiale nel modulo qui sotto: vedi subito cosa è libero. La richiesta vale con la nostra conferma per e-mail, che ti dice anche quando ritirare il materiale. Si paga in contanti o TWINT alla riconsegna.",
-                "Wählen Sie im Formular unten die Daten und das Material: Sie sehen sofort, was frei ist. Die Anfrage gilt mit unserer Bestätigung per E-Mail, die Ihnen auch sagt, wann Sie das Material abholen können. Bezahlt wird bei der Rückgabe, bar oder mit TWINT.",
-                "Choose the dates and the equipment in the form below: you see straight away what is free. The request stands once we confirm it by e-mail, which also tells you when to pick up the equipment. Payment in cash or by TWINT on return.")),
-            (tr("Richiesta", "Anfrage", "Request"), tr("Una settimana prima dell’attività", "Eine Woche vor der Aktivität", "One week before the activity")),
+                "Scegli le date e il materiale nel modulo qui sotto: vedi subito cosa è libero. La conferma alla tua richiesta avverrà tramite e-mail. Si paga in contanti o TWINT alla riconsegna.",
+                "Wählen Sie im Formular unten die Daten und das Material: Sie sehen sofort, was frei ist. Die Bestätigung Ihrer Anfrage erhalten Sie per E-Mail. Bezahlt wird bei der Rückgabe, bar oder mit TWINT.",
+                "Choose the dates and the equipment in the form below: you see straight away what is free. Your request will be confirmed by e-mail. Payment in cash or by TWINT on return.")),
+            (tr("Richiesta", "Anfrage", "Request"), tr("Almeno 1 settimana prima dell’attività", "Mindestens 1 Woche vor der Aktivität", "At least 1 week before the activity")),
             (tr("Durata", "Dauer", "Duration"), tr(f"Da 1 a {NOLEGGIO_MAX_GIORNI} giorni: il prezzo è per giorno di noleggio",
                                                    f"1 bis {NOLEGGIO_MAX_GIORNI} Tage: Der Preis gilt pro Miettag",
                                                    f"1 to {NOLEGGIO_MAX_GIORNI} days: the price is per day of hire")),
