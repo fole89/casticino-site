@@ -8,7 +8,7 @@ la pagina di gestione **/admin**, protetta da password. I dati personali stanno 
 ## Come funziona
 
 - **Inventario**: `data/noleggio-inventario.json`. Ci sono le quantità per articolo, le taglie (solo imbracature e pedule),
-  i set e i prezzi. Lo leggono la pagina (listino e modulo) e il servizio, che lo scarica dal sito pubblicato
+  i set e i prezzi. Lo leggono la pagina (modulo) e il servizio, che lo scarica dal sito pubblicato
   (con al massimo 5 minuti di ritardo). Dopo una modifica: `python scripts/redesign/pages.py noleggio.html de/noleggio.html en/noleggio.html`,
   poi commit e push.
 - **Disponibilità**: per ogni giorno del periodo si sommano i pezzi delle richieste *da confermare*, *confermate* e

@@ -253,7 +253,7 @@ def home():
 <p>{tr("Ramponi, piccozze, imbragature, set ARVA con sonda e pala e molto altro, a pochi franchi al giorno: per le gite della sezione e per le uscite private.",
        "Steigeisen, Pickel, Klettergurte, LVS-Sets mit Sonde und Schaufel und vieles mehr, für wenige Franken pro Tag: für die Touren der Sektion und für private Unternehmungen.",
        "Crampons, ice axes, harnesses, transceiver sets with probe and shovel and much more, for a few francs a day: for section trips and private outings.")}</p>
-<a class="link" href="noleggio.html">{tr("Listino e condizioni", "Preise und Bedingungen", "Prices and conditions")}</a>
+<a class="link" href="noleggio.html">{tr("Richiedi il materiale", "Material anfragen", "Request equipment")}</a>
 </article>
 <article class="pillar pillar--accent">
 <h3>{tr("Mercatino", "Marktplatz", "Gear market")}</h3>
@@ -2625,6 +2625,7 @@ def corsi():
 
 # ------------------------------------------------------------------ noleggio materiale
 # Articoli, prezzi, quantità e taglie in data/noleggio-inventario.json (lo legge anche il servizio delle richieste).
+# Niente listino a parte: prezzi e taglie si vedono nel modulo.
 # Il modulo (assets/noleggio.js) chiede la disponibilità e invia le richieste al Worker in scripts/noleggio/.
 
 NOLEGGIO_MAIL = "fole89@gmail.com"   # provvisorio: quando sarà attiva, noleggio@casticino.ch (anche MAIL_GESTORE in scripts/noleggio/wrangler.toml)
@@ -2642,33 +2643,8 @@ def nome_l(d, chiave="nome"):
     return (LINGUA["lang"] != "it" and d.get(LINGUA["lang"])) or d[chiave]
 
 
-def taglie_listino(a):
-    """Taglie disponibili per il listino: « (Kids, S, M)» oppure, se sono numeri, « (38–46)»."""
-    tg = [t for t, n in (a.get("taglie") or {}).items() if n]
-    if not tg:
-        return ""
-    if all(re.fullmatch(r"\d+(\.\d)?", t) for t in tg):
-        num = sorted(tg, key=float)
-        return f" ({num[0]}–{num[-1]})" if len(num) > 1 else f" ({num[0]})"
-    return f" ({', '.join(tg)})"
-
-
 def noleggio():
     gruppi = inventario_noleggio()
-    tabelle = []
-    for g in gruppi:
-        righe = "\n".join(f'<tr><th scope="row">{nome_l(a)}{taglie_listino(a)}</th><td>Fr. {a["prezzo"]}.–</td></tr>' for a in g["articoli"])
-        tabelle.append(f"""<div class="rate">
-<h3 class="h3">{nome_l(g, "gruppo")}</h3>
-<table class="listino">
-<thead><tr><th scope="col">{tr("Articolo", "Artikel", "Item")}</th><th scope="col">{tr("Al giorno", "Pro Tag", "Per day")}</th></tr></thead>
-<tbody>
-{righe}
-</tbody>
-</table>
-</div>""")
-    # la lista lunga a sinistra, le altre impilate a destra
-    tabelle = tabelle[0] + '\n<div class="listini-col">\n' + "\n".join(tabelle[1:]) + "\n</div>"
     mail = f'<a href="mailto:{NOLEGGIO_MAIL}">{NOLEGGIO_MAIL}</a>'
     rows = [(tr("Come funziona", "So funktioniert’s", "How it works"), tr(
                 "Scegli le date e il materiale nel modulo qui sotto: vedi subito cosa è libero. La conferma alla tua richiesta avverrà tramite e-mail. Si paga in contanti o TWINT alla riconsegna.",
@@ -2693,18 +2669,6 @@ def noleggio():
                          "Material zur Miete für die Aktivitäten der Sektion und für private Touren: Hochtouren, Eisfälle, Skitouren, Klettern, Schneeschuhtouren, Wandern und Bouldern.",
                          "Equipment for hire for the section’s activities and for private outings: mountaineering, ice falls, ski touring, climbing, snowshoeing, hiking and bouldering."),
                      f'<div class="actions hero-actions"><a class="btn btn--primary" href="#richiesta">{tr("Richiedi il materiale", "Material anfragen", "Request equipment")} <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
-
-<section class="section--surface section--tight" id="listino" aria-labelledby="listino-h">
-<div class="container">
-<div class="section-row">
-<h2 id="listino-h" class="h2">{tr("Listino", "Preisliste", "Price list")}</h2>
-<p class="small">{tr("Prezzi per giorno di noleggio, in franchi.", "Preise pro Miettag, in Franken.", "Prices per day of hire, in Swiss francs.")}</p>
-</div>
-<div class="listini" data-reveal>
-{tabelle}
-</div>
-</div>
-</section>
 
 <section class="section" id="come" aria-labelledby="come-h">
 <div class="container detail">

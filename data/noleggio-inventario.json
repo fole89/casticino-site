@@ -1,7 +1,7 @@
 {
   "_istruzioni": [
-      "Inventario del noleggio materiale: lo leggono la pagina noleggio.html (listino e modulo) e il servizio delle richieste (scripts/noleggio/).",
-      "quantita = numero di pezzi disponibili per il noleggio (0 = l'articolo non compare nel modulo, ma resta nel listino).",
+      "Inventario del noleggio materiale: lo leggono la pagina noleggio.html (modulo) e il servizio delle richieste (scripts/noleggio/).",
+      "quantita = numero di pezzi disponibili per il noleggio (0 = l'articolo non compare nel modulo).",
       "taglie = quantità per taglia (solo imbracature e pedule); si possono togliere le taglie che non ci sono o aggiungerne (es. \"42.5\").",
       "set = articolo composto da altri: non ha una quantità sua, si noleggia se sono liberi tutti i pezzi elencati.",
       "id = nome tecnico, non cambiarlo per un articolo che esiste già (le richieste lo usano); nome (de, en = nome in tedesco e in inglese) e prezzo (franchi al giorno) si possono cambiare.",
