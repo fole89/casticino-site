@@ -112,7 +112,7 @@ The system is moving towards two decisions confirmed by the section that the cur
 
 **Key Characteristics:**
 - Cold mineral neutrals (neve, granito, ardesia) with one warm voice: rosso CAS.
-- Square corners everywhere (0px radius).
+- Square corners everywhere (0px radius). The one exception: people's portraits (Comitato, Organizzazione, capigita, hut keepers) are squircles (`corner-shape: squircle`, fallback `border-radius: 30%`), so faces read as people, not as photos.
 - Geist for everything readable, Geist Mono for data: altitudes, years, times, counts.
 - Real photography only, under dark gradient scrims when text sits on it.
 - Solid, tactile interactive elements; depth earned by state and by photos.

@@ -6,16 +6,83 @@
 // gita.html: intestazione e stato dall'elenco, testi (percorso, ritrovo, costi…) dalla scheda Droptour (getItem),
 // ridotti a testo semplice. L'iscrizione resta su Droptour (pulsante «Iscriviti su Droptour»).
 // Dei capigita si prende solo il nome: l'interfaccia contiene anche dati che il sito non deve mostrare.
+// Le stesse pagine esistono in de/ e en/: i testi della pagina vengono da TESTI (lingua di <html lang>), le gite
+// (titoli, tipi, dettagli della scheda Droptour) restano in italiano. Testi allineati con gita_html() in pages.py.
 (function () {
   var box = document.getElementById('gite');
   var dett = document.getElementById('gita');
   if (!box && !dett) return;
   var filtri = document.getElementById('gite-filtri');
   var stato = document.getElementById('gite-stato');
-  var GIORNI = ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'];
-  var MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
-  var MESI_BREVI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
-  var IMPEGNO = { A: 'poco impegnativo', B: 'abbastanza impegnativo', C: 'impegnativo', D: 'molto impegnativo' };
+  var TESTI = {
+    it: {
+      giorni: ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'],
+      giorniLunghi: ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'],
+      mesi: ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'],
+      mesiBrevi: ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'],
+      impegno: { A: 'poco impegnativo', B: 'abbastanza impegnativo', C: 'impegnativo', D: 'molto impegnativo' },
+      gruppi: {},
+      breve: function (g, m) { return g + ' ' + m; },
+      lungo: function (gs, g, m, a) { return gs + ' ' + g + ' ' + m + ' ' + a; },
+      fino: function (g, m) { return 'fino ' + ([1, 8, 11].indexOf(g) !== -1 ? 'all’' : 'al ') + g + ' ' + m; },
+      annullata: 'Annullata', completa: 'Completa', senza: 'Senza iscrizione online', dal: 'Iscrizioni dal ',
+      chiuse: 'Iscrizioni chiuse', aperte: 'Iscrizioni aperte', impegnoT: 'Impegno', difficolta: 'Difficoltà',
+      capogita: 'Capogita', capigita: 'Capigita', iscritti: ' iscritti', iscrizione: 'Iscrizione',
+      dettagli: 'Dettagli', dettagliIscr: 'Dettagli e iscrizione', tuttiGruppi: 'Tutti i gruppi', tuttiTipi: 'Tutti i tipi',
+      gita: ' gita', gite: ' gite', titolo: ' | Programma gite | CAS Ticino', perTutti: 'Per tutti', data: 'Data',
+      iscrittiT: 'Iscritti', onlineDal: 'Online su Droptour', dalT: ' dal ', alT: ' al ', laGita: 'La gita',
+      caricamento: 'Caricamento dei dettagli da Droptour…',
+      nonDisp: 'I dettagli della gita non sono disponibili in questo momento: li trovi su Droptour.',
+      iscriviti: 'Iscriviti su Droptour', apri: 'Apri su Droptour', programma: 'Programma gite', cerca: 'Cerca su Droptour',
+      nonTrovata: 'Gita non trovata', nonTrovataTesto: 'La gita non è (più) nel programma: forse è già passata, oppure il link non è corretto.'
+    },
+    de: {
+      giorni: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+      giorniLunghi: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+      mesi: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+      mesiBrevi: ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 'Juli', 'Aug.', 'Sept.', 'Okt.', 'Nov.', 'Dez.'],
+      impegno: { A: 'wenig anspruchsvoll', B: 'ziemlich anspruchsvoll', C: 'anspruchsvoll', D: 'sehr anspruchsvoll' },
+      gruppi: { Tutti: 'Alle', Attivi: 'Aktive', Giovani: 'Jugend', Seniori: 'Senioren', Soccorso: 'Bergrettung', Monitori: 'Leitende' },
+      breve: function (g, m) { return g + '. ' + m; },
+      lungo: function (gs, g, m, a) { return gs + ', ' + g + '. ' + m + ' ' + a; },
+      fino: function (g, m) { return 'bis ' + g + '. ' + m; },
+      annullata: 'Abgesagt', completa: 'Ausgebucht', senza: 'Ohne Online-Anmeldung', dal: 'Anmeldung ab ',
+      chiuse: 'Anmeldung geschlossen', aperte: 'Anmeldung offen', impegnoT: 'Kondition', difficolta: 'Technik',
+      capogita: 'Leitung', capigita: 'Leitung', iscritti: ' Angemeldete', iscrizione: 'Anmeldung',
+      dettagli: 'Details', dettagliIscr: 'Details und Anmeldung', tuttiGruppi: 'Alle Gruppen', tuttiTipi: 'Alle Arten',
+      gita: ' Tour', gite: ' Touren', titolo: ' | Tourenprogramm | CAS Ticino', perTutti: 'Für alle', data: 'Datum',
+      iscrittiT: 'Angemeldet', onlineDal: 'Online auf Droptour', dalT: ' vom ', alT: ' bis ', laGita: 'Die Tour (italienisch)',
+      caricamento: 'Details werden von Droptour geladen…',
+      nonDisp: 'Die Details der Tour sind im Moment nicht verfügbar: Sie finden sie auf Droptour.',
+      iscriviti: 'Auf Droptour anmelden', apri: 'Auf Droptour öffnen', programma: 'Tourenprogramm', cerca: 'Auf Droptour suchen',
+      nonTrovata: 'Tour nicht gefunden', nonTrovataTesto: 'Die Tour ist nicht (mehr) im Programm: Vielleicht ist sie schon vorbei, oder der Link stimmt nicht.'
+    },
+    en: {
+      giorni: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      giorniLunghi: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      mesi: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      mesiBrevi: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      impegno: { A: 'easy', B: 'fairly demanding', C: 'demanding', D: 'very demanding' },
+      gruppi: { Tutti: 'All', Attivi: 'Active members', Giovani: 'Youth', Seniori: 'Seniors', Soccorso: 'Mountain rescue', Monitori: 'Instructors' },
+      breve: function (g, m) { return g + ' ' + m; },
+      lungo: function (gs, g, m, a) { return gs + ' ' + g + ' ' + m + ' ' + a; },
+      fino: function (g, m) { return 'to ' + g + ' ' + m; },
+      annullata: 'Cancelled', completa: 'Full', senza: 'No online registration', dal: 'Registration from ',
+      chiuse: 'Registration closed', aperte: 'Registration open', impegnoT: 'Fitness', difficolta: 'Difficulty',
+      capogita: 'Leader', capigita: 'Leaders', iscritti: ' registered', iscrizione: 'Registration',
+      dettagli: 'Details', dettagliIscr: 'Details and registration', tuttiGruppi: 'All groups', tuttiTipi: 'All types',
+      gita: ' trip', gite: ' trips', titolo: ' | Trip programme | CAS Ticino', perTutti: 'For everyone', data: 'Date',
+      iscrittiT: 'Registered', onlineDal: 'Online on Droptour', dalT: ' from ', alT: ' to ', laGita: 'The trip (in Italian)',
+      caricamento: 'Loading the details from Droptour…',
+      nonDisp: 'The trip details are not available at the moment: you can find them on Droptour.',
+      iscriviti: 'Register on Droptour', apri: 'Open on Droptour', programma: 'Trip programme', cerca: 'Search on Droptour',
+      nonTrovata: 'Trip not found', nonTrovataTesto: 'The trip is not (or no longer) in the programme: it may be over, or the link is not correct.'
+    }
+  };
+  var LINGUA = (document.documentElement.lang || 'it').slice(0, 2);
+  var TX = TESTI[LINGUA] || TESTI.it;
+  var GIORNI = TX.giorni, MESI = TX.mesi, MESI_BREVI = TX.mesiBrevi, IMPEGNO = TX.impegno;
+  function nomeGruppo(x) { return TX.gruppi[x] || x; }
   var STATO = { '3': 'completa', '2': 'annullata' };
   var ORDINE_GRUPPI = ['Attivi', 'Giovani', 'Seniori', 'Soccorso', 'Monitori'];
   var scelta = { gruppi: '', tipo: '' };
@@ -63,14 +130,14 @@
     return out.sort(function (x, y) { return (x.dal + x.titolo).localeCompare(y.dal + y.titolo); });
   }
 
-  function breve(iso) { var d = giorno(iso); return d.getDate() + ' ' + MESI_BREVI[d.getMonth()]; }
+  function breve(iso) { var d = giorno(iso); return TX.breve(d.getDate(), MESI_BREVI[d.getMonth()]); }
   function statoGita(g, o) {
-    if (g.stato === 'annullata') return ['annullata', 'Annullata'];
-    if (g.stato === 'completa') return ['completa', 'Completa'];
-    if (!g.iscrizione) return ['', 'Senza iscrizione online'];
-    if (g.iscrizione_dal && o < g.iscrizione_dal) return ['', 'Iscrizioni dal ' + breve(g.iscrizione_dal)];
-    if (g.iscrizione_al && o > g.iscrizione_al) return ['', 'Iscrizioni chiuse'];
-    return ['aperte', 'Iscrizioni aperte'];
+    if (g.stato === 'annullata') return ['annullata', TX.annullata];
+    if (g.stato === 'completa') return ['completa', TX.completa];
+    if (!g.iscrizione) return ['', TX.senza];
+    if (g.iscrizione_dal && o < g.iscrizione_dal) return ['', TX.dal + breve(g.iscrizione_dal)];
+    if (g.iscrizione_al && o > g.iscrizione_al) return ['', TX.chiuse];
+    return ['aperte', TX.aperte];
   }
 
   function gitaHtml(g, o) {
@@ -78,27 +145,27 @@
     if (g.al && g.al !== g.dal) {
       var d2 = giorno(g.al);
       if (d2.getMonth() === d1.getMonth()) { gg += '–' + d2.getDate(); sotto += '–' + GIORNI[d2.getDay()]; }
-      else sotto += ', fino ' + ([1, 8, 11].indexOf(d2.getDate()) !== -1 ? 'all’' : 'al ') + d2.getDate() + ' ' + MESI_BREVI[d2.getMonth()];
+      else sotto += ', ' + TX.fino(d2.getDate(), MESI_BREVI[d2.getMonth()]);
     }
     var st = statoGita(g, o), classe = st[0];
-    var gruppi = g.gruppi.filter(function (x) { return x !== 'Tutti'; });
-    if (!gruppi.length) gruppi = ['Tutti'];
+    var gruppi = g.gruppi.filter(function (x) { return x !== 'Tutti'; }).map(nomeGruppo);
+    if (!gruppi.length) gruppi = [nomeGruppo('Tutti')];
     var tipo = [esc(g.tipo), esc(gruppi.join(', '))].filter(function (x, i, a) { return x && a.indexOf(x) === i; }).join(' · ');
     var meta = '';
-    if (g.cond) meta += '<span title="' + (IMPEGNO[g.cond] || '') + '">Impegno ' + esc(g.cond) + '</span>';
-    if (g.tecn) meta += '<span>Difficoltà ' + esc(g.tecn) + '</span>';
-    if (g.capigita.length) meta += '<span>' + (g.capigita.length > 1 ? 'Capigita' : 'Capogita') + ': ' + esc(g.capigita.join(', ')) + '</span>';
-    var posti = g.posti ? g.iscritti + '/' + g.posti + ' iscritti' : g.iscritti ? g.iscritti + ' iscritti' : '';
+    if (g.cond) meta += '<span title="' + (IMPEGNO[g.cond] || '') + '">' + TX.impegnoT + ' ' + esc(g.cond) + '</span>';
+    if (g.tecn) meta += '<span>' + TX.difficolta + ' ' + esc(g.tecn) + '</span>';
+    if (g.capigita.length) meta += '<span>' + (g.capigita.length > 1 ? TX.capigita : TX.capogita) + ': ' + esc(g.capigita.join(', ')) + '</span>';
+    var posti = g.posti ? g.iscritti + '/' + g.posti + TX.iscritti : g.iscritti ? g.iscritti + TX.iscritti : '';
     var modalita = g.modalita && classe !== 'annullata'
-      ? '<span class="gita-nota">Iscrizione' + (g.modalita.indexOf('tramite') === 0 ? ' ' : ': ') + esc(g.modalita) + '</span>' : '';
+      ? '<span class="gita-nota">' + TX.iscrizione + (LINGUA === 'it' && g.modalita.indexOf('tramite') === 0 ? ' ' : ': ') + esc(g.modalita) + '</span>' : '';
     return '<article class="gita' + (classe === 'annullata' ? ' gita--annullata' : '') + '" id="gita-' + esc(g.id) + '" data-fine="' + esc(g.al || g.dal) + '" data-gruppi="' + esc(g.gruppi.join(' ')) + '" data-tipo="' + esc(g.sigla) + '">' +
       '<p class="gita-data"><span class="gita-giorno num">' + gg + '</span><span class="gita-sotto">' + sotto + '</span></p>' +
       '<div class="gita-corpo"><p class="gita-tipo">' + tipo + '</p>' +
-      '<h3 class="gita-titolo"><a href="gita.html?id=' + esc(g.id) + '">' + esc(g.titolo) + '</a></h3>' +
+      '<h3 class="gita-titolo"><a href="gita.html?id=' + esc(g.id) + '"' + (LINGUA === 'it' ? '' : ' lang="it"') + '>' + esc(g.titolo) + '</a></h3>' +
       (meta ? '<p class="gita-meta">' + meta + '</p>' : '') + '</div>' +
       '<div class="gita-stato"><span class="stato' + (classe ? ' stato--' + classe : '') + '">' + st[1] + '</span>' +
       (posti ? '<span class="gita-posti num">' + posti + '</span>' : '') + modalita +
-      '<a class="link gita-link" href="gita.html?id=' + esc(g.id) + '">' + (classe === 'annullata' || !g.iscrizione ? 'Dettagli' : 'Dettagli e iscrizione') + '</a></div></article>';
+      '<a class="link gita-link" href="gita.html?id=' + esc(g.id) + '">' + (classe === 'annullata' || !g.iscrizione ? TX.dettagli : TX.dettagliIscr) + '</a></div></article>';
   }
 
   function disegna() {
@@ -160,11 +227,11 @@
     if (scelta.gruppi && !gruppi[scelta.gruppi]) scelta.gruppi = '';
     if (scelta.tipo && !tipi[scelta.tipo]) scelta.tipo = '';
     pulsanti('gruppi', nomiGruppi.map(function (x) {
-      return [x, x, future.filter(function (g) { return corrisponde(g, 'gruppi', x); }).length];
-    }), 'Tutti i gruppi');
+      return [x, nomeGruppo(x), future.filter(function (g) { return corrisponde(g, 'gruppi', x); }).length];
+    }), TX.tuttiGruppi);
     pulsanti('tipo', Object.keys(tipi).sort(function (a, b) { return tipi[a].localeCompare(tipi[b]); }).map(function (x) {
       return [x, tipi[x], future.filter(function (g) { return corrisponde(g, 'tipo', x); }).length];
-    }), 'Tutti i tipi');
+    }), TX.tuttiTipi);
     filtri.hidden = false;
   }
 
@@ -179,8 +246,8 @@
     Array.prototype.forEach.call(box.querySelectorAll('.gite-mese'), function (m) {
       m.hidden = !m.querySelector('.gita:not([hidden])');
     });
-    var attivi = [scelta.gruppi, scelta.tipo && filtri.querySelector('.filtro[data-campo="tipo"] [aria-pressed="true"]').firstChild.textContent.trim()].filter(Boolean);
-    stato.textContent = attivi.length ? n + (n === 1 ? ' gita' : ' gite') + ': ' + attivi.join(', ') : '';
+    var attivi = [scelta.gruppi && nomeGruppo(scelta.gruppi), scelta.tipo && filtri.querySelector('.filtro[data-campo="tipo"] [aria-pressed="true"]').firstChild.textContent.trim()].filter(Boolean);
+    stato.textContent = attivi.length ? n + (n === 1 ? TX.gita : TX.gite) + ': ' + attivi.join(', ') : '';
     var q = [];
     if (scelta.gruppi) q.push('gruppo=' + encodeURIComponent(scelta.gruppi));
     if (scelta.tipo) q.push('tipo=' + encodeURIComponent(scelta.tipo));
@@ -189,9 +256,7 @@
 
   // ------------------------------------------------------------------ dettaglio (gita.html)
   var ETICHETTE_FUORI = ['Data', 'Gruppo', 'Tipo di attività', 'Tipo/Aggiunta', 'Iscrizione'];  // già nell'intestazione
-  var GIORNI_LUNGHI = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
-
-  function lungo(iso) { var d = giorno(iso); return GIORNI_LUNGHI[d.getDay()] + ' ' + d.getDate() + ' ' + MESI[d.getMonth()] + ' ' + d.getFullYear(); }
+  function lungo(iso) { var d = giorno(iso); return TX.lungo(TX.giorniLunghi[d.getDay()], d.getDate(), MESI[d.getMonth()], d.getFullYear()); }
 
   function conLink(t) {  // testo già sicuro (esc) con gli indirizzi web resi cliccabili
     return t.replace(/\b(https?:\/\/[^\s<]+[^\s<.,;:)])/g, '<a href="$1" rel="noopener">$1</a>')
@@ -242,51 +307,52 @@
 
   function mostraGita(g, righe) {
     var o = oggi(), st = statoGita(g, o), classe = st[0];
-    var gruppi = g.gruppi.filter(function (x) { return x !== 'Tutti'; });
-    document.title = g.titolo + ' | Programma gite | CAS Ticino';
+    var gruppi = g.gruppi.filter(function (x) { return x !== 'Tutti'; }).map(nomeGruppo);
+    document.title = g.titolo + TX.titolo;
     document.getElementById('page-h').textContent = g.titolo;
-    document.querySelector('.page-hero .lead').textContent = [g.tipo, gruppi.length ? gruppi.join(', ') : 'Per tutti'].filter(Boolean).join(' · ');
+    if (LINGUA !== 'it') document.getElementById('page-h').lang = 'it';
+    document.querySelector('.page-hero .lead').textContent = [g.tipo, gruppi.length ? gruppi.join(', ') : TX.perTutti].filter(Boolean).join(' · ');
     var crumb = document.querySelector('.crumbs [aria-current]');
     if (crumb) crumb.textContent = g.titolo;
     window.dispatchEvent(new Event('resize'));  // site.js riadatta il titolo lungo
 
     var quando = lungo(g.dal) + (g.al && g.al !== g.dal ? ' – ' + lungo(g.al) : '');
-    var iscr = !g.iscrizione ? 'Senza iscrizione online'
-      : 'Online su Droptour' + (g.iscrizione_dal ? ' dal ' + lungo(g.iscrizione_dal) : '') + (g.iscrizione_al ? ' al ' + lungo(g.iscrizione_al) : '');
+    var iscr = !g.iscrizione ? TX.senza
+      : TX.onlineDal + (g.iscrizione_dal ? TX.dalT + lungo(g.iscrizione_dal) : '') + (g.iscrizione_al ? TX.alT + lungo(g.iscrizione_al) : '');
     // a sinistra, nel riquadro «in breve»: data, capogita, iscritti (con barra dei posti) e iscrizione
-    var chiave = [['Data', '<span class="gita-quando">' + esc(quando) + '</span>']];
-    if (g.capigita.length) chiave.push([g.capigita.length > 1 ? 'Capigita' : 'Capogita', esc(g.capigita.join(', '))]);
+    var chiave = [[TX.data, '<span class="gita-quando">' + esc(quando) + '</span>']];
+    if (g.capigita.length) chiave.push([g.capigita.length > 1 ? TX.capigita : TX.capogita, esc(g.capigita.join(', '))]);
     if (g.posti || g.iscritti) {
       var pieno = g.posti ? Math.min(100, Math.round(g.iscritti / g.posti * 100)) : 0;
-      chiave.push(['Iscritti', '<span class="num">' + g.iscritti + (g.posti ? ' / ' + g.posti : '') + '</span>' +
+      chiave.push([TX.iscrittiT, '<span class="num">' + g.iscritti + (g.posti ? ' / ' + g.posti : '') + '</span>' +
         (g.posti ? '<span class="gita-barra" aria-hidden="true"><span style="width:' + pieno + '%"></span></span>' : '')]);
     }
-    chiave.push(['Iscrizione', esc(iscr)]);
+    chiave.push([TX.iscrizione, esc(iscr)]);
     document.getElementById('gita-chiave').innerHTML = chiave.map(function (f) { return '<div><dt>' + f[0] + '</dt><dd>' + f[1] + '</dd></div>'; }).join('');
 
     // a destra: il resto della scheda Droptour
     var fatti = (righe || []).map(function (r) { return [esc(r[0]), '<span class="gita-testo">' + r[1] + '</span>']; });
     document.getElementById('gita-dati').innerHTML =
-      (fatti.length ? '<h2 class="h3 gita-dati-h">La gita</h2><dl class="facts">' +
+      (fatti.length ? '<h2 class="h3 gita-dati-h">' + TX.laGita + '</h2><dl class="facts"' + (LINGUA === 'it' ? '' : ' lang="it"') + '>' +
         fatti.map(function (f) { return '<dt>' + f[0] + '</dt><dd>' + f[1] + '</dd>'; }).join('') + '</dl>' : '') +
-      (righe === undefined ? '<p class="small gita-avviso">Caricamento dei dettagli da Droptour…</p>'
-        : righe ? '' : '<p class="small gita-avviso">I dettagli della gita non sono disponibili in questo momento: li trovi su Droptour.</p>');
+      (righe === undefined ? '<p class="small gita-avviso">' + TX.caricamento + '</p>'
+        : righe ? '' : '<p class="small gita-avviso">' + TX.nonDisp + '</p>');
 
     document.getElementById('gita-stato').innerHTML = '<span class="stato' + (classe ? ' stato--' + classe : '') + '">' + st[1] + '</span>';
     // iscrizioni aperte: direttamente al modulo d'iscrizione di Droptour (tourFID = numero della gita)
     var modulo = dett.dataset.droptour + '?page=anmeldung&tourFID=' + encodeURIComponent(g.id);
     document.getElementById('gita-azioni').innerHTML = classe === 'aperte'
-      ? '<a class="btn btn--primary" href="' + esc(modulo) + '">Iscriviti su Droptour <span class="arrow" aria-hidden="true">→</span></a>'
-      : '<a class="btn btn--secondary" href="' + esc(g.link) + '">Apri su Droptour</a>';
+      ? '<a class="btn btn--primary" href="' + esc(modulo) + '">' + TX.iscriviti + ' <span class="arrow" aria-hidden="true">→</span></a>'
+      : '<a class="btn btn--secondary" href="' + esc(g.link) + '">' + TX.apri + '</a>';
     document.querySelector('.gita-riepilogo').hidden = false;
   }
 
   function nonTrovata(id) {
-    document.getElementById('page-h').textContent = 'Gita non trovata';
-    document.querySelector('.page-hero .lead').textContent = 'La gita non è (più) nel programma: forse è già passata, oppure il link non è corretto.';
+    document.getElementById('page-h').textContent = TX.nonTrovata;
+    document.querySelector('.page-hero .lead').textContent = TX.nonTrovataTesto;
     var link = dett.dataset.droptour + '?page=detail&touren_nummer=' + encodeURIComponent(id);
-    document.getElementById('gita-azioni').innerHTML = '<a class="btn btn--primary" href="gite.html">Programma gite</a>' +
-      (id ? '<a class="btn btn--secondary" href="' + esc(link) + '">Cerca su Droptour</a>' : '');
+    document.getElementById('gita-azioni').innerHTML = '<a class="btn btn--primary" href="gite.html">' + TX.programma + '</a>' +
+      (id ? '<a class="btn btn--secondary" href="' + esc(link) + '">' + TX.cerca + '</a>' : '');
     document.getElementById('gita-chiave').innerHTML = '';
     document.getElementById('gita-stato').innerHTML = '';
     document.getElementById('gita-dati').innerHTML = '';

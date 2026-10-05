@@ -24,10 +24,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 
 HUTS = [
     # file, nome, quota, valle, stato, testo, posti, accesso, img 3x2 (w,h), grande
-    ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Custodita", "Su un terrazzo sopra la Val Piumogna, base per il Pizzo Campo Tencia: la cima più alta interamente ticinese.", "80 posti", "Dalpe 3h", "capanne/campotencia-3x2", (987, 658), True),
-    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Custodita", "Sull’omonimo passo, tra Leventina e Valle Maggia. Inaugurata nel 2003, primo rifugio moderno del CAS.", "100 posti", "Ossasco 3h30", "capanne/cristallina-3x2", (837, 558), True),
-    ("adula.html", "Adula", "2012", "Val Carassino", "Custodita", "Il classico rifugio in pietra affacciato sulla Valle di Blenio: storia, accoglienza calorosa e cucina nostrana.", "24 posti", "Compietto 2h40", "capanne/adula-3x2", (1000, 667), False),
-    ("motterascio.html", "Motterascio", "2172", "Greina", "Custodita", "Al margine della riserva della Greina: torbiere, alpeggi e l’arco naturale più grande del Ticino.", "70 posti", "Garzott 2h", "capanne/motterascio-3x2", (974, 649), False),
+    ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Custodita giu–ott", "Su un terrazzo sopra la Val Piumogna, base per il Pizzo Campo Tencia: la cima più alta interamente ticinese.", "80 posti", "Dalpe 3h", "capanne/campotencia-3x2", (987, 658), True),
+    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Custodita giu–ott", "Sull’omonimo passo, tra Leventina e Valle Maggia. Inaugurata nel 2003, primo rifugio moderno del CAS.", "100 posti", "Ossasco 3h30", "capanne/cristallina-3x2", (837, 558), True),
+    ("adula.html", "Adula", "2012", "Val Carassino", "Custodita mag–ott", "Il classico rifugio in pietra affacciato sulla Valle di Blenio: storia, accoglienza calorosa e cucina nostrana.", "24 posti", "Compietto 2h40", "capanne/adula-3x2", (1000, 667), False),
+    ("motterascio.html", "Motterascio", "2172", "Greina", "Custodita giu–ott", "Al margine della riserva della Greina: torbiere, alpeggi e l’arco naturale più grande del Ticino.", "70 posti", "Garzott 2h", "capanne/motterascio-3x2", (974, 649), False),
     ("montebar.html", "Monte Bar", "1602", "Alta Capriasca", "Tutto l’anno", "Il balcone sul Luganese, ricostruito nel 2016: vista dal Monte Rosa ai Denti della Vecchia, standard Bike Hotel.", "42 posti", "Corticiasca 1h30", "capanne/montebar-3x2", (663, 442), False),
     ("baitadelluca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Su riservazione", "Sopra Sonvico, ai piedi dei Denti della Vecchia. Ideale per famiglie e arrampicata.", "16 posti, autogestita", "Rosone 45 min", "capanne/baitadelluca-3x2", (1000, 667), False),
 ]
@@ -38,11 +38,13 @@ def num(t):
 
 
 def schede_capanne(lista, accesso="Accesso da", prefisso=""):
-    """Home: le sei capanne in schede compatte (foto, nome, quota, valle, stato, posti e accesso)."""
+    """Home: le sei capanne in schede compatte (foto, nome, quota, valle, stagione di custodia, posti e accesso).
+    La stagione resta scritta così com'è (es. «Custodita giu–ott»): una pagina statica non può sapere se oggi il guardiano c'è."""
     return "\n".join(f"""<a class="hut" href="{prefisso}{f}" data-reveal>
 <figure>{img(im, f'Capanna {n}', w, h)}</figure>
 <div class="hut-head"><h3 class="h3">{n}</h3><span class="hut-alt">{q} m</span></div>
-<div class="hut-meta"><span>{v}</span><span class="status">{st}</span></div>
+<div class="hut-meta"><span>{v}</span></div>
+<div class="hut-meta"><span class="status">{st}</span></div>
 <div class="hut-meta"><span>{num(posti)}</span><span>{accesso} {num(acc)}</span></div>
 </a>""" for f, n, q, v, st, t, posti, acc, im, (w, h), big in lista)
 
@@ -81,7 +83,7 @@ def home():
 </div>
 <div class="actions">
 <a class="btn btn--primary" href="adesione.html">Diventa socio <span class="arrow" aria-hidden="true">→</span></a>
-<a class="btn btn--secondary" href="news.html">Ultime news</a>
+<a class="btn btn--secondary" href="news.html">Ultime notizie</a>
 </div>
 </div>
 </div>
@@ -125,7 +127,6 @@ def home():
 <article class="tile tile--wide-top" data-reveal>
 {img("attivita/gite-2x1", "Gruppo in vetta con vista sulle Alpi innevate", 1400, 700)}
 <div class="tile-body">
-<span class="label">Programma gite 2026</span>
 <h3 class="h2">Gite, escursioni e uscite della sezione</h3>
 <p>Escursionismo, alpinismo, sci alpinismo, racchette e arrampicata: il calendario completo con iscrizioni online.</p>
 <div class="actions"><a class="btn btn--primary" href="{GITE}">Programma gite</a><a class="btn btn--ghost-light" href="foto.html">Foto e resoconti</a></div>
@@ -152,7 +153,6 @@ def home():
 <article class="tile tile--bottom-2" id="corsi" data-reveal>
 {img("corsi/alpinismo-4x5", "Cordata su una cresta di neve", 594, 742)}
 <div class="tile-body">
-<span class="label">Tenuti da professionisti</span>
 <h3 class="h2">Corsi</h3>
 <p>Alpinismo, sci alpinismo, arrampicata, freeride e racchette: per imparare a muoversi in montagna in sicurezza.</p>
 <div class="links"><a class="link" href="corsi.html">Tutti i corsi</a><a class="link" href="noleggio.html">Noleggio materiale</a></div>
@@ -470,7 +470,7 @@ def hut_extra(file):
     out = []
     if c.get("cucina") or c.get("team"):
         t = c.get("team")
-        cucina = f"""<div class="hut-cuisine">
+        cucina = f"""<div class="hut-cuisine stack">
 <h2 class="h2">{c.get("cucina_titolo", tc("cucina"))}</h2>
 <div class="prose">
 {c["cucina"]}
@@ -485,11 +485,15 @@ def hut_extra(file):
             persone = f'<div class="members">\n{persone}\n</div>' if persone else ""
             team = f"""<div class="hut-team">
 <h2 class="h2">{t.get("titolo", tc("team"))}</h2>
+<div class="hut-team-body">
 {foto}
+<div>
 <div class="prose">
 {t["testo"]}
 </div>
 {persone}
+</div>
+</div>
 </div>"""
         out.append(f"""<section class="section" aria-label="{tc('vita')}">
 <div class="container hut-life">
@@ -519,7 +523,7 @@ def hut_extra(file):
 </section>""")
     if c.get("accessi"):
         out.append(f"""<section class="section" id="accessi" aria-labelledby="accessi-h">
-<div class="container detail">
+<div class="container stack">
 <h2 id="accessi-h" class="h2">{tc('accessi')}</h2>
 <div class="prose">
 {pdf_lingua(c["accessi"])}
@@ -536,7 +540,7 @@ def hut_extra(file):
 </a>""" for p in c["pagine"])
         out.append(f"""<section class="section" id="attivita" aria-labelledby="attivita-h">
 <div class="container">
-<div class="detail hut-activities">
+<div class="stack hut-activities">
 <h2 id="attivita-h" class="h2">{tc('attivita')}</h2>
 <div class="prose">
 {c.get("attivita", "")}
@@ -746,7 +750,7 @@ def hut(file):
 </div>
 <div class="factgroup">
 <h3 class="h3">{tc('arrivare')}</h3>
-{facts(d['reach'])}
+{facts([r for r in d['reach'] if not (c and c.get('accessi')) or 'CNS' in r[1]])}
 </div>
 </div>
 </div>
@@ -785,7 +789,7 @@ def hut(file):
 def introduzione():
     huts = ('<a href="campotencia.html">Campo Tencia</a>, <a href="cristallina.html">Cristallina</a>, <a href="adula.html">Adula</a>, '
             '<a href="motterascio.html">Motterascio (Michela)</a>, <a href="montebar.html">Monte Bar</a> e <a href="baitadelluca.html">Baita del Luca</a>')
-    body = page_hero([("La Sezione", "index.html#sezione"), ("Introduzione", None)], "La sezione",
+    body = page_hero([("La Sezione", "introduzione.html"), ("Introduzione", None)], "La sezione",
                      "Fondata a Bellinzona l’11 aprile 1886, la Sezione Ticino del Club Alpino Svizzero conta quasi 3000 soci e propone un’attività varia, pensata per tutte le età: dai più giovani ai seniori.") + f"""
 
 <figure class="band">
@@ -943,7 +947,7 @@ def comitato():
         body = page_hero([("The Section", "en/introduzione.html"), ("Committee", None)], "The committee",
                          "Eight people, each with a clear area of responsibility, lead the section together with the <a href=\"en/organizzazione.html\">departments</a> and the volunteers. Contact: <a href=\"mailto:info@casticino.ch\">info@casticino.ch</a>.")
     else:
-        body = page_hero([("La Sezione", "index.html#sezione"), ("Comitato", None)], "Il comitato",
+        body = page_hero([("La Sezione", "introduzione.html"), ("Comitato", None)], "Il comitato",
                          "Otto persone, ognuna con un ambito preciso, che guidano la sezione insieme ai <a href=\"organizzazione.html\">dicasteri</a> e ai volontari. Per scrivere al comitato: <a href=\"mailto:info@casticino.ch\">info@casticino.ch</a>.")
     body += f"""
 
@@ -1093,7 +1097,7 @@ def organizzazione():
         body = page_hero([("The Section", "en/introduzione.html"), ("Organisation", None)], "Organisation",
                          'The <a href="en/comitato.html">committee</a> relies on five departments, each responsible for one area of the section’s life.')
     else:
-        body = page_hero([("La Sezione", "index.html#sezione"), ("Organizzazione", None)], "Organizzazione",
+        body = page_hero([("La Sezione", "introduzione.html"), ("Organizzazione", None)], "Organizzazione",
                          'Il <a href="comitato.html">comitato</a> si appoggia a cinque dicasteri, ognuno responsabile di un ambito della vita della sezione.')
     body += f"""
 
@@ -1123,7 +1127,7 @@ RUOLI_CAPIGITA_EN = {"estivo": "Summer", "invernale": "Winter", "arrampicata": "
 RUOLI_CAPIGITA_DE = {"estivo": "Sommer", "invernale": "Winter", "arrampicata": "Klettern", "escursionismo": "Wandern",
                      "seniori": "Senioren", "aiuto": "Hilfsleitung", "soccorso": "Bergrettung"}
 CAPIGITA_T = {
-    "it": dict(titolo="Capigita", sezione="La Sezione", sezione_href="index.html#sezione", ritratto="Ritratto di", chi="Chi è",
+    "it": dict(titolo="Capigita", sezione="La Sezione", sezione_href="introduzione.html", ritratto="Ritratto di", chi="Chi è",
                dal="Capogita dal", tutti="Tutti", filtra="Filtra per ruolo", elenco="Elenco dei capigita",
                uno="capogita", molti="capigita",
                lead="Le gite della sezione sono preparate e guidate da soci volontari, formati nei corsi del CAS: {n} capigita attivi, ognuno con le sue discipline.",
@@ -1257,7 +1261,7 @@ def sede():
         ("Biblioteca", 'Guide e cartine da consultare, libri in prestito; in vendita libri e magliette. Per visitarla scrivi al segretariato: <a href="mailto:info@casticino.ch">info@casticino.ch</a>.'),
         ("Coordinate bancarie", 'Banca Stato, Lugano<br><span class="num">IBAN CH09 0076 4128 9526 1200 6</span>'),
     ]
-    body = page_hero([("La Sezione", "index.html#sezione"), ("Sede e recapiti", None)], "Sede e recapiti",
+    body = page_hero([("La Sezione", "introduzione.html"), ("Sede e recapiti", None)], "Sede e recapiti",
                      "La sede sociale si trova nello stabile del Canvetto Luganese a Molino Nuovo, con ufficio e sala riunioni al secondo piano in balconata.") + f"""
 
 <section class="section" aria-labelledby="sede-h">
@@ -1339,7 +1343,7 @@ def storia():
         body = page_hero([("The Section", "en/introduzione.html"), ("History", None)], "Since 1886,<br>on foot.",
                          "More than a century of climbs, huts, rescue and mountain culture: the history of the section in milestones.")
     else:
-        body = page_hero([("La Sezione", "index.html#sezione"), ("Storia", None)], "Dal 1886,<br>a piedi.",
+        body = page_hero([("La Sezione", "introduzione.html"), ("Storia", None)], "Dal 1886,<br>a piedi.",
                          "Più di un secolo di salite, rifugi, soccorso e cultura alpina: la storia della sezione in tappe.")
     body += f"""
 
@@ -1455,7 +1459,7 @@ def link():
                          "Weather, avalanche bulletins, conditions, maps and the other mountaineering clubs in the region.")
     else:
         gruppi = LINKS
-        hero = page_hero([("La Sezione", "index.html#sezione"), ("Link utili", None)], "Link utili",
+        hero = page_hero([("La Sezione", "introduzione.html"), ("Link utili", None)], "Link utili",
                          "Meteo, bollettini valanghe, condizioni, cartine e le altre realtà alpinistiche del territorio.")
     body = hero + f"""
 
@@ -1687,6 +1691,22 @@ GITE_API = "https://ssl.dropnet.ch/casticino/dropnetapps/tours/api/?action=comma
 GIORNI_BREVI = ["lun", "mar", "mer", "gio", "ven", "sab", "dom"]
 MESI_BREVI = ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"]
 IMPEGNO = {"A": "poco impegnativo", "B": "abbastanza impegnativo", "C": "impegnativo", "D": "molto impegnativo"}
+# Programma gite anche in de/ e en/: si traducono solo i testi della pagina; titoli, tipi e dettagli delle gite
+# (da Droptour) restano in italiano. Gli stessi testi sono in assets/gite.js (TESTI): tenerli allineati.
+GIORNI_BREVI_L = {"it": GIORNI_BREVI, "de": ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+                  "en": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
+MESI_BREVI_L = {"it": MESI_BREVI, "de": ["Jan.", "Feb.", "März", "Apr.", "Mai", "Juni", "Juli", "Aug.", "Sept.", "Okt.", "Nov.", "Dez."],
+                "en": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]}
+MESI_L = {"it": MESI, "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+          "en": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]}
+IMPEGNO_L = {"it": IMPEGNO, "de": {"A": "wenig anspruchsvoll", "B": "ziemlich anspruchsvoll", "C": "anspruchsvoll", "D": "sehr anspruchsvoll"},
+             "en": {"A": "easy", "B": "fairly demanding", "C": "demanding", "D": "very demanding"}}
+GRUPPI_L = {"de": {"Tutti": "Alle", "Attivi": "Aktive", "Giovani": "Jugend", "Seniori": "Senioren", "Soccorso": "Bergrettung", "Monitori": "Leitende"},
+            "en": {"Tutti": "All", "Attivi": "Active members", "Giovani": "Youth", "Seniori": "Seniors", "Soccorso": "Mountain rescue", "Monitori": "Instructors"}}
+
+
+def nome_gruppo(x):
+    return GRUPPI_L.get(LINGUA["lang"], {}).get(x, x)
 
 
 def gite_dati():
@@ -1699,16 +1719,17 @@ def gite_dati():
 def gita_stato(g, oggi):
     """(classe, testo) dello stato delle iscrizioni, calcolato come in gite.js."""
     if g["stato"] == "annullata":
-        return "annullata", "Annullata"
+        return "annullata", tr("Annullata", "Abgesagt", "Cancelled")
     if g["stato"] == "completa":
-        return "completa", "Completa"
+        return "completa", tr("Completa", "Ausgebucht", "Full")
     if not g["iscrizione"]:
-        return "", "Senza iscrizione online"
+        return "", tr("Senza iscrizione online", "Ohne Online-Anmeldung", "No online registration")
     if g["iscrizione_dal"] and oggi < g["iscrizione_dal"]:
-        return "", f"Iscrizioni dal {data_breve(g['iscrizione_dal'])}"
+        b = data_breve(g["iscrizione_dal"])
+        return "", tr(f"Iscrizioni dal {b}", f"Anmeldung ab {b}", f"Registration from {b}")
     if g["iscrizione_al"] and oggi > g["iscrizione_al"]:
-        return "", "Iscrizioni chiuse"
-    return "aperte", "Iscrizioni aperte"
+        return "", tr("Iscrizioni chiuse", "Anmeldung geschlossen", "Registration closed")
+    return "aperte", tr("Iscrizioni aperte", "Anmeldung offen", "Registration open")
 
 
 def fino_al(giorno):
@@ -1718,43 +1739,56 @@ def fino_al(giorno):
 
 def data_breve(iso):
     y, m, d = (int(x) for x in iso.split("-"))
-    return f"{d} {MESI_BREVI[m - 1]}"
+    mb = MESI_BREVI_L[LINGUA["lang"]][m - 1]
+    return tr(f"{d} {mb}", f"{d}. {mb}", f"{d} {mb}")
+
+
+def fino_data(d2):
+    """Ultimo giorno di una gita che finisce il mese dopo: «fino all’1 nov», «bis 1. Nov.», «to 1 Nov»."""
+    mb = MESI_BREVI_L[LINGUA["lang"]][d2.month - 1]
+    return tr(f"{fino_al(d2.day)} {mb}", f"bis {d2.day}. {mb}", f"to {d2.day} {mb}")
 
 
 def gita_html(g, oggi):
     import datetime
+    gb = GIORNI_BREVI_L[LINGUA["lang"]]
     d1 = datetime.date.fromisoformat(g["dal"])
-    giorno, sotto = str(d1.day), GIORNI_BREVI[d1.weekday()]
+    giorno, sotto = str(d1.day), gb[d1.weekday()]
     if g["al"] and g["al"] != g["dal"]:
         d2 = datetime.date.fromisoformat(g["al"])
         if d2.month == d1.month:
-            giorno, sotto = f"{d1.day}–{d2.day}", f"{sotto}–{GIORNI_BREVI[d2.weekday()]}"
+            giorno, sotto = f"{d1.day}–{d2.day}", f"{sotto}–{gb[d2.weekday()]}"
         else:
-            sotto += f", {fino_al(d2.day)} {MESI_BREVI[d2.month - 1]}"
+            sotto += f", {fino_data(d2)}"
     classe, stato = gita_stato(g, oggi)
-    gruppi = [x for x in g["gruppi"] if x != "Tutti"] or ["Tutti"]
+    gruppi = [nome_gruppo(x) for x in g["gruppi"] if x != "Tutti"] or [nome_gruppo("Tutti")]
     tipo = " · ".join(dict.fromkeys(filter(None, [esc(g["tipo"]), esc(", ".join(gruppi))])))
     meta = []
     if g["cond"]:
-        meta.append(f'<span title="{IMPEGNO.get(g["cond"], "")}">Impegno {esc(g["cond"])}</span>')
+        meta.append(f'<span title="{IMPEGNO_L[LINGUA["lang"]].get(g["cond"], "")}">{tr("Impegno", "Kondition", "Fitness")} {esc(g["cond"])}</span>')
     if g["tecn"]:
-        meta.append(f'<span>Difficoltà {esc(g["tecn"])}</span>')
+        meta.append(f'<span>{tr("Difficoltà", "Technik", "Difficulty")} {esc(g["tecn"])}</span>')
     if g["capigita"]:
-        meta.append(f'<span>{"Capigita" if len(g["capigita"]) > 1 else "Capogita"}: {esc(", ".join(g["capigita"]))}</span>')
-    posti = (f'{g["iscritti"]}/{g["posti"]} iscritti' if g["posti"] else f'{g["iscritti"]} iscritti' if g["iscritti"] else "")
-    modalita = (f'<span class="gita-nota">Iscrizione{"" if g["modalita"].startswith("tramite") else ":"} {esc(g["modalita"])}</span>'
+        piu = len(g["capigita"]) > 1
+        meta.append(f'<span>{tr("Capigita" if piu else "Capogita", "Leitung", "Leaders" if piu else "Leader")}: {esc(", ".join(g["capigita"]))}</span>')
+    iscritti = tr("iscritti", "Angemeldete", "registered")
+    posti = (f'{g["iscritti"]}/{g["posti"]} {iscritti}' if g["posti"] else f'{g["iscritti"]} {iscritti}' if g["iscritti"] else "")
+    modalita = (f'<span class="gita-nota">{tr("Iscrizione" + ("" if g["modalita"].startswith("tramite") else ":"), "Anmeldung:", "Registration:")} {esc(g["modalita"])}</span>'
                 if g["modalita"] and classe != "annullata" else "")
+    dettagli = (tr("Dettagli", "Details", "Details") if classe == "annullata" or not g["iscrizione"]
+                else tr("Dettagli e iscrizione", "Details und Anmeldung", "Details and registration"))
+    link = L("gita.html") + f"?id={g['id']}"
     return f"""<article class="gita{' gita--annullata' if classe == 'annullata' else ''}" id="gita-{g['id']}" data-fine="{g['al'] or g['dal']}" data-gruppi="{esc(' '.join(g['gruppi']))}" data-tipo="{esc(g['sigla'])}">
 <p class="gita-data"><span class="gita-giorno num">{giorno}</span><span class="gita-sotto">{sotto}</span></p>
 <div class="gita-corpo">
 <p class="gita-tipo">{tipo}</p>
-<h3 class="gita-titolo"><a href="gita.html?id={g['id']}">{esc(g['titolo'])}</a></h3>
+<h3 class="gita-titolo"><a href="{link}"{'' if LINGUA["lang"] == "it" else ' lang="it"'}>{esc(g['titolo'])}</a></h3>
 {f'<p class="gita-meta">{"".join(meta)}</p>' if meta else ""}
 </div>
 <div class="gita-stato">
 <span class="stato{' stato--' + classe if classe else ''}">{stato}</span>
 {f'<span class="gita-posti num">{posti}</span>' if posti else ""}{modalita}
-<a class="link gita-link" href="gita.html?id={g['id']}">{"Dettagli" if classe == "annullata" or not g["iscrizione"] else "Dettagli e iscrizione"}</a>
+<a class="link gita-link" href="{link}">{dettagli}</a>
 </div>
 </article>"""
 
@@ -1768,7 +1802,7 @@ def gite_lista(gite, oggi):
             if mese:
                 out.append("</div>\n</section>")
             y, mm = (int(x) for x in m.split("-"))
-            out.append(f'<section class="gite-mese" aria-labelledby="mese-{m}">\n<h2 id="mese-{m}" class="h3">{MESI[mm - 1].capitalize()} {y}</h2>\n<div class="gite-righe">')
+            out.append(f'<section class="gite-mese" aria-labelledby="mese-{m}">\n<h2 id="mese-{m}" class="h3">{MESI_L[LINGUA["lang"]][mm - 1].capitalize()} {y}</h2>\n<div class="gite-righe">')
             mese = m
         out.append(gita_html(g, oggi))
     if mese:
@@ -1807,56 +1841,74 @@ def gite():
     import datetime
     oggi = datetime.date.today().isoformat()
     lista = [g for g in gite_dati() if (g["al"] or g["dal"]) >= oggi]
-    body = page_hero([("Attività", "index.html#attivita"), ("Programma gite", None)], "Programma gite",
-                     "Gite, corsi ed eventi della sezione, aggiornati in tempo reale dal portale Droptour, dove ci si iscrive.") + f"""
+    it = LINGUA["lang"] == "it"
+    nome = L("gite.html")
+    su = "" if it else "../"  # data-copia non passa da pubblica()
+    titolo = tr("Programma gite", "Tourenprogramm", "Trip programme")
+    trail = [("Attività", "index.html#attivita"), (titolo, None)] if it else [(titolo, None)]
+    body = page_hero(trail, titolo, tr(
+        "Gite, corsi ed eventi della sezione, aggiornati in tempo reale dal portale Droptour, dove ci si iscrive.",
+        "Touren, Kurse und Anlässe der Sektion, laufend aktualisiert aus dem Portal Droptour, wo man sich anmeldet. Titel und Beschreibungen der Touren sind auf Italienisch.",
+        "Trips, courses and events of the section, updated live from the Droptour portal, where you register. Trip titles and descriptions are in Italian.")) + f"""
 
-<section class="section" aria-label="Elenco delle gite">
+<section class="section" aria-label="{tr("Elenco delle gite", "Liste der Touren", "List of trips")}">
 <div class="container">
 <div class="gite-filtri" id="gite-filtri" hidden>
-<div class="filtro" role="group" aria-label="Filtra per gruppo" data-campo="gruppi"></div>
-<div class="filtro" role="group" aria-label="Filtra per tipo" data-campo="tipo"></div>
+<div class="filtro" role="group" aria-label="{tr("Filtra per gruppo", "Nach Gruppe filtern", "Filter by group")}" data-campo="gruppi"></div>
+<div class="filtro" role="group" aria-label="{tr("Filtra per tipo", "Nach Art filtern", "Filter by type")}" data-campo="tipo"></div>
 <div class="filtri-tendina">
-<label><span class="label">Gruppo</span><select data-campo="gruppi"></select></label>
-<label><span class="label">Tipo</span><select data-campo="tipo"></select></label>
+<label><span class="label">{tr("Gruppo", "Gruppe", "Group")}</span><select data-campo="gruppi"></select></label>
+<label><span class="label">{tr("Tipo", "Art", "Type")}</span><select data-campo="tipo"></select></label>
 </div>
 </div>
 <p class="small filtro-stato" id="gite-stato" aria-live="polite"></p>
-<div class="gite" id="gite" data-api="{GITE_API}" data-copia="{asset('data/gite.json')}">
-{gite_lista(lista, oggi) if lista else '<p>Il programma non è disponibile in questo momento: lo trovi su <a href="' + GITE_DROPTOUR + '">Droptour</a>.</p>'}
+<div class="gite" id="gite" data-api="{GITE_API}" data-copia="{su}{asset('data/gite.json')}">
+{gite_lista(lista, oggi) if lista else '<p>' + tr("Il programma non è disponibile in questo momento: lo trovi su", "Das Programm ist im Moment nicht verfügbar: Sie finden es auf", "The programme is not available at the moment: you can find it on") + ' <a href="' + GITE_DROPTOUR + '">Droptour</a>.</p>'}
 </div>
 <div class="callout">
-<p>Le iscrizioni, l’accesso per soci e capigita e i dettagli di ogni gita sono sul portale Droptour. Per le domande su una gita scrivi al capogita, dalla pagina della gita.</p>
-<div class="actions"><a class="btn btn--secondary" href="{GITE_DROPTOUR}" rel="noopener">Programma completo su Droptour</a><a class="btn btn--secondary" href="{GITE_ICS}">Calendario (iCal)</a><a class="btn btn--secondary" href="documenti.html">Scale di difficoltà</a></div>
+<p>{tr("Le iscrizioni, l’accesso per soci e capigita e i dettagli di ogni gita sono sul portale Droptour. Per le domande su una gita scrivi al capogita, dalla pagina della gita.",
+       "Anmeldungen, Zugang für Mitglieder und Tourenleitende und alle Details zu jeder Tour finden Sie auf dem Portal Droptour (italienisch). Fragen zu einer Tour richten Sie an die Tourenleitung, über die Seite der Tour.",
+       "Registration, access for members and trip leaders and the details of every trip are on the Droptour portal (in Italian). For questions about a trip, write to the trip leader from the trip’s page.")}</p>
+<div class="actions"><a class="btn btn--secondary" href="{GITE_DROPTOUR}" rel="noopener">{tr("Programma completo su Droptour", "Ganzes Programm auf Droptour", "Full programme on Droptour")}</a><a class="btn btn--secondary" href="{GITE_ICS}">{tr("Calendario (iCal)", "Kalender (iCal)", "Calendar (iCal)")}</a><a class="btn btn--secondary" href="documenti.html">{tr("Scale di difficoltà", "Schwierigkeitsskalen (italienisch)", "Difficulty scales (in Italian)")}</a></div>
 </div>
 </div>
 </section>
-
-{subnav("Attività", "gite.html")}"""
-    return page("gite.html", "Programma gite | CAS Ticino",
-                "Il programma delle gite, dei corsi e degli eventi della Sezione Ticino del Club Alpino Svizzero, con le iscrizioni su Droptour.",
-                body, og="attivita/gite-2x1", section="Attività", scripts=f'<script src="{asset("assets/gite.js")}" defer></script>\n')
+{subnav("Attività", "gite.html") if it else ""}"""
+    return pubblica(nome, page(nome, f"{titolo} | CAS Ticino", tr(
+        "Il programma delle gite, dei corsi e degli eventi della Sezione Ticino del Club Alpino Svizzero, con le iscrizioni su Droptour.",
+        "Das Programm der Touren, Kurse und Anlässe der Sektion Ticino des Schweizer Alpen-Clubs, mit Anmeldung auf Droptour.",
+        "The programme of trips, courses and events of the Ticino Section of the Swiss Alpine Club, with registration on Droptour."),
+        body, og="attivita/gite-2x1", section="Attività" if it else None, scripts=f'<script src="{asset("assets/gite.js")}" defer></script>\n'))
 
 
 def gita_pagina():
     """Dettaglio di una gita: gita.html?id=<numero Droptour>, riempita da gite.js (dati in tempo reale da Droptour)."""
-    body = page_hero([("Attività", "index.html#attivita"), ("Programma gite", "gite.html"), ("Gita", None)], "Gita",
-                     "Caricamento della gita…").replace('class="display fit"', 'class="display display--gita fit"') + f"""
+    it = LINGUA["lang"] == "it"
+    nome = L("gita.html")
+    su = "" if it else "../"
+    programma = tr("Programma gite", "Tourenprogramm", "Trip programme")
+    gita = tr("Gita", "Tour", "Trip")
+    trail = ([("Attività", "index.html#attivita")] if it else []) + [(programma, L("gite.html")), (gita, None)]
+    body = page_hero(trail, gita, tr("Caricamento della gita…", "Tour wird geladen…", "Loading the trip…")
+                     ).replace('class="display fit"', 'class="display display--gita fit"') + f"""
 
-<section class="section" aria-label="Dettagli della gita">
+<section class="section" aria-label="{tr("Dettagli della gita", "Details der Tour", "Trip details")}">
 <div class="container detail gita-dettaglio" id="gita" data-api="{GITE_API}" data-dettaglio="{GITE_DETTAGLIO}"
- data-droptour="{GITE_DROPTOUR}" data-copia="{asset('data/gite.json')}">
-<aside class="gita-riepilogo" aria-label="La gita in breve" hidden>
+ data-droptour="{GITE_DROPTOUR}" data-copia="{su}{asset('data/gite.json')}" data-programma="{L('gite.html')}">
+<aside class="gita-riepilogo" aria-label="{tr("La gita in breve", "Die Tour in Kürze", "The trip at a glance")}" hidden>
 <p id="gita-stato"></p>
 <dl class="gita-chiave" id="gita-chiave"></dl>
 <div class="actions" id="gita-azioni"></div>
 </aside>
-<div id="gita-dati"><noscript><p>Per vedere la gita serve JavaScript: la trovi nel <a href="{GITE_DROPTOUR}">programma su Droptour</a>.</p></noscript></div>
+<div id="gita-dati"><noscript><p>{tr("Per vedere la gita serve JavaScript: la trovi nel", "Um die Tour zu sehen, braucht es JavaScript; Sie finden sie im", "JavaScript is needed to see the trip; you can find it in the")} <a href="{GITE_DROPTOUR}">{tr("programma su Droptour", "Programm auf Droptour", "programme on Droptour")}</a>.</p></noscript></div>
 </div>
 </section>
-
-{subnav("Attività", "gita.html")}"""
-    return page("gita.html", "Gita | CAS Ticino", "Dettagli di una gita della Sezione Ticino del CAS, con l’iscrizione su Droptour.",
-                body, og="attivita/gite-2x1", section="Attività", scripts=f'<script src="{asset("assets/gite.js")}" defer></script>\n')
+{subnav("Attività", "gita.html") if it else ""}"""
+    return pubblica(nome, page(nome, f"{gita} | CAS Ticino", tr(
+        "Dettagli di una gita della Sezione Ticino del CAS, con l’iscrizione su Droptour.",
+        "Details einer Tour der Sektion Ticino des SAC, mit Anmeldung auf Droptour.",
+        "Details of a trip of the Ticino Section of the SAC, with registration on Droptour."),
+        body, og="attivita/gite-2x1", section="Attività" if it else None, scripts=f'<script src="{asset("assets/gite.js")}" defer></script>\n'))
 
 
 def foto():
@@ -2413,7 +2465,7 @@ TRADOTTE = {
         sez_h="Seit 1886<br>zu Fuss unterwegs.",
         sez_lead="Gegründet in der Birraria Gambrinus in Bellinzona, im Jubiläumsjahr der Erstbesteigung des Mont Blanc, um die Berge des Kantons «zu besuchen, zu erforschen und bekannt zu machen».",
         sezione="Die Sektion", storia="Geschichte",
-        solo_it="<strong>Vieles gibt es nur auf Italienisch.</strong> Tourenprogramm, News, Kurse, Jugend- und Seniorengruppen, Fotos und Dokumente der Sektion sind nur auf Italienisch verfügbar.",
+        solo_it="<strong>Vieles gibt es nur auf Italienisch.</strong> News, Kurse, Jugend- und Seniorengruppen, Fotos und Dokumente der Sektion sind nur auf Italienisch verfügbar. Das Tourenprogramm gibt es auch auf Deutsch, die Touren selbst sind auf Italienisch beschrieben.",
         gite="Tourenprogramm", corsi="Kurse",
         capanne_h="Sechs Hütten, ein Tessin",
         capanne_lead="Immer offen, bewartet, wenn die Hüttenwarte da sind. Melden Sie sich vor dem Aufbruch beim Hüttenwart, um Anwesenheit und Verhältnisse am Berg zu prüfen.",
@@ -2490,7 +2542,7 @@ TRADOTTE = {
         sez_h="Since 1886,<br>on foot.",
         sez_lead="Founded at the Birraria Gambrinus in Bellinzona, in the centenary year of the first ascent of Mont Blanc, to “visit, study and make known” the mountains of the canton.",
         sezione="The Section", storia="History",
-        solo_it="<strong>Much is only in Italian.</strong> The trip programme, news, courses, youth and seniors groups, photos and documents of the section are only available in Italian.",
+        solo_it="<strong>Much is only in Italian.</strong> News, courses, youth and seniors groups, photos and documents of the section are only available in Italian. The trip programme is also in English, but the trips themselves are described in Italian.",
         gite="Trip programme", corsi="Courses",
         capanne_h="Six huts, one Ticino",
         capanne_lead="Always open, staffed when the hut keepers are there. Check with the hut keeper before you set out, to make sure they are there and to ask about conditions in the mountains.",
@@ -2574,7 +2626,10 @@ def home_tradotta():
 <div class="container">
 <h1 id="hero-h" class="display">{tx['hero_h']}</h1>
 <div class="hero-foot">
+<div class="hero-testo">
 <p class="lead">{tx['hero_lead']}</p>
+{social()}
+</div>
 <div class="actions">
 <a class="btn btn--primary" href="{lang}/adesione.html">{tx['diventa']} <span class="arrow" aria-hidden="true">→</span></a>
 <a class="btn btn--secondary" href="#capanne">{tx['le_capanne']}</a>
@@ -2603,12 +2658,12 @@ def home_tradotta():
 </div>
 <div class="callout" data-reveal>
 <p>{tx['solo_it']}</p>
-<div class="links"><a class="link" href="{GITE}">{tx['gite']}</a><a class="link" href="news.html">News</a><a class="link" href="corsi.html">{tx['corsi']}</a></div>
+<div class="links"><a class="link" href="{lang}/gite.html">{tx['gite']}</a><a class="link" href="news.html">News</a><a class="link" href="corsi.html">{tx['corsi']}</a></div>
 </div>
 </div>
 </section>
 
-<section class="section" id="capanne" aria-labelledby="capanne-h">
+<section class="section--surface" id="capanne" aria-labelledby="capanne-h">
 <div class="container">
 <div class="section-head">
 <h2 id="capanne-h" class="h2">{tx['capanne_h']}</h2>
@@ -2863,11 +2918,13 @@ def in_lingua_pagina(lang, fn):
     return genera
 
 
-# Versioni tradotte (de/, en/): La Sezione, le capanne con le loro sotto-pagine e Adesione.
+# Versioni tradotte (de/, en/): La Sezione, le capanne con le loro sotto-pagine, Adesione e il programma gite
+# (solo i testi della pagina: le gite restano in italiano).
 for _lang, _contenuti in (("de", CONTENUTI_DE), ("en", CONTENUTI_EN)):
     _pagine = {"index.html": home_tradotta, "introduzione.html": introduzione_tradotta, "comitato.html": comitato,
                "organizzazione.html": organizzazione, "capigita.html": capigita, "sede.html": sede_tradotta,
-               "storia.html": storia, "link.html": link, "adesione.html": adesione_tradotta}
+               "storia.html": storia, "link.html": link, "adesione.html": adesione_tradotta,
+               "gite.html": gite, "gita.html": gita_pagina}
     for _f in HUT_PAGES:
         _pagine[_f] = (lambda f: lambda: hut(f))(_f)
     for _f, _c in _contenuti.items():
@@ -2942,7 +2999,7 @@ if __name__ == "__main__":
     if not only or "404.html" in only:
         scrivi("404.html", pagina_404())
     # sempre, come cerca.json: cambia quando si aggiunge o toglie una pagina (es. una news)
-    scrivi("sitemap.xml", sitemap([p for p in pagine if p != "gita.html"] + ["cerca.html"]))  # gita.html vale solo con ?id=
+    scrivi("sitemap.xml", sitemap([p for p in pagine if not p.endswith("gita.html")] + ["cerca.html"]))  # gita.html vale solo con ?id=
     scrivi("robots.txt", f"User-agent: *\nDisallow: /admin/\n\nSitemap: {SITO}sitemap.xml\n")
     with open(os.path.join(ROOT, "data", "cerca.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(indice_ricerca(pagine), f, ensure_ascii=False, separators=(",", ":"))

@@ -108,10 +108,10 @@ HUT_DE = {
 
 # schede della home tedesca e delle «altre capanne»: stessi campi di HUTS in pages.py
 HUTS_DE = [
-    ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Bewartet", "Auf einer Terrasse über dem Val Piumogna, Ausgangspunkt für den Pizzo Campo Tencia, den höchsten ganz im Tessin gelegenen Gipfel.", "80 Plätze", "Dalpe 3 h", "capanne/campotencia-3x2", (987, 658), True),
-    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Bewartet", "Auf dem gleichnamigen Pass zwischen Leventina und Maggiatal. 2003 eröffnet, die erste moderne SAC-Hütte.", "100 Plätze", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
-    ("adula.html", "Adula", "2012", "Val Carassino", "Bewartet", "Die klassische Steinhütte hoch über dem Bleniotal: Geschichte, herzlicher Empfang und einheimische Küche.", "24 Plätze", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
-    ("motterascio.html", "Motterascio", "2172", "Greina", "Bewartet", "Am Rand der geschützten Greina-Ebene: Moore, Alpweiden und der grösste natürliche Felsbogen im Tessin.", "70 Plätze", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
+    ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Bewartet Juni–Okt.", "Auf einer Terrasse über dem Val Piumogna, Ausgangspunkt für den Pizzo Campo Tencia, den höchsten ganz im Tessin gelegenen Gipfel.", "80 Plätze", "Dalpe 3 h", "capanne/campotencia-3x2", (987, 658), True),
+    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Bewartet Juni–Okt.", "Auf dem gleichnamigen Pass zwischen Leventina und Maggiatal. 2003 eröffnet, die erste moderne SAC-Hütte.", "100 Plätze", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
+    ("adula.html", "Adula", "2012", "Val Carassino", "Bewartet Mai–Okt.", "Die klassische Steinhütte hoch über dem Bleniotal: Geschichte, herzlicher Empfang und einheimische Küche.", "24 Plätze", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
+    ("motterascio.html", "Motterascio", "2172", "Greina", "Bewartet Juni–Okt.", "Am Rand der geschützten Greina-Ebene: Moore, Alpweiden und der grösste natürliche Felsbogen im Tessin.", "70 Plätze", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
     ("montebar.html", "Monte Bar", "1602", "Alta Capriasca", "Ganzjährig", "Der Balkon über Lugano, 2016 neu gebaut: Blick vom Monte Rosa bis zu den Denti della Vecchia, Bike-Hotel-Standard.", "42 Plätze", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),
     ("baitadelluca.html", "Baita del Luca", "1070", "Denti della Vecchia", "Auf Reservation", "Oberhalb von Sonvico, am Fuss der Denti della Vecchia. Ideal für Familien und zum Klettern.", "16 Plätze, Selbstversorger", "Rosone 45 min", "capanne/baitadelluca-3x2", (1000, 667), False),
 ]
@@ -148,8 +148,6 @@ CONTENUTI_DE = {
 <li><strong>Reservation obligatorisch</strong>, online mit der Schaltfläche «Reservieren».</li>
 <li>Kostenlose Annullierung bis 18 Uhr <strong>zwei Tage vor</strong> dem reservierten Datum.</li>
 <li>Keine Reservationen oder Anfragen über soziale Medien: Rufen Sie uns bitte an.</li>
-<li>Bewartet von Mitte Juni bis Mitte Oktober. Im Winter ist die Hütte nicht bewartet, die Reservation ist aber obligatorisch; für grosse Gruppen kann sie nach Absprache mit den Hüttenwarten geöffnet werden.</li>
-<li>Winterraum immer offen, mit Getränken und Brennholz.</li>
 </ul>
 <p><a class="file-link" href="{CT_DOC}disposizioni-per-gli-ospiti.pdf">Hinweise für die Gäste</a></p>
 <p><a class="file-link" href="{CT_DOC}2020-cgc-capanne-cas-it.pdf">Allgemeine Geschäftsbedingungen der SAC-Hütten</a></p>""",
@@ -299,8 +297,7 @@ CONTENUTI_DE = {
     "cristallina.html": dict(
         cartella="cristallina",
         capanna="""<p>Die erste moderne Hütte des Schweizer Alpen-Clubs steht auf 2575 m auf dem Cristallinapass, in einem Gebiet, das im Sommer wie im Winter zum Wandern einlädt. Im Sommer ist sie Stützpunkt für die umliegenden Gipfel und für Übergänge ins Maggiatal, ins Val Formazza und ins Gotthardgebiet; im Winter bietet die schneereiche Gegend herrliche Abfahrten und Gipfelkombinationen.</p>
-<p>Sie hat 100 Schlafplätze in Kojen mit Duvets, in 6 Zimmern mit 4, 9 mit 8 und 2 Lagern mit 12 Plätzen, einen Panorama-Speisesaal mit Terrasse, Toiletten mit warmem Wasser im Haus, Dusche, Trocknungsraum und einen Schuhraum mit Hüttenschuhen. Der Hüttenschlafsack ist obligatorisch. Guter Swisscom-Empfang bei der Hütte.</p>
-<p>Die Hütte ist immer offen und zugänglich. Bewartet ist sie im Sommer, von Juni bis Mitte Oktober; im Winter, von Dezember bis Ende April, ist der Hüttenwart bei guten Verhältnissen, an Wochenenden, über die Feiertage und für Gruppen mit Reservation da.</p>""",
+<p>Sie hat 100 Schlafplätze in Kojen mit Duvets, in 6 Zimmern mit 4, 9 mit 8 und 2 Lagern mit 12 Plätzen, einen Panorama-Speisesaal mit Terrasse, Toiletten mit warmem Wasser im Haus, Dusche, Trocknungsraum und einen Schuhraum mit Hüttenschuhen. Der Hüttenschlafsack ist obligatorisch. Guter Swisscom-Empfang bei der Hütte.</p>""",
         cucina="""<p>Tagsüber einfache Gerichte für alle: Gnocchi, Ravioli, Wähen, Wurstwaren, Desserts und vieles mehr, alles in der Hütte mit lokalen Schweizer Produkten zubereitet. Für die Halbpension wechseln die Menüs je nach Wochentag, auch mit Blick auf Vegetarier. Dazu eine gute Auswahl an Weinen und Bränden.</p>
 <p><strong>Wichtig:</strong> Teilen Sie uns rechtzeitig mit, wenn Sie vegetarisch oder vegan essen oder Allergien und Unverträglichkeiten haben: Wir bereiten Ihnen gerne ein passendes Menü zu.</p>
 <p>Die Zimmer werden nach Eingang der Reservation und Grösse der Gruppe zugeteilt; Zimmer können nicht exklusiv reserviert werden. Wenn die Hütte bewartet ist, ist die Halbpension obligatorisch.</p>
@@ -411,7 +408,7 @@ CONTENUTI_DE = {
         cartella="adula",
         capanna="""<p>Die «Bassa», wie sie seit jeher heisst, wurde 1924 eingeweiht und hat alle Merkmale des ursprünglichen Baus aus Stein und Holz bewahrt: eine Stube voller Geschichte, Schlafräume, in denen Tausende von Bergsteigern übernachtet haben, herzlicher Empfang und eine einheimische Küche, die Magen und Seele füllt.</p>
 <p>Sie hat 24 Schlafplätze in vier kleinen Lagern mit 4, 5 und 7 Plätzen, auch für Familien geeignet, und zwei Doppelzimmer mit Aufpreis; zwei gemütliche Gaststuben mit 20 Plätzen, Toiletten im Haus, Dusche, Solarstrom für die Beleuchtung und Küche mit Holz und Gas. Die Betten haben Duvets; der Hüttenschlafsack ist obligatorisch. Mässiger Handyempfang bei der Hütte.</p>
-<p>Die Hütte ist ganzjährig offen und von Ende Mai bis Mitte Oktober bewartet; der Winterraum ist immer offen, mit Getränken und Brennholz.</p>""",
+<p>Der Winterraum ist immer offen, mit Getränken und Brennholz.</p>""",
         cucina="""<p>Die Panoramaterrasse lädt zum Essen im Freien ein. Jeden Tag kochen wir mit Produkten aus der Region: Tessiner Gerichte, Käse und Formaggini, Pasta mit Sauce, Suppe, Minestrone und unsere Rösti in verschiedenen Varianten, dazu immer mehrere Kuchen.</p>
 <p>Für Übernachtungsgäste gibt es abends Gerichte und Spezialitäten mit saisonalen Produkten, und ein reichhaltiges Frühstück gibt Kraft für neue Abenteuer.</p>
 <p><strong>Wichtig:</strong> Teilen Sie uns rechtzeitig mit, wenn Sie vegetarisch oder vegan essen oder Allergien und Unverträglichkeiten haben.</p>
@@ -539,7 +536,7 @@ CONTENUTI_DE = {
         cartella="motterascio",
         capanna="""<p>Mitten in einem Netz von Wegen zwischen einigen der schönsten Orte der Südschweiz steht die Capanna Michela Motterascio auf 2172 m auf der Alpe Motterascio, am Südrand der Greina-Hochebene, im Einklang von Holz, Kupfer und Stein. Unter den Gipfeln von Piz Terri, Pizzo Coroi, Piz Vial, Gaglianera und Piz Valdraus verbringt man Tage voller Wanderungen, Stille und Erholung. Man muss kein erfahrener Bergsteiger sein: Neugier, Begeisterung und etwas Energie genügen.</p>
 <p>Die Hütte ist geräumig: 70 Schlafplätze mit Duvets, ein Panorama-Speisesaal mit 55 Plätzen und Fensterfront zu den Alpen, eine «romantische» Stube mit 20 Plätzen, getrennte Toiletten für Frauen und Männer im Haus, eine Dusche, wenn das Quellwasser reicht, Trocknungsraum und Hüttenschuhe beim Eingang, auch für die Kleinen. Das Wasser ist trinkbares Quellwasser; der Strom kommt von der Photovoltaik, mit einem Generator als Reserve. Der Hüttenschlafsack ist obligatorisch, auch zum Mieten. Kein Handyempfang.</p>
-<p><strong>Winterraum:</strong> offen, wenn die Hütte nicht bewartet ist, von Mitte Oktober bis Ende Mai, mit 10 Schlafplätzen mit Duvets, Getränken, Brennholz und dem Nötigsten (Salz, Zucker, Pulverkaffee). Essen bitte selber mitbringen; Wasser ist nicht garantiert (Brunnen auf der Terrasse, wenn nicht gefroren), und es gibt keine Wintertoilette. Die Reservation ist obligatorisch, online; die Bestätigung enthält alle Informationen.</p>""",
+<p><strong>Winterraum:</strong> 10 Schlafplätze mit Duvets, Getränken, Brennholz und dem Nötigsten (Salz, Zucker, Pulverkaffee). Essen bitte selber mitbringen; Wasser ist nicht garantiert (Brunnen auf der Terrasse, wenn nicht gefroren), und es gibt keine Wintertoilette. Die Reservation ist obligatorisch, online; die Bestätigung enthält alle Informationen.</p>""",
         cucina="""<p>Mittags laden die Sonnenterrasse und die schöne Stube zu einfachen, regionalen Gerichten ein, warm und kalt, mit atemberaubender Aussicht, dazu das Buffet mit hausgemachten Kuchen. Das Abendessen gibt es um 19 Uhr, je nach Angebot und Einfall des Kochs; danach ein reichhaltiges Frühstück für den nächsten Tag. Gekocht wird vor allem auf dem Holzherd und mit Gas.</p>
 <p><strong>Wichtig:</strong> Teilen Sie uns rechtzeitig mit, wenn Sie vegetarisch oder vegan essen oder Allergien und Unverträglichkeiten haben.</p>
 <p>Für Kinder gibt es Spiele, Bücher, Papier und Farbstifte; am Weg sieht man mit etwas Glück Murmeltiere. Hunde sind willkommen, dürfen aber nicht in die Hütte: Für die Nacht steht der geschützte, trockene Holzschopf mit Decke und Näpfen bereit. Bitte vorher melden.</p>
@@ -788,7 +785,7 @@ CONTENUTI_DE = {
         cartella="baitadelluca",
         capanna_titolo="Die Baita",
         capanna="""<p>Die Baita hat 16 Schlafplätze in zwei Räumen mit 4 und 12 Plätzen, eine Stube mit Gasküche und Cheminée, warmes Wasser und Dusche; das Licht kommt von Solarzellen. Geschirr und Pfannen sind vorhanden, Getränke gibt es in beschränkter Menge. Mässiger Empfang, kein WLAN und kein Telefon.</p>
-<p>Sie ist ganzjährig offen, aber nicht bewartet: Die Tür ist abgeschlossen, den Code erhalten Sie von der Verantwortlichen. Schnell und einfach erreichbar, wird sie auch für Kurse, Ausbildungstage oder einfach für ein gemeinsames Abendessen genutzt.</p>""",
+<p>Sie ist nicht bewartet: Die Tür ist abgeschlossen, den Code erhalten Sie von der Verantwortlichen. Schnell und einfach erreichbar, wird sie auch für Kurse, Ausbildungstage oder einfach für ein gemeinsames Abendessen genutzt.</p>""",
         tariffe=[
             ("Mitglieder SAC/FAT/CAI/DAV", "Übernachtung, Taxen inbegriffen",
              [("Erwachsene ab 22 Jahren", "Fr. 15.–"), ("Jugendliche von 6 bis 21 Jahren, Bergführer-Aspiranten und SAC-Tourenleiter", "Fr. 8.–"),

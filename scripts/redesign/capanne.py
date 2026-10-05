@@ -46,8 +46,6 @@ CONTENUTI = {
 <li><strong>Riservazione obbligatoria</strong>, online con il pulsante «Prenota».</li>
 <li>Disdette senza costi entro le 18.00 di <strong>due giorni prima</strong> della data riservata.</li>
 <li>Non si accettano riservazioni o richieste tramite social media: per informazioni chiamateci.</li>
-<li>Capanna custodita da metà giugno a metà ottobre. D’inverno non è custodita, ma la riservazione è obbligatoria; per gruppi numerosi si può aprire d’accordo con i guardiani.</li>
-<li>Locale invernale sempre aperto, con bibite e legna a disposizione.</li>
 </ul>
 <p><a class="file-link" href="{CT_DOC}disposizioni-per-gli-ospiti.pdf">Disposizioni per gli ospiti</a></p>
 <p><a class="file-link" href="{CT_DOC}2020-cgc-capanne-cas-it.pdf">Condizioni generali delle capanne CAS</a></p>""",
@@ -197,8 +195,7 @@ CONTENUTI = {
     "cristallina.html": dict(
         cartella="cristallina",
         capanna="""<p>La prima capanna moderna del Club Alpino Svizzero sorge a 2575 m sul Passo Cristallina, in una zona molto bella per l’escursionismo estivo e invernale. D’estate è il punto d’appoggio per le cime vicine e per le traversate verso la Valle Maggia, la Val Formazza e il Gottardo; d’inverno la regione, ricca di neve, offre splendide discese e concatenamenti di vette.</p>
-<p>Ha 100 posti letto in cuccette con piumone, in 6 camere da 4, 9 da 8 e 2 dormitori da 12, un refettorio panoramico con terrazza, servizi interni con acqua calda, doccia, locale essiccatoio e locale scarponi con ciabatte per gli ospiti. Il sacco lenzuolo è obbligatorio. Buona ricezione Swisscom vicino alla capanna.</p>
-<p>La capanna è sempre aperta e accessibile. È custodita d’estate, da giugno a metà ottobre; d’inverno, da dicembre a fine aprile, il guardiano c’è con buone condizioni, nei fine settimana, durante le feste e per i gruppi che hanno riservato.</p>""",
+<p>Ha 100 posti letto in cuccette con piumone, in 6 camere da 4, 9 da 8 e 2 dormitori da 12, un refettorio panoramico con terrazza, servizi interni con acqua calda, doccia, locale essiccatoio e locale scarponi con ciabatte per gli ospiti. Il sacco lenzuolo è obbligatorio. Buona ricezione Swisscom vicino alla capanna.</p>""",
         cucina="""<p>Durante il giorno ricette semplici alla portata di tutti: gnocchi, ravioli, torte salate, salumi, dolci e tanto altro, tutto fatto in capanna con prodotti locali di origine svizzera. Per la mezza pensione i menu cambiano secondo il giorno della settimana, pensando anche ai vegetariani. Vi aspetta inoltre una buona scelta di vini e distillati.</p>
 <p><strong>Importante:</strong> avvisateci in tempo se siete vegetariani o vegani, o se avete allergie o intolleranze: cercheremo di prepararvi un menu adatto.</p>
 <p>Le camere si assegnano secondo l’ordine delle riservazioni e la grandezza dei gruppi; non si possono riservare camere a uso esclusivo. Quando la capanna è custodita la mezza pensione è obbligatoria.</p>
@@ -310,7 +307,7 @@ CONTENUTI = {
         cartella="adula",
         capanna="""<p>La «Bassa», come la si chiama da sempre, è stata inaugurata nel 1924 e ha conservato tutte le caratteristiche dell’edificio originale in pietra e legno: un soggiorno che trasuda storia, dormitori che hanno visto passare migliaia di alpinisti, accoglienza calorosa e una cucina nostrana che riempie lo stomaco e lo spirito.</p>
 <p>Ha 24 posti letto in quattro piccoli dormitori da 4, 5 e 7 posti, adatti anche alle famiglie, e due stanzette matrimoniali con sovrapprezzo; due refettori accoglienti da 20 posti, servizi interni, doccia, pannelli solari per l’illuminazione e cucina a legna e a gas. I letti hanno piumoni; il sacco lenzuolo è obbligatorio. Ricezione discreta vicino alla capanna.</p>
-<p>È aperta tutto l’anno e custodita da fine maggio a metà ottobre; il locale invernale è sempre aperto, con bibite e legna.</p>""",
+<p>Il locale invernale è sempre aperto, con bibite e legna.</p>""",
         cucina="""<p>La terrazza panoramica invita a mangiare all’aperto. Ogni giorno cuciniamo con prodotti locali: piatti ticinesi, formaggi e formaggini, pasta al sugo, zuppa, minestrone e i nostri rösti conditi in vari modi, oltre a diverse torte sempre pronte.</p>
 <p>A chi pernotta la cena propone piatti e specialità secondo i prodotti di stagione, e una ricca colazione dà la forza per nuove avventure.</p>
 <p><strong>Importante:</strong> avvisateci in tempo se siete vegetariani o vegani, o se avete allergie o intolleranze.</p>
@@ -437,7 +434,7 @@ CONTENUTI = {
         cartella="motterascio",
         capanna="""<p>Al centro di una costellazione di sentieri tra alcuni dei luoghi più belli della Svizzera meridionale, la Capanna Michela Motterascio sorge a 2172 m sull’Alpe Motterascio, al margine sud dell’altopiano della Greina, in un’armonia di legno, rame e sasso. Sotto i pizzi Terri, Coroi, Vial, Gaglianera e Valdraus si passano giornate tra passeggiate, silenzi e relax. Non serve essere alpinisti esperti: bastano curiosità, passione e un po’ di energia.</p>
 <p>La capanna è ampia: 70 posti letto con piumoni, un refettorio panoramico da 55 posti con vetrata sulle Alpi, un refettorio «romantico» da 20, servizi interni separati per donne e uomini, doccia quando l’acqua di sorgente basta, locale essiccatoio e ciabatte all’ingresso, anche per i più piccoli. L’acqua è di sorgente, potabile; l’elettricità viene dal fotovoltaico, con un generatore di riserva. Il sacco lenzuolo è obbligatorio, anche a noleggio. Non c’è ricezione telefonica.</p>
-<p><strong>Locale invernale:</strong> aperto quando la capanna non è custodita, da metà ottobre a fine maggio, con 10 posti letto con piumoni, bevande, legna e beni di prima necessità (sale, zucchero, caffè in polvere). Il cibo va portato; l’acqua non è garantita (fontana sulla terrazza, se non è ghiacciata) e non c’è WC invernale. La riservazione è obbligatoria, online; la conferma contiene tutte le informazioni.</p>""",
+<p><strong>Locale invernale:</strong> 10 posti letto con piumoni, bevande, legna e beni di prima necessità (sale, zucchero, caffè in polvere). Il cibo va portato; l’acqua non è garantita (fontana sulla terrazza, se non è ghiacciata) e non c’è WC invernale. La riservazione è obbligatoria, online; la conferma contiene tutte le informazioni.</p>""",
         cucina="""<p>A pranzo la terrazza al sole e il bel refettorio invitano a gustare piatti semplici e locali, caldi e freddi, con un panorama mozzafiato, e il buffet delle torte fatte in casa. La cena è alle 19.00, con piatti secondo la disponibilità e l’estro dello chef; poi una ricca colazione per ripartire. Si cucina soprattutto con la stufa a legna e i fornelli a gas.</p>
 <p><strong>Importante:</strong> avvisateci in tempo se siete vegetariani o vegani, o se avete allergie o intolleranze.</p>
 <p>Per i bambini ci sono giochi, libri, carta e matite; lungo il sentiero, con un po’ di fortuna, si vedono le marmotte. I cani sono benvenuti ma non entrano in capanna: per la notte c’è la legnaia, riparata e asciutta, con coperta e ciotole. Avvisateci prima.</p>
@@ -686,7 +683,7 @@ CONTENUTI = {
     "baitadelluca.html": dict(
         cartella="baitadelluca",
         capanna="""<p>La baita ha 16 posti letto in due camere da 4 e da 12, un refettorio con cucina a gas e camino a legna, acqua calda e doccia; l’illuminazione è a pannelli solari. Piatti e pentole sono a disposizione e ci sono bibite in quantità limitata. Ricezione discreta, niente wi-fi e niente telefono.</p>
-<p>È aperta tutto l’anno ma non è custodita: la porta è chiusa e il codice per entrare si chiede alla responsabile. Facile e veloce da raggiungere, è usata anche per corsi, giornate di formazione o semplicemente per una cena in compagnia.</p>""",
+<p>Non è custodita: la porta è chiusa e il codice per entrare si chiede alla responsabile. Facile e veloce da raggiungere, è usata anche per corsi, giornate di formazione o semplicemente per una cena in compagnia.</p>""",
         tariffe=[
             ("Soci CAS/FAT/CAI/DAV", "Pernottamento, tasse incluse",
              [("Adulti dai 22 anni", "Fr. 15.–"), ("Giovani da 6 a 21 anni, aspiranti guida e capigita CAS", "Fr. 8.–"),

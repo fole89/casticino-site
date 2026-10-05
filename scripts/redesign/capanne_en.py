@@ -109,10 +109,10 @@ HUT_EN = {
 
 # schede della home inglese e delle «altre capanne»: stessi campi di HUTS in pages.py
 HUTS_EN = [
-    ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Staffed", "On a terrace above Val Piumogna, the base for Pizzo Campo Tencia, the highest peak lying entirely in Ticino.", "80 beds", "Dalpe 3 h", "capanne/campotencia-3x2", (987, 658), True),
-    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Staffed", "On the pass of the same name between Leventina and Valle Maggia. Opened in 2003, the first modern SAC hut.", "100 beds", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
-    ("adula.html", "Adula", "2012", "Val Carassino", "Staffed", "The classic stone hut high above Valle di Blenio: history, a warm welcome and local cooking.", "24 beds", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
-    ("motterascio.html", "Motterascio", "2172", "Greina", "Staffed", "On the edge of the protected Greina plateau: peat bogs, alpine pastures and the largest natural rock arch in Ticino.", "70 beds", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
+    ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Staffed Jun–Oct", "On a terrace above Val Piumogna, the base for Pizzo Campo Tencia, the highest peak lying entirely in Ticino.", "80 beds", "Dalpe 3 h", "capanne/campotencia-3x2", (987, 658), True),
+    ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Staffed Jun–Oct", "On the pass of the same name between Leventina and Valle Maggia. Opened in 2003, the first modern SAC hut.", "100 beds", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),
+    ("adula.html", "Adula", "2012", "Val Carassino", "Staffed May–Oct", "The classic stone hut high above Valle di Blenio: history, a warm welcome and local cooking.", "24 beds", "Compietto 2 h 40", "capanne/adula-3x2", (1000, 667), False),
+    ("motterascio.html", "Motterascio", "2172", "Greina", "Staffed Jun–Oct", "On the edge of the protected Greina plateau: peat bogs, alpine pastures and the largest natural rock arch in Ticino.", "70 beds", "Garzott 2 h", "capanne/motterascio-3x2", (974, 649), False),
     ("montebar.html", "Monte Bar", "1602", "Alta Capriasca", "All year", "The balcony above Lugano, rebuilt in 2016: views from Monte Rosa to the Denti della Vecchia, Bike Hotel standard.", "42 beds", "Corticiasca 1 h 30", "capanne/montebar-3x2", (663, 442), False),
     ("baitadelluca.html", "Baita del Luca", "1070", "Denti della Vecchia", "On booking", "Above Sonvico, at the foot of the Denti della Vecchia. Ideal for families and climbing.", "16 beds, self-catering", "Rosone 45 min", "capanne/baitadelluca-3x2", (1000, 667), False),
 ]
@@ -149,8 +149,6 @@ CONTENUTI_EN = {
 <li><strong>Booking is compulsory</strong>, online with the “Book” button.</li>
 <li>Free cancellation until 6 pm <strong>two days before</strong> the booked date.</li>
 <li>No bookings or enquiries via social media: please phone us.</li>
-<li>Staffed from mid-June to mid-October. In winter the hut is not staffed, but booking is required; for large groups it can be opened by arrangement with the keepers.</li>
-<li>Winter room always open, with drinks and firewood.</li>
 </ul>
 <p><a class="file-link" href="{CT_DOC}disposizioni-per-gli-ospiti.pdf">Information for guests</a></p>
 <p><a class="file-link" href="{CT_DOC}2020-cgc-capanne-cas-it.pdf">General terms and conditions of SAC huts</a></p>""",
@@ -300,8 +298,7 @@ CONTENUTI_EN = {
     "cristallina.html": dict(
         cartella="cristallina",
         capanna="""<p>The first modern hut of the Swiss Alpine Club stands at 2575 m on the Cristallina Pass, in an area that invites you to explore in summer and winter alike. In summer it is a base for the surrounding peaks and for traverses into Valle Maggia, Val Formazza and the Gotthard area; in winter the snowy surroundings offer superb descents and combinations of summits.</p>
-<p>It has 100 beds in bunks with duvets, in 6 rooms of 4, 9 of 8 and 2 dormitories of 12, a panoramic dining room with terrace, indoor toilets with hot water, a shower, a drying room and a boot room with hut slippers. A sleeping-bag liner is compulsory. Good Swisscom reception at the hut.</p>
-<p>The hut is always open and accessible. It is staffed in summer, from June to mid-October; in winter, from December to the end of April, the hut keeper is there in good conditions, at weekends, over the holidays and for groups on booking.</p>""",
+<p>It has 100 beds in bunks with duvets, in 6 rooms of 4, 9 of 8 and 2 dormitories of 12, a panoramic dining room with terrace, indoor toilets with hot water, a shower, a drying room and a boot room with hut slippers. A sleeping-bag liner is compulsory. Good Swisscom reception at the hut.</p>""",
         cucina="""<p>During the day, simple dishes for everyone: gnocchi, ravioli, savoury tarts, cured meats, desserts and much more, all made at the hut with local Swiss produce. For half board the menus change with the day of the week, with vegetarians in mind too. Plus a good choice of wines and spirits.</p>
 <p><strong>Important:</strong> let us know in good time if you are vegetarian or vegan or have allergies or intolerances: we will gladly prepare a suitable menu.</p>
 <p>Rooms are allocated according to when bookings arrive and the size of the group; rooms cannot be booked exclusively. When the hut is staffed, half board is compulsory.</p>
@@ -412,7 +409,7 @@ CONTENUTI_EN = {
         cartella="adula",
         capanna="""<p>The “Bassa”, as it has always been known, was inaugurated in 1924 and has kept all the features of the original building in stone and wood: a common room full of history, dormitories where thousands of climbers have slept, a warm welcome and local cooking that fills both stomach and soul.</p>
 <p>It has 24 beds in four small dormitories of 4, 5 and 7 places, also suitable for families, and two double rooms at extra cost; two cosy dining rooms with 20 places, indoor toilets, a shower, solar power for the lighting and a kitchen running on wood and gas. The beds have duvets; a sleeping-bag liner is compulsory. Moderate mobile reception at the hut.</p>
-<p>The hut is open all year round and staffed from the end of May to mid-October; the winter room is always open, with drinks and firewood.</p>""",
+<p>The winter room is always open, with drinks and firewood.</p>""",
         cucina="""<p>The panoramic terrace invites you to eat outdoors. Every day we cook with produce from the region: Ticino dishes, cheeses and formaggini, pasta with sauce, soup, minestrone and our rösti in various versions, and always several cakes.</p>
 <p>For overnight guests there are dishes and specialities with seasonal produce in the evening, and a generous breakfast gives you strength for new adventures.</p>
 <p><strong>Important:</strong> let us know in good time if you are vegetarian or vegan or have allergies or intolerances.</p>
@@ -540,7 +537,7 @@ CONTENUTI_EN = {
         cartella="motterascio",
         capanna="""<p>In the middle of a network of paths between some of the most beautiful places in southern Switzerland, Capanna Michela Motterascio stands at 2172 m on Alpe Motterascio, on the southern edge of the Greina plateau, in harmony with wood, copper and stone. Below the peaks of Piz Terri, Pizzo Coroi, Piz Vial, Gaglianera and Piz Valdraus you spend days full of walks, silence and rest. You don’t need to be an experienced climber: curiosity, enthusiasm and a little energy are enough.</p>
 <p>The hut is spacious: 70 beds with duvets, a panoramic dining room with 55 places and a wall of windows onto the Alps, a “romantic” common room with 20 places, separate indoor toilets for women and men, a shower when the spring water is sufficient, a drying room and hut slippers at the entrance, for the little ones too. The water is drinkable spring water; electricity comes from photovoltaics, with a generator as back-up. A sleeping-bag liner is compulsory and can also be hired. No mobile reception.</p>
-<p><strong>Winter room:</strong> open when the hut is not staffed, from mid-October to the end of May, with 10 beds with duvets, drinks, firewood and the basics (salt, sugar, instant coffee). Please bring your own food; water is not guaranteed (fountain on the terrace, if not frozen), and there is no winter toilet. Booking is compulsory, online; the confirmation contains all the information.</p>""",
+<p><strong>Winter room:</strong> 10 beds with duvets, drinks, firewood and the basics (salt, sugar, instant coffee). Please bring your own food; water is not guaranteed (fountain on the terrace, if not frozen), and there is no winter toilet. Booking is compulsory, online; the confirmation contains all the information.</p>""",
         cucina="""<p>At lunchtime the sunny terrace and the lovely common room invite you to simple regional dishes, hot and cold, with a breathtaking view, plus the buffet of homemade cakes. Dinner is at 7 pm, depending on what is available and the cook’s inspiration; then a generous breakfast for the next day. Cooking is done mainly on the wood stove and with gas.</p>
 <p><strong>Important:</strong> let us know in good time if you are vegetarian or vegan or have allergies or intolerances.</p>
 <p>For children there are games, books, paper and coloured pencils; along the path, with a bit of luck, you will see marmots. Dogs are welcome but may not enter the hut: for the night the sheltered, dry woodshed is ready with a blanket and bowls. Please let us know in advance.</p>
@@ -789,7 +786,7 @@ CONTENUTI_EN = {
         cartella="baitadelluca",
         capanna_titolo="The baita",
         capanna="""<p>The baita has 16 beds in two rooms of 4 and 12 places, a common room with a gas kitchen and fireplace, hot water and a shower; the light comes from solar panels. Crockery and pans are provided, and drinks are available in limited quantities. Moderate reception, no Wi-Fi and no telephone.</p>
-<p>It is open all year round but not staffed: the door is locked and you receive the code from the manager. Quick and easy to reach, it is also used for courses, training days or simply for a dinner together.</p>""",
+<p>It is not staffed: the door is locked and you receive the code from the manager. Quick and easy to reach, it is also used for courses, training days or simply for a dinner together.</p>""",
         tariffe=[
             ("Members of SAC/FAT/CAI/DAV", "Overnight stay, taxes included",
              [("Adults from 22", "CHF 15.–"), ("Young people aged 6 to 21, aspiring mountain guides and SAC trip leaders", "CHF 8.–"),

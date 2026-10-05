@@ -61,6 +61,15 @@
   if (document.fonts) document.fonts.ready.then(fit);
 })();
 
+// CAS Ticino - cambio di lingua: la stessa pagina nell'altra lingua tiene i parametri dell'indirizzo
+// (gita.html?id=…, gite.html?gruppo=…); prima del menu mobile, che copia questi link.
+(function () {
+  if (!location.search) return;
+  Array.prototype.forEach.call(document.querySelectorAll('.nav-lang'), function (a) {
+    if (!/index\.html$/.test(a.getAttribute('href'))) a.href = a.getAttribute('href') + location.search;
+  });
+})();
+
 // CAS Ticino - menu mobile (costruito a partire dal menu desktop)
 (function () {
   var btn = document.querySelector('.menu-toggle');

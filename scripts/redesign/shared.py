@@ -20,7 +20,7 @@ GITE = "gite.html"  # programma gite nel sito (copia aggiornata da Droptour)
 SITO = "https://fole89.github.io/casticino-site/"
 
 MENU = [
-    ("La Sezione", "index.html#sezione", [
+    ("La Sezione", "introduzione.html", [
         ("Introduzione", "introduzione.html"), ("Comitato", "comitato.html"),
         ("Organizzazione", "organizzazione.html"), ("Capigita", "capigita.html"), ("Sede e recapiti", "sede.html"),
         ("Storia", "storia.html"), ("Link utili", "link.html")]),
@@ -187,7 +187,7 @@ def nav(current_page, current_section=None):
 {lingue}
 </div>
 <a class="nav-search" href="cerca.html" aria-label="{t('cerca')}" title="{t('cerca')}"{' aria-current="page"' if current_page == "cerca.html" else ""}><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="m13 13 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a>
-<a class="btn btn--primary" href="{GITE}"{' aria-current="page"' if current_page == "gite.html" else ""}>{t('gite')}</a>
+<a class="btn btn--primary" href="{L(GITE)}"{' aria-current="page"' if current_page == L(GITE) else ""}>{t('gite')}</a>
 <button class="menu-toggle" type="button" aria-label="{t('menu_apri')}" data-chiudi="{t('menu_chiudi')}" data-titolo="{t('menu')}"><span class="burger" aria-hidden="true"></span></button>
 </div>
 </nav>
@@ -322,7 +322,7 @@ def in_sottocartella(page_html, su="../"):
 
     def fix(url):
         url = url.strip()
-        if not url or url.startswith(("http:", "https:", "mailto:", "tel:", "#", "/", "data:", "../")):
+        if not url or url.startswith(("http:", "https:", "mailto:", "tel:", "webcal:", "#", "/", "data:", "../")):
             return url
         return su + url
 

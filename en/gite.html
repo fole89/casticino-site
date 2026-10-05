@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trip programme | CAS Ticino</title>
+<meta name="description" content="The programme of trips, courses and events of the Ticino Section of the Swiss Alpine Club, with registration on Droptour.">
+<meta property="og:title" content="Trip programme | CAS Ticino">
+<meta property="og:description" content="The programme of trips, courses and events of the Ticino Section of the Swiss Alpine Club, with registration on Droptour.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="../assets/logo-cas.webp">
+<link rel="preload" href="../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/site.css?v=e122f772">
+<script>document.documentElement.classList.add('js')</script>
+<meta property="og:image" content="https://fole89.github.io/casticino-site/assets/img/attivita/gite-2x1.webp">
+<link rel="canonical" href="https://fole89.github.io/casticino-site/en/gite">
+<meta property="og:url" content="https://fole89.github.io/casticino-site/en/gite">
+<link rel="alternate" hreflang="it" href="https://fole89.github.io/casticino-site/gite">
+<link rel="alternate" hreflang="de" href="https://fole89.github.io/casticino-site/de/gite">
+<link rel="alternate" hreflang="en" href="https://fole89.github.io/casticino-site/en/gite">
+<link rel="alternate" hreflang="x-default" href="https://fole89.github.io/casticino-site/gite">
+</head>
+<body>
+<a class="skip-link" href="#contenuto">Skip to content</a>
+<header class="site-nav">
+<nav aria-label="Main" class="container nav-inner">
+<a class="brand" href="../en/index.html">
+<img class="brand-logo" src="../assets/logo-cas-stemma.webp" alt="" width="37" height="44">
+<span class="brand-text"><strong>CAS Ticino</strong><span>Swiss Alpine Club</span></span>
+</a>
+<div class="nav-links hide-sm">
+<div class="dd">
+<a class="navlink dd-trigger" href="../en/introduzione.html" aria-haspopup="true">The Section <span class="caret" aria-hidden="true"></span></a>
+<div class="dd-menu">
+<a href="../en/introduzione.html">Introduction</a>
+<a href="../en/comitato.html">Committee</a>
+<a href="../en/organizzazione.html">Organisation</a>
+<a href="../en/capigita.html">Trip leaders</a>
+<a href="../en/sede.html">Office and contacts</a>
+<a href="../en/storia.html">History</a>
+<a href="../en/link.html">Useful links</a>
+</div>
+</div>
+<div class="dd">
+<a class="navlink dd-trigger" href="../en/index.html#capanne" aria-haspopup="true">Huts <span class="caret" aria-hidden="true"></span></a>
+<div class="dd-menu">
+<a href="../en/campotencia.html">Campo Tencia</a>
+<a href="../en/cristallina.html">Cristallina</a>
+<a href="../en/adula.html">Adula</a>
+<a href="../en/motterascio.html">Motterascio</a>
+<a href="../en/montebar.html">Monte Bar</a>
+<a href="../en/baitadelluca.html">Baita del Luca</a>
+</div>
+</div>
+<a class="navlink" href="../en/adesione.html">Membership</a>
+</div>
+<div class="nav-end">
+<div class="nav-langs">
+<a class="nav-lang" href="../gite.html" hreflang="it" lang="it" title="Italiano">IT</a>
+<a class="nav-lang" href="../de/gite.html" hreflang="de" lang="de" title="Deutsch">DE</a>
+</div>
+<a class="nav-search" href="../cerca.html" aria-label="Search (in Italian)" title="Search (in Italian)"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="m13 13 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a>
+<a class="btn btn--primary" href="../en/gite.html" aria-current="page">Trip programme</a>
+<button class="menu-toggle" type="button" aria-label="Open menu" data-chiudi="Close menu" data-titolo="Menu"><span class="burger" aria-hidden="true"></span></button>
+</div>
+</nav>
+</header>
+<main id="contenuto">
+
+<section class="page-hero" aria-labelledby="page-h">
+<div class="container">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../en/index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Trip programme</span></nav>
+<h1 id="page-h" class="display fit">Trip programme</h1>
+<p class="lead">Trips, courses and events of the section, updated live from the Droptour portal, where you register. Trip titles and descriptions are in Italian.</p>
+
+</div>
+</section>
+
+<section class="section" aria-label="List of trips">
+<div class="container">
+<div class="gite-filtri" id="gite-filtri" hidden>
+<div class="filtro" role="group" aria-label="Filter by group" data-campo="gruppi"></div>
+<div class="filtro" role="group" aria-label="Filter by type" data-campo="tipo"></div>
+<div class="filtri-tendina">
+<label><span class="label">Group</span><select data-campo="gruppi"></select></label>
+<label><span class="label">Type</span><select data-campo="tipo"></select></label>
+</div>
+</div>
+<p class="small filtro-stato" id="gite-stato" aria-live="polite"></p>
+<div class="gite" id="gite" data-api="https://ssl.dropnet.ch/casticino/dropnetapps/tours/api/?action=command&command=getItems&limit=500&language=it" data-copia="../data/gite.json?v=130922f1">
+<section class="gite-mese" aria-labelledby="mese-2026-10">
+<h2 id="mese-2026-10" class="h3">October 2026</h2>
+<div class="gite-righe">
+<article class="gita" id="gita-2088" data-fine="2026-10-06" data-gruppi="Soccorso" data-tipo="SOC">
+<p class="gita-data"><span class="gita-giorno num">6</span><span class="gita-sotto">Tue</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Soccorso · Mountain rescue</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2088" lang="it">Colonna di soccorso - Primo martedì del mese</a></h3>
+<p class="gita-meta"><span>Leaders: Simon Vanoncini, Matteo Umiker</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato">No online registration</span>
+<span class="gita-nota">Registration: www.soccorsoalpino-ti.ch</span>
+<a class="link gita-link" href="../en/gita.html?id=2088">Details</a>
+</div>
+</article>
+<article class="gita" id="gita-2171" data-fine="2026-10-11" data-gruppi="Attivi" data-tipo="EVE">
+<p class="gita-data"><span class="gita-giorno num">10–11</span><span class="gita-sotto">Sat–Sun</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Evento · Active members</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2171" lang="it">Capanne - Chiusura capanne</a></h3>
+<p class="gita-meta"><span>Leader: Richard Knupfer</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato">No online registration</span>
+
+<a class="link gita-link" href="../en/gita.html?id=2171">Details</a>
+</div>
+</article>
+<article class="gita" id="gita-1947" data-fine="2026-10-10" data-gruppi="Monitori" data-tipo="EVE">
+<p class="gita-data"><span class="gita-giorno num">10</span><span class="gita-sotto">Sat</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Evento · Instructors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=1947" lang="it">Teambuilding capigita - Arrampicata Val di Mello</a></h3>
+<p class="gita-meta"><span title="fairly demanding">Fitness B</span><span>Difficulty 5c</span><span>Leader: Andrea Ghidotti</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">4 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=1947">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2036" data-fine="2026-10-10" data-gruppi="Tutti" data-tipo="CUL">
+<p class="gita-data"><span class="gita-giorno num">10</span><span class="gita-sotto">Sat</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Cultura · All</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2036" lang="it">Visita alla Miniera di Sessa</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty T1</span><span>Leaders: Franco Bertoni, Nadir Caduff</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--completa">Full</span>
+<span class="gita-posti num">16 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2036">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2159" data-fine="2026-10-11" data-gruppi="Tutti" data-tipo="ARR">
+<p class="gita-data"><span class="gita-giorno num">11</span><span class="gita-sotto">Sun</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Arrampicata · All</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2159" lang="it">Giovanissimi - Rovine del Castelliere - Locarnese</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty 4a</span><span>Leaders: Giosiana Codoni, Nadir Caduff</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">4 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2159">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2037" data-fine="2026-10-15" data-gruppi="Seniori" data-tipo="ESC">
+<p class="gita-data"><span class="gita-giorno num">15</span><span class="gita-sotto">Thu</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Escursionismo · Seniors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2037" lang="it">Lago di Carì 2255 m - Valle Leventina</a></h3>
+<p class="gita-meta"><span title="fairly demanding">Fitness B</span><span>Difficulty T2</span><span>Leader: Milvia Carelli</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">0/20 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2037">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2157" data-fine="2026-10-15" data-gruppi="Tutti" data-tipo="COR">
+<p class="gita-data"><span class="gita-giorno num">15</span><span class="gita-sotto">Thu</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Corso di formazione · All</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2157" lang="it">Topografia dalla carta al digitale, serata d'istru</a></h3>
+<p class="gita-meta"><span>Difficulty LCI</span><span>Leader: David Stracquadanio</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">3/20 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2157">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2089" data-fine="2026-10-18" data-gruppi="Soccorso" data-tipo="SOC">
+<p class="gita-data"><span class="gita-giorno num">17–18</span><span class="gita-sotto">Sat–Sun</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Soccorso · Mountain rescue</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2089" lang="it">Colonna di soccorso - Corso sezionale estivo</a></h3>
+<p class="gita-meta"><span>Leaders: Simon Vanoncini, Matteo Umiker</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato">No online registration</span>
+<span class="gita-nota">Registration: www.soccorsoalpino-ti.ch</span>
+<a class="link gita-link" href="../en/gita.html?id=2089">Details</a>
+</div>
+</article>
+<article class="gita" id="gita-2038" data-fine="2026-10-22" data-gruppi="Seniori" data-tipo="ESC">
+<p class="gita-data"><span class="gita-giorno num">22</span><span class="gita-sotto">Thu</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Escursionismo · Seniors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2038" lang="it">Giro ad anello in Valsolda 580 m - Italia</a></h3>
+<p class="gita-meta"><span title="fairly demanding">Fitness B</span><span>Difficulty T2</span><span>Leader: Walter Baumgartner</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">3 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2038">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-1915" data-fine="2026-10-25" data-gruppi="Attivi Giovani" data-tipo="ARR">
+<p class="gita-data"><span class="gita-giorno num">24–25</span><span class="gita-sotto">Sat–Sun</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Arrampicata · Active members, Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=1915" lang="it">Vie lunghe - Bellinzonese e Locarnese</a></h3>
+<p class="gita-meta"><span title="fairly demanding">Fitness B</span><span>Difficulty 5b</span><span>Leaders: Loris Carpineti, Nadir Caduff</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">13/12 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=1915">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2039" data-fine="2026-10-29" data-gruppi="Seniori" data-tipo="EVE">
+<p class="gita-data"><span class="gita-giorno num">29</span><span class="gita-sotto">Thu</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Evento · Seniors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2039" lang="it">Castagnata</a></h3>
+<p class="gita-meta"><span>Leader: Fausto Cattalini</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+
+<a class="link gita-link" href="../en/gita.html?id=2039">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2149" data-fine="2026-11-03" data-gruppi="Giovani" data-tipo="ARR">
+<p class="gita-data"><span class="gita-giorno num">31</span><span class="gita-sotto">Sat, to 3 Nov</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Arrampicata · Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2149" lang="it">Giovani Spider e Junior - Denti della Vecchia</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty 4a</span><span>Leaders: Nicola Martinoni, Giosiana Codoni</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--completa">Full</span>
+<span class="gita-posti num">19 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2149">Details and registration</a>
+</div>
+</article>
+</div>
+</section>
+<section class="gite-mese" aria-labelledby="mese-2026-11">
+<h2 id="mese-2026-11" class="h3">November 2026</h2>
+<div class="gite-righe">
+<article class="gita" id="gita-2090" data-fine="2026-11-03" data-gruppi="Soccorso" data-tipo="SOC">
+<p class="gita-data"><span class="gita-giorno num">3</span><span class="gita-sotto">Tue</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Soccorso · Mountain rescue</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2090" lang="it">Colonna di soccorso - Primo martedì del mese</a></h3>
+<p class="gita-meta"><span>Leaders: Simon Vanoncini, Matteo Umiker</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato">No online registration</span>
+<span class="gita-nota">Registration: www.soccorsoalpino-ti.ch</span>
+<a class="link gita-link" href="../en/gita.html?id=2090">Details</a>
+</div>
+</article>
+<article class="gita" id="gita-2207" data-fine="2026-11-08" data-gruppi="Giovani" data-tipo="ARR">
+<p class="gita-data"><span class="gita-giorno num">5–8</span><span class="gita-sotto">Thu–Sun</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Arrampicata · Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2207" lang="it">Giovani, OG - Finale Ligure - Italia</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty 5c</span><span>Leaders: Alessandro Piazzoli, Diego Romelli</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">12 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2207">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2040" data-fine="2026-11-05" data-gruppi="Seniori" data-tipo="ESC">
+<p class="gita-data"><span class="gita-giorno num">5</span><span class="gita-sotto">Thu</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Escursionismo · Seniors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2040" lang="it">Monti di Lego 1100 m - Locarnese</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty T2</span><span>Leader: Fausto Cattalini</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+
+<a class="link gita-link" href="../en/gita.html?id=2040">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-1914" data-fine="2026-11-08" data-gruppi="Attivi Giovani" data-tipo="ARR">
+<p class="gita-data"><span class="gita-giorno num">6–8</span><span class="gita-sotto">Fri–Sun</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Arrampicata · Active members, Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=1914" lang="it">Arrampicate a Finale Ligure - Italia</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty 4b</span><span>Leaders: Loris Carpineti, Chiara Crivelli</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--completa">Full</span>
+<span class="gita-posti num">21/20 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=1914">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2041" data-fine="2026-11-12" data-gruppi="Seniori" data-tipo="ESC">
+<p class="gita-data"><span class="gita-giorno num">12</span><span class="gita-sotto">Thu</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Escursionismo · Seniors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2041" lang="it">Trekking in Valle Maggia</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty T2</span><span>Leader: Fausto Cattalini</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+
+<a class="link gita-link" href="../en/gita.html?id=2041">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2063" data-fine="2026-11-14" data-gruppi="Attivi Giovani" data-tipo="COR">
+<p class="gita-data"><span class="gita-giorno num">14</span><span class="gita-sotto">Sat</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Corso di formazione · Active members, Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2063" lang="it">Corso avanzato di arrampicata, 2a uscita</a></h3>
+<p class="gita-meta"><span>Difficulty LCII</span><span>Leaders: Loris Carpineti, Chiara Crivelli</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato">No online registration</span>
+<span class="gita-posti num">0/12 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2063">Details</a>
+</div>
+</article>
+<article class="gita" id="gita-2163" data-fine="2026-11-14" data-gruppi="Attivi Giovani" data-tipo="FER">
+<p class="gita-data"><span class="gita-giorno num">14</span><span class="gita-sotto">Sat</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Via ferrata · Active members, Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2163" lang="it">Ferrata Monte Grona</a></h3>
+<p class="gita-meta"><span title="fairly demanding">Fitness B</span><span>Difficulty K3</span><span>Leaders: Giovanni Galli, Sila Cittadini Ghiringhelli</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">0/12 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2163">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2091" data-fine="2026-11-17" data-gruppi="Soccorso" data-tipo="SOC">
+<p class="gita-data"><span class="gita-giorno num">17</span><span class="gita-sotto">Tue</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Soccorso · Mountain rescue</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2091" lang="it">Colonna di soccorso - PCI Lugano Campagna</a></h3>
+<p class="gita-meta"><span>Leaders: Simon Vanoncini, Matteo Umiker</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato">No online registration</span>
+<span class="gita-nota">Registration: www.soccorsoalpino-ti.ch</span>
+<a class="link gita-link" href="../en/gita.html?id=2091">Details</a>
+</div>
+</article>
+<article class="gita" id="gita-2167" data-fine="2026-11-18" data-gruppi="Attivi Giovani" data-tipo="COR">
+<p class="gita-data"><span class="gita-giorno num">18</span><span class="gita-sotto">Wed</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Corso di formazione · Active members, Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2167" lang="it">Corso di sci fuori pista (presentazione)</a></h3>
+<p class="gita-meta"><span>Difficulty LCII</span><span>Leaders: Thomas Arn, Chiara Medolago</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">3 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2167">Details and registration</a>
+</div>
+</article>
+<article class="gita gita--annullata" id="gita-2042" data-fine="2026-11-19" data-gruppi="Seniori" data-tipo="ESC">
+<p class="gita-data"><span class="gita-giorno num">19</span><span class="gita-sotto">Thu</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Escursionismo · Seniors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2042" lang="it">Giro della valle di Lodano 1300 m - Valle Maggia</a></h3>
+<p class="gita-meta"><span title="fairly demanding">Fitness B</span><span>Difficulty T2</span><span>Leaders: Monica Stoppani, Emanuela Gastori</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--annullata">Cancelled</span>
+
+<a class="link gita-link" href="../en/gita.html?id=2042">Details</a>
+</div>
+</article>
+<article class="gita" id="gita-1952" data-fine="2026-11-22" data-gruppi="Attivi Giovani Seniori" data-tipo="ARR">
+<p class="gita-data"><span class="gita-giorno num">22</span><span class="gita-sotto">Sun</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Arrampicata · Active members, Youth, Seniors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=1952" lang="it">Arrampicata al caldo - Locarnese</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty 5a</span><span>Leaders: Marco Da Rold, Giosiana Codoni</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">4/20 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=1952">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2092" data-fine="2026-11-24" data-gruppi="Soccorso" data-tipo="SOC">
+<p class="gita-data"><span class="gita-giorno num">24</span><span class="gita-sotto">Tue</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Soccorso · Mountain rescue</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2092" lang="it">Colonna di soccorso - Simulazione intervento</a></h3>
+<p class="gita-meta"><span>Leaders: Simon Vanoncini, Matteo Umiker</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato">No online registration</span>
+<span class="gita-nota">Registration: www.soccorsoalpino-ti.ch</span>
+<a class="link gita-link" href="../en/gita.html?id=2092">Details</a>
+</div>
+</article>
+<article class="gita" id="gita-2044" data-fine="2026-11-26" data-gruppi="Seniori" data-tipo="ESC">
+<p class="gita-data"><span class="gita-giorno num">26</span><span class="gita-sotto">Thu</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Escursionismo · Seniors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2044" lang="it">Percorso basso Morcote 600 m - Luganese</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty T2</span><span>Leader: Piergiorgio Gin Vassalli</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+
+<a class="link gita-link" href="../en/gita.html?id=2044">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2105" data-fine="2026-11-27" data-gruppi="Attivi Giovani Seniori" data-tipo="COR">
+<p class="gita-data"><span class="gita-giorno num">27</span><span class="gita-sotto">Fri</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Corso di formazione · Active members, Youth, Seniors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2105" lang="it">Serata di introduzione a manutenzione e cura sci</a></h3>
+<p class="gita-meta"><span>Leaders: Marco Da Rold, Richard Knupfer</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">1 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2105">Details and registration</a>
+</div>
+</article>
+<article class="gita gita--annullata" id="gita-2145" data-fine="2026-11-29" data-gruppi="Attivi" data-tipo="EVE">
+<p class="gita-data"><span class="gita-giorno num">28–29</span><span class="gita-sotto">Sat–Sun</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Evento · Active members</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2145" lang="it">Teambuilding capigita - Weekend di sci - VS</a></h3>
+<p class="gita-meta"><span>Leaders: Alessandro Docimo, Nicolò Poretti</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--annullata">Cancelled</span>
+
+<a class="link gita-link" href="../en/gita.html?id=2145">Details</a>
+</div>
+</article>
+</div>
+</section>
+<section class="gite-mese" aria-labelledby="mese-2026-12">
+<h2 id="mese-2026-12" class="h3">December 2026</h2>
+<div class="gite-righe">
+<article class="gita" id="gita-2093" data-fine="2026-12-01" data-gruppi="Soccorso" data-tipo="SOC">
+<p class="gita-data"><span class="gita-giorno num">1</span><span class="gita-sotto">Tue</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Soccorso · Mountain rescue</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2093" lang="it">Colonna di soccorso - Conviviale di fine anno</a></h3>
+<p class="gita-meta"><span>Leaders: Simon Vanoncini, Matteo Umiker</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato">No online registration</span>
+<span class="gita-nota">Registration: www.soccorsoalpino-ti.ch</span>
+<a class="link gita-link" href="../en/gita.html?id=2093">Details</a>
+</div>
+</article>
+<article class="gita" id="gita-2096" data-fine="2026-12-03" data-gruppi="Attivi Giovani" data-tipo="COR">
+<p class="gita-data"><span class="gita-giorno num">3</span><span class="gita-sotto">Thu</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Corso di formazione · Active members, Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2096" lang="it">Corso base di sci alpinismo (presentazione)</a></h3>
+<p class="gita-meta"><span>Difficulty LCI</span><span>Leaders: Geoffroy Jolly, Alessandro Vanoni</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">19/30 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2096">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2045" data-fine="2026-12-03" data-gruppi="Seniori" data-tipo="ESC">
+<p class="gita-data"><span class="gita-giorno num">3</span><span class="gita-sotto">Thu</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Escursionismo · Seniors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2045" lang="it">Monte Piambello 1125 m - Italia</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty T2</span><span>Leader: Luca Salzborn</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+
+<a class="link gita-link" href="../en/gita.html?id=2045">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-1985" data-fine="2026-12-09" data-gruppi="Tutti" data-tipo="EVE">
+<p class="gita-data"><span class="gita-giorno num">9</span><span class="gita-sotto">Wed</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Evento · All</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=1985" lang="it">Festa conviviale della Sezione</a></h3>
+<p class="gita-meta"><span>Leader: Comitato CAS Ticino</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato">Registration from 1 Nov</span>
+
+<a class="link gita-link" href="../en/gita.html?id=1985">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2046" data-fine="2026-12-09" data-gruppi="Seniori" data-tipo="SA">
+<p class="gita-data"><span class="gita-giorno num">9</span><span class="gita-sotto">Wed</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Scialpinismo · Seniors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2046" lang="it">Strecc da Vignun 2586 m - GR</a></h3>
+<p class="gita-meta"><span title="fairly demanding">Fitness B</span><span>Difficulty PD</span><span>Leader: Luca Salzborn</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+
+<a class="link gita-link" href="../en/gita.html?id=2046">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2147" data-fine="2026-12-13" data-gruppi="Monitori" data-tipo="COR">
+<p class="gita-data"><span class="gita-giorno num">13</span><span class="gita-sotto">Sun</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Corso di formazione · Instructors</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2147" lang="it">Corso di aggiornamento invernale per monitori</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty LCI</span><span>Leaders: Pierre Crivelli, Geoffroy Jolly</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+
+<a class="link gita-link" href="../en/gita.html?id=2147">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2165" data-fine="2026-12-15" data-gruppi="Attivi Giovani" data-tipo="COR">
+<p class="gita-data"><span class="gita-giorno num">15</span><span class="gita-sotto">Tue</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Corso di formazione · Active members, Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2165" lang="it">Corso avanzato racchette (presentazione)</a></h3>
+<p class="gita-meta"><span title="fairly demanding">Fitness B</span><span>Difficulty WT3</span><span>Leader: Pierre Crivelli</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">0/7 registered</span><span class="gita-nota">Registration: La conferma dell'iscrizione avverrà alla serata di presentazione</span>
+<a class="link gita-link" href="../en/gita.html?id=2165">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2164" data-fine="2026-12-15" data-gruppi="Attivi Giovani" data-tipo="COR">
+<p class="gita-data"><span class="gita-giorno num">15</span><span class="gita-sotto">Tue</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Corso di formazione · Active members, Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2164" lang="it">Corso base racchette (presentazione)</a></h3>
+<p class="gita-meta"><span>Leaders: Jessica Poretti, Laura Ortelli</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">0/20 registered</span><span class="gita-nota">Registration: La conferma dell'iscrizione avverrà alla serata di presentazione il 16 Dicembre 2026 con il pagamento in contanti della quota</span>
+<a class="link gita-link" href="../en/gita.html?id=2164">Details and registration</a>
+</div>
+</article>
+<article class="gita" id="gita-2239" data-fine="2026-12-19" data-gruppi="Giovani" data-tipo="COR">
+<p class="gita-data"><span class="gita-giorno num">19</span><span class="gita-sotto">Sat</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Corso di formazione · Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2239" lang="it">Giovani: OG, Junior - Tecnica sci e valanghe</a></h3>
+<p class="gita-meta"><span title="easy">Fitness A</span><span>Difficulty PD</span><span>Leaders: Niccolò Galliani, Marco Buck</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">0/15 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2239">Details and registration</a>
+</div>
+</article>
+</div>
+</section>
+<section class="gite-mese" aria-labelledby="mese-2027-01">
+<h2 id="mese-2027-01" class="h3">January 2027</h2>
+<div class="gite-righe">
+<article class="gita" id="gita-2242" data-fine="2027-01-09" data-gruppi="Giovani" data-tipo="COR">
+<p class="gita-data"><span class="gita-giorno num">9</span><span class="gita-sotto">Sat</span></p>
+<div class="gita-corpo">
+<p class="gita-tipo">Corso di formazione · Youth</p>
+<h3 class="gita-titolo"><a href="../en/gita.html?id=2242" lang="it">Giovani: OG,Junior - Corso Sci alpinismo,1a uscita</a></h3>
+<p class="gita-meta"><span title="fairly demanding">Fitness B</span><span>Difficulty AD</span><span>Leaders: Jacopo Soldini, Nicola Martinoni</span></p>
+</div>
+<div class="gita-stato">
+<span class="stato stato--aperte">Registration open</span>
+<span class="gita-posti num">0/12 registered</span>
+<a class="link gita-link" href="../en/gita.html?id=2242">Details and registration</a>
+</div>
+</article>
+</div>
+</section>
+</div>
+<div class="callout">
+<p>Registration, access for members and trip leaders and the details of every trip are on the Droptour portal (in Italian). For questions about a trip, write to the trip leader from the trip’s page.</p>
+<div class="actions"><a class="btn btn--secondary" href="https://ssl.dropnet.ch/casticino/gite/index.php" rel="noopener">Full programme on Droptour</a><a class="btn btn--secondary" href="webcal://ssl.dropnet.ch/casticino/dropnetapps/tours/index.php?page=ics&amp;type=&amp;group=&amp;eventtype=">Calendar (iCal)</a><a class="btn btn--secondary" href="../documenti.html">Difficulty scales (in Italian)</a></div>
+</div>
+</div>
+</section>
+
+
+</main>
+<script src="../assets/gite.js?v=5072fa41" defer></script>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<a class="brand" href="../en/index.html">
+<img class="brand-logo" src="../assets/logo-cas-stemma.webp" alt="" width="44" height="52" loading="lazy">
+<span class="brand-text"><strong>CAS Ticino</strong><span>Swiss Alpine Club</span></span>
+</a>
+<address>Swiss Alpine Club SAC, Ticino Section<br>PO Box 112, 6998 Monteggio 2<br>Office: Canvetto Luganese, Molino Nuovo<br><a href="mailto:info@casticino.ch">info@casticino.ch</a></address>
+<div class="social">
+<span class="social-label">Follow us</span>
+<a href="https://instagram.com/casticino" rel="noopener" aria-label="CAS Ticino on Instagram"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg><span>Instagram</span></a>
+<a href="https://facebook.com/eventicasticino" rel="noopener" aria-label="CAS Ticino on Facebook"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg><span>Facebook</span></a>
+</div>
+</div>
+<nav class="footer-col" aria-label="The Section">
+<h2>The Section</h2>
+<a href="../en/introduzione.html">Introduction</a>
+<a href="../en/comitato.html">Committee</a>
+<a href="../en/organizzazione.html">Organisation</a>
+<a href="../en/capigita.html">Trip leaders</a>
+<a href="../en/sede.html">Office and contacts</a>
+<a href="../en/storia.html">History</a>
+<a href="../en/link.html">Useful links</a>
+<a href="../en/adesione.html">Membership</a>
+</nav>
+<nav class="footer-col" aria-label="Huts">
+<h2>Huts</h2>
+<a href="../en/campotencia.html">Campo Tencia</a>
+<a href="../en/cristallina.html">Cristallina</a>
+<a href="../en/adula.html">Adula</a>
+<a href="../en/motterascio.html">Motterascio</a>
+<a href="../en/montebar.html">Monte Bar</a>
+<a href="../en/baitadelluca.html">Baita del Luca</a>
+</nav>
+</div>
+<div class="sponsors">
+<h2>With the support of</h2>
+<a class="sponsor" href="https://www.bancastato.ch" target="_blank" rel="noopener"><img src="../assets/sponsor/bancastato.webp" alt="BancaStato" width="172" height="24" loading="lazy"></a>
+<a class="sponsor" href="https://www.ail.ch/privati.html" target="_blank" rel="noopener"><img src="../assets/sponsor/ail.webp" alt="AIL" width="55" height="48" loading="lazy"></a>
+<a class="sponsor" href="https://www.baechli-bergsport.ch/it" target="_blank" rel="noopener"><img src="../assets/sponsor/baechli.webp" alt="Bächli Bergsport" width="52" height="48" loading="lazy"></a>
+<a class="sponsor" href="https://www.dos-group.com/it/" target="_blank" rel="noopener"><img src="../assets/sponsor/dos-group.webp" alt="DOS Group" width="64" height="48" loading="lazy"></a>
+<span class="sponsor sponsor--white"><img src="../assets/sponsor/studio-grafica-grizzi.webp" alt="Studio grafica Grizzi" width="79" height="48" loading="lazy"></span>
+</div>
+<div class="footer-bottom"><span>© 2026 CAS Ticino</span><span>Swiss Alpine Club SAC, Ticino Section</span><a href="../admin/">Editors</a></div>
+</div>
+</footer>
+<script src="../assets/site.js?v=162c8681" defer></script>
+</body>
+</html>
