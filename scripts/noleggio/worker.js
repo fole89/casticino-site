@@ -182,7 +182,7 @@ async function richiesta(request, env, ctx) {
   ctx.waitUntil(Promise.all([
     mail(env, env.MAIL_GESTORE, "Responsabile noleggio", `Noleggio: nuova richiesta n. ${r.id} di ${nome}`,
       mailGestore(r, `${new URL(request.url).origin}/admin`), email),
-    mail(env, email, nome, TESTI[lingua].oggetto("ricevuta", r.id), mailSocio(env, r, "ricevuta", ""), env.MAIL_GESTORE),
+    mail(env, email, nome, TESTI[lingua].oggetto("ricevuta"), mailSocio(env, r, "ricevuta", ""), env.MAIL_GESTORE),
   ]));
   return json({ ok: true, numero: r.id, totale });
 }
@@ -218,8 +218,8 @@ async function mail(env, a, nome, oggetto, corpo, rispondiA) {
 
 const TESTI = {
   it: {
-    oggetto: (tipo, n) => ({ ricevuta: `Richiesta di noleggio n. ${n} ricevuta`, confermata: `Noleggio n. ${n} confermato`,
-      rifiutata: `Noleggio n. ${n}: richiesta non accolta`, annullata: `Noleggio n. ${n} annullato` })[tipo],
+    oggetto: (tipo) => ({ ricevuta: "Richiesta di noleggio ricevuta", confermata: "Noleggio confermato",
+      rifiutata: "Noleggio: richiesta non accolta", annullata: "Noleggio annullato" })[tipo],
     saluto: (nome) => `Ciao ${nome},`,
     apertura: {
       ricevuta: "abbiamo ricevuto la tua richiesta di noleggio. Ti scriviamo appena l’abbiamo controllata: la richiesta vale solo con la nostra conferma.",
@@ -228,7 +228,6 @@ const TESTI = {
       annullata: "il tuo noleggio è stato annullato.",
     },
     messaggio: "Messaggio del responsabile",
-    numero: (n) => `Richiesta n. ${n}`,
     periodo: (dal, al, g) => `Dal ${dal} al ${al} (${g} ${g === 1 ? "giorno" : "giorni"})`,
     totale: (t) => `Totale indicativo: Fr. ${t}.–, da pagare alla riconsegna in contanti o con TWINT.`,
     luogo: "Ritiro e riconsegna al magazzino di Manno.",
@@ -236,8 +235,8 @@ const TESTI = {
     firma: "CAS Ticino, noleggio materiale",
   },
   de: {
-    oggetto: (tipo, n) => ({ ricevuta: `Mietanfrage Nr. ${n} erhalten`, confermata: `Miete Nr. ${n} bestätigt`,
-      rifiutata: `Miete Nr. ${n}: Anfrage nicht möglich`, annullata: `Miete Nr. ${n} storniert` })[tipo],
+    oggetto: (tipo) => ({ ricevuta: "Mietanfrage erhalten", confermata: "Miete bestätigt",
+      rifiutata: "Miete: Anfrage nicht möglich", annullata: "Miete storniert" })[tipo],
     saluto: (nome) => `Hallo ${nome}`,
     apertura: {
       ricevuta: "Wir haben Ihre Mietanfrage erhalten. Wir melden uns, sobald wir sie geprüft haben: Die Anfrage gilt erst mit unserer Bestätigung.",
@@ -246,7 +245,6 @@ const TESTI = {
       annullata: "Ihre Miete wurde storniert.",
     },
     messaggio: "Nachricht der Materialvermietung",
-    numero: (n) => `Anfrage Nr. ${n}`,
     periodo: (dal, al, g) => `Vom ${dal} bis ${al} (${g} ${g === 1 ? "Tag" : "Tage"})`,
     totale: (t) => `Total ungefähr: Fr. ${t}.–, zu bezahlen bei der Rückgabe, bar oder mit TWINT.`,
     luogo: "Abholung und Rückgabe im Lager in Manno.",
@@ -254,8 +252,8 @@ const TESTI = {
     firma: "SAC Sektion Ticino, Materialvermietung",
   },
   en: {
-    oggetto: (tipo, n) => ({ ricevuta: `Hire request no. ${n} received`, confermata: `Hire no. ${n} confirmed`,
-      rifiutata: `Hire no. ${n}: request declined`, annullata: `Hire no. ${n} cancelled` })[tipo],
+    oggetto: (tipo) => ({ ricevuta: "Hire request received", confermata: "Hire confirmed",
+      rifiutata: "Hire: request declined", annullata: "Hire cancelled" })[tipo],
     saluto: (nome) => `Hello ${nome},`,
     apertura: {
       ricevuta: "we have received your hire request. We will write to you as soon as we have checked it: the request only stands once we confirm it.",
@@ -264,7 +262,6 @@ const TESTI = {
       annullata: "your hire has been cancelled.",
     },
     messaggio: "Message from the equipment manager",
-    numero: (n) => `Request no. ${n}`,
     periodo: (dal, al, g) => `From ${dal} to ${al} (${g} ${g === 1 ? "day" : "days"})`,
     totale: (t) => `Approximate total: CHF ${t}, payable on return in cash or by TWINT.`,
     luogo: "Pick-up and return at the store in Manno.",
@@ -283,7 +280,7 @@ function mailSocio(env, r, tipo, messaggio) {
   return [
     T.saluto(r.nome), "", T.apertura[tipo], "",
     ...(messaggio ? [`${T.messaggio}:`, messaggio, ""] : []),
-    T.numero(r.id), T.periodo(dataCh(r.dal), dataCh(r.al), g), "", elencoRighe(r, r.lingua), "",
+    T.periodo(dataCh(r.dal), dataCh(r.al), g), "", elencoRighe(r, r.lingua), "",
     ...(tipo === "ricevuta" || tipo === "confermata" ? [T.totale(r.totale), T.luogo, ""] : []),
     T.rispondi, "", T.firma, env.SITO_URL ? `${env.SITO_URL}${r.lingua === "it" ? "" : r.lingua + "/"}noleggio.html` : "",
   ].join("\n");
@@ -352,7 +349,7 @@ async function admin(request, env, ctx, url) {
       .bind(nuovo, new Date().toISOString(), nota, r.id).run();
     if (tipoMail) {
       const piena = { ...r, righe: JSON.parse(r.righe) };
-      ctx.waitUntil(mail(env, r.email, r.nome, (TESTI[r.lingua] || TESTI.it).oggetto(tipoMail, r.id),
+      ctx.waitUntil(mail(env, r.email, r.nome, (TESTI[r.lingua] || TESTI.it).oggetto(tipoMail),
         mailSocio(env, piena, tipoMail, messaggio), env.MAIL_GESTORE));
     }
     return json({ ok: true, stato: nuovo });

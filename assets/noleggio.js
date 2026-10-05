@@ -17,7 +17,7 @@
       esaurito: 'occupato', taglia: 'Taglia', giorno: 'al giorno', quantita: 'Quantità', nessuno: 'Per queste date non c’è materiale libero.',
       totale: function (t, g) { return 'Totale indicativo: Fr. ' + t + '.– per ' + g + ', da pagare alla riconsegna.'; },
       scegli: 'Scegli almeno un articolo.',
-      ok: function (n, m) { return 'Richiesta n. ' + n + ' inviata. Ti abbiamo mandato una ricevuta a ' + m + ': controlliamo la disponibilità e ti scriviamo la conferma.'; },
+      ok: function (m) { return 'Richiesta inviata. Ti abbiamo mandato una ricevuta a ' + m + ': controlliamo la disponibilità e ti scriviamo la conferma.'; },
       nuova: 'Nuova richiesta',
       errori: {
         date: 'Indica il primo e l’ultimo giorno.', ordine: 'L’ultimo giorno viene prima del primo.',
@@ -36,7 +36,7 @@
       esaurito: 'besetzt', taglia: 'Grösse', giorno: 'pro Tag', quantita: 'Anzahl', nessuno: 'Für diese Daten ist kein Material frei.',
       totale: function (t, g) { return 'Total ungefähr: Fr. ' + t + '.– für ' + g + ', zu bezahlen bei der Rückgabe.'; },
       scegli: 'Wählen Sie mindestens einen Artikel.',
-      ok: function (n, m) { return 'Anfrage Nr. ' + n + ' gesendet. Wir haben Ihnen eine Empfangsbestätigung an ' + m + ' geschickt: Wir prüfen die Verfügbarkeit und senden Ihnen die Bestätigung.'; },
+      ok: function (m) { return 'Anfrage gesendet. Wir haben Ihnen eine Empfangsbestätigung an ' + m + ' geschickt: Wir prüfen die Verfügbarkeit und senden Ihnen die Bestätigung.'; },
       nuova: 'Neue Anfrage',
       errori: {
         date: 'Geben Sie den ersten und den letzten Tag an.', ordine: 'Der letzte Tag liegt vor dem ersten.',
@@ -55,7 +55,7 @@
       esaurito: 'taken', taglia: 'Size', giorno: 'per day', quantita: 'Quantity', nessuno: 'No equipment is free for these dates.',
       totale: function (t, g) { return 'Approximate total: CHF ' + t + ' for ' + g + ', payable on return.'; },
       scegli: 'Choose at least one item.',
-      ok: function (n, m) { return 'Request no. ' + n + ' sent. We have e-mailed a receipt to ' + m + ': we will check availability and send you the confirmation.'; },
+      ok: function (m) { return 'Request sent. We have e-mailed a receipt to ' + m + ': we will check availability and send you the confirmation.'; },
       nuova: 'New request',
       errori: {
         date: 'Enter the first and the last day.', ordine: 'The last day is before the first.',
@@ -81,7 +81,7 @@
   var dal = form.elements.dal, al = form.elements.al;
   var scelte = {};        // "casco" / "imbracatura:M" → quantità scelta
   var disponibili = null; // dal servizio: chiave → [a magazzino, liberi]
-  var giorni = 0, richiestaN = 0, token = '', widget = null;
+  var giorni = 0, token = '', widget = null;
 
   alt.hidden = true;
   form.hidden = false;
@@ -250,7 +250,7 @@
       })
     })
       .then(function (r) { return r.json().then(function (d) { if (!r.ok) throw d; return d; }); })
-      .then(function (d) { fatto(d.numero, f.email.value); })
+      .then(function () { fatto(f.email.value); })
       .catch(function (d) {
         bottone.disabled = false;
         if (window.turnstile && widget !== null) { window.turnstile.reset(widget); token = ''; }
@@ -261,10 +261,9 @@
       });
   });
 
-  function fatto(numero, mail) {
-    richiestaN = numero;
+  function fatto(mail) {
     var nuova = el('button', { 'class': 'btn btn--secondary', type: 'button', text: T.nuova });
-    var box = el('div', { 'class': 'nol-fatto', tabindex: '-1', role: 'status' }, [el('p', { text: T.ok(richiestaN, mail) }), nuova]);
+    var box = el('div', { 'class': 'nol-fatto', tabindex: '-1', role: 'status' }, [el('p', { text: T.ok(mail) }), nuova]);
     nuova.addEventListener('click', function () { location.reload(); });
     form.hidden = true;
     form.parentNode.insertBefore(box, form);
