@@ -268,7 +268,7 @@ SPONSORS = """<div class="sponsors">
 <a class="sponsor" href="https://www.ail.ch/privati.html" target="_blank" rel="noopener"><img src="assets/sponsor/ail.webp" alt="AIL" width="55" height="48" loading="lazy"></a>
 <a class="sponsor" href="https://www.baechli-bergsport.ch/it" target="_blank" rel="noopener"><img src="assets/sponsor/baechli.webp" alt="Bächli Bergsport" width="52" height="48" loading="lazy"></a>
 <a class="sponsor" href="https://www.dos-group.com/it/" target="_blank" rel="noopener"><img src="assets/sponsor/dos-group.webp" alt="DOS Group" width="64" height="48" loading="lazy"></a>
-<span class="sponsor sponsor--white"><img src="assets/sponsor/studio-grafica-grizzi.webp" alt="Studio grafica Grizzi" width="79" height="48" loading="lazy"></span>
+<span class="sponsor sponsor--white"><img src="assets/sponsor/studio-grafica-grizzi.webp" alt="Studio grafica Grizzi" width="80" height="48" loading="lazy"></span>
 </div>"""
 
 

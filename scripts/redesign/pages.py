@@ -2735,7 +2735,7 @@ def nome_l(d, chiave="nome"):
 def noleggio():
     gruppi = inventario_noleggio()
     mail = f'<a href="mailto:{NOLEGGIO_MAIL}">{NOLEGGIO_MAIL}</a>'
-    rows = [(tr("Come funziona", "So funktioniert’s", "How it works"), tr(
+    rows = [(tr("In breve", "Kurz gesagt", "In short"), tr(
                 "Scegli le date e il materiale nel modulo qui sotto: vedi subito cosa è libero. La conferma alla tua richiesta avverrà tramite e-mail. Si paga in contanti o TWINT alla riconsegna.",
                 "Wählen Sie im Formular unten die Daten und das Material: Sie sehen sofort, was frei ist. Die Bestätigung Ihrer Anfrage erhalten Sie per E-Mail. Bezahlt wird bei der Rückgabe, bar oder mit TWINT.",
                 "Choose the dates and the equipment in the form below: you see straight away what is free. Your request will be confirmed by e-mail. Payment in cash or by TWINT on return.")),
@@ -2891,6 +2891,14 @@ def contatto_html(t):
     return " · ".join(pezzi)
 
 
+def prezzo_html(p):
+    """Prezzo di un annuncio: un importo semplice diventa «Fr. 300.–» (cifre in Geist Mono); altro testo resta com'è."""
+    m = re.fullmatch(r"(?:(?:Fr\.?|CHF|Sfr\.?)\s*)?(\d+(?:['’]\d{3})*)(?:[.,](?:-|–|—|00))?\s*(?:(?:Fr\.?|CHF|franchi))?", p.strip(), re.I)
+    if not m:
+        return esc(p)
+    return f'Fr. <span class="num">{m.group(1)}.–</span>'
+
+
 def annuncio_html(a):
     nome = os.path.splitext(os.path.basename(a["percorso"]))[0]
     foto = [f for f in a.get("foto") or [] if f and os.path.exists(os.path.join(ROOT, f))][:3]
@@ -2914,7 +2922,7 @@ def annuncio_html(a):
 <div class="annuncio-corpo">
 <p class="annuncio-tipo annuncio-tipo--{tipo.lower()}">{tipo_l(tipo)}</p>
 <h2 class="annuncio-titolo"{it}>{esc(a['title'])}</h2>
-{f'<p class="annuncio-prezzo">{esc(a["prezzo"])}</p>' if a.get("prezzo") else ""}
+{f'<p class="annuncio-prezzo">{prezzo_html(a["prezzo"])}</p>' if a.get("prezzo") else ""}
 {f'<div class="annuncio-testo"{it}>{testo}</div>' if testo else ""}
 <p class="small">{meta}</p>
 {f'<p class="annuncio-contatto">{contatto}</p>' if contatto else ""}
