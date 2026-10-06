@@ -94,7 +94,10 @@
       thumbs.push(b); grid.appendChild(b);
     });
     show(0);
-    return el('article', { class: 'album' }, [info, el('div', { class: 'album-viewer' }, [frame, grid])]);
+    // ancora #album-<cartella>: ci portano i risultati della ricerca (data/cerca.json)
+    var art = el('article', { class: 'album' }, [info, el('div', { class: 'album-viewer' }, [frame, grid])]);
+    if (a.id) art.id = 'album-' + a.id;
+    return art;
   }
 
   // sfumatura in fondo al resoconto solo se è più lungo del riquadro; sparisce arrivati alla fine
@@ -115,6 +118,18 @@
     if (more) more.hidden = shown >= albums.length;
   }
 
+  // indirizzo con #album-<cartella> (dalla ricerca): si caricano gli album fino a quello e lo si mostra
+  function vaiAllAlbum() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    if (id.indexOf('album-') !== 0) return;
+    var k = albums.map(function (a) { return 'album-' + a.id; }).indexOf(id);
+    if (k < 0) return;
+    while (shown <= k) next();
+    var art = document.getElementById(id);
+    if (art) requestAnimationFrame(function () { art.scrollIntoView({ block: 'start' }); });
+  }
+  window.addEventListener('hashchange', function () { if (albums.length) vaiAllAlbum(); });
+
   fetch(root.dataset.json || 'data/foto.json', { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (data) {
@@ -122,6 +137,7 @@
       if (!albums.length) { status(TX.nessuna); return; }
       root.textContent = '';
       next();
+      vaiAllAlbum();
     })
     .catch(function () { status(TX.errore); });
   if (more) more.addEventListener('click', next);

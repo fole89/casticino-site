@@ -3338,7 +3338,8 @@ def indice_ricerca(pagine):
     albums = json.load(open(os.path.join(ROOT, "data", "foto.json"), encoding="utf-8")).get("albums", [])
     for a in albums:
         if a.get("photos"):
-            voci.append({"t": a["title"], "u": a.get("link") or "foto.html", "k": "Foto e resoconto gita", "d": a.get("date", ""),
+            # l'album si apre nella pagina Foto e resoconti (foto.js carica gli album fino a quello e ci scorre sopra)
+            voci.append({"t": a["title"], "u": f"foto.html#album-{a['id']}" if a.get("id") else "foto.html", "k": "Foto e resoconto gita", "d": a.get("date", ""),
                          "dt": data_it(a["date"]) if a.get("date") else "", "x": " ".join(filter(None, [a.get("place"), a.get("text")]))[:3000]})
     for g in gite_dati():
         voci.append({"t": g["titolo"], "u": f"gita.html?id={g['id']}", "k": "Gita", "d": g["dal"], "dt": data_it(g["dal"]),
