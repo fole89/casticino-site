@@ -8,7 +8,7 @@ pagine; su iPhone funziona solo con il sito installato sulla schermata Home.
 1. **Iscrizione**: il browser chiede il permesso e crea un indirizzo di notifica anonimo (nessun nome, e-mail o
    telefono). `assets/site.js` lo manda a questo servizio (`worker.js`, Cloudflare Workers + database D1), che lo
    conserva con la lingua della pagina. «Disattiva le notifiche» lo cancella.
-2. **Invio**: nell'area di redazione, una news o l'avviso con la casella **«Invia anche come notifica»**. Alla
+2. **Invio**: nell'area di redazione, una news o l'avviso con la casella **«Invia anche come notifica»** (anche negli avvisi delle capanne). Alla
    pubblicazione il workflow `.github/workflows/news.yml`:
    - prima di pubblicare, `scripts/notifiche.py prepara` trasforma news e avviso con la casella accesa in messaggi,
      spegne la casella e segna «notifica inviata» (così una modifica successiva non la rimanda);

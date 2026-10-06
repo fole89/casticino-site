@@ -88,21 +88,93 @@ var AnnuncioPreview = createClass({
 });
 CMS.registerPreviewTemplate("mercatino", AnnuncioPreview);
 
+// Avvisi (in cima al sito e delle capanne): si vedono finché hanno un testo. «Elimina» (widget qui sotto) segna l'avviso
+// e, alla pubblicazione, preSave svuota i campi: l'avviso sparisce dal sito.
+function notaAvviso(d) {
+  if (d.get("elimina")) return "Con «Pubblica» l’avviso viene eliminato dal sito.";
+  if (!(d.get("testo") || "").trim()) return "Nessun avviso: scrivi il testo e premi «Pubblica».";
+  return (d.get("scadenza") ? "Visibile fino al " + dataIt(d.get("scadenza")) + "." : "Visibile finché non lo elimini.") +
+    (d.get("notifica") ? " Alla pubblicazione parte anche la notifica." : "");
+}
+
+var EliminaControl = createClass({
+  render: function () {
+    var props = this.props, segnato = !!props.value;
+    var testo = (props.entry.getIn(["data", "testo"]) || "").trim();
+    if (!testo && !segnato) return h("p", { className: "elimina elimina--vuoto" }, "Nessun avviso pubblicato.");
+    return h("div", { className: "elimina" + (segnato ? " elimina--segnato" : "") },
+      segnato ? h("p", {}, "L’avviso sarà eliminato quando premi «Pubblica».") : null,
+      h("button", { type: "button", className: segnato ? "elimina-annulla" : "elimina-btn",
+        onClick: function () { props.onChange(!segnato); } }, segnato ? "Annulla" : "Elimina l’avviso"));
+  }
+});
+CMS.registerWidget("elimina", EliminaControl, function () { return null; });
+
+CMS.registerEventListener({
+  name: "preSave",
+  handler: function (args) {
+    var data = args.entry.get("data");
+    if (!data.has("elimina")) return data;
+    if (data.get("elimina")) {
+      ["testo", "testo_de", "testo_en", "link", "scadenza"].forEach(function (k) { data = data.set(k, ""); });
+      data = data.set("importante", false).set("notifica", false);
+    }
+    return data.delete("elimina");
+  }
+});
+
+// Elenco degli avvisi: in rosso quelli ora visibili sul sito (letti dai file pubblicati: dopo «Pubblica» il colore
+// cambia in uno o due minuti, quando il sito è aggiornato).
+(function () {
+  var FILE = { avviso: "data/avviso.json" };
+  ["campotencia", "cristallina", "adula", "motterascio", "montebar", "baitadelluca"].forEach(function (c) {
+    FILE["avviso_" + c] = "data/avvisi-capanne/" + c + ".json";
+  });
+  var attivi = {}, letto = 0;
+  function oggi() {
+    var d = new Date();
+    return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+  }
+  function leggi() {
+    if (Date.now() - letto < 30000) return;
+    letto = Date.now();
+    Object.keys(FILE).forEach(function (k) {
+      fetch(FILE[k], { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (a) {
+        var sc = (a.scadenza || "").slice(0, 10);
+        attivi[k] = !!(a.testo || "").trim() && (!sc || sc >= oggi());
+        segna();
+      }).catch(function () {});
+    });
+  }
+  function segna() {
+    Array.prototype.forEach.call(document.querySelectorAll('a[href*="/collections/avvisi/entries/"]'), function (a) {
+      var k = a.getAttribute("href").split("/entries/")[1];
+      var card = a.closest("li") || a;
+      card.classList.toggle("avviso-attivo", !!attivi[k]);
+    });
+  }
+  function vai() {
+    if (/\/collections\/avvisi\/?$/.test(location.hash)) leggi();
+  }
+  new MutationObserver(segna).observe(document.body, { childList: true, subtree: true });
+  window.addEventListener("hashchange", vai);
+  vai();
+})();
+
 // Anteprima dell'avviso: la striscia come apparirà in cima alle pagine (italiano, poi tedesco e inglese se scritti).
 var AvvisoPreview = createClass({
   render: function () {
     var d = this.props.entry.get("data");
     var cls = "avviso" + (d.get("importante") ? " avviso--importante" : "");
     var righe = [["", d.get("testo")], ["Tedesco: ", d.get("testo_de")], ["Inglese: ", d.get("testo_en")]].filter(function (r) { return r[1]; });
-    var nota = !d.get("attivo") ? "Spento: sul sito l’avviso non si vede."
-      : d.get("scadenza") ? "Visibile fino al " + dataIt(d.get("scadenza")) + "." : "Visibile finché non lo spegni.";
+    var nota = notaAvviso(d);
     return h("main", {},
-      righe.length ? righe.map(function (r, i) {
+      righe.length && !d.get("elimina") ? righe.map(function (r, i) {
         return h("aside", { key: i, className: cls, style: { marginBottom: "12px" } },
           h("div", { className: "container avviso-inner" },
             h("p", {}, h("span", {}, r[0] + r[1]), d.get("link") ? h("span", {}, " ", h("a", {}, "Scopri di più")) : null)));
-      }) : h("p", { className: "small", style: { padding: "24px" } }, "Scrivi il testo dell’avviso: qui compare la striscia come sul sito."),
-      h("p", { className: "small", style: { padding: "0 24px" } }, nota, d.get("notifica") ? " Alla pubblicazione parte anche la notifica." : ""));
+      }) : d.get("elimina") ? null : h("p", { className: "small", style: { padding: "24px" } }, "Scrivi il testo dell’avviso: qui compare la striscia come sul sito."),
+      h("p", { className: "small", style: { padding: "0 24px" } }, nota));
   }
 });
 CMS.registerPreviewTemplate("avviso", AvvisoPreview);
@@ -114,17 +186,16 @@ var AvvisoCapannaPreview = createClass({
     var imp = d.get("importante");
     var righe = [["Avviso", "Importante", d.get("testo")], ["Hinweis", "Wichtig", d.get("testo_de")], ["Notice", "Important", d.get("testo_en")]]
       .filter(function (r) { return r[2]; });
-    var nota = !d.get("attivo") ? "Spento: sulla pagina della capanna l’avviso non si vede."
-      : d.get("scadenza") ? "Visibile fino al " + dataIt(d.get("scadenza")) + "." : "Visibile finché non lo spegni.";
+    var nota = notaAvviso(d);
     return h("main", {},
       h("section", { className: "section section--tight" },
         h("div", { className: "container" },
-          righe.length ? righe.map(function (r, i) {
+          righe.length && !d.get("elimina") ? righe.map(function (r, i) {
             return h("div", { key: i, className: "avviso-capanna" + (imp ? " avviso-capanna--importante" : ""), style: { marginBottom: "12px" } },
               h("p", { className: "avviso-capanna-tipo" }, imp ? r[1] : r[0]),
               h("p", {}, h("span", {}, r[2]), d.get("link") ? h("span", {}, " ", h("a", {}, ["Scopri di più", "Mehr erfahren", "Find out more"][i])) : null));
-          }) : h("p", { className: "small" }, "Scrivi il testo dell’avviso: qui compare il riquadro come sulla pagina della capanna."),
-          h("p", { className: "small" }, nota, d.get("notifica") ? " Alla pubblicazione parte anche la notifica." : ""))));
+          }) : d.get("elimina") ? null : h("p", { className: "small" }, "Scrivi il testo dell’avviso: qui compare il riquadro come sulla pagina della capanna."),
+          h("p", { className: "small" }, nota))));
   }
 });
 ["campotencia", "cristallina", "adula", "motterascio", "montebar", "baitadelluca"].forEach(function (c) {

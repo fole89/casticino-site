@@ -818,7 +818,7 @@ def facebook(d):
 
 
 def avviso_capanna(file):
-    """Avviso della capanna sotto la foto (data/avvisi-capanne/<capanna>.json, raccolta «Avvisi capanne» in admin/):
+    """Avviso della capanna sotto la foto (data/avvisi-capanne/<capanna>.json, raccolta «Avvisi» in admin/):
     scuro, rosso se importante; uno solo per capanna. Dopo la scadenza lo toglie site.js (data-scade),
     anche se la pagina non è ancora stata rigenerata."""
     a = avviso(f"avvisi-capanne/{file.removesuffix('.html')}.json")

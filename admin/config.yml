@@ -134,21 +134,19 @@ collections:
         widget: hidden
         required: false
 
-  - name: avviso
-    label: Avviso
+  - name: avvisi
+    label: Avvisi
     label_singular: avviso
-    description: "Una striscia in cima a tutte le pagine del sito, per le cose importanti e di breve durata (capanna chiusa, assemblea, iscrizioni aperte). Chi la chiude non la rivede finché il testo non cambia. Dopo «Pubblica» è online in uno o due minuti."
+    description: "In rosso gli avvisi ora visibili sul sito. In cima la striscia su tutte le pagine; sotto, un riquadro per capanna sulla sua pagina, subito sotto la foto (grigio scuro per le informazioni, es. date di apertura; rosso per le cose importanti, es. strada chiusa). Scrivi il testo e premi «Pubblica»: è online in uno o due minuti. Per toglierlo: «Elimina» e poi «Pubblica»."
     files:
-      - label: Avviso in cima al sito
+      - label: Avviso in cima al sito (tutte le pagine)
         name: avviso
         file: data/avviso.json
         fields:
-          - label: Mostra l’avviso
-            name: attivo
-            widget: boolean
-            default: false
+          - label: Elimina l’avviso
+            name: elimina
+            widget: elimina
             required: false
-            hint: "Spento: l’avviso non si vede (il testo resta qui per la prossima volta)."
           - label: Invia anche come notifica
             name: notifica
             widget: boolean
@@ -165,7 +163,7 @@ collections:
             name: testo
             widget: string
             required: false
-            hint: "Una frase breve, senza link nel testo (es. «La Capanna Adula resta chiusa fino al 20 giugno per lavori»)."
+            hint: "Una frase breve, senza link nel testo (es. «La Capanna Adula resta chiusa fino al 20 giugno per lavori»). Con «Pubblica» l’avviso va online."
           - label: Testo in tedesco
             name: testo_de
             widget: string
@@ -188,28 +186,19 @@ collections:
             date_format: "DD.MM.YYYY"
             time_format: false
             required: false
-            hint: "Ultimo giorno in cui si vede; il giorno dopo sparisce da solo. Vuoto: resta finché non lo spegni."
+            hint: "Ultimo giorno in cui si vede; il giorno dopo sparisce da solo. Vuoto: resta finché non lo elimini."
           - label: Notifica inviata il
             name: notifica_inviata
             widget: hidden
             required: false
-
-
-  - name: avvisi_capanne
-    label: Avvisi capanne
-    label_singular: avviso della capanna
-    description: "Un riquadro sulla pagina della capanna, subito sotto la foto: grigio scuro per le informazioni (es. date di apertura), rosso per le cose importanti (es. strada chiusa). Un solo avviso per capanna; l’avviso in cima a tutto il sito resta a parte. Dopo «Pubblica» è online in uno o due minuti."
-    files:
       - label: Capanna Campo Tencia
         name: avviso_campotencia
         file: data/avvisi-capanne/campotencia.json
         fields: &campi_avviso_capanna
-          - label: Mostra l’avviso
-            name: attivo
-            widget: boolean
-            default: false
+          - label: Elimina l’avviso
+            name: elimina
+            widget: elimina
             required: false
-            hint: "Spento: l’avviso non si vede (il testo resta qui per la prossima volta)."
           - label: Invia anche come notifica
             name: notifica
             widget: boolean
@@ -226,7 +215,7 @@ collections:
             name: testo
             widget: text
             required: false
-            hint: "Breve, senza link nel testo; si può andare a capo (es. «Aperta dal 13 giugno al 18 ottobre 2027»)."
+            hint: "Breve, senza link nel testo; si può andare a capo (es. «Aperta dal 13 giugno al 18 ottobre 2027»). Con «Pubblica» l’avviso va online."
           - label: Testo in tedesco
             name: testo_de
             widget: text
@@ -249,7 +238,7 @@ collections:
             date_format: "DD.MM.YYYY"
             time_format: false
             required: false
-            hint: "Ultimo giorno in cui si vede; il giorno dopo sparisce da solo. Vuoto: resta finché non lo spegni."
+            hint: "Ultimo giorno in cui si vede; il giorno dopo sparisce da solo. Vuoto: resta finché non lo elimini."
           - label: Notifica inviata il
             name: notifica_inviata
             widget: hidden

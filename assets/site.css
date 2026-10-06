@@ -80,7 +80,7 @@ dl,dd{margin:0}
 /* avviso della capanna sotto la foto (data/avvisi-capanne/): scuro, rosso se importante; scaduto → tolto da site.js */
 .avviso-capanna{padding:clamp(20px,3vw,32px);background:var(--ink);color:var(--bg)}
 .avviso-capanna--importante{background:var(--accent);color:var(--accent-ink)}
-.avviso-capanna p{margin:0;max-width:68ch;color:inherit;white-space:pre-line}
+.avviso-capanna p{margin:0;max-width:none;color:inherit;white-space:pre-line}
 .avviso-capanna .avviso-capanna-tipo{margin-bottom:8px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
 .avviso-capanna a{color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 .avviso-capanna :focus-visible{outline-color:currentColor}

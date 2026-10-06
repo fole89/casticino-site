@@ -62,7 +62,7 @@ header{box-shadow:none!important;border-bottom:3px solid var(--accent)!important
 [class*="-ControlHint"]{color:var(--muted)!important;font-size:13.5px!important;line-height:1.45!important;margin-top:8px!important;max-width:68ch}
 [class*="-ControlErrorsList"] li{color:var(--accent)!important;font-weight:600!important}
 
-/* interruttore (notifica, avviso attivo…): rosso quando è acceso */
+/* interruttore (notifica, importante…): rosso quando è acceso */
 [role="switch"][aria-checked="true"]>[class*="-ToggleBackground"]{background-color:var(--accent)!important}
 
 /* barra della pagina di modifica */
@@ -73,3 +73,25 @@ header{box-shadow:none!important;border-bottom:3px solid var(--accent)!important
 /* pagina di accesso */
 [class*="-StyledAuthenticationPage"]{background:var(--surface)!important}
 [class*="-PageLogoIcon"] img,[class*="-StyledAuthenticationPage"] img{max-height:120px}
+
+/* Avvisi: in rosso nell'elenco quelli ora visibili sul sito (admin/index.html aggiunge .avviso-attivo) */
+.avviso-attivo,.avviso-attivo a{background:var(--accent)!important;color:#fff!important}
+.avviso-attivo h2,.avviso-attivo [class*="-ListCardTitle"]{color:#fff!important}
+.avviso-attivo h2::after{content:"Attivo";margin-left:12px;padding:2px 8px;border:1px solid rgba(255,255,255,.7);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
+.avviso-attivo:hover h2,.avviso-attivo a:hover{color:#fff!important}
+.avviso-attivo a:hover{background:var(--accent-hover)!important}
+
+/* pulsante «Elimina l'avviso» (widget elimina in admin/index.html) */
+[class*="-ControlContainer"]:has(.elimina)>[class*="-ControlTopbar"]{display:none!important}
+[class*="-ControlContainer"]:has(.elimina)>:not([class*="-ControlTopbar"]){border:0!important;background:none!important}
+.elimina{padding:0!important}
+.elimina{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:14px 16px}
+.elimina p{margin:0;font-weight:600}
+.elimina--vuoto{color:var(--muted);font-weight:400}
+.elimina--segnato{background:rgba(239,28,36,.08)}
+.elimina--segnato p{color:var(--accent)}
+.elimina-btn,.elimina-annulla{min-height:40px;padding:0 18px;border:1.5px solid var(--accent);border-radius:0;font:inherit;font-weight:600;cursor:pointer}
+.elimina-btn{background:#fff;color:var(--accent)}
+.elimina-btn:hover{background:var(--accent);color:#fff}
+.elimina-annulla{background:#fff;color:var(--ink-2);border-color:var(--line-strong)}
+.elimina-annulla:hover{border-color:var(--ink)}

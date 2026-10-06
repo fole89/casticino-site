@@ -170,7 +170,7 @@ def in_lingua(pagina, lang):
 
 
 # ------------------------------------------------------------------ avviso in cima a tutte le pagine
-# data/avviso.json, scritto dalla redazione (admin/, «Avviso»): attivo, importante (rosso), testo (+ testo_de, testo_en),
+# data/avviso.json, scritto dalla redazione (admin/, «Avvisi»; si vede se c'è un testo, «Elimina» lo svuota): importante (rosso), testo (+ testo_de, testo_en),
 # link, scadenza (ultimo giorno in cui si vede). Chi lo chiude non lo rivede finché il testo non cambia: il browser
 # ricorda solo l'impronta dell'avviso chiuso (localStorage «avviso», vedi la privacy). Dopo la scadenza lo nasconde
 # lo script in head(), anche se la pagina non è ancora stata rigenerata.
@@ -183,7 +183,7 @@ def avviso(percorso="avviso.json"):
     except (OSError, ValueError):
         return None
     scadenza = (a.get("scadenza") or "")[:10]
-    if not a.get("attivo") or not (a.get("testo") or "").strip() or (scadenza and scadenza < datetime.date.today().isoformat()):
+    if not (a.get("testo") or "").strip() or (scadenza and scadenza < datetime.date.today().isoformat()):
         return None
     impronta = hashlib.md5(json.dumps([a.get("testo"), a.get("link"), scadenza], ensure_ascii=False).encode()).hexdigest()[:8]
     return dict(a, scadenza=scadenza, id=impronta)
