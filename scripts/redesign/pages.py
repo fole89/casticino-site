@@ -146,6 +146,7 @@ def home():
 </div>
 <figure class="band">
 {pic("paesaggi/sciatori-villaggio", tx.get("hero_alt", "Scialpinisti in salita verso un villaggio innevato"), mobile="paesaggi/sciatori-villaggio-4x3", w=2000, h=901, lazy=False, cls="pos-low")}
+<figcaption class="credito">{tr("Foto", "Foto", "Photo")} © Michele Foletti</figcaption>
 </figure>
 </section>
 
@@ -326,6 +327,7 @@ def band_img(name, alt, w, h):
 
 HUT_PAGES = {
     "campotencia.html": dict(
+        portale="2147000055",
         name="Campo Tencia", where="Val Piumogna, Leventina", alt_m="2140", beds="80", custody="da metà giugno a metà ottobre",
         mail="campotencia@casticino.ch", booking=PRENOTA.format(36), facebook="https://www.facebook.com/61559861696010",
         description="Capanna Campo Tencia, 2140 m, in Val Piumogna (Leventina): 80 posti letto, custodita da metà giugno a metà ottobre. Contatti e prenotazioni.",
@@ -344,6 +346,7 @@ HUT_PAGES = {
                  ("Cellulare", '<a class="num" href="tel:+41767212572">+41 76 721 25 72</a>'),
                  ("E-mail", '<a href="mailto:campotencia@casticino.ch">campotencia@casticino.ch</a>')]),
     "cristallina.html": dict(
+        portale="2147000069",
         name="Cristallina", where="Passo Cristallina, Valle Bedretto", alt_m="2575", beds="100", custody="da giugno a metà ottobre; d’inverno nei fine settimana e nei festivi",
         mail="cristallina@casticino.ch", booking=PRENOTA.format(20), facebook="https://www.facebook.com/capannacristallinacas/",
         description="Capanna Cristallina, 2575 m, sul passo tra Leventina e Valle Maggia: 100 posti letto, custodita da giugno a metà ottobre e d’inverno nei fine settimana e festivi. Contatti e prenotazioni.",
@@ -361,6 +364,7 @@ HUT_PAGES = {
                  ("Telefono", '<a class="num" href="tel:+41918692330">+41 91 869 23 30</a>'),
                  ("E-mail", '<a href="mailto:cristallina@casticino.ch">cristallina@casticino.ch</a>')]),
     "adula.html": dict(
+        portale="2147000002",
         name="Adula", where="Alta Val Carassino, Val Soi, Blenio", alt_m="2012", beds="24", custody="da fine maggio a metà ottobre",
         mail="adula@casticino.ch", booking=PRENOTA.format(42), facebook="https://www.facebook.com/CapannaAdulaCAS",
         description="Capanna Adula, 2012 m, tra Val Carassino e Val Soi (Blenio): 24 posti letto, aperta tutto l’anno, custodita da fine maggio a metà ottobre. Contatti e prenotazioni.",
@@ -379,6 +383,7 @@ HUT_PAGES = {
                  ("Cellulare", '<a class="num" href="tel:+41795352112">+41 79 535 21 12</a>'),
                  ("E-mail", '<a href="mailto:adula@casticino.ch">adula@casticino.ch</a>')]),
     "motterascio.html": dict(
+        portale="2147000183",
         name="Motterascio", where="Alpe Motterascio, Greina, Blenio", alt_m="2172", beds="70", custody="da metà giugno a metà ottobre",
         mail="motterascio@casticino.ch", booking=PRENOTA.format(221), facebook="https://www.facebook.com/michelamotterascio",
         description="Capanna Motterascio, 2172 m, al margine della Greina (Blenio): 70 posti letto, aperta tutto l’anno, custodita da metà giugno a metà ottobre. Contatti e prenotazioni.",
@@ -397,6 +402,7 @@ HUT_PAGES = {
                  ("Cellulare", '<a class="num" href="tel:+41797276905">+41 79 727 69 05</a>'),
                  ("E-mail", '<a href="mailto:motterascio@casticino.ch">motterascio@casticino.ch</a>')]),
     "montebar.html": dict(
+        portale="2147000180",
         name="Monte Bar", where="Alta Capriasca, Luganese", alt_m="1602", beds="42", custody="tutto l’anno",
         mail="montebar@casticino.ch", booking=PRENOTA.format(168), facebook="https://www.facebook.com/CapannaMonteBarCAS/",
         description="Capanna Monte Bar, 1602 m, in Alta Capriasca: 42 posti letto in camere da 2, 4 e 6, custodita tutto l’anno, standard Bike Hotel. Contatti e prenotazioni.",
@@ -434,6 +440,13 @@ HUT_PAGES = {
 }
 
 
+# Scheda della capanna sul portale escursionistico del CAS (portale= in HUT_PAGES, numero della capanna sul portale).
+# Il CAS sostituirà il portale con «Ridian» (annunciato per la primavera 2028): allora vanno controllati questi link.
+PORTALE_CAS = {"it": "https://www.sac-cas.ch/it/capanne-e-escursioni/portale-escursionistico-del-cas/{}/",
+               "de": "https://www.sac-cas.ch/de/huetten-und-touren/sac-tourenportal/{}/",
+               "en": "https://www.sac-cas.ch/en/huts-and-tours/sac-route-portal/{}/"}
+IBAN = "CH09 0076 4128 9526 1200 6"   # conto della sezione (Banca Stato, Lugano), anche in Sede e contatti
+
 # testi fissi delle pagine capanna
 TC = {
     "it": dict(prenota="Prenota", cucina="La cucina", team="Chi vi accoglie", vita="La cucina e i guardiani",
@@ -448,7 +461,10 @@ TC = {
                altre="Le altre capanne", capanna="Capanna", n_foto="foto", accesso_da="Accesso da", pdf="",
                fb_h="Dalla capanna", fb_notizie="Ultime notizie", fb_p="Le ultime notizie della capanna, pubblicate dai guardiani su Facebook.",
                fb_carica="Mostra i post", fb_privacy="I post vengono caricati da Facebook solo dopo il clic: da quel momento Facebook riceve dati sulla tua visita.",
-               fb_apri="Apri la pagina Facebook"),
+               fb_apri="Apri la pagina Facebook",
+               portale="La capanna e i suoi itinerari sul portale del CAS", sostieni_h="Sostieni la capanna",
+               sostieni_p="Manutenzione, rinnovi e lavori costano: le capanne vivono anche grazie ai soci e agli amici della montagna. Puoi sostenerle con una donazione sul conto della sezione, indicando il nome della capanna.",
+               conto="Conto", causale="Causale"),
     "de": dict(prenota="Reservieren", cucina="Die Küche", team="Ihre Gastgeber", vita="Küche und Hüttenteam",
                tariffe="Preise und Reservation", accessi="Anreise", attivita="Aktivitäten", sostenitori="Unterstützer",
                storia="Geschichte", storia_link="Die Geschichte der Hütte", foto="Fotos", tutte_foto="Alle Fotos",
@@ -461,7 +477,10 @@ TC = {
                altre="Die anderen Hütten", capanna="Capanna", n_foto="Foto", accesso_da="Zugang ab", pdf=" (italienisch)",
                fb_h="Aus der Hütte", fb_notizie="Aktuelles", fb_p="Die neusten Nachrichten der Hütte, vom Hüttenteam auf Facebook veröffentlicht (meist italienisch).",
                fb_carica="Beiträge anzeigen", fb_privacy="Die Beiträge werden erst nach dem Klick von Facebook geladen: ab dann erhält Facebook Daten über Ihren Besuch.",
-               fb_apri="Facebook-Seite öffnen"),
+               fb_apri="Facebook-Seite öffnen",
+               portale="Die Hütte und ihre Routen im SAC-Tourenportal", sostieni_h="Die Hütte unterstützen",
+               sostieni_p="Unterhalt, Erneuerungen und Arbeiten kosten: Die Hütten leben auch dank den Mitgliedern und den Freunden der Berge. Sie können sie mit einer Spende auf das Konto der Sektion unterstützen, mit dem Namen der Hütte als Vermerk.",
+               conto="Konto", causale="Vermerk"),
     "en": dict(prenota="Book", cucina="The kitchen", team="Your hosts", vita="Kitchen and hut team",
                tariffe="Rates and booking", accessi="Getting there", attivita="Activities", sostenitori="Supporters",
                storia="History", storia_link="The history of the hut", foto="Photos", tutte_foto="All photos",
@@ -474,7 +493,10 @@ TC = {
                altre="The other huts", capanna="Capanna", n_foto="photo", accesso_da="Access from", pdf=" (in Italian)",
                fb_h="From the hut", fb_notizie="Latest news", fb_p="The hut’s latest news, posted by the hut team on Facebook (mostly in Italian).",
                fb_carica="Show posts", fb_privacy="Posts are only loaded from Facebook after you click: from then on Facebook receives data about your visit.",
-               fb_apri="Open the Facebook page"),
+               fb_apri="Open the Facebook page",
+               portale="The hut and its routes on the SAC route portal", sostieni_h="Support the hut",
+               sostieni_p="Upkeep, renovations and building work cost money: the huts also rely on members and friends of the mountains. You can support them with a donation to the section’s account, giving the name of the hut as reference.",
+               conto="Account", causale="Reference"),
 }
 
 
@@ -787,7 +809,7 @@ def facebook(d):
 <div class="contact-intro">
 <h2 id="fb-h" class="h2">{tc('fb_h')}</h2>
 <p>{tc('fb_p')}</p>
-<a class="link" href="{d['facebook']}" rel="noopener">{tc('fb_apri')} <span class="arrow" aria-hidden="true">→</span></a>
+<a class="link" href="{d['facebook']}" rel="noopener">{tc('fb_apri')}</a>
 </div>
 <div class="fb-feed" data-fb="{d['facebook']}" data-lang="{tr('it_IT', 'de_DE', 'en_GB')}" data-titolo="Facebook {d['name']}">
 <button type="button" class="btn btn--secondary">{tc('fb_carica')}</button>
@@ -854,6 +876,7 @@ def hut(file):
 <div class="factgroup">
 <h3 class="h3">{tc('arrivare')}</h3>
 {facts([r for r in d['reach'] if not (c and c.get('accessi')) or 'CNS' in r[1]])}
+{f'<p><a class="link" href="{PORTALE_CAS[LINGUA["lang"]].format(d["portale"])}" rel="noopener">{tc("portale")}</a></p>' if d.get("portale") else ""}
 </div>
 </div>
 </div>
@@ -870,6 +893,18 @@ def hut(file):
 <p>{tc('contatti_p')}</p>
 </div>
 {facts(d['contact'])}
+</div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="sostieni-h">
+<div class="container">
+<div class="contact contact--linea" data-reveal>
+<div class="contact-intro">
+<h2 id="sostieni-h" class="h2">{tc('sostieni_h')}</h2>
+<p>{tc('sostieni_p')}</p>
+</div>
+{facts([(tc("conto"), f'Banca Stato, Lugano<br><span class="num">IBAN {IBAN}</span>'), (tc("causale"), f"{tc('capanna') + ' ' if file != 'baitadelluca.html' else ''}{d['name']}")])}
 </div>
 </div>
 </section>
@@ -1409,7 +1444,7 @@ def sede():
         ("E-mail", '<a href="mailto:info@casticino.ch">info@casticino.ch</a>'),
         ("Sede", "Stabile Canvetto Luganese, Molino Nuovo (Lugano)<br>2° piano, in balconata"),
         ("Biblioteca", 'Guide e cartine da consultare, libri in prestito; in vendita libri e magliette. Per visitarla scrivi al segretariato: <a href="mailto:info@casticino.ch">info@casticino.ch</a>.'),
-        ("Coordinate bancarie", 'Banca Stato, Lugano<br><span class="num">IBAN CH09 0076 4128 9526 1200 6</span>'),
+        ("Coordinate bancarie", f'Banca Stato, Lugano<br><span class="num">IBAN {IBAN}</span>'),
     ]
     body = page_hero([("La Sezione", "introduzione.html"), ("Sede e contatti", None)], "Sede e contatti",
                      "La sede sociale si trova nello stabile del Canvetto Luganese a Molino Nuovo, con ufficio e sala riunioni al secondo piano in balconata.") + f"""
@@ -1763,13 +1798,32 @@ def og_name(n):
     return n["image"]["src"][len("assets/img/"):-len(".webp")] if n["image"] else "paesaggi/cresta-lugano-2000"
 
 
+# Categorie delle news: le stesse (e nello stesso ordine) della lista in admin/config.yml (campo «category»)
+CATEGORIE = {"Capanne": ("Hütten", "Huts"), "Gite": ("Touren", "Trips"), "Corsi": ("Kurse", "Courses"),
+             "Giovani": ("Jugend", "Youth"), "Senior": ("Senioren", "Seniors"), "Sezione": ("Sektion", "Section"),
+             "Eventi": ("Anlässe", "Events"), "Incontri": ("Vorträge", "Talks"), "Itinerario": ("Tourenidee", "Route idea"),
+             "Sicurezza": ("Sicherheit", "Safety")}
+
+
+def categoria_l(cat):
+    """Nome della categoria nella lingua della pagina (una categoria sconosciuta resta com'è)."""
+    if cat not in CATEGORIE:
+        return cat
+    return tr(cat, *CATEGORIE[cat])
+
+
+def categoria_slug(cat):
+    return slug_nome(cat) if cat else ""
+
+
 def news_meta(n):
-    cat = f'<span{in_it()}>{esc(n["category"])}</span>' if n["category"] else ""
+    cat = f'<span class="news-cat">{esc(categoria_l(n["category"]))}</span>' if n["category"] else ""
     return f'<p class="news-meta"><time datetime="{n["date"]}">{data_l(n["date"])}</time>{cat}</p>'
 
 
-def news_card(n, feature=False):
-    """Scheda di una notizia: foto (o blocco rosso con la data se manca), data, titolo, estratto (in italiano)."""
+def news_card(n, feature=False, filtro=False):
+    """Scheda di una notizia: foto (o blocco rosso con la data se manca), data e categoria, titolo, estratto (in italiano).
+    filtro: nella pagina News la categoria va anche in data-ruoli, per il filtro (site.js)."""
     if n["image"]:
         im = n["image"]
         fig = f'<figure><img src="{im["src"]}" alt="" width="{im["w"]}" height="{im["h"]}" loading="lazy" decoding="async"></figure>'
@@ -1778,7 +1832,8 @@ def news_card(n, feature=False):
         fig = f'<figure class="news-noimg" aria-hidden="true"><strong>{int(d)}</strong><span>{MESI_L[LINGUA["lang"]][int(m) - 1]} {y}</span></figure>'
     cls = "news-card news-card--feature" if feature else "news-card"
     tag = "h2" if feature else "h3"
-    return f"""<a class="{cls}" href="{n['file']}">
+    ruoli = f' data-ruoli="{categoria_slug(n["category"])}"' if filtro else ""
+    return f"""<a class="{cls}" href="{n['file']}"{ruoli}>
 {fig}
 <div class="news-card-body">
 {news_meta(n)}
@@ -1796,20 +1851,39 @@ def news():
             anni.append((y, []))
         anni[-1][1].append(n)
     salti = "\n".join(f'<a href="#anno-{y}">{y}</a>' for y, _ in anni)
-    gruppi = "\n".join(f"""<section class="news-year" id="anno-{y}" aria-labelledby="anno-{y}-h">
+    gruppi = "\n".join(f"""<section class="news-year" id="anno-{y}" aria-labelledby="anno-{y}-h" data-filtro-gruppo>
 <h2 id="anno-{y}-h" class="news-year-h">{y}</h2>
 <div class="news-grid">
-{chr(10).join(news_card(n) for n in items)}
+{chr(10).join(news_card(n, filtro=True) for n in items)}
 </div>
 </section>""" for y, items in anni)
+    # filtro per categoria (site.js): solo le categorie usate, nell'ordine di CATEGORIE
+    conta = {}
+    for n in NEWS:
+        if n["category"]:
+            conta[n["category"]] = conta.get(n["category"], 0) + 1
+    cats = [c for c in CATEGORIE if c in conta] + sorted(c for c in conta if c not in CATEGORIE)
+    filtri = "\n".join([f'<button type="button" data-filtro="" aria-pressed="true">{tr("Tutte", "Alle", "All")} <span class="num">{len(NEWS)}</span></button>'] +
+                       [f'<button type="button" data-filtro="{categoria_slug(c)}" aria-pressed="false">{esc(categoria_l(c))} <span class="num">{conta[c]}</span></button>'
+                        for c in cats])
     body = page_hero([("News", None)], "News", tr(
         "Serate, eventi, corsi e avvisi della sezione: tutte le notizie, dalla più recente.",
         "Abende, Anlässe, Kurse und Hinweise der Sektion: alle Meldungen, die neuesten zuerst. Die News erscheinen auf Italienisch.",
         "Evenings, events, courses and notices from the section: all the news, most recent first. The news is published in Italian."), social()) + f"""
 
-<section class="section" aria-label="{tr("Ultima notizia", "Neueste Meldung", "Latest news")}">
+<div id="notizie">
+<section class="section section--filtro" aria-label="{tr("Filtra per categoria", "Nach Kategorie filtern", "Filter by category")}">
 <div class="container">
-{news_card(NEWS[0], feature=True)}
+<div class="filtro" role="group" aria-label="{tr("Filtra per categoria", "Nach Kategorie filtern", "Filter by category")}" data-filtra="#notizie" data-uno="{tr("notizia", "Meldung", "news item")}" data-molti="{tr("notizie", "Meldungen", "news items")}" hidden>
+{filtri}
+</div>
+<p class="small filtro-stato" id="filtro-stato" aria-live="polite"></p>
+</div>
+</section>
+
+<section class="section section--dopo-filtro" aria-label="{tr("Ultima notizia", "Neueste Meldung", "Latest news")}" data-filtro-gruppo>
+<div class="container">
+{news_card(NEWS[0], feature=True, filtro=True)}
 </div>
 </section>
 
@@ -1824,6 +1898,7 @@ def news():
 {gruppi}
 </div>
 </section>
+</div>
 
 {subnav(NM_MENU(), L("news.html"))}"""
     return sezione_page("news.html", "News | CAS Ticino", tr(
@@ -2090,6 +2165,8 @@ def gite():
 </div>
 </div>
 </section>
+
+{prima_di_partire()}
 {subnav("Attività", "gite.html") if it else ""}"""
     return pubblica(nome, page(nome, f"{titolo} | CAS Ticino", tr(
         "Il programma delle gite, dei corsi e degli eventi della Sezione Ticino del Club Alpino Svizzero, con le iscrizioni su Droptour.",
@@ -2268,7 +2345,8 @@ def adesione():
             ("Portale escursionistico", "Accesso gratuito a cartine e itinerari sul portale del CAS"),
             ("Formazione", "Riduzioni sui corsi"),
             ("Pubblicazioni", "La rivista «Le Alpi», il periodico della sezione e sconti sulle edizioni CAS"),
-            ("Arrampicata", "Accesso gratuito alla palestra di arrampicata San Paolo")]
+            ("Arrampicata", "Accesso gratuito alla palestra di arrampicata San Paolo"),
+            ("Tessera digitale", 'La tessera di socio è anche nell’app SAC-CAS (<a href="https://apps.apple.com/ch/app/sac-cas/id1592646841" rel="noopener">App Store</a>, <a href="https://play.google.com/store/apps/details?id=ch.sac_cas" rel="noopener">Google Play</a>): si accede con l’account del CAS, funziona anche senza rete e il codice QR vale nelle capanne')]
     join = "https://portal.sac-cas.ch/it/groups/6783/self_registration"
     body = page_hero([("Adesione", None)], "Diventa socio",
                      "Entra nella sezione ticinese del Club Alpino Svizzero: gite, corsi, capanne e una comunità che ama la montagna.",
@@ -2615,6 +2693,8 @@ def corsi():
 </div>
 </section>
 
+{prima_di_partire()}
+
 {subnav(ATT_MENU(), L("corsi.html"))}"""
     return sezione_page("corsi.html", titolo + " | CAS Ticino", tr(
         "Corsi del CAS Ticino diretti da professionisti: sci alpinismo, racchette, tecnica di sci fuori pista, arrampicata e alpinismo.",
@@ -2655,8 +2735,8 @@ def noleggio():
                                                    f"1 bis {NOLEGGIO_MAX_GIORNI} Tage: Der Preis gilt pro Miettag",
                                                    f"1 to {NOLEGGIO_MAX_GIORNI} days: the price is per day of hire")),
             (tr("Ritiro e riconsegna", "Abholung und Rückgabe", "Pick-up and return"), tr(
-                "Al magazzino di Manno, all’orario indicato nella conferma", "Im Lager in Manno, zur Zeit, die in der Bestätigung steht",
-                "At the store in Manno, at the time given in the confirmation")),
+                "Al magazzino di Manno, al giorno e all’orario indicato nella conferma", "Im Lager in Manno, an dem Tag und zu der Zeit, die in der Bestätigung stehen",
+                "At the store in Manno, on the day and at the time given in the confirmation")),
             ("E-mail", mail)]
     # dati del modulo nella lingua della pagina: le quantità le dà il servizio, con la disponibilità per le date scelte
     dati = [{"nome": nome_l(g, "gruppo"), "articoli": [
@@ -2954,7 +3034,7 @@ TRADOTTE = {
             ("E-Mail", '<a href="mailto:info@casticino.ch">info@casticino.ch</a>'),
             ("Sitz", "Gebäude Canvetto Luganese, Molino Nuovo (Lugano)<br>2. Stock, auf der Galerie"),
             ("Bibliothek", 'Führer und Karten zum Nachschlagen, Bücher zum Ausleihen; Bücher und T-Shirts zu kaufen. Für einen Besuch schreiben Sie dem Sekretariat: <a href="mailto:info@casticino.ch">info@casticino.ch</a>.'),
-            ("Bankverbindung", 'Banca Stato, Lugano<br><span class="num">IBAN CH09 0076 4128 9526 1200 6</span>'),
+            ("Bankverbindung", f'Banca Stato, Lugano<br><span class="num">IBAN {IBAN}</span>'),
         ],
         sede_crumb="Sitz und Kontakt",
         sede_lead="Der Sitz der Sektion befindet sich im Gebäude Canvetto Luganese in Molino Nuovo, mit Büro und Sitzungszimmer im zweiten Stock auf der Galerie.",
@@ -2972,7 +3052,8 @@ TRADOTTE = {
                   ("Tourenportal", "Kostenloser Zugang zu Karten und Routen im SAC-Tourenportal"),
                   ("Ausbildung", "Vergünstigungen bei den Kursen"),
                   ("Publikationen", "Die Zeitschrift «Die Alpen», das Bulletin der Sektion und Rabatte auf SAC-Publikationen"),
-                  ("Klettern", "Freier Eintritt in die Kletterhalle San Paolo")],
+                  ("Klettern", "Freier Eintritt in die Kletterhalle San Paolo"),
+                  ("Digitaler Ausweis", 'Der Mitgliederausweis ist auch in der App SAC-CAS (<a href="https://apps.apple.com/ch/app/sac-cas/id1592646841" rel="noopener">App Store</a>, <a href="https://play.google.com/store/apps/details?id=ch.sac_cas" rel="noopener">Google Play</a>): Anmeldung mit dem SAC-Konto, funktioniert auch offline, der QR-Code gilt in den Hütten')],
         join="https://portal.sac-cas.ch/de/groups/6783/self_registration",
         ade_crumb="Mitgliedschaft", ade_h="Mitglied werden",
         ade_lead="Treten Sie der Tessiner Sektion des Schweizer Alpen-Clubs bei: Touren, Kurse, Hütten und eine Gemeinschaft, die die Berge liebt.",
@@ -3025,7 +3106,7 @@ TRADOTTE = {
             ("E-mail", '<a href="mailto:info@casticino.ch">info@casticino.ch</a>'),
             ("Office", "Canvetto Luganese building, Molino Nuovo (Lugano)<br>2nd floor, on the gallery"),
             ("Library", 'Guidebooks and maps to consult, books to borrow; books and T-shirts for sale. To visit, write to the secretariat: <a href="mailto:info@casticino.ch">info@casticino.ch</a>.'),
-            ("Bank details", 'Banca Stato, Lugano<br><span class="num">IBAN CH09 0076 4128 9526 1200 6</span>'),
+            ("Bank details", f'Banca Stato, Lugano<br><span class="num">IBAN {IBAN}</span>'),
         ],
         sede_crumb="Office and contacts",
         sede_lead="The section’s office is in the Canvetto Luganese building in Molino Nuovo, with an office and meeting room on the second floor, on the gallery.",
@@ -3042,7 +3123,8 @@ TRADOTTE = {
                   ("Tour portal", "Free access to maps and routes on the SAC tour portal"),
                   ("Training", "Reduced prices on courses"),
                   ("Publications", "The SAC magazine “Die Alpen”, the section bulletin and discounts on SAC publications"),
-                  ("Climbing", "Free entry to the San Paolo climbing gym")],
+                  ("Climbing", "Free entry to the San Paolo climbing gym"),
+                  ("Digital card", 'Your membership card is also in the SAC-CAS app (<a href="https://apps.apple.com/ch/app/sac-cas/id1592646841" rel="noopener">App Store</a>, <a href="https://play.google.com/store/apps/details?id=ch.sac_cas" rel="noopener">Google Play</a>): log in with your SAC account; it works offline and the QR code is accepted in the huts')],
         join="https://portal.sac-cas.ch/it/groups/6783/self_registration",
         ade_crumb="Membership", ade_h="Become a member",
         ade_lead="Join the Ticino Section of the Swiss Alpine Club: trips, courses, huts and a community that loves the mountains.",
@@ -3268,6 +3350,54 @@ def cerca_pagina():
                 body, scripts=f'<script src="{asset("assets/cerca.js")}" defer></script>\n')
 
 
+def prima_di_partire():
+    """Riquadro «Prima di partire» (Partecipare, Corsi, Programma gite): bollettino valanghe, meteo, pianificazione,
+    cartina e numeri d'emergenza. Solo link: nessun servizio esterno viene caricato nella pagina."""
+    lang = LINGUA["lang"]
+    voci = [
+        (tr("Bollettino valanghe", "Lawinenbulletin", "Avalanche bulletin"),
+         tr("SLF, la situazione del manto nevoso in tutta la Svizzera", "SLF, die Schneedecke in der ganzen Schweiz", "SLF, the snowpack across Switzerland"),
+         {"it": "https://www.slf.ch/it/bollettino-valanghe-e-situazione-nivologica/", "de": "https://www.slf.ch/de/lawinenbulletin-und-schneesituation/",
+          "en": "https://www.slf.ch/en/avalanche-bulletin-and-snow-situation/"}[lang]),
+        (tr("Meteo", "Wetter", "Weather"), tr("MeteoSvizzera, previsioni e allerte", "MeteoSchweiz, Prognosen und Warnungen", "MeteoSwiss, forecasts and warnings"),
+         {"it": "https://www.meteosvizzera.admin.ch/", "de": "https://www.meteoschweiz.admin.ch/", "en": "https://www.meteoswiss.admin.ch/"}[lang]),
+        ("White Risk", tr("Pianificare le gite invernali e imparare a valutare il pericolo valanghe",
+                          "Wintertouren planen und die Lawinengefahr beurteilen lernen", "Plan winter tours and learn to judge avalanche danger"),
+         f"https://whiterisk.ch/{lang}"),
+        (tr("Cartina", "Karte", "Map"), tr("swisstopo, carte nazionali, pendenze e itinerari", "swisstopo, Landeskarten, Hangneigung und Routen",
+                                            "swisstopo, national maps, slope angles and routes"), f"https://map.geo.admin.ch/?lang={lang}"),
+    ]
+    links = "\n".join(f'<a href="{u}" rel="noopener"><span><strong>{t_}</strong> <span class="partenza-nota">{nota}</span></span>'
+                       f'<span class="tag">{u.split("/")[2].removeprefix("www.")}</span></a>' for t_, nota, u in voci)
+    numeri = [("1414", tr("Rega, soccorso aereo", "Rega, Luftrettung", "Rega, air rescue")),
+              ("144", tr("Ambulanza", "Sanitätsnotruf", "Ambulance")),
+              ("112", tr("Numero d’emergenza europeo", "Europäische Notrufnummer", "European emergency number"))]
+    numeri = "\n".join(f'<a href="tel:{n}"><strong class="num">{n}</strong><span>{x}</span></a>' for n, x in numeri)
+    return f"""<section class="section" id="prima-di-partire" aria-labelledby="partire-h">
+<div class="container detail">
+<div class="detail-intro">
+<h2 id="partire-h" class="h2">{tr("Prima di partire", "Vor dem Aufbruch", "Before you set off")}</h2>
+<p>{tr("Controlla meteo e bollettino valanghe la sera prima e la mattina stessa, e scegli la gita in base alle condizioni, non solo alla meta.",
+       "Prüfen Sie Wetter und Lawinenbulletin am Vorabend und am Morgen selbst, und wählen Sie die Tour nach den Verhältnissen, nicht nur nach dem Ziel.",
+       "Check the weather and the avalanche bulletin the evening before and on the morning itself, and choose the trip by the conditions, not just the destination.")}</p>
+</div>
+<div class="stack" data-reveal>
+<div class="linklist">
+{links}
+</div>
+<div class="emergenza">
+<h3 class="label">{tr("In caso di emergenza", "Im Notfall", "In an emergency")}</h3>
+<div class="emergenza-numeri">
+{numeri}
+</div>
+<p class="small">{tr("Con l’app della Rega l’allarme trasmette anche la tua posizione.", "Mit der Rega-App übermittelt der Alarm auch Ihren Standort.",
+                     "With the Rega app, the alarm also sends your location.")} <a href="{tr("https://www.rega.ch/it/", "https://www.rega.ch/", "https://www.rega.ch/en/")}" rel="noopener">{tr("App Rega", "Rega-App", "Rega app")}</a></p>
+</div>
+</div>
+</div>
+</section>"""
+
+
 def blocco(id_, titolo, intro, corpo):
     """Sezione a due colonne: titolo e frase a sinistra, testo a destra (pagine Partecipare e Mettiti in gioco)."""
     return f"""<section class="section" aria-labelledby="{id_}">
@@ -3406,6 +3536,8 @@ def partecipare():
                          "The main rules for anyone taking part in the section’s trips and courses, members and non-members, in brief. The full text is in the trip regulations (in Italian)."),
                      extra=f"""<div class="actions"><a class="btn btn--primary" href="{GITE}">{t("gite")} <span class="arrow" aria-hidden="true">→</span></a><a class="btn btn--secondary" href="{REGOLAMENTO_GITE}">{regolamento}</a></div>""",
                      figure=img("paesaggi/gruppo-ghiacciaio-4x3", tr("Gruppo di alpinisti in cammino su un ghiacciaio", "Eine Gruppe Bergsteiger unterwegs auf einem Gletscher", "A group of mountaineers walking on a glacier"), 1000, 750, lazy=False).replace("<img ", '<img class="orizzontale" ', 1)) + "\n\n" + "\n\n".join(sezioni) + f"""
+
+{prima_di_partire()}
 
 <section class="section" aria-label="{tr("Regolamento gite", "Tourenreglement", "Trip regulations")}">
 <div class="container">
@@ -3567,7 +3699,7 @@ PRIVACY = {
 <p>Il sito è ospitato da GitHub Pages (GitHub Inc., USA). Come ogni server web, GitHub registra per ogni visita l’indirizzo IP, la data e l’ora, la pagina richiesta e il tipo di browser, per far funzionare il servizio e per la sicurezza. La sezione non riceve questi dati. GitHub aderisce al Data Privacy Framework Svizzera–USA; i dettagli sono nella <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">dichiarazione sulla privacy di GitHub</a> (in inglese).</p>
 
 <h2>Cookie e memoria del browser</h2>
-<p>Il sito non imposta cookie e non usa strumenti di statistica, pubblicità o profilazione. I caratteri tipografici sono caricati dal sito stesso. Solo il programma gite tiene per 10 minuti l’elenco delle gite nella memoria della scheda del browser (sessionStorage), per aprire più in fretta il dettaglio di una gita: non contiene dati personali e si cancella chiudendo la scheda.</p>
+<p>Il sito non imposta cookie e non usa strumenti di statistica, pubblicità o profilazione. I caratteri tipografici sono caricati dal sito stesso. Il programma gite tiene per 10 minuti l’elenco delle gite nella memoria della scheda del browser (sessionStorage), per aprire più in fretta il dettaglio di una gita: non contiene dati personali e si cancella chiudendo la scheda. Se chiudi l’avviso in cima alle pagine, il browser ricorda solo quale avviso hai chiuso (localStorage), per non mostrartelo di nuovo: resta sul tuo dispositivo e non viene inviato a nessuno.</p>
 
 <h2>Programma gite e foto</h2>
 <p>Il programma gite e le foto delle uscite vengono caricati da Droptour (ssl.dropnet.ch, in Svizzera), il servizio con cui la sezione gestisce gite e iscrizioni: aprendo queste pagine il tuo browser si collega a Droptour, che riceve il tuo indirizzo IP. L’iscrizione alle gite avviene su Droptour; i dati che inserisci lì servono a organizzare la gita e sono visibili ai capigita.</p>
@@ -3601,7 +3733,7 @@ PRIVACY = {
 <p>Die Website wird von GitHub Pages (GitHub Inc., USA) betrieben. Wie jeder Webserver speichert GitHub bei jedem Besuch die IP-Adresse, Datum und Uhrzeit, die aufgerufene Seite und den Browsertyp, für den Betrieb und die Sicherheit des Dienstes. Die Sektion erhält diese Daten nicht. GitHub ist dem Swiss-U.S. Data Privacy Framework beigetreten; Einzelheiten in der <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
 
 <h2>Cookies und Browserspeicher</h2>
-<p>Die Website setzt keine Cookies und verwendet keine Werkzeuge für Statistik, Werbung oder Profiling. Die Schriften werden von der Website selbst geladen. Nur das Tourenprogramm speichert die Tourenliste 10 Minuten lang im Speicher des Browser-Tabs (sessionStorage), damit die Einzelheiten einer Tour schneller erscheinen: Sie enthält keine Personendaten und wird beim Schliessen des Tabs gelöscht.</p>
+<p>Die Website setzt keine Cookies und verwendet keine Werkzeuge für Statistik, Werbung oder Profiling. Die Schriften werden von der Website selbst geladen. Das Tourenprogramm speichert die Tourenliste 10 Minuten lang im Speicher des Browser-Tabs (sessionStorage), damit die Einzelheiten einer Tour schneller erscheinen: Sie enthält keine Personendaten und wird beim Schliessen des Tabs gelöscht. Wenn Sie den Hinweis oben auf den Seiten schliessen, merkt sich der Browser nur, welchen Hinweis Sie geschlossen haben (localStorage), damit er nicht wieder erscheint: Die Angabe bleibt auf Ihrem Gerät und wird an niemanden gesendet.</p>
 
 <h2>Tourenprogramm und Fotos</h2>
 <p>Das Tourenprogramm und die Tourenfotos werden von Droptour geladen (ssl.dropnet.ch, Schweiz), dem Dienst, mit dem die Sektion Touren und Anmeldungen verwaltet: Beim Öffnen dieser Seiten verbindet sich Ihr Browser mit Droptour, das Ihre IP-Adresse erhält. Die Anmeldung zu den Touren erfolgt auf Droptour; die dort eingegebenen Daten dienen der Organisation der Tour und sind für die Tourenleitenden sichtbar.</p>
@@ -3635,7 +3767,7 @@ PRIVACY = {
 <p>The website is hosted by GitHub Pages (GitHub Inc., USA). Like any web server, GitHub logs the IP address, date and time, page requested and browser type of each visit, to run the service and for security. The Section does not receive this data. GitHub participates in the Swiss-U.S. Data Privacy Framework; details are in <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub’s privacy statement</a>.</p>
 
 <h2>Cookies and browser storage</h2>
-<p>The website sets no cookies and uses no analytics, advertising or profiling tools. Fonts are served by the website itself. Only the trip programme keeps the list of trips for 10 minutes in the browser tab’s storage (sessionStorage), so that a trip’s details open faster: it contains no personal data and is deleted when you close the tab.</p>
+<p>The website sets no cookies and uses no analytics, advertising or profiling tools. Fonts are served by the website itself. The trip programme keeps the list of trips for 10 minutes in the browser tab’s storage (sessionStorage), so that a trip’s details open faster: it contains no personal data and is deleted when you close the tab. If you close the notice at the top of the pages, your browser only remembers which notice you closed (localStorage), so as not to show it again: this stays on your device and is not sent to anyone.</p>
 
 <h2>Trip programme and photos</h2>
 <p>The trip programme and the trip photos are loaded from Droptour (ssl.dropnet.ch, Switzerland), the service the Section uses to manage trips and registrations: when you open these pages, your browser connects to Droptour, which receives your IP address. Registration for trips takes place on Droptour; the data you enter there is used to organise the trip and is visible to the trip leaders.</p>

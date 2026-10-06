@@ -110,8 +110,60 @@ collections:
         required: false
       - label: Categoria
         name: category
-        widget: hidden
+        widget: select
         required: false
+        options: ["Capanne", "Gite", "Corsi", "Giovani", "Senior", "Sezione", "Eventi", "Incontri", "Itinerario", "Sicurezza"]
+        hint: "Compare sopra il titolo e serve per il filtro della pagina News. Incontri: serate, conferenze e film; Eventi: feste, mercatini, gare; Sicurezza: avvisi e richiami di materiale."
+
+  - name: avviso
+    label: Avviso
+    label_singular: avviso
+    description: "Una striscia in cima a tutte le pagine del sito, per le cose importanti e di breve durata (capanna chiusa, assemblea, iscrizioni aperte). Chi la chiude non la rivede finché il testo non cambia. Dopo «Pubblica» è online in uno o due minuti."
+    files:
+      - label: Avviso in cima al sito
+        name: avviso
+        file: data/avviso.json
+        fields:
+          - label: Mostra l’avviso
+            name: attivo
+            widget: boolean
+            default: false
+            required: false
+            hint: "Spento: l’avviso non si vede (il testo resta qui per la prossima volta)."
+          - label: Importante (in rosso)
+            name: importante
+            widget: boolean
+            default: false
+            required: false
+            hint: "Acceso: striscia rossa, per pericoli e cambiamenti urgenti. Spento: striscia scura."
+          - label: Testo
+            name: testo
+            widget: string
+            required: false
+            hint: "Una frase breve, senza link nel testo (es. «La Capanna Adula resta chiusa fino al 20 giugno per lavori»)."
+          - label: Testo in tedesco
+            name: testo_de
+            widget: string
+            required: false
+            hint: "Facoltativo: se resta vuoto, sulle pagine in tedesco si vede il testo italiano."
+          - label: Testo in inglese
+            name: testo_en
+            widget: string
+            required: false
+            hint: "Facoltativo: se resta vuoto, sulle pagine in inglese si vede il testo italiano."
+          - label: Link
+            name: link
+            widget: string
+            required: false
+            hint: "Facoltativo: una pagina del sito (es. «adula.html» o «news.html») o un indirizzo completo (https://…). Compare come «Scopri di più»."
+          - label: Visibile fino al
+            name: scadenza
+            widget: datetime
+            format: "YYYY-MM-DD"
+            date_format: "DD.MM.YYYY"
+            time_format: false
+            required: false
+            hint: "Ultimo giorno in cui si vede; il giorno dopo sparisce da solo. Vuoto: resta finché non lo spegni."
 
   - name: mercatino
     label: Mercatino

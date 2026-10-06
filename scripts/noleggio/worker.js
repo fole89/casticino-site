@@ -6,7 +6,6 @@
 // Variabili (wrangler.toml › [vars]):
 //   ALLOWED_ORIGINS  indirizzi del sito che possono usare il servizio, separati da virgola
 //   INVENTARIO_URL   data/noleggio-inventario.json pubblicato (quantità, taglie, set, prezzi)
-//   SITO_URL         indirizzo del sito (per i link nelle e-mail)
 //   MAIL_GESTORE     chi riceve le nuove richieste
 //   MAIL_MITTENTE    mittente delle e-mail (verificato su Brevo)
 // Segreti (npx wrangler secret put …):
@@ -184,7 +183,7 @@ async function richiesta(request, env, ctx) {
   ctx.waitUntil(Promise.all([
     mail(env, env.MAIL_GESTORE, "Responsabile noleggio", `Noleggio: nuova richiesta n. ${r.id} di ${nome}`,
       mailGestore(r, `${new URL(request.url).origin}/admin`), email),
-    mail(env, email, nome, TESTI[lingua].oggetto("ricevuta"), mailSocio(env, r, "ricevuta", ""), env.MAIL_GESTORE),
+    mail(env, email, nome, TESTI[lingua].oggetto("ricevuta"), mailSocio(r, "ricevuta", ""), env.MAIL_GESTORE),
   ]));
   return json({ ok: true, numero: r.id, totale });
 }
@@ -276,7 +275,7 @@ function elencoRighe(r, lingua) {
   return r.righe.map((x) => `${x.quantita} × ${(lingua !== "it" && x[lingua]) || x.nome}${x.taglia ? ` (${x.taglia})` : ""}`).join("\n");
 }
 
-function mailSocio(env, r, tipo, messaggio) {
+function mailSocio(r, tipo, messaggio) {
   const T = TESTI[r.lingua] || TESTI.it;
   const g = elencoGiorni(r.dal, r.al).length;
   return [
@@ -284,7 +283,7 @@ function mailSocio(env, r, tipo, messaggio) {
     ...(messaggio ? [`${T.messaggio}:`, messaggio, ""] : []),
     T.periodo(dataCh(r.dal), dataCh(r.al), g), "", elencoRighe(r, r.lingua), "",
     ...(tipo === "ricevuta" || tipo === "confermata" ? [T.totale(r.totale), T.luogo, ""] : []),
-    T.rispondi, "", T.firma, env.SITO_URL ? `${env.SITO_URL}${r.lingua === "it" ? "" : r.lingua + "/"}noleggio.html` : "",
+    T.rispondi, "", T.firma,
   ].join("\n");
 }
 
@@ -357,7 +356,7 @@ async function admin(request, env, ctx, url) {
     if (tipoMail) {
       const piena = { ...r, righe: JSON.parse(r.righe) };
       ctx.waitUntil(mail(env, r.email, r.nome, (TESTI[r.lingua] || TESTI.it).oggetto(tipoMail),
-        mailSocio(env, piena, tipoMail, messaggio), env.MAIL_GESTORE));
+        mailSocio(piena, tipoMail, messaggio), env.MAIL_GESTORE));
     }
     return json({ ok: true, stato: nuovo });
   }

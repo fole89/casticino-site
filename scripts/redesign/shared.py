@@ -1,7 +1,7 @@
 """Parti comuni del nuovo design (intestazione, footer). Genera HTML statico.
 
 Icone Instagram e Facebook: Simple Icons (simpleicons.org, CC0)."""
-import hashlib, os
+import datetime, hashlib, html, json, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -90,19 +90,22 @@ T = {
                lingua="Deutsch", percorso="Percorso", seguici="Seguici", sostegno="Con il sostegno di",
                indirizzo="Club Alpino Svizzero, Sezione Ticino<br>Casella postale 112, 6998 Monteggio 2<br>Sede: Canvetto Luganese, Molino Nuovo",
                sezione="Club Alpino Svizzero, Sezione Ticino", su_instagram="CAS Ticino su Instagram", su_facebook="CAS Ticino su Facebook",
-               redazione="Area redazione", adesione="Adesione", privacy="Protezione dei dati", locale="it_CH"),
+               redazione="Area redazione", adesione="Adesione", privacy="Protezione dei dati", locale="it_CH",
+               avviso="Avviso", avviso_chiudi="Chiudi l’avviso", avviso_link="Scopri di più"),
     "de": dict(skip="Zum Inhalt", nav="Hauptnavigation", menu_apri="Menü öffnen", menu_chiudi="Menü schliessen", menu="Menü",
                logo_sotto="Schweizer Alpen-Club", cerca="Suche (italienisch)", gite="Tourenprogramm",
                lingua="Italiano", percorso="Pfad", seguici="Folgen Sie uns", sostegno="Mit Unterstützung von",
                indirizzo="Schweizer Alpen-Club SAC, Sektion Ticino<br>Postfach 112, 6998 Monteggio 2<br>Sitz: Canvetto Luganese, Molino Nuovo",
                sezione="Schweizer Alpen-Club SAC, Sektion Ticino", su_instagram="CAS Ticino auf Instagram", su_facebook="CAS Ticino auf Facebook",
-               redazione="Redaktion", privacy="Datenschutz", locale="de_CH", adesione="Mitgliedschaft"),
+               redazione="Redaktion", privacy="Datenschutz", locale="de_CH", adesione="Mitgliedschaft",
+               avviso="Hinweis", avviso_chiudi="Hinweis schliessen", avviso_link="Mehr erfahren"),
     "en": dict(skip="Skip to content", nav="Main", menu_apri="Open menu", menu_chiudi="Close menu", menu="Menu",
                logo_sotto="Swiss Alpine Club", cerca="Search (in Italian)", gite="Trip programme",
                lingua="English", percorso="Breadcrumb", seguici="Follow us", sostegno="With the support of",
                indirizzo="Swiss Alpine Club SAC, Ticino Section<br>PO Box 112, 6998 Monteggio 2<br>Office: Canvetto Luganese, Molino Nuovo",
                sezione="Swiss Alpine Club SAC, Ticino Section", su_instagram="CAS Ticino on Instagram", su_facebook="CAS Ticino on Facebook",
-               redazione="Editors", privacy="Privacy", locale="en_GB", adesione="Membership"),
+               redazione="Editors", privacy="Privacy", locale="en_GB", adesione="Membership",
+               avviso="Notice", avviso_chiudi="Close the notice", avviso_link="Find out more"),
 }
 
 
@@ -143,6 +146,58 @@ def in_lingua(pagina, lang):
     return f"{lang}/{base}" if base in PAGINE_LINGUA[lang] else f"{lang}/index.html"
 
 
+# ------------------------------------------------------------------ avviso in cima a tutte le pagine
+# data/avviso.json, scritto dalla redazione (admin/, «Avviso»): attivo, importante (rosso), testo (+ testo_de, testo_en),
+# link, scadenza (ultimo giorno in cui si vede). Chi lo chiude non lo rivede finché il testo non cambia: il browser
+# ricorda solo l'impronta dell'avviso chiuso (localStorage «avviso», vedi la privacy). Dopo la scadenza lo nasconde
+# lo script in head(), anche se la pagina non è ancora stata rigenerata.
+
+def avviso():
+    """L'avviso attivo e non scaduto, con la sua impronta, oppure None."""
+    try:
+        a = json.load(open(os.path.join(ROOT, "data", "avviso.json"), encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    scadenza = (a.get("scadenza") or "")[:10]
+    if not a.get("attivo") or not (a.get("testo") or "").strip() or (scadenza and scadenza < datetime.date.today().isoformat()):
+        return None
+    impronta = hashlib.md5(json.dumps([a.get("testo"), a.get("link"), scadenza], ensure_ascii=False).encode()).hexdigest()[:8]
+    return dict(a, scadenza=scadenza, id=impronta)
+
+
+def avviso_script():
+    """In head(): nasconde l'avviso già chiuso o scaduto prima che si veda (niente salti della pagina)."""
+    a = avviso()
+    if not a:
+        return ""
+    scade = (f"var d=new Date(),o=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);"
+             f"if('{a['scadenza']}'<o)c.add('avviso-via');") if a["scadenza"] else ""
+    return (f"<script>(function(){{var c=document.documentElement.classList;{scade}"
+            f"try{{if(localStorage.getItem('avviso')==='{a['id']}')c.add('avviso-via')}}catch(e){{}}}})()</script>\n")
+
+
+def avviso_html():
+    a = avviso()
+    if not a:
+        return ""
+    lang = LINGUA["lang"]
+    testo = (a.get(f"testo_{lang}") or "").strip() if lang != "it" else ""
+    attr = "" if testo or lang == "it" else ' lang="it"'
+    testo = html.escape(testo or a["testo"].strip(), quote=False)
+    link = (a.get("link") or "").strip()
+    if link:
+        ext = ' rel="noopener"' if link.startswith("http") else ""
+        link = f' <a href="{html.escape(link)}"{ext}>{t("avviso_link")}</a>'
+    cls = "avviso avviso--importante" if a.get("importante") else "avviso"
+    return f"""<aside class="{cls}" aria-label="{t('avviso')}" data-avviso="{a['id']}">
+<div class="container avviso-inner">
+<p><span{attr}>{testo}</span>{link}</p>
+<button class="avviso-chiudi" type="button" aria-label="{t('avviso_chiudi')}" title="{t('avviso_chiudi')}"><span aria-hidden="true">×</span></button>
+</div>
+</aside>
+"""
+
+
 CARET = '<span class="caret" aria-hidden="true"></span>'
 
 
@@ -163,7 +218,7 @@ def head(title, description, extra=""):
 <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{asset("assets/site.css")}">
 <script>document.documentElement.classList.add('js')</script>
-{extra}</head>"""
+{avviso_script()}{extra}</head>"""
 
 
 def nav(current_page, current_section=None):
@@ -186,7 +241,7 @@ def nav(current_page, current_section=None):
     lingue = "\n".join(f'<a class="nav-lang" href="{in_lingua(current_page, l)}" hreflang="{l}" lang="{l}" title="{NOMI_LINGUE[l]}">{l.upper()}</a>'
                        for l in LINGUE if l != LINGUA["lang"])
     return f"""<a class="skip-link" href="#contenuto">{t('skip')}</a>
-<header class="site-nav">
+{avviso_html()}<header class="site-nav">
 <nav aria-label="{t('nav')}" class="container nav-inner">
 <a class="brand" href="{L('index.html')}">
 <img class="brand-logo" src="assets/logo-cas-stemma.webp" alt="" width="37" height="44">

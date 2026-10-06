@@ -21,7 +21,6 @@ crons = ["30 2 * * *"]
 [vars]
 ALLOWED_ORIGINS = "https://fole89.github.io,https://casticino.ch"
 INVENTARIO_URL = "https://fole89.github.io/casticino-site/data/noleggio-inventario.json"
-SITO_URL = "https://fole89.github.io/casticino-site/"
 MAIL_GESTORE = "fole89@gmail.com"    # quando sarà attiva: noleggio@casticino.ch
 MAIL_MITTENTE = "fole89@gmail.com"   # deve essere un mittente verificato su Brevo
 

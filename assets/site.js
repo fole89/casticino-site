@@ -201,7 +201,7 @@
   });
 })();
 
-// CAS Ticino - filtro per ruolo (pagine Capigita e Mercatino): ogni pulsante [data-filtro] mostra solo gli elementi
+// CAS Ticino - filtro per ruolo (pagine Capigita, Mercatino e News): ogni pulsante [data-filtro] mostra solo gli elementi
 // [data-ruoli] che contengono quel ruolo; senza JavaScript il filtro resta nascosto e si vede l'elenco completo.
 (function () {
   var bar = document.querySelector('.filtro[data-filtra]');
@@ -220,6 +220,12 @@
       if (ok) n++;
     });
     if (stato) stato.textContent = f ? n + ' ' + (n === 1 ? bar.dataset.uno : bar.dataset.molti) + ': ' + b.firstChild.textContent.trim() : '';
+    // i gruppi rimasti vuoti (ultima notizia e anni nella pagina News) spariscono, con il loro link nell'elenco degli anni
+    Array.prototype.forEach.call(document.querySelectorAll(bar.dataset.filtra + ' [data-filtro-gruppo]'), function (g) {
+      g.hidden = !g.querySelector('[data-ruoli]:not([hidden])');
+      if (!g.id) return;
+      Array.prototype.forEach.call(document.querySelectorAll('a[href="#' + g.id + '"]'), function (a) { a.hidden = g.hidden; });
+    });
   });
 })();
 
@@ -333,4 +339,17 @@
     strato.appendChild(p);
   }
   foto.appendChild(strato);
+})();
+
+// CAS Ticino - avviso in cima alla pagina (shared.avviso_html): chi lo chiude non lo rivede finché il testo non cambia.
+// Il browser ricorda solo l'impronta dell'avviso chiuso (localStorage «avviso»); senza memoria si chiude solo per questa pagina.
+(function () {
+  var box = document.querySelector('.avviso[data-avviso]');
+  if (!box) return;
+  box.querySelector('.avviso-chiudi').addEventListener('click', function () {
+    try { localStorage.setItem('avviso', box.dataset.avviso); } catch (e) {}
+    document.documentElement.classList.add('avviso-via');
+    var main = document.getElementById('contenuto');
+    if (main) { main.setAttribute('tabindex', '-1'); main.focus({ preventScroll: true }); }
+  });
 })();

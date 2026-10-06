@@ -88,7 +88,7 @@ Poi commit e push dalla radice del repository.
 - In `scripts/redesign/pages.py`: `NOLEGGIO_MAIL = "noleggio@casticino.ch"`, poi rigenera le pagine.
 
 ## Dopo il cambio di dominio (casticino.ch)
-In `wrangler.toml` cambia `INVENTARIO_URL` e `SITO_URL` in `https://casticino.ch/…`, poi `npx wrangler deploy`.
+In `wrangler.toml` cambia `INVENTARIO_URL` in `https://casticino.ch/…`, poi `npx wrangler deploy`.
 `ALLOWED_ORIGINS` contiene già `https://casticino.ch`.
 
 ## Prova in locale

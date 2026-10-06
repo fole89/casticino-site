@@ -64,6 +64,19 @@ dl,dd{margin:0}
 
 .skip-link{position:absolute;left:var(--gutter);top:-100px;z-index:calc(var(--z-menu) + 1);background:var(--ink);color:var(--bg);padding:12px 18px;font-weight:600;text-decoration:none}
 .skip-link:focus{top:12px;color:var(--bg)}
+
+/* avviso in cima a tutte le pagine (data/avviso.json): grigio, rosso se importante; chiuso o scaduto → .avviso-via su <html> */
+.avviso{background:var(--ink);color:var(--bg);font-size:15px}
+.avviso--importante{background:var(--accent);color:var(--accent-ink)}
+.avviso-via .avviso{display:none}
+.avviso-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:48px;padding-top:10px;padding-bottom:10px}
+.avviso p{margin:0;max-width:none;color:inherit}
+.avviso a{color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.avviso :focus-visible{outline-color:currentColor}
+.avviso-chiudi{display:none;flex-shrink:0;align-items:center;justify-content:center;width:44px;height:44px;margin:-10px -12px -10px 0;border:0;background:transparent;color:inherit;font:inherit;font-size:24px;line-height:1;cursor:pointer;transition:opacity .2s var(--ease)}
+.js .avviso-chiudi{display:inline-flex}
+.avviso-chiudi:hover{opacity:.7}
+.avviso-chiudi:active{transform:scale(.92)}
 .visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 .container{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
@@ -914,3 +927,31 @@ dl,dd{margin:0}
   *,*::before,*::after{transition-property:color,background-color,border-color,opacity,box-shadow,outline-color!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
   .btn:active,.menu-toggle:active,.subnav-links a:active,.album-nav:active,.filtro button:active,.prossima:active,.linklist a:active{transform:none}
 }
+
+/* autore della foto grande in home (in basso a destra, sopra la foto) */
+.band .credito{position:absolute;right:var(--gutter);bottom:10px;margin:0;padding:2px 8px;background:rgba(18,24,22,.55);color:#fff;font-size:12px;letter-spacing:.01em;pointer-events:none}
+
+/* news: categoria accanto alla data e filtro nella pagina News (site.js nasconde gli anni rimasti vuoti) */
+.news-meta .news-cat{font-weight:600;color:var(--ink-2)}
+.section--filtro{padding-block:0}
+.section--filtro .filtro-stato{margin-bottom:0}
+.section--dopo-filtro{padding-top:clamp(24px,3vw,40px)}
+#notizie [hidden],.news-years a[hidden]{display:none}
+
+/* «Prima di partire» (Partecipare, Corsi, Programma gite): link utili e numeri d'emergenza */
+.partenza-nota{display:block;font-weight:400;font-size:14px;color:var(--muted)}
+#prima-di-partire .stack,#prima-di-partire .linklist,.emergenza{width:100%}
+.emergenza{display:grid;gap:12px}
+.emergenza-numeri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.emergenza-numeri a{display:grid;gap:2px;padding:14px 16px;background:var(--accent);color:var(--accent-ink);text-decoration:none;transition:background-color .2s var(--ease)}
+.emergenza-numeri a:hover{background:var(--accent-hover);color:var(--accent-ink)}
+.emergenza-numeri a:active{transform:scale(.97)}
+.emergenza-numeri a:focus-visible{outline-offset:3px}
+.emergenza-numeri strong{font-size:clamp(26px,3vw,34px);font-weight:600;line-height:1.1}
+.emergenza-numeri span{font-size:13.5px;line-height:1.35}
+@media (max-width:480px){.emergenza-numeri{grid-template-columns:minmax(0,1fr)}.emergenza-numeri a{grid-template-columns:auto 1fr;align-items:baseline;gap:12px}}
+
+/* pagine capanna: «Sostieni la capanna» con il conto della sezione, come «Dalla capanna» (riga sopra, senza fondo) */
+.contact--linea{background:none;padding:clamp(28px,4vw,48px) 0 0;border-top:1px solid var(--line)}
+.factgroup .facts+p{margin-top:16px}
+@media (max-width:480px){#prima-di-partire .tag{display:none}}
