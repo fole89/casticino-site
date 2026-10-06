@@ -3738,6 +3738,8 @@ PRIVACY = {
 <h2>Contatti e annunci</h2>
 <p>Se ci scrivi per e-mail usiamo il tuo messaggio solo per rispondere e per dare seguito alla richiesta (per esempio inoltrandolo al custode di una capanna o al responsabile di un corso). Gli annunci del Mercatino vengono pubblicati con il nome e il contatto che indichi tu e restano online fino alla scadenza; puoi chiederne la rimozione in ogni momento.</p>
 
+<h2 id="notifiche">Notifiche</h2>
+<p>Se attivi le notifiche (in fondo alle pagine), il browser chiede il tuo permesso e crea un indirizzo di notifica anonimo: non contiene nome, e-mail o numero di telefono. Lo salviamo con la lingua della pagina in un piccolo servizio della sezione su Cloudflare Workers (Cloudflare Inc., USA; dati salvati in Europa), solo per inviarti le notizie importanti della sezione. Le notifiche passano dal servizio del tuo browser o telefono (Google, Apple, Mozilla o Microsoft). Con «Disattiva le notifiche», o togliendo il permesso nelle impostazioni, l’indirizzo viene cancellato; quelli non più validi li cancelliamo da soli.</p>
 <h2 id="noleggio">Noleggio materiale</h2>
 <p>Il modulo del noleggio invia nome, e-mail, telefono, note, date e materiale scelto a un piccolo servizio della sezione su Cloudflare Workers (Cloudflare Inc., USA; dati salvati in Europa). Li vede solo il responsabile del noleggio, che li usa per confermare la richiesta e per il ritiro e la riconsegna. Le e-mail di ricevuta e di conferma partono tramite Brevo (Francia). Le richieste vengono cancellate 12 mesi dopo la fine del noleggio. Per proteggere il modulo dai programmi automatici, quando inizi a compilarlo viene caricato Cloudflare Turnstile, che riceve l’indirizzo IP e alcune informazioni tecniche sul browser, secondo l’<a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">informativa sulla privacy di Cloudflare</a> (in inglese). Cloudflare aderisce al Data Privacy Framework Svizzera–USA.</p>
 
@@ -3772,6 +3774,8 @@ PRIVACY = {
 <h2>Kontakt und Inserate</h2>
 <p>Wenn Sie uns per E-Mail schreiben, verwenden wir Ihre Nachricht nur, um zu antworten und Ihr Anliegen zu bearbeiten (zum Beispiel durch Weiterleitung an das Hüttenteam oder an die Kursleitung). Inserate auf dem Mercatino werden mit dem Namen und dem Kontakt veröffentlicht, die Sie angeben, und bleiben bis zum Ablaufdatum online; Sie können jederzeit die Entfernung verlangen.</p>
 
+<h2 id="notifiche">Mitteilungen</h2>
+<p>Wenn Sie Mitteilungen einschalten (unten auf den Seiten), fragt der Browser nach Ihrer Erlaubnis und erstellt eine anonyme Mitteilungsadresse: Sie enthält weder Name noch E-Mail noch Telefonnummer. Wir speichern sie mit der Sprache der Seite in einem kleinen Dienst der Sektion auf Cloudflare Workers (Cloudflare Inc., USA; Daten in Europa gespeichert), nur um Ihnen wichtige Neuigkeiten der Sektion zu senden. Die Mitteilungen laufen über den Dienst Ihres Browsers oder Telefons (Google, Apple, Mozilla oder Microsoft). Mit «Mitteilungen ausschalten» oder wenn Sie die Erlaubnis in den Einstellungen entziehen, wird die Adresse gelöscht; ungültig gewordene Adressen löschen wir selbst.</p>
 <h2 id="noleggio">Materialvermietung</h2>
 <p>Das Formular der Materialvermietung sendet Name, E-Mail, Telefon, Bemerkungen, Daten und das gewählte Material an einen kleinen Dienst der Sektion auf Cloudflare Workers (Cloudflare Inc., USA; Daten in Europa gespeichert). Sie sind nur für die Materialverantwortlichen sichtbar, die sie für die Bestätigung der Anfrage sowie für Abholung und Rückgabe verwenden. Die Empfangs- und Bestätigungs-E-Mails werden über Brevo (Frankreich) verschickt. Die Anfragen werden 12 Monate nach Ende der Miete gelöscht. Zum Schutz des Formulars vor automatisierten Programmen wird Cloudflare Turnstile geladen, sobald Sie mit dem Ausfüllen beginnen; Cloudflare erhält dabei die IP-Adresse und einige technische Angaben zum Browser, gemäss der <a href="https://www.cloudflare.com/de-de/privacypolicy/" rel="noopener">Datenschutzrichtlinie von Cloudflare</a>. Cloudflare ist dem Swiss-U.S. Data Privacy Framework beigetreten.</p>
 
@@ -3806,6 +3810,8 @@ PRIVACY = {
 <h2>Contacts and listings</h2>
 <p>If you e-mail us, we use your message only to reply and to deal with your request (for example by forwarding it to a hut keeper or to a course leader). Mercatino listings are published with the name and contact details you give us and stay online until they expire; you can ask for removal at any time.</p>
 
+<h2 id="notifiche">Notifications</h2>
+<p>If you turn on notifications (at the bottom of the pages), your browser asks for your permission and creates an anonymous notification address: it contains no name, e-mail or phone number. We store it, with the language of the page, in a small service run by the Section on Cloudflare Workers (Cloudflare Inc., USA; data stored in Europe), only to send you important news from the Section. Notifications pass through your browser’s or phone’s service (Google, Apple, Mozilla or Microsoft). With «Turn off notifications», or by withdrawing permission in your settings, the address is deleted; addresses that are no longer valid are deleted automatically.</p>
 <h2 id="noleggio">Equipment hire</h2>
 <p>The equipment hire form sends your name, e-mail, phone number, notes, dates and the equipment chosen to a small service run by the Section on Cloudflare Workers (Cloudflare Inc., USA; data stored in Europe). Only the equipment manager sees it, and uses it to confirm the request and for pick-up and return. Receipt and confirmation e-mails are sent through Brevo (France). Requests are deleted 12 months after the end of the hire. To protect the form from automated programs, Cloudflare Turnstile is loaded when you start filling it in; Cloudflare receives your IP address and some technical information about your browser, under <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare’s privacy policy</a>. Cloudflare participates in the Swiss-U.S. Data Privacy Framework.</p>
 
@@ -4001,7 +4007,7 @@ if __name__ == "__main__":
     _essenziali = ["index.html", "partecipare.html", "soccorso.html"] + list(HUT_PAGES)
     _statici = ([asset(f) for f in ("assets/site.css", "assets/site.js", "assets/gite.js", "assets/cerca.js", "assets/foto.js", "assets/noleggio.js")]
                 + [f"assets/fonts/{f}" for f in sorted(os.listdir(os.path.join(ROOT, "assets", "fonts"))) if f.endswith(".woff2")]
-                + ["assets/logo-cas.webp", "assets/logo-cas-stemma.webp"] + [i["src"] for i in pwa.ICONE] + ["assets/icone/apple-touch-icon.png"]
+                + ["assets/logo-cas.webp", "assets/logo-cas-stemma.webp"] + [i["src"] for i in pwa.ICONE] + ["assets/icone/apple-touch-icon.png", pwa.BADGE]
                 + ["offline.html", "de/offline.html", "en/offline.html"])
     scrivi("sw.js", pwa.service_worker(_statici, {"it": _essenziali, "de": [f"de/{p}" for p in _essenziali],
                                                    "en": [f"en/{p}" for p in _essenziali]}))

@@ -1,0 +1,19 @@
+# Servizio delle iscrizioni alle notifiche (worker.js). Istruzioni: LEGGIMI.md.
+name = "casticino-notifiche"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+preview_urls = false
+
+[[d1_databases]]
+binding = "DB"
+database_name = "casticino-notifiche"
+database_id = "b9dae73e-58f5-4a0e-9c88-fa0daf893198"   # lo stampa «npx wrangler d1 create casticino-notifiche --location weur»
+
+# iscrizione e disiscrizione: al massimo 20 richieste al minuto per indirizzo IP
+[[ratelimits]]
+name = "LIMITE"
+namespace_id = "1002"
+simple = { limit = 20, period = 60 }
+
+[vars]
+ALLOWED_ORIGINS = "https://fole89.github.io,https://casticino.ch"

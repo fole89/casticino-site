@@ -399,3 +399,64 @@
   });
   window.addEventListener('appinstalled', function () { box.hidden = true; });
 })();
+
+// CAS Ticino - «Notifiche» nel footer (un solo canale): dopo il clic il browser chiede il permesso e crea un indirizzo
+// di notifica anonimo, salvato nel servizio scripts/notifiche/ (data-api); «Disattiva» lo cancella. Serve il service
+// worker (sw.js): in anteprima locale solo con ?pwa=1. Su iPhone le notifiche arrivano solo con il sito installato.
+(function () {
+  var box = document.querySelector('.notifiche[data-api]');
+  if (!box || !('serviceWorker' in navigator)) return;
+  var api = box.dataset.api.replace(/\/?$/, '/'), stato = box.querySelector('.notifiche-stato');
+  var attiva = box.querySelector('.notifiche-attiva'), disattiva = box.querySelector('.notifiche-disattiva');
+  var lingua = (document.documentElement.lang || 'it').slice(0, 2);
+  var installata = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  var ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (ios && !installata) { stato.textContent = box.dataset.ios; box.hidden = false; return; }
+  if (!('PushManager' in window) || !('Notification' in window)) return;
+
+  function chiave(b64) {  // chiave pubblica VAPID (base64url) nel formato che vuole il browser
+    var s = atob(b64.replace(/-/g, '+').replace(/_/g, '/') + '='.repeat((4 - (b64.length % 4)) % 4));
+    var out = new Uint8Array(s.length);
+    for (var i = 0; i < s.length; i++) out[i] = s.charCodeAt(i);
+    return out;
+  }
+  function mostra(iscritto) {
+    var bloccate = Notification.permission === 'denied';
+    attiva.hidden = iscritto || bloccate;
+    disattiva.hidden = !iscritto;
+    stato.textContent = iscritto ? box.dataset.attive : bloccate ? box.dataset.bloccate : '';
+    box.hidden = false;
+  }
+  function servizio(percorso, dati) {
+    return fetch(api + percorso, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dati) })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); });
+  }
+
+  navigator.serviceWorker.ready.then(function (reg) {
+    reg.pushManager.getSubscription().then(function (s) { mostra(!!s); });
+    attiva.addEventListener('click', function () {
+      attiva.disabled = true;
+      Promise.resolve(Notification.requestPermission()).then(function (permesso) {
+        if (permesso !== 'granted') { mostra(false); return; }
+        return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: chiave(box.dataset.chiave) })
+          .then(function (s) {
+            var j = s.toJSON();
+            // se il servizio non risponde si annulla anche l'iscrizione nel browser: niente iscritti «a metà»
+            return servizio('iscrizione', { endpoint: j.endpoint, keys: j.keys, lingua: lingua })
+              .catch(function (e) { return s.unsubscribe().then(function () { throw e; }); });
+          })
+          .then(function () { mostra(true); disattiva.focus(); });
+      }).catch(function () { mostra(false); stato.textContent = box.dataset.errore; })
+        .then(function () { attiva.disabled = false; });
+    });
+    disattiva.addEventListener('click', function () {
+      disattiva.disabled = true;
+      reg.pushManager.getSubscription().then(function (s) {
+        if (!s) return;
+        var endpoint = s.endpoint;
+        return s.unsubscribe().then(function () { return servizio('disiscrizione', { endpoint: endpoint }).catch(function () {}); });
+      }).then(function () { mostra(false); attiva.focus(); }, function () { stato.textContent = box.dataset.errore; })
+        .then(function () { disattiva.disabled = false; });
+    });
+  });
+})();

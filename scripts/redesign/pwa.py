@@ -6,6 +6,7 @@
   c'è campo, l'ultima versione vista quando non c'è, altrimenti offline.html); dalla memoria stili, script, caratteri
   e icone (hanno l'impronta ?v= nel nome); le foto già viste dalla memoria, al massimo MAX_FOTO; i dati JSON prima
   dalla rete. Mai in memoria: admin/ (redazione), PDF, altri siti (Droptour, noleggio, Facebook, Turnstile).
+  Mostra le notifiche (evento push, da scripts/notifiche.py) e al tocco apre la pagina indicata.
   Le pagine essenziali di una lingua (home, capanne, Partecipare con «Prima di partire», Soccorso, offline) si
   salvano quando site.js lo chiede, al massimo una volta al giorno per lingua.
 VERSIONE cambia quando cambiano i file in memoria o il codice qui sotto: il browser installa il nuovo service
@@ -17,6 +18,7 @@ ICONE = [
     {"src": "assets/icone/icona-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
     {"src": "assets/icone/icona-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
 ]
+BADGE = "assets/icone/badge-96.png"   # sagoma bianca per la barra di stato di Android (notifiche)
 
 DESCRIZIONE = {
     "it": "Club Alpino Svizzero, Sezione Ticino: gite, corsi, capanne e news.",
@@ -135,6 +137,26 @@ async function primaRete(req) {
     return (await caches.match(req, { ignoreSearch: true })) || Response.error();
   }
 }
+
+// notifiche (scripts/notifiche.py): {titolo, testo, url, tag, lingua}; al tocco si apre la pagina
+self.addEventListener("push", (e) => {
+  let d = {};
+  try { d = e.data ? e.data.json() : {}; } catch (err) { d = { testo: e.data ? e.data.text() : "" }; }
+  e.waitUntil(self.registration.showNotification(d.titolo || "CAS Ticino", {
+    body: d.testo || "", tag: d.tag || undefined, lang: d.lingua || "it",
+    icon: new URL("assets/icone/icona-192.png", BASE).href, badge: new URL("assets/icone/badge-96.png", BASE).href,
+    data: { url: /^https:\/\//.test(d.url || "") ? d.url : BASE },
+  }));
+});
+
+self.addEventListener("notificationclick", (e) => {
+  e.notification.close();
+  const url = (e.notification.data && e.notification.data.url) || BASE;
+  e.waitUntil(clients.matchAll({ type: "window", includeUncontrolled: true }).then((finestre) => {
+    for (const f of finestre) if (f.url === url && "focus" in f) return f.focus();
+    return clients.openWindow(url);
+  }));
+});
 
 // tiene al massimo `max` voci: via le più vecchie
 async function limita(nome, max) {

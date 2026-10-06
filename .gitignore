@@ -30,3 +30,6 @@ interno/
 .dev.vars*
 !.dev.vars.example
 !.env.example
+
+# chiavi da copiare nei segreti di GitHub e Cloudflare, poi da cancellare: mai su git
+.segreti-*

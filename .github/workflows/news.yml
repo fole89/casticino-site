@@ -45,6 +45,10 @@ jobs:
       - name: Rigenera le pagine
         run: python scripts/redesign/pages.py > /dev/null
 
+      - name: Prepara le notifiche (news e avviso con «Invia anche come notifica»)
+        # i messaggi vanno in un file fuori dal repository; nei JSON la casella si spegne (si pubblica qui sotto)
+        run: python scripts/notifiche.py prepara "$RUNNER_TEMP/notifiche.json"
+
       - name: Pubblica se ci sono novità
         run: |
           git add -A
@@ -58,3 +62,14 @@ jobs:
           # se nel frattempo è arrivata un'altra modifica, ci si mette in coda
           git pull --rebase
           git push
+
+      - name: Invia le notifiche
+        env:
+          NOTIFICHE_TOKEN: ${{ secrets.NOTIFICHE_TOKEN }}
+          VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}
+        run: |
+          if [ "$(cat "$RUNNER_TEMP/notifiche.json")" = "[]" ]; then echo "Nessuna notifica."; exit 0; fi
+          # si aspetta che GitHub Pages pubblichi la pagina, così chi tocca la notifica la trova già online
+          sleep 90
+          pip install --quiet pywebpush==2.5.0
+          python scripts/notifiche.py invia "$RUNNER_TEMP/notifiche.json"

@@ -1,6 +1,6 @@
 // Service worker del sito CAS Ticino: generato da scripts/redesign/pwa.py (pages.py), non modificare a mano.
-const VERSIONE = "012112583c";
-const STATICI = ["assets/site.css?v=2d254a44", "assets/site.js?v=dd8fe6b8", "assets/gite.js?v=a1574ae8", "assets/cerca.js?v=6de6c786", "assets/foto.js?v=c969f1db", "assets/noleggio.js?v=f548c601", "assets/fonts/geist-latin-ext.woff2", "assets/fonts/geist-latin.woff2", "assets/fonts/geist-mono-latin-ext.woff2", "assets/fonts/geist-mono-latin.woff2", "assets/logo-cas.webp", "assets/logo-cas-stemma.webp", "assets/icone/icona-192.png", "assets/icone/icona-512.png", "assets/icone/icona-maskable-512.png", "assets/icone/apple-touch-icon.png", "offline.html", "de/offline.html", "en/offline.html"];      // salvati all'installazione: stili, script, caratteri, icone, pagine offline
+const VERSIONE = "7a13ab1d8b";
+const STATICI = ["assets/site.css?v=c92660f9", "assets/site.js?v=31826f4a", "assets/gite.js?v=a1574ae8", "assets/cerca.js?v=6de6c786", "assets/foto.js?v=c969f1db", "assets/noleggio.js?v=f548c601", "assets/fonts/geist-latin-ext.woff2", "assets/fonts/geist-latin.woff2", "assets/fonts/geist-mono-latin-ext.woff2", "assets/fonts/geist-mono-latin.woff2", "assets/logo-cas.webp", "assets/logo-cas-stemma.webp", "assets/icone/icona-192.png", "assets/icone/icona-512.png", "assets/icone/icona-maskable-512.png", "assets/icone/apple-touch-icon.png", "assets/icone/badge-96.png", "offline.html", "de/offline.html", "en/offline.html"];      // salvati all'installazione: stili, script, caratteri, icone, pagine offline
 const ESSENZIALI = {"it": ["index.html", "partecipare.html", "soccorso.html", "campotencia.html", "cristallina.html", "adula.html", "motterascio.html", "montebar.html", "baitadelluca.html"], "de": ["de/index.html", "de/partecipare.html", "de/soccorso.html", "de/campotencia.html", "de/cristallina.html", "de/adula.html", "de/motterascio.html", "de/montebar.html", "de/baitadelluca.html"], "en": ["en/index.html", "en/partecipare.html", "en/soccorso.html", "en/campotencia.html", "en/cristallina.html", "en/adula.html", "en/motterascio.html", "en/montebar.html", "en/baitadelluca.html"]};  // per lingua: pagine da avere anche senza rete
 const C_STATICI = "statici-" + VERSIONE, C_PAGINE = "pagine", C_FOTO = "foto";
 const MAX_PAGINE = 80, MAX_FOTO = 120;
@@ -92,6 +92,26 @@ async function primaRete(req) {
     return (await caches.match(req, { ignoreSearch: true })) || Response.error();
   }
 }
+
+// notifiche (scripts/notifiche.py): {titolo, testo, url, tag, lingua}; al tocco si apre la pagina
+self.addEventListener("push", (e) => {
+  let d = {};
+  try { d = e.data ? e.data.json() : {}; } catch (err) { d = { testo: e.data ? e.data.text() : "" }; }
+  e.waitUntil(self.registration.showNotification(d.titolo || "CAS Ticino", {
+    body: d.testo || "", tag: d.tag || undefined, lang: d.lingua || "it",
+    icon: new URL("assets/icone/icona-192.png", BASE).href, badge: new URL("assets/icone/badge-96.png", BASE).href,
+    data: { url: /^https:\/\//.test(d.url || "") ? d.url : BASE },
+  }));
+});
+
+self.addEventListener("notificationclick", (e) => {
+  e.notification.close();
+  const url = (e.notification.data && e.notification.data.url) || BASE;
+  e.waitUntil(clients.matchAll({ type: "window", includeUncontrolled: true }).then((finestre) => {
+    for (const f of finestre) if (f.url === url && "focus" in f) return f.focus();
+    return clients.openWindow(url);
+  }));
+});
 
 // tiene al massimo `max` voci: via le più vecchie
 async function limita(nome, max) {

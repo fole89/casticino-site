@@ -19,6 +19,11 @@ GITE = "gite.html"  # programma gite nel sito (copia aggiornata da Droptour)
 # Al passaggio del dominio diventa "https://casticino.ch/" (poi rigenerare tutte le pagine).
 SITO = "https://fole89.github.io/casticino-site/"
 
+# Notifiche (un solo canale): servizio delle iscrizioni (scripts/notifiche/) e chiave pubblica VAPID; la privata è
+# il segreto VAPID_PRIVATE su GitHub, che usa scripts/notifiche.py per inviare
+NOTIFICHE_API = "https://casticino-notifiche.fole89.workers.dev/"
+NOTIFICHE_CHIAVE = "BA9DQYS64NlrmnvBazBF-ARUH_6zoi8xFpxTj7jHu_4pAVsjGbzM5tQlE84_BpTdhZzwY5MdYpVhSsFCLw4IVy8"
+
 MENU = [
     ("La Sezione", "introduzione.html", [
         ("Chi siamo", "introduzione.html"), ("Storia", "storia.html"), ("Comitato", "comitato.html"),
@@ -92,7 +97,12 @@ T = {
                sezione="Club Alpino Svizzero, Sezione Ticino", su_instagram="CAS Ticino su Instagram", su_facebook="CAS Ticino su Facebook",
                redazione="Area redazione", adesione="Adesione", privacy="Protezione dei dati", locale="it_CH",
                avviso="Avviso", avviso_chiudi="Chiudi l’avviso", avviso_link="Scopri di più",
-               app="App sul telefono", app_installa="Installa l’app", app_ios="Su iPhone: tocca Condividi, poi «Aggiungi alla schermata Home»."),
+               app="App sul telefono", app_installa="Installa l’app", app_ios="Su iPhone: tocca Condividi, poi «Aggiungi alla schermata Home».",
+               notifiche="Notifiche", notifiche_p="Le notizie importanti della sezione, al massimo una o due a settimana.",
+               notifiche_attiva="Ricevi le notifiche", notifiche_disattiva="Disattiva le notifiche", notifiche_attive="Notifiche attive su questo dispositivo.",
+               notifiche_bloccate="Le notifiche sono bloccate: riattivale nelle impostazioni del browser.",
+               notifiche_ios="Su iPhone le notifiche arrivano solo con l’app installata (vedi sopra).",
+               notifiche_errore="Non è stato possibile attivarle. Riprova più tardi."),
     "de": dict(skip="Zum Inhalt", nav="Hauptnavigation", menu_apri="Menü öffnen", menu_chiudi="Menü schliessen", menu="Menü",
                logo_sotto="Schweizer Alpen-Club", cerca="Suche (italienisch)", gite="Tourenprogramm",
                lingua="Italiano", percorso="Pfad", seguici="Folgen Sie uns", sostegno="Mit Unterstützung von",
@@ -100,7 +110,12 @@ T = {
                sezione="Schweizer Alpen-Club SAC, Sektion Ticino", su_instagram="CAS Ticino auf Instagram", su_facebook="CAS Ticino auf Facebook",
                redazione="Redaktion", privacy="Datenschutz", locale="de_CH", adesione="Mitgliedschaft",
                avviso="Hinweis", avviso_chiudi="Hinweis schliessen", avviso_link="Mehr erfahren",
-               app="App auf dem Telefon", app_installa="App installieren", app_ios="Auf dem iPhone: Teilen antippen, dann «Zum Home-Bildschirm»."),
+               app="App auf dem Telefon", app_installa="App installieren", app_ios="Auf dem iPhone: Teilen antippen, dann «Zum Home-Bildschirm».",
+               notifiche="Mitteilungen", notifiche_p="Wichtige Neuigkeiten der Sektion (italienisch), höchstens ein- oder zweimal pro Woche.",
+               notifiche_attiva="Mitteilungen erhalten", notifiche_disattiva="Mitteilungen ausschalten", notifiche_attive="Mitteilungen auf diesem Gerät aktiv.",
+               notifiche_bloccate="Mitteilungen sind blockiert: Erlauben Sie sie in den Browser-Einstellungen.",
+               notifiche_ios="Auf dem iPhone kommen Mitteilungen nur mit installierter App an (siehe oben).",
+               notifiche_errore="Das Einschalten hat nicht geklappt. Versuchen Sie es später nochmals."),
     "en": dict(skip="Skip to content", nav="Main", menu_apri="Open menu", menu_chiudi="Close menu", menu="Menu",
                logo_sotto="Swiss Alpine Club", cerca="Search (in Italian)", gite="Trip programme",
                lingua="English", percorso="Breadcrumb", seguici="Follow us", sostegno="With the support of",
@@ -108,7 +123,12 @@ T = {
                sezione="Swiss Alpine Club SAC, Ticino Section", su_instagram="CAS Ticino on Instagram", su_facebook="CAS Ticino on Facebook",
                redazione="Editors", privacy="Privacy", locale="en_GB", adesione="Membership",
                avviso="Notice", avviso_chiudi="Close the notice", avviso_link="Find out more",
-               app="App on your phone", app_installa="Install the app", app_ios="On iPhone: tap Share, then «Add to Home Screen»."),
+               app="App on your phone", app_installa="Install the app", app_ios="On iPhone: tap Share, then «Add to Home Screen».",
+               notifiche="Notifications", notifiche_p="Important news from the section (in Italian), at most once or twice a week.",
+               notifiche_attiva="Get notifications", notifiche_disattiva="Turn off notifications", notifiche_attive="Notifications are on for this device.",
+               notifiche_bloccate="Notifications are blocked: allow them in your browser settings.",
+               notifiche_ios="On iPhone, notifications only arrive with the app installed (see above).",
+               notifiche_errore="They could not be turned on. Please try again later."),
 }
 
 
@@ -312,6 +332,13 @@ def footer():
 <h2 class="social-label">{t('app')}</h2>
 <button class="btn btn--secondary app-installa" type="button" hidden>{t('app_installa')}</button>
 <p class="small app-ios" hidden>{t('app_ios')}</p>
+</div>
+<div class="notifiche" data-api="{NOTIFICHE_API}" data-chiave="{NOTIFICHE_CHIAVE}" data-ios="{t('notifiche_ios')}" data-attive="{t('notifiche_attive')}" data-bloccate="{t('notifiche_bloccate')}" data-errore="{t('notifiche_errore')}" hidden>
+<h2 class="social-label">{t('notifiche')}</h2>
+<p class="small">{t('notifiche_p')}</p>
+<button class="btn btn--secondary notifiche-attiva" type="button" hidden>{t('notifiche_attiva')}</button>
+<button class="btn btn--secondary notifiche-disattiva" type="button" hidden>{t('notifiche_disattiva')}</button>
+<p class="small notifiche-stato" role="status"></p>
 </div>
 </div>
 {cols}

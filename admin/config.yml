@@ -104,6 +104,16 @@ collections:
         widget: text
         required: false
         hint: "Le news importate dal vecchio sito hanno il testo qui. Per le news nuove usare «Testo»: se è compilato, vale quello."
+      - label: Invia anche come notifica
+        name: notifica
+        widget: boolean
+        default: false
+        required: false
+        hint: "Acceso: alla pubblicazione chi ha attivato le notifiche riceve titolo e riassunto sul telefono. Solo per le cose importanti (al massimo una o due a settimana). Dopo l’invio la casella si spegne da sola: riaccenderla rimanda la notifica."
+      - label: Notifica inviata il
+        name: notifica_inviata
+        widget: hidden
+        required: false
       - label: Pagina
         name: file
         widget: hidden
@@ -164,6 +174,16 @@ collections:
             time_format: false
             required: false
             hint: "Ultimo giorno in cui si vede; il giorno dopo sparisce da solo. Vuoto: resta finché non lo spegni."
+          - label: Invia anche come notifica
+            name: notifica
+            widget: boolean
+            default: false
+            required: false
+            hint: "Acceso: alla pubblicazione chi ha attivato le notifiche riceve il testo dell’avviso sul telefono. Dopo l’invio la casella si spegne da sola."
+          - label: Notifica inviata il
+            name: notifica_inviata
+            widget: hidden
+            required: false
 
   - name: mercatino
     label: Mercatino
