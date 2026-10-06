@@ -35,7 +35,7 @@ collections:
   - name: news
     label: News
     label_singular: news
-    description: "Le news della sezione. Dopo «Pubblica» la news è online in uno o due minuti."
+    description: "Le news della sezione, dalla più recente. Dopo «Pubblica» la news è online in uno o due minuti."
     folder: data/news
     extension: json
     format: json
@@ -47,11 +47,29 @@ collections:
       - field: date
         default_sort: desc
       - title
+    view_groups:
+      - label: Anno
+        field: date
+        pattern: '\d{4}'
+      - label: Categoria
+        field: category
     fields:
       - label: Titolo
         name: title
         widget: string
         hint: "Breve e in minuscolo normale (niente parole TUTTE MAIUSCOLE): si legge meglio nelle schede."
+      - label: Invia anche come notifica
+        name: notifica
+        widget: boolean
+        default: false
+        required: false
+        hint: "Acceso: alla pubblicazione chi ha attivato le notifiche riceve titolo e riassunto sul telefono. Solo per le cose importanti, al massimo una o due a settimana. Dopo l’invio si spegne da solo; riaccenderlo rimanda la notifica."
+      - label: Categoria
+        name: category
+        widget: select
+        required: false
+        options: ["Capanne", "Gite", "Corsi", "Giovani", "Senior", "Sezione", "Eventi", "Incontri", "Itinerario", "Sicurezza"]
+        hint: "Compare accanto alla data e serve per il filtro della pagina News. Incontri: serate, conferenze e film. Eventi: feste, mercatini, gare. Sicurezza: avvisi e richiami di materiale."
       - label: Data
         name: date
         widget: datetime
@@ -65,17 +83,17 @@ collections:
         widget: image
         required: false
         choose_url: false
-        hint: "JPG o PNG: viene ridimensionata e convertita in automatico. Si vede accanto al testo e nelle schede."
+        hint: "JPG o PNG, anche grande: viene ridimensionata e convertita da sola. Si vede accanto al testo e nelle schede."
       - label: Descrizione della foto
         name: alt
         widget: string
         required: false
-        hint: "Cosa si vede nella foto, per chi non può vederla (es. «Scialpinisti in salita verso il Pizzo Rotondo»)."
+        hint: "Cosa si vede, per chi non può vedere la foto (es. «Scialpinisti in salita verso il Pizzo Rotondo»)."
       - label: Riassunto
         name: excerpt
         widget: text
         required: false
-        hint: "Due righe per la scheda in home e nell’elenco delle news. Se resta vuoto si usa l’inizio del testo."
+        hint: "Due righe per la scheda in home, nell’elenco delle news e nella notifica. Se resta vuoto si usa l’inizio del testo."
       - label: Testo
         name: testo
         widget: markdown
@@ -89,6 +107,7 @@ collections:
         required: false
         label_singular: allegato
         summary: "{{fields.titolo}}"
+        hint: "Programmi, inviti, moduli: compaiono come link sotto il testo."
         fields:
           - label: Titolo del link
             name: titolo
@@ -99,17 +118,11 @@ collections:
             choose_url: false
             media_folder: /docs/news
             public_folder: docs/news
-      - label: Testo HTML (solo news del vecchio sito)
+      # campi che la redazione non tocca: restano nel file e il sito li usa
+      - label: Testo HTML (news del vecchio sito)
         name: html
-        widget: text
+        widget: hidden
         required: false
-        hint: "Le news importate dal vecchio sito hanno il testo qui. Per le news nuove usare «Testo»: se è compilato, vale quello."
-      - label: Invia anche come notifica
-        name: notifica
-        widget: boolean
-        default: false
-        required: false
-        hint: "Acceso: alla pubblicazione chi ha attivato le notifiche riceve titolo e riassunto sul telefono. Solo per le cose importanti (al massimo una o due a settimana). Dopo l’invio la casella si spegne da sola: riaccenderla rimanda la notifica."
       - label: Notifica inviata il
         name: notifica_inviata
         widget: hidden
@@ -118,12 +131,6 @@ collections:
         name: file
         widget: hidden
         required: false
-      - label: Categoria
-        name: category
-        widget: select
-        required: false
-        options: ["Capanne", "Gite", "Corsi", "Giovani", "Senior", "Sezione", "Eventi", "Incontri", "Itinerario", "Sicurezza"]
-        hint: "Compare sopra il titolo e serve per il filtro della pagina News. Incontri: serate, conferenze e film; Eventi: feste, mercatini, gare; Sicurezza: avvisi e richiami di materiale."
 
   - name: avviso
     label: Avviso
@@ -140,6 +147,12 @@ collections:
             default: false
             required: false
             hint: "Spento: l’avviso non si vede (il testo resta qui per la prossima volta)."
+          - label: Invia anche come notifica
+            name: notifica
+            widget: boolean
+            default: false
+            required: false
+            hint: "Acceso: alla pubblicazione chi ha attivato le notifiche riceve il testo dell’avviso sul telefono. Dopo l’invio la casella si spegne da sola."
           - label: Importante (in rosso)
             name: importante
             widget: boolean
@@ -174,12 +187,6 @@ collections:
             time_format: false
             required: false
             hint: "Ultimo giorno in cui si vede; il giorno dopo sparisce da solo. Vuoto: resta finché non lo spegni."
-          - label: Invia anche come notifica
-            name: notifica
-            widget: boolean
-            default: false
-            required: false
-            hint: "Acceso: alla pubblicazione chi ha attivato le notifiche riceve il testo dell’avviso sul telefono. Dopo l’invio la casella si spegne da sola."
           - label: Notifica inviata il
             name: notifica_inviata
             widget: hidden

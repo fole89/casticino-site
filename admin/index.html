@@ -9,6 +9,8 @@
 <base href="../">
 <link rel="icon" href="assets/logo-cas.webp">
 <link href="admin/config.yml" type="text/yaml" rel="cms-config-url">
+<!-- aspetto del sito (caratteri, rosso CAS, angoli vivi): Decap non ha temi, vedi il commento in redazione.css -->
+<link rel="stylesheet" href="admin/redazione.css">
 </head>
 <body>
 <!-- Area di redazione delle news e del mercatino: Decap CMS, configurazione in config.yml.
@@ -85,6 +87,25 @@ var AnnuncioPreview = createClass({
   }
 });
 CMS.registerPreviewTemplate("mercatino", AnnuncioPreview);
+
+// Anteprima dell'avviso: la striscia come apparirà in cima alle pagine (italiano, poi tedesco e inglese se scritti).
+var AvvisoPreview = createClass({
+  render: function () {
+    var d = this.props.entry.get("data");
+    var cls = "avviso" + (d.get("importante") ? " avviso--importante" : "");
+    var righe = [["", d.get("testo")], ["Tedesco: ", d.get("testo_de")], ["Inglese: ", d.get("testo_en")]].filter(function (r) { return r[1]; });
+    var nota = !d.get("attivo") ? "Spento: sul sito l’avviso non si vede."
+      : d.get("scadenza") ? "Visibile fino al " + dataIt(d.get("scadenza")) + "." : "Visibile finché non lo spegni.";
+    return h("main", {},
+      righe.length ? righe.map(function (r, i) {
+        return h("aside", { key: i, className: cls, style: { marginBottom: "12px" } },
+          h("div", { className: "container avviso-inner" },
+            h("p", {}, h("span", {}, r[0] + r[1]), d.get("link") ? h("span", {}, " ", h("a", {}, "Scopri di più")) : null)));
+      }) : h("p", { className: "small", style: { padding: "24px" } }, "Scrivi il testo dell’avviso: qui compare la striscia come sul sito."),
+      h("p", { className: "small", style: { padding: "0 24px" } }, nota, d.get("notifica") ? " Alla pubblicazione parte anche la notifica." : ""));
+  }
+});
+CMS.registerPreviewTemplate("avviso", AvvisoPreview);
 </script>
 </body>
 </html>
