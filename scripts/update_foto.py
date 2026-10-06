@@ -26,6 +26,7 @@ Variabili d'ambiente (in GitHub: Settings › Secrets and variables › Actions)
 """
 import datetime as dt
 import ftplib
+import ssl
 import html
 import json
 import os
@@ -92,7 +93,10 @@ def connect():
     if not (host and user and pwd):
         sys.exit("Mancano FTP_HOST, FTP_USER o FTP_PASSWORD.")
     use_tls = os.environ.get("FTP_TLS", "1") != "0"
-    ftp = ftplib.FTP_TLS(host, timeout=60) if use_tls else ftplib.FTP(host, timeout=60)
+    # con FTPS il certificato del server va verificato: ftplib di base non lo fa, e la password potrebbe finire a chi
+    # si mette in mezzo alla connessione
+    ftp = (ftplib.FTP_TLS(host, timeout=60, context=ssl.create_default_context()) if use_tls
+           else ftplib.FTP(host, timeout=60))
     ftp.login(user, pwd)
     if use_tls:
         ftp.prot_p()

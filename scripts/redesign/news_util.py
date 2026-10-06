@@ -69,6 +69,16 @@ def webp_size(path):
 # Copre quello che produce l'editor dell'area di redazione: paragrafi, a capo, grassetto, corsivo, link,
 # titoli, elenchi, citazioni e immagini. L'HTML scritto dentro il testo viene mostrato come testo.
 
+def attr(v):
+    """Valore già passato da html.escape(quote=False), pronto per un attributo tra virgolette."""
+    return v.replace('"', "&quot;").replace("'", "&#39;")
+
+
+def sicuro(url, ammessi):
+    """Indirizzo relativo, oppure con uno dei protocolli ammessi (mai javascript:, data: e simili)."""
+    return not re.match(r"[a-z][a-z0-9+.-]*:", url, re.I) or url.lower().startswith(ammessi)
+
+
 def _inline(t):
     t = html.escape(t, quote=False)
     segnaposto = []
@@ -78,15 +88,19 @@ def _inline(t):
         return f"\x00{len(segnaposto) - 1}\x00"
     t = re.sub(r"\\([\\`*_{}\[\]()#+\-.!>~|])", lambda m: tieni(m.group(1)), t)          # caratteri protetti con \
     t = re.sub(r"`([^`]+)`", lambda m: tieni(f"<code>{m.group(1)}</code>"), t)
-    t = re.sub(r'!\[([^\]]*)\]\(([^)"]+?)(?:\s+"[^)]*")?\)',
-               lambda m: tieni(f'<img src="{m.group(2).strip().replace(" ", "%20")}" alt="{m.group(1)}" loading="lazy" decoding="async">'), t)
+    def immagine(m):
+        src = m.group(2).strip().replace(" ", "%20")
+        if not sicuro(src, ("http://", "https://")):
+            return tieni(attr(m.group(1)))       # niente javascript:, data: e simili: resta la descrizione
+        return tieni(f'<img src="{attr(src)}" alt="{attr(m.group(1))}" loading="lazy" decoding="async">')
+    t = re.sub(r'!\[([^\]]*)\]\(([^)"]+?)(?:\s+"[^)]*")?\)', immagine, t)
 
     def link(m):
         url = m.group(2)
-        if re.match(r"[a-z][a-z0-9+.-]*:", url, re.I) and not url.lower().startswith(("http://", "https://", "mailto:", "tel:")):
+        if not sicuro(url, ("http://", "https://", "mailto:", "tel:")):
             return m.group(1)                    # niente javascript: e simili
         ext = ' rel="noopener"' if url.startswith(("http://", "https://")) else ""
-        return f'<a href="{url}"{ext}>{m.group(1)}</a>'
+        return f'<a href="{attr(url)}"{ext}>{m.group(1)}</a>'
     t = re.sub(r"\[([^\]]+)\]\(([^)\s]+)(?:\s+\"[^)]*\")?\)", link, t)
     t = re.sub(r"(\*\*|__)(?=\S)(.+?)(?<=\S)\1", r"<strong>\2</strong>", t)
     t = re.sub(r"(?<![\w*])\*(?=\S)(.+?)(?<=\S)\*(?![\w*])", r"<em>\1</em>", t)

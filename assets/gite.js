@@ -105,6 +105,8 @@
     var d = new DOMParser().parseFromString(String(v || '').replace(/<[^>]+>/g, ' '), 'text/html');
     return d.body.textContent.replace(/\s+/g, ' ').trim();
   }
+  // il link della gita viene da Droptour: solo pagine di Droptour, mai altri indirizzi (javascript: e simili)
+  function linkDroptour(u) { return /^https:\/\/ssl\.dropnet\.ch\//.test(u) ? u : ''; }
   function data(v) { return v && v.indexOf('0000') !== 0 ? v : ''; }
   function giorno(iso) { var p = iso.split('-'); return new Date(+p[0], p[1] - 1, +p[2]); }
   function oggi() {
@@ -117,7 +119,8 @@
     var items = xml.getElementsByTagName('item'), out = [];
     for (var i = 0; i < items.length; i++) {
       var it = items[i];
-      if (it.getAttribute('type') !== 'tour') continue;
+      // solo gite con un numero vero: finisce in id e indirizzi delle pagine
+      if (it.getAttribute('type') !== 'tour' || !/^\d+$/.test(it.getAttribute('id') || '')) continue;
       var a = function (n) { return it.getAttribute(n) || ''; };
       var capi = [], ad = it.getElementsByTagName('address');
       for (var j = 0; j < ad.length; j++) {
@@ -128,7 +131,7 @@
       }
       if (!capi.length && a('author')) capi.push(testo(a('author')));
       out.push({
-        id: a('id'), titolo: testo(a('name')), link: a('link'), dal: data(a('date_start')), al: data(a('date_end')),
+        id: a('id'), titolo: testo(a('name')), link: linkDroptour(a('link')), dal: data(a('date_start')), al: data(a('date_end')),
         tipo: testo(a('category_description')), sigla: a('category'), gruppi: a('group').split('|').filter(Boolean),
         capigita: capi, cond: a('requirements_kond'), tecn: a('requirements_techn'), descrizione: testo(a('description')),
         iscrizione: a('register_type') !== '0', iscrizione_dal: data(a('register_start_date')), iscrizione_al: data(a('register_end_date')),
@@ -364,7 +367,7 @@
     var modulo = dett.dataset.droptour + '?page=anmeldung&tourFID=' + encodeURIComponent(g.id);
     document.getElementById('gita-azioni').innerHTML = classe === 'aperte'
       ? '<a class="btn btn--primary" href="' + esc(modulo) + '">' + TX.iscriviti + ' <span class="arrow" aria-hidden="true">→</span></a>'
-      : '<a class="btn btn--secondary" href="' + esc(g.link) + '">' + TX.apri + '</a>';
+      : '<a class="btn btn--secondary" href="' + esc(linkDroptour(g.link) || dett.dataset.droptour + '?page=detail&touren_nummer=' + encodeURIComponent(g.id)) + '">' + TX.apri + '</a>';
     document.querySelector('.gita-riepilogo').hidden = false;
   }
 

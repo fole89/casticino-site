@@ -17,7 +17,8 @@ export default {
     // 1. l'area di redazione apre una finestra su /auth: si va al login di GitHub
     if (url.pathname === "/auth") {
       const state = crypto.randomUUID();
-      const scope = url.searchParams.get("scope") || "public_repo";
+      // sempre e solo il permesso minimo (come auth_scope in admin/config.yml), qualunque cosa chieda l'indirizzo
+      const scope = "public_repo";
       const go = new URL(`${GITHUB}/authorize`);
       go.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
       go.searchParams.set("redirect_uri", `${url.origin}/callback`);
@@ -65,15 +66,17 @@ export default {
 function risposta(env, esito, contenuto) {
   const ammessi = (env.ALLOWED_ORIGINS || "").split(",").map((s) => s.trim()).filter(Boolean);
   const messaggio = `authorization:github:${esito}:${JSON.stringify(contenuto)}`;
+  // dentro <script>: «<» come <, così nessun testo (es. un messaggio d'errore) può chiudere lo script
+  const js = (v) => JSON.stringify(v).replace(/</g, "\\u003c");
   const html = `<!doctype html><meta charset="utf-8"><title>Accesso</title>
 <p>Accesso in corso…</p>
 <script>
 (function () {
-  var ammessi = ${JSON.stringify(ammessi)};
+  var ammessi = ${js(ammessi)};
   function ricevi(e) {
     if (ammessi.indexOf(e.origin) === -1) return;
     window.removeEventListener("message", ricevi);
-    window.opener.postMessage(${JSON.stringify(messaggio)}, e.origin);
+    window.opener.postMessage(${js(messaggio)}, e.origin);
     setTimeout(function () { window.close(); }, 500);
   }
   window.addEventListener("message", ricevi);

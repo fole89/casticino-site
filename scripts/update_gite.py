@@ -44,7 +44,7 @@ def gita(it):
     return {
         "id": it.get("id"),
         "titolo": testo(it.get("name")),
-        "link": it.get("link", ""),
+        "link": it.get("link", "") if it.get("link", "").startswith("https://ssl.dropnet.ch/") else "",
         "dal": data(it.get("date_start")),
         "al": data(it.get("date_end")),
         "tipo": testo(it.get("category_description")),
@@ -130,7 +130,8 @@ def scheda(html):
 
 def main():
     root = ET.fromstring(leggi(API))
-    gite = [gita(it) for it in root.iter("item") if it.get("type") == "tour"]
+    # solo gite con un numero vero: finisce negli id e negli indirizzi delle pagine
+    gite = [gita(it) for it in root.iter("item") if it.get("type") == "tour" and (it.get("id") or "").isascii() and (it.get("id") or "").isdigit()]
     if not gite:
         sys.exit("Nessuna gita da Droptour: data/gite.json resta com'è.")
     gite.sort(key=lambda g: (g["dal"], g["titolo"]))

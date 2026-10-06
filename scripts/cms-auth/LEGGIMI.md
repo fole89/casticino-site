@@ -18,6 +18,7 @@ da pubblicare gratis su Cloudflare Workers.
 1. Crea un account gratuito su <https://dash.cloudflare.com/sign-up>.
 2. **Workers & Pages › Create › Create Worker**, nome `casticino-cms-auth`, **Deploy**.
 3. **Edit code**: sostituisci tutto il codice con il contenuto di `worker.js`, poi **Deploy**.
+   Per gli aggiornamenti successivi basta, da questa cartella: `npx wrangler deploy worker.js --name casticino-cms-auth --compatibility-date 2026-10-01 --keep-vars` (`--keep-vars` tiene le variabili impostate nel pannello).
 4. Annota l’indirizzo del Worker, del tipo `https://casticino-cms-auth.<tuo-account>.workers.dev`.
 
 ### 2. L’applicazione su GitHub
