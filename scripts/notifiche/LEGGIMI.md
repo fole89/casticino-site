@@ -15,7 +15,9 @@ pagine; su iPhone funziona solo con il sito installato sulla schermata Home.
    - dopo la pubblicazione aspetta 90 secondi (che GitHub Pages metta online la pagina) e `scripts/notifiche.py invia`
      manda il messaggio a tutti gli iscritti, firmato con la chiave VAPID della sezione; gli indirizzi non più validi
      (telefono cambiato, app tolta) vengono tolti da qui.
-3. **Sul telefono** il service worker (`sw.js`, da `scripts/redesign/pwa.py`) mostra la notifica; toccandola si apre
+3. Le notifiche partono con priorità alta (`Urgency: high`): con la priorità normale Android le trattiene, a telefono
+   bloccato, fino allo sblocco.
+4. **Sul telefono** il service worker (`sw.js`, da `scripts/redesign/pwa.py`) mostra la notifica; toccandola si apre
    la pagina.
 
 Testo della notifica: per una news il titolo e il riassunto (in italiano), per l'avviso il suo testo nella lingua
@@ -36,8 +38,8 @@ npx wrangler deploy                                     # pubblica il servizio
 npx wrangler d1 execute casticino-notifiche --remote --command "SELECT COUNT(*) FROM iscrizioni"   # quanti iscritti
 ```
 
-Notifica di prova a tutti gli iscritti (dalla radice del repository, con i due segreti nell'ambiente e
-`pip install pywebpush`):
+Notifica di prova a tutti gli iscritti: **GitHub › Actions › «Notifica di prova» › Run workflow** (testo a scelta).
+Oppure dalla radice del repository, con i due segreti nell'ambiente e `pip install pywebpush`:
 
 ```bash
 python scripts/notifiche.py prova "Testo della prova"

@@ -111,7 +111,9 @@ def invia(messaggi):
             dati = json.dumps({**msg[lingua], "tag": msg["tag"], "lingua": lingua}, ensure_ascii=False)
             try:
                 webpush({"endpoint": s["endpoint"], "keys": {"p256dh": s["p256dh"], "auth": s["auth"]}}, data=dati,
-                        vapid_private_key=chiave, vapid_claims={"sub": SOGGETTO}, ttl=86400, timeout=15)
+                        vapid_private_key=chiave, vapid_claims={"sub": SOGGETTO}, ttl=86400, timeout=15,
+                        # priorità alta: senza, Android (Doze) trattiene la notifica finché il telefono non si sblocca
+                        headers={"Urgency": "high"})
                 inviate += 1
             except WebPushException as e:
                 if e.response is not None and e.response.status_code in (404, 410):

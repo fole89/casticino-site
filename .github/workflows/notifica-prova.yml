@@ -1,0 +1,34 @@
+name: Notifica di prova
+
+# Manda una notifica di prova a tutti gli iscritti (GitHub › Actions › «Notifica di prova» › Run workflow).
+# Serve per controllare che le notifiche arrivino; per le notizie vere si usa la casella nell'area di redazione.
+on:
+  workflow_dispatch:
+    inputs:
+      testo:
+        description: "Testo della notifica"
+        required: true
+        default: "Prova delle notifiche del sito CAS Ticino."
+
+permissions:
+  contents: read
+
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Invia la notifica di prova
+        env:
+          NOTIFICHE_TOKEN: ${{ secrets.NOTIFICHE_TOKEN }}
+          VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}
+          TESTO: ${{ inputs.testo }}
+        run: |
+          pip install --quiet pywebpush==2.5.0
+          python scripts/notifiche.py prova "$TESTO"
