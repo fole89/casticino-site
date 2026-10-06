@@ -21,7 +21,7 @@ Variabili d'ambiente (in GitHub: Settings › Secrets and variables › Actions)
   FTP_BASE       percorso FTP della cartella delle gite   (default:     /casticino/dropbox/photo/gite)
   FTP_TLS        "1" per FTPS esplicito, "0" per FTP semplice (default: 1)
   PUBLIC_BASE    URL pubblico corrispondente a FTP_BASE   (default: https://ssl.dropnet.ch/casticino/dropbox/photo/gite)
-  MAX_ALBUMS     quante gite tenere                      (default: 15)
+  MAX_ALBUMS     quante gite tenere                      (default: 50, circa quelle con resoconto nella galleria Droptour)
   GALLERY_URL    galleria pubblica Droptour con i resoconti (default: https://ssl.dropnet.ch/casticino/gite/index.php?page=galery_overview)
 """
 import datetime as dt
@@ -41,7 +41,7 @@ OVERRIDES = os.path.join(ROOT, "data", "foto-overrides.json")
 
 FTP_BASE = os.environ.get("FTP_BASE", "/casticino/dropbox/photo/gite").rstrip("/")
 PUBLIC_BASE = os.environ.get("PUBLIC_BASE", "https://ssl.dropnet.ch/casticino/dropbox/photo/gite").rstrip("/")
-MAX_ALBUMS = int(os.environ.get("MAX_ALBUMS", "15"))
+MAX_ALBUMS = int(os.environ.get("MAX_ALBUMS", "50"))
 GALLERY_URL = os.environ.get("GALLERY_URL", "https://ssl.dropnet.ch/casticino/gite/index.php?page=galery_overview")
 DETAIL_URL = "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer={nr}"
 

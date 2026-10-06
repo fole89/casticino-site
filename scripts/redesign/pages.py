@@ -681,19 +681,6 @@ def hut_extra(file):
 </div>
 </div>
 </section>""")
-    if c.get("sostenitori"):
-        loghi = "\n".join(f'<li>{logo_sostenitore(c, *l)}</li>' for l in c["sostenitori"]["loghi"])
-        out.append(f"""<section class="section" aria-labelledby="sostenitori-h">
-<div class="container">
-<div class="section-head">
-<h2 id="sostenitori-h" class="h2">{tc('sostenitori')}</h2>
-<p>{c["sostenitori"]["testo"]}</p>
-</div>
-<ul class="logos">
-{loghi}
-</ul>
-</div>
-</section>""")
     if c.get("storia"):
         st = c["storia"]
         out.append(f"""<section class="section" aria-labelledby="storia-h">
@@ -847,6 +834,24 @@ def avviso_capanna(file):
 </section>"""
 
 
+def sostenitori(c):
+    """Loghi dei sostenitori della capanna, in fondo alla pagina sotto «Sostieni la capanna»."""
+    if not (c and c.get("sostenitori")):
+        return ""
+    loghi = "\n".join(f'<li>{logo_sostenitore(c, *l)}</li>' for l in c["sostenitori"]["loghi"])
+    return f"""<section class="section" aria-labelledby="sostenitori-h">
+<div class="container">
+<div class="section-head">
+<h2 id="sostenitori-h" class="h2">{tc('sostenitori')}</h2>
+<p>{c["sostenitori"]["testo"]}</p>
+</div>
+<ul class="logos">
+{loghi}
+</ul>
+</div>
+</section>"""
+
+
 def hut(file):
     d = capanna(file)
     c = contenuti(file)
@@ -925,6 +930,7 @@ def hut(file):
 </div>
 </div>
 </section>
+{sostenitori(c)}
 
 <section class="section" aria-labelledby="altre-h">
 <div class="container">
