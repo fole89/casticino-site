@@ -31,7 +31,7 @@ MENU = [
         ("Campo Tencia", "campotencia.html"), ("Cristallina", "cristallina.html"), ("Adula", "adula.html"),
         ("Motterascio", "motterascio.html"), ("Monte Bar", "montebar.html"), ("Baita del Luca", "baitadelluca.html")]),
     ("Servizi", "noleggio.html", [
-        ("Noleggio materiale", "noleggio.html"), ("Mercatino", "mercatino.html"), ("Documenti", "documenti.html"),
+        ("Noleggio", "noleggio.html"), ("Mercatino", "mercatino.html"), ("Documenti", "documenti.html"),
         ("Link utili", "link.html")]),
     ("News e media", "news.html", [
         ("News", "news.html"), ("Foto e resoconti", "foto.html"), ("Annuari", "annuari.html"),
@@ -51,7 +51,7 @@ MENU_DE = [
         ("Campo Tencia", "de/campotencia.html"), ("Cristallina", "de/cristallina.html"), ("Adula", "de/adula.html"),
         ("Motterascio", "de/motterascio.html"), ("Monte Bar", "de/montebar.html"), ("Baita del Luca", "de/baitadelluca.html")]),
     ("Dienste", "de/noleggio.html", [
-        ("Materialvermietung", "de/noleggio.html"), ("Marktplatz", "de/mercatino.html"), ("Dokumente", "de/documenti.html"),
+        ("Vermietung", "de/noleggio.html"), ("Marktplatz", "de/mercatino.html"), ("Dokumente", "de/documenti.html"),
         ("Nützliche Links", "de/link.html")]),
     ("News und Medien", "de/news.html", [
         ("News", "de/news.html"), ("Fotos und Berichte", "de/foto.html"), ("Jahrbücher", "de/annuari.html"),
@@ -70,7 +70,7 @@ MENU_EN = [
         ("Campo Tencia", "en/campotencia.html"), ("Cristallina", "en/cristallina.html"), ("Adula", "en/adula.html"),
         ("Motterascio", "en/motterascio.html"), ("Monte Bar", "en/montebar.html"), ("Baita del Luca", "en/baitadelluca.html")]),
     ("Services", "en/noleggio.html", [
-        ("Equipment hire", "en/noleggio.html"), ("Gear market", "en/mercatino.html"), ("Documents", "en/documenti.html"),
+        ("Hire", "en/noleggio.html"), ("Gear market", "en/mercatino.html"), ("Documents", "en/documenti.html"),
         ("Useful links", "en/link.html")]),
     ("News and media", "en/news.html", [
         ("News", "en/news.html"), ("Photos and reports", "en/foto.html"), ("Yearbooks", "en/annuari.html"),

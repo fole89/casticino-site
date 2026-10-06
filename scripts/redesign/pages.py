@@ -1415,7 +1415,8 @@ def rubrica():
 
     gruppi = [
         (tr("Sezione", "Sektion", "Section"),
-         [riga(tr("Segretariato e informazioni", "Sekretariat und Auskünfte", "Secretariat and information"), "info@casticino.ch")]),
+         [riga(tr("Segretariato e informazioni", "Sekretariat und Auskünfte", "Secretariat and information"), "info@casticino.ch"),
+          riga(tr("Sito web", "Website", "Website"), "webmaster@casticino.ch")]),
         (tr("Dicasteri", "Ressorts", "Departments"), [riga(nome_dicastero(k), m) for k, m in MAIL_DICASTERI.items()]),
         (tr("Servizi", "Dienste", "Services"),
          [riga(tr("Noleggio materiale", "Materialvermietung", "Equipment hire"), NOLEGGIO_MAIL),
