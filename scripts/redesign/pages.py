@@ -3451,10 +3451,10 @@ def volontariato():
 <a class="link" href="#capanne-h">{tr("Come dare una mano", "So helfen Sie mit", "How to help")}</a>
 </article>
 <article class="pillar pillar--accent">
-<h3>{tr("Capogita e co-capogita", "Tourenleitung und Co-Leitung", "Trip leader and co-leader")}</h3>
-<p>{tr("Si comincia affiancando un capogita come co-capogita; con i corsi avanzati e la formazione del CAS si diventa capogita.",
-       "Man beginnt als Co-Leitung an der Seite einer Tourenleitung; mit Fortgeschrittenenkursen und der SAC-Ausbildung wird man Tourenleiterin oder Tourenleiter.",
-       "You start as co-leader alongside a trip leader; with advanced courses and SAC training you become a trip leader.")}</p>
+<h3>{tr("Capogita", "Tourenleitung", "Trip leader")}</h3>
+<p>{tr("Si comincia affiancando un capogita, o nei corsi base come aiuto-capogita; con i corsi avanzati e la formazione del CAS si diventa capogita.",
+       "Man beginnt an der Seite einer Tourenleitung oder als Hilfsleitung in den Grundkursen; mit Fortgeschrittenenkursen und der SAC-Ausbildung wird man Tourenleiterin oder Tourenleiter.",
+       "You start alongside a trip leader, or as an assistant leader on the basic courses; with advanced courses and SAC training you become a trip leader.")}</p>
 {mail(MAIL_DICASTERI["Dicastero sport di montagna"])}
 </article>
 <article class="pillar pillar--photo">
@@ -3519,32 +3519,31 @@ def volontariato():
         tr("Il percorso per chi vuole guidare le gite della sezione.", "Der Weg für alle, die Touren der Sektion leiten möchten.", "The path for those who want to lead the section’s trips."),
         tr("""<ol>
 <li><strong>Partecipa</strong> alle gite e ai <a href="corsi.html">corsi</a> della sezione, per fare esperienza.</li>
-<li><strong>Fatti avanti come co-capogita</strong>: può esserlo ogni socio che vuole dare una mano o che segue, o vuole seguire, la formazione da capogita.</li>
+<li><strong>Fatti avanti come aiuto-capogita</strong>: può esserlo ogni socio che vuole dare una mano o che segue, o vuole seguire, la formazione da capogita.</li>
 <li><strong>Formati</strong>: i corsi avanzati di alpinismo, sci alpinismo e arrampicata della sezione preparano a fare da capocordata e ai corsi capogita del CAS centrale o monitore Gioventù+Sport.</li>
 <li><strong>Guida le tue gite</strong>, con il sostegno del dicastero sport di montagna, e tieniti aggiornato con i corsi di perfezionamento.</li>
 </ol>
 <p>Le attività della sezione sono volontarie; ai capigita vengono rimborsate le spese vive. Conosci già <a href="capigita.html">i nostri capigita</a>?</p>""",
            """<ol>
 <li><strong>Machen Sie mit</strong> bei Touren und <a href="corsi.html">Kursen</a> der Sektion, um Erfahrung zu sammeln.</li>
-<li><strong>Melden Sie sich als Co-Leitung</strong>: Das kann jedes Mitglied, das mithelfen möchte oder die Tourenleiterausbildung macht oder machen will.</li>
+<li><strong>Melden Sie sich als Hilfsleitung</strong>: Das kann jedes Mitglied, das mithelfen möchte oder die Tourenleiterausbildung macht oder machen will.</li>
 <li><strong>Bilden Sie sich aus</strong>: Die Fortgeschrittenenkurse der Sektion in Hochtouren, Skitouren und Klettern bereiten auf die Rolle als Seilschaftsführer und auf die Tourenleiterkurse des SAC oder die Jugend+Sport-Leiterkurse vor.</li>
 <li><strong>Leiten Sie Ihre eigenen Touren</strong>, mit der Unterstützung des Ressorts Bergsport, und bleiben Sie mit Fortbildungskursen auf dem Laufenden.</li>
 </ol>
 <p>Die Aktivitäten der Sektion sind ehrenamtlich; den Tourenleitenden werden die Auslagen vergütet. Kennen Sie schon <a href="capigita.html">unsere Tourenleitenden</a>?</p>""",
            """<ol>
 <li><strong>Take part</strong> in the section’s trips and <a href="corsi.html">courses</a> to gain experience.</li>
-<li><strong>Step forward as co-leader</strong>: any member can, whether to lend a hand or because they are following, or want to follow, trip leader training.</li>
+<li><strong>Step forward as assistant leader</strong>: any member can, whether to lend a hand or because they are following, or want to follow, trip leader training.</li>
 <li><strong>Train</strong>: the section’s advanced courses in mountaineering, ski touring and climbing prepare you to lead a rope and for the SAC trip leader or Youth+Sport instructor courses.</li>
 <li><strong>Lead your own trips</strong>, with the support of the mountain sports department, and keep up to date with refresher courses.</li>
 </ol>
-<p>The section’s activities are voluntary; trip leaders are reimbursed for out-of-pocket expenses. Have you met <a href="capigita.html">our trip leaders</a>?</p>""")
-        + f'\n<p><a class="file-link" href="{DOC}promemoria/capigita.pdf">{tr("Promemoria capigita", "Merkblatt für Tourenleitende", "Trip leader checklist")}{tc("pdf")}</a></p>') + f"""
+<p>The section’s activities are voluntary; trip leaders are reimbursed for out-of-pocket expenses. Have you met <a href="capigita.html">our trip leaders</a>?</p>""")) + f"""
 
 {subnav(SEZ_MENU(), L("volontariato.html"))}"""
     return sezione_page("volontariato.html", titolo + " | CAS Ticino", tr(
-        "Volontariato nel CAS Ticino: api operaie in capanna, capogita e co-capogita, monitori G+S, capigita Senior, comunicazione ed eventi. Come cominciare.",
-        "Freiwilligenarbeit in der SAC-Sektion Ticino: Arbeiten in den Hütten, Tourenleitung und Co-Leitung, J+S-Leitende, Seniorentouren, Kommunikation und Anlässe. So fangen Sie an.",
-        "Volunteering with the SAC Ticino Section: work in the huts, trip leader and co-leader, Youth+Sport instructors, seniors’ trips, communication and events. How to start."),
+        "Volontariato nel CAS Ticino: api operaie in capanna, capigita e aiuto-capigita, monitori G+S, capigita Senior, comunicazione ed eventi. Come cominciare.",
+        "Freiwilligenarbeit in der SAC-Sektion Ticino: Arbeiten in den Hütten, Tourenleitung und Hilfsleitung, J+S-Leitende, Seniorentouren, Kommunikation und Anlässe. So fangen Sie an.",
+        "Volunteering with the SAC Ticino Section: work in the huts, trip leaders and assistant leaders, Youth+Sport instructors, seniors’ trips, communication and events. How to start."),
         body, og="paesaggi/salita-prato-2000")
 
 
