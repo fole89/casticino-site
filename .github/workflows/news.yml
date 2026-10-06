@@ -1,6 +1,6 @@
-name: Pubblica news, mercatino e avviso
+name: Pubblica news, mercatino e avvisi
 
-# Parte quando cambia una news, un annuncio del mercatino o l'avviso in cima al sito (di solito salvati dall'area di redazione admin/):
+# Parte quando cambia una news, un annuncio del mercatino, l'avviso in cima al sito o quello di una capanna (di solito salvati dall'area di redazione admin/):
 # prepara foto e nomi, rigenera tutte le pagine e pubblica il risultato.
 on:
   push:
@@ -12,6 +12,7 @@ on:
       - "data/mercatino/**"
       - "assets/img/mercatino/**"
       - "data/avviso.json"
+      - "data/avvisi-capanne/**"
   workflow_dispatch:        # avvio manuale da GitHub › Actions › "Run workflow"
 
 permissions:

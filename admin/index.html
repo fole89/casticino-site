@@ -106,6 +106,30 @@ var AvvisoPreview = createClass({
   }
 });
 CMS.registerPreviewTemplate("avviso", AvvisoPreview);
+
+// Anteprima dell'avviso di una capanna: il riquadro come apparirà sotto la foto (italiano, poi tedesco e inglese se scritti).
+var AvvisoCapannaPreview = createClass({
+  render: function () {
+    var d = this.props.entry.get("data");
+    var imp = d.get("importante");
+    var righe = [["Avviso", "Importante", d.get("testo")], ["Hinweis", "Wichtig", d.get("testo_de")], ["Notice", "Important", d.get("testo_en")]]
+      .filter(function (r) { return r[2]; });
+    var nota = !d.get("attivo") ? "Spento: sulla pagina della capanna l’avviso non si vede."
+      : d.get("scadenza") ? "Visibile fino al " + dataIt(d.get("scadenza")) + "." : "Visibile finché non lo spegni.";
+    return h("main", {},
+      h("section", { className: "section section--tight" },
+        h("div", { className: "container" },
+          righe.length ? righe.map(function (r, i) {
+            return h("div", { key: i, className: "avviso-capanna" + (imp ? " avviso-capanna--importante" : ""), style: { marginBottom: "12px" } },
+              h("p", { className: "avviso-capanna-tipo" }, imp ? r[1] : r[0]),
+              h("p", {}, h("span", {}, r[2]), d.get("link") ? h("span", {}, " ", h("a", {}, ["Scopri di più", "Mehr erfahren", "Find out more"][i])) : null));
+          }) : h("p", { className: "small" }, "Scrivi il testo dell’avviso: qui compare il riquadro come sulla pagina della capanna."),
+          h("p", { className: "small" }, nota, d.get("notifica") ? " Alla pubblicazione parte anche la notifica." : ""))));
+  }
+});
+["campotencia", "cristallina", "adula", "motterascio", "montebar", "baitadelluca"].forEach(function (c) {
+  CMS.registerPreviewTemplate("avviso_" + c, AvvisoCapannaPreview);
+});
 </script>
 </body>
 </html>

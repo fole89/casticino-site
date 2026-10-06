@@ -175,10 +175,11 @@ def in_lingua(pagina, lang):
 # ricorda solo l'impronta dell'avviso chiuso (localStorage «avviso», vedi la privacy). Dopo la scadenza lo nasconde
 # lo script in head(), anche se la pagina non è ancora stata rigenerata.
 
-def avviso():
-    """L'avviso attivo e non scaduto, con la sua impronta, oppure None."""
+def avviso(percorso="avviso.json"):
+    """L'avviso attivo e non scaduto (data/avviso.json o, per le capanne, data/avvisi-capanne/<capanna>.json),
+    con la sua impronta, oppure None."""
     try:
-        a = json.load(open(os.path.join(ROOT, "data", "avviso.json"), encoding="utf-8"))
+        a = json.load(open(os.path.join(ROOT, "data", percorso), encoding="utf-8"))
     except (OSError, ValueError):
         return None
     scadenza = (a.get("scadenza") or "")[:10]
@@ -199,10 +200,8 @@ def avviso_script():
             f"try{{if(localStorage.getItem('avviso')==='{a['id']}')c.add('avviso-via')}}catch(e){{}}}})()</script>\n")
 
 
-def avviso_html():
-    a = avviso()
-    if not a:
-        return ""
+def avviso_testo(a):
+    """Testo dell'avviso nella lingua della pagina (italiano con lang="it" se manca) e link «Scopri di più»."""
     lang = LINGUA["lang"]
     testo = (a.get(f"testo_{lang}") or "").strip() if lang != "it" else ""
     attr = "" if testo or lang == "it" else ' lang="it"'
@@ -211,10 +210,17 @@ def avviso_html():
     if link:
         ext = ' rel="noopener"' if link.startswith("http") else ""
         link = f' <a href="{html.escape(link)}"{ext}>{t("avviso_link")}</a>'
+    return f"<span{attr}>{testo}</span>{link}"
+
+
+def avviso_html():
+    a = avviso()
+    if not a:
+        return ""
     cls = "avviso avviso--importante" if a.get("importante") else "avviso"
     return f"""<aside class="{cls}" aria-label="{t('avviso')}" data-avviso="{a['id']}">
 <div class="container avviso-inner">
-<p><span{attr}>{testo}</span>{link}</p>
+<p>{avviso_testo(a)}</p>
 <button class="avviso-chiudi" type="button" aria-label="{t('avviso_chiudi')}" title="{t('avviso_chiudi')}"><span aria-hidden="true">×</span></button>
 </div>
 </aside>

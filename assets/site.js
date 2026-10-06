@@ -191,12 +191,12 @@
   if (location.hash === '#notizie') tutti();
 })();
 
-// CAS Ticino - home, prossime gite, e mercatino: le pagine si rigenerano ogni mattina, quindi possono contenere gite già
-// passate (data-fine) o annunci scaduti (data-scade); si tolgono qui, prima che la fila che scorre (sotto) duplichi le schede.
+// CAS Ticino - home, prossime gite, mercatino e avvisi delle capanne: le pagine possono contenere gite già passate
+// (data-fine), annunci o avvisi scaduti (data-scade); si tolgono qui, prima che la fila che scorre (sotto) duplichi le schede.
 (function () {
   var d = new Date();
   var oggi = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
-  Array.prototype.forEach.call(document.querySelectorAll('.prossima[data-fine], .annuncio[data-scade]'), function (el) {
+  Array.prototype.forEach.call(document.querySelectorAll('.prossima[data-fine], .annuncio[data-scade], .avviso-capanna-sez[data-scade]'), function (el) {
     if ((el.dataset.fine || el.dataset.scade) < oggi) el.remove();
   });
 })();

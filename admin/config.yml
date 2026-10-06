@@ -194,6 +194,87 @@ collections:
             widget: hidden
             required: false
 
+
+  - name: avvisi_capanne
+    label: Avvisi capanne
+    label_singular: avviso della capanna
+    description: "Un riquadro sulla pagina della capanna, subito sotto la foto: grigio scuro per le informazioni (es. date di apertura), rosso per le cose importanti (es. strada chiusa). Un solo avviso per capanna; l’avviso in cima a tutto il sito resta a parte. Dopo «Pubblica» è online in uno o due minuti."
+    files:
+      - label: Capanna Campo Tencia
+        name: avviso_campotencia
+        file: data/avvisi-capanne/campotencia.json
+        fields: &campi_avviso_capanna
+          - label: Mostra l’avviso
+            name: attivo
+            widget: boolean
+            default: false
+            required: false
+            hint: "Spento: l’avviso non si vede (il testo resta qui per la prossima volta)."
+          - label: Invia anche come notifica
+            name: notifica
+            widget: boolean
+            default: false
+            required: false
+            hint: "Acceso: alla pubblicazione chi ha attivato le notifiche riceve il testo dell’avviso sul telefono, con il nome della capanna; toccandola si apre la pagina della capanna. Dopo l’invio la casella si spegne da sola."
+          - label: Importante (in rosso)
+            name: importante
+            widget: boolean
+            default: false
+            required: false
+            hint: "Acceso: riquadro rosso, per pericoli e cambiamenti urgenti (es. strada chiusa). Spento: riquadro grigio scuro (es. date di apertura)."
+          - label: Testo
+            name: testo
+            widget: text
+            required: false
+            hint: "Breve, senza link nel testo; si può andare a capo (es. «Aperta dal 13 giugno al 18 ottobre 2027»)."
+          - label: Testo in tedesco
+            name: testo_de
+            widget: text
+            required: false
+            hint: "Facoltativo: se resta vuoto, sulla pagina in tedesco si vede il testo italiano."
+          - label: Testo in inglese
+            name: testo_en
+            widget: text
+            required: false
+            hint: "Facoltativo: se resta vuoto, sulla pagina in inglese si vede il testo italiano."
+          - label: Link
+            name: link
+            widget: string
+            required: false
+            hint: "Facoltativo: una pagina del sito (es. «news.html») o un indirizzo completo (https://…). Compare come «Scopri di più»."
+          - label: Visibile fino al
+            name: scadenza
+            widget: datetime
+            format: "YYYY-MM-DD"
+            date_format: "DD.MM.YYYY"
+            time_format: false
+            required: false
+            hint: "Ultimo giorno in cui si vede; il giorno dopo sparisce da solo. Vuoto: resta finché non lo spegni."
+          - label: Notifica inviata il
+            name: notifica_inviata
+            widget: hidden
+            required: false
+      - label: Capanna Cristallina
+        name: avviso_cristallina
+        file: data/avvisi-capanne/cristallina.json
+        fields: *campi_avviso_capanna
+      - label: Capanna Adula
+        name: avviso_adula
+        file: data/avvisi-capanne/adula.json
+        fields: *campi_avviso_capanna
+      - label: Capanna Motterascio
+        name: avviso_motterascio
+        file: data/avvisi-capanne/motterascio.json
+        fields: *campi_avviso_capanna
+      - label: Capanna Monte Bar
+        name: avviso_montebar
+        file: data/avvisi-capanne/montebar.json
+        fields: *campi_avviso_capanna
+      - label: Baita del Luca
+        name: avviso_baitadelluca
+        file: data/avvisi-capanne/baitadelluca.json
+        fields: *campi_avviso_capanna
+
   - name: mercatino
     label: Mercatino
     label_singular: annuncio

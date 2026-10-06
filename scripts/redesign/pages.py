@@ -10,6 +10,7 @@ GITE_GIOVANI = GITE + "?gruppo=Giovani"   # gite.html con il filtro già scelto 
 GITE_SENIORI = GITE + "?gruppo=Seniori"
 GITE_CORSI = GITE + "?tipo=COR"
 from shared import LINGUA, PAGINE_LINGUA, SITO, de, en, tr, t, L
+from shared import avviso, avviso_testo
 from urllib.parse import urljoin, quote
 from capanne import CONTENUTI, PRENOTA
 from capanne_de import CONTENUTI_DE, HUT_DE, HUTS_DE
@@ -449,7 +450,7 @@ TC = {
                storia="Storia", storia_link="La storia della capanna", foto="Foto", tutte_foto="Tutte le foto",
                in_breve="In breve", testo="Testo", itinerari="Itinerari", capanne="Le capanne", sezione_menu="Capanne",
                foto_lead="La capanna, la cucina e i dintorni", tocca="Tocca una foto per vederla grande.",
-               foto_desc="Foto della Capanna {n} e dei dintorni.", avviso="Avviso", altitudine="Altitudine",
+               foto_desc="Foto della Capanna {n} e dei dintorni.", avviso="Avviso", importante="Importante", altitudine="Altitudine",
                posti="Posti letto", custodia="Custodia", apertura="Apertura", la_capanna="La capanna",
                soggiorno="Soggiorno", arrivare="Arrivare", contatti_h="Senti il guardiano prima di partire",
                contatti_p="Verifica sempre la presenza del guardiano e le condizioni della montagna.",
@@ -465,7 +466,7 @@ TC = {
                storia="Geschichte", storia_link="Die Geschichte der Hütte", foto="Fotos", tutte_foto="Alle Fotos",
                in_breve="Auf einen Blick", testo="Text", itinerari="Routen", capanne="Die Hütten", sezione_menu="Hütten",
                foto_lead="Die Hütte, die Küche und die Umgebung", tocca="Tippen Sie auf ein Foto, um es gross zu sehen.",
-               foto_desc="Fotos der Capanna {n} und ihrer Umgebung.", avviso="Hinweis", altitudine="Höhe",
+               foto_desc="Fotos der Capanna {n} und ihrer Umgebung.", avviso="Hinweis", importante="Wichtig", altitudine="Höhe",
                posti="Schlafplätze", custodia="Bewartet", apertura="Öffnung", la_capanna="Die Hütte",
                soggiorno="Aufenthalt", arrivare="Zugang", contatti_h="Vor dem Aufbruch beim Hüttenwart melden",
                contatti_p="Erkundigen Sie sich immer, ob der Hüttenwart da ist, und informieren Sie sich über die Verhältnisse am Berg.",
@@ -481,7 +482,7 @@ TC = {
                storia="History", storia_link="The history of the hut", foto="Photos", tutte_foto="All photos",
                in_breve="At a glance", testo="Text", itinerari="Routes", capanne="The huts", sezione_menu="Huts",
                foto_lead="The hut, the kitchen and the surroundings", tocca="Tap a photo to see it full size.",
-               foto_desc="Photos of Capanna {n} and its surroundings.", avviso="Notice", altitudine="Altitude",
+               foto_desc="Photos of Capanna {n} and its surroundings.", avviso="Notice", importante="Important", altitudine="Altitude",
                posti="Beds", custodia="Staffed", apertura="Opening", la_capanna="The hut",
                soggiorno="Your stay", arrivare="Getting there", contatti_h="Check with the hut keeper before you set out",
                contatti_p="Always check that the hut keeper is there and find out about conditions in the mountains.",
@@ -816,6 +817,27 @@ def facebook(d):
 """
 
 
+def avviso_capanna(file):
+    """Avviso della capanna sotto la foto (data/avvisi-capanne/<capanna>.json, raccolta «Avvisi capanne» in admin/):
+    scuro, rosso se importante; uno solo per capanna. Dopo la scadenza lo toglie site.js (data-scade),
+    anche se la pagina non è ancora stata rigenerata."""
+    a = avviso(f"avvisi-capanne/{file.removesuffix('.html')}.json")
+    if not a:
+        return ""
+    cls, etichetta = ("avviso-capanna avviso-capanna--importante", tc("importante")) if a.get("importante") else ("avviso-capanna", tc("avviso"))
+    scade = f' data-scade="{a["scadenza"]}"' if a["scadenza"] else ""
+    return f"""
+
+<section class="section section--tight avviso-capanna-sez" aria-label="{tc('avviso')}"{scade}>
+<div class="container">
+<div class="{cls}">
+<p class="avviso-capanna-tipo">{etichetta}</p>
+<p>{avviso_testo(a)}</p>
+</div>
+</div>
+</section>"""
+
+
 def hut(file):
     d = capanna(file)
     c = contenuti(file)
@@ -842,16 +864,7 @@ def hut(file):
 </dl>
 {azioni}
 </div>"""
-    avviso = f"""
-
-<section class="section section--tight" aria-label="{tc('avviso')}">
-<div class="container">
-<div class="callout">
-<p>{c["avviso"]}</p>
-{prenota(d, "btn btn--secondary")}
-</div>
-</div>
-</section>""" if c and c.get("avviso") else ""
+    avviso = avviso_capanna(file)
     testo = f'\n<div class="prose">\n{c["capanna"]}\n</div>' if c and c.get("capanna") else ""
     body = page_hero([(tc("capanne"), L("index.html#capanne")), (d["name"], None)], d["name"], d["where"], extra) + f"""
 

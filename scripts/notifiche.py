@@ -1,7 +1,7 @@
 """Notifiche del sito (un solo canale: «Notizie importanti della sezione»), dal workflow .github/workflows/news.yml.
 
-  python scripts/notifiche.py prepara FILE   prima della pubblicazione: le news (data/news/*.json) e l'avviso
-                                             (data/avviso.json) con la casella «Invia anche come notifica»
+  python scripts/notifiche.py prepara FILE   prima della pubblicazione: le news (data/news/*.json), l'avviso
+                                             (data/avviso.json) e quelli delle capanne (data/avvisi-capanne/) con la casella «Invia anche come notifica»
                                              ("notifica": true) diventano messaggi in FILE (fuori dal repository);
                                              nei JSON la casella si spegne e "notifica_inviata" segna data e ora,
                                              così una modifica successiva non rimanda la notifica
@@ -20,6 +20,9 @@ import news_util  # noqa: E402
 
 LINGUE = ("it", "de", "en")
 TITOLO_AVVISO = {"it": "CAS Ticino", "de": "CAS Ticino", "en": "CAS Ticino"}
+# avvisi delle capanne (data/avvisi-capanne/<pagina>.json): titolo della notifica = nome della capanna
+CAPANNE = {"campotencia": "Capanna Campo Tencia", "cristallina": "Capanna Cristallina", "adula": "Capanna Adula",
+           "motterascio": "Capanna Motterascio", "montebar": "Capanna Monte Bar", "baitadelluca": "Baita del Luca"}
 SOGGETTO = "mailto:webmaster@casticino.ch"   # contatto per i servizi di notifica (Google, Apple, Mozilla)
 
 
@@ -62,19 +65,26 @@ def prepara(uscita):
         d["notifica"], d["notifica_inviata"] = False, adesso
         scrivi(path, d, rientro, a_capo)
         print("notifica:", d["title"])
-    path = os.path.join(ROOT, "data", "avviso.json")
-    d, rientro, a_capo = leggi(path)
-    if d.get("notifica") and (d.get("testo") or "").strip():
+    avvisi = [(os.path.join(ROOT, "data", "avviso.json"), "avviso", TITOLO_AVVISO, "index.html")]
+    for f, nome in CAPANNE.items():
+        avvisi.append((os.path.join(ROOT, "data", "avvisi-capanne", f"{f}.json"), f"avviso-{f}", dict.fromkeys(LINGUE, nome), f"{f}.html"))
+    for path, tag, titolo, pagina in avvisi:
+        if not os.path.exists(path):
+            continue
+        d, rientro, a_capo = leggi(path)
+        if not d.get("notifica") or not (d.get("testo") or "").strip():
+            continue
         link = (d.get("link") or "").strip()
-        msg = {"tag": "avviso"}
+        msg = {"tag": tag}
         for l in LINGUE:
             testo = (d.get(f"testo_{l}") or "").strip() if l != "it" else ""
-            url = link if link.startswith("http") else url_pagina(link or "index.html", l)
-            msg[l] = {"titolo": TITOLO_AVVISO[l], "testo": breve(testo or d["testo"]), "url": url}
+            # l'avviso generico porta al suo link (o alla home), quello di una capanna alla pagina della capanna
+            url = link if tag == "avviso" and link.startswith("http") else url_pagina(link if tag == "avviso" and link else pagina, l)
+            msg[l] = {"titolo": titolo[l], "testo": breve(testo or d["testo"]), "url": url}
         messaggi.append(msg)
         d["notifica"], d["notifica_inviata"] = False, adesso
         scrivi(path, d, rientro, a_capo)
-        print("notifica: avviso")
+        print("notifica:", tag)
     with open(uscita, "w", encoding="utf-8") as f:
         json.dump(messaggi, f, ensure_ascii=False)
     print(f"{len(messaggi)} notifiche da inviare")
