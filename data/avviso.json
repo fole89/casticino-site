@@ -1,9 +1,9 @@
 {
-  "attivo": false,
-  "importante": false,
-  "testo": "",
+  "attivo": true,
+  "importante": true,
+  "testo": "Il nuovo sito CAS Ticino è online!",
   "testo_de": "",
   "testo_en": "",
   "link": "",
-  "scadenza": ""
+  "scadenza": "2026-10-07"
 }
