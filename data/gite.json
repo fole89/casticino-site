@@ -45,17 +45,18 @@
    "tipo": "Evento",
    "sigla": "EVE",
    "gruppi": [
-    "Attivi"
+    "Attivi",
+    "Tutti"
    ],
    "capigita": [
     "Richard Knupfer"
    ],
    "cond": "",
    "tecn": "",
-   "descrizione": "Diamo una mano ai nostri guardiani per i lavori di chiusura delle capanne",
-   "iscrizione": false,
-   "iscrizione_dal": "",
-   "iscrizione_al": "",
+   "descrizione": "Diamo una mano ai nostri guardiani per i lavori di chiusura delle capanne. Scegli la capanna preferita e annunciati direttamente come ad una gita oppure contatta il responsabile delle capanne Richard Knupfer.",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-03-01",
+   "iscrizione_al": "2026-10-09",
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
@@ -63,7 +64,7 @@
    "scheda": [
     [
      "Percorso / Dettagli",
-     "Diamo una mano ai nostri guardiani per i lavori di chiusura delle capanne"
+     "Diamo una mano ai nostri guardiani per i lavori di chiusura delle capanne.\nScegli la capanna preferita e annunciati direttamente come ad una gita oppure contatta il responsabile delle capanne Richard Knupfer."
     ]
    ]
   },
@@ -783,7 +784,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-11-18",
    "modalita": "",
-   "iscritti": 3,
+   "iscritti": 4,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -1131,7 +1132,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-12-01",
    "modalita": "",
-   "iscritti": 20,
+   "iscritti": 21,
    "posti": 30,
    "stato": "",
    "scheda": [
