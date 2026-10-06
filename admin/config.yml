@@ -162,7 +162,7 @@ collections:
           - label: Testo
             name: testo
             widget: string
-            required: false
+            required: true
             hint: "Una frase breve, senza link nel testo (es. «La Capanna Adula resta chiusa fino al 20 giugno per lavori»). Con «Pubblica» l’avviso va online."
           - label: Testo in tedesco
             name: testo_de
@@ -214,7 +214,7 @@ collections:
           - label: Testo
             name: testo
             widget: text
-            required: false
+            required: true
             hint: "Breve, senza link nel testo; si può andare a capo (es. «Aperta dal 13 giugno al 18 ottobre 2027»). Con «Pubblica» l’avviso va online."
           - label: Testo in tedesco
             name: testo_de

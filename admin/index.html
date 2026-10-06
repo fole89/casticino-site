@@ -91,22 +91,83 @@ CMS.registerPreviewTemplate("mercatino", AnnuncioPreview);
 // Avvisi (in cima al sito e delle capanne): si vedono finché hanno un testo. «Elimina» (widget qui sotto) segna l'avviso
 // e, alla pubblicazione, preSave svuota i campi: l'avviso sparisce dal sito.
 function notaAvviso(d) {
-  if (d.get("elimina")) return "Con «Pubblica» l’avviso viene eliminato dal sito.";
+  if (d.get("elimina")) return "Eliminazione dell’avviso in corso…";
   if (!(d.get("testo") || "").trim()) return "Nessun avviso: scrivi il testo e premi «Pubblica».";
   return (d.get("scadenza") ? "Visibile fino al " + dataIt(d.get("scadenza")) + "." : "Visibile finché non lo elimini.") +
     (d.get("notifica") ? " Alla pubblicazione parte anche la notifica." : "");
 }
 
+// Il pulsante sta nella barra in alto, accanto a «Pubblica»: Decap non ha un modo per aggiungerne, quindi il widget
+// (invisibile nel modulo) lo inserisce lì. «Elimina l'avviso» → «Annulla» / «Conferma»; con «Conferma» il widget segna
+// l'avviso, preme «Pubblica» › «Pubblica ora» al posto della redazione e, a pubblicazione fatta, torna all'elenco.
+function aspetta(trova, ms) {
+  return new Promise(function (ok, ko) {
+    var fine = Date.now() + ms;
+    (function prova() {
+      var el = trova();
+      if (el) ok(el); else if (Date.now() > fine) ko(); else setTimeout(prova, 150);
+    })();
+  });
+}
+function pulsanteDecap(re) {
+  return Array.prototype.find.call(document.querySelectorAll('button, [role="button"], [role="menuitem"], [class*="-PublishButton"], [class*="DropdownItem"]'), function (b) {
+    return re.test(b.textContent.trim()) && !b.disabled && !b.closest(".elimina-barra");
+  });
+}
+
 var EliminaControl = createClass({
-  render: function () {
-    var props = this.props, segnato = !!props.value;
-    var testo = (props.entry.getIn(["data", "testo"]) || "").trim();
-    if (!testo && !segnato) return h("p", { className: "elimina elimina--vuoto" }, "Nessun avviso pubblicato.");
-    return h("div", { className: "elimina" + (segnato ? " elimina--segnato" : "") },
-      segnato ? h("p", {}, "L’avviso sarà eliminato quando premi «Pubblica».") : null,
-      h("button", { type: "button", className: segnato ? "elimina-annulla" : "elimina-btn",
-        onClick: function () { props.onChange(!segnato); } }, segnato ? "Annulla" : "Elimina l’avviso"));
-  }
+  componentDidMount: function () {
+    var self = this;
+    this.stato = "pronto";
+    this.oss = new MutationObserver(function () { self.pulsante(); });
+    this.oss.observe(document.body, { childList: true, subtree: true });
+    this.pulsante();
+  },
+  componentDidUpdate: function () { this.pulsante(); },
+  componentWillUnmount: function () {
+    this.oss.disconnect();
+    if (this.barra) this.barra.remove();
+  },
+  imposta: function (stato) { this.stato = stato; this.disegnato = null; this.pulsante(); },
+  elimina: function () {
+    var self = this;
+    this.imposta("in-corso");
+    this.props.onChange(true);
+    aspetta(function () { return pulsanteDecap(/^pubblica$/i); }, 5000)
+      .then(function (b) { b.click(); return aspetta(function () { return pulsanteDecap(/^pubblica ora$/i); }, 5000); })
+      .then(function (b) { b.click(); return aspetta(function () { return document.querySelector('[class*="-PublishedButton"]'); }, 30000); })
+      .then(function () { location.hash = "#/collections/avvisi"; })
+      .catch(function () {
+        self.props.onChange(false);
+        self.imposta("pronto");
+        alert("L’avviso non è stato eliminato: riprova.");
+      });
+  },
+  pulsante: function () {
+    var self = this;
+    var testo = (this.props.entry.getIn(["data", "testo"]) || "").trim();
+    var stato = !testo && this.stato !== "in-corso" ? "vuoto" : this.stato;
+    var dove = document.querySelector('[class*="-ToolbarSubSectionFirst"]');
+    if (!dove) return;
+    if (!this.barra) { this.barra = document.createElement("div"); this.barra.className = "elimina-barra"; }
+    if (this.barra.parentNode !== dove) dove.appendChild(this.barra);
+    if (this.disegnato === stato) return;
+    this.disegnato = stato;
+    this.barra.textContent = "";
+    function bottone(testo, cls, azione) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = cls; b.textContent = testo;
+      if (azione) b.addEventListener("click", azione); else b.disabled = true;
+      self.barra.appendChild(b);
+    }
+    if (stato === "pronto") bottone("Elimina l’avviso", "elimina-btn", function () { self.imposta("chiedi"); });
+    else if (stato === "chiedi") {
+      var d = document.createElement("span"); d.textContent = "Eliminare l’avviso dal sito?"; this.barra.appendChild(d);
+      bottone("Annulla", "elimina-annulla", function () { self.imposta("pronto"); });
+      bottone("Conferma", "elimina-conferma", function () { self.elimina(); });
+    } else if (stato === "in-corso") bottone("Eliminazione…", "elimina-btn");
+  },
+  render: function () { return h("span", { className: "elimina" }); }
 });
 CMS.registerWidget("elimina", EliminaControl, function () { return null; });
 

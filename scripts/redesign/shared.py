@@ -93,12 +93,11 @@ T = {
     "it": dict(skip="Vai al contenuto", nav="Principale", menu_apri="Apri menu", menu_chiudi="Chiudi menu", menu="Menu",
                logo_sotto="Club Alpino Svizzero", cerca="Cerca nel sito", gite="Programma gite",
                lingua="Deutsch", percorso="Percorso", seguici="Seguici", sostegno="Con il sostegno di",
-               indirizzo="Club Alpino Svizzero, Sezione Ticino<br>Casella postale 112, 6998 Monteggio 2<br>Sede: Canvetto Luganese, Molino Nuovo",
                sezione="Club Alpino Svizzero, Sezione Ticino", su_instagram="CAS Ticino su Instagram", su_facebook="CAS Ticino su Facebook",
                redazione="Area redazione", adesione="Adesione", privacy="Protezione dei dati", locale="it_CH",
                avviso="Avviso", avviso_chiudi="Chiudi l’avviso", avviso_link="Scopri di più",
                app="App sul telefono", app_installa="Installa l’app", app_ios="Su iPhone: tocca Condividi, poi «Aggiungi alla schermata Home».",
-               notifiche="Notifiche", notifiche_p="Le notizie importanti della sezione, al massimo una o due a settimana.",
+               notifiche="Notifiche", notifiche_p="Le notizie importanti dalla sezione",
                notifiche_attiva="Ricevi le notifiche", notifiche_disattiva="Disattiva le notifiche", notifiche_attive="Notifiche attive su questo dispositivo.",
                notifiche_bloccate="Le notifiche sono bloccate: riattivale nelle impostazioni del browser.",
                notifiche_ios="Su iPhone le notifiche arrivano solo con l’app installata (vedi sopra).",
@@ -106,12 +105,11 @@ T = {
     "de": dict(skip="Zum Inhalt", nav="Hauptnavigation", menu_apri="Menü öffnen", menu_chiudi="Menü schliessen", menu="Menü",
                logo_sotto="Schweizer Alpen-Club", cerca="Suche (italienisch)", gite="Tourenprogramm",
                lingua="Italiano", percorso="Pfad", seguici="Folgen Sie uns", sostegno="Mit Unterstützung von",
-               indirizzo="Schweizer Alpen-Club SAC, Sektion Ticino<br>Postfach 112, 6998 Monteggio 2<br>Sitz: Canvetto Luganese, Molino Nuovo",
                sezione="Schweizer Alpen-Club SAC, Sektion Ticino", su_instagram="CAS Ticino auf Instagram", su_facebook="CAS Ticino auf Facebook",
                redazione="Redaktion", privacy="Datenschutz", locale="de_CH", adesione="Mitgliedschaft",
                avviso="Hinweis", avviso_chiudi="Hinweis schliessen", avviso_link="Mehr erfahren",
                app="App auf dem Telefon", app_installa="App installieren", app_ios="Auf dem iPhone: Teilen antippen, dann «Zum Home-Bildschirm».",
-               notifiche="Mitteilungen", notifiche_p="Wichtige Neuigkeiten der Sektion (italienisch), höchstens ein- oder zweimal pro Woche.",
+               notifiche="Mitteilungen", notifiche_p="Wichtige Neuigkeiten der Sektion (italienisch)",
                notifiche_attiva="Mitteilungen erhalten", notifiche_disattiva="Mitteilungen ausschalten", notifiche_attive="Mitteilungen auf diesem Gerät aktiv.",
                notifiche_bloccate="Mitteilungen sind blockiert: Erlauben Sie sie in den Browser-Einstellungen.",
                notifiche_ios="Auf dem iPhone kommen Mitteilungen nur mit installierter App an (siehe oben).",
@@ -119,12 +117,11 @@ T = {
     "en": dict(skip="Skip to content", nav="Main", menu_apri="Open menu", menu_chiudi="Close menu", menu="Menu",
                logo_sotto="Swiss Alpine Club", cerca="Search (in Italian)", gite="Trip programme",
                lingua="English", percorso="Breadcrumb", seguici="Follow us", sostegno="With the support of",
-               indirizzo="Swiss Alpine Club SAC, Ticino Section<br>PO Box 112, 6998 Monteggio 2<br>Office: Canvetto Luganese, Molino Nuovo",
                sezione="Swiss Alpine Club SAC, Ticino Section", su_instagram="CAS Ticino on Instagram", su_facebook="CAS Ticino on Facebook",
                redazione="Editors", privacy="Privacy", locale="en_GB", adesione="Membership",
                avviso="Notice", avviso_chiudi="Close the notice", avviso_link="Find out more",
                app="App on your phone", app_installa="Install the app", app_ios="On iPhone: tap Share, then «Add to Home Screen».",
-               notifiche="Notifications", notifiche_p="Important news from the section (in Italian), at most once or twice a week.",
+               notifiche="Notifications", notifiche_p="Important news from the section (in Italian)",
                notifiche_attiva="Get notifications", notifiche_disattiva="Turn off notifications", notifiche_attive="Notifications are on for this device.",
                notifiche_bloccate="Notifications are blocked: allow them in your browser settings.",
                notifiche_ios="On iPhone, notifications only arrive with the app installed (see above).",
@@ -332,8 +329,7 @@ def footer():
 <img class="brand-logo" src="assets/logo-cas-stemma.webp" alt="" width="44" height="52" loading="lazy">
 <span class="brand-text"><strong>CAS Ticino</strong><span>{t('logo_sotto')}</span></span>
 </a>
-<address>{t('indirizzo')}<br><a href="mailto:info@casticino.ch">info@casticino.ch</a></address>
-{social()}
+<address><a href="mailto:info@casticino.ch">info@casticino.ch</a></address>
 <div class="app-install" hidden>
 <h2 class="social-label">{t('app')}</h2>
 <button class="btn btn--secondary app-installa" type="button" hidden>{t('app_installa')}</button>

@@ -15,6 +15,9 @@
 body,button,input,textarea,select{font-family:Geist,system-ui,-apple-system,"Segoe UI",sans-serif!important}
 body{background:var(--surface)!important;color:var(--ink)!important;-webkit-font-smoothing:antialiased}
 
+/* niente «Aggiunta veloce» né «Guarda Live»: le news si creano dalla loro raccolta, il sito si apre dal link in alto */
+[class*="-AppHeaderQuickNewButton"],[class*="-PreviewLink"]{display:none!important}
+
 /* testata: bianca, filo rosso sotto, voce attiva in rosso */
 header{box-shadow:none!important;border-bottom:3px solid var(--accent)!important}
 [class*="-AppHeaderNavLink"]{font-weight:600!important;color:var(--ink-2)!important}
@@ -81,17 +84,15 @@ header{box-shadow:none!important;border-bottom:3px solid var(--accent)!important
 .avviso-attivo:hover h2,.avviso-attivo a:hover{color:#fff!important}
 .avviso-attivo a:hover{background:var(--accent-hover)!important}
 
-/* pulsante «Elimina l'avviso» (widget elimina in admin/index.html) */
-[class*="-ControlContainer"]:has(.elimina)>[class*="-ControlTopbar"]{display:none!important}
-[class*="-ControlContainer"]:has(.elimina)>:not([class*="-ControlTopbar"]){border:0!important;background:none!important}
-.elimina{padding:0!important}
-.elimina{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:14px 16px}
-.elimina p{margin:0;font-weight:600}
-.elimina--vuoto{color:var(--muted);font-weight:400}
-.elimina--segnato{background:rgba(239,28,36,.08)}
-.elimina--segnato p{color:var(--accent)}
-.elimina-btn,.elimina-annulla{min-height:40px;padding:0 18px;border:1.5px solid var(--accent);border-radius:0;font:inherit;font-weight:600;cursor:pointer}
-.elimina-btn{background:#fff;color:var(--accent)}
-.elimina-btn:hover{background:var(--accent);color:#fff}
-.elimina-annulla{background:#fff;color:var(--ink-2);border-color:var(--line-strong)}
+/* pulsanti «Elimina l'avviso» nella barra in alto (widget elimina in admin/index.html); il campo nel modulo non si vede */
+[class*="-ControlContainer"]:has(.elimina){display:none!important}
+.elimina-barra{display:flex;align-items:center;gap:8px;margin-left:12px;font-size:14px;font-weight:600;color:var(--accent)}
+.elimina-barra:empty{display:none}
+.elimina-barra span{margin-right:4px}
+.elimina-btn,.elimina-annulla,.elimina-conferma{min-height:36px;padding:0 16px;border:1.5px solid var(--accent);border-radius:0;background:#fff;color:var(--accent);font:inherit;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+.elimina-btn:hover:not(:disabled){background:var(--accent);color:#fff}
+.elimina-btn:disabled{opacity:.6;cursor:default}
+.elimina-annulla{color:var(--ink-2);border-color:var(--line-strong)}
 .elimina-annulla:hover{border-color:var(--ink)}
+.elimina-conferma{background:var(--accent);color:#fff}
+.elimina-conferma:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
