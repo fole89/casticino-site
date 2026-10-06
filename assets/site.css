@@ -226,12 +226,39 @@ dl,dd{margin:0}
 /* ------------------------------------------------------------------ storia */
 .split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
 .split-intro{display:grid;gap:22px;position:sticky;top:calc(var(--nav-h) + 32px)}
-.timeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 40px}
-.timeline li{display:grid;gap:6px;align-content:start;padding-top:16px;border-top:1px solid var(--line)}
-.timeline .year{font-family:var(--mono);font-size:15px;font-weight:550;color:var(--accent)}
+/* le tappe: una corda verticale che si riempie di rosso scorrendo (--avanza da site.js), un nodo per tappa che diventa
+   rosso quando la corda lo raggiunge (.passata); su schermi larghi testo e disegno si alternano ai due lati */
+.tappe{position:relative;list-style:none;margin:0;padding:0;display:grid;gap:clamp(56px,8vw,120px);--linea:calc(50% - 1px)}
+.tappe::before,.tappe::after{content:"";position:absolute;top:0;bottom:0;left:var(--linea);width:2px;background:var(--line)}
+.tappe::after{background:var(--accent);transform:scaleY(var(--avanza,0));transform-origin:top}
+.tappa{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr);align-items:center}
+.tappa-nodo{grid-column:2;grid-row:1;justify-self:center;width:16px;height:16px;background:var(--bg);border:2px solid var(--line-strong);transition:background-color .3s var(--ease),border-color .3s var(--ease)}
+.tappa.passata .tappa-nodo{background:var(--accent);border-color:var(--accent)}
+.tappa-testo{grid-column:1;grid-row:1;justify-self:end;max-width:460px}
+.tappa-figura{grid-column:3;grid-row:1;justify-self:start;margin:0}
+.tappa:nth-child(even) .tappa-testo{grid-column:3;justify-self:start}
+.tappa:nth-child(even) .tappa-figura{grid-column:1;justify-self:end}
+.tappa-anno{margin:0 0 14px;font-family:var(--mono);font-size:clamp(44px,5.5vw,72px);font-weight:550;line-height:1;letter-spacing:-.04em;color:var(--ink)}
+.tappa-anno--lungo{font-size:clamp(30px,3.4vw,44px);letter-spacing:-.02em}
+.tappa-testo p{margin:0;font-size:17px;line-height:1.6;color:var(--ink-2)}
+.tappa-figura:not(.tappa-figura--foto){display:grid;place-items:center;width:clamp(150px,17vw,224px);aspect-ratio:1;background:var(--surface)}
+.tappa-figura--foto{width:min(100%,400px)}
+.tappa-figura--foto img{width:100%;height:auto}
+.oggetto{width:76%;height:76%;overflow:visible;fill:none;stroke:var(--ink);stroke-width:3;stroke-linejoin:miter}
+.oggetto .r{stroke:var(--accent)}
+/* rampone e piccozza seguono lo scorrimento (--p da 0 a 1 mentre attraversano lo schermo, .5 = fermi e diritti) */
+.oggetto[data-moto="ruota"] .oggetto-moto{transform-origin:60px 60px;transform:rotate(calc((var(--p,.5) - .5) * 300deg))}
+.oggetto[data-moto="oscilla"] .oggetto-moto{transform-origin:60px 112px;transform:rotate(calc((var(--p,.5) - .5) * -64deg))}
+@media (max-width:900px){
+  .tappe{--linea:15px;gap:56px}
+  .tappa{grid-template-columns:32px minmax(0,1fr);align-items:start;column-gap:16px}
+  .tappa-nodo{grid-column:1;grid-row:1;margin-top:clamp(14px,3vw,22px)}
+  .tappa-testo,.tappa:nth-child(even) .tappa-testo{grid-column:2;grid-row:1;justify-self:start}
+  .tappa-figura,.tappa:nth-child(even) .tappa-figura{grid-column:2;grid-row:2;justify-self:start;margin-top:20px}
+  .tappa-figura:not(.tappa-figura--foto){width:132px}
+}
 @media (max-width:900px){.split{grid-template-columns:1fr}.split-intro{position:static}}
 /* Home: cifre più vicine alla sezione che segue */
-@media (max-width:560px){.timeline{grid-template-columns:1fr;gap:24px}}
 
 /* ------------------------------------------------------------------ news */
 .news{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(40px,6vw,96px)}
@@ -439,6 +466,23 @@ dl,dd{margin:0}
 .subnav-links a:hover{border-color:var(--ink);color:var(--ink)}
 .subnav-links a:active{transform:scale(.96)}
 .subnav-links a[aria-current="page"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+/* «In questa pagina» delle capanne: sotto la foto, poi appiccicata sotto il menu (.is-fisso da site.js, che evidenzia
+   anche la sezione in cui ci si trova); sul telefono una sola riga che scorre di lato, senza l'etichetta */
+.salti{position:sticky;top:var(--nav-h);z-index:calc(var(--z-nav) - 1);margin-top:clamp(28px,3.5vw,48px);background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
+.salti.is-fisso{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px rgba(18,24,22,.5)}
+body:has(.salti.is-fisso) .site-nav.scrolled{box-shadow:none}
+.avviso-capanna-sez + .salti{margin-top:0}
+.salti + .section{padding-top:clamp(40px,4.5vw,72px)}
+.salti .subnav{display:flex;align-items:center;gap:20px;padding-block:12px;background:none}
+.salti .label{flex:none;margin:0}
+.salti .subnav-links{gap:6px}
+.salti .subnav-links a{min-height:40px;padding:0 14px;font-size:14px;white-space:nowrap}
+.salti .subnav-links a[aria-current]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+@media (max-width:700px){.salti .subnav{display:block;padding-block:10px}
+  .salti .label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .salti .subnav-links{flex-wrap:nowrap;overflow-x:auto;margin-inline:calc(-1*var(--gutter));padding-inline:var(--gutter);scroll-padding-inline:var(--gutter);scrollbar-width:none}
+  .salti .subnav-links::-webkit-scrollbar{display:none}
+  .salti .subnav-links a{flex:none;min-height:44px}}
 
 /* elenchi di link e documenti */
 .linkgroups{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:56px 32px}
@@ -978,6 +1022,13 @@ dl,dd{margin:0}
 @media (prefers-reduced-motion:no-preference){
   .reveal-on [data-reveal]{opacity:0;transform:translateY(10px)}
   .reveal-on [data-reveal].is-in{opacity:1;transform:none;transition:opacity .5s var(--ease),transform .5s var(--ease);transition-delay:calc(var(--i,0) * 50ms)}
+  /* Storia: gli oggetti si disegnano un tratto dopo l'altro quando la tappa entra nello schermo */
+  .reveal-on .tappa .oggetto path{stroke-dasharray:1 1;stroke-dashoffset:1}
+  .reveal-on .tappa.is-in .oggetto path{stroke-dashoffset:0;transition:stroke-dashoffset 1s var(--ease) .2s}
+  .reveal-on .tappa.is-in .oggetto path:nth-child(2){transition-delay:.45s}
+  .reveal-on .tappa.is-in .oggetto path:nth-child(3){transition-delay:.7s}
+  .reveal-on .tappa.is-in .oggetto path:nth-child(4){transition-delay:.95s}
+  .reveal-on .tappa.is-in .oggetto path:nth-child(n+5){transition-delay:1.2s}
 }
 @media (prefers-reduced-motion:reduce){
   /* meno movimento, non nessuna transizione: restano i cambi di colore e di opacità, spariscono gli spostamenti */
@@ -1011,5 +1062,13 @@ dl,dd{margin:0}
 
 /* pagine capanna: «Sostieni la capanna» con il conto della sezione, come «Dalla capanna» (riga sopra, senza fondo) */
 .contact--linea{background:none;padding:clamp(28px,4vw,48px) 0 0;border-top:1px solid var(--line)}
+/* pagine capanna a fasce bianche e grigie (fasce() in pages.py): la fascia basta, quindi niente linee tra i blocchi
+   né riquadro dei contatti; le schede delle tariffe del colore opposto alla fascia */
+.fascia .fb,.fascia .contact{border-top:0;padding:0;background:none}
+.section.fascia .rate{background:var(--surface)}
+/* fasce più basse delle sezioni normali (ogni fascia ha già il suo stacco di colore); i contatti del guardiano,
+   prima sezione, ancora un po' meno */
+.fascia,.section--surface.fascia,.section--surface + .section.fascia{padding-block:clamp(48px,6vw,88px)}
+.contatti-capanna.fascia{padding-block:clamp(36px,4vw,60px)}
 .factgroup .facts+p{margin-top:16px}
 @media (max-width:480px){#prima-di-partire .tag{display:none}}

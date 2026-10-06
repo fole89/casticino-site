@@ -17,6 +17,7 @@ from capanne_de import CONTENUTI_DE, HUT_DE, HUTS_DE
 from capanne_en import CONTENUTI_EN, HUT_EN, HUTS_EN
 import json, re, unicodedata
 import news_util
+from storia_oggetti import oggetto
 import pwa
 import mercatino_util
 from news_util import webp_size
@@ -460,7 +461,8 @@ TC = {
                fb_apri="Apri la pagina Facebook",
                portale="La capanna e i suoi itinerari sul portale del CAS", sostieni_h="Sostieni la capanna",
                sostieni_p="Manutenzione, rinnovi e lavori costano: le capanne vivono anche grazie ai soci e agli amici della montagna. Puoi sostenerle con una donazione sul conto della sezione, indicando il nome della capanna.",
-               conto="Conto", causale="Causale"),
+               conto="Conto", causale="Causale", salta="In questa pagina", s_vita="Cucina e guardiani", s_tariffe="Tariffe",
+               s_contatti="Contatti", s_sostieni="Sostieni la capanna"),
     "de": dict(prenota="Reservieren", cucina="Die Küche", team="Ihre Gastgeber", vita="Küche und Hüttenteam",
                tariffe="Preise und Reservation", accessi="Anreise", attivita="Aktivitäten", sostenitori="Unterstützer",
                storia="Geschichte", storia_link="Die Geschichte der Hütte", foto="Fotos", tutte_foto="Alle Fotos",
@@ -476,7 +478,8 @@ TC = {
                fb_apri="Facebook-Seite öffnen",
                portale="Die Hütte und ihre Routen im SAC-Tourenportal", sostieni_h="Die Hütte unterstützen",
                sostieni_p="Unterhalt, Erneuerungen und Arbeiten kosten: Die Hütten leben auch dank den Mitgliedern und den Freunden der Berge. Sie können sie mit einer Spende auf das Konto der Sektion unterstützen, mit dem Namen der Hütte als Vermerk.",
-               conto="Konto", causale="Vermerk"),
+               conto="Konto", causale="Vermerk", salta="Auf dieser Seite", s_vita="Küche und Team", s_tariffe="Preise",
+               s_contatti="Kontakt", s_sostieni="Hütte unterstützen"),
     "en": dict(prenota="Book", cucina="The kitchen", team="Your hosts", vita="Kitchen and hut team",
                tariffe="Rates and booking", accessi="Getting there", attivita="Activities", sostenitori="Supporters",
                storia="History", storia_link="The history of the hut", foto="Photos", tutte_foto="All photos",
@@ -492,7 +495,8 @@ TC = {
                fb_apri="Open the Facebook page",
                portale="The hut and its routes on the SAC route portal", sostieni_h="Support the hut",
                sostieni_p="Upkeep, renovations and building work cost money: the huts also rely on members and friends of the mountains. You can support them with a donation to the section’s account, giving the name of the hut as reference.",
-               conto="Account", causale="Reference"),
+               conto="Account", causale="Reference", salta="On this page", s_vita="Kitchen and team", s_tariffe="Rates",
+               s_contatti="Contact", s_sostieni="Support the hut"),
 }
 
 
@@ -625,7 +629,7 @@ def hut_extra(file):
 </div>
 </div>
 </div>"""
-        out.append(f"""<section class="section" aria-label="{tc('vita')}">
+        out.append(f"""<section class="section" id="vita" aria-label="{tc('vita')}">
 <div class="container hut-life">
 {cucina}
 {team}
@@ -683,7 +687,7 @@ def hut_extra(file):
 </section>""")
     if c.get("storia"):
         st = c["storia"]
-        out.append(f"""<section class="section" aria-labelledby="storia-h">
+        out.append(f"""<section class="section" id="storia" aria-labelledby="storia-h">
 <div class="container hut-story">
 <figure>{cimg(c, st["img"][0], st["img"][1])}</figure>
 <div class="hut-story-text">
@@ -694,7 +698,7 @@ def hut_extra(file):
 </div>
 </section>""")
     if c.get("foto"):
-        out.append(f"""<section class="section" aria-labelledby="foto-h">
+        out.append(f"""<section class="section" id="foto" aria-labelledby="foto-h">
 <div class="container">
 <div class="section-row">
 <h2 id="foto-h" class="h2">{tc('foto')}</h2>
@@ -852,6 +856,43 @@ def sostenitori(c):
 </section>"""
 
 
+def salti_capanna(c, d):
+    """Pulsanti «In questa pagina» sotto la foto: portano alle sezioni della pagina capanna, nell'ordine in cui compaiono.
+    La barra resta appiccicata sotto il menu e site.js evidenzia la sezione in cui ci si trova."""
+    voci = [("contatti", tc("s_contatti"))]
+    if c:
+        if c.get("cucina") or c.get("team"):
+            voci.append(("vita", tc("s_vita") if c.get("cucina") and c.get("team") else
+                         c.get("cucina_titolo", tc("cucina")) if c.get("cucina") else c["team"].get("titolo", tc("team"))))
+        voci += [(k, tc(l)) for k, l in (("tariffe", "s_tariffe"), ("accessi", "accessi"), ("pagine", "attivita"),
+                                          ("storia", "storia"), ("foto", "foto")) if c.get(k)]
+        voci = [("attivita" if k == "pagine" else k, l) for k, l in voci]
+    if d.get("facebook"):
+        voci.append(("notizie", tc("fb_h")))
+    voci.append(("sostieni", tc("s_sostieni")))
+    links = "\n".join(f'<a href="#{k}">{l}</a>' for k, l in voci)
+    return f"""
+
+<nav class="salti" aria-label="{tc('salta')}">
+<div class="container subnav">
+<p class="label">{tc('salta')}</p>
+<div class="subnav-links">
+{links}
+</div>
+</div>
+</nav>"""
+
+
+def fasce(body):
+    """Pagina capanna a fasce come la home: le sezioni sotto «In questa pagina» alternano bianco e grigio nell'ordine in cui
+    compaiono (ogni capanna ha sezioni diverse), contando dal fondo perché l'ultima resti bianca sopra il piè di pagina
+    grigio; .fascia toglie le linee di separazione, che a fasce non servono."""
+    sopra, barra, sotto = body.partition('<nav class="salti"')   # l'avviso della capanna, sopra la barra, resta com'è
+    sezione = r'<section class="section(?:--surface)?((?: [\w-]+)*)"'
+    n = iter(range(len(re.findall(sezione, sotto)) - 1, -1, -1))
+    return sopra + barra + re.sub(sezione, lambda m: f'<section class="{"section" if next(n) % 2 == 0 else "section--surface"}{m.group(1)} fascia"', sotto)
+
+
 def hut(file):
     d = capanna(file)
     c = contenuti(file)
@@ -882,7 +923,19 @@ def hut(file):
     testo = f'\n<div class="prose">\n{c["capanna"]}\n</div>' if c and c.get("capanna") else ""
     body = page_hero([(tc("capanne"), L("index.html#capanne")), (d["name"], None)], d["name"], d["where"], extra) + f"""
 
-{band}{avviso}
+{band}{avviso}{salti_capanna(c, d)}
+
+<section class="section contatti-capanna" id="contatti" aria-labelledby="contatti-h">
+<div class="container">
+<div class="contact" data-reveal>
+<div class="contact-intro">
+<h2 id="contatti-h" class="h2">{tc('contatti_h')}</h2>
+<p>{tc('contatti_p')}</p>
+</div>
+{facts(d['contact'])}
+</div>
+</div>
+</section>
 
 <section class="section" aria-labelledby="capanna-h">
 <div class="container detail">
@@ -907,19 +960,7 @@ def hut(file):
 {hut_extra(file) if c else ""}
 {facebook(d)}
 
-<section class="section" aria-labelledby="contatti-h">
-<div class="container">
-<div class="contact" data-reveal>
-<div class="contact-intro">
-<h2 id="contatti-h" class="h2">{tc('contatti_h')}</h2>
-<p>{tc('contatti_p')}</p>
-</div>
-{facts(d['contact'])}
-</div>
-</div>
-</section>
-
-<section class="section" aria-labelledby="sostieni-h">
+<section class="section" id="sostieni" aria-labelledby="sostieni-h">
 <div class="container">
 <div class="contact contact--linea" data-reveal>
 <div class="contact-intro">
@@ -940,6 +981,7 @@ def hut(file):
 </div>
 </div>
 </section>"""
+    body = fasce(body)
     prefix = tc("capanna") + " " if file != "baitadelluca.html" else ""
     nome = L(file)
     return pubblica(nome, page(nome, f"{prefix}{d['name']} | CAS Ticino", d["description"], body, og=og))
@@ -1554,8 +1596,37 @@ STORIA_EN = [
 ]
 
 
+# disegno di ogni tappa (chiave = anno come in STORIA): oggetto di storia_oggetti.py e, per uno o due, il movimento
+# legato allo scorrimento («ruota», «oscilla»): non di più, se tutto si muove stanca
+STORIA_OGGETTI = {
+    "1886": ("vetta", None), "1887": ("croce", None), "1911": ("bandiera", None), "1913": ("scarpone", None),
+    "1918": ("lanterna", None), "Anni ’30": ("rampone", "ruota"), "1936": ("piccozza", "oscilla"), "1940": ("zaino", None),
+    "Anni ’60": ("corda", None), "1980": ("moschettoni", None), "1982": ("tenda", None), "2003": ("capanna", None),
+    "2016": ("capanna-moderna", None),
+}
+# foto storiche al posto del disegno, quando arrivano: anno come in STORIA → (immagine in assets/img/storia/ senza
+# .webp, alt in italiano, tedesco, inglese). Es. "1886": ("storia/1886-fondazione", "…", "…", "…")
+STORIA_FOTO = {}
+
+
+def tappa(anno_it, anno, testo):
+    """Una tappa della Storia: anno, testo e la foto storica se c'è, altrimenti l'oggetto disegnato."""
+    if anno_it in STORIA_FOTO:
+        nome, *alt = STORIA_FOTO[anno_it]
+        w, h = webp_size(os.path.join(ROOT, "assets", "img", nome + ".webp"))
+        figura = f'<figure class="tappa-figura tappa-figura--foto">{img(nome, tr(*alt), w, h)}</figure>'
+    else:
+        figura = f'<div class="tappa-figura">{oggetto(*STORIA_OGGETTI[anno_it])}</div>'
+    lungo = " tappa-anno--lungo" if len(anno) > 4 else ""
+    return f"""<li class="tappa" data-reveal>
+<span class="tappa-nodo" aria-hidden="true"></span>
+<div class="tappa-testo"><h3 class="tappa-anno{lungo}">{anno}</h3><p>{testo}</p></div>
+{figura}
+</li>"""
+
+
 def storia():
-    tl = "\n".join(f'<li><span class="year">{y}</span><span>{t}</span></li>' for y, t in tr(STORIA, STORIA_DE, STORIA_EN))
+    tl = "\n".join(tappa(a_it, a, t) for (a_it, _), (a, t) in zip(STORIA, tr(STORIA, STORIA_DE, STORIA_EN)))
     if de():
         body = page_hero([("Die Sektion", "de/introduzione.html"), ("Geschichte", None)], "Seit 1886<br>zu Fuss unterwegs.",
                          "Mehr als ein Jahrhundert Besteigungen, Hütten, Rettung und Bergkultur: die Geschichte der Sektion in Etappen.")
@@ -1572,12 +1643,12 @@ def storia():
 </figure>
 
 <section class="section" aria-labelledby="tappe-h">
-<div class="container split">
-<div class="split-intro">
+<div class="container">
+<div class="section-head">
 <h2 id="tappe-h" class="h2">{tr("Le tappe", "Die Etappen", "Milestones")}</h2>
 <p class="lead">{tr("Accanto all’attività sul terreno, la sezione ha sempre organizzato proiezioni, conferenze e dibattiti, e documentato la propria vita in numerose pubblicazioni e negli annuari.", "Neben den Touren hat die Sektion immer Vorführungen, Vorträge und Diskussionen organisiert und ihr Leben in zahlreichen Publikationen und in den Jahrbüchern festgehalten.", "Alongside its activity in the mountains, the section has always organised slide shows, talks and debates, and recorded its life in many publications and in its yearbooks.")}</p>
 </div>
-<ol class="timeline" data-reveal>
+<ol class="tappe">
 {tl}
 </ol>
 </div>

@@ -191,6 +191,78 @@
   if (location.hash === '#notizie') tutti();
 })();
 
+// CAS Ticino - capanne, «In questa pagina» (.salti): la barra resta appiccicata sotto il menu. Qui si segna quando è
+// ferma (.is-fisso: linea e ombra), si allarga lo spazio lasciato sopra i titoli raggiunti con un link (scroll-padding)
+// e si evidenzia il pulsante della sezione in cui ci si trova; sul telefono la riga scorre fino a mostrarlo.
+(function () {
+  var barra = document.querySelector('.salti');
+  if (!barra) return;
+  var riga = barra.querySelector('.subnav-links');
+  var voci = Array.prototype.map.call(riga.querySelectorAll('a[href^="#"]'), function (a) {
+    return { a: a, sez: document.getElementById(a.getAttribute('href').slice(1)) };
+  }).filter(function (v) { return v.sez; });
+  var root = document.documentElement;
+  function alto() { return parseFloat(getComputedStyle(barra).top) || 0; }
+  function spazio() { root.style.scrollPaddingTop = (alto() + barra.offsetHeight + 16) + 'px'; }
+  spazio();
+  addEventListener('resize', spazio);
+
+  var attiva = null, inCoda = false;
+  function aggiorna() {
+    inCoda = false;
+    var limite = alto() + barra.offsetHeight + 40, nuova = null;
+    barra.classList.toggle('is-fisso', barra.getBoundingClientRect().top <= alto() + 0.5 && scrollY > 0);
+    voci.forEach(function (v) { if (v.sez.getBoundingClientRect().top <= limite) nuova = v; });
+    // in fondo alla pagina l'ultima sezione può non arrivare mai in cima: vale lei
+    if (voci.length && innerHeight + scrollY >= root.scrollHeight - 2 && voci[voci.length - 1].sez.getBoundingClientRect().top < innerHeight) nuova = voci[voci.length - 1];
+    if (nuova === attiva) return;
+    if (attiva) attiva.a.removeAttribute('aria-current');
+    attiva = nuova;
+    if (!attiva) return;
+    attiva.a.setAttribute('aria-current', 'location');
+    var r = attiva.a.getBoundingClientRect(), c = riga.getBoundingClientRect();
+    if (riga.scrollWidth > riga.clientWidth && (r.left < c.left || r.right > c.right)) {
+      var ridotto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      riga.scrollTo({ left: riga.scrollLeft + r.left - c.left - 20, behavior: ridotto ? 'auto' : 'smooth' });
+    }
+  }
+  addEventListener('scroll', function () {
+    if (!inCoda) { inCoda = true; requestAnimationFrame(aggiorna); }
+  }, { passive: true });
+  aggiorna();
+})();
+
+// CAS Ticino - Storia, le tappe (.tappe): la corda si riempie di rosso fino a poco sopra metà schermo (--avanza), i nodi
+// che ha raggiunto diventano rossi (.passata) e il rampone e la piccozza ([data-moto]) girano e oscillano con lo
+// scorrimento (--p da 0 a 1 mentre attraversano lo schermo). Con movimento ridotto gli oggetti restano fermi;
+// senza JavaScript la corda è grigia e i disegni sono già tracciati.
+(function () {
+  var tappe = document.querySelector('.tappe');
+  if (!tappe) return;
+  var nodi = Array.prototype.slice.call(tappe.querySelectorAll('.tappa-nodo'));
+  var moti = matchMedia('(prefers-reduced-motion: reduce)').matches ? [] : Array.prototype.slice.call(tappe.querySelectorAll('[data-moto]'));
+  function tra(x) { return Math.max(0, Math.min(1, x)); }
+  var inCoda = false;
+  function aggiorna() {
+    inCoda = false;
+    var vh = innerHeight, soglia = vh * 0.55, r = tappe.getBoundingClientRect();
+    tappe.style.setProperty('--avanza', tra((soglia - r.top) / r.height).toFixed(4));
+    nodi.forEach(function (n) {
+      var b = n.getBoundingClientRect();
+      n.parentNode.classList.toggle('passata', b.top + b.height / 2 <= soglia);
+    });
+    moti.forEach(function (m) {
+      var b = m.getBoundingClientRect();
+      if (b.bottom < -200 || b.top > vh + 200) return;
+      m.style.setProperty('--p', tra((vh - b.top) / (vh + b.height)).toFixed(4));
+    });
+  }
+  function chiedi() { if (!inCoda) { inCoda = true; requestAnimationFrame(aggiorna); } }
+  addEventListener('scroll', chiedi, { passive: true });
+  addEventListener('resize', chiedi);
+  aggiorna();
+})();
+
 // CAS Ticino - home, prossime gite, mercatino e avvisi delle capanne: le pagine possono contenere gite già passate
 // (data-fine), annunci o avvisi scaduti (data-scade); si tolgono qui, prima che la fila che scorre (sotto) duplichi le schede.
 (function () {
