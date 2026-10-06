@@ -1,0 +1,16 @@
+{
+  "excerpt": "Il caldo rende necessario un cambio di nome all'iconica montagna svizzera.",
+  "alt": "Presto comparirà la bandiera ticinese?",
+  "date": "2026-10-06T14:16",
+  "allegati": [
+    {
+      "titolo": "Nuovo nome",
+      "file": "docs/news/monte-cervino.jpg"
+    }
+  ],
+  "notifica": true,
+  "title": "Il Cervino cambia nome: Ticinio",
+  "image": "assets/img/news/monte-cervino.jpg",
+  "testo": "Se recentemente siete stati sul cervino, avete visto il caldo che fa!\n\nPer questo si cambierà presto il suo nome\n\n> Da Cervino a Ticinio\n\nFantastico!",
+  "category": "Itinerario"
+}
