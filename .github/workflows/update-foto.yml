@@ -56,4 +56,6 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add data/foto.json data/cerca.json index.html cerca.html
           git commit -m "Foto: aggiornamento automatico da Droptour"
+          # se nel frattempo è arrivata un'altra modifica, ci si mette in coda
+          git pull --rebase
           git push

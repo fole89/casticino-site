@@ -49,7 +49,9 @@ L’indirizzo del Worker è del tipo `https://casticino-noleggio.fole89.workers.
 npx wrangler secret put ADMIN_PASSWORD
 ```
 Scegli una password lunga (almeno 16 caratteri): è l’unica protezione di /admin. Il browser la chiede alla prima
-apertura di /admin; il nome utente non conta.
+apertura di /admin; il nome utente non conta. Contro i tentativi di indovinarla, /admin accetta al massimo
+30 richieste al minuto per indirizzo IP (`[[ratelimits]]` in `wrangler.toml`, attivo con `npx wrangler deploy`):
+chi lo supera riceve «Troppi tentativi» per un minuto.
 
 ### 3. La protezione dai programmi automatici (Turnstile)
 1. Cloudflare › **Turnstile › Add widget**: nome `Noleggio CAS Ticino`, domini `fole89.github.io`, `casticino.ch`

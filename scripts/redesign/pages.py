@@ -966,7 +966,7 @@ COMITATO = [
     ("Consigliere giuridico", "Costantino Castelli", "costantino-castelli"),
     ("Finanze e sponsoring", "Claudio Roncoroni", "claudio-roncoroni"),
     ("Coordinazione gruppi", "Nadir Caduff", "nadir-caduff"),
-    ("Sport di montagna", "Geoffroy Jolly", None),
+    ("Sport di montagna", "Geoffroy Jolly", "geoffroy-jolly"),
     ("Comunicazione", "Flavia Spinelli", None),
 ]
 
@@ -1176,9 +1176,9 @@ def organizzazione():
                 ms.append(f'<div class="member member--tbd"><div class="member-photo" aria-hidden="true"><span>?</span></div>'
                           f'<div class="member-body"><strong>{tr("Da definire", "Noch offen", "To be appointed")}</strong><span>{role}</span></div></div>')
                 continue
-            foto = f"assets/img/persone/{CARTELLE_DICASTERI[title]}/{slug_nome(name)}.webp"
+            foto = foto_persona(name, CARTELLE_DICASTERI[title])   # anche il ritratto del comitato, se nel dicastero manca
             ph = (f'<img src="{foto}" alt="{tr("Ritratto di", "Porträt von", "Portrait of")} {name}" width="60" height="60" loading="lazy" decoding="async">'
-                  if os.path.exists(os.path.join(ROOT, foto)) else f'<span aria-hidden="true">{initials(name)}</span>')
+                  if foto else f'<span aria-hidden="true">{initials(name)}</span>')
             ms.append(f'<div class="member"><div class="member-photo">{ph}</div>'
                       f'<div class="member-body"><strong>{name}</strong><span>{role}</span></div></div>')
         titolo, testo = {"it": (title, text), "de": DICASTERI_DE.get(title), "en": DICASTERI_EN.get(title)}[LINGUA["lang"]]
@@ -2650,7 +2650,7 @@ def noleggio():
                 "Scegli le date e il materiale nel modulo qui sotto: vedi subito cosa è libero. La conferma alla tua richiesta avverrà tramite e-mail. Si paga in contanti o TWINT alla riconsegna.",
                 "Wählen Sie im Formular unten die Daten und das Material: Sie sehen sofort, was frei ist. Die Bestätigung Ihrer Anfrage erhalten Sie per E-Mail. Bezahlt wird bei der Rückgabe, bar oder mit TWINT.",
                 "Choose the dates and the equipment in the form below: you see straight away what is free. Your request will be confirmed by e-mail. Payment in cash or by TWINT on return.")),
-            (tr("Richiesta", "Anfrage", "Request"), tr("Almeno 1 settimana prima dell’attività", "Mindestens 1 Woche vor der Aktivität", "At least 1 week before the activity")),
+            (tr("Richiesta", "Anfrage", "Request"), tr("Di preferenza una settimana prima dell’attività", "Wenn möglich eine Woche vor der Aktivität", "Preferably a week before the activity")),
             (tr("Durata", "Dauer", "Duration"), tr(f"Da 1 a {NOLEGGIO_MAX_GIORNI} giorni: il prezzo è per giorno di noleggio",
                                                    f"1 bis {NOLEGGIO_MAX_GIORNI} Tage: Der Preis gilt pro Miettag",
                                                    f"1 to {NOLEGGIO_MAX_GIORNI} days: the price is per day of hire")),
@@ -2660,7 +2660,8 @@ def noleggio():
             ("E-mail", mail)]
     # dati del modulo nella lingua della pagina: le quantità le dà il servizio, con la disponibilità per le date scelte
     dati = [{"nome": nome_l(g, "gruppo"), "articoli": [
-        {"id": a["id"], "nome": nome_l(a), "prezzo": a["prezzo"], "taglie": list(a["taglie"]) if a.get("taglie") else None}
+        {"id": a["id"], "nome": nome_l(a), "prezzo": a["prezzo"], "taglie": list(a["taglie"]) if a.get("taglie") else None,
+         "set": a.get("set")}
         for a in g["articoli"]]} for g in gruppi]
     dati = json.dumps(dati, ensure_ascii=False).replace("</", "<\\/")
     titolo = tr("Noleggio materiale", "Materialvermietung", "Equipment hire")

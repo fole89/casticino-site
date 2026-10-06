@@ -9,6 +9,8 @@
   var API = form.dataset.api.replace(/\/?$/, '/');
   var MAX_GIORNI = Number(form.dataset.maxGiorni) || 30;
   var gruppi = JSON.parse(datiEl.textContent);
+  var ARTICOLI = {};      // id → articolo (un set ha "set": gli id dei pezzi di cui è fatto)
+  gruppi.forEach(function (g) { g.articoli.forEach(function (a) { ARTICOLI[a.id] = a; }); });
   var LINGUA = (document.documentElement.lang || 'it').slice(0, 2);
   var TX = {
     it: {
@@ -137,20 +139,54 @@
       .then(function () { if (n === attesa) elArticoli.removeAttribute('aria-busy'); });
   }
 
+  // pezzi usati da q unità di una riga: un set usa i suoi pezzi («set-arva» → arva, sonda, pala), come nel servizio
+  function pezzi(chiave, q) {
+    var a = ARTICOLI[chiave.split(':')[0]], out = {};
+    if (a && a.set) a.set.forEach(function (id) { out[id] = (out[id] || 0) + q; });
+    else out[chiave] = q;
+    return out;
+  }
+
+  // quante unità di una riga si possono ancora scegliere, tenendo conto dei pezzi già presi dalle altre righe
+  function massimo(chiave) {
+    var usati = {};
+    Object.keys(scelte).forEach(function (k) {
+      if (k === chiave) return;
+      var p = pezzi(k, scelte[k]);
+      Object.keys(p).forEach(function (x) { usati[x] = (usati[x] || 0) + p[x]; });
+    });
+    var uno = pezzi(chiave, 1), max = Infinity;
+    Object.keys(uno).forEach(function (x) {
+      var liberi = (disponibili[x] || [0, 0])[1] - (usati[x] || 0);
+      max = Math.min(max, Math.floor(Math.max(0, liberi) / uno[x]));
+    });
+    return max === Infinity ? 0 : max;
+  }
+
   function riga(chiave, etichetta, nomeCompleto, sotto) {
-    var d = disponibili[chiave] || [0, 0];
-    if (!d[0]) { delete scelte[chiave]; return null; }   // non a magazzino
-    var liberi = d[1], max = liberi;
-    if ((scelte[chiave] || 0) > max) scelte[chiave] = max;
-    var sel = el('select', { 'aria-label': T.quantita + ': ' + nomeCompleto, 'data-chiave': chiave });
-    for (var i = 0; i <= max; i++) sel.appendChild(el('option', { value: i, text: String(i) }));
-    sel.value = scelte[chiave] || 0;
-    if (!max) sel.disabled = true;
-    return el('div', { 'class': 'nol-riga' + (sotto ? ' nol-riga--taglia' : '') + (max ? '' : ' is-occupato') }, [
+    if (!(disponibili[chiave] || [0, 0])[0]) { delete scelte[chiave]; return null; }   // non a magazzino
+    return el('div', { 'class': 'nol-riga' + (sotto ? ' nol-riga--taglia' : ''), 'data-riga': chiave }, [
       el('span', { 'class': 'nol-nome' }, etichetta),
-      el('span', { 'class': 'nol-liberi' }, [liberi ? T.liberi(liberi) : T.esaurito]),
-      sel
+      el('span', { 'class': 'nol-liberi' }),
+      el('select', { 'aria-label': T.quantita + ': ' + nomeCompleto, 'data-chiave': chiave })
     ]);
+  }
+
+  // liberi e quantità di ogni riga, dopo le date o dopo ogni scelta (le righe restano: il fuoco non si perde)
+  function aggiorna() {
+    Array.prototype.forEach.call(elArticoli.querySelectorAll('[data-riga]'), function (r) {
+      var k = r.getAttribute('data-riga'), sel = r.querySelector('select'), max = massimo(k);
+      if ((scelte[k] || 0) > max) { if (max) scelte[k] = max; else delete scelte[k]; }
+      if (sel.options.length !== max + 1) {
+        sel.replaceChildren();
+        for (var i = 0; i <= max; i++) sel.appendChild(el('option', { value: i, text: String(i) }));
+      }
+      sel.value = scelte[k] || 0;
+      sel.disabled = !max;
+      r.classList.toggle('is-occupato', !max);
+      r.querySelector('.nol-liberi').textContent = max ? T.liberi(max) : T.esaurito;
+    });
+    totale();
   }
 
   function disegna() {
@@ -172,7 +208,7 @@
       if (righe.length) blocchi.push(el('div', { 'class': 'nol-gruppo' }, [el('h4', { 'class': 'nol-gruppo-titolo', text: g.nome })].concat(righe)));
     });
     elArticoli.replaceChildren.apply(elArticoli, blocchi.length ? blocchi : [el('p', { 'class': 'nol-avviso', text: T.nessuno })]);
-    totale();
+    aggiorna();
   }
 
   function prezzoDi(chiave) {
@@ -192,7 +228,7 @@
     if (!k) return;
     scelte[k] = Number(e.target.value);
     if (!scelte[k]) delete scelte[k];
-    totale();
+    aggiorna();
   });
   dal.addEventListener('change', dateCambiate);
   al.addEventListener('change', dateCambiate);

@@ -8,6 +8,12 @@ binding = "DB"
 database_name = "casticino-noleggio"
 database_id = "6456db3c-47e0-48d6-936a-e4ebe2bdb863"   # lo stampa «npx wrangler d1 create casticino-noleggio»
 
+# /admin: al massimo 30 richieste al minuto per indirizzo IP (contro i tentativi di indovinare la password)
+[[ratelimits]]
+name = "LIMITE_ADMIN"
+namespace_id = "1001"
+simple = { limit = 30, period = 60 }
+
 # pulizia notturna: via le richieste finite da più di 12 mesi
 [triggers]
 crons = ["30 2 * * *"]

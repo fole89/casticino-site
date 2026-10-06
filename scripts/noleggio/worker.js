@@ -13,6 +13,8 @@
 //   ADMIN_PASSWORD   password di /admin
 //   BREVO_API_KEY    chiave API di Brevo per le e-mail (senza: niente e-mail, le richieste si salvano lo stesso)
 //   TURNSTILE_SECRET chiave segreta di Cloudflare Turnstile (protezione dai programmi automatici)
+// Limite (wrangler.toml › [[ratelimits]]):
+//   LIMITE_ADMIN     richieste a /admin per indirizzo IP al minuto (contro i tentativi di indovinare la password)
 
 const ATTIVI = ["attesa", "confermata", "ritirata"];   // stati che occupano il materiale
 const MAX_GIORNI = 30;       // durata massima di un noleggio
@@ -144,7 +146,7 @@ async function richiesta(request, env, ctx) {
   const nome = testo(d.nome, 100), email = testo(d.email, 200).toLowerCase(), telefono = testo(d.telefono, 40);
   const note = testo(d.note, 2000, true), lingua = ["it", "de", "en"].includes(d.lingua) ? d.lingua : "it";
   if (nome.length < 3 || /https?:|www\.|[@/<>]/i.test(nome)) return json({ errore: "nome" }, 400);
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return json({ errore: "email" }, 400);
+  if (!/^[a-z0-9._%+'-]+@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/.test(email)) return json({ errore: "email" }, 400);
   if (!/^[+0-9 ()./-]{7,40}$/.test(telefono)) return json({ errore: "telefono" }, 400);
 
   if (!(await turnstile(env, d.token, request))) return json({ errore: "verifica" }, 403);
@@ -301,6 +303,11 @@ function mailGestore(r, indirizzoAdmin) {
 // ------------------------------------------------------------------ gestione (/admin)
 
 async function admin(request, env, ctx, url) {
+  // prima della password: chi supera il limite non può provarne altre, giuste o sbagliate
+  if (env.LIMITE_ADMIN) {
+    const { success } = await env.LIMITE_ADMIN.limit({ key: request.headers.get("CF-Connecting-IP") || "?" });
+    if (!success) return new Response("Troppi tentativi: riprova tra un minuto.", { status: 429, headers: { "Retry-After": "60", ...SICUREZZA } });
+  }
   if (!(await autorizzato(request, env))) {
     return new Response("Accesso riservato al responsabile del noleggio.", {
       status: 401, headers: { "WWW-Authenticate": 'Basic realm="Noleggio CAS Ticino", charset="UTF-8"', ...SICUREZZA },

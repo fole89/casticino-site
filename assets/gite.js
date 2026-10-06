@@ -101,9 +101,9 @@
     return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
   }
   function testo(v) {
-    var d = document.createElement('div');
-    d.innerHTML = String(v || '').replace(/<[^>]+>/g, ' ');
-    return d.textContent.replace(/\s+/g, ' ').trim();
+    // documento separato e inerte: niente immagini o script dal testo di Droptour
+    var d = new DOMParser().parseFromString(String(v || '').replace(/<[^>]+>/g, ' '), 'text/html');
+    return d.body.textContent.replace(/\s+/g, ' ').trim();
   }
   function data(v) { return v && v.indexOf('0000') !== 0 ? v : ''; }
   function giorno(iso) { var p = iso.split('-'); return new Date(+p[0], p[1] - 1, +p[2]); }
