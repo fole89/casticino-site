@@ -531,6 +531,15 @@ def cimg(c, name, alt, lazy=True):
     return f'<img src="{src}" alt="{alt}" width="{w}" height="{h}"{load}>'
 
 
+def logo_sostenitore(c, nome, f, url=None):
+    """Logo di un sostenitore: in assets/img/capanne/<cartella>/sostenitori/<f>.webp oppure, se f contiene «/»,
+    in assets/img/capanne/<f>.webp (loghi comuni a più capanne, in capanne/sostenitori/); con url porta al suo sito."""
+    src = f"assets/img/capanne/{f if '/' in f else c['cartella'] + '/sostenitori/' + f}.webp"
+    w, h = webp_size(os.path.join(ROOT, src))
+    im = f'<img src="{src}" alt="{nome}" width="{w}" height="{h}" loading="lazy" decoding="async">'
+    return f'<a href="{url}" rel="noopener">{im}</a>' if url else im
+
+
 def galleria(c, gruppi, alt, quante=None):
     """Foto di uno o più gruppi (assets/img/capanne/<cartella>/foto/<gruppo>-NN-600/1200.webp): la miniatura apre la foto grande."""
     cartella = os.path.join(ROOT, "assets", "img", "capanne", c["cartella"], "foto")
@@ -673,7 +682,7 @@ def hut_extra(file):
 </div>
 </section>""")
     if c.get("sostenitori"):
-        loghi = "\n".join(f'<li>{cimg(c, "sostenitori/" + f, nome)}</li>' for nome, f in c["sostenitori"]["loghi"])
+        loghi = "\n".join(f'<li>{logo_sostenitore(c, *l)}</li>' for l in c["sostenitori"]["loghi"])
         out.append(f"""<section class="section" aria-labelledby="sostenitori-h">
 <div class="container">
 <div class="section-head">

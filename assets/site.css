@@ -412,6 +412,9 @@ dl,dd{margin:0}
 .logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,180px),1fr));gap:8px;margin:0;padding:0;list-style:none}
 .logos li{display:grid;place-items:center;padding:16px;background:var(--bg);border:1px solid var(--line);aspect-ratio:3/1}
 .logos img{max-height:56px;width:auto;mix-blend-mode:multiply}
+.logos a{display:grid;place-items:center;width:100%;height:100%}
+.logos li:has(a){transition:border-color .2s var(--ease)}
+.logos li:has(a:hover){border-color:var(--line-strong)}
 @media (max-width:900px){
   .hut-team-body,.hut-story{grid-template-columns:1fr}
   .hut-sheet{grid-column:auto;grid-row:auto;position:static}

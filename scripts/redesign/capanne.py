@@ -189,6 +189,11 @@ CONTENUTI = {
 <p>Nella conca del Buco di Cumasna, a 2000 metri, dall’inizio dell’inverno si formano imponenti cascate di ghiaccio, lunghe fino a 200 metri e di varie difficoltà. Sulla destra c’è la più famosa, la «Giovannelli», lungo il canale che d’inverno permette di superare la barra rocciosa per salire o scendere dalla vetta del Pizzo Campo Tencia.</p>""",
                  foto="inverno"),
         ],
+        sostenitori=dict(
+            testo="Grazie ai partner che sostengono la capanna.",
+            loghi=[("Svizzera Turismo", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/"),
+                   ("Ticino Turismo", "sostenitori/ticino-turismo", "https://www.ticino.ch/"),
+                   ("Bellinzona e Valli Turismo", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/it/")]),
         foto=[("La capanna", "capanna"), ("La cucina", "cucina"), ("I dintorni", "dintorni")],
     ),
 
@@ -300,6 +305,11 @@ CONTENUTI = {
                           link=[("Leggi tutto", "docs/capanne/cristallina/c-ldroelettrico-naret-robiei-1.pdf")]),
                  ]),
         ],
+        sostenitori=dict(
+            testo="Grazie ai partner che sostengono la capanna.",
+            loghi=[("Svizzera Turismo", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/"),
+                   ("Ticino Turismo", "sostenitori/ticino-turismo", "https://www.ticino.ch/"),
+                   ("Bellinzona e Valli Turismo", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/it/")]),
         foto=[("La capanna", "capanna"), ("La cucina", "cucina"), ("I dintorni", "dintorni")],
     ),
 
@@ -426,6 +436,11 @@ CONTENUTI = {
                           link=[("Leggi tutto", "docs/capanne/adula/c-storie-di-antiche-transumanze.pdf")]),
                  ]),
         ],
+        sostenitori=dict(
+            testo="Grazie ai partner che sostengono la capanna.",
+            loghi=[("Svizzera Turismo", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/"),
+                   ("Ticino Turismo", "sostenitori/ticino-turismo", "https://www.ticino.ch/"),
+                   ("Bellinzona e Valli Turismo", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/it/")]),
         foto=[("La capanna", "capanna"), ("I dintorni", "dintorni")],
         foto_lead="La capanna e i dintorni",
     ),
@@ -539,6 +554,13 @@ CONTENUTI = {
                  link=[("Il sito del trekking", "https://greinaalta.ch/it/3-3-3-1-italiano/"),
                        ("Mappa online del percorso", "https://map.schweizmobil.ch/?lang=it&amp;bgLayer=pk&amp;season=summer&amp;resolution=17.65&amp;E=2718864&amp;N=1162797&amp;layers=Wanderland&amp;trackId=4230099")]),
         ],
+        sostenitori=dict(
+            testo="Grazie ai partner che sostengono la capanna.",
+            loghi=[("Svizzera Turismo", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/"),
+                   ("Ticino Turismo", "sostenitori/ticino-turismo", "https://www.ticino.ch/"),
+                   ("Bellinzona e Valli Turismo", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/it/"),
+                   ("Blenio Turismo", "sostenitori/blenio-turismo", "https://www.vallediblenio.ch/"),
+                   ("Patriziato Generale di Aquila, Torre e Lottigna", "sostenitori/patriziato-aquila-torre", "https://comuneblenio.ch/Aquila")]),
         foto=[("La capanna", "capanna"), ("La cucina", "cucina"), ("I dintorni", "dintorni")],
     ),
 
@@ -728,6 +750,11 @@ CONTENUTI = {
                           link=[("La mountain bike su Lugano Region", "https://www.luganoregion.com/it/cosa-fare/sport-e-natura/bicicletta")]),
                  ]),
         ],
+        sostenitori=dict(
+            testo="Grazie ai partner che sostengono la baita.",
+            loghi=[("Svizzera Turismo", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/"),
+                   ("Ticino Turismo", "sostenitori/ticino-turismo", "https://www.ticino.ch/"),
+                   ("Lugano Region", "sostenitori/lugano-region", "https://www.luganoregion.com/")]),
         foto=[("La baita", "capanna"), ("I dintorni", "dintorni")],
         foto_lead="La baita e i dintorni",
     ),

@@ -291,6 +291,11 @@ CONTENUTI_DE = {
 <p>In der Mulde des Buco di Cumasna auf 2000 Metern bilden sich ab Winterbeginn mächtige Eisfälle bis 200 Meter Länge und in verschiedenen Schwierigkeiten. Rechts liegt der bekannteste, die «Giovannelli», in der Rinne, über die man im Winter die Felsstufe zum oder vom Gipfel des Pizzo Campo Tencia überwindet.</p>""",
                  foto="inverno"),
         ],
+        sostenitori=dict(
+            testo="Herzlichen Dank an die Partner, die die Hütte unterstützen.",
+            loghi=[("Schweiz Tourismus", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/de-ch/"),
+                   ("Ticino Turismo", "sostenitori/ticino-turismo", "https://www.ticino.ch/de/"),
+                   ("Bellinzona e Valli Turismo", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/de/")]),
         foto=[("Die Hütte", "capanna"), ("Die Küche", "cucina"), ("Die Umgebung", "dintorni")],
     ),
 
@@ -401,6 +406,11 @@ CONTENUTI_DE = {
                           link=[("Ganzer Text", "docs/capanne/cristallina/c-ldroelettrico-naret-robiei-1.pdf")]),
                  ]),
         ],
+        sostenitori=dict(
+            testo="Herzlichen Dank an die Partner, die die Hütte unterstützen.",
+            loghi=[("Schweiz Tourismus", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/de-ch/"),
+                   ("Ticino Turismo", "sostenitori/ticino-turismo", "https://www.ticino.ch/de/"),
+                   ("Bellinzona e Valli Turismo", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/de/")]),
         foto=[("Die Hütte", "capanna"), ("Die Küche", "cucina"), ("Die Umgebung", "dintorni")],
     ),
 
@@ -528,6 +538,11 @@ CONTENUTI_DE = {
                           link=[("Ganzer Text", "docs/capanne/adula/c-storie-di-antiche-transumanze.pdf")]),
                  ]),
         ],
+        sostenitori=dict(
+            testo="Herzlichen Dank an die Partner, die die Hütte unterstützen.",
+            loghi=[("Schweiz Tourismus", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/de-ch/"),
+                   ("Ticino Turismo", "sostenitori/ticino-turismo", "https://www.ticino.ch/de/"),
+                   ("Bellinzona e Valli Turismo", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/de/")]),
         foto=[("Die Hütte", "capanna"), ("Die Umgebung", "dintorni")],
         foto_lead="Die Hütte und die Umgebung",
     ),
@@ -641,6 +656,13 @@ CONTENUTI_DE = {
                  link=[("Die Website des Trekkings", "https://greinaalta.ch/"),
                        ("Online-Karte der Route", "https://map.schweizmobil.ch/?lang=de&amp;bgLayer=pk&amp;season=summer&amp;resolution=17.65&amp;E=2718864&amp;N=1162797&amp;layers=Wanderland&amp;trackId=4230099")]),
         ],
+        sostenitori=dict(
+            testo="Herzlichen Dank an die Partner, die die Hütte unterstützen.",
+            loghi=[("Schweiz Tourismus", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/de-ch/"),
+                   ("Ticino Turismo", "sostenitori/ticino-turismo", "https://www.ticino.ch/de/"),
+                   ("Bellinzona e Valli Turismo", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/de/"),
+                   ("Blenio Turismo", "sostenitori/blenio-turismo", "https://www.vallediblenio.ch/"),
+                   ("Patriziato Generale di Aquila, Torre e Lottigna", "sostenitori/patriziato-aquila-torre", "https://comuneblenio.ch/Aquila")]),
         foto=[("Die Hütte", "capanna"), ("Die Küche", "cucina"), ("Die Umgebung", "dintorni")],
     ),
 
@@ -830,6 +852,11 @@ CONTENUTI_DE = {
                           link=[("Mountainbike auf Lugano Region", "https://www.luganoregion.com/de/erleben/sport-und-natur/fahrraeder")]),
                  ]),
         ],
+        sostenitori=dict(
+            testo="Herzlichen Dank an die Partner, die die Baita unterstützen.",
+            loghi=[("Schweiz Tourismus", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/de-ch/"),
+                   ("Ticino Turismo", "sostenitori/ticino-turismo", "https://www.ticino.ch/de/"),
+                   ("Lugano Region", "sostenitori/lugano-region", "https://www.luganoregion.com/de")]),
         foto=[("Die Baita", "capanna"), ("Die Umgebung", "dintorni")],
         foto_lead="Die Baita und die Umgebung",
     ),

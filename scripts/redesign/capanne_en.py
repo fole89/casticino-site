@@ -292,6 +292,11 @@ CONTENUTI_EN = {
 <p>In the hollow of the Buco di Cumasna, at 2000 metres, mighty icefalls up to 200 metres long and of varying difficulty form from the start of winter. On the right is the best known, the “Giovannelli”, in the gully used in winter to get past the rock step on the way to or from the summit of Pizzo Campo Tencia.</p>""",
                  foto="inverno"),
         ],
+        sostenitori=dict(
+            testo="Many thanks to the partners who support the hut.",
+            loghi=[("Switzerland Tourism", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/"),
+                   ("Ticino Tourism", "sostenitori/ticino-turismo", "https://www.ticino.ch/en/"),
+                   ("Bellinzona e Valli Tourism", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/en/")]),
         foto=[("The hut", "capanna"), ("The kitchen", "cucina"), ("The surroundings", "dintorni")],
     ),
 
@@ -402,6 +407,11 @@ CONTENUTI_EN = {
                           link=[("Full text", "docs/capanne/cristallina/c-ldroelettrico-naret-robiei-1.pdf")]),
                  ]),
         ],
+        sostenitori=dict(
+            testo="Many thanks to the partners who support the hut.",
+            loghi=[("Switzerland Tourism", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/"),
+                   ("Ticino Tourism", "sostenitori/ticino-turismo", "https://www.ticino.ch/en/"),
+                   ("Bellinzona e Valli Tourism", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/en/")]),
         foto=[("The hut", "capanna"), ("The kitchen", "cucina"), ("The surroundings", "dintorni")],
     ),
 
@@ -529,6 +539,11 @@ CONTENUTI_EN = {
                           link=[("Full text", "docs/capanne/adula/c-storie-di-antiche-transumanze.pdf")]),
                  ]),
         ],
+        sostenitori=dict(
+            testo="Many thanks to the partners who support the hut.",
+            loghi=[("Switzerland Tourism", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/"),
+                   ("Ticino Tourism", "sostenitori/ticino-turismo", "https://www.ticino.ch/en/"),
+                   ("Bellinzona e Valli Tourism", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/en/")]),
         foto=[("The hut", "capanna"), ("The surroundings", "dintorni")],
         foto_lead="The hut and the surroundings",
     ),
@@ -642,6 +657,13 @@ CONTENUTI_EN = {
                  link=[("The trek’s website", "https://greinaalta.ch/"),
                        ("Online map of the route", "https://map.schweizmobil.ch/?lang=en&amp;bgLayer=pk&amp;season=summer&amp;resolution=17.65&amp;E=2718864&amp;N=1162797&amp;layers=Wanderland&amp;trackId=4230099")]),
         ],
+        sostenitori=dict(
+            testo="Many thanks to the partners who support the hut.",
+            loghi=[("Switzerland Tourism", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/"),
+                   ("Ticino Tourism", "sostenitori/ticino-turismo", "https://www.ticino.ch/en/"),
+                   ("Bellinzona e Valli Tourism", "sostenitori/bellinzona-e-valli", "https://www.bellinzonaevalli.ch/en/"),
+                   ("Blenio Turismo", "sostenitori/blenio-turismo", "https://www.vallediblenio.ch/"),
+                   ("Patriziato Generale di Aquila, Torre e Lottigna", "sostenitori/patriziato-aquila-torre", "https://comuneblenio.ch/Aquila")]),
         foto=[("The hut", "capanna"), ("The kitchen", "cucina"), ("The surroundings", "dintorni")],
     ),
 
@@ -831,6 +853,11 @@ CONTENUTI_EN = {
                           link=[("Mountain biking on Lugano Region", "https://www.luganoregion.com/en/things-to-do/sport-and-nature/bike")]),
                  ]),
         ],
+        sostenitori=dict(
+            testo="Many thanks to the partners who support the baita.",
+            loghi=[("Switzerland Tourism", "sostenitori/svizzera-turismo", "https://www.myswitzerland.com/"),
+                   ("Ticino Tourism", "sostenitori/ticino-turismo", "https://www.ticino.ch/en/"),
+                   ("Lugano Region", "sostenitori/lugano-region", "https://www.luganoregion.com/en")]),
         foto=[("The baita", "capanna"), ("The surroundings", "dintorni")],
         foto_lead="The baita and the surroundings",
     ),
