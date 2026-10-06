@@ -146,7 +146,7 @@ def home():
 </div>
 <figure class="band">
 {pic("paesaggi/sciatori-villaggio", tx.get("hero_alt", "Scialpinisti in salita verso un villaggio innevato"), mobile="paesaggi/sciatori-villaggio-4x3", w=2000, h=901, lazy=False, cls="pos-low")}
-<figcaption class="credito">{tr("Foto", "Foto", "Photo")} © Michele Foletti</figcaption>
+{credito()}
 </figure>
 </section>
 
@@ -317,6 +317,11 @@ def page(file, title, description, body, og="paesaggi/sciatori-villaggio-2000", 
 def facts(rows):
     """Lista definizioni: coppie (termine, descrizione HTML)."""
     return '<dl class="facts">\n' + "\n".join(f"<dt>{t}</dt><dd>{d}</dd>" for t, d in rows) + "\n</dl>"
+
+
+def credito(autore="Michele Foletti"):
+    """Autore della foto grande (figcaption in basso a destra sopra la foto, .credito in site.css)."""
+    return f'<figcaption class="credito">{tr("Foto", "Foto", "Photo")} © {autore}</figcaption>'
 
 
 def band_img(name, alt, w, h):
@@ -932,6 +937,7 @@ def introduzione():
 
 <figure class="band">
 {pic("paesaggi/gruppo-ghiacciaio", "Gruppo di alpinisti in cammino su un ghiacciaio", mobile="paesaggi/gruppo-ghiacciaio-4x3", w=2000, h=1500, lazy=False, cls="pos-low")}
+{credito()}
 </figure>
 
 <section class="section--accent" aria-label="La sezione in cifre">
@@ -2355,6 +2361,7 @@ def adesione():
 
 <figure class="band">
 {pic("paesaggi/laghetto-alpino", "Laghetto alpino tra le rocce, con le montagne sullo sfondo", mobile="paesaggi/laghetto-alpino-4x3", w=2000, h=1126, lazy=False)}
+{credito()}
 </figure>
 
 <section class="section" aria-labelledby="quote-h">
@@ -2676,6 +2683,7 @@ def corsi():
 
 <figure class="band">
 {pic("paesaggi/salita-prato", tr("Un gruppo sale in fila su un sentiero tra prati fioriti, sotto il cielo azzurro", "Eine Gruppe steigt im Gänsemarsch auf einem Weg durch Blumenwiesen, unter blauem Himmel", "A group climbs in single file along a path through flowering meadows, under a blue sky"), mobile="paesaggi/salita-prato-4x3", w=2000, h=1125, lazy=False)}
+{credito()}
 </figure>
 
 <section class="section" aria-label="{tr("Corsi base", "Grundkurse", "Basic courses")}">
@@ -3155,6 +3163,7 @@ def introduzione_tradotta():
 
 <figure class="band">
 {pic("paesaggi/gruppo-ghiacciaio", tx['intro_alt'], mobile="paesaggi/gruppo-ghiacciaio-4x3", w=2000, h=1500, lazy=False, cls="pos-low")}
+{credito()}
 </figure>
 
 <section class="section--accent" aria-label="{tx['cifre']}">
@@ -3250,6 +3259,7 @@ def adesione_tradotta():
 
 <figure class="band">
 {pic("paesaggi/laghetto-alpino", tx['ade_alt'], mobile="paesaggi/laghetto-alpino-4x3", w=2000, h=1126, lazy=False)}
+{credito()}
 </figure>
 
 <section class="section" aria-labelledby="quote-h">
