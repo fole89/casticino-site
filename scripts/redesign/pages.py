@@ -1030,7 +1030,7 @@ RUOLI_DE = {
     "Coach": "Coach", "Cassiere": "Kassier", "Segretariato, giovanissimi e Spider": "Sekretariat, Jüngste und Spider",
     "Attività del mercoledì sera e arrampicata": "Mittwochabend und Klettern", "Attività estive": "Sommeraktivitäten",
     "Attività invernali": "Winteraktivitäten", "Coordinatore gite": "Tourenkoordinator", "Informatica": "Informatik",
-    "Responsabile comunicazione": "Verantwortlicher Kommunikation", "Redazione annuario": "Redaktion Jahrbuch", "Eventi": "Anlässe",
+    "Responsabile comunicazione": "Leitung Kommunikation", "Redazione Informazione": "Redaktion Informazione", "Redazione annuario": "Redaktion Jahrbuch", "Eventi": "Anlässe",
     "Grafica": "Grafik", "Responsabile ambiente": "Verantwortliche Umwelt",
 }
 
@@ -1049,7 +1049,7 @@ RUOLI_EN = {
     "Coach": "Coach", "Cassiere": "Treasurer", "Segretariato, giovanissimi e Spider": "Secretariat, youngest members and Spider",
     "Attività del mercoledì sera e arrampicata": "Wednesday evenings and climbing", "Attività estive": "Summer activities",
     "Attività invernali": "Winter activities", "Coordinatore gite": "Trip coordinator", "Informatica": "IT",
-    "Responsabile comunicazione": "Head of communication", "Redazione annuario": "Yearbook editor", "Eventi": "Events",
+    "Responsabile comunicazione": "Head of communication", "Redazione Informazione": "Informazione editor", "Redazione annuario": "Yearbook editor", "Eventi": "Events",
     "Grafica": "Graphic design", "Responsabile ambiente": "Head of environment",
 }
 
@@ -1159,7 +1159,8 @@ DICASTERI = [
       ("Walter Baumgartner", "Membro")]),
     ("Dicastero comunicazione",
      "Cura il periodico semestrale, l’annuario, il sito e i canali social. Organizza, anche con altri partner, eventi e iniziative che promuovono la cultura della montagna.",
-     [("Dario Lanfranconi", "Responsabile comunicazione"),
+     [("Flavia Spinelli", "Responsabile comunicazione"),
+      ("Dario Lanfranconi", "Redazione Informazione"),
       ("Alessandro Romelli", "Redazione annuario"),
       ("Katia Papa", "Eventi"),
       ("Roberto Grizzi", "Grafica"),
