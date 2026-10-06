@@ -353,3 +353,49 @@
     if (main) { main.setAttribute('tabindex', '-1'); main.focus({ preventScroll: true }); }
   });
 })();
+
+// CAS Ticino - sito installabile: registra il service worker (sw.js, generato da scripts/redesign/pwa.py) e gli chiede,
+// al massimo una volta al giorno per lingua, di salvare le pagine da avere anche senza rete. In anteprima locale solo
+// con ?pwa=1 (poi resta attivo finché non lo si cancella dagli strumenti del browser).
+(function () {
+  if (!('serviceWorker' in navigator) || location.protocol === 'file:') return;
+  var locale = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  if (locale && !/[?&]pwa=1\b/.test(location.search) && !navigator.serviceWorker.controller) return;
+  var script = document.querySelector('script[src*="assets/site.js"]');
+  var radice = script ? script.getAttribute('src').split('assets/site.js')[0] : '';
+  var lingua = (document.documentElement.lang || 'it').slice(0, 2);
+  navigator.serviceWorker.register(radice + 'sw.js').then(function () { return navigator.serviceWorker.ready; })
+    .then(function (reg) {
+      var oggi = new Date().toISOString().slice(0, 10), chiave = 'pwa-salvate-' + lingua;
+      try { if (localStorage.getItem(chiave) === oggi) return; localStorage.setItem(chiave, oggi); } catch (e) {}
+      if (reg.active) reg.active.postMessage({ lingua: lingua });
+    })
+    .catch(function () {});
+})();
+
+// CAS Ticino - «App sul telefono» nel footer: dove il browser lo permette (Android, computer) il pulsante «Installa»
+// apre la sua richiesta d'installazione; su iPhone e iPad, dove non si può, una riga spiega il gesto
+// (Condividi › Aggiungi alla schermata Home). Niente se il sito è già aperto come app.
+(function () {
+  var box = document.querySelector('.app-install');
+  if (!box) return;
+  var installata = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  if (installata) return;
+  var bottone = box.querySelector('.app-installa'), richiesta = null;
+  var ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (ios) { box.querySelector('.app-ios').hidden = false; box.hidden = false; }
+  window.addEventListener('beforeinstallprompt', function (e) {
+    if (ios) return;   // su iPhone si installa solo da Condividi
+    e.preventDefault();
+    richiesta = e;
+    bottone.hidden = false;
+    box.hidden = false;
+  });
+  bottone.addEventListener('click', function () {
+    if (!richiesta) return;
+    richiesta.prompt();
+    richiesta.userChoice.then(function (scelta) { if (scelta.outcome === 'accepted') box.hidden = true; });
+    richiesta = null;
+  });
+  window.addEventListener('appinstalled', function () { box.hidden = true; });
+})();

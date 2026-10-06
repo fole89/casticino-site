@@ -4,6 +4,9 @@ __pycache__/
 .env
 .venv/
 .idea/
+.impeccable/
+.temp/
+.claude/
 
 # foto originali ad alta risoluzione: sul sito vanno le versioni WebP in assets/img/
 assets/img/originali/

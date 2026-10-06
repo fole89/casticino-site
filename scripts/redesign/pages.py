@@ -16,6 +16,7 @@ from capanne_de import CONTENUTI_DE, HUT_DE, HUTS_DE
 from capanne_en import CONTENUTI_EN, HUT_EN, HUTS_EN
 import json, re, unicodedata
 import news_util
+import pwa
 import mercatino_util
 from news_util import webp_size
 from html import unescape as html_unescape, escape as html_escape
@@ -3306,7 +3307,7 @@ def adesione_tradotta():
 
 TIPI = {"news/": "Notizia", "capanne/": "Capanna", "campotencia.html": "Capanna", "cristallina.html": "Capanna", "adula.html": "Capanna",
         "motterascio.html": "Capanna", "montebar.html": "Capanna", "baitadelluca.html": "Capanna"}
-FUORI_INDICE = {"gita.html", "news.html", "cerca.html"}  # elenchi che ripetono il contenuto di altre pagine
+FUORI_INDICE = {"gita.html", "news.html", "cerca.html", "offline.html"}  # elenchi che ripetono il contenuto di altre pagine
 
 
 def solo_testo(frammento):
@@ -3726,7 +3727,7 @@ PRIVACY = {
 <p>Il sito è ospitato da GitHub Pages (GitHub Inc., USA). Come ogni server web, GitHub registra per ogni visita l’indirizzo IP, la data e l’ora, la pagina richiesta e il tipo di browser, per far funzionare il servizio e per la sicurezza. La sezione non riceve questi dati. GitHub aderisce al Data Privacy Framework Svizzera–USA; i dettagli sono nella <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">dichiarazione sulla privacy di GitHub</a> (in inglese).</p>
 
 <h2>Cookie e memoria del browser</h2>
-<p>Il sito non imposta cookie e non usa strumenti di statistica, pubblicità o profilazione. I caratteri tipografici sono caricati dal sito stesso. Il programma gite tiene per 10 minuti l’elenco delle gite nella memoria della scheda del browser (sessionStorage), per aprire più in fretta il dettaglio di una gita: non contiene dati personali e si cancella chiudendo la scheda. Se chiudi l’avviso in cima alle pagine, il browser ricorda solo quale avviso hai chiuso (localStorage), per non mostrartelo di nuovo: resta sul tuo dispositivo e non viene inviato a nessuno.</p>
+<p>Il sito non imposta cookie e non usa strumenti di statistica, pubblicità o profilazione. I caratteri tipografici sono caricati dal sito stesso. Il programma gite tiene per 10 minuti l’elenco delle gite nella memoria della scheda del browser (sessionStorage), per aprire più in fretta il dettaglio di una gita: non contiene dati personali e si cancella chiudendo la scheda. Se chiudi l’avviso in cima alle pagine, il browser ricorda solo quale avviso hai chiuso (localStorage), per non mostrartelo di nuovo: resta sul tuo dispositivo e non viene inviato a nessuno. Per aprire il sito più in fretta e anche senza rete (per esempio se lo aggiungi alla schermata Home), il browser tiene in memoria alcune pagine, immagini e file del sito (service worker e cache): restano sul tuo dispositivo e si cancellano con i dati del sito nelle impostazioni del browser.</p>
 
 <h2>Programma gite e foto</h2>
 <p>Il programma gite e le foto delle uscite vengono caricati da Droptour (ssl.dropnet.ch, in Svizzera), il servizio con cui la sezione gestisce gite e iscrizioni: aprendo queste pagine il tuo browser si collega a Droptour, che riceve il tuo indirizzo IP. L’iscrizione alle gite avviene su Droptour; i dati che inserisci lì servono a organizzare la gita e sono visibili ai capigita.</p>
@@ -3760,7 +3761,7 @@ PRIVACY = {
 <p>Die Website wird von GitHub Pages (GitHub Inc., USA) betrieben. Wie jeder Webserver speichert GitHub bei jedem Besuch die IP-Adresse, Datum und Uhrzeit, die aufgerufene Seite und den Browsertyp, für den Betrieb und die Sicherheit des Dienstes. Die Sektion erhält diese Daten nicht. GitHub ist dem Swiss-U.S. Data Privacy Framework beigetreten; Einzelheiten in der <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
 
 <h2>Cookies und Browserspeicher</h2>
-<p>Die Website setzt keine Cookies und verwendet keine Werkzeuge für Statistik, Werbung oder Profiling. Die Schriften werden von der Website selbst geladen. Das Tourenprogramm speichert die Tourenliste 10 Minuten lang im Speicher des Browser-Tabs (sessionStorage), damit die Einzelheiten einer Tour schneller erscheinen: Sie enthält keine Personendaten und wird beim Schliessen des Tabs gelöscht. Wenn Sie den Hinweis oben auf den Seiten schliessen, merkt sich der Browser nur, welchen Hinweis Sie geschlossen haben (localStorage), damit er nicht wieder erscheint: Die Angabe bleibt auf Ihrem Gerät und wird an niemanden gesendet.</p>
+<p>Die Website setzt keine Cookies und verwendet keine Werkzeuge für Statistik, Werbung oder Profiling. Die Schriften werden von der Website selbst geladen. Das Tourenprogramm speichert die Tourenliste 10 Minuten lang im Speicher des Browser-Tabs (sessionStorage), damit die Einzelheiten einer Tour schneller erscheinen: Sie enthält keine Personendaten und wird beim Schliessen des Tabs gelöscht. Wenn Sie den Hinweis oben auf den Seiten schliessen, merkt sich der Browser nur, welchen Hinweis Sie geschlossen haben (localStorage), damit er nicht wieder erscheint: Die Angabe bleibt auf Ihrem Gerät und wird an niemanden gesendet. Damit die Website schneller und auch ohne Netz erscheint (zum Beispiel, wenn Sie sie zum Home-Bildschirm hinzufügen), speichert der Browser einige Seiten, Bilder und Dateien der Website (Service Worker und Cache): Sie bleiben auf Ihrem Gerät und werden mit den Website-Daten in den Browser-Einstellungen gelöscht.</p>
 
 <h2>Tourenprogramm und Fotos</h2>
 <p>Das Tourenprogramm und die Tourenfotos werden von Droptour geladen (ssl.dropnet.ch, Schweiz), dem Dienst, mit dem die Sektion Touren und Anmeldungen verwaltet: Beim Öffnen dieser Seiten verbindet sich Ihr Browser mit Droptour, das Ihre IP-Adresse erhält. Die Anmeldung zu den Touren erfolgt auf Droptour; die dort eingegebenen Daten dienen der Organisation der Tour und sind für die Tourenleitenden sichtbar.</p>
@@ -3794,7 +3795,7 @@ PRIVACY = {
 <p>The website is hosted by GitHub Pages (GitHub Inc., USA). Like any web server, GitHub logs the IP address, date and time, page requested and browser type of each visit, to run the service and for security. The Section does not receive this data. GitHub participates in the Swiss-U.S. Data Privacy Framework; details are in <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub’s privacy statement</a>.</p>
 
 <h2>Cookies and browser storage</h2>
-<p>The website sets no cookies and uses no analytics, advertising or profiling tools. Fonts are served by the website itself. The trip programme keeps the list of trips for 10 minutes in the browser tab’s storage (sessionStorage), so that a trip’s details open faster: it contains no personal data and is deleted when you close the tab. If you close the notice at the top of the pages, your browser only remembers which notice you closed (localStorage), so as not to show it again: this stays on your device and is not sent to anyone.</p>
+<p>The website sets no cookies and uses no analytics, advertising or profiling tools. Fonts are served by the website itself. The trip programme keeps the list of trips for 10 minutes in the browser tab’s storage (sessionStorage), so that a trip’s details open faster: it contains no personal data and is deleted when you close the tab. If you close the notice at the top of the pages, your browser only remembers which notice you closed (localStorage), so as not to show it again: this stays on your device and is not sent to anyone. To open the site faster and also without a connection (for example if you add it to your home screen), your browser keeps some of the site’s pages, images and files in its storage (service worker and cache): they stay on your device and are deleted with the site data in your browser settings.</p>
 
 <h2>Trip programme and photos</h2>
 <p>The trip programme and the trip photos are loaded from Droptour (ssl.dropnet.ch, Switzerland), the service the Section uses to manage trips and registrations: when you open these pages, your browser connects to Droptour, which receives your IP address. Registration for trips takes place on Droptour; the data you enter there is used to organise the trip and is visible to the trip leaders.</p>
@@ -3835,6 +3836,43 @@ def privacy():
     return sezione_page("privacy.html", tx["title"], tx["desc"], body)
 
 
+def offline_pagina():
+    """Pagina mostrata dal service worker (sw.js, pwa.py) quando non c'è rete e la pagina chiesta non è salvata:
+    le pagine che il telefono ha sempre (home, capanne, Partecipare, Soccorso) e i numeri d'emergenza."""
+    huts = {"it": HUTS, "de": HUTS_DE, "en": HUTS_EN}[LINGUA["lang"]]
+    links = [(tr("Home", "Startseite", "Home"), L("index.html"))]
+    links += [(f'{tc("capanna")} {h[1]}' if h[0] != "baitadelluca.html" else h[1], L(h[0])) for h in huts]
+    links += [(tr("Prima di partire", "Vor dem Aufbruch", "Before you set off"), L("partecipare.html") + "#prima-di-partire"),
+              (tr("Soccorso", "Bergrettung", "Mountain rescue"), L("soccorso.html"))]
+    lista = "\n".join(f'<a href="{h}"><span>{x}</span></a>' for x, h in links)
+    numeri = [("1414", tr("Rega, soccorso aereo", "Rega, Luftrettung", "Rega, air rescue")),
+              ("144", tr("Ambulanza", "Sanitätsnotruf", "Ambulance")),
+              ("112", tr("Numero d’emergenza europeo", "Europäische Notrufnummer", "European emergency number"))]
+    numeri = "\n".join(f'<a href="tel:{n}"><strong class="num">{n}</strong><span>{x}</span></a>' for n, x in numeri)
+    titolo = tr("Sei offline", "Sie sind offline", "You are offline")
+    body = page_hero([(titolo, None)], titolo, tr(
+        "Senza connessione questa pagina non si può aprire. Restano consultabili le pagine già visitate e queste, salvate sul telefono.",
+        "Ohne Verbindung lässt sich diese Seite nicht öffnen. Abrufbar bleiben die schon besuchten Seiten und diese, auf dem Telefon gespeichert.",
+        "This page cannot be opened without a connection. Pages you have already visited are still available, and so are these, saved on your phone.")) + f"""
+
+<section class="section section--tight" aria-label="{tr("Pagine salvate", "Gespeicherte Seiten", "Saved pages")}">
+<div class="container detail">
+<div class="linklist">
+{lista}
+</div>
+<div class="emergenza">
+<h2 class="label">{tr("In caso di emergenza", "Im Notfall", "In an emergency")}</h2>
+<div class="emergenza-numeri">
+{numeri}
+</div>
+</div>
+</div>
+</section>"""
+    nome = L("offline.html")
+    html = page(nome, f"{titolo} | CAS Ticino", titolo, body)
+    return pubblica(nome, html.replace("<head>\n", '<head>\n<meta name="robots" content="noindex">\n', 1))
+
+
 PAGES = {
     "index.html": home,
     "introduzione.html": introduzione, "comitato.html": comitato, "organizzazione.html": organizzazione,
@@ -3843,7 +3881,7 @@ PAGES = {
     "adesione.html": adesione,
     "giovani.html": giovani, "senior.html": senior, "corsi.html": corsi, "noleggio.html": noleggio, "mercatino.html": mercatino,
     "soccorso.html": soccorso, "capigita.html": capigita, "privacy.html": privacy,
-    "partecipare.html": partecipare, "volontariato.html": volontariato,
+    "partecipare.html": partecipare, "volontariato.html": volontariato, "offline.html": offline_pagina,
 }
 for _f in HUT_PAGES:
     PAGES[_f] = (lambda f: lambda: hut(f))(_f)
@@ -3877,7 +3915,8 @@ for _lang, _contenuti in (("de", CONTENUTI_DE), ("en", CONTENUTI_EN)):
                "noleggio.html": noleggio, "mercatino.html": mercatino, "documenti.html": documenti,
                "partecipare.html": partecipare, "corsi.html": corsi, "giovani.html": giovani, "senior.html": senior,
                "soccorso.html": soccorso, "volontariato.html": volontariato,
-               "news.html": news, "foto.html": foto, "annuari.html": annuari, "informazione.html": informazione}
+               "news.html": news, "foto.html": foto, "annuari.html": annuari, "informazione.html": informazione,
+               "offline.html": offline_pagina}
     for _i, _n in enumerate(NEWS):
         _pagine[_n["file"]] = (lambda i: lambda: news_article(i))(_i)
     for _f in HUT_PAGES:
@@ -3954,7 +3993,18 @@ if __name__ == "__main__":
     if not only or "404.html" in only:
         scrivi("404.html", pagina_404())
     # sempre, come cerca.json: cambia quando si aggiunge o toglie una pagina (es. una news)
-    scrivi("sitemap.xml", sitemap([p for p in pagine if not p.endswith("gita.html")] + ["cerca.html"]))  # gita.html vale solo con ?id=
+    # gita.html vale solo con ?id=; offline.html la mostra solo il service worker
+    scrivi("sitemap.xml", sitemap([p for p in pagine if not p.endswith(("gita.html", "offline.html"))] + ["cerca.html"]))
+    # sito installabile (pwa.py): manifesto per lingua e service worker
+    for _lang in ("it", "de", "en"):
+        scrivi("manifest.webmanifest" if _lang == "it" else f"manifest-{_lang}.webmanifest", pwa.manifest(_lang))
+    _essenziali = ["index.html", "partecipare.html", "soccorso.html"] + list(HUT_PAGES)
+    _statici = ([asset(f) for f in ("assets/site.css", "assets/site.js", "assets/gite.js", "assets/cerca.js", "assets/foto.js", "assets/noleggio.js")]
+                + [f"assets/fonts/{f}" for f in sorted(os.listdir(os.path.join(ROOT, "assets", "fonts"))) if f.endswith(".woff2")]
+                + ["assets/logo-cas.webp", "assets/logo-cas-stemma.webp"] + [i["src"] for i in pwa.ICONE] + ["assets/icone/apple-touch-icon.png"]
+                + ["offline.html", "de/offline.html", "en/offline.html"])
+    scrivi("sw.js", pwa.service_worker(_statici, {"it": _essenziali, "de": [f"de/{p}" for p in _essenziali],
+                                                   "en": [f"en/{p}" for p in _essenziali]}))
     scrivi("robots.txt", f"User-agent: *\nDisallow: /admin/\n\nSitemap: {SITO}sitemap.xml\n")
     with open(os.path.join(ROOT, "data", "cerca.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(indice_ricerca(pagine), f, ensure_ascii=False, separators=(",", ":"))

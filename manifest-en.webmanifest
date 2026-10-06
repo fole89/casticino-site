@@ -1,0 +1,32 @@
+{
+  "id": "./",
+  "name": "CAS Ticino",
+  "short_name": "CAS Ticino",
+  "description": "Swiss Alpine Club, Ticino Section: trips, courses, huts and news.",
+  "lang": "en",
+  "start_url": "./en/",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "assets/icone/icona-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icone/icona-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icone/icona-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

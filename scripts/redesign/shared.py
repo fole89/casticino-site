@@ -91,21 +91,24 @@ T = {
                indirizzo="Club Alpino Svizzero, Sezione Ticino<br>Casella postale 112, 6998 Monteggio 2<br>Sede: Canvetto Luganese, Molino Nuovo",
                sezione="Club Alpino Svizzero, Sezione Ticino", su_instagram="CAS Ticino su Instagram", su_facebook="CAS Ticino su Facebook",
                redazione="Area redazione", adesione="Adesione", privacy="Protezione dei dati", locale="it_CH",
-               avviso="Avviso", avviso_chiudi="Chiudi l’avviso", avviso_link="Scopri di più"),
+               avviso="Avviso", avviso_chiudi="Chiudi l’avviso", avviso_link="Scopri di più",
+               app="App sul telefono", app_installa="Installa l’app", app_ios="Su iPhone: tocca Condividi, poi «Aggiungi alla schermata Home»."),
     "de": dict(skip="Zum Inhalt", nav="Hauptnavigation", menu_apri="Menü öffnen", menu_chiudi="Menü schliessen", menu="Menü",
                logo_sotto="Schweizer Alpen-Club", cerca="Suche (italienisch)", gite="Tourenprogramm",
                lingua="Italiano", percorso="Pfad", seguici="Folgen Sie uns", sostegno="Mit Unterstützung von",
                indirizzo="Schweizer Alpen-Club SAC, Sektion Ticino<br>Postfach 112, 6998 Monteggio 2<br>Sitz: Canvetto Luganese, Molino Nuovo",
                sezione="Schweizer Alpen-Club SAC, Sektion Ticino", su_instagram="CAS Ticino auf Instagram", su_facebook="CAS Ticino auf Facebook",
                redazione="Redaktion", privacy="Datenschutz", locale="de_CH", adesione="Mitgliedschaft",
-               avviso="Hinweis", avviso_chiudi="Hinweis schliessen", avviso_link="Mehr erfahren"),
+               avviso="Hinweis", avviso_chiudi="Hinweis schliessen", avviso_link="Mehr erfahren",
+               app="App auf dem Telefon", app_installa="App installieren", app_ios="Auf dem iPhone: Teilen antippen, dann «Zum Home-Bildschirm»."),
     "en": dict(skip="Skip to content", nav="Main", menu_apri="Open menu", menu_chiudi="Close menu", menu="Menu",
                logo_sotto="Swiss Alpine Club", cerca="Search (in Italian)", gite="Trip programme",
                lingua="English", percorso="Breadcrumb", seguici="Follow us", sostegno="With the support of",
                indirizzo="Swiss Alpine Club SAC, Ticino Section<br>PO Box 112, 6998 Monteggio 2<br>Office: Canvetto Luganese, Molino Nuovo",
                sezione="Swiss Alpine Club SAC, Ticino Section", su_instagram="CAS Ticino on Instagram", su_facebook="CAS Ticino on Facebook",
                redazione="Editors", privacy="Privacy", locale="en_GB", adesione="Membership",
-               avviso="Notice", avviso_chiudi="Close the notice", avviso_link="Find out more"),
+               avviso="Notice", avviso_chiudi="Close the notice", avviso_link="Find out more",
+               app="App on your phone", app_installa="Install the app", app_ios="On iPhone: tap Share, then «Add to Home Screen»."),
 }
 
 
@@ -215,6 +218,9 @@ def head(title, description, extra=""):
 <meta property="og:locale" content="{t('locale')}">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo-cas.webp">
+<link rel="manifest" href="{"manifest.webmanifest" if LINGUA["lang"] == "it" else f"manifest-{LINGUA['lang']}.webmanifest"}">
+<link rel="apple-touch-icon" href="assets/icone/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="CAS Ticino">
 <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{asset("assets/site.css")}">
 <script>document.documentElement.classList.add('js')</script>
@@ -302,6 +308,11 @@ def footer():
 </a>
 <address>{t('indirizzo')}<br><a href="mailto:info@casticino.ch">info@casticino.ch</a></address>
 {social()}
+<div class="app-install" hidden>
+<h2 class="social-label">{t('app')}</h2>
+<button class="btn btn--secondary app-installa" type="button" hidden>{t('app_installa')}</button>
+<p class="small app-ios" hidden>{t('app_ios')}</p>
+</div>
 </div>
 {cols}
 </div>
