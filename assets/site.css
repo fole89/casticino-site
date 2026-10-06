@@ -697,7 +697,10 @@ dl,dd{margin:0}
 .album{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);padding-block:clamp(40px,5vw,64px);border-top:1px solid var(--line)}
 .album-info{display:grid;gap:14px;align-content:start;justify-items:start}
 .album-date{font-family:var(--mono);font-size:14px;font-weight:550;color:var(--accent)}
-.album-text{white-space:pre-line;color:var(--ink-2);max-width:56ch;max-height:16.5em;overflow-y:auto;overscroll-behavior:contain;padding-right:14px;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
+/* il resoconto scorre dentro il riquadro solo se è più lungo (.scorre, da foto.js); arrivati in fondo il dito o la
+   rotella proseguono con la pagina (niente overscroll-behavior: sul telefono bloccava lo scorrimento della pagina) */
+.album-text{white-space:pre-line;color:var(--ink-2);max-width:56ch;max-height:16.5em;overflow:hidden;padding-right:14px;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
+.album-text.scorre{overflow-y:auto}
 .album-text:focus-visible{outline-offset:4px}
 .album-text.has-more{-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 3em),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 3em),transparent)}
 .album-viewer{display:grid;gap:8px;min-width:0}

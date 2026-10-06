@@ -101,10 +101,21 @@
   }
 
   // sfumatura in fondo al resoconto solo se è più lungo del riquadro; sparisce arrivati alla fine
+  // resoconto: scorre dentro il riquadro solo se è più lungo (.scorre), con la sfumatura in fondo finché non si
+  // arriva alla fine; se è corto resta testo normale e il dito scorre la pagina
   function fade(box) {
-    function upd() { box.classList.toggle('has-more', box.scrollTop + box.clientHeight < box.scrollHeight - 4); }
+    function upd() { box.classList.toggle('has-more', box.classList.contains('scorre') && box.scrollTop + box.clientHeight < box.scrollHeight - 4); }
+    function misura() {  // di nuovo quando arrivano i caratteri o si gira il telefono: la lunghezza del testo cambia
+      var lungo = box.scrollHeight > box.clientHeight + 4;
+      box.classList.toggle('scorre', lungo);
+      if (lungo) { box.setAttribute('tabindex', '0'); box.setAttribute('role', 'region'); }
+      else { box.removeAttribute('tabindex'); box.removeAttribute('role'); }
+      upd();
+    }
     box.addEventListener('scroll', upd, { passive: true });
-    upd();
+    window.addEventListener('resize', misura);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(misura);
+    misura();
   }
 
   function next() {
