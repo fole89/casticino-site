@@ -1,10 +1,10 @@
 {
-  "attivo": false,
+  "attivo": true,
   "notifica": false,
-  "importante": false,
-  "testo": "",
+  "importante": true,
+  "testo": "Sono iniziati i lavori di rifacimento del ponte sul fiume Bello.\nDi conseguenza la “Strada da Boris” (strada che dalla cantonale a Bidogno conduce al parcheggio Monte Bar, prima della sbarra) è chiusa all’accesso veicolare e non è possibile raggiungere il parcheggio Monte Bar.\nLa Capanna Monte Bar è dunque raggiungibile esclusivamente da Corticiasca.",
   "testo_de": "",
   "testo_en": "",
   "link": "",
-  "scadenza": ""
+  "scadenza": "2026-10-07"
 }
