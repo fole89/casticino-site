@@ -1272,21 +1272,21 @@ RUOLI_CAPIGITA_DE = {"estivo": "Sommer", "invernale": "Winter", "arrampicata": "
                      "seniori": "Senioren", "aiuto": "Hilfsleitung", "soccorso": "Bergrettung"}
 CAPIGITA_T = {
     "it": dict(titolo="Capigita", sezione="La Sezione", sezione_href="introduzione.html", ritratto="Ritratto di", chi="Chi è",
-               dal="Capogita dal", tutti="Tutti", filtra="Filtra per ruolo", elenco="Elenco dei capigita",
+               dal="Capogita dal", nuovo="Nuovo", nuovi="Nel {anno} se ne sono aggiunti {k}, segnati in rosso.", tutti="Tutti", filtra="Filtra per ruolo", elenco="Elenco dei capigita",
                uno="capogita", molti="capigita",
                lead="Le gite della sezione sono preparate e guidate da soci volontari, formati nei corsi del CAS: {n} capigita attivi, ognuno con le sue discipline.",
                box="<strong>Per i capigita.</strong> Le gite si pubblicano sul portale Droptour; il promemoria raccoglie compiti e procedure del capogita.",
                portale="Portale Droptour", promemoria="Promemoria capigita (PDF)",
                desc="I {n} capigita del CAS Ticino che preparano e guidano le gite della sezione: estive e invernali, arrampicata, escursionismo e seniori."),
     "de": dict(titolo="Tourenleitende", sezione="Die Sektion", sezione_href="de/introduzione.html", ritratto="Porträt von", chi="Wer ist",
-               dal="Tourenleitung seit", tutti="Alle", filtra="Nach Rolle filtern", elenco="Liste der Tourenleitenden",
+               dal="Tourenleitung seit", nuovo="Neu", nuovi="{anno} sind {k} neu dazugekommen, rot markiert.", tutti="Alle", filtra="Nach Rolle filtern", elenco="Liste der Tourenleitenden",
                uno="Tourenleitende", molti="Tourenleitende",
                lead="Die Touren der Sektion werden von ehrenamtlichen Mitgliedern vorbereitet und geleitet, ausgebildet in den Kursen des SAC: {n} aktive Tourenleitende, alle mit ihren eigenen Disziplinen.",
                box="<strong>Für Tourenleitende.</strong> Die Touren werden im Droptour-Portal veröffentlicht; das Merkblatt fasst Aufgaben und Abläufe der Tourenleitung zusammen.",
                portale="Droptour-Portal", promemoria="Merkblatt Tourenleitung (PDF, italienisch)",
                desc="Die {n} Tourenleitenden des SAC Ticino, die die Touren der Sektion vorbereiten und leiten: Sommer- und Wintertouren, Klettern, Wandern und Senioren."),
     "en": dict(titolo="Trip leaders", sezione="The Section", sezione_href="en/introduzione.html", ritratto="Portrait of", chi="Who is",
-               dal="Trip leader since", tutti="All", filtra="Filter by role", elenco="List of trip leaders",
+               dal="Trip leader since", nuovo="New", nuovi="{k} joined in {anno}, marked in red.", tutti="All", filtra="Filter by role", elenco="List of trip leaders",
                uno="trip leader", molti="trip leaders",
                lead="The section’s trips are prepared and led by volunteer members trained in SAC courses: {n} active trip leaders, each with their own disciplines.",
                box="<strong>For trip leaders.</strong> Trips are published on the Droptour portal; the guidelines cover the trip leader’s tasks and procedures.",
@@ -1312,30 +1312,37 @@ def capigita():
     info = json.load(open(os.path.join(ROOT, "data", "capigita-info.json"), encoding="utf-8"))
     tx = CAPIGITA_T[LINGUA["lang"]]
     nomi = {k: tr(n, RUOLI_CAPIGITA_DE[k], RUOLI_CAPIGITA_EN[k]) for k, n in RUOLI_CAPIGITA}
+    # i capigita nuovi (capogita dall'anno in corso) sono segnati in rosso, senza un filtro a parte
+    import datetime
+    anno = datetime.date.today().year
     schede = []
     for p in persone:
+        nuovo = (p.get("dal") or 0) >= anno
         foto = foto_persona(p["nome"], "capigita")
         ph = (f'<img src="{foto}" alt="{tx["ritratto"]} {p["nome"]}" width="60" height="60" loading="lazy" decoding="async">'
               if foto else f'<span aria-hidden="true">{initials(p["nome"])}</span>')
         ruoli = " · ".join(nomi[r] for r in p["ruoli"])
         dal = f'<span>{tx["dal"]} <span class="num">{p["dal"]}</span></span>' if p.get("dal") else ""
-        corpo = f'<div class="member-body"><strong>{p["nome"]}</strong><span>{ruoli}</span>{dal}</div>'
+        tag = f' <span class="tag-nuovo">{tx["nuovo"]}</span>' if nuovo else ""
+        corpo = f'<div class="member-body"><strong>{p["nome"]}{tag}</strong><span>{ruoli}</span>{dal}</div>'
         bio = info.get(p["nome"])
         if bio:
             id_bio = "bio-" + slug_nome(p["nome"])
             lang = "" if LINGUA["lang"] == "it" else ' lang="it"'
-            schede.append(f'<div class="member member--bio" data-ruoli="{" ".join(p["ruoli"])}">'
+            schede.append(f'<div class="member member--bio{" member--nuovo" if nuovo else ""}" data-ruoli="{" ".join(p["ruoli"])}">'
                           f'<button type="button" class="bio-toggle" aria-expanded="false" aria-controls="{id_bio}" aria-label="{tx["chi"]} {p["nome"]}">'
                           f'<span class="member-photo">{ph}</span><span class="bio-segno" aria-hidden="true"></span></button>'
                           f'{corpo}<p class="bio" id="{id_bio}"{lang}>{html_escape(bio)}</p></div>')
         else:
-            schede.append(f'<div class="member" data-ruoli="{" ".join(p["ruoli"])}"><div class="member-photo">{ph}</div>{corpo}</div>')
+            schede.append(f'<div class="member{" member--nuovo" if nuovo else ""}" data-ruoli="{" ".join(p["ruoli"])}"><div class="member-photo">{ph}</div>{corpo}</div>')
     conta = {k: sum(k in p["ruoli"] for p in persone) for k, _ in RUOLI_CAPIGITA}
     filtri = "\n".join([f'<button type="button" data-filtro="" aria-pressed="true">{tx["tutti"]} <span class="num">{len(persone)}</span></button>'] +
                        [f'<button type="button" data-filtro="{k}" aria-pressed="false">{nomi[k]} <span class="num">{conta[k]}</span></button>'
                         for k, _ in RUOLI_CAPIGITA if conta[k]])
     n = len(persone)
-    body = page_hero([(tx["sezione"], tx["sezione_href"]), (tx["titolo"], None)], tx["titolo"], tx["lead"].format(n=n)) + f"""
+    k = sum((p.get("dal") or 0) >= anno for p in persone)
+    lead = tx["lead"].format(n=n) + (" " + tx["nuovi"].format(k=k, anno=anno) if k else "")
+    body = page_hero([(tx["sezione"], tx["sezione_href"]), (tx["titolo"], None)], tx["titolo"], lead) + f"""
 
 <section class="section" aria-label="{tx['elenco']}">
 <div class="container">
