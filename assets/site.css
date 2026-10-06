@@ -413,9 +413,10 @@ dl,dd{margin:0}
 
 /* intestazione con foto a lato (pagine con un ritratto verticale) */
 .page-hero--split .container{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:end}
-.page-hero--split figure{margin:0;overflow:hidden;background:var(--surface-2)}
+.page-hero--split figure{position:relative;margin:0;overflow:hidden;background:var(--surface-2)}
 .page-hero--split figure img{width:100%;aspect-ratio:4/5;object-fit:cover}
 .page-hero--split figure img.orizzontale{aspect-ratio:4/3}  /* foto orizzontale: hero più basso */
+.page-hero--split figure img.basso{object-position:center 62%}  /* soggetto nella metà bassa (Soccorso) */
 @media (max-width:900px){
   .page-hero--split .container{grid-template-columns:1fr}
   .page-hero--split figure img{aspect-ratio:4/3}
@@ -935,7 +936,8 @@ dl,dd{margin:0}
 }
 
 /* autore della foto grande in home (in basso a destra, sopra la foto) */
-.band .credito{position:absolute;right:var(--gutter);bottom:10px;margin:0;padding:2px 8px;background:rgba(18,24,22,.55);color:#fff;font-size:12px;letter-spacing:.01em;pointer-events:none}
+.band .credito,.page-hero--split figure .credito{position:absolute;right:var(--gutter);bottom:10px;margin:0;padding:2px 8px;background:rgba(18,24,22,.55);color:#fff;font-size:12px;letter-spacing:.01em;pointer-events:none}
+.page-hero--split figure .credito{right:8px;bottom:8px}
 
 /* news: categoria accanto alla data e filtro nella pagina News (site.js nasconde gli anni rimasti vuoti) */
 .news-meta .news-cat{font-weight:600;color:var(--ink-2)}

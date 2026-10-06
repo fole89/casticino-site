@@ -1376,7 +1376,8 @@ def soccorso():
                          "The section coordinates mountain rescue in the Sottoceneri, with trained volunteers who work in the mountains alongside Swiss Alpine Rescue and Rega."),
                      figure=img("attivita/soccorso-4x5", tr("Soccorritori con casco e imbragatura recuperano una persona in barella in una gola rocciosa",
                                                            "Retter mit Helm und Klettergurt bergen eine Person auf einer Trage in einer Felsschlucht",
-                                                           "Rescuers with helmets and harnesses recover a person on a stretcher in a rocky gorge"), 525, 657, lazy=False)) + f"""
+                                                           "Rescuers with helmets and harnesses recover a person on a stretcher in a rocky gorge"), 525, 657, lazy=False)
+                     .replace("<img ", '<img class="orizzontale basso" ', 1) + credito("Urs Nett")) + f"""
 
 <section class="section" aria-labelledby="emergenza-h">
 <div class="container">
@@ -1404,7 +1405,6 @@ def soccorso():
 <p>{tr("Qui troverai presto le informazioni sulla colonna di soccorso della sezione: chi la compone, come è organizzata, la formazione dei soccorritori e come entrare a farne parte.",
        "Hier finden Sie bald Informationen über die Rettungsstation der Sektion: wer dazugehört, wie sie organisiert ist, die Ausbildung der Retterinnen und Retter und wie man mitmachen kann.",
        "Information about the section’s rescue team will be here soon: who is in it, how it is organised, how rescuers are trained and how to join.")}</p>
-<p class="small">{tr("Pagina in preparazione. Foto: Soccorso Alpino Svizzero / Urs Nett.", "Seite in Vorbereitung. Foto: Alpine Rettung Schweiz / Urs Nett.", "Page in preparation. Photo: Swiss Alpine Rescue / Urs Nett.")}</p>
 <div class="actions"><a class="btn btn--secondary" href="https://www.alpinerettung.ch" rel="noopener">{tr("Soccorso Alpino Svizzero", "Alpine Rettung Schweiz", "Swiss Alpine Rescue")}</a><a class="btn btn--secondary" href="https://www.rega.ch" rel="noopener">Rega</a></div>
 </div>
 </div>
