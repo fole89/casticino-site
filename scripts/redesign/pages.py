@@ -115,11 +115,8 @@ def home():
     prossime = prossime_gite()
     if lang == "it":
         huts = schede_capanne(HUTS)
-        stats = [("1886", "anno di fondazione"), ("3000", "soci"), ("6", f'rifugi, {num("362")} posti letto'), ("5", "discipline insegnate nei corsi")]
     else:
         huts = schede_capanne({"de": HUTS_DE, "en": HUTS_EN}[lang], tx["accesso"], f"{lang}/")
-        stats = [(n, num(x)) for n, x in zip(("1886", "3000", "6", "5"), tx["stat_home"])]
-    stats = "\n".join(f'<div class="stat"><strong>{n}</strong><span>{x}</span></div>' for n, x in stats)
     n_annunci = len(mercatino_util.attivi())
     mercatino_conta = {0: "", 1: tr(" Un annuncio online.", " Ein Inserat online.", " One listing online.")}.get(
         n_annunci, tr(f" {n_annunci} annunci online.", f" {n_annunci} Inserate online.", f" {n_annunci} listings online."))
@@ -149,14 +146,6 @@ def home():
 {pic("paesaggi/sciatori-villaggio", tx.get("hero_alt", "Scialpinisti in salita verso un villaggio innevato"), mobile="paesaggi/sciatori-villaggio-4x3", w=2000, h=901, lazy=False, cls="pos-low")}
 {credito()}
 </figure>
-</section>
-
-<section class="section section--tight section--stats" id="sezione" aria-label="{tx.get("cifre", "La sezione in cifre")}">
-<div class="container">
-<div class="stats" data-reveal>
-{stats}
-</div>
-</div>
 </section>
 
 <section class="section" id="attivita" aria-labelledby="attivita-h">
@@ -3025,7 +3014,6 @@ TRADOTTE = {
         diventa="Mitglied werden",
         hero_alt="Skitourengeher im Aufstieg zu einem verschneiten Dorf",
         cifre="Die Sektion in Zahlen",
-        stat_home=["Gründungsjahr", "Mitglieder", "Hütten, 362 Schlafplätze", "Disziplinen in den Kursen"],
         sezione="Die Sektion",
         capanne_h="Sechs Hütten, ein Tessin",
         capanne_lead="Immer offen, bewartet, wenn die Hüttenwarte da sind. Melden Sie sich vor dem Aufbruch beim Hüttenwart, um Anwesenheit und Verhältnisse am Berg zu prüfen.",
@@ -3099,7 +3087,6 @@ TRADOTTE = {
         diventa="Become a member",
         hero_alt="Ski tourers climbing towards a snow-covered village",
         cifre="The section in numbers",
-        stat_home=["year founded", "members", "huts, 362 beds", "disciplines taught in courses"],
         sezione="The Section",
         capanne_h="Six huts, one Ticino",
         capanne_lead="Always open, staffed when the hut keepers are there. Check with the hut keeper before you set out, to make sure they are there and to ask about conditions in the mountains.",
@@ -3562,8 +3549,7 @@ def partecipare():
                          "Le regole principali per chi partecipa alle gite e ai corsi della sezione, soci e non soci, in breve. Il testo completo è nel regolamento gite.",
                          "Die wichtigsten Regeln für alle, die an Touren und Kursen der Sektion teilnehmen, Mitglieder und Nichtmitglieder, kurz gefasst. Der vollständige Text steht im Tourenreglement (italienisch).",
                          "The main rules for anyone taking part in the section’s trips and courses, members and non-members, in brief. The full text is in the trip regulations (in Italian)."),
-                     extra=f"""<div class="actions"><a class="btn btn--primary" href="{GITE}">{t("gite")} <span class="arrow" aria-hidden="true">→</span></a><a class="btn btn--secondary" href="{REGOLAMENTO_GITE}">{regolamento}</a></div>""",
-                     figure=img("paesaggi/gruppo-ghiacciaio-4x3", tr("Gruppo di alpinisti in cammino su un ghiacciaio", "Eine Gruppe Bergsteiger unterwegs auf einem Gletscher", "A group of mountaineers walking on a glacier"), 1000, 750, lazy=False).replace("<img ", '<img class="orizzontale" ', 1)) + "\n\n" + "\n\n".join(sezioni) + f"""
+                     extra=f"""<div class="actions"><a class="btn btn--primary" href="{GITE}">{t("gite")} <span class="arrow" aria-hidden="true">→</span></a><a class="btn btn--secondary" href="{REGOLAMENTO_GITE}">{regolamento}</a></div>""") + "\n\n" + "\n\n".join(sezioni) + f"""
 
 {prima_di_partire()}
 
@@ -3594,8 +3580,7 @@ def volontariato():
     body = page_hero([sez_crumb(), (titolo, None)], titolo, tr(
                          "La sezione vive del volontariato: capigita, monitori, aiuti in capanna, chi scrive e chi fotografa. Non serve essere esperti, basta un po’ di tempo e voglia di montagna.",
                          "Die Sektion lebt von der Freiwilligenarbeit: Tourenleitende, Jugendleitende, Helferinnen und Helfer in den Hütten, wer schreibt und wer fotografiert. Man muss kein Profi sein, es braucht nur etwas Zeit und Lust auf Berge.",
-                         "The section runs on volunteers: trip leaders, instructors, helpers in the huts, writers and photographers. You don’t need to be an expert, just some time and a love of the mountains."),
-                     figure=img("paesaggi/salita-prato-4x3", tr("Un gruppo sale in fila su un sentiero tra prati fioriti, sotto il cielo azzurro", "Eine Gruppe steigt im Gänsemarsch auf einem Weg durch Blumenwiesen, unter blauem Himmel", "A group climbs in single file along a path through flowering meadows, under a blue sky"), 1000, 750, lazy=False).replace("<img ", '<img class="orizzontale" ', 1)) + f"""
+                         "The section runs on volunteers: trip leaders, instructors, helpers in the huts, writers and photographers. You don’t need to be an expert, just some time and a love of the mountains.")) + f"""
 
 <section class="section" aria-labelledby="ruoli-h">
 <div class="container">
@@ -3603,8 +3588,7 @@ def volontariato():
 <h2 id="ruoli-h" class="h2">{tr("Dove c’è bisogno", "Wo es Hilfe braucht", "Where help is needed")}</h2>
 </div>
 <div class="pillars" data-reveal>
-<article class="pillar pillar--photo pillar--wide">
-{img("paesaggi/capanna-tencia-2000", tr("La Capanna Campo Tencia all’alba, con la bandiera svizzera e le montagne in controluce", "Die Campo-Tencia-Hütte bei Sonnenaufgang, mit Schweizer Fahne und Bergen im Gegenlicht", "Campo Tencia hut at sunrise, with the Swiss flag and backlit mountains"), 2000, 658)}
+<article class="pillar pillar--wide">
 <h3>{tr("Api operaie in capanna", "Fleissige Bienen in den Hütten", "Busy bees in the huts")}</h3>
 <p>{tr("Aiuti i guardiani ad aprire e chiudere la stagione e nei lavori di manutenzione delle capanne, e passi qualche bella serata in quota.",
        "Sie helfen den Hüttenwarten beim Öffnen und Schliessen der Saison und bei Unterhaltsarbeiten in den Hütten und verbringen schöne Abende in der Höhe.",
@@ -3618,8 +3602,7 @@ def volontariato():
        "You start alongside a trip leader, or as an assistant leader on the basic courses; with advanced courses and SAC training you become a trip leader.")}</p>
 {mail(MAIL_DICASTERI["Dicastero sport di montagna"])}
 </article>
-<article class="pillar pillar--photo">
-{img("attivita/giovani-3x4", tr("Giovane arrampicatore su una parete dei Denti della Vecchia", "Junger Kletterer an einer Wand der Denti della Vecchia", "Young climber on a face of the Denti della Vecchia"), 800, 1066)}
+<article class="pillar">
 <h3>{tr("Monitore G+S", "J+S-Leitung", "Youth+Sport instructor")}</h3>
 <p>{tr("Accompagni ragazze e ragazzi in falesia, nei campi e in montagna. La sezione promuove la formazione di monitori Gioventù+Sport.",
        "Sie begleiten Mädchen und Jungen in den Klettergarten, in Lager und in die Berge. Die Sektion fördert die Ausbildung von Jugend+Sport-Leitenden.",

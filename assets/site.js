@@ -460,3 +460,103 @@
     });
   });
 })();
+
+
+// CAS Ticino - foto a schermo intero (Foto e resoconti, gallerie delle capanne): CASschermo.apri(foto, k, opzioni)
+// con foto = [{src, alt}], opzioni {titolo, lang, cambia(k)}. Un solo <dialog class="schermo"> per pagina (Esc e focus li
+// gestisce il browser): si chiude con ×, con un clic sulla foto o sullo sfondo; frecce, tastiera e dito cambiano foto.
+// Le miniature delle gallerie (.gallery a) lo aprono invece della pagina con l'immagine (che resta senza JavaScript
+// e con Ctrl/⌘ + clic). Stili in site.css, blocco «schermo».
+(function () {
+  var TX = {
+    it: { chiudi: 'Chiudi', prec: 'Foto precedente', succ: 'Foto successiva', foto: 'Foto ingrandita' },
+    de: { chiudi: 'Schliessen', prec: 'Vorheriges Foto', succ: 'Nächstes Foto', foto: 'Vergrössertes Foto' },
+    en: { chiudi: 'Close', prec: 'Previous photo', succ: 'Next photo', foto: 'Enlarged photo' }
+  }[(document.documentElement.lang || 'it').slice(0, 2)] || null;
+  if (!TX || !window.HTMLDialogElement) return;
+  var s = null;
+
+  function nodo(tag, cls, attr) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    Object.keys(attr || {}).forEach(function (k) { n.setAttribute(k, attr[k]); });
+    return n;
+  }
+  function freccia(dir) {
+    var ns = 'http://www.w3.org/2000/svg', svg = document.createElementNS(ns, 'svg'), p = document.createElementNS(ns, 'path');
+    svg.setAttribute('width', '18'); svg.setAttribute('height', '18'); svg.setAttribute('viewBox', '0 0 16 16'); svg.setAttribute('aria-hidden', 'true');
+    p.setAttribute('d', dir < 0 ? 'M10 3 5 8l5 5' : 'M6 3l5 5-5 5');
+    p.setAttribute('stroke', 'currentColor'); p.setAttribute('stroke-width', '2'); p.setAttribute('fill', 'none');
+    svg.appendChild(p);
+    return svg;
+  }
+
+  function crea() {
+    var d = nodo('dialog', 'schermo', { 'aria-label': TX.foto });
+    var img = nodo('img', '', { alt: '', decoding: 'async' });
+    var titolo = nodo('p', 'schermo-titolo'), conta = nodo('span', 'schermo-conta');
+    var chiudi = nodo('button', 'schermo-chiudi', { type: 'button', 'aria-label': TX.chiudi });
+    chiudi.textContent = '×';
+    var prec = nodo('button', 'schermo-nav schermo-nav--prec', { type: 'button', 'aria-label': TX.prec });
+    var succ = nodo('button', 'schermo-nav schermo-nav--succ', { type: 'button', 'aria-label': TX.succ });
+    prec.appendChild(freccia(-1)); succ.appendChild(freccia(1));
+    var barra = nodo('div', 'schermo-barra');
+    barra.appendChild(titolo); barra.appendChild(conta);
+    [img, barra, prec, succ, chiudi].forEach(function (x) { d.appendChild(x); });
+    document.body.appendChild(d);
+    s = { d: d, img: img, titolo: titolo, conta: conta, prec: prec, succ: succ };
+    var vai = function (passo) { mostra(s.k + passo); };
+    chiudi.addEventListener('click', function () { d.close(); });
+    prec.addEventListener('click', function (e) { e.stopPropagation(); vai(-1); });
+    succ.addEventListener('click', function (e) { e.stopPropagation(); vai(1); });
+    d.addEventListener('click', function (e) { if (e.target === d || e.target === img) d.close(); });
+    d.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); vai(-1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); vai(1); }
+    });
+    var x0 = null;  // scorrimento col dito: a sinistra la foto dopo, a destra quella prima
+    d.addEventListener('pointerdown', function (e) { x0 = e.pointerType === 'mouse' ? null : e.clientX; });
+    d.addEventListener('pointerup', function (e) {
+      if (x0 === null) return;
+      var dx = e.clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 50) vai(dx < 0 ? 1 : -1);
+    });
+    d.addEventListener('close', function () {
+      document.documentElement.classList.remove('schermo-aperto');
+      if (s.torna && s.torna.focus) s.torna.focus();
+    });
+  }
+
+  function mostra(j) {
+    var n = s.foto.length;
+    s.k = (j + n) % n;
+    s.img.src = s.foto[s.k].src;
+    s.img.alt = s.foto[s.k].alt || '';
+    s.titolo.textContent = s.opz.titolo || s.foto[s.k].alt || '';
+    if (s.opz.lang) s.titolo.setAttribute('lang', s.opz.lang); else s.titolo.removeAttribute('lang');
+    s.conta.textContent = n > 1 ? (s.k + 1) + ' / ' + n : '';
+    s.prec.hidden = s.succ.hidden = n < 2;
+    if (s.opz.cambia) s.opz.cambia(s.k);
+  }
+
+  window.CASschermo = {
+    apri: function (foto, k, opz) {
+      if (!s) crea();
+      s.foto = foto; s.opz = opz || {}; s.torna = document.activeElement;
+      mostra(k || 0);
+      document.documentElement.classList.add('schermo-aperto');
+      s.d.showModal();
+    }
+  };
+
+  // gallerie delle capanne: la miniatura apre la foto grande qui, con le altre della stessa galleria
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('.gallery a[href]');
+    if (!a || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    var voci = Array.prototype.slice.call(a.closest('.gallery').querySelectorAll('a[href]'));
+    var foto = voci.map(function (x) { var im = x.querySelector('img'); return { src: x.href, alt: im ? im.alt : '' }; });
+    window.CASschermo.apri(foto, voci.indexOf(a));
+  });
+})();

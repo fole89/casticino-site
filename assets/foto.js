@@ -8,14 +8,14 @@
   // testi nella lingua della pagina (<html lang>); titoli e resoconti delle gite restano in italiano
   var LINGUA = (document.documentElement.lang || 'it').slice(0, 2);
   var TX = {
-    it: { foto: 'foto', di: 'di', resoconto: 'Resoconto: ', prec: 'Foto precedente', succ: 'Foto successiva',
+    it: { foto: 'foto', di: 'di', resoconto: 'Resoconto: ', prec: 'Foto precedente', succ: 'Foto successiva', ingrandisci: 'Ingrandisci la foto',
           mostra: 'Mostra foto ', nessuna: 'Nessuna foto pubblicata di recente.', errore: 'Le foto non sono disponibili al momento. Puoi consultarle sul portale Droptour.' },
-    de: { foto: 'Fotos', di: 'von', resoconto: 'Bericht: ', prec: 'Vorheriges Foto', succ: 'Nächstes Foto',
+    de: { foto: 'Fotos', di: 'von', resoconto: 'Bericht: ', prec: 'Vorheriges Foto', succ: 'Nächstes Foto', ingrandisci: 'Foto vergrössern',
           mostra: 'Foto anzeigen: ', nessuna: 'In letzter Zeit wurden keine Fotos veröffentlicht.', errore: 'Die Fotos sind im Moment nicht verfügbar. Sie finden sie auf dem Portal Droptour.' },
-    en: { foto: 'photos', di: 'of', resoconto: 'Report: ', prec: 'Previous photo', succ: 'Next photo',
+    en: { foto: 'photos', di: 'of', resoconto: 'Report: ', prec: 'Previous photo', succ: 'Next photo', ingrandisci: 'Enlarge the photo',
           mostra: 'Show photo ', nessuna: 'No photos published recently.', errore: 'The photos are not available at the moment. You can find them on the Droptour portal.' }
   }[LINGUA] || null;
-  if (!TX) { LINGUA = 'it'; TX = { foto: 'foto', di: 'di', resoconto: 'Resoconto: ', prec: 'Foto precedente', succ: 'Foto successiva', mostra: 'Mostra foto ', nessuna: 'Nessuna foto pubblicata di recente.', errore: 'Le foto non sono disponibili al momento. Puoi consultarle sul portale Droptour.' }; }
+  if (!TX) { LINGUA = 'it'; TX = { foto: 'foto', di: 'di', resoconto: 'Resoconto: ', prec: 'Foto precedente', succ: 'Foto successiva', ingrandisci: 'Ingrandisci la foto', mostra: 'Mostra foto ', nessuna: 'Nessuna foto pubblicata di recente.', errore: 'Le foto non sono disponibili al momento. Puoi consultarle sul portale Droptour.' }; }
   var IT = LINGUA === 'it' ? {} : { lang: 'it' };  // attributo per i testi in italiano
   var fmt = new Intl.DateTimeFormat({ it: 'it-CH', de: 'de-CH', en: 'en-GB' }[LINGUA], { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   function conIt(attrs) { Object.keys(IT).forEach(function (k) { attrs[k] = IT[k]; }); return attrs; }
@@ -59,7 +59,15 @@
       text
     ]);
 
-    var photo = el('img', { alt: '', decoding: 'async' });
+    var photo = el('img', { alt: '', decoding: 'async', class: 'ingrandibile', tabindex: '0', role: 'button', title: TX.ingrandisci });
+    // ingrandimento a schermo intero: CASschermo in site.js; chiudendo, il carosello resta sulla foto vista
+    var ingrandisci = function () {
+      var foto = a.photos.map(function (p, k) { return { src: p.large, alt: a.title + ', ' + (k + 1) + ' ' + TX.di + ' ' + n }; });
+      if (window.CASschermo) window.CASschermo.apri(foto, idx, { titolo: a.title, lang: IT.lang, cambia: show });
+      else window.open(a.photos[idx].large, '_blank', 'noopener');
+    };
+    photo.addEventListener('click', ingrandisci);
+    photo.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ingrandisci(); } });
     photo.addEventListener('load', function () { photo.classList.remove('cambia'); });
     photo.addEventListener('error', function () { photo.classList.remove('cambia'); });
     var counter = el('span', { class: 'album-count' });
@@ -69,6 +77,7 @@
       if (photo.getAttribute('src')) photo.classList.add('cambia');  // dissolvenza breve tra una foto e l'altra (CSS)
       photo.src = a.photos[idx].large;
       photo.alt = a.title + ', ' + (idx + 1) + ' ' + TX.di + ' ' + n;
+      photo.setAttribute('aria-label', TX.ingrandisci + ': ' + photo.alt);
       counter.textContent = (idx + 1) + ' / ' + n;
       thumbs.forEach(function (t, i) { t.classList.toggle('sel', i === idx); t.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
     }
