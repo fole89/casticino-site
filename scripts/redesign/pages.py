@@ -2715,7 +2715,7 @@ def corsi():
 # Niente listino a parte: prezzi e taglie si vedono nel modulo.
 # Il modulo (assets/noleggio.js) chiede la disponibilità e invia le richieste al Worker in scripts/noleggio/.
 
-NOLEGGIO_MAIL = "fole89@gmail.com"   # provvisorio: quando sarà attiva, noleggio@casticino.ch (anche MAIL_GESTORE in scripts/noleggio/wrangler.toml)
+NOLEGGIO_MAIL = "noleggio@casticino.ch"   # indirizzo pubblico; finché la casella non è attiva il servizio usa ancora MAIL_GESTORE/MAIL_MITTENTE di scripts/noleggio/wrangler.toml
 NOLEGGIO_API = "https://casticino-noleggio.fole89.workers.dev/"   # indirizzo del Worker (scripts/noleggio/LEGGIMI.md)
 NOLEGGIO_TURNSTILE = "0x4AAAAAAFOZV05i6cz8NupF"   # chiave pubblica (Site Key) di Cloudflare Turnstile
 NOLEGGIO_MAX_GIORNI = 30   # come MAX_GIORNI in scripts/noleggio/worker.js

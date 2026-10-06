@@ -85,7 +85,7 @@ Poi commit e push dalla radice del repository.
 - In `wrangler.toml`: `MAIL_GESTORE` e `MAIL_MITTENTE` = `noleggio@casticino.ch`, poi `npx wrangler deploy`.
 - Su Brevo aggiungi il mittente, o meglio il dominio `casticino.ch`. Il dominio va verificato con alcuni record DNS
   nuovi (DKIM): vanno **aggiunti** senza toccare i record MX/TXT che ci sono già.
-- In `scripts/redesign/pages.py`: `NOLEGGIO_MAIL = "noleggio@casticino.ch"`, poi rigenera le pagine.
+- Sul sito `NOLEGGIO_MAIL` in `scripts/redesign/pages.py` è già `noleggio@casticino.ch`: non serve cambiarlo.
 
 ## Dopo il cambio di dominio (casticino.ch)
 In `wrangler.toml` cambia `INVENTARIO_URL` in `https://casticino.ch/…`, poi `npx wrangler deploy`.

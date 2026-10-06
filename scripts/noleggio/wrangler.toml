@@ -21,8 +21,8 @@ crons = ["30 2 * * *"]
 [vars]
 ALLOWED_ORIGINS = "https://fole89.github.io,https://casticino.ch"
 INVENTARIO_URL = "https://fole89.github.io/casticino-site/data/noleggio-inventario.json"
-MAIL_GESTORE = "fole89@gmail.com"    # quando sarà attiva: noleggio@casticino.ch
-MAIL_MITTENTE = "fole89@gmail.com"   # deve essere un mittente verificato su Brevo
+MAIL_GESTORE = "fole89@gmail.com"    # provvisorio, finché noleggio@casticino.ch (già scritto sul sito) non è attiva
+MAIL_MITTENTE = "fole89@gmail.com"   # deve essere un mittente verificato su Brevo; poi noleggio@casticino.ch
 
 # Per provare in locale (npx wrangler dev): .dev.vars con ADMIN_PASSWORD, TURNSTILE_SECRET (chiave di prova) e
 # le variabili sopra con l'indirizzo locale, es. INVENTARIO_URL = "http://localhost:8000/data/noleggio-inventario.json"
