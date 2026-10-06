@@ -107,7 +107,7 @@ collections:
         required: false
         label_singular: allegato
         summary: "{{fields.titolo}}"
-        hint: "Programmi, inviti, moduli: compaiono come link sotto il testo."
+        hint: "Solo PDF (programmi, inviti, moduli): compaiono come link sotto il testo. Le foto vanno in «Foto principale» o nel testo; non caricare lo stesso file in due campi."
         fields:
           - label: Titolo del link
             name: titolo
@@ -118,6 +118,8 @@ collections:
             choose_url: false
             media_folder: /docs/news
             public_folder: docs/news
+            # Decap carica qualsiasi file: la convalida blocca «Pubblica» finché non è un PDF
+            pattern: ['\.[pP][dD][fF]$', "un file PDF (nome che finisce con .pdf)"]
       # campi che la redazione non tocca: restano nel file e il sito li usa
       - label: Testo HTML (news del vecchio sito)
         name: html

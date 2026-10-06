@@ -5,6 +5,7 @@ Per ogni data/news/*.json:
   - le foto caricate (in assets/img/news/ fuori dalle cartelle degli anni, anche quelle dentro il testo) diventano
     WebP larghe al massimo 1400 px in assets/img/news/<anno>/, con lo stesso nome della pagina (-2, -3… per le
     altre); l'originale viene tolto
+  - una foto principale che manca perché lo stesso file era caricato anche come allegato si riprende da lì
   - i PDF (allegati o link nel testo) ancora in docs/news/, dove li salva l'area di redazione, vanno in
     docs/news/<anno>/ con il nome della pagina (-2, -3… per gli altri) e i link nella news vengono aggiornati;
     un PDF usato da più news segue la prima, le altre puntano al nuovo percorso
@@ -26,6 +27,17 @@ def caricata(src):
     if not src.startswith("assets/img/news/") or not os.path.exists(os.path.join(ROOT, src)):
         return False
     return not re.fullmatch(r"assets/img/news/\d{4}/[^/]+\.webp", src)
+
+
+def stesso_file(src):
+    """Foto che manca perché Decap, quando due campi della news caricano un file con lo stesso nome (es. la foto
+    principale e un allegato), ne salva uno solo: la si cerca con lo stesso nome tra i file caricati."""
+    nome = os.path.basename(src)
+    for cartella in ("assets/img/news", "docs/news"):
+        altro = f"{cartella}/{nome}"
+        if altro != src and os.path.exists(os.path.join(ROOT, altro)):
+            return altro
+    return None
 
 
 def percorso(p):
@@ -104,6 +116,9 @@ def main():
 
         if n.get("image"):
             src = percorso(n["image"])
+            if not os.path.exists(os.path.join(ROOT, src)) and src.startswith("assets/img/news/") and stesso_file(src):
+                shutil.copy(os.path.join(ROOT, stesso_file(src)), os.path.join(ROOT, src))   # l'altro campo tiene il suo
+                print("  foto ritrovata:", stesso_file(src), "->", src)
             if caricata(src):
                 n["image"] = nome_libero()
                 in_webp(src, n["image"])
