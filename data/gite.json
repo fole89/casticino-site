@@ -1,42 +1,6 @@
 {
  "gite": [
   {
-   "id": "2088",
-   "titolo": "Colonna di soccorso - Primo martedì del mese",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2088",
-   "dal": "2026-10-06",
-   "al": "",
-   "tipo": "Soccorso",
-   "sigla": "SOC",
-   "gruppi": [
-    "Soccorso"
-   ],
-   "capigita": [
-    "Simon Vanoncini",
-    "Matteo Umiker"
-   ],
-   "cond": "",
-   "tecn": "",
-   "descrizione": "Primo martedì del mese",
-   "iscrizione": false,
-   "iscrizione_dal": "",
-   "iscrizione_al": "",
-   "modalita": "www.soccorsoalpino-ti.ch",
-   "iscritti": 0,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Percorso / Dettagli",
-     "Primo martedì del mese"
-    ],
-    [
-     "Formalità di iscrizione",
-     "<a href=\"https://www.soccorsoalpino-ti.ch\" rel=\"noopener\">www.soccorsoalpino-ti.ch</a>"
-    ]
-   ]
-  },
-  {
    "id": "2171",
    "titolo": "Capanne - Chiusura capanne",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2171",
@@ -586,7 +550,7 @@
    "iscrizione_dal": "2026-05-01",
    "iscrizione_al": "2026-11-04",
    "modalita": "",
-   "iscritti": 21,
+   "iscritti": 20,
    "posti": 20,
    "stato": "completa",
    "scheda": [
@@ -784,7 +748,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-11-18",
    "modalita": "",
-   "iscritti": 4,
+   "iscritti": 5,
    "posti": 0,
    "stato": "",
    "scheda": [
