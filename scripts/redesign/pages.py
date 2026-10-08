@@ -1546,53 +1546,53 @@ def sede():
 
 
 STORIA = [
-    ("1886", "L’11 aprile, alla Birraria Gambrinus di Bellinzona, nasce il Club Alpino Ticinese, nell’anno del centenario della prima salita al Monte Bianco. Primo presidente è l’avvocato Curzio Curti. Lo scopo: visitare, studiare e far conoscere le montagne del Cantone e delle regioni vicine."),
+    ("1886", "L’11 aprile, alla Birraria Gambrinus di Bellinzona, nasce il Club Alpino Ticinese, nell’anno del centenario della prima salita al Monte Bianco, compiuta nel 1786 da Jacques Balmat e Michel-Gabriel Paccard. Primo presidente è l’avvocato Curzio Curti. Lo scopo: visitare, studiare e far conoscere le montagne del Cantone e delle regioni vicine."),
     ("1887", "Il 20 marzo il club si unisce al Club Alpino Svizzero come sezione ticinese; Lugano ne diventa la sede."),
-    ("1911", "A Lanzo d’Intelvi viene inaugurato il vessillo sezionale."),
+    ("1911", "Oltre confine, a Lanzo d’Intelvi, viene inaugurato il vessillo sezionale. L’anno dopo, l’11 agosto 1912, la sezione inaugura in alta Val Piumogna, ai piedi del pizzo omonimo, la Capanna Campo Tencia: la prima capanna delle montagne ticinesi."),
     ("1913", "Nasce la sezione di Lugano del Club Alpino Femminile Svizzero, presieduta da Adelina Rossi-Baragiola."),
-    ("1918", "Si costituiscono le stazioni di soccorso alpino di Faido, Airolo e Olivone. La formazione delle guide spetta alla sezione, la nomina al Consiglio di Stato."),
-    ("Anni ’30", "Cresce l’arrampicata su roccia: Emilio Comici, il numero uno dell’alpinismo italiano, viene invitato ai Denti della Vecchia. Nel 1932 Tita Calvi, don Giugni e Aldo Balmelli aprono la Nord-Est del Piz Prevat; Bruno Primi «Stüva» diventa guida e firma grandi classiche, dal Civetta al Cervino."),
-    ("1936", "Prima presenza di soci nell’Himalaya centrale, seguita da Lapponia (1959), Huascarán (1977) e Pumori (1978)."),
+    ("1918", "In Leventina e in Valle di Blenio si costituiscono le stazioni di soccorso alpino di Faido, Airolo e Olivone: per la prima volta chi si ferisce in montagna può contare su squadre organizzate. La formazione delle guide spetta alla sezione, la nomina al Consiglio di Stato."),
+    ("Anni ’30", "Cresce l’arrampicata su roccia: Emilio Comici, il numero uno dell’alpinismo italiano, viene invitato ai Denti della Vecchia, che diventano la palestra di casa della sezione; anche Riccardo Cassin vi si allena. Nel 1932 Tita Calvi, don Giugni e Aldo Balmelli aprono la Nord-Est del Piz Prevat; Bruno Primi «Stüva» diventa guida e firma grandi classiche, dal Civetta al Cervino. Nel 1935 Calvi e Balmelli guidano la prima scuola di sci del Ticino, all’Alpe Musgatina."),
+    ("1936", "La sezione compie cinquant’anni e li festeggia con la prima capanna sul Monte Bar: le donne di Bidogno portano i materiali nella gerla fino al cantiere, e presto la domenica sulle piste si contano più di 300 sciatori. Lo stesso anno i primi soci arrivano nell’Himalaya centrale; seguiranno la Lapponia (1959), l’Huascarán (1977) e il Pumori (1978)."),
     ("1940", "Nasce il gruppo Seniori."),
-    ("Anni ’60", "Nasce il gruppo giovanile OG ed entra in servizio la colonna di soccorso del Sottoceneri. Nel 1963 l’alpinista Aldo Fontana porta nuovi stimoli; nel 1964 nasce il Gruppo Scoiattoli."),
-    ("1980", "Le sezioni maschile e femminile si fondono."),
+    ("Anni ’60", "Nasce il gruppo giovanile OG ed entra in servizio la colonna di soccorso del Sottoceneri. Nel 1963 l’alpinista Aldo Fontana porta nuovi stimoli; nel 1964 nasce il Gruppo Scoiattoli, che negli anni aprirà e documenterà gran parte delle vie dei Denti della Vecchia."),
+    ("1980", "Le sezioni maschile e femminile si fondono, come in tutta la Svizzera: fino a quell’anno il Club Alpino Svizzero era riservato agli uomini e le alpiniste avevano un club tutto loro. Alle spalle c’è un decennio difficile: il 22 agosto 1975 un incendio distrugge la Capanna Campo Tencia, che rinasce nel 1977 con una struttura in acciaio, innovativa per l’epoca, dell’architetto sezionale Oscar Hofmann."),
     ("1982", "Prima edizione della «settimana mini» per i più piccoli."),
-    ("2003", "Inaugurata la nuova Capanna Cristallina, progettata da Baserga e Mozzetti."),
-    ("2016", "Conclusa la ricostruzione della Capanna Monte Bar."),
+    ("2003", "Nel febbraio 1999 una serie di valanghe aveva distrutto la vecchia Capanna Cristallina, del 1939. La nuova, progettata dagli architetti Nicola Baserga e Christian Mozzetti, sorge sul Passo di Cristallina a 2575 m in soli otto mesi di cantiere, nelle estati 2001 e 2002; apre nel dicembre 2002 e viene inaugurata ufficialmente nel luglio 2003. È il primo rifugio moderno del CAS."),
+    ("2016", "Ottant’anni dopo il primo rifugio apre la nuova Capanna Monte Bar. Il concorso del 2014 era stato vinto, tra trenta progetti, da «Barlume» degli architetti Oliviero Piffaretti e Carlo Romano: un edificio semplice in legno, costruito attorno al focolare come luogo d’incontro e pensato con il Comune di Capriasca per valorizzare tutta la regione."),
 ]
 
 
 STORIA_DE = [
-    ("1886", "Am 11. April wird in der Birraria Gambrinus in Bellinzona der Club Alpino Ticinese gegründet, im Jahr des hundertjährigen Jubiläums der Erstbesteigung des Mont Blanc. Erster Präsident ist Rechtsanwalt Curzio Curti. Das Ziel: die Berge des Kantons und der Nachbarregionen besuchen, erforschen und bekannt machen."),
+    ("1886", "Am 11. April wird in der Birraria Gambrinus in Bellinzona der Club Alpino Ticinese gegründet, im Jahr des hundertjährigen Jubiläums der Erstbesteigung des Mont Blanc durch Jacques Balmat und Michel-Gabriel Paccard (1786). Erster Präsident ist Rechtsanwalt Curzio Curti. Das Ziel: die Berge des Kantons und der Nachbarregionen besuchen, erforschen und bekannt machen."),
     ("1887", "Am 20. März schliesst sich der Club als Tessiner Sektion dem Schweizer Alpen-Club an; Sitz ist Lugano."),
-    ("1911", "In Lanzo d’Intelvi wird die Sektionsfahne eingeweiht."),
+    ("1911", "Jenseits der Grenze, in Lanzo d’Intelvi, wird die Sektionsfahne eingeweiht. Ein Jahr später, am 11. August 1912, weiht die Sektion im oberen Val Piumogna, am Fuss des gleichnamigen Gipfels, die Capanna Campo Tencia ein: die erste Hütte in den Tessiner Bergen."),
     ("1913", "Die Sektion Lugano des Schweizerischen Frauen-Alpen-Clubs wird gegründet, unter dem Vorsitz von Adelina Rossi-Baragiola."),
-    ("1918", "Die Rettungsstationen von Faido, Airolo und Olivone entstehen. Die Ausbildung der Bergführer liegt bei der Sektion, die Ernennung beim Staatsrat."),
-    ("1930er-Jahre", "Das Felsklettern gewinnt an Bedeutung: Emilio Comici, die Nummer eins des italienischen Alpinismus, wird an die Denti della Vecchia eingeladen. 1932 eröffnen Tita Calvi, Don Giugni und Aldo Balmelli die Nordostwand des Piz Prevat; Bruno Primi «Stüva» wird Bergführer und begeht grosse Klassiker, von der Civetta bis zum Matterhorn."),
-    ("1936", "Erste Mitglieder im zentralen Himalaya, später folgen Lappland (1959), Huascarán (1977) und Pumori (1978)."),
+    ("1918", "In der Leventina und im Bleniotal entstehen die Rettungsstationen von Faido, Airolo und Olivone: Wer sich in den Bergen verletzt, kann erstmals auf organisierte Mannschaften zählen. Die Ausbildung der Bergführer liegt bei der Sektion, die Ernennung beim Staatsrat."),
+    ("1930er-Jahre", "Das Felsklettern gewinnt an Bedeutung: Emilio Comici, die Nummer eins des italienischen Alpinismus, wird an die Denti della Vecchia eingeladen, die zum Hausklettergebiet der Sektion werden; auch Riccardo Cassin trainiert dort. 1932 eröffnen Tita Calvi, Don Giugni und Aldo Balmelli die Nordostwand des Piz Prevat; Bruno Primi «Stüva» wird Bergführer und begeht grosse Klassiker, von der Civetta bis zum Matterhorn. 1935 leiten Calvi und Balmelli auf der Alpe Musgatina die erste Skischule des Tessins."),
+    ("1936", "Die Sektion wird fünfzig und feiert mit der ersten Hütte auf dem Monte Bar: Die Frauen von Bidogno tragen das Baumaterial in der Tragkiepe zur Baustelle hinauf, und an Sonntagen zählt man auf den Pisten bald über 300 Skifahrende. Im selben Jahr erreichen die ersten Mitglieder den zentralen Himalaya; später folgen Lappland (1959), Huascarán (1977) und Pumori (1978)."),
     ("1940", "Die Seniorengruppe wird gegründet."),
-    ("1960er-Jahre", "Die Jugendorganisation JO entsteht, und die Rettungskolonne Sottoceneri nimmt ihren Dienst auf. 1963 bringt der Bergsteiger Aldo Fontana neue Impulse; 1964 entsteht die Gruppo Scoiattoli."),
-    ("1980", "Die Männer- und die Frauensektion schliessen sich zusammen."),
+    ("1960er-Jahre", "Die Jugendorganisation JO entsteht, und die Rettungskolonne Sottoceneri nimmt ihren Dienst auf. 1963 bringt der Bergsteiger Aldo Fontana neue Impulse; 1964 entsteht die Gruppo Scoiattoli, die mit den Jahren einen grossen Teil der Routen an den Denti della Vecchia eröffnet und dokumentiert."),
+    ("1980", "Die Männer- und die Frauensektion schliessen sich zusammen, wie in der ganzen Schweiz: Bis dahin war der Schweizer Alpen-Club den Männern vorbehalten, und die Bergsteigerinnen hatten ihren eigenen Club. Dahinter liegt ein schwieriges Jahrzehnt: Am 22. August 1975 zerstört ein Brand die Capanna Campo Tencia; 1977 entsteht sie neu, mit einer für die Zeit innovativen Stahlkonstruktion des Sektionsarchitekten Oscar Hofmann."),
     ("1982", "Erste Ausgabe der «Mini-Woche» für die Kleinsten."),
-    ("2003", "Die neue Capanna Cristallina von Baserga und Mozzetti wird eingeweiht."),
-    ("2016", "Der Neubau der Capanna Monte Bar ist abgeschlossen."),
+    ("2003", "Im Februar 1999 hatten Lawinen die alte Capanna Cristallina von 1939 zerstört. Die neue Hütte der Architekten Nicola Baserga und Christian Mozzetti entsteht in nur acht Monaten Bauzeit in den Sommern 2001 und 2002 auf dem Passo di Cristallina, auf 2575 m; sie öffnet im Dezember 2002 und wird im Juli 2003 offiziell eingeweiht. Sie ist die erste moderne Hütte des SAC."),
+    ("2016", "Achtzig Jahre nach der ersten Hütte öffnet die neue Capanna Monte Bar. Den Wettbewerb von 2014 hatte unter dreissig Projekten «Barlume» der Architekten Oliviero Piffaretti und Carlo Romano gewonnen: ein schlichter Holzbau rund um die Feuerstelle als Ort der Begegnung, geplant mit der Gemeinde Capriasca, um die ganze Region aufzuwerten."),
 ]
 
 
 STORIA_EN = [
-    ("1886", "On 11 April, at the Birraria Gambrinus in Bellinzona, the Club Alpino Ticinese is founded, in the centenary year of the first ascent of Mont Blanc. Its first president is the lawyer Curzio Curti. Its aim: to visit, study and make known the mountains of the canton and the neighbouring regions."),
+    ("1886", "On 11 April, at the Birraria Gambrinus in Bellinzona, the Club Alpino Ticinese is founded, in the centenary year of the first ascent of Mont Blanc by Jacques Balmat and Michel-Gabriel Paccard in 1786. Its first president is the lawyer Curzio Curti. Its aim: to visit, study and make known the mountains of the canton and the neighbouring regions."),
     ("1887", "On 20 March the club joins the Swiss Alpine Club as its Ticino section, based in Lugano."),
-    ("1911", "The section banner is inaugurated in Lanzo d’Intelvi."),
+    ("1911", "Across the border, in Lanzo d’Intelvi, the section banner is inaugurated. A year later, on 11 August 1912, the section opens Capanna Campo Tencia at the head of Val Piumogna, below the peak of the same name: the first hut in the Ticino mountains."),
     ("1913", "The Lugano section of the Swiss Women’s Alpine Club is founded, chaired by Adelina Rossi-Baragiola."),
-    ("1918", "Mountain rescue stations are set up in Faido, Airolo and Olivone. Training the guides is the section’s task; appointing them is up to the cantonal government."),
-    ("1930s", "Rock climbing grows: Emilio Comici, the leading Italian alpinist of the day, is invited to the Denti della Vecchia. In 1932 Tita Calvi, Don Giugni and Aldo Balmelli open the north-east face of Piz Prevat; Bruno Primi “Stüva” becomes a guide and climbs great classics, from the Civetta to the Matterhorn."),
-    ("1936", "First members in the central Himalaya, followed by Lapland (1959), Huascarán (1977) and Pumori (1978)."),
+    ("1918", "In Leventina and Valle di Blenio, mountain rescue stations are set up in Faido, Airolo and Olivone: for the first time, anyone injured in the mountains can count on organised teams. Training the guides is the section’s task; appointing them is up to the cantonal government."),
+    ("1930s", "Rock climbing grows: Emilio Comici, the leading Italian alpinist of the day, is invited to the Denti della Vecchia, which become the section’s home crag; Riccardo Cassin trains there too. In 1932 Tita Calvi, Don Giugni and Aldo Balmelli open the north-east face of Piz Prevat; Bruno Primi “Stüva” becomes a guide and climbs great classics, from the Civetta to the Matterhorn. In 1935 Calvi and Balmelli run Ticino’s first ski school, at Alpe Musgatina."),
+    ("1936", "The section turns fifty and celebrates with the first hut on Monte Bar: the women of Bidogno carry the building materials up in baskets on their backs, and on Sundays there are soon more than 300 skiers on the slopes. The same year the first members reach the central Himalaya, followed later by Lapland (1959), Huascarán (1977) and Pumori (1978)."),
     ("1940", "The Seniors group is founded."),
-    ("1960s", "The OG youth group is founded and the Sottoceneri rescue team goes into service. In 1963 the climber Aldo Fontana brings new energy; in 1964 the Gruppo Scoiattoli is founded."),
-    ("1980", "The men’s and women’s sections merge."),
+    ("1960s", "The OG youth group is founded and the Sottoceneri rescue team goes into service. In 1963 the climber Aldo Fontana brings new energy; in 1964 the Gruppo Scoiattoli is founded, which over the years opens and documents most of the routes on the Denti della Vecchia."),
+    ("1980", "The men’s and women’s sections merge, as they do across Switzerland: until then the Swiss Alpine Club was for men only, and women climbers had a club of their own. Behind it lies a difficult decade: on 22 August 1975 a fire destroys Capanna Campo Tencia, which is rebuilt in 1977 with a steel structure, innovative for its time, by the section’s architect Oscar Hofmann."),
     ("1982", "First edition of the “mini week” for the youngest children."),
-    ("2003", "The new Capanna Cristallina, designed by Baserga and Mozzetti, is inaugurated."),
-    ("2016", "The rebuilding of Capanna Monte Bar is completed."),
+    ("2003", "In February 1999 a series of avalanches had destroyed the old Capanna Cristallina, built in 1939. The new hut, designed by the architects Nicola Baserga and Christian Mozzetti, goes up on the Cristallina Pass at 2575 m in just eight months of work over the summers of 2001 and 2002; it opens in December 2002 and is officially inaugurated in July 2003. It is the first modern hut of the SAC."),
+    ("2016", "Eighty years after the first hut, the new Capanna Monte Bar opens. The 2014 competition had been won, out of thirty entries, by “Barlume” by the architects Oliviero Piffaretti and Carlo Romano: a simple timber building around the hearth as a meeting place, planned with the municipality of Capriasca to benefit the whole region."),
 ]
 
 
@@ -1615,6 +1615,13 @@ def tappa(anno_it, anno, testo):
         nome, *alt = STORIA_FOTO[anno_it]
         w, h = webp_size(os.path.join(ROOT, "assets", "img", nome + ".webp"))
         figura = f'<figure class="tappa-figura tappa-figura--foto">{img(nome, tr(*alt), w, h)}</figure>'
+    elif os.path.exists(os.path.join(ROOT, "assets", "img", "storia", "oggetti", STORIA_OGGETTI[anno_it][0] + ".webp")):
+        # immagine dell'oggetto (Nano Banana, sfondo come --surface) al posto del disegno: decorativa come il disegno
+        nome = "storia/oggetti/" + STORIA_OGGETTI[anno_it][0]
+        w, h = webp_size(os.path.join(ROOT, "assets", "img", nome + ".webp"))
+        moto = STORIA_OGGETTI[anno_it][1]
+        moto = f' data-moto="{moto}"' if moto else ""
+        figura = f'<div class="tappa-figura tappa-figura--oggetto"{moto}>{img(nome, "", w, h)}</div>'
     else:
         figura = f'<div class="tappa-figura">{oggetto(*STORIA_OGGETTI[anno_it])}</div>'
     lungo = " tappa-anno--lungo" if len(anno) > 4 else ""

@@ -228,11 +228,11 @@ dl,dd{margin:0}
 .split-intro{display:grid;gap:22px;position:sticky;top:calc(var(--nav-h) + 32px)}
 /* le tappe: una corda verticale che si riempie di rosso scorrendo (--avanza da site.js), un nodo per tappa che diventa
    rosso quando la corda lo raggiunge (.passata); su schermi larghi testo e disegno si alternano ai due lati */
-.tappe{position:relative;list-style:none;margin:0;padding:0;display:grid;gap:clamp(56px,8vw,120px);--linea:calc(50% - 1px)}
+.tappe{position:relative;list-style:none;margin:0;padding:0;display:grid;gap:clamp(32px,4.5vw,64px);--linea:calc(50% - 1px)}
 .tappe::before,.tappe::after{content:"";position:absolute;top:0;bottom:0;left:var(--linea);width:2px;background:var(--line)}
 .tappe::after{background:var(--accent);transform:scaleY(var(--avanza,0));transform-origin:top}
 .tappa{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr);align-items:center}
-.tappa-nodo{grid-column:2;grid-row:1;justify-self:center;width:16px;height:16px;background:var(--bg);border:2px solid var(--line-strong);transition:background-color .3s var(--ease),border-color .3s var(--ease)}
+.tappa-nodo{position:relative;z-index:1;grid-column:2;grid-row:1;justify-self:center;width:16px;height:16px;background:var(--bg);border:2px solid var(--line-strong);transition:background-color .3s var(--ease),border-color .3s var(--ease)}
 .tappa.passata .tappa-nodo{background:var(--accent);border-color:var(--accent)}
 .tappa-testo{grid-column:1;grid-row:1;justify-self:end;max-width:460px}
 .tappa-figura{grid-column:3;grid-row:1;justify-self:start;margin:0}
@@ -242,6 +242,9 @@ dl,dd{margin:0}
 .tappa-anno--lungo{font-size:clamp(30px,3.4vw,44px);letter-spacing:-.02em}
 .tappa-testo p{margin:0;font-size:17px;line-height:1.6;color:var(--ink-2)}
 .tappa-figura:not(.tappa-figura--foto){display:grid;place-items:center;width:clamp(150px,17vw,224px);aspect-ratio:1;background:var(--surface)}
+.tappa-figura.tappa-figura--oggetto{width:clamp(170px,20vw,280px);background:none}
+/* il bianco delle foto si fonde con la pagina, così la corda resta visibile quando l'oggetto ci passa sopra */
+.tappa-figura--oggetto img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
 .tappa-figura--foto{width:min(100%,400px)}
 .tappa-figura--foto img{width:100%;height:auto}
 .oggetto{width:76%;height:76%;overflow:visible;fill:none;stroke:var(--ink);stroke-width:3;stroke-linejoin:miter}
@@ -250,12 +253,13 @@ dl,dd{margin:0}
 .oggetto[data-moto="ruota"] .oggetto-moto{transform-origin:60px 60px;transform:rotate(calc((var(--p,.5) - .5) * 300deg))}
 .oggetto[data-moto="oscilla"] .oggetto-moto{transform-origin:60px 112px;transform:rotate(calc((var(--p,.5) - .5) * -64deg))}
 @media (max-width:900px){
-  .tappe{--linea:15px;gap:56px}
+  .tappe{--linea:15px;gap:40px}
   .tappa{grid-template-columns:32px minmax(0,1fr);align-items:start;column-gap:16px}
   .tappa-nodo{grid-column:1;grid-row:1;margin-top:clamp(14px,3vw,22px)}
   .tappa-testo,.tappa:nth-child(even) .tappa-testo{grid-column:2;grid-row:1;justify-self:start}
   .tappa-figura,.tappa:nth-child(even) .tappa-figura{grid-column:2;grid-row:2;justify-self:start;margin-top:20px}
   .tappa-figura:not(.tappa-figura--foto){width:132px}
+  .tappa-figura.tappa-figura--oggetto{width:min(200px,60vw)}
 }
 @media (max-width:900px){.split{grid-template-columns:1fr}.split-intro{position:static}}
 /* Home: cifre più vicine alla sezione che segue */
@@ -543,8 +547,8 @@ body:has(.salti.is-fisso) .site-nav.scrolled{box-shadow:none}
 .bio-toggle:hover .member-photo,.bio-toggle:focus-visible .member-photo,.member--bio.is-open .member-photo{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
 .bio-toggle:focus-visible{outline:none}
 .bio-segno{position:absolute;right:-3px;bottom:-3px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
-.bio{position:absolute;left:0;top:calc(100% + 12px);z-index:30;width:min(360px,100%);padding:16px 18px;background:var(--bg);border:1px solid var(--line);border-top:3px solid var(--accent);box-shadow:var(--shadow);font-size:15px;line-height:1.55;color:var(--ink-2);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s var(--ease),transform .18s var(--ease),visibility 0s linear .2s}
-.bio::before{content:"";position:absolute;left:22px;top:-9px;border:6px solid transparent;border-bottom-color:var(--accent)}
+.bio{position:absolute;left:0;top:calc(100% + 12px);z-index:30;width:min(360px,100%);padding:16px 18px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--shadow);font-size:15px;line-height:1.55;color:var(--ink-2);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s var(--ease),transform .18s var(--ease),visibility 0s linear .2s}
+.bio::before{content:"";position:absolute;left:22px;top:-13px;border:6px solid transparent;border-bottom-color:var(--line-strong)}
 .member--bio:has(.bio-toggle:hover) .bio,.bio:hover,.bio-toggle:focus-visible~.bio,.member--bio.is-open .bio{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 @media (prefers-reduced-motion:reduce){.bio,.bio-toggle .member-photo{transition:none}}
 .filtro{display:flex;flex-wrap:wrap;gap:8px}
@@ -611,9 +615,9 @@ body:has(.salti.is-fisso) .site-nav.scrolled{box-shadow:none}
 .nol-totale{font-size:18px;font-weight:600;color:var(--ink)}
 .nol-totale:empty,.nol-esito:empty{display:none}
 .nol-verifica:empty{display:none}
-.nol-esito{padding:14px 18px;background:var(--bg);border-left:3px solid var(--ok);color:var(--ink)}
-.nol-esito.is-errore{border-left-color:var(--accent)}
-.nol-fatto{display:grid;gap:20px;justify-items:start;padding:clamp(24px,3vw,36px);background:var(--bg);border-left:3px solid var(--ok)}
+.nol-esito{padding:14px 18px;background:var(--bg);border:1px solid var(--ok);color:var(--ink)}
+.nol-esito.is-errore{border-color:var(--accent)}
+.nol-fatto{display:grid;gap:20px;justify-items:start;padding:clamp(24px,3vw,36px);background:var(--bg);border:1px solid var(--ok)}
 .nol-fatto p{font-size:18px;color:var(--ink)}
 
 /* ------------------------------------------------------------------ programma gite (gite.html, gite.js) */
@@ -1029,6 +1033,32 @@ body:has(.salti.is-fisso) .site-nav.scrolled{box-shadow:none}
   .reveal-on .tappa.is-in .oggetto path:nth-child(3){transition-delay:.7s}
   .reveal-on .tappa.is-in .oggetto path:nth-child(4){transition-delay:.95s}
   .reveal-on .tappa.is-in .oggetto path:nth-child(n+5){transition-delay:1.2s}
+  /* Storia: la tappa entra a pezzi (anno, testo, poi l'oggetto che si posa ruotando appena verso la corda) invece di
+     salire tutta insieme; il nodo dà un piccolo colpo quando la corda lo raggiunge (proprietà scale, indipendente) */
+  .reveal-on .tappa[data-reveal]{opacity:1;transform:none}
+  .reveal-on .tappa .tappa-anno,.reveal-on .tappa .tappa-testo p,.reveal-on .tappa .tappa-figura{opacity:0}
+  .reveal-on .tappa .tappa-anno{transform:translateY(18px)}
+  .reveal-on .tappa .tappa-testo p{transform:translateY(10px)}
+  .reveal-on .tappa .tappa-figura{transform:translateY(56px) scale(.7) rotate(-12deg)}
+  .reveal-on .tappa:nth-child(even) .tappa-figura{transform:translateY(56px) scale(.7) rotate(12deg)}
+  .reveal-on .tappa.is-in .tappa-anno,.reveal-on .tappa.is-in .tappa-testo p,.reveal-on .tappa.is-in .tappa-figura{opacity:1;transform:none;transition:opacity .6s var(--ease),transform .6s var(--ease)}
+  .reveal-on .tappa.is-in .tappa-testo p{transition-delay:.08s}
+  .reveal-on .tappa.is-in .tappa-figura{transition:opacity .4s var(--ease) .15s,transform 1.1s var(--ease) .15s}
+  .tappa.passata .tappa-nodo{animation:nodo-colpo .45s var(--ease)}
+  @keyframes nodo-colpo{40%{scale:1.6}}
+}
+/* rampone e piccozza in foto: girano e oscillano con lo scorrimento come i disegni (--p da site.js) */
+@media (prefers-reduced-motion:no-preference){
+  /* tutti gli oggetti salgono un po' più lenti della pagina e si inclinano appena (verso la corda); rampone e piccozza
+     girano e oscillano davvero; tutti si ingrandiscono avvicinandosi al centro dello schermo (--z da 0 a 1) */
+  .tappa-figura--oggetto img{transform:translateY(calc((var(--p,.5) - .5) * 70px)) rotate(calc((var(--p,.5) - .5) * -10deg)) scale(calc(.82 + var(--z,1) * .3))}
+  .tappa:nth-child(even) .tappa-figura--oggetto img{transform:translateY(calc((var(--p,.5) - .5) * 70px)) rotate(calc((var(--p,.5) - .5) * 10deg)) scale(calc(.82 + var(--z,1) * .3))}
+  .tappa .tappa-figura--oggetto[data-moto="ruota"] img{transform:translateY(calc((var(--p,.5) - .5) * 70px)) rotate(calc((var(--p,.5) - .5) * 160deg)) scale(calc(.82 + var(--z,1) * .3))}
+  .tappa .tappa-figura--oggetto[data-moto="oscilla"] img{transform-origin:72% 18%;transform:rotate(calc((var(--p,.5) - .5) * -50deg)) scale(calc(.82 + var(--z,1) * .3))}
+}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .tappa-figura--oggetto img{transition:scale .35s var(--ease)}
+  .tappa-figura--oggetto:hover img{scale:1.07}
 }
 @media (prefers-reduced-motion:reduce){
   /* meno movimento, non nessuna transizione: restano i cambi di colore e di opacità, spariscono gli spostamenti */

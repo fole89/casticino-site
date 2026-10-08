@@ -240,7 +240,7 @@
   var tappe = document.querySelector('.tappe');
   if (!tappe) return;
   var nodi = Array.prototype.slice.call(tappe.querySelectorAll('.tappa-nodo'));
-  var moti = matchMedia('(prefers-reduced-motion: reduce)').matches ? [] : Array.prototype.slice.call(tappe.querySelectorAll('[data-moto]'));
+  var moti = matchMedia('(prefers-reduced-motion: reduce)').matches ? [] : Array.prototype.slice.call(tappe.querySelectorAll('[data-moto], .tappa-figura--oggetto'));
   function tra(x) { return Math.max(0, Math.min(1, x)); }
   var inCoda = false;
   function aggiorna() {
@@ -254,7 +254,9 @@
     moti.forEach(function (m) {
       var b = m.getBoundingClientRect();
       if (b.bottom < -200 || b.top > vh + 200) return;
-      m.style.setProperty('--p', tra((vh - b.top) / (vh + b.height)).toFixed(4));
+      var p = tra((vh - b.top) / (vh + b.height));
+      m.style.setProperty('--p', p.toFixed(4));
+      m.style.setProperty('--z', (1 - Math.abs(p - 0.5) * 2).toFixed(4));
     });
   }
   function chiedi() { if (!inCoda) { inCoda = true; requestAnimationFrame(aggiorna); } }
