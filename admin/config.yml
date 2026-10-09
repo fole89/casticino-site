@@ -348,3 +348,40 @@ collections:
         name: contatto
         widget: string
         hint: "E-mail e/o telefono da pubblicare, solo con il consenso di chi ha mandato l’annuncio (es. «laura@esempio.ch, 079 123 45 67»)."
+
+  # Testi di alcune pagine, modificabili senza toccare il codice: data/testi/<pagina>.json, letti da pages.py
+  # (testi() e testo_campo()). Per ogni campo l'italiano e, facoltativi, tedesco e inglese.
+  - name: testi
+    label: Testi del sito
+    label_singular: testo
+    description: "Testi di alcune pagine del sito. Cambia quello che serve e premi «Pubblica»: la pagina è aggiornata in uno o due minuti, anche nella ricerca. Se cambi l’italiano, aggiorna anche tedesco e inglese, oppure svuotali: un campo vuoto mostra l’italiano."
+    files:
+      - label: Sede e contatti
+        name: sede
+        file: data/testi/sede.json
+        fields:
+          - {label: Titolo, name: titolo, widget: string, hint: "Il titolo grande in cima alla pagina; compare anche nel menu del browser e su Google."}
+          - {label: Titolo in tedesco, name: titolo_de, widget: string, required: false}
+          - {label: Titolo in inglese, name: titolo_en, widget: string, required: false}
+          - {label: Introduzione, name: introduzione, widget: text, hint: "Una o due frasi sotto il titolo."}
+          - {label: Introduzione in tedesco, name: introduzione_de, widget: text, required: false}
+          - {label: Introduzione in inglese, name: introduzione_en, widget: text, required: false}
+          - {label: Sottotitolo, name: sottotitolo, widget: string, hint: "Il titolo del riquadro con i contatti."}
+          - {label: Sottotitolo in tedesco, name: sottotitolo_de, widget: string, required: false}
+          - {label: Sottotitolo in inglese, name: sottotitolo_en, widget: string, required: false}
+          - {label: Testo, name: testo, widget: text, hint: "Il testo accanto ai contatti, sopra il pulsante «Scrivi alla sezione»."}
+          - {label: Testo in tedesco, name: testo_de, widget: text, required: false}
+          - {label: Testo in inglese, name: testo_en, widget: text, required: false}
+          - label: Contatti
+            name: righe
+            widget: list
+            label_singular: riga
+            summary: "{{fields.etichetta}}"
+            hint: "Le righe a destra (recapito, e-mail, sede…), nell’ordine in cui compaiono. Gli a capo restano; gli indirizzi e-mail e https:// diventano link. Le coordinate bancarie si aggiungono da sole in fondo."
+            fields:
+              - {label: Etichetta, name: etichetta, widget: string, hint: "Es. «Recapito postale»."}
+              - {label: Etichetta in tedesco, name: etichetta_de, widget: string, required: false}
+              - {label: Etichetta in inglese, name: etichetta_en, widget: string, required: false}
+              - {label: Testo, name: testo, widget: text}
+              - {label: Testo in tedesco, name: testo_de, widget: text, required: false}
+              - {label: Testo in inglese, name: testo_en, widget: text, required: false}

@@ -1513,24 +1513,51 @@ def rubrica():
 </section>"""
 
 
+# Testi modificabili dalla redazione (admin/, «Testi del sito»): data/testi/<pagina>.json. Ogni campo ha l'italiano e,
+# facoltativi, _de e _en; se la traduzione manca, la pagina tradotta mostra l'italiano marcato lang="it".
+def testi(nome):
+    return json.load(open(os.path.join(ROOT, "data", "testi", f"{nome}.json"), encoding="utf-8"))
+
+
+def testo_campo(d, k, semplice=False):
+    """Campo k nella lingua della pagina: HTML (testo libero, a capo e indirizzi e-mail/web diventano <br> e link),
+    oppure, con semplice=True, testo semplice per <title> e simili."""
+    lang = LINGUA["lang"]
+    t = (d.get(f"{k}_{lang}") or "").strip() if lang != "it" else ""
+    manca = not t and lang != "it"
+    t = t or (d.get(k) or "").strip()
+    if semplice:
+        return t
+    h = testo_libero(t)
+    return f'<span lang="it">{h}</span>' if manca and h else h
+
+
+def testo_libero(t):
+    """Testo scritto dalla redazione: niente HTML; e-mail e indirizzi https:// diventano link, a capo diventa <br>."""
+    def link(m):
+        x = m.group(0)
+        if "@" in x and not x.startswith("http"):
+            return f'<a href="mailto:{x}">{x}</a>'
+        return f'<a href="{x}" rel="noopener">{x}</a>'
+    h = esc(t)
+    h = re.sub(r"https?://[^\s<]+[^\s<.,;:!?)]|[\w.+-]+@[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}", link, h, flags=re.I)
+    return h.replace("\n", "<br>")
+
+
 def sede():
-    rows = [
-        ("Recapito postale", "Club Alpino Svizzero<br>Sezione Ticino<br>Casella postale 112<br>6998 Monteggio 2"),
-        ("E-mail", '<a href="mailto:info@casticino.ch">info@casticino.ch</a>'),
-        ("Sede", "Stabile Canvetto Luganese, Molino Nuovo (Lugano)<br>2° piano, in balconata"),
-        ("Biblioteca", 'Guide e cartine da consultare, libri in prestito; in vendita libri e magliette. Per visitarla scrivi al segretariato: <a href="mailto:info@casticino.ch">info@casticino.ch</a>.'),
-        ("Coordinate bancarie", f'Banca Stato, Lugano<br><span class="num">IBAN {IBAN}</span>'),
-    ]
-    body = page_hero([("La Sezione", "introduzione.html"), ("Sede e contatti", None)], "Sede e contatti",
-                     "La sede sociale si trova nello stabile del Canvetto Luganese a Molino Nuovo, con ufficio e sala riunioni al secondo piano in balconata.") + f"""
+    d = testi("sede")
+    titolo = testo_campo(d, "titolo")
+    rows = [(testo_campo(r, "etichetta"), testo_campo(r, "testo")) for r in d["righe"]]
+    rows.append((tr("Coordinate bancarie", "Bankverbindung", "Bank details"), f'Banca Stato, Lugano<br><span class="num">IBAN {IBAN}</span>'))
+    body = page_hero([sez_crumb(), (titolo, None)], titolo, testo_campo(d, "introduzione")) + f"""
 
 <section class="section" aria-labelledby="sede-h">
 <div class="container">
 <div class="contact" data-reveal>
 <div class="contact-intro">
-<h2 id="sede-h" class="h2">Il Canvetto Luganese</h2>
-<p>Qui si riuniscono il comitato e i dicasteri, si tengono le serate informative dei corsi e diversi appuntamenti culturali: proiezioni di uscite, viaggi e spedizioni di soci, serate con specialisti di meteo, valanghe e primo soccorso.</p>
-<div><a class="btn btn--primary" href="mailto:info@casticino.ch">Scrivi alla sezione <span class="arrow" aria-hidden="true">→</span></a></div>
+<h2 id="sede-h" class="h2">{testo_campo(d, "sottotitolo")}</h2>
+<p>{testo_campo(d, "testo")}</p>
+<div><a class="btn btn--primary" href="mailto:info@casticino.ch">{tr("Scrivi alla sezione", "Der Sektion schreiben", "Write to the section")} <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
 {facts(rows)}
 </div>
@@ -1539,11 +1566,12 @@ def sede():
 
 {rubrica()}
 
-{subnav("La Sezione", "sede.html")}"""
-    return page("sede.html", "Sede e contatti | CAS Ticino",
-                "Sede del CAS Ticino al Canvetto Luganese (Molino Nuovo), recapito postale, e-mail, biblioteca e coordinate bancarie.",
-                body)
-
+{subnav(SEZ_MENU(), L("sede.html"))}"""
+    return sezione_page("sede.html", f'{testo_campo(d, "titolo", semplice=True)} | CAS Ticino',
+                        tr("Sede del CAS Ticino al Canvetto Luganese (Molino Nuovo), recapito postale, e-mail, biblioteca e coordinate bancarie.",
+                           "Sitz des CAS Ticino im Canvetto Luganese (Molino Nuovo), Postadresse, E-Mail, Bibliothek und Bankverbindung.",
+                           "The CAS Ticino office at the Canvetto Luganese (Molino Nuovo), postal address, e-mail, library and bank details."),
+                        body)
 
 STORIA = [
     ("1886", "L’11 aprile, alla Birraria Gambrinus di Bellinzona, nasce il Club Alpino Ticinese, nell’anno del centenario della prima salita al Monte Bianco, compiuta nel 1786 da Jacques Balmat e Michel-Gabriel Paccard. Primo presidente è l’avvocato Curzio Curti. Lo scopo: visitare, studiare e far conoscere le montagne del Cantone e delle regioni vicine."),
@@ -3148,21 +3176,6 @@ TRADOTTE = {
         statuto="Statuten", visione="Vision und Strategie", organigramma="Organigramm",
         intro_title="Die Sektion | CAS Ticino",
         intro_desc="Die Sektion Ticino des Schweizer Alpen-Clubs: 1886 gegründet, fast 3000 Mitglieder, sechs Hütten, Kurse, Touren und Aktivitäten für jedes Alter.",
-        # sede
-        sede_rows=[
-            ("Postadresse", "Schweizer Alpen-Club<br>Sektion Ticino<br>Postfach 112<br>6998 Monteggio 2"),
-            ("E-Mail", '<a href="mailto:info@casticino.ch">info@casticino.ch</a>'),
-            ("Sitz", "Gebäude Canvetto Luganese, Molino Nuovo (Lugano)<br>2. Stock, auf der Galerie"),
-            ("Bibliothek", 'Führer und Karten zum Nachschlagen, Bücher zum Ausleihen; Bücher und T-Shirts zu kaufen. Für einen Besuch schreiben Sie dem Sekretariat: <a href="mailto:info@casticino.ch">info@casticino.ch</a>.'),
-            ("Bankverbindung", f'Banca Stato, Lugano<br><span class="num">IBAN {IBAN}</span>'),
-        ],
-        sede_crumb="Sitz und Kontakt",
-        sede_lead="Der Sitz der Sektion befindet sich im Gebäude Canvetto Luganese in Molino Nuovo, mit Büro und Sitzungszimmer im zweiten Stock auf der Galerie.",
-        sede_h="Der Canvetto Luganese",
-        sede_p="Hier treffen sich der Vorstand und die Ressorts, hier finden die Informationsabende der Kurse und verschiedene kulturelle Anlässe statt: Bilder von Touren, Reisen und Expeditionen der Mitglieder, Abende mit Fachleuten für Wetter, Lawinen und Erste Hilfe.",
-        scrivi="Der Sektion schreiben",
-        sede_title="Sitz und Kontakt | CAS Ticino",
-        sede_desc="Sitz des CAS Ticino im Canvetto Luganese (Molino Nuovo), Postadresse, E-Mail, Bibliothek und Bankverbindung.",
         # adesione
         prezzi=[("Einzel", "Einzelmitglied", "105", "30"),
                 ("Familie", "Eltern und Kinder bis 17 Jahre", "179", "50"),
@@ -3220,20 +3233,6 @@ TRADOTTE = {
         statuto="Statutes", visione="Vision and strategy", organigramma="Organisation chart",
         intro_title="The section | CAS Ticino",
         intro_desc="The Ticino Section of the Swiss Alpine Club: founded in 1886, almost 3000 members, six huts, courses, trips and activities for all ages.",
-        sede_rows=[
-            ("Postal address", "Swiss Alpine Club<br>Ticino Section<br>PO Box 112<br>6998 Monteggio 2"),
-            ("E-mail", '<a href="mailto:info@casticino.ch">info@casticino.ch</a>'),
-            ("Office", "Canvetto Luganese building, Molino Nuovo (Lugano)<br>2nd floor, on the gallery"),
-            ("Library", 'Guidebooks and maps to consult, books to borrow; books and T-shirts for sale. To visit, write to the secretariat: <a href="mailto:info@casticino.ch">info@casticino.ch</a>.'),
-            ("Bank details", f'Banca Stato, Lugano<br><span class="num">IBAN {IBAN}</span>'),
-        ],
-        sede_crumb="Office and contacts",
-        sede_lead="The section’s office is in the Canvetto Luganese building in Molino Nuovo, with an office and meeting room on the second floor, on the gallery.",
-        sede_h="The Canvetto Luganese",
-        sede_p="This is where the committee and the departments meet, and where course information evenings and various cultural events take place: talks on members’ trips, travels and expeditions, and evenings with experts on weather, avalanches and first aid.",
-        scrivi="Write to the section",
-        sede_title="Office and contacts | CAS Ticino",
-        sede_desc="The CAS Ticino office at the Canvetto Luganese (Molino Nuovo), postal address, e-mail, library and bank details.",
         prezzi=[("Individual", "Individual member", "105", "30"),
                 ("Family", "Parents and children up to 17", "179", "50"),
                 ("Youth", "Up to 22", "50", "30")],
@@ -3329,30 +3328,6 @@ def introduzione_tradotta():
 
 {subnav(tx["sezione"], f"{lang}/introduzione.html")}"""
     return sezione_page("introduzione.html", tx["intro_title"], tx["intro_desc"], body, og="paesaggi/gruppo-ghiacciaio-2000")
-
-
-def sede_tradotta():
-    tx = tx_tradotte()
-    lang = LINGUA["lang"]
-    body = page_hero([(tx["sezione"], f"{lang}/introduzione.html"), (tx["sede_crumb"], None)], tx["sede_crumb"], tx["sede_lead"]) + f"""
-
-<section class="section" aria-labelledby="sede-h">
-<div class="container">
-<div class="contact" data-reveal>
-<div class="contact-intro">
-<h2 id="sede-h" class="h2">{tx['sede_h']}</h2>
-<p>{tx['sede_p']}</p>
-<div><a class="btn btn--primary" href="mailto:info@casticino.ch">{tx['scrivi']} <span class="arrow" aria-hidden="true">→</span></a></div>
-</div>
-{facts(tx['sede_rows'])}
-</div>
-</div>
-</section>
-
-{rubrica()}
-
-{subnav(tx["sezione"], f"{lang}/sede.html")}"""
-    return sezione_page("sede.html", tx["sede_title"], tx["sede_desc"], body)
 
 
 def adesione_tradotta():
@@ -4005,7 +3980,7 @@ def in_lingua_pagina(lang, fn):
 # (news, annunci del mercatino, gite e resoconti di Droptour) e i PDF; nelle pagine tradotte sono marcati lang="it".
 for _lang, _contenuti in (("de", CONTENUTI_DE), ("en", CONTENUTI_EN)):
     _pagine = {"index.html": home, "introduzione.html": introduzione_tradotta, "comitato.html": comitato,
-               "organizzazione.html": organizzazione, "capigita.html": capigita, "sede.html": sede_tradotta,
+               "organizzazione.html": organizzazione, "capigita.html": capigita, "sede.html": sede,
                "storia.html": storia, "link.html": link, "adesione.html": adesione_tradotta,
                "gite.html": gite, "gita.html": gita_pagina, "privacy.html": privacy,
                "noleggio.html": noleggio, "mercatino.html": mercatino, "documenti.html": documenti,

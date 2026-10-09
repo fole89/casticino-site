@@ -262,6 +262,31 @@ var AvvisoCapannaPreview = createClass({
 ["campotencia", "cristallina", "adula", "motterascio", "montebar", "baitadelluca"].forEach(function (c) {
   CMS.registerPreviewTemplate("avviso_" + c, AvvisoCapannaPreview);
 });
+
+// Anteprima di Sede e contatti: la parte alta della pagina come apparirà (in italiano).
+var aCapo = { whiteSpace: "pre-line" };
+var SedePreview = createClass({
+  render: function () {
+    var d = this.props.entry.get("data");
+    var righe = (d.get("righe") || []).map ? d.get("righe") : [];
+    return h("main", {},
+      h("section", { className: "page-hero" },
+        h("div", { className: "container" },
+          h("h1", { className: "display" }, d.get("titolo")),
+          h("p", { className: "lead", style: aCapo }, d.get("introduzione")))),
+      h("section", { className: "section" },
+        h("div", { className: "container" },
+          h("div", { className: "contact" },
+            h("div", { className: "contact-intro" },
+              h("h2", { className: "h2" }, d.get("sottotitolo")),
+              h("p", { style: aCapo }, d.get("testo")),
+              h("div", {}, h("a", { className: "btn btn--primary" }, "Scrivi alla sezione →"))),
+            h("dl", { className: "facts" }, righe.map(function (r, i) {
+              return [h("dt", { key: "t" + i }, r.get("etichetta")), h("dd", { key: "d" + i, style: aCapo }, r.get("testo"))];
+            }), h("dt", {}, "Coordinate bancarie"), h("dd", {}, "Banca Stato, Lugano (aggiunte in automatico)"))))));
+  }
+});
+CMS.registerPreviewTemplate("sede", SedePreview);
 </script>
 </body>
 </html>

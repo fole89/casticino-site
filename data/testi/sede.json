@@ -1,0 +1,48 @@
+{
+  "titolo": "Sede e contatti",
+  "titolo_de": "Sitz und Kontakt",
+  "titolo_en": "Office and contacts",
+  "introduzione": "La sede sociale si trova nello stabile del Canvetto Luganese a Molino Nuovo, con ufficio e sala riunioni al secondo piano in balconata.",
+  "introduzione_de": "Der Sitz der Sektion befindet sich im Gebäude Canvetto Luganese in Molino Nuovo, mit Büro und Sitzungszimmer im zweiten Stock auf der Galerie.",
+  "introduzione_en": "The section’s office is in the Canvetto Luganese building in Molino Nuovo, with an office and meeting room on the second floor, on the gallery.",
+  "sottotitolo": "Il Canvetto Luganese",
+  "sottotitolo_de": "Der Canvetto Luganese",
+  "sottotitolo_en": "The Canvetto Luganese",
+  "testo": "Qui si riuniscono il comitato e i dicasteri, si tengono le serate informative dei corsi e diversi appuntamenti culturali: proiezioni di uscite, viaggi e spedizioni di soci, serate con specialisti di meteo, valanghe e primo soccorso.",
+  "testo_de": "Hier treffen sich der Vorstand und die Ressorts, hier finden die Informationsabende der Kurse und verschiedene kulturelle Anlässe statt: Bilder von Touren, Reisen und Expeditionen der Mitglieder, Abende mit Fachleuten für Wetter, Lawinen und Erste Hilfe.",
+  "testo_en": "This is where the committee and the departments meet, and where course information evenings and various cultural events take place: talks on members’ trips, travels and expeditions, and evenings with experts on weather, avalanches and first aid.",
+  "righe": [
+    {
+      "etichetta": "Recapito postale",
+      "etichetta_de": "Postadresse",
+      "etichetta_en": "Postal address",
+      "testo": "Club Alpino Svizzero\nSezione Ticino\nCasella postale 112\n6998 Monteggio 2",
+      "testo_de": "Schweizer Alpen-Club\nSektion Ticino\nPostfach 112\n6998 Monteggio 2",
+      "testo_en": "Swiss Alpine Club\nTicino Section\nPO Box 112\n6998 Monteggio 2"
+    },
+    {
+      "etichetta": "E-mail",
+      "etichetta_de": "E-Mail",
+      "etichetta_en": "E-mail",
+      "testo": "info@casticino.ch",
+      "testo_de": "info@casticino.ch",
+      "testo_en": "info@casticino.ch"
+    },
+    {
+      "etichetta": "Sede",
+      "etichetta_de": "Sitz",
+      "etichetta_en": "Office",
+      "testo": "Stabile Canvetto Luganese, Molino Nuovo (Lugano)\n2° piano, in balconata",
+      "testo_de": "Gebäude Canvetto Luganese, Molino Nuovo (Lugano)\n2. Stock, auf der Galerie",
+      "testo_en": "Canvetto Luganese building, Molino Nuovo (Lugano)\n2nd floor, on the gallery"
+    },
+    {
+      "etichetta": "Biblioteca",
+      "etichetta_de": "Bibliothek",
+      "etichetta_en": "Library",
+      "testo": "Guide e cartine da consultare, libri in prestito; in vendita libri e magliette. Per visitarla scrivi al segretariato: info@casticino.ch.",
+      "testo_de": "Führer und Karten zum Nachschlagen, Bücher zum Ausleihen; Bücher und T-Shirts zu kaufen. Für einen Besuch schreiben Sie dem Sekretariat: info@casticino.ch.",
+      "testo_en": "Guidebooks and maps to consult, books to borrow; books and T-shirts for sale. To visit, write to the secretariat: info@casticino.ch."
+    }
+  ]
+}
