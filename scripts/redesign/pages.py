@@ -1921,7 +1921,7 @@ def documenti():
         "Statuten und Dokumente der Sektion, Schwierigkeitsskalen, technische Merkblätter, Formulare und Karten zum Herunterladen. Die Dokumente sind auf Italienisch.",
         "The section’s statutes and documents, difficulty scales, technical fact sheets, forms and maps to download. The documents are in Italian.")) + f"""
 
-<section class="section" aria-label="{titolo}">
+<section class="section" aria-label="{tr("Elenco dei documenti", "Liste der Dokumente", "List of documents")}">
 <div class="container">
 {linkgroups(gruppi, "PDF")}
 <div class="callout">
@@ -2465,7 +2465,7 @@ def annuari():
         "Das Jahrbuch erzählt vom Leben der Sektion: ein Band pro Jahr, als PDF zum Durchblättern (italienisch).",
         "The yearbook tells the story of the section’s life: one volume a year, to browse as a PDF (in Italian).")) + f"""
 
-<section class="section" aria-label="{titolo}">
+<section class="section" aria-label="{tr("Numeri da sfogliare", "Ausgaben zum Durchblättern", "Issues to browse")}">
 <div class="container">
 {pub_feature(ultimo, f"{nome} {ultimo['anno']}", tr("L’ultimo annuario pubblicato dalla sezione.", "Das neueste Jahrbuch der Sektion.", "The section’s latest yearbook."))}
 <div class="section-row"><h2 class="h3">{tr("Annate precedenti", "Frühere Jahrgänge", "Previous years")}</h2></div>
@@ -2499,7 +2499,7 @@ def informazione():
         "Das offizielle Mitteilungsblatt der Sektion: Neuigkeiten, Aktivitäten und Termine, als PDF zum Durchblättern (italienisch).",
         "The section’s official bulletin: news, activities and dates, to browse as a PDF (in Italian).")) + f"""
 
-<section class="section" aria-label="Informazione">
+<section class="section" aria-label="{tr("Numeri da sfogliare", "Ausgaben zum Durchblättern", "Issues to browse")}">
 <div class="container">
 {pub_feature(ultimo, quando(ultimo), tr("Il numero più recente del bollettino ufficiale della Sezione Ticino.", "Die neueste Ausgabe des offiziellen Mitteilungsblatts der Sektion Ticino.", "The latest issue of the Ticino Section’s official bulletin."))}
 {griglia}
@@ -3837,7 +3837,7 @@ def privacy():
     agg = tr("Ultimo aggiornamento", "Letzte Änderung", "Last updated") + ": " + PRIVACY_AGGIORNATA[LINGUA["lang"]]
     body = page_hero([(tx["h1"], None)], tx["h1"], tx["lead"]) + f"""
 
-<section class="section section--tight" aria-label="{tx['h1']}">
+<section class="section section--tight" aria-label="{tr("Testo dell’informativa", "Text der Datenschutzerklärung", "Full policy")}">
 <div class="container article article--noimg">
 <div class="prose">
 {tx["corpo"]}

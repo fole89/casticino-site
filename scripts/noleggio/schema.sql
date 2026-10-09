@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS richieste (
   aggiornata TEXT NOT NULL,
   dal TEXT NOT NULL,                 -- primo giorno di noleggio, AAAA-MM-GG
   al TEXT NOT NULL,                  -- ultimo giorno (compreso)
-  stato TEXT NOT NULL,               -- attesa, confermata, ritirata, riconsegnata, rifiutata, annullata
+  stato TEXT NOT NULL,               -- attesa, confermata, ritirata, riconsegnata, rifiutata, annullata, scaduta
   nome TEXT NOT NULL,
   email TEXT NOT NULL,
   telefono TEXT NOT NULL,

@@ -73,6 +73,13 @@ Quando il DNS si è propagato (da qualche minuto fino a 48 ore), torna in **Sett
 
 Consigliato: in **Settings (dell'account o dell'organizzazione) › Pages › Verified domains** verifica casticino.ch, così nessun altro può usarlo su GitHub.
 
+Da non dimenticare, oltre a quanto sopra (dall'audit del 9.10.2026):
+
+- **`ALLOWED_ORIGINS` di tutti e tre i Worker**: accesso alla redazione (`scripts/cms-auth/`, variabile nel pannello di Cloudflare), noleggio e notifiche (`[vars]` in `scripts/noleggio/wrangler.toml` e `scripts/notifiche/wrangler.toml`, poi `npx wrangler deploy` dalla cartella). Oggi contengono `https://casticino.ch` ma non `https://www.casticino.ch`: se il sito risponderà anche su www, aggiungilo, altrimenti da lì noleggio, notifiche e login non funzionano.
+- **`INVENTARIO_URL`** in `scripts/noleggio/wrangler.toml`: da `https://fole89.github.io/casticino-site/…` a `https://casticino.ch/data/noleggio-inventario.json`.
+- **`MAIL_GESTORE` e `MAIL_MITTENTE`** del noleggio: da Gmail a `noleggio@casticino.ch` quando la casella esiste (il mittente va verificato su Brevo).
+- **App installata e notifiche**: l'app installata da github.io va reinstallata da casticino.ch (è legata all'indirizzo). Le iscrizioni alle notifiche fatte su github.io dovrebbero continuare a ricevere tramite il service worker già installato, ma va provato con una «Notifica di prova» subito dopo il cambio; se non arrivano, avvisare sul sito di riattivarle.
+
 ## 3. Foto automatiche da Droptour
 
 Lo script `scripts/update_foto.py` fa questo:

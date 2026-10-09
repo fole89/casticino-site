@@ -19,9 +19,10 @@ const ATTIVI = ["attesa", "confermata", "ritirata"];   // stati che occupano il 
 const MAX_GIORNI = 30;       // durata massima di un noleggio
 const MAX_ANTICIPO = 365;    // quanto in là si può prenotare (giorni)
 const CONSERVA_MESI = 12;    // le richieste si cancellano 12 mesi dopo la fine del noleggio
+const SCADE_GIORNI = 7;      // una richiesta non confermata entro una settimana scade e libera il materiale
 const STATI = {
   attesa: "Da confermare", confermata: "Confermata", ritirata: "Ritirata",
-  riconsegnata: "Riconsegnata", rifiutata: "Rifiutata", annullata: "Annullata",
+  riconsegnata: "Riconsegnata", rifiutata: "Rifiutata", annullata: "Annullata", scaduta: "Scaduta",
 };
 // azione → [stati di partenza, nuovo stato, e-mail al socio]
 const AZIONI = {
@@ -47,8 +48,18 @@ export default {
     }
   },
 
-  // ogni notte: via le richieste finite da più di CONSERVA_MESI mesi
-  async scheduled(event, env) {
+  // ogni notte: scadono le richieste non confermate da più di SCADE_GIORNI giorni (e-mail al socio),
+  // poi via le richieste finite da più di CONSERVA_MESI mesi
+  async scheduled(event, env, ctx) {
+    const ora = new Date(), limite = new Date(ora.getTime() - SCADE_GIORNI * 864e5).toISOString();
+    const { results } = await env.DB.prepare("SELECT * FROM richieste WHERE stato = 'attesa' AND creata < ?").bind(limite).all();
+    for (const r of results) {
+      const nota = `${r.nota_gestore ? r.nota_gestore + "\n" : ""}${dataCh(oggi())} Scaduta: non confermata entro ${SCADE_GIORNI} giorni`;
+      await env.DB.prepare("UPDATE richieste SET stato = 'scaduta', aggiornata = ?, nota_gestore = ? WHERE id = ? AND stato = 'attesa'")
+        .bind(ora.toISOString(), nota, r.id).run();
+      ctx.waitUntil(mail(env, r.email, r.nome, (TESTI[r.lingua] || TESTI.it).oggetto("scaduta"),
+        mailSocio({ ...r, righe: JSON.parse(r.righe) }, "scaduta", ""), env.MAIL_GESTORE));
+    }
     await env.DB.prepare("DELETE FROM richieste WHERE al < date('now', ?)").bind(`-${CONSERVA_MESI} months`).run();
   },
 };
@@ -220,13 +231,14 @@ async function mail(env, a, nome, oggetto, corpo, rispondiA) {
 const TESTI = {
   it: {
     oggetto: (tipo) => ({ ricevuta: "Richiesta di noleggio ricevuta", confermata: "Noleggio confermato",
-      rifiutata: "Noleggio: richiesta non accolta", annullata: "Noleggio annullato" })[tipo],
+      rifiutata: "Noleggio: richiesta non accolta", annullata: "Noleggio annullato", scaduta: "Noleggio: richiesta scaduta" })[tipo],
     saluto: (nome) => `Ciao ${nome},`,
     apertura: {
       ricevuta: "abbiamo ricevuto la tua richiesta di noleggio. Ti scriviamo appena l’abbiamo controllata: la richiesta vale solo con la nostra conferma.",
       confermata: "la tua richiesta di noleggio è confermata.",
       rifiutata: "purtroppo non possiamo accogliere la tua richiesta di noleggio.",
       annullata: "il tuo noleggio è stato annullato.",
+      scaduta: "non siamo riusciti a confermare la tua richiesta di noleggio entro una settimana, quindi è scaduta e il materiale non è riservato. Se ti serve ancora, invia una nuova richiesta dal sito.",
     },
     messaggio: "Messaggio del responsabile",
     periodo: (dal, al, g) => `Dal ${dal} al ${al} (${g} ${g === 1 ? "giorno" : "giorni"})`,
@@ -237,13 +249,14 @@ const TESTI = {
   },
   de: {
     oggetto: (tipo) => ({ ricevuta: "Mietanfrage erhalten", confermata: "Miete bestätigt",
-      rifiutata: "Miete: Anfrage nicht möglich", annullata: "Miete storniert" })[tipo],
+      rifiutata: "Miete: Anfrage nicht möglich", annullata: "Miete storniert", scaduta: "Miete: Anfrage abgelaufen" })[tipo],
     saluto: (nome) => `Hallo ${nome}`,
     apertura: {
       ricevuta: "Wir haben Ihre Mietanfrage erhalten. Wir melden uns, sobald wir sie geprüft haben: Die Anfrage gilt erst mit unserer Bestätigung.",
       confermata: "Ihre Mietanfrage ist bestätigt.",
       rifiutata: "Leider können wir Ihre Mietanfrage nicht annehmen.",
       annullata: "Ihre Miete wurde storniert.",
+      scaduta: "Wir konnten Ihre Mietanfrage nicht innerhalb einer Woche bestätigen. Sie ist deshalb abgelaufen und das Material ist nicht reserviert. Falls Sie es noch brauchen, senden Sie bitte eine neue Anfrage über die Website.",
     },
     messaggio: "Nachricht der Materialvermietung",
     periodo: (dal, al, g) => `Vom ${dal} bis ${al} (${g} ${g === 1 ? "Tag" : "Tage"})`,
@@ -254,13 +267,14 @@ const TESTI = {
   },
   en: {
     oggetto: (tipo) => ({ ricevuta: "Hire request received", confermata: "Hire confirmed",
-      rifiutata: "Hire: request declined", annullata: "Hire cancelled" })[tipo],
+      rifiutata: "Hire: request declined", annullata: "Hire cancelled", scaduta: "Hire: request expired" })[tipo],
     saluto: (nome) => `Hello ${nome},`,
     apertura: {
       ricevuta: "we have received your hire request. We will write to you as soon as we have checked it: the request only stands once we confirm it.",
       confermata: "your hire request is confirmed.",
       rifiutata: "unfortunately we cannot accept your hire request.",
       annullata: "your hire has been cancelled.",
+      scaduta: "we were unable to confirm your hire request within a week, so it has expired and the equipment is not reserved. If you still need it, please send a new request from the website.",
     },
     messaggio: "Message from the equipment manager",
     periodo: (dal, al, g) => `From ${dal} to ${al} (${g} ${g === 1 ? "day" : "days"})`,
@@ -320,7 +334,7 @@ async function admin(request, env, ctx, url) {
 
   if (url.pathname === "/admin/api/richieste" && request.method === "GET") {
     const vista = url.searchParams.get("vista") || "attesa";
-    const filtri = { attesa: ["attesa"], corso: ["confermata", "ritirata"], concluse: ["riconsegnata", "rifiutata", "annullata"] };
+    const filtri = { attesa: ["attesa"], corso: ["confermata", "ritirata"], concluse: ["riconsegnata", "rifiutata", "annullata", "scaduta"] };
     const stati = filtri[vista] || Object.keys(STATI);
     const ordine = vista === "concluse" || vista === "tutte" ? "dal DESC" : "dal ASC";
     const { results } = await env.DB.prepare(
@@ -497,7 +511,8 @@ a{color:inherit}
     attesa: [["conferma", "Conferma", "ok"], ["rifiuta", "Rifiuta", "primario"]],
     confermata: [["ritira", "Ritirata", "ok"], ["annulla", "Annulla", ""]],
     ritirata: [["riconsegna", "Riconsegnata", "ok"]],
-    riconsegnata: [["elimina", "Elimina", ""]], rifiutata: [["elimina", "Elimina", ""]], annullata: [["elimina", "Elimina", ""]]
+    riconsegnata: [["elimina", "Elimina", ""]], rifiutata: [["elimina", "Elimina", ""]], annullata: [["elimina", "Elimina", ""]],
+    scaduta: [["elimina", "Elimina", ""]]
   };
   var MAIL = { conferma: 1, rifiuta: 1, annulla: 1 };
   function el(tag, attr, figli) {

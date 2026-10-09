@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: update-foto
+  group: pubblica       # stesso gruppo dei workflow che rigenerano le pagine: mai due insieme, così il push non va in conflitto
   cancel-in-progress: false
 
 jobs:

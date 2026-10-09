@@ -4,8 +4,9 @@
   pagina iniziale nella lingua; head() in shared.py collega quello della lingua della pagina.
 - sw.js nella radice del sito (così vale per tutte le pagine): prima la rete per le pagine (sempre aggiornate quando
   c'è campo, l'ultima versione vista quando non c'è, altrimenti offline.html); dalla memoria stili, script, caratteri
-  e icone (hanno l'impronta ?v= nel nome); le foto già viste dalla memoria, al massimo MAX_FOTO; i dati JSON prima
-  dalla rete. Mai in memoria: admin/ (redazione), PDF, altri siti (Droptour, noleggio, Facebook, Turnstile).
+  e icone (hanno l'impronta ?v= nel nome); le foto già viste subito dalla memoria, al massimo MAX_FOTO, ma ricontrollate
+  in sottofondo (una foto sostituita con lo stesso nome, es. nel mercatino, si vede dalla visita dopo); i dati JSON
+  prima dalla rete. Mai in memoria: admin/ (redazione), PDF, altri siti (Droptour, noleggio, Facebook, Turnstile).
   Mostra le notifiche (evento push, da scripts/notifiche.py) e al tocco apre la pagina indicata.
   Le pagine essenziali di una lingua (home, capanne, Partecipare con «Prima di partire», Soccorso, offline) si
   salvano quando site.js lo chiede, al massimo una volta al giorno per lingua.
@@ -86,7 +87,7 @@ self.addEventListener("fetch", (e) => {
   if (percorso.startsWith("admin/") || percorso.endsWith(".pdf")) return;
   if (req.mode === "navigate") return e.respondWith(pagina(req, url, percorso));
   if (/\.(css|js|woff2)$/.test(url.pathname) || /^assets\/(icone\/|logo)/.test(percorso)) return e.respondWith(primaMemoria(req, C_STATICI));
-  if (/^assets\/img\/.+\.webp$/.test(percorso)) return e.respondWith(primaMemoria(req, C_FOTO, MAX_FOTO));
+  if (/^assets\/img\/.+\.webp$/.test(percorso)) return e.respondWith(foto(e, req));
   if (/^data\/.+\.json$/.test(percorso)) return e.respondWith(primaRete(req));
 });
 
@@ -126,6 +127,21 @@ async function primaMemoria(req, nome, max) {
     if (max) limita(nome, max);
   }
   return r;
+}
+
+// foto: subito quella in memoria, intanto si ricontrolla in rete (il browser chiede solo se è cambiata) e si aggiorna
+async function foto(e, req) {
+  const c = await caches.open(C_FOTO), salvata = await c.match(req);
+  const nuova = fetch(req).then(async (r) => {
+    if (r.ok) {
+      await c.put(req, r.clone());
+      if (!salvata) await limita(C_FOTO, MAX_FOTO);
+    }
+    return r;
+  });
+  if (!salvata) return nuova;
+  e.waitUntil(nuova.catch(() => {}));   // senza rete resta quella in memoria
+  return salvata;
 }
 
 async function primaRete(req) {

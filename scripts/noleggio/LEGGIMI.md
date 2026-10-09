@@ -22,7 +22,9 @@ la pagina di gestione **/admin**, protetta da password. I dati personali stanno 
     l’orario di ritiro).
   - *Confermata* → **Ritirata** quando il materiale esce, oppure **Annulla**, con un’e-mail al socio.
   - *Ritirata* → **Riconsegnata**: da quel momento il materiale torna libero.
-  - Le richieste rifiutate, annullate o riconsegnate si possono eliminare. Comunque il servizio le cancella da solo
+  - Una richiesta lasciata *Da confermare* per più di una settimana scade da sola (di notte): diventa *Scaduta*, il
+    materiale torna libero e il socio riceve un’e-mail che lo invita a mandarne una nuova.
+  - Le richieste rifiutate, annullate, scadute o riconsegnate si possono eliminare. Comunque il servizio le cancella da solo
     12 mesi dopo la fine del noleggio (lo dice l’informativa sulla privacy).
 
 ## Attivazione (una volta sola)

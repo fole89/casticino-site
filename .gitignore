@@ -33,3 +33,6 @@ interno/
 
 # chiavi da copiare nei segreti di GitHub e Cloudflare, poi da cancellare: mai su git
 .segreti-*
+
+# configurazione locale dell’editor (server MCP di PyCharm)
+.mcp.json

@@ -1,5 +1,5 @@
 // Service worker del sito CAS Ticino: generato da scripts/redesign/pwa.py (pages.py), non modificare a mano.
-const VERSIONE = "c0540d178b";
+const VERSIONE = "67949b5ab9";
 const STATICI = ["assets/site.css?v=be213a81", "assets/site.js?v=69146f0c", "assets/gite.js?v=a1574ae8", "assets/cerca.js?v=6de6c786", "assets/foto.js?v=0b48c1c6", "assets/noleggio.js?v=f548c601", "assets/fonts/geist-latin-ext.woff2", "assets/fonts/geist-latin.woff2", "assets/fonts/geist-mono-latin-ext.woff2", "assets/fonts/geist-mono-latin.woff2", "assets/logo-cas.webp", "assets/logo-cas-stemma.webp", "assets/icone/icona-192.png", "assets/icone/icona-512.png", "assets/icone/icona-maskable-512.png", "assets/icone/apple-touch-icon.png", "assets/icone/badge-96.png", "offline.html", "de/offline.html", "en/offline.html"];      // salvati all'installazione: stili, script, caratteri, icone, pagine offline
 const ESSENZIALI = {"it": ["index.html", "partecipare.html", "soccorso.html", "campotencia.html", "cristallina.html", "adula.html", "motterascio.html", "montebar.html", "baitadelluca.html"], "de": ["de/index.html", "de/partecipare.html", "de/soccorso.html", "de/campotencia.html", "de/cristallina.html", "de/adula.html", "de/motterascio.html", "de/montebar.html", "de/baitadelluca.html"], "en": ["en/index.html", "en/partecipare.html", "en/soccorso.html", "en/campotencia.html", "en/cristallina.html", "en/adula.html", "en/motterascio.html", "en/montebar.html", "en/baitadelluca.html"]};  // per lingua: pagine da avere anche senza rete
 const C_STATICI = "statici-" + VERSIONE, C_PAGINE = "pagine", C_FOTO = "foto";
@@ -41,7 +41,7 @@ self.addEventListener("fetch", (e) => {
   if (percorso.startsWith("admin/") || percorso.endsWith(".pdf")) return;
   if (req.mode === "navigate") return e.respondWith(pagina(req, url, percorso));
   if (/\.(css|js|woff2)$/.test(url.pathname) || /^assets\/(icone\/|logo)/.test(percorso)) return e.respondWith(primaMemoria(req, C_STATICI));
-  if (/^assets\/img\/.+\.webp$/.test(percorso)) return e.respondWith(primaMemoria(req, C_FOTO, MAX_FOTO));
+  if (/^assets\/img\/.+\.webp$/.test(percorso)) return e.respondWith(foto(e, req));
   if (/^data\/.+\.json$/.test(percorso)) return e.respondWith(primaRete(req));
 });
 
@@ -81,6 +81,21 @@ async function primaMemoria(req, nome, max) {
     if (max) limita(nome, max);
   }
   return r;
+}
+
+// foto: subito quella in memoria, intanto si ricontrolla in rete (il browser chiede solo se è cambiata) e si aggiorna
+async function foto(e, req) {
+  const c = await caches.open(C_FOTO), salvata = await c.match(req);
+  const nuova = fetch(req).then(async (r) => {
+    if (r.ok) {
+      await c.put(req, r.clone());
+      if (!salvata) await limita(C_FOTO, MAX_FOTO);
+    }
+    return r;
+  });
+  if (!salvata) return nuova;
+  e.waitUntil(nuova.catch(() => {}));   // senza rete resta quella in memoria
+  return salvata;
 }
 
 async function primaRete(req) {

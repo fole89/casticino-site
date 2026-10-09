@@ -410,7 +410,8 @@ def subnav(group, current_page):
             cur = ' aria-current="page"'
             links = "\n".join(f'<a href="{h}"{cur if h == current_page else ""}>{l}</a>'
                               for l, h in sub if h.endswith(".html"))
-            return f"""<section class="section" aria-label="{group}">
+            # nome diverso dal titolo della pagina (es. Chi siamo = «La sezione»): due regioni con lo stesso nome confondono
+            return f"""<section class="section" aria-label="{group} – {tr('tutte le pagine', 'alle Seiten', 'all pages')}">
 <div class="container subnav">
 <h2 class="label">{group}</h2>
 <div class="subnav-links">
