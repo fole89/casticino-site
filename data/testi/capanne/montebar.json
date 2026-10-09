@@ -1,0 +1,196 @@
+{
+  "guardiani": "Dal 2020 la capanna è gestita da James Mauri e Serge «Seo» Santese, con esperienze in ottime cucine del cantone e non solo. Siamo felici di fare quello che facciamo: vivere qui è una scelta, e soprattutto una bella scuola di vita.\n\n**James e Seo**",
+  "guardiani_de": "Seit 2020 führen James Mauri und Serge «Seo» Santese die Hütte, mit Erfahrung in sehr guten Küchen im Tessin und darüber hinaus. Wir freuen uns über das, was wir tun: Hier zu leben ist eine bewusste Wahl und vor allem eine schöne Lebensschule.\n\n**James und Seo**",
+  "guardiani_en": "Since 2020 James Mauri and Serge “Seo” Santese have run the hut, with experience in very good kitchens in Ticino and beyond. We are happy with what we do: living here is a deliberate choice and above all a great school of life.\n\n**James and Seo**",
+  "tariffe": [
+    {
+      "titolo": "Soci CAS/FAT e club con diritto di reciprocità",
+      "titolo_de": "Mitglieder SAC/FAT und Gegenrechtsvereine",
+      "titolo_en": "Members of SAC/FAT and reciprocal clubs",
+      "nota": "Pernottamento con mezza pensione",
+      "nota_de": "Übernachtung mit Halbpension",
+      "nota_en": "Overnight stay with half board",
+      "righe": [
+        {
+          "voce": "Bambini fino a 7 anni",
+          "voce_de": "Kinder bis 7 Jahre",
+          "voce_en": "Children up to 7",
+          "prezzo": "Fr. 30.–"
+        },
+        {
+          "voce": "Ragazzi da 8 a 14 anni",
+          "voce_de": "Kinder von 8 bis 14 Jahren",
+          "voce_en": "Children aged 8 to 14",
+          "prezzo": "Fr. 40.–"
+        },
+        {
+          "voce": "Giovani da 15 a 21 anni",
+          "voce_de": "Jugendliche von 15 bis 21 Jahren",
+          "voce_en": "Young people aged 15 to 21",
+          "prezzo": "Fr. 60.–"
+        },
+        {
+          "voce": "Adulti dai 22 anni",
+          "voce_de": "Erwachsene ab 22 Jahren",
+          "voce_en": "Adults from 22",
+          "prezzo": "Fr. 80.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Non soci",
+      "titolo_de": "Nichtmitglieder",
+      "titolo_en": "Non-members",
+      "nota": "Pernottamento con mezza pensione",
+      "nota_de": "Übernachtung mit Halbpension",
+      "nota_en": "Overnight stay with half board",
+      "righe": [
+        {
+          "voce": "Bambini fino a 7 anni",
+          "voce_de": "Kinder bis 7 Jahre",
+          "voce_en": "Children up to 7",
+          "prezzo": "Fr. 30.–"
+        },
+        {
+          "voce": "Ragazzi da 8 a 14 anni",
+          "voce_de": "Kinder von 8 bis 14 Jahren",
+          "voce_en": "Children aged 8 to 14",
+          "prezzo": "Fr. 45.–"
+        },
+        {
+          "voce": "Giovani da 15 a 21 anni",
+          "voce_de": "Jugendliche von 15 bis 21 Jahren",
+          "voce_en": "Young people aged 15 to 21",
+          "prezzo": "Fr. 65.–"
+        },
+        {
+          "voce": "Adulti dai 22 anni",
+          "voce_de": "Erwachsene ab 22 Jahren",
+          "voce_en": "Adults from 22",
+          "prezzo": "Fr. 95.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Camera doppia",
+      "titolo_de": "Doppelzimmer",
+      "titolo_en": "Double room",
+      "nota": "Con letto matrimoniale e biancheria fresca",
+      "nota_de": "Mit Doppelbett und frischer Bettwäsche",
+      "nota_en": "With double bed and fresh bed linen",
+      "righe": [
+        {
+          "voce": "Per persona",
+          "voce_de": "Pro Person",
+          "voce_en": "Per person",
+          "prezzo": "Fr. 120.–"
+        },
+        {
+          "voce": "Uso singolo",
+          "voce_de": "Einzelbelegung",
+          "voce_en": "Single occupancy",
+          "prezzo": "Fr. 150.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Famiglie e gruppi",
+      "titolo_de": "Familien und Gruppen",
+      "titolo_en": "Families and groups",
+      "nota": "Famiglie con 2 adulti e almeno 2 giovani fino a 15 anni; gruppi di giovani (scuole, scout, G+S) da lunedì a giovedì",
+      "nota_de": "Familien mit 2 Erwachsenen und mindestens 2 Kindern bis 15 Jahre; Jugendgruppen (Schulen, Pfadi, J+S) von Montag bis Donnerstag",
+      "nota_en": "Families with 2 adults and at least 2 children up to 15; youth groups (schools, scouts, Youth+Sport) from Monday to Thursday",
+      "righe": [
+        {
+          "voce": "Famiglie, venerdì-sabato: riduzione a persona",
+          "voce_de": "Familien, Freitag-Samstag: Rabatt pro Person",
+          "voce_en": "Families, Friday-Saturday: discount per person",
+          "prezzo": "Fr. 5.–"
+        },
+        {
+          "voce": "Famiglie, domenica-giovedì: riduzione a persona",
+          "voce_de": "Familien, Sonntag-Donnerstag: Rabatt pro Person",
+          "voce_en": "Families, Sunday-Thursday: discount per person",
+          "prezzo": "Fr. 10.–"
+        },
+        {
+          "voce": "Gruppi: bambini fino a 15 anni",
+          "voce_de": "Gruppen: Kinder bis 15 Jahre",
+          "voce_en": "Groups: children up to 15",
+          "prezzo": "Fr. 35.–"
+        },
+        {
+          "voce": "Gruppi: giovani da 15 a 18 anni",
+          "voce_de": "Gruppen: Jugendliche von 15 bis 18 Jahren",
+          "voce_en": "Groups: young people aged 15 to 18",
+          "prezzo": "Fr. 45.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Extra",
+      "titolo_de": "Extras",
+      "titolo_en": "Extras",
+      "nota": "Menu particolari per eventi da concordare con i gestori; sacco lenzuolo obbligatorio",
+      "nota_de": "Besondere Menüs für Anlässe nach Absprache mit den Hüttenwarten; Hüttenschlafsack obligatorisch",
+      "nota_en": "Special menus for events by arrangement with the hut keepers; sleeping-bag liner compulsory",
+      "righe": [
+        {
+          "voce": "Lunch da asporto",
+          "voce_de": "Lunch zum Mitnehmen",
+          "voce_en": "Packed lunch to take away",
+          "prezzo": "Fr. 12.–"
+        },
+        {
+          "voce": "Tè di giornata (1 l)",
+          "voce_de": "Tagestee (1 l)",
+          "voce_en": "Tea for the day (1 l)",
+          "prezzo": "Fr. 3.–"
+        },
+        {
+          "voce": "Doccia (a persona)",
+          "voce_de": "Dusche (pro Person)",
+          "voce_en": "Shower (per person)",
+          "prezzo": "Fr. 5.–"
+        },
+        {
+          "voce": "Sacco lenzuolo",
+          "voce_de": "Hüttenschlafsack",
+          "voce_en": "Sleeping-bag liner",
+          "prezzo": "Fr. 7.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Sala workshop",
+      "titolo_de": "Workshop-Raum",
+      "titolo_en": "Workshop room",
+      "nota": "Con proiettore e tavoli per circa 15 persone",
+      "nota_de": "Mit Beamer und Tischen für etwa 15 Personen",
+      "nota_en": "With projector and tables for about 15 people",
+      "righe": [
+        {
+          "voce": "Al giorno, senza pasti",
+          "voce_de": "Pro Tag, ohne Verpflegung",
+          "voce_en": "Per day, without meals",
+          "prezzo": "Fr. 200.–"
+        },
+        {
+          "voce": "Con pranzo o cena",
+          "voce_de": "Mit Mittag- oder Abendessen",
+          "voce_en": "With lunch or dinner",
+          "prezzo": "Fr. 100.–"
+        },
+        {
+          "voce": "Con mezza pensione",
+          "voce_de": "Mit Halbpension",
+          "voce_en": "With half board",
+          "prezzo": "gratis"
+        }
+      ]
+    }
+  ],
+  "prenotare": "- **Estate** (dal 1° maggio all’8 novembre 2026): aperto tutti i giorni.\n- **Inverno** (dal 9 novembre 2026 al 30 aprile 2027): dal venerdì a pranzo alla domenica a pranzo, sempre aperto nei festivi e nelle vacanze scolastiche; negli altri giorni su richiesta. Quando la capanna è chiusa resta accessibile solo l’entrata con i servizi e le bibite: **non si può pernottare**.\n- Riservazione online con il pulsante «Prenota». Annullamenti e modifiche senza penale entro le 18.00 di 2 giorni prima dell’arrivo fino a 9 persone, di 4 giorni prima da 10 persone; poi Fr. 50.– per persona e notte.\n- Check-in dalle 16.30 alle 18.00, check-out alle 9.00. Chi pernotta si annuncia all’arrivo e firma il libro degli ospiti.\n- Pagamento in contanti, EC, Visa o Twint.\n[Disposizioni per gli ospiti](docs/capanne/montebar/disposizioni-per-gli-ospiti.pdf)\n\n[Condizioni generali della Capanna Monte Bar](docs/capanne/montebar/cgc-capanna-monte-bar-it-2025.pdf)",
+  "prenotare_de": "- **Sommer** (1. Mai bis 8. November 2026): täglich offen.\n- **Winter** (9. November 2026 bis 30. April 2027): von Freitagmittag bis Sonntagmittag, an Feiertagen und in den Schulferien immer offen; an den übrigen Tagen auf Anfrage. Wenn die Hütte geschlossen ist, sind nur der Eingang mit Toiletten und Getränken zugänglich: **Übernachten ist dann nicht möglich**.\n- Reservation online mit der Schaltfläche «Reservieren». Annullierungen und Änderungen ohne Gebühr bis 18 Uhr 2 Tage vor der Ankunft für bis zu 9 Personen, 4 Tage vorher ab 10 Personen; danach Fr. 50.– pro Person und Nacht.\n- Check-in von 16.30 bis 18 Uhr, Check-out um 9 Uhr. Übernachtungsgäste melden sich bei der Ankunft und tragen sich ins Gästebuch ein.\n- Bezahlung bar, mit EC, Visa oder Twint.\n[Hinweise für die Gäste](docs/capanne/montebar/disposizioni-per-gli-ospiti.pdf)\n\n[Allgemeine Geschäftsbedingungen der Capanna Monte Bar](docs/capanne/montebar/cgc-capanna-monte-bar-it-2025.pdf)",
+  "prenotare_en": "- **Summer** (1 May to 8 November 2026): open every day.\n- **Winter** (9 November 2026 to 30 April 2027): always open from Friday noon to Sunday noon, on public holidays and during school holidays; on other days on request. When the hut is closed, only the entrance with toilets and drinks is accessible: **overnight stays are then not possible**.\n- Book online with the “Book” button. Cancellations and changes free of charge until 6 pm 2 days before arrival for up to 9 people, 4 days before for 10 people or more; after that CHF 50.– per person per night.\n- Check-in from 4.30 to 6 pm, check-out at 9 am. Overnight guests report on arrival and sign the guest book.\n- Payment in cash, by debit card, Visa or Twint.\n[Information for guests](docs/capanne/montebar/disposizioni-per-gli-ospiti.pdf)\n\n[General terms and conditions of Capanna Monte Bar](docs/capanne/montebar/cgc-capanna-monte-bar-it-2025.pdf)"
+}

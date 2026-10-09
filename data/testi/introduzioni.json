@@ -1,0 +1,32 @@
+{
+  "partecipare": {
+    "introduzione": "Le regole principali per chi partecipa alle gite e ai corsi della sezione, soci e non soci, in breve. Il testo completo è nel regolamento gite.",
+    "introduzione_de": "Die wichtigsten Regeln für alle, die an Touren und Kursen der Sektion teilnehmen, Mitglieder und Nichtmitglieder, kurz gefasst. Der vollständige Text steht im Tourenreglement (italienisch).",
+    "introduzione_en": "The main rules for anyone taking part in the section’s trips and courses, members and non-members, in brief. The full text is in the trip regulations (in Italian)."
+  },
+  "volontariato": {
+    "introduzione": "La sezione vive del volontariato: capigita, monitori, aiuti in capanna, chi scrive e chi fotografa. Non serve essere esperti, basta un po’ di tempo e voglia di montagna.",
+    "introduzione_de": "Die Sektion lebt von der Freiwilligenarbeit: Tourenleitende, Jugendleitende, Helferinnen und Helfer in den Hütten, wer schreibt und wer fotografiert. Man muss kein Profi sein, es braucht nur etwas Zeit und Lust auf Berge.",
+    "introduzione_en": "The section runs on volunteers: trip leaders, instructors, helpers in the huts, writers and photographers. You don’t need to be an expert, just some time and a love of the mountains."
+  },
+  "giovani": {
+    "introduzione": "Uscite di un giorno, fine settimana e campi di più giorni: alpinismo, arrampicata, sci alpinismo e molto altro, con monitori formati e guide alpine.",
+    "introduzione_de": "Tagestouren, Wochenenden und mehrtägige Lager: Hochtouren, Klettern, Skitouren und vieles mehr, mit ausgebildeten Leitenden und Bergführern.",
+    "introduzione_en": "Day trips, weekends and camps of several days: mountaineering, climbing, ski touring and much more, with trained instructors and mountain guides."
+  },
+  "senior": {
+    "introduzione": "Un gruppo di non più giovani con la passione per la montagna: la bellezza della natura, i piaceri della tavola e la nostra storia.",
+    "introduzione_de": "Eine Gruppe nicht mehr ganz Junger mit Leidenschaft für die Berge: die Schönheit der Natur, die Freuden der Tafel und unsere Geschichte.",
+    "introduzione_en": "A group of the no-longer-young with a passion for the mountains: the beauty of nature, the pleasures of the table and our history."
+  },
+  "corsi": {
+    "introduzione": "Corsi nei fine settimana, diretti da professionisti della montagna con monitori esperti: le basi per partecipare in sicurezza alle attività della sezione. Il programma dell’anno successivo esce entro novembre.",
+    "introduzione_de": "Kurse an Wochenenden, geleitet von Bergprofis mit erfahrenen Leitenden: die Grundlagen, um sicher an den Aktivitäten der Sektion teilzunehmen. Das Programm des folgenden Jahres erscheint bis November; die Kursunterlagen (PDF) sind auf Italienisch.",
+    "introduzione_en": "Weekend courses led by mountain professionals with experienced instructors: the basics for taking part safely in the section’s activities. The following year’s programme comes out by November; the course documents (PDF) are in Italian."
+  },
+  "noleggio": {
+    "introduzione": "Materiale in affitto per le attività della sezione e per le uscite private: alpinismo, cascate di ghiaccio, scialpinismo, arrampicata, racchette, escursionismo e bouldering.",
+    "introduzione_de": "Material zur Miete für die Aktivitäten der Sektion und für private Touren: Hochtouren, Eisfälle, Skitouren, Klettern, Schneeschuhtouren, Wandern und Bouldern.",
+    "introduzione_en": "Equipment for hire for the section’s activities and for private outings: mountaineering, ice falls, ski touring, climbing, snowshoeing, hiking and bouldering."
+  }
+}

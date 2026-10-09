@@ -6,7 +6,9 @@ Ogni capanna ha una cartella (es. "campotencia"):
   assets/img/capanne/<cartella>/foto/       gallerie: <gruppo>-<nn>-600.webp e -1200.webp (si mostrano tutte, in ordine)
   docs/capanne/<cartella>/                  PDF (schede degli itinerari, condizioni)
   capanne/<cartella>/<pagina>.html          sottopagine generate da pages.py (attività, storia, foto)
-I testi sono HTML; i percorsi sono relativi alla radice del sito (pages.py li sistema nelle sottopagine)."""
+I testi sono HTML; i percorsi sono relativi alla radice del sito (pages.py li sistema nelle sottopagine).
+Testo, nomi e ruoli dei guardiani, tariffe e note per prenotare non sono qui ma in data/testi/capanne/<cartella>.json
+(in tre lingue, modificabili dalla redazione in admin/); contenuti() in pages.py li aggiunge."""
 
 PRENOTA = "https://www.hut-reservation.org/reservation/book-hut/{}/wizard"
 
@@ -23,32 +25,7 @@ CONTENUTI = {
         cucina="""<p>Un’offerta semplice e genuina, di impronta nostrana ma non solo ticinese: piatti freddi con salumi e formaggi locali, zuppe, gnocchi freschi e polenta con vari accompagnamenti, secondo la stagione e la disponibilità.</p>
 <p>A chi pernotta proponiamo specialità del territorio, con un menu che cambia secondo l’occasione, ispirato dalla montagna e non solo.</p>
 <p>Vegetariani, vegani e chi segue diete speciali sono i benvenuti: avvisateci con largo anticipo, così da accontentare tutti.</p>""",
-        team=dict(img=("guardiani", "Valeria e Paco, guardiani della Capanna Campo Tencia", 1200, 899),
-                  testo="""<p>Ci piace definirci persone solari, positive e piene di energia, con tanta voglia di fare e di metterci in gioco. Prima gestori di un’osteria con alloggio, dal 2024 siamo i guardiani della Capanna Campo Tencia.</p>
-<p>Abbiamo viaggiato molto, scoprendo posti meravigliosi, ma accorgendoci anche di quanto è bello tornare sulle nostre montagne: è lì che ci sentiamo a casa. Dopo molte esperienze di lavoro e di gestione alberghiera abbiamo sentito il richiamo della montagna, che ci ha spinto a puntare più in alto e ad aprire questo sogno nel cassetto.</p>
-<p>Durante la stagione ci affiancano amici e volontari. Non vediamo l’ora di accogliervi in capanna!</p>
-<p><strong>Valeria e Paco</strong></p>"""),
-        tariffe=[
-            ("Soci CAS/FAT e club con diritto di reciprocità", "Pernottamento con mezza pensione (cena e colazione)",
-             [("Bambini fino a 7 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 45.–"), ("Giovani da 15 a 21 anni", "Fr. 58.–"),
-              ("Adulti dai 22 anni", "Fr. 75.–"), ("Guide alpine UIAGM", "Fr. 50.–")]),
-            ("Non soci", "Pernottamento con mezza pensione (cena e colazione)",
-             [("Bambini fino a 7 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 50.–"), ("Giovani da 15 a 21 anni", "Fr. 63.–"),
-              ("Adulti dai 22 anni", "Fr. 85.–")]),
-            ("Famiglie e gruppi", "Sconto infrasettimanale per famiglie (domenica-giovedì) e offerta per gruppi di giovani: scuole, scout, corsi G+S (lunedì-giovedì)",
-             [("Famiglie: riduzione per ogni bambino sotto i 15 anni", "Fr. 5.–"), ("Gruppi: bambini sotto i 15 anni", "Fr. 40.–"),
-              ("Gruppi: giovani da 15 a 18 anni", "Fr. 45.–")]),
-            ("Extra", "Per ragioni igieniche il sacco lenzuolo è obbligatorio",
-             [("Lunch", "Fr. 12.–"), ("Tè di giornata (1 l)", "Fr. 4.–"), ("Doccia (a persona)", "Fr. 5.–"),
-              ("Sacco lenzuolo monouso", "Fr. 7.–")]),
-        ],
-        prenotare=f"""<ul>
-<li><strong>Riservazione obbligatoria</strong>, online con il pulsante «Prenota».</li>
-<li>Disdette senza costi entro le 18.00 di <strong>due giorni prima</strong> della data riservata.</li>
-<li>Non si accettano riservazioni o richieste tramite social media: per informazioni chiamateci.</li>
-</ul>
-<p><a class="file-link" href="{CT_DOC}disposizioni-per-gli-ospiti.pdf">Disposizioni per gli ospiti</a></p>
-<p><a class="file-link" href="{CT_DOC}2020-cgc-capanne-cas-it.pdf">Condizioni generali delle capanne CAS</a></p>""",
+        team=dict(img=("guardiani", "Valeria e Paco, guardiani della Capanna Campo Tencia", 1200, 899)),
         accessi=f"""<p>D’estate la capanna si raggiunge facilmente a piedi, con itinerari adatti alle famiglie; d’inverno con gli sci da Dalpe per la Val Piumogna.</p>
 <p><strong>Come arrivare a Dalpe:</strong> da nord o da sud con l’autostrada A2, uscita Rodi-Quinto; con i mezzi pubblici fino a Rodi e da lì in <a href="https://www.postauto.ch/it" rel="noopener">autopostale</a>.</p>
 <ul>
@@ -205,32 +182,7 @@ CONTENUTI = {
 <p><strong>Importante:</strong> avvisateci in tempo se siete vegetariani o vegani, o se avete allergie o intolleranze: cercheremo di prepararvi un menu adatto.</p>
 <p>Le camere si assegnano secondo l’ordine delle riservazioni e la grandezza dei gruppi; non si possono riservare camere a uso esclusivo. Quando la capanna è custodita la mezza pensione è obbligatoria.</p>
 <p>I cani sono benvenuti, ma non sono ammessi nelle camere e negli spazi comuni: avvisateci prima dell’arrivo.</p>""",
-        team=dict(titolo="Il guardiano", img=("guardiano", "Emanuele Vellati, guardiano della Capanna Cristallina, nella neve con il Basodino sullo sfondo"),
-                  testo="""<p>Emanuele Vellati gestisce la capanna dall’inverno 2018. Elettricista e cuoco di formazione, la conduce con grande cura e dedizione, come mostrano le infrastrutture curate e l’ottima cucina. Appassionato alpinista in gioventù, oggi vive la montagna ogni giorno, come essenza del suo lavoro.</p>
-<p>D’estate e d’inverno lo affiancano numerosi aiutanti, amici e volontari del CAS Ticino, sempre felici di un piccolo ringraziamento. E poi c’è Jack, il più pacifico e curioso abitante della capanna, che ama la neve fresca quasi più di noi.</p>
-<p><strong>Emanuele</strong></p>""",
-                  persone=[("Jack", "Il cane della capanna, ama la neve fresca", "jack")]),
-        tariffe=[
-            ("Soci CAS/FAT e club con diritto di reciprocità", "Pernottamento con mezza pensione (cena e colazione), IVA e tassa di soggiorno incluse",
-             [("Bambini fino a 7 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 50.–"), ("Giovani da 15 a 21 anni", "Fr. 70.–"),
-              ("Adulti dai 22 anni", "Fr. 83.–"), ("Guide alpine", "Fr. 55.–")]),
-            ("Non soci", "Pernottamento con mezza pensione (cena e colazione), IVA e tassa di soggiorno incluse",
-             [("Bambini fino a 7 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 55.–"), ("Giovani da 15 a 21 anni", "Fr. 77.–"),
-              ("Adulti dai 22 anni", "Fr. 95.–")]),
-            ("Famiglie e gruppi", "Sconto infrasettimanale per famiglie (domenica-giovedì) e offerta per gruppi di giovani: scuole, scout, corsi G+S (lunedì-giovedì)",
-             [("Famiglie: riduzione per ogni bambino sotto i 15 anni", "Fr. 5.–"), ("Gruppi: bambini fino a 14 anni", "Fr. 40.–"),
-              ("Gruppi: ragazzi da 15 a 18 anni", "Fr. 50.–")]),
-            ("Extra", "Per ragioni igieniche il sacco lenzuolo è obbligatorio",
-             [("Lunch", "Fr. 12.–"), ("Tè in thermos per la giornata, con il lunch", "incluso"), ("Doccia (a persona)", "Fr. 5.–"),
-              ("Sacco lenzuolo monouso", "Fr. 7.–")]),
-        ],
-        prenotare="""<ul>
-<li><strong>Si accetta solo contante in franchi svizzeri</strong>, niente euro.</li>
-<li>Riservazione online con il pulsante «Prenota»: indicate allergie, intolleranze e vegetariani nell’apposita casella.</li>
-<li>Annullate la prenotazione entro <strong>due giorni prima dell’arrivo</strong>, se serve anche per telefono o e-mail; vale il regolamento sul mancato arrivo (no-show).</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/cristallina/disposizioni-per-gli-ospiti-1.pdf">Disposizioni per gli ospiti</a></p>
-<p><a class="file-link" href="docs/capanne/cristallina/2020-condizioni-generali-it.pdf">Condizioni generali delle capanne CAS</a></p>""",
+        team=dict(titolo="Il guardiano", img=("guardiano", "Emanuele Vellati, guardiano della Capanna Cristallina, nella neve con il Basodino sullo sfondo")),
         accessi="""<p>D’estate la capanna si raggiunge a piedi in qualche ora di cammino, per lo più su itinerari adatti alle famiglie; d’inverno con gli sci dalla Valle Bedretto, da Robiei o dalla Val Formazza.</p>
 <ul>
 <li>Da Ossasco: 3 h 30.</li>
@@ -322,33 +274,7 @@ CONTENUTI = {
 <p>A chi pernotta la cena propone piatti e specialità secondo i prodotti di stagione, e una ricca colazione dà la forza per nuove avventure.</p>
 <p><strong>Importante:</strong> avvisateci in tempo se siete vegetariani o vegani, o se avete allergie o intolleranze.</p>
 <p>I cani sono benvenuti, ma non nelle camere: per loro c’è una sistemazione all’esterno. Avvisateci prima se portate il vostro cane.</p>""",
-        team=dict(img=("guardiani", "Il guardiano e due aiutanti davanti all’entrata della capanna in pietra"),
-                  testo="""<p>Sono Lele, alla Capanna Adula dal 2024, insieme alla mia compagna Mirella. La passione per la montagna e l’esperienza come aiuto in altre capanne oltralpe mi hanno portato a lasciare il mio lavoro per vivere a contatto con la gente e la natura.</p>
-<p>Durante la stagione ci aiutano giovani che hanno voglia di vivere un’esperienza unica in quota. Un sogno diventato realtà.</p>""",
-                  persone=[("Raffaele «Lele» Demaldi", "Guardiano", "lele"), ("Mirella", "In capanna con Lele", "mirella")]),
-        tariffe=[
-            ("Soci CAS/FAT e club con diritto di reciprocità", "Pernottamento, cena (zuppa, insalata, piatto forte, dessert) e colazione, IVA inclusa",
-             [("Bambini fino a 7 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 45.–"), ("Giovani da 15 a 21 anni", "Fr. 58.–"),
-              ("Adulti dai 22 anni", "Fr. 75.–")]),
-            ("Non soci", "Pernottamento, cena (zuppa, insalata, piatto forte, dessert) e colazione, IVA inclusa",
-             [("Bambini fino a 7 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 50.–"), ("Giovani da 15 a 21 anni", "Fr. 63.–"),
-              ("Adulti dai 22 anni", "Fr. 85.–")]),
-            ("Famiglie e gruppi", "Sconto infrasettimanale per famiglie (domenica-giovedì) e prezzi per scuole, scout e G+S in settimana",
-             [("Famiglie: riduzione per ogni bambino sotto i 15 anni", "Fr. 5.–"), ("Gruppi: ragazzi da 8 a 14 anni", "Fr. 35.–"),
-              ("Gruppi: giovani da 15 a 21 anni", "Fr. 45.–")]),
-            ("Extra", "Per ragioni igieniche il sacco lenzuolo è obbligatorio",
-             [("Camera matrimoniale (supplemento per camera)", "Fr. 20.–"), ("Tè di marcia (1 l)", "Fr. 5.–"), ("Doccia (a persona)", "Fr. 5.–"),
-              ("Sacco lenzuolo monouso", "Fr. 7.–")]),
-        ],
-        prenotare="""<ul>
-<li>Riservazione online con il pulsante «Prenota».</li>
-<li>Disdette senza costi entro le 18.00 di <strong>due giorni prima</strong> della data riservata.</li>
-<li>Pagamento in contanti, con Twint o carta di credito.</li>
-<li>Non si accettano riservazioni o richieste tramite social media: per informazioni chiamateci.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/adula/disposizioni-per-gli-ospiti-1.pdf">Disposizioni per gli ospiti</a></p>
-<p><a class="file-link" href="docs/capanne/adula/2020-cgc-capanne-cas-it.pdf">Condizioni generali delle capanne CAS</a></p>
-<p><a class="file-link" href="docs/capanne/adula/pagamento-non-custodita-adula.pdf">Soggiorno invernale: promemoria per il pagamento</a></p>""",
+        team=dict(img=("guardiani", "Il guardiano e due aiutanti davanti all’entrata della capanna in pietra")),
         accessi="""<p><strong>D’estate</strong> la capanna si raggiunge facilmente dalla mulattiera pianeggiante della Val Carassino, partendo da Compietto. La valle è lunga circa 6 km e tocca due alpeggi, l’Alpe Bolla e l’Alpe Bresciana, dove si produce un ottimo formaggio che si gusta anche in capanna. Il fiume vicino ne fa una passeggiata ideale per le famiglie nelle giornate calde; in mountain bike basta circa un’ora.</p>
 <p><strong>D’inverno</strong> si sale con gli sci da Dangio per la Val Soi, oppure da Ghirone per il Luzzone e la Val Carassino, con neve sicura e preferibilmente a inizio primavera.</p>
 <ul>
@@ -454,32 +380,7 @@ CONTENUTI = {
 <p><strong>Importante:</strong> avvisateci in tempo se siete vegetariani o vegani, o se avete allergie o intolleranze.</p>
 <p>Per i bambini ci sono giochi, libri, carta e matite; lungo il sentiero, con un po’ di fortuna, si vedono le marmotte. I cani sono benvenuti ma non entrano in capanna: per la notte c’è la legnaia, riparata e asciutta, con coperta e ciotole. Avvisateci prima.</p>
 <p>D’estate la teleferica aiuta i rifornimenti, ma l’elicottero resta indispensabile: vi chiediamo di riportare a valle i vostri rifiuti.</p>""",
-        team=dict(titolo="Il guardiano", img=("fabio", "Fabio Merzaghi in cucina con le torte appena sfornate"),
-                  testo="""<p>Mi chiamo Fabio Merzaghi e sono cresciuto ai piedi del Monte Generoso, sulle rive del Lago di Lugano. La montagna è sempre stata la mia passione: d’inverno salgo le vette con le pelli di foca, d’estate arrampico.</p>
-<p>Lavorare in un rifugio era il mio sogno: l’ho realizzato nell’estate 2023 alla <a href="https://www.fornohuette.ch/" rel="noopener">Capanna del Forno</a>, e poi gestendo per un periodo la <a href="https://www.sac-bluemlisalp.ch/de/Baltschiederklause" rel="noopener">Baltschiederklause</a>, a 2783 m in Vallese. Ho seguito il corso per guardiani del Club Alpino Svizzero. Ingegnere meccanico di formazione, ho lasciato l’ufficio per un’avventura a contatto con la natura.</p>
-<p>La capanna si basa su prodotti locali di qualità e su pratiche sostenibili. E senza le mani magiche dei nostri fedelissimi aiutanti non ci sarebbe nemmeno una fetta di torta: grazie di cuore!</p>
-<p><strong>Fabio</strong></p>"""),
-        tariffe=[
-            ("Soci CAS/FAT e club con diritto di reciprocità", "Stagione 2026: pernottamento, cena (zuppa, insalata, piatto forte, dessert) e buffet di colazione, IVA e tassa di soggiorno incluse",
-             [("Bambini fino a 7 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 50.–"), ("Giovani da 15 a 21 anni", "Fr. 65.–"),
-              ("Adulti dai 22 anni", "Fr. 82.–"), ("Guide alpine", "Fr. 52.–")]),
-            ("Non soci", "Stagione 2026: pernottamento, cena e buffet di colazione, IVA e tassa di soggiorno incluse",
-             [("Bambini fino a 7 anni", "Fr. 32.–"), ("Ragazzi da 8 a 14 anni", "Fr. 55.–"), ("Giovani da 15 a 21 anni", "Fr. 72.–"),
-              ("Adulti dai 22 anni", "Fr. 95.–")]),
-            ("Famiglie e gruppi", "Sconto infrasettimanale per famiglie (domenica-giovedì) e prezzi per scuole, scout e G+S (lunedì-giovedì)",
-             [("Famiglie: riduzione per ogni bambino sotto i 15 anni", "Fr. 5.–"), ("Gruppi: ragazzi da 8 a 14 anni", "Fr. 40.–"),
-              ("Gruppi: giovani da 15 a 18 anni", "Fr. 50.–")]),
-            ("Extra", "Per ragioni igieniche il sacco lenzuolo è obbligatorio",
-             [("Lunch", "Fr. 10.–"), ("Tè (1 l)", "Fr. 3.–"), ("Doccia (a persona)", "Fr. 5.–"),
-              ("Sacco lenzuolo monouso", "Fr. 7.–"), ("Sacco lenzuolo a noleggio", "Fr. 5.–")]),
-        ],
-        prenotare="""<ul>
-<li>Riservazione online con il pulsante «Prenota»; per l’ultimo momento telefonate.</li>
-<li><strong>Pagamento solo in contanti</strong>, in franchi o in euro.</li>
-<li>Annullamenti e modifiche gratuiti entro le 18.00 di due giorni prima dell’arrivo; entro le 18.00 del giorno prima Fr. 30.– per persona e notte; mancato arrivo non annunciato Fr. 50.– per persona e notte.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/motterascio/disposizioni-per-gli-ospiti-1.pdf">Disposizioni per gli ospiti</a></p>
-<p><a class="file-link" href="docs/capanne/motterascio/cgc-capanne-cas.pdf">Condizioni generali delle capanne CAS</a></p>""",
+        team=dict(titolo="Il guardiano", img=("fabio", "Fabio Merzaghi in cucina con le torte appena sfornate")),
         accessi="""<p>D’estate la capanna si raggiunge facilmente a piedi, per lo più su itinerari adatti alle famiglie. D’inverno si sale con gli sci per la Val Camadra e il Passo della Greina (5-6 h), solo con neve assestata e quando i pendii laterali si sono scaricati.</p>
 <ul>
 <li>Dal Lago di Luzzone, Alpe Garzott: 2 h.</li>
@@ -576,36 +477,7 @@ CONTENUTI = {
 <li>Griglia in terrazza d’estate, selvaggina in autunno, fondue al formaggio d’inverno.</li>
 </ul>
 <p>Colazione dalle 7.45 (d’inverno dalle 8.00). I cani non sono ammessi in capanna; i minorenni sono benvenuti se accompagnati da un adulto. Dopo le 22.00 rispettate chi dorme.</p>""",
-        team=dict(titolo="I gestori", img=("gestori", "James Mauri e Serge Santese sui pascoli davanti alla capanna"),
-                  testo="""<p>Dal 2020 la capanna è gestita da James Mauri e Serge «Seo» Santese, con esperienze in ottime cucine del cantone e non solo. Siamo felici di fare quello che facciamo: vivere qui è una scelta, e soprattutto una bella scuola di vita.</p>
-<p><strong>James e Seo</strong></p>"""),
-        tariffe=[
-            ("Soci CAS/FAT e club con diritto di reciprocità", "Pernottamento con mezza pensione",
-             [("Bambini fino a 7 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 40.–"), ("Giovani da 15 a 21 anni", "Fr. 60.–"),
-              ("Adulti dai 22 anni", "Fr. 80.–")]),
-            ("Non soci", "Pernottamento con mezza pensione",
-             [("Bambini fino a 7 anni", "Fr. 30.–"), ("Ragazzi da 8 a 14 anni", "Fr. 45.–"), ("Giovani da 15 a 21 anni", "Fr. 65.–"),
-              ("Adulti dai 22 anni", "Fr. 95.–")]),
-            ("Camera doppia", "Con letto matrimoniale e biancheria fresca",
-             [("Per persona", "Fr. 120.–"), ("Uso singolo", "Fr. 150.–")]),
-            ("Famiglie e gruppi", "Famiglie con 2 adulti e almeno 2 giovani fino a 15 anni; gruppi di giovani (scuole, scout, G+S) da lunedì a giovedì",
-             [("Famiglie, venerdì-sabato: riduzione a persona", "Fr. 5.–"), ("Famiglie, domenica-giovedì: riduzione a persona", "Fr. 10.–"),
-              ("Gruppi: bambini fino a 15 anni", "Fr. 35.–"), ("Gruppi: giovani da 15 a 18 anni", "Fr. 45.–")]),
-            ("Extra", "Menu particolari per eventi da concordare con i gestori; sacco lenzuolo obbligatorio",
-             [("Lunch da asporto", "Fr. 12.–"), ("Tè di giornata (1 l)", "Fr. 3.–"), ("Doccia (a persona)", "Fr. 5.–"),
-              ("Sacco lenzuolo", "Fr. 7.–")]),
-            ("Sala workshop", "Con proiettore e tavoli per circa 15 persone",
-             [("Al giorno, senza pasti", "Fr. 200.–"), ("Con pranzo o cena", "Fr. 100.–"), ("Con mezza pensione", "gratis")]),
-        ],
-        prenotare="""<ul>
-<li><strong>Estate</strong> (dal 1° maggio all’8 novembre 2026): aperto tutti i giorni.</li>
-<li><strong>Inverno</strong> (dal 9 novembre 2026 al 30 aprile 2027): dal venerdì a pranzo alla domenica a pranzo, sempre aperto nei festivi e nelle vacanze scolastiche; negli altri giorni su richiesta. Quando la capanna è chiusa resta accessibile solo l’entrata con i servizi e le bibite: <strong>non si può pernottare</strong>.</li>
-<li>Riservazione online con il pulsante «Prenota». Annullamenti e modifiche senza penale entro le 18.00 di 2 giorni prima dell’arrivo fino a 9 persone, di 4 giorni prima da 10 persone; poi Fr. 50.– per persona e notte.</li>
-<li>Check-in dalle 16.30 alle 18.00, check-out alle 9.00. Chi pernotta si annuncia all’arrivo e firma il libro degli ospiti.</li>
-<li>Pagamento in contanti, EC, Visa o Twint.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/montebar/disposizioni-per-gli-ospiti.pdf">Disposizioni per gli ospiti</a></p>
-<p><a class="file-link" href="docs/capanne/montebar/cgc-capanna-monte-bar-it-2025.pdf">Condizioni generali della Capanna Monte Bar</a></p>""",
+        team=dict(titolo="I gestori", img=("gestori", "James Mauri e Serge Santese sui pascoli davanti alla capanna")),
         accessi="""<p>A piedi o in mountain bike la capanna si raggiunge senza grosse difficoltà, per lo più su itinerari adatti alle famiglie. Anche d’inverno si arriva con gli sci o le racchette, ricordando che in montagna le condizioni possono essere diverse dal fondovalle. I posteggi in valle sono pochi: meglio i mezzi pubblici.</p>
 <ul>
 <li>Da Corticiasca: 1 h 30.</li>
@@ -706,25 +578,6 @@ CONTENUTI = {
         cartella="baitadelluca",
         capanna="""<p>La baita ha 16 posti letto in due camere da 4 e da 12, un refettorio con cucina a gas e camino a legna, acqua calda e doccia; l’illuminazione è a pannelli solari. Piatti e pentole sono a disposizione e ci sono bibite in quantità limitata. Ricezione discreta, niente wi-fi e niente telefono.</p>
 <p>Non è custodita: la porta è chiusa e il codice per entrare si chiede alla responsabile. Facile e veloce da raggiungere, è usata anche per corsi, giornate di formazione o semplicemente per una cena in compagnia.</p>""",
-        tariffe=[
-            ("Soci CAS/FAT/CAI/DAV", "Pernottamento, tasse incluse",
-             [("Adulti dai 22 anni", "Fr. 15.–"), ("Giovani da 6 a 21 anni, aspiranti guida e capigita CAS", "Fr. 8.–"),
-              ("Bambini fino a 5 anni", "gratis"), ("Guide alpine UIAGM", "gratis")]),
-            ("Non soci", "Pernottamento, tasse incluse",
-             [("Adulti dai 20 anni", "Fr. 25.–"), ("Giovani da 6 a 19 anni", "Fr. 12.–"), ("Bambini fino a 5 anni", "gratis")]),
-            ("Supplementi", "Il sacco lenzuolo è obbligatorio e non è disponibile in baita",
-             [("Uso del gas per cucinare (al giorno)", "Fr. 5.–"), ("Uso della legna (al giorno)", "Fr. 5.–"), ("Doccia (a persona)", "Fr. 5.–")]),
-        ],
-        prenotare="""<ul>
-<li><strong>Prenotazione indispensabile</strong> via e-mail a <a href="mailto:baitaluca@casticino.ch">baitaluca@casticino.ch</a>, con nome, cognome, indirizzo e numero di cellulare.</li>
-<li>Disdette senza costi entro le 18.00 di <strong>due giorni prima</strong> della data riservata.</li>
-<li>Il codice per accedere alla chiave lo danno i responsabili; d’inverno la porta si apre su richiesta, secondo il meteo.</li>
-<li>Portate sacco lenzuolo e federa del cuscino (55×80).</li>
-<li>Pagamento con il codice QR (nel libro della baita) o con Twint.</li>
-<li>Divieto assoluto di fumare; i cani sono ammessi solo nel soggiorno, non nel dormitorio.</li>
-<li>Non si accettano riservazioni o richieste tramite social media: per informazioni chiamate.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/baitadelluca/2020-cgc-capanne-cas-it.pdf">Condizioni generali delle capanne CAS</a></p>""",
         accessi="""<ul>
 <li>Da Rosone (bus): 45 min, +270 m, T2 (<a href="https://map.schweizmobil.ch/?lang=it&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2722290&amp;N=1102884&amp;layers=Wanderland%2CStation&amp;trackId=5273099" rel="noopener">percorso</a>).</li>
 <li>Da Sonvico (bus): 1 h 45, +500 m, T2 (<a href="https://map.schweizmobil.ch/?lang=it&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2721523&amp;N=1102174&amp;layers=Wanderland%2CStation&amp;trackId=5273106" rel="noopener">percorso</a>).</li>

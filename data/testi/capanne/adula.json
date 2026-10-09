@@ -1,0 +1,156 @@
+{
+  "guardiani": "Sono Lele, alla Capanna Adula dal 2024, insieme alla mia compagna Mirella. La passione per la montagna e l’esperienza come aiuto in altre capanne oltralpe mi hanno portato a lasciare il mio lavoro per vivere a contatto con la gente e la natura.\n\nDurante la stagione ci aiutano giovani che hanno voglia di vivere un’esperienza unica in quota. Un sogno diventato realtà.",
+  "guardiani_de": "Ich bin Lele, seit 2024 auf der Capanna Adula, zusammen mit meiner Partnerin Mirella. Die Leidenschaft für die Berge und die Erfahrung als Helfer in anderen Hütten jenseits der Alpen haben mich dazu gebracht, meinen Beruf aufzugeben, um mit den Menschen und der Natur zu leben.\n\nWährend der Saison helfen uns junge Leute, die Lust auf ein einzigartiges Erlebnis in der Höhe haben. Ein Traum, der wahr geworden ist.",
+  "guardiani_en": "I’m Lele, at Capanna Adula since 2024 together with my partner Mirella. My passion for the mountains and my experience as a helper in other huts on the far side of the Alps led me to give up my job to live with people and nature.\n\nDuring the season we are helped by young people keen on a unique experience at altitude. A dream come true.",
+  "persone": [
+    {
+      "nome": "Raffaele «Lele» Demaldi",
+      "ruolo": "Guardiano",
+      "ruolo_de": "Hüttenwart",
+      "ruolo_en": "Hut keeper",
+      "foto": "lele"
+    },
+    {
+      "nome": "Mirella",
+      "ruolo": "In capanna con Lele",
+      "ruolo_de": "Mit Lele in der Hütte",
+      "ruolo_en": "With Lele at the hut",
+      "foto": "mirella"
+    }
+  ],
+  "tariffe": [
+    {
+      "titolo": "Soci CAS/FAT e club con diritto di reciprocità",
+      "titolo_de": "Mitglieder SAC/FAT und Gegenrechtsvereine",
+      "titolo_en": "Members of SAC/FAT and reciprocal clubs",
+      "nota": "Pernottamento, cena (zuppa, insalata, piatto forte, dessert) e colazione, IVA inclusa",
+      "nota_de": "Übernachtung, Abendessen (Suppe, Salat, Hauptgang, Dessert) und Frühstück, MWST inbegriffen",
+      "nota_en": "Overnight stay, dinner (soup, salad, main course, dessert) and breakfast, VAT included",
+      "righe": [
+        {
+          "voce": "Bambini fino a 7 anni",
+          "voce_de": "Kinder bis 7 Jahre",
+          "voce_en": "Children up to 7",
+          "prezzo": "Fr. 30.–"
+        },
+        {
+          "voce": "Ragazzi da 8 a 14 anni",
+          "voce_de": "Kinder von 8 bis 14 Jahren",
+          "voce_en": "Children aged 8 to 14",
+          "prezzo": "Fr. 45.–"
+        },
+        {
+          "voce": "Giovani da 15 a 21 anni",
+          "voce_de": "Jugendliche von 15 bis 21 Jahren",
+          "voce_en": "Young people aged 15 to 21",
+          "prezzo": "Fr. 58.–"
+        },
+        {
+          "voce": "Adulti dai 22 anni",
+          "voce_de": "Erwachsene ab 22 Jahren",
+          "voce_en": "Adults from 22",
+          "prezzo": "Fr. 75.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Non soci",
+      "titolo_de": "Nichtmitglieder",
+      "titolo_en": "Non-members",
+      "nota": "Pernottamento, cena (zuppa, insalata, piatto forte, dessert) e colazione, IVA inclusa",
+      "nota_de": "Übernachtung, Abendessen (Suppe, Salat, Hauptgang, Dessert) und Frühstück, MWST inbegriffen",
+      "nota_en": "Overnight stay, dinner (soup, salad, main course, dessert) and breakfast, VAT included",
+      "righe": [
+        {
+          "voce": "Bambini fino a 7 anni",
+          "voce_de": "Kinder bis 7 Jahre",
+          "voce_en": "Children up to 7",
+          "prezzo": "Fr. 30.–"
+        },
+        {
+          "voce": "Ragazzi da 8 a 14 anni",
+          "voce_de": "Kinder von 8 bis 14 Jahren",
+          "voce_en": "Children aged 8 to 14",
+          "prezzo": "Fr. 50.–"
+        },
+        {
+          "voce": "Giovani da 15 a 21 anni",
+          "voce_de": "Jugendliche von 15 bis 21 Jahren",
+          "voce_en": "Young people aged 15 to 21",
+          "prezzo": "Fr. 63.–"
+        },
+        {
+          "voce": "Adulti dai 22 anni",
+          "voce_de": "Erwachsene ab 22 Jahren",
+          "voce_en": "Adults from 22",
+          "prezzo": "Fr. 85.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Famiglie e gruppi",
+      "titolo_de": "Familien und Gruppen",
+      "titolo_en": "Families and groups",
+      "nota": "Sconto infrasettimanale per famiglie (domenica-giovedì) e prezzi per scuole, scout e G+S in settimana",
+      "nota_de": "Familienrabatt unter der Woche (Sonntag-Donnerstag) und Preise für Schulen, Pfadi und J+S unter der Woche",
+      "nota_en": "Family discount on weekdays (Sunday-Thursday) and prices for schools, scouts and Youth+Sport on weekdays",
+      "righe": [
+        {
+          "voce": "Famiglie: riduzione per ogni bambino sotto i 15 anni",
+          "voce_de": "Familien: Rabatt pro Kind unter 15 Jahren",
+          "voce_en": "Families: discount per child under 15",
+          "prezzo": "Fr. 5.–"
+        },
+        {
+          "voce": "Gruppi: ragazzi da 8 a 14 anni",
+          "voce_de": "Gruppen: Kinder von 8 bis 14 Jahren",
+          "voce_en": "Groups: children aged 8 to 14",
+          "prezzo": "Fr. 35.–"
+        },
+        {
+          "voce": "Gruppi: giovani da 15 a 21 anni",
+          "voce_de": "Gruppen: Jugendliche von 15 bis 21 Jahren",
+          "voce_en": "Groups: young people aged 15 to 21",
+          "prezzo": "Fr. 45.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Extra",
+      "titolo_de": "Extras",
+      "titolo_en": "Extras",
+      "nota": "Per ragioni igieniche il sacco lenzuolo è obbligatorio",
+      "nota_de": "Aus hygienischen Gründen ist der Hüttenschlafsack obligatorisch",
+      "nota_en": "For hygiene reasons a sleeping-bag liner is compulsory",
+      "righe": [
+        {
+          "voce": "Camera matrimoniale (supplemento per camera)",
+          "voce_de": "Doppelzimmer (Zuschlag pro Zimmer)",
+          "voce_en": "Double room (supplement per room)",
+          "prezzo": "Fr. 20.–"
+        },
+        {
+          "voce": "Tè di marcia (1 l)",
+          "voce_de": "Marschtee (1 l)",
+          "voce_en": "Tea for the walk (1 l)",
+          "prezzo": "Fr. 5.–"
+        },
+        {
+          "voce": "Doccia (a persona)",
+          "voce_de": "Dusche (pro Person)",
+          "voce_en": "Shower (per person)",
+          "prezzo": "Fr. 5.–"
+        },
+        {
+          "voce": "Sacco lenzuolo monouso",
+          "voce_de": "Einweg-Hüttenschlafsack",
+          "voce_en": "Disposable sleeping-bag liner",
+          "prezzo": "Fr. 7.–"
+        }
+      ]
+    }
+  ],
+  "prenotare": "- Riservazione online con il pulsante «Prenota».\n- Disdette senza costi entro le 18.00 di **due giorni prima** della data riservata.\n- Pagamento in contanti, con Twint o carta di credito.\n- Non si accettano riservazioni o richieste tramite social media: per informazioni chiamateci.\n[Disposizioni per gli ospiti](docs/capanne/adula/disposizioni-per-gli-ospiti-1.pdf)\n\n[Condizioni generali delle capanne CAS](docs/capanne/adula/2020-cgc-capanne-cas-it.pdf)\n\n[Soggiorno invernale: promemoria per il pagamento](docs/capanne/adula/pagamento-non-custodita-adula.pdf)",
+  "prenotare_de": "- Reservation online mit der Schaltfläche «Reservieren».\n- Kostenlose Annullierung bis 18 Uhr **zwei Tage vor** dem reservierten Datum.\n- Bezahlung bar, mit Twint oder Kreditkarte.\n- Keine Reservationen oder Anfragen über soziale Medien: Rufen Sie uns bitte an.\n[Hinweise für die Gäste](docs/capanne/adula/disposizioni-per-gli-ospiti-1.pdf)\n\n[Allgemeine Geschäftsbedingungen der SAC-Hütten](docs/capanne/adula/2020-cgc-capanne-cas-it.pdf)\n\n[Aufenthalt im Winter: Merkblatt zur Bezahlung](docs/capanne/adula/pagamento-non-custodita-adula.pdf)",
+  "prenotare_en": "- Book online with the “Book” button.\n- Free cancellation until 6 pm **two days before** the booked date.\n- Payment in cash, by Twint or by credit card.\n- No bookings or enquiries via social media: please phone us.\n[Information for guests](docs/capanne/adula/disposizioni-per-gli-ospiti-1.pdf)\n\n[General terms and conditions of SAC huts](docs/capanne/adula/2020-cgc-capanne-cas-it.pdf)\n\n[Staying in winter: how to pay](docs/capanne/adula/pagamento-non-custodita-adula.pdf)"
+}

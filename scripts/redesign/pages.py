@@ -512,7 +512,38 @@ def capanna(file):
 
 
 def contenuti(file):
-    return {"it": CONTENUTI, "de": CONTENUTI_DE, "en": CONTENUTI_EN}[LINGUA["lang"]].get(file)
+    """CONTENUTI nella lingua corrente, con i testi che la redazione cambia da admin/ («Testi del sito» › Capanne):
+    guardiani, tariffe e note per prenotare, in data/testi/capanne/<cartella>.json."""
+    c = {"it": CONTENUTI, "de": CONTENUTI_DE, "en": CONTENUTI_EN}[LINGUA["lang"]].get(file)
+    if not c or not os.path.exists(os.path.join(ROOT, "data", "testi", "capanne", c["cartella"] + ".json")):
+        return c
+    d = testi(f"capanne/{c['cartella']}")
+    c = dict(c)
+    if c.get("team"):
+        c["team"] = dict(c["team"], testo=testo_md(d, "guardiani"),
+                         persone=[(virgolette(esc(p["nome"])), testo_campo(p, "ruolo"), p["foto"]) for p in d.get("persone", []) if p.get("foto")])
+    if d.get("tariffe"):
+        c["tariffe"] = [(testo_campo(t, "titolo"), testo_campo(t, "nota"),
+                         [(testo_campo(r, "voce"), prezzo_l(r.get("prezzo") or "")) for r in t.get("righe", [])])
+                        for t in d["tariffe"]]
+    c["prenotare"] = testo_md(d, "prenotare")
+    return c
+
+
+def virgolette(t):
+    """«…» italiane e tedesche diventano “…” nelle pagine inglesi."""
+    return t.replace("«", "“").replace("»", "”") if en() else t
+
+
+PREZZI_L = {"incluso": ("inbegriffen", "included"), "gratis": ("gratis", "free")}
+
+
+def prezzo_l(p):
+    """Prezzo scritto in italiano («Fr. 30.–», «gratis»): in inglese CHF, le parole note tradotte."""
+    p = p.strip()
+    if p.lower() in PREZZI_L:
+        return tr(p, *PREZZI_L[p.lower()])
+    return esc(re.sub(r"^Fr\.\s*", "CHF ", p) if en() else p)
 
 
 def pubblica(nome, html):
@@ -1426,14 +1457,12 @@ def capigita():
 
 
 def soccorso():
+    d = testi("soccorso")
     emergenza = [("Rega", f'<a class="num" href="tel:1414">1414</a> <span class="small">{tr("dall’estero", "aus dem Ausland", "from abroad")} <a class="num" href="tel:+41333333333">+41 333 333 333</a></span>'),
                  (tr("Ambulanza", "Sanität", "Ambulance"), '<a class="num" href="tel:144">144</a>'),
                  (tr("Emergenza europeo", "Europäischer Notruf", "European emergency number"), '<a class="num" href="tel:112">112</a>')]
     titolo = tr("Soccorso", "Bergrettung", "Mountain rescue")
-    body = page_hero([sez_crumb(), (titolo, None)], titolo, tr(
-                         "La sezione coordina il soccorso alpino nel Sottoceneri, con volontari formati che intervengono in montagna insieme al Soccorso Alpino Svizzero e alla Rega.",
-                         "Die Sektion koordiniert die Bergrettung im Sottoceneri, mit ausgebildeten Freiwilligen, die zusammen mit der Alpinen Rettung Schweiz und der Rega im Gebirge im Einsatz sind.",
-                         "The section coordinates mountain rescue in the Sottoceneri, with trained volunteers who work in the mountains alongside Swiss Alpine Rescue and Rega."),
+    body = page_hero([sez_crumb(), (titolo, None)], titolo, testo_campo(d, "introduzione"),
                      figure=img("attivita/soccorso-4x5", tr("Soccorritori con casco e imbragatura recuperano una persona in barella in una gola rocciosa",
                                                            "Retter mit Helm und Klettergurt bergen eine Person auf einer Trage in einer Felsschlucht",
                                                            "Rescuers with helmets and harnesses recover a person on a stretcher in a rocky gorge"), 525, 657, lazy=False)
@@ -1457,14 +1486,10 @@ def soccorso():
 <div class="container detail">
 <div class="detail-intro">
 <h2 id="colonna-h" class="h2">{tr("La colonna<br>di soccorso", "Die Rettungs­<br>station", "The rescue<br>team")}</h2>
-<p>{tr("Dal 1918, quando nacquero le prime stazioni di soccorso alpino a Faido, Airolo e Olivone, la sezione è parte del soccorso in montagna in Ticino.",
-       "Seit 1918, als in Faido, Airolo und Olivone die ersten Bergrettungsstationen entstanden, ist die Sektion Teil der Bergrettung im Tessin.",
-       "Since 1918, when the first mountain rescue stations were set up in Faido, Airolo and Olivone, the section has been part of mountain rescue in Ticino.")}</p>
+<p>{testo_campo(d, "colonna")}</p>
 </div>
 <div class="prose" data-reveal>
-<p>{tr("Qui troverai presto le informazioni sulla colonna di soccorso della sezione: chi la compone, come è organizzata, la formazione dei soccorritori e come entrare a farne parte.",
-       "Hier finden Sie bald Informationen über die Rettungsstation der Sektion: wer dazugehört, wie sie organisiert ist, die Ausbildung der Retterinnen und Retter und wie man mitmachen kann.",
-       "Information about the section’s rescue team will be here soon: who is in it, how it is organised, how rescuers are trained and how to join.")}</p>
+{testo_md(d, "colonna_testo")}
 <div class="actions"><a class="btn btn--secondary" href="https://www.alpinerettung.ch" rel="noopener">{tr("Soccorso Alpino Svizzero", "Alpine Rettung Schweiz", "Swiss Alpine Rescue")}</a><a class="btn btn--secondary" href="https://www.rega.ch" rel="noopener">Rega</a></div>
 </div>
 </div>
@@ -1515,8 +1540,27 @@ def rubrica():
 
 # Testi modificabili dalla redazione (admin/, «Testi del sito»): data/testi/<pagina>.json. Ogni campo ha l'italiano e,
 # facoltativi, _de e _en; se la traduzione manca, la pagina tradotta mostra l'italiano marcato lang="it".
+_TESTI = {}
+
+
 def testi(nome):
-    return json.load(open(os.path.join(ROOT, "data", "testi", f"{nome}.json"), encoding="utf-8"))
+    if nome not in _TESTI:
+        _TESTI[nome] = json.load(open(os.path.join(ROOT, "data", "testi", f"{nome}.json"), encoding="utf-8"))
+    return _TESTI[nome]
+
+
+def testo_md(d, k, in_riga=False):
+    """Campo k scritto in Markdown (paragrafi, elenchi, grassetto, link), nella lingua della pagina;
+    i link ai PDF prendono l'icona del file (.file-link). in_riga: una riga sola, senza <p> (es. in una tabella)."""
+    lang = LINGUA["lang"]
+    t = (d.get(f"{k}_{lang}") or "").strip() if lang != "it" else ""
+    manca = not t and lang != "it"
+    h = news_util.md_html(t or (d.get(k) or "").strip())
+    h = re.sub(r'<a href="([^"]+\.pdf)">', r'<a class="file-link" href="\1">', h)
+    if in_riga:
+        h = re.sub(r"^<p>(.*)</p>$", r"\1", h, flags=re.S)
+        return f'<span lang="it">{h}</span>' if manca and h else h
+    return f'<div lang="it">\n{h}\n</div>' if manca and h else h
 
 
 def testo_campo(d, k, semplice=False):
@@ -2471,55 +2515,52 @@ def informazione():
 
 
 def adesione():
-    prices = [("Singolo", "Socio individuale", "105", "30"),
-              ("Famiglia", "Genitori e figli fino a 17 anni", "179", "50"),
-              ("Giovane", "Fino a 22 anni", "50", "30")]
+    d = testi("adesione")
     cards = "\n".join(f"""<article class="price">
-<h3 class="h3">{t}</h3>
-<p>{who}</p>
-<div class="amount"><small>CHF</small>{amt}</div>
-<p class="small">+ CHF {fee} alla prima iscrizione</p>
-</article>""" for t, who, amt, fee in prices)
-    rows = [("Capanne", "Fino al 50% di sconto nelle capanne di tutta la Svizzera e in alcuni paesi europei"),
-            ("Portale escursionistico", "Accesso gratuito a cartine e itinerari sul portale del CAS"),
-            ("Formazione", "Riduzioni sui corsi"),
-            ("Pubblicazioni", "La rivista «Le Alpi», il periodico della sezione e sconti sulle edizioni CAS"),
-            ("Arrampicata", "Accesso gratuito alla palestra di arrampicata San Paolo"),
-            ("Tessera digitale", 'La tessera di socio è anche nell’app SAC-CAS (<a href="https://apps.apple.com/ch/app/sac-cas/id1592646841" rel="noopener">App Store</a>, <a href="https://play.google.com/store/apps/details?id=ch.sac_cas" rel="noopener">Google Play</a>): si accede con l’account del CAS, funziona anche senza rete e il codice QR vale nelle capanne')]
-    join = "https://portal.sac-cas.ch/it/groups/6783/self_registration"
-    body = page_hero([("Adesione", None)], "Diventa socio",
-                     "Entra nella sezione ticinese del Club Alpino Svizzero: gite, corsi, capanne e una comunità che ama la montagna.",
-                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="{join}">Iscriviti sul sito del CAS <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
+<h3 class="h3">{testo_campo(q, "nome")}</h3>
+<p>{testo_campo(q, "chi")}</p>
+<div class="amount"><small>CHF</small>{esc(q["quota"])}</div>
+<p class="small">{tr("+ CHF {} alla prima iscrizione", "+ CHF {} beim ersten Beitritt", "+ CHF {} when you first join").format(esc(q["tassa"]))}</p>
+</article>""" for q in d["quote"])
+    rows = [(testo_campo(v, "etichetta"), testo_md(v, "testo", in_riga=True)) for v in d["vantaggi"]]
+    join = tr("https://portal.sac-cas.ch/it/groups/6783/self_registration", "https://portal.sac-cas.ch/de/groups/6783/self_registration",
+              "https://portal.sac-cas.ch/it/groups/6783/self_registration")
+    iscriviti = tr("Iscriviti sul sito del CAS", "Auf der SAC-Website beitreten", "Join on the SAC website")
+    body = page_hero([(tr("Adesione", "Mitgliedschaft", "Membership"), None)], testo_campo(d, "titolo"), testo_campo(d, "introduzione"),
+                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="{join}">{iscriviti} <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
 
 <figure class="band">
-{pic("paesaggi/laghetto-alpino", "Laghetto alpino tra le rocce, con le montagne sullo sfondo", mobile="paesaggi/laghetto-alpino-4x3", w=2000, h=1126, lazy=False)}
+{pic("paesaggi/laghetto-alpino", tr("Laghetto alpino tra le rocce, con le montagne sullo sfondo", "Bergsee zwischen Felsen, im Hintergrund die Berge", "Mountain lake among rocks, with mountains behind"),
+     mobile="paesaggi/laghetto-alpino-4x3", w=2000, h=1126, lazy=False)}
 {credito()}
 </figure>
 
 <section class="section" aria-labelledby="quote-h">
 <div class="container">
-<div class="section-head"><h2 id="quote-h" class="h2">Quote annuali</h2></div>
+<div class="section-head"><h2 id="quote-h" class="h2">{tr("Quote annuali", "Jahresbeiträge", "Annual fees")}</h2></div>
 <div class="prices" data-reveal>
 {cards}
 </div>
-<p class="note">Sei già socio di un’altra sezione CAS? Puoi chiedere la doppia affiliazione e pagare solo la quota della Sezione Ticino.</p>
+<p class="note">{testo_campo(d, "nota")}</p>
 </div>
 </section>
 
 <section class="section--surface" aria-labelledby="vantaggi-h">
 <div class="container detail">
 <div class="detail-intro">
-<h2 id="vantaggi-h" class="h2">Cosa ricevi</h2>
-<div><a class="btn btn--primary" href="{join}">Iscriviti sul sito del CAS <span class="arrow" aria-hidden="true">→</span></a></div>
+<h2 id="vantaggi-h" class="h2">{tr("Cosa ricevi", "Ihre Vorteile", "Your benefits")}</h2>
+<div><a class="btn btn--primary" href="{join}">{iscriviti} <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
 <div data-reveal>
 {facts(rows)}
 </div>
 </div>
 </section>"""
-    return page("adesione.html", "Diventa socio | CAS Ticino",
-                "Diventa socio della Sezione Ticino del Club Alpino Svizzero: quote annuali per singoli, famiglie e giovani, e vantaggi per i soci.",
-                body, og="paesaggi/laghetto-alpino-2000")
+    return sezione_page("adesione.html", f'{testo_campo(d, "titolo", semplice=True)} | CAS Ticino',
+                        tr("Diventa socio della Sezione Ticino del Club Alpino Svizzero: quote annuali per singoli, famiglie e giovani, e vantaggi per i soci.",
+                           "Werden Sie Mitglied der Sektion Ticino des Schweizer Alpen-Clubs: Jahresbeiträge für Einzelne, Familien und Jugendliche, und die Vorteile für Mitglieder.",
+                           "Become a member of the Ticino Section of the Swiss Alpine Club: annual fees for individuals, families and young people, and the benefits for members."),
+                        body, og="paesaggi/laghetto-alpino-2000")
 
 
 # ------------------------------------------------------------------ attività
@@ -2565,10 +2606,7 @@ def giovani():
             ("Spider", "Giosiana Codoni")]
     titolo = tr("Giovani", "Jugend", "Youth")
     programma = tr("Programma giovani", "Jugendprogramm", "Youth programme")
-    body = page_hero([att_crumb(), (titolo, None)], titolo, tr(
-                         "Uscite di un giorno, fine settimana e campi di più giorni: alpinismo, arrampicata, sci alpinismo e molto altro, con monitori formati e guide alpine.",
-                         "Tagestouren, Wochenenden und mehrtägige Lager: Hochtouren, Klettern, Skitouren und vieles mehr, mit ausgebildeten Leitenden und Bergführern.",
-                         "Day trips, weekends and camps of several days: mountaineering, climbing, ski touring and much more, with trained instructors and mountain guides."),
+    body = page_hero([att_crumb(), (titolo, None)], titolo, testo_campo(testi("introduzioni")["giovani"], "introduzione"),
                      f'<div class="actions hero-actions"><a class="btn btn--primary" href="{GITE_GIOVANI}">{programma} <span class="arrow" aria-hidden="true">→</span></a></div>',
                      figure=img("attivita/giovani-3x4", tr("Giovane arrampicatore su una parete dei Denti della Vecchia", "Junger Kletterer an einer Wand der Denti della Vecchia", "Young climber on a face of the Denti della Vecchia"), 800, 1066, lazy=False)) + f"""
 
@@ -2623,10 +2661,7 @@ def senior():
             (tr("Capigita", "Tourenleitende", "Trip leaders"), tr(
                 "Il dicastero cerca sempre nuovi capigita.", "Das Ressort sucht immer neue Tourenleitende.", "The department is always looking for new trip leaders."))]
     titolo = tr("Senior", "Senioren", "Seniors")
-    body = page_hero([att_crumb(), (titolo, None)], titolo, tr(
-        "Un gruppo di non più giovani con la passione per la montagna: la bellezza della natura, i piaceri della tavola e la nostra storia.",
-        "Eine Gruppe nicht mehr ganz Junger mit Leidenschaft für die Berge: die Schönheit der Natur, die Freuden der Tafel und unsere Geschichte.",
-        "A group of the no-longer-young with a passion for the mountains: the beauty of nature, the pleasures of the table and our history.")) + f"""
+    body = page_hero([att_crumb(), (titolo, None)], titolo, testo_campo(testi("introduzioni")["senior"], "introduzione")) + f"""
 
 {band_img("attivita/senior-2x1", tr("Escursionisti del gruppo senior su un sentiero di cresta", "Wandernde der Seniorengruppe auf einem Gratweg", "Hikers from the seniors group on a ridge path"), 1000, 500)}
 
@@ -2808,10 +2843,7 @@ def corsi():
 {facts(schede_corso(c['cartella'], x))}
 </article>""")
     titolo = tr("Corsi", "Kurse", "Courses")
-    body = page_hero([att_crumb(), (titolo, None)], titolo, tr(
-        "Corsi nei fine settimana, diretti da professionisti della montagna con monitori esperti: le basi per partecipare in sicurezza alle attività della sezione. Il programma dell’anno successivo esce entro novembre.",
-        "Kurse an Wochenenden, geleitet von Bergprofis mit erfahrenen Leitenden: die Grundlagen, um sicher an den Aktivitäten der Sektion teilzunehmen. Das Programm des folgenden Jahres erscheint bis November; die Kursunterlagen (PDF) sind auf Italienisch.",
-        "Weekend courses led by mountain professionals with experienced instructors: the basics for taking part safely in the section’s activities. The following year’s programme comes out by November; the course documents (PDF) are in Italian.")) + f"""
+    body = page_hero([att_crumb(), (titolo, None)], titolo, testo_campo(testi("introduzioni")["corsi"], "introduzione")) + f"""
 
 <figure class="band">
 {pic("paesaggi/salita-prato", tr("Un gruppo sale in fila su un sentiero tra prati fioriti, sotto il cielo azzurro", "Eine Gruppe steigt im Gänsemarsch auf einem Weg durch Blumenwiesen, unter blauem Himmel", "A group climbs in single file along a path through flowering meadows, under a blue sky"), mobile="paesaggi/salita-prato-4x3", w=2000, h=1125, lazy=False)}
@@ -2886,10 +2918,7 @@ def noleggio():
         for a in g["articoli"]]} for g in gruppi]
     dati = json.dumps(dati, ensure_ascii=False).replace("</", "<\\/")
     titolo = tr("Noleggio materiale", "Materialvermietung", "Equipment hire")
-    body = page_hero([servizi_crumb(), (titolo, None)], tr("Noleggio", "Materialvermietung", "Equipment hire"), tr(
-                         "Materiale in affitto per le attività della sezione e per le uscite private: alpinismo, cascate di ghiaccio, scialpinismo, arrampicata, racchette, escursionismo e bouldering.",
-                         "Material zur Miete für die Aktivitäten der Sektion und für private Touren: Hochtouren, Eisfälle, Skitouren, Klettern, Schneeschuhtouren, Wandern und Bouldern.",
-                         "Equipment for hire for the section’s activities and for private outings: mountaineering, ice falls, ski touring, climbing, snowshoeing, hiking and bouldering."),
+    body = page_hero([servizi_crumb(), (titolo, None)], tr("Noleggio", "Materialvermietung", "Equipment hire"), testo_campo(testi("introduzioni")["noleggio"], "introduzione"),
                      f'<div class="actions hero-actions"><a class="btn btn--primary" href="#richiesta">{tr("Richiedi il materiale", "Material anfragen", "Request equipment")} <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
 
 <section class="section" id="come" aria-labelledby="come-h">
@@ -3176,27 +3205,6 @@ TRADOTTE = {
         statuto="Statuten", visione="Vision und Strategie", organigramma="Organigramm",
         intro_title="Die Sektion | CAS Ticino",
         intro_desc="Die Sektion Ticino des Schweizer Alpen-Clubs: 1886 gegründet, fast 3000 Mitglieder, sechs Hütten, Kurse, Touren und Aktivitäten für jedes Alter.",
-        # adesione
-        prezzi=[("Einzel", "Einzelmitglied", "105", "30"),
-                ("Familie", "Eltern und Kinder bis 17 Jahre", "179", "50"),
-                ("Jugend", "Bis 22 Jahre", "50", "30")],
-        tassa="+ CHF {fee} beim ersten Beitritt",
-        vantaggi=[("Hütten", "Bis 50 % Rabatt in den Hütten der ganzen Schweiz und in einigen europäischen Ländern"),
-                  ("Tourenportal", "Kostenloser Zugang zu Karten und Routen im SAC-Tourenportal"),
-                  ("Ausbildung", "Vergünstigungen bei den Kursen"),
-                  ("Publikationen", "Die Zeitschrift «Die Alpen», das Bulletin der Sektion und Rabatte auf SAC-Publikationen"),
-                  ("Klettern", "Freier Eintritt in die Kletterhalle San Paolo"),
-                  ("Digitaler Ausweis", 'Der Mitgliederausweis ist auch in der App SAC-CAS (<a href="https://apps.apple.com/ch/app/sac-cas/id1592646841" rel="noopener">App Store</a>, <a href="https://play.google.com/store/apps/details?id=ch.sac_cas" rel="noopener">Google Play</a>): Anmeldung mit dem SAC-Konto, funktioniert auch offline, der QR-Code gilt in den Hütten')],
-        join="https://portal.sac-cas.ch/de/groups/6783/self_registration",
-        ade_crumb="Mitgliedschaft", ade_h="Mitglied werden",
-        ade_lead="Treten Sie der Tessiner Sektion des Schweizer Alpen-Clubs bei: Touren, Kurse, Hütten und eine Gemeinschaft, die die Berge liebt.",
-        iscriviti="Auf der SAC-Website beitreten",
-        ade_alt="Bergsee zwischen Felsen, im Hintergrund die Berge",
-        quote_h="Jahresbeiträge",
-        doppia="Sie sind schon Mitglied einer anderen SAC-Sektion? Sie können eine Doppelmitgliedschaft beantragen und zahlen nur den Beitrag der Sektion Ticino.",
-        vantaggi_h="Ihre Vorteile",
-        ade_title="Mitglied werden | CAS Ticino",
-        ade_desc="Werden Sie Mitglied der Sektion Ticino des Schweizer Alpen-Clubs: Jahresbeiträge für Einzelne, Familien und Jugendliche, und die Vorteile für Mitglieder.",
     ),
     "en": dict(
         home_title="CAS Ticino | Swiss Alpine Club, Ticino Section",
@@ -3233,26 +3241,6 @@ TRADOTTE = {
         statuto="Statutes", visione="Vision and strategy", organigramma="Organisation chart",
         intro_title="The section | CAS Ticino",
         intro_desc="The Ticino Section of the Swiss Alpine Club: founded in 1886, almost 3000 members, six huts, courses, trips and activities for all ages.",
-        prezzi=[("Individual", "Individual member", "105", "30"),
-                ("Family", "Parents and children up to 17", "179", "50"),
-                ("Youth", "Up to 22", "50", "30")],
-        tassa="+ CHF {fee} when you first join",
-        vantaggi=[("Huts", "Up to 50% off in huts all over Switzerland and in some European countries"),
-                  ("Tour portal", "Free access to maps and routes on the SAC tour portal"),
-                  ("Training", "Reduced prices on courses"),
-                  ("Publications", "The SAC magazine “Die Alpen”, the section bulletin and discounts on SAC publications"),
-                  ("Climbing", "Free entry to the San Paolo climbing gym"),
-                  ("Digital card", 'Your membership card is also in the SAC-CAS app (<a href="https://apps.apple.com/ch/app/sac-cas/id1592646841" rel="noopener">App Store</a>, <a href="https://play.google.com/store/apps/details?id=ch.sac_cas" rel="noopener">Google Play</a>): log in with your SAC account; it works offline and the QR code is accepted in the huts')],
-        join="https://portal.sac-cas.ch/it/groups/6783/self_registration",
-        ade_crumb="Membership", ade_h="Become a member",
-        ade_lead="Join the Ticino Section of the Swiss Alpine Club: trips, courses, huts and a community that loves the mountains.",
-        iscriviti="Join on the SAC website",
-        ade_alt="Mountain lake among rocks, with mountains behind",
-        quote_h="Annual fees",
-        doppia="Already a member of another SAC section? You can apply for dual membership and pay only the Ticino Section fee.",
-        vantaggi_h="Your benefits",
-        ade_title="Become a member | CAS Ticino",
-        ade_desc="Become a member of the Ticino Section of the Swiss Alpine Club: annual fees for individuals, families and young people, and the benefits for members.",
     ),
 }
 
@@ -3328,47 +3316,6 @@ def introduzione_tradotta():
 
 {subnav(tx["sezione"], f"{lang}/introduzione.html")}"""
     return sezione_page("introduzione.html", tx["intro_title"], tx["intro_desc"], body, og="paesaggi/gruppo-ghiacciaio-2000")
-
-
-def adesione_tradotta():
-    tx = tx_tradotte()
-    cards = "\n".join(f"""<article class="price">
-<h3 class="h3">{t}</h3>
-<p>{who}</p>
-<div class="amount"><small>CHF</small>{amt}</div>
-<p class="small">{tx['tassa'].format(fee=fee)}</p>
-</article>""" for t, who, amt, fee in tx["prezzi"])
-    join = tx["join"]
-    body = page_hero([(tx["ade_crumb"], None)], tx["ade_h"], tx["ade_lead"],
-                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="{join}">{tx["iscriviti"]} <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
-
-<figure class="band">
-{pic("paesaggi/laghetto-alpino", tx['ade_alt'], mobile="paesaggi/laghetto-alpino-4x3", w=2000, h=1126, lazy=False)}
-{credito()}
-</figure>
-
-<section class="section" aria-labelledby="quote-h">
-<div class="container">
-<div class="section-head"><h2 id="quote-h" class="h2">{tx['quote_h']}</h2></div>
-<div class="prices" data-reveal>
-{cards}
-</div>
-<p class="note">{tx['doppia']}</p>
-</div>
-</section>
-
-<section class="section--surface" aria-labelledby="vantaggi-h">
-<div class="container detail">
-<div class="detail-intro">
-<h2 id="vantaggi-h" class="h2">{tx['vantaggi_h']}</h2>
-<div><a class="btn btn--primary" href="{join}">{tx['iscriviti']} <span class="arrow" aria-hidden="true">→</span></a></div>
-</div>
-<div data-reveal>
-{facts(tx['vantaggi'])}
-</div>
-</div>
-</section>"""
-    return sezione_page("adesione.html", tx["ade_title"], tx["ade_desc"], body, og="paesaggi/laghetto-alpino-2000")
 
 
 # ------------------------------------------------------------------ ricerca
@@ -3627,10 +3574,7 @@ def partecipare():
     ]
     titolo = tr("Partecipare alle gite", "An Touren teilnehmen", "Taking part in trips")
     regolamento = tr("Regolamento gite (PDF)", "Tourenreglement (PDF, italienisch)", "Trip regulations (PDF, in Italian)")
-    body = page_hero([att_crumb(), (titolo, None)], titolo, tr(
-                         "Le regole principali per chi partecipa alle gite e ai corsi della sezione, soci e non soci, in breve. Il testo completo è nel regolamento gite.",
-                         "Die wichtigsten Regeln für alle, die an Touren und Kursen der Sektion teilnehmen, Mitglieder und Nichtmitglieder, kurz gefasst. Der vollständige Text steht im Tourenreglement (italienisch).",
-                         "The main rules for anyone taking part in the section’s trips and courses, members and non-members, in brief. The full text is in the trip regulations (in Italian)."),
+    body = page_hero([att_crumb(), (titolo, None)], titolo, testo_campo(testi("introduzioni")["partecipare"], "introduzione"),
                      extra=f"""<div class="actions"><a class="btn btn--primary" href="{GITE}">{t("gite")} <span class="arrow" aria-hidden="true">→</span></a><a class="btn btn--secondary" href="{REGOLAMENTO_GITE}">{regolamento}</a></div>""") + "\n\n" + "\n\n".join(sezioni) + f"""
 
 {prima_di_partire()}
@@ -3659,10 +3603,7 @@ def volontariato():
         return f'<a class="link" href="mailto:{m}">{testo or tr("Scrivi a", "Schreiben Sie an", "Write to")} {m}</a>'
 
     titolo = tr("Mettiti in gioco", "Mithelfen", "Get involved")
-    body = page_hero([sez_crumb(), (titolo, None)], titolo, tr(
-                         "La sezione vive del volontariato: capigita, monitori, aiuti in capanna, chi scrive e chi fotografa. Non serve essere esperti, basta un po’ di tempo e voglia di montagna.",
-                         "Die Sektion lebt von der Freiwilligenarbeit: Tourenleitende, Jugendleitende, Helferinnen und Helfer in den Hütten, wer schreibt und wer fotografiert. Man muss kein Profi sein, es braucht nur etwas Zeit und Lust auf Berge.",
-                         "The section runs on volunteers: trip leaders, instructors, helpers in the huts, writers and photographers. You don’t need to be an expert, just some time and a love of the mountains.")) + f"""
+    body = page_hero([sez_crumb(), (titolo, None)], titolo, testo_campo(testi("introduzioni")["volontariato"], "introduzione")) + f"""
 
 <section class="section" aria-labelledby="ruoli-h">
 <div class="container">
@@ -3981,7 +3922,7 @@ def in_lingua_pagina(lang, fn):
 for _lang, _contenuti in (("de", CONTENUTI_DE), ("en", CONTENUTI_EN)):
     _pagine = {"index.html": home, "introduzione.html": introduzione_tradotta, "comitato.html": comitato,
                "organizzazione.html": organizzazione, "capigita.html": capigita, "sede.html": sede,
-               "storia.html": storia, "link.html": link, "adesione.html": adesione_tradotta,
+               "storia.html": storia, "link.html": link, "adesione.html": adesione,
                "gite.html": gite, "gita.html": gita_pagina, "privacy.html": privacy,
                "noleggio.html": noleggio, "mercatino.html": mercatino, "documenti.html": documenti,
                "partecipare.html": partecipare, "corsi.html": corsi, "giovani.html": giovani, "senior.html": senior,

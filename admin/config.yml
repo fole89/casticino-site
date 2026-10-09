@@ -352,36 +352,413 @@ collections:
   # Testi di alcune pagine, modificabili senza toccare il codice: data/testi/<pagina>.json, letti da pages.py
   # (testi() e testo_campo()). Per ogni campo l'italiano e, facoltativi, tedesco e inglese.
   - name: testi
-    label: Testi del sito
-    label_singular: testo
+    label: "Testi del sito"
+    label_singular: "testo"
     description: "Testi di alcune pagine del sito. Cambia quello che serve e premi «Pubblica»: la pagina è aggiornata in uno o due minuti, anche nella ricerca. Se cambi l’italiano, aggiorna anche tedesco e inglese, oppure svuotali: un campo vuoto mostra l’italiano."
     files:
-      - label: Sede e contatti
+      - label: "Sede e contatti"
         name: sede
         file: data/testi/sede.json
         fields:
-          - {label: Titolo, name: titolo, widget: string, hint: "Il titolo grande in cima alla pagina; compare anche nel menu del browser e su Google."}
-          - {label: Titolo in tedesco, name: titolo_de, widget: string, required: false}
-          - {label: Titolo in inglese, name: titolo_en, widget: string, required: false}
-          - {label: Introduzione, name: introduzione, widget: text, hint: "Una o due frasi sotto il titolo."}
-          - {label: Introduzione in tedesco, name: introduzione_de, widget: text, required: false}
-          - {label: Introduzione in inglese, name: introduzione_en, widget: text, required: false}
-          - {label: Sottotitolo, name: sottotitolo, widget: string, hint: "Il titolo del riquadro con i contatti."}
-          - {label: Sottotitolo in tedesco, name: sottotitolo_de, widget: string, required: false}
-          - {label: Sottotitolo in inglese, name: sottotitolo_en, widget: string, required: false}
-          - {label: Testo, name: testo, widget: text, hint: "Il testo accanto ai contatti, sopra il pulsante «Scrivi alla sezione»."}
-          - {label: Testo in tedesco, name: testo_de, widget: text, required: false}
-          - {label: Testo in inglese, name: testo_en, widget: text, required: false}
-          - label: Contatti
-            name: righe
-            widget: list
-            label_singular: riga
+          - {label: "Titolo", name: "titolo", widget: "string", hint: "Il titolo grande in cima alla pagina; compare anche nel menu del browser e su Google."}
+          - {label: "Titolo in tedesco", name: "titolo_de", widget: "string", required: false}
+          - {label: "Titolo in inglese", name: "titolo_en", widget: "string", required: false}
+          - {label: "Introduzione", name: "introduzione", widget: "text", hint: "Una o due frasi sotto il titolo."}
+          - {label: "Introduzione in tedesco", name: "introduzione_de", widget: "text", required: false}
+          - {label: "Introduzione in inglese", name: "introduzione_en", widget: "text", required: false}
+          - {label: "Sottotitolo", name: "sottotitolo", widget: "string", hint: "Il titolo del riquadro con i contatti."}
+          - {label: "Sottotitolo in tedesco", name: "sottotitolo_de", widget: "string", required: false}
+          - {label: "Sottotitolo in inglese", name: "sottotitolo_en", widget: "string", required: false}
+          - {label: "Testo", name: "testo", widget: "text", hint: "Il testo accanto ai contatti, sopra il pulsante «Scrivi alla sezione»."}
+          - {label: "Testo in tedesco", name: "testo_de", widget: "text", required: false}
+          - {label: "Testo in inglese", name: "testo_en", widget: "text", required: false}
+          - label: "Contatti"
+            name: "righe"
+            widget: "list"
+            label_singular: "riga"
             summary: "{{fields.etichetta}}"
             hint: "Le righe a destra (recapito, e-mail, sede…), nell’ordine in cui compaiono. Gli a capo restano; gli indirizzi e-mail e https:// diventano link. Le coordinate bancarie si aggiungono da sole in fondo."
             fields:
-              - {label: Etichetta, name: etichetta, widget: string, hint: "Es. «Recapito postale»."}
-              - {label: Etichetta in tedesco, name: etichetta_de, widget: string, required: false}
-              - {label: Etichetta in inglese, name: etichetta_en, widget: string, required: false}
-              - {label: Testo, name: testo, widget: text}
-              - {label: Testo in tedesco, name: testo_de, widget: text, required: false}
-              - {label: Testo in inglese, name: testo_en, widget: text, required: false}
+              - {label: "Etichetta", name: "etichetta", widget: "string", hint: "Es. «Recapito postale»."}
+              - {label: "Etichetta in tedesco", name: "etichetta_de", widget: "string", required: false}
+              - {label: "Etichetta in inglese", name: "etichetta_en", widget: "string", required: false}
+              - {label: "Testo", name: "testo", widget: "text"}
+              - {label: "Testo in tedesco", name: "testo_de", widget: "text", required: false}
+              - {label: "Testo in inglese", name: "testo_en", widget: "text", required: false}
+      - label: "Adesione"
+        name: adesione
+        file: data/testi/adesione.json
+        fields:
+          - {label: "Titolo", name: "titolo", widget: "string", hint: "Il titolo grande in cima alla pagina (es. «Diventa socio»)."}
+          - {label: "Titolo in tedesco", name: "titolo_de", widget: "string", required: false}
+          - {label: "Titolo in inglese", name: "titolo_en", widget: "string", required: false}
+          - {label: "Introduzione", name: "introduzione", widget: "text"}
+          - {label: "Introduzione in tedesco", name: "introduzione_de", widget: "text", required: false}
+          - {label: "Introduzione in inglese", name: "introduzione_en", widget: "text", required: false}
+          - label: "Quote annuali"
+            name: "quote"
+            widget: "list"
+            label_singular: "quota"
+            summary: "{{fields.nome}}: CHF {{fields.quota}}"
+            hint: "Un riquadro per tipo di socio, nell’ordine in cui compaiono."
+            fields:
+              - {label: "Nome", name: "nome", widget: "string", hint: "Es. «Famiglia»."}
+              - {label: "Nome in tedesco", name: "nome_de", widget: "string", required: false}
+              - {label: "Nome in inglese", name: "nome_en", widget: "string", required: false}
+              - {label: "Per chi", name: "chi", widget: "string", hint: "Es. «Genitori e figli fino a 17 anni»."}
+              - {label: "Per chi in tedesco", name: "chi_de", widget: "string", required: false}
+              - {label: "Per chi in inglese", name: "chi_en", widget: "string", required: false}
+              - {label: "Quota annuale (CHF)", name: "quota", widget: "string", hint: "Solo il numero, es. «179»."}
+              - {label: "Tassa d’entrata (CHF)", name: "tassa", widget: "string", hint: "Solo il numero, es. «50»: compare come «+ CHF 50 alla prima iscrizione»."}
+          - {label: "Nota sotto le quote", name: "nota", widget: "text"}
+          - {label: "Nota in tedesco", name: "nota_de", widget: "text", required: false}
+          - {label: "Nota in inglese", name: "nota_en", widget: "text", required: false}
+          - label: "Cosa ricevi"
+            name: "vantaggi"
+            widget: "list"
+            label_singular: "vantaggio"
+            summary: "{{fields.etichetta}}"
+            hint: "Le righe dei vantaggi per i soci. Nel testo un link si scrive [testo](https://indirizzo)."
+            fields:
+              - {label: "Etichetta", name: "etichetta", widget: "string"}
+              - {label: "Etichetta in tedesco", name: "etichetta_de", widget: "string", required: false}
+              - {label: "Etichetta in inglese", name: "etichetta_en", widget: "string", required: false}
+              - {label: "Testo", name: "testo", widget: "text"}
+              - {label: "Testo in tedesco", name: "testo_de", widget: "text", required: false}
+              - {label: "Testo in inglese", name: "testo_en", widget: "text", required: false}
+      - label: "Soccorso"
+        name: soccorso
+        file: data/testi/soccorso.json
+        fields:
+          - {label: "Introduzione", name: "introduzione", widget: "text", hint: "Sotto il titolo «Soccorso». I numeri d’emergenza non si cambiano da qui."}
+          - {label: "Introduzione in tedesco", name: "introduzione_de", widget: "text", required: false}
+          - {label: "Introduzione in inglese", name: "introduzione_en", widget: "text", required: false}
+          - {label: "La colonna di soccorso", name: "colonna", widget: "text", hint: "Una o due frasi accanto al titolo «La colonna di soccorso»."}
+          - {label: "La colonna di soccorso in tedesco", name: "colonna_de", widget: "text", required: false}
+          - {label: "La colonna di soccorso in inglese", name: "colonna_en", widget: "text", required: false}
+          - {label: "La colonna di soccorso: testo", name: "colonna_testo", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Chi la compone, come è organizzata, la formazione, come entrare a farne parte."}
+          - {label: "Testo in tedesco", name: "colonna_testo_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "Testo in inglese", name: "colonna_testo_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+      - label: "Introduzioni delle pagine"
+        name: introduzioni
+        file: data/testi/introduzioni.json
+        fields:
+          - label: "Partecipare alle gite"
+            name: "partecipare"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.introduzione}}"
+            fields:
+              - {label: "Introduzione", name: "introduzione", widget: "text", hint: "Le frasi sotto il titolo della pagina. Il titolo non si cambia da qui: è anche la voce del menu."}
+              - {label: "Introduzione in tedesco", name: "introduzione_de", widget: "text", required: false}
+              - {label: "Introduzione in inglese", name: "introduzione_en", widget: "text", required: false}
+          - label: "Mettiti in gioco"
+            name: "volontariato"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.introduzione}}"
+            fields:
+              - {label: "Introduzione", name: "introduzione", widget: "text", hint: "Le frasi sotto il titolo della pagina. Il titolo non si cambia da qui: è anche la voce del menu."}
+              - {label: "Introduzione in tedesco", name: "introduzione_de", widget: "text", required: false}
+              - {label: "Introduzione in inglese", name: "introduzione_en", widget: "text", required: false}
+          - label: "Giovani"
+            name: "giovani"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.introduzione}}"
+            fields:
+              - {label: "Introduzione", name: "introduzione", widget: "text", hint: "Le frasi sotto il titolo della pagina. Il titolo non si cambia da qui: è anche la voce del menu."}
+              - {label: "Introduzione in tedesco", name: "introduzione_de", widget: "text", required: false}
+              - {label: "Introduzione in inglese", name: "introduzione_en", widget: "text", required: false}
+          - label: "Senior"
+            name: "senior"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.introduzione}}"
+            fields:
+              - {label: "Introduzione", name: "introduzione", widget: "text", hint: "Le frasi sotto il titolo della pagina. Il titolo non si cambia da qui: è anche la voce del menu."}
+              - {label: "Introduzione in tedesco", name: "introduzione_de", widget: "text", required: false}
+              - {label: "Introduzione in inglese", name: "introduzione_en", widget: "text", required: false}
+          - label: "Corsi"
+            name: "corsi"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.introduzione}}"
+            fields:
+              - {label: "Introduzione", name: "introduzione", widget: "text", hint: "Le frasi sotto il titolo della pagina. Il titolo non si cambia da qui: è anche la voce del menu."}
+              - {label: "Introduzione in tedesco", name: "introduzione_de", widget: "text", required: false}
+              - {label: "Introduzione in inglese", name: "introduzione_en", widget: "text", required: false}
+          - label: "Noleggio materiale"
+            name: "noleggio"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.introduzione}}"
+            fields:
+              - {label: "Introduzione", name: "introduzione", widget: "text", hint: "Le frasi sotto il titolo della pagina. Il titolo non si cambia da qui: è anche la voce del menu."}
+              - {label: "Introduzione in tedesco", name: "introduzione_de", widget: "text", required: false}
+              - {label: "Introduzione in inglese", name: "introduzione_en", widget: "text", required: false}
+      - label: "Capanna Campo Tencia: tariffe e guardiani"
+        name: capanna_campotencia
+        file: data/testi/capanne/campotencia.json
+        fields:
+          - {label: "I guardiani", name: "guardiani", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Il testo accanto alla foto dei guardiani.", required: true}
+          - {label: "I guardiani in tedesco", name: "guardiani_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "I guardiani in inglese", name: "guardiani_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - label: "Persone"
+            name: "persone"
+            widget: "list"
+            required: false
+            allow_add: false
+            label_singular: "persona"
+            summary: "{{fields.nome}}"
+            hint: "Nomi e ruoli sotto il testo (solo per le capanne che li mostrano). Le foto si cambiano nel codice."
+            fields:
+              - {label: "Nome", name: "nome", widget: "string"}
+              - {label: "Ruolo", name: "ruolo", widget: "string"}
+              - {label: "Ruolo in tedesco", name: "ruolo_de", widget: "string", required: false}
+              - {label: "Ruolo in inglese", name: "ruolo_en", widget: "string", required: false}
+              - {label: "Foto", name: "foto", widget: "hidden"}
+          - label: "Tariffe"
+            name: "tariffe"
+            widget: "list"
+            label_singular: "riquadro"
+            summary: "{{fields.titolo}}"
+            hint: "Un riquadro per gruppo di prezzi (soci, non soci, extra…), nell’ordine in cui compaiono."
+            fields:
+              - {label: "Titolo", name: "titolo", widget: "string", hint: "Es. «Non soci»."}
+              - {label: "Titolo in tedesco", name: "titolo_de", widget: "string", required: false}
+              - {label: "Titolo in inglese", name: "titolo_en", widget: "string", required: false}
+              - {label: "Nota", name: "nota", widget: "text", required: false, hint: "Es. «Pernottamento con mezza pensione (cena e colazione)»."}
+              - {label: "Nota in tedesco", name: "nota_de", widget: "text", required: false}
+              - {label: "Nota in inglese", name: "nota_en", widget: "text", required: false}
+              - label: "Prezzi"
+                name: "righe"
+                widget: "list"
+                label_singular: "prezzo"
+                summary: "{{fields.voce}}: {{fields.prezzo}}"
+                fields:
+                  - {label: "Voce", name: "voce", widget: "string", hint: "Es. «Adulti dai 22 anni»."}
+                  - {label: "Voce in tedesco", name: "voce_de", widget: "string", required: false}
+                  - {label: "Voce in inglese", name: "voce_en", widget: "string", required: false}
+                  - {label: "Prezzo", name: "prezzo", widget: "string", hint: "Come «Fr. 75.–» (in inglese diventa «CHF 75.–» da solo), oppure «gratis» o «incluso»."}
+          - {label: "Note per prenotare", name: "prenotare", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Sotto le tariffe: regole di riservazione e disdetta, link ai PDF (es. [Condizioni generali](docs/capanne/…pdf)).", required: false}
+          - {label: "Note per prenotare in tedesco", name: "prenotare_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "Note per prenotare in inglese", name: "prenotare_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+      - label: "Capanna Cristallina: tariffe e guardiano"
+        name: capanna_cristallina
+        file: data/testi/capanne/cristallina.json
+        fields:
+          - {label: "I guardiani", name: "guardiani", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Il testo accanto alla foto dei guardiani.", required: true}
+          - {label: "I guardiani in tedesco", name: "guardiani_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "I guardiani in inglese", name: "guardiani_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - label: "Persone"
+            name: "persone"
+            widget: "list"
+            required: false
+            allow_add: false
+            label_singular: "persona"
+            summary: "{{fields.nome}}"
+            hint: "Nomi e ruoli sotto il testo (solo per le capanne che li mostrano). Le foto si cambiano nel codice."
+            fields:
+              - {label: "Nome", name: "nome", widget: "string"}
+              - {label: "Ruolo", name: "ruolo", widget: "string"}
+              - {label: "Ruolo in tedesco", name: "ruolo_de", widget: "string", required: false}
+              - {label: "Ruolo in inglese", name: "ruolo_en", widget: "string", required: false}
+              - {label: "Foto", name: "foto", widget: "hidden"}
+          - label: "Tariffe"
+            name: "tariffe"
+            widget: "list"
+            label_singular: "riquadro"
+            summary: "{{fields.titolo}}"
+            hint: "Un riquadro per gruppo di prezzi (soci, non soci, extra…), nell’ordine in cui compaiono."
+            fields:
+              - {label: "Titolo", name: "titolo", widget: "string", hint: "Es. «Non soci»."}
+              - {label: "Titolo in tedesco", name: "titolo_de", widget: "string", required: false}
+              - {label: "Titolo in inglese", name: "titolo_en", widget: "string", required: false}
+              - {label: "Nota", name: "nota", widget: "text", required: false, hint: "Es. «Pernottamento con mezza pensione (cena e colazione)»."}
+              - {label: "Nota in tedesco", name: "nota_de", widget: "text", required: false}
+              - {label: "Nota in inglese", name: "nota_en", widget: "text", required: false}
+              - label: "Prezzi"
+                name: "righe"
+                widget: "list"
+                label_singular: "prezzo"
+                summary: "{{fields.voce}}: {{fields.prezzo}}"
+                fields:
+                  - {label: "Voce", name: "voce", widget: "string", hint: "Es. «Adulti dai 22 anni»."}
+                  - {label: "Voce in tedesco", name: "voce_de", widget: "string", required: false}
+                  - {label: "Voce in inglese", name: "voce_en", widget: "string", required: false}
+                  - {label: "Prezzo", name: "prezzo", widget: "string", hint: "Come «Fr. 75.–» (in inglese diventa «CHF 75.–» da solo), oppure «gratis» o «incluso»."}
+          - {label: "Note per prenotare", name: "prenotare", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Sotto le tariffe: regole di riservazione e disdetta, link ai PDF (es. [Condizioni generali](docs/capanne/…pdf)).", required: false}
+          - {label: "Note per prenotare in tedesco", name: "prenotare_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "Note per prenotare in inglese", name: "prenotare_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+      - label: "Capanna Adula: tariffe e guardiani"
+        name: capanna_adula
+        file: data/testi/capanne/adula.json
+        fields:
+          - {label: "I guardiani", name: "guardiani", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Il testo accanto alla foto dei guardiani.", required: true}
+          - {label: "I guardiani in tedesco", name: "guardiani_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "I guardiani in inglese", name: "guardiani_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - label: "Persone"
+            name: "persone"
+            widget: "list"
+            required: false
+            allow_add: false
+            label_singular: "persona"
+            summary: "{{fields.nome}}"
+            hint: "Nomi e ruoli sotto il testo (solo per le capanne che li mostrano). Le foto si cambiano nel codice."
+            fields:
+              - {label: "Nome", name: "nome", widget: "string"}
+              - {label: "Ruolo", name: "ruolo", widget: "string"}
+              - {label: "Ruolo in tedesco", name: "ruolo_de", widget: "string", required: false}
+              - {label: "Ruolo in inglese", name: "ruolo_en", widget: "string", required: false}
+              - {label: "Foto", name: "foto", widget: "hidden"}
+          - label: "Tariffe"
+            name: "tariffe"
+            widget: "list"
+            label_singular: "riquadro"
+            summary: "{{fields.titolo}}"
+            hint: "Un riquadro per gruppo di prezzi (soci, non soci, extra…), nell’ordine in cui compaiono."
+            fields:
+              - {label: "Titolo", name: "titolo", widget: "string", hint: "Es. «Non soci»."}
+              - {label: "Titolo in tedesco", name: "titolo_de", widget: "string", required: false}
+              - {label: "Titolo in inglese", name: "titolo_en", widget: "string", required: false}
+              - {label: "Nota", name: "nota", widget: "text", required: false, hint: "Es. «Pernottamento con mezza pensione (cena e colazione)»."}
+              - {label: "Nota in tedesco", name: "nota_de", widget: "text", required: false}
+              - {label: "Nota in inglese", name: "nota_en", widget: "text", required: false}
+              - label: "Prezzi"
+                name: "righe"
+                widget: "list"
+                label_singular: "prezzo"
+                summary: "{{fields.voce}}: {{fields.prezzo}}"
+                fields:
+                  - {label: "Voce", name: "voce", widget: "string", hint: "Es. «Adulti dai 22 anni»."}
+                  - {label: "Voce in tedesco", name: "voce_de", widget: "string", required: false}
+                  - {label: "Voce in inglese", name: "voce_en", widget: "string", required: false}
+                  - {label: "Prezzo", name: "prezzo", widget: "string", hint: "Come «Fr. 75.–» (in inglese diventa «CHF 75.–» da solo), oppure «gratis» o «incluso»."}
+          - {label: "Note per prenotare", name: "prenotare", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Sotto le tariffe: regole di riservazione e disdetta, link ai PDF (es. [Condizioni generali](docs/capanne/…pdf)).", required: false}
+          - {label: "Note per prenotare in tedesco", name: "prenotare_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "Note per prenotare in inglese", name: "prenotare_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+      - label: "Capanna Motterascio: tariffe e guardiano"
+        name: capanna_motterascio
+        file: data/testi/capanne/motterascio.json
+        fields:
+          - {label: "I guardiani", name: "guardiani", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Il testo accanto alla foto dei guardiani.", required: true}
+          - {label: "I guardiani in tedesco", name: "guardiani_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "I guardiani in inglese", name: "guardiani_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - label: "Persone"
+            name: "persone"
+            widget: "list"
+            required: false
+            allow_add: false
+            label_singular: "persona"
+            summary: "{{fields.nome}}"
+            hint: "Nomi e ruoli sotto il testo (solo per le capanne che li mostrano). Le foto si cambiano nel codice."
+            fields:
+              - {label: "Nome", name: "nome", widget: "string"}
+              - {label: "Ruolo", name: "ruolo", widget: "string"}
+              - {label: "Ruolo in tedesco", name: "ruolo_de", widget: "string", required: false}
+              - {label: "Ruolo in inglese", name: "ruolo_en", widget: "string", required: false}
+              - {label: "Foto", name: "foto", widget: "hidden"}
+          - label: "Tariffe"
+            name: "tariffe"
+            widget: "list"
+            label_singular: "riquadro"
+            summary: "{{fields.titolo}}"
+            hint: "Un riquadro per gruppo di prezzi (soci, non soci, extra…), nell’ordine in cui compaiono."
+            fields:
+              - {label: "Titolo", name: "titolo", widget: "string", hint: "Es. «Non soci»."}
+              - {label: "Titolo in tedesco", name: "titolo_de", widget: "string", required: false}
+              - {label: "Titolo in inglese", name: "titolo_en", widget: "string", required: false}
+              - {label: "Nota", name: "nota", widget: "text", required: false, hint: "Es. «Pernottamento con mezza pensione (cena e colazione)»."}
+              - {label: "Nota in tedesco", name: "nota_de", widget: "text", required: false}
+              - {label: "Nota in inglese", name: "nota_en", widget: "text", required: false}
+              - label: "Prezzi"
+                name: "righe"
+                widget: "list"
+                label_singular: "prezzo"
+                summary: "{{fields.voce}}: {{fields.prezzo}}"
+                fields:
+                  - {label: "Voce", name: "voce", widget: "string", hint: "Es. «Adulti dai 22 anni»."}
+                  - {label: "Voce in tedesco", name: "voce_de", widget: "string", required: false}
+                  - {label: "Voce in inglese", name: "voce_en", widget: "string", required: false}
+                  - {label: "Prezzo", name: "prezzo", widget: "string", hint: "Come «Fr. 75.–» (in inglese diventa «CHF 75.–» da solo), oppure «gratis» o «incluso»."}
+          - {label: "Note per prenotare", name: "prenotare", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Sotto le tariffe: regole di riservazione e disdetta, link ai PDF (es. [Condizioni generali](docs/capanne/…pdf)).", required: false}
+          - {label: "Note per prenotare in tedesco", name: "prenotare_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "Note per prenotare in inglese", name: "prenotare_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+      - label: "Capanna Monte Bar: tariffe e gestori"
+        name: capanna_montebar
+        file: data/testi/capanne/montebar.json
+        fields:
+          - {label: "I guardiani", name: "guardiani", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Il testo accanto alla foto dei guardiani.", required: true}
+          - {label: "I guardiani in tedesco", name: "guardiani_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "I guardiani in inglese", name: "guardiani_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - label: "Persone"
+            name: "persone"
+            widget: "list"
+            required: false
+            allow_add: false
+            label_singular: "persona"
+            summary: "{{fields.nome}}"
+            hint: "Nomi e ruoli sotto il testo (solo per le capanne che li mostrano). Le foto si cambiano nel codice."
+            fields:
+              - {label: "Nome", name: "nome", widget: "string"}
+              - {label: "Ruolo", name: "ruolo", widget: "string"}
+              - {label: "Ruolo in tedesco", name: "ruolo_de", widget: "string", required: false}
+              - {label: "Ruolo in inglese", name: "ruolo_en", widget: "string", required: false}
+              - {label: "Foto", name: "foto", widget: "hidden"}
+          - label: "Tariffe"
+            name: "tariffe"
+            widget: "list"
+            label_singular: "riquadro"
+            summary: "{{fields.titolo}}"
+            hint: "Un riquadro per gruppo di prezzi (soci, non soci, extra…), nell’ordine in cui compaiono."
+            fields:
+              - {label: "Titolo", name: "titolo", widget: "string", hint: "Es. «Non soci»."}
+              - {label: "Titolo in tedesco", name: "titolo_de", widget: "string", required: false}
+              - {label: "Titolo in inglese", name: "titolo_en", widget: "string", required: false}
+              - {label: "Nota", name: "nota", widget: "text", required: false, hint: "Es. «Pernottamento con mezza pensione (cena e colazione)»."}
+              - {label: "Nota in tedesco", name: "nota_de", widget: "text", required: false}
+              - {label: "Nota in inglese", name: "nota_en", widget: "text", required: false}
+              - label: "Prezzi"
+                name: "righe"
+                widget: "list"
+                label_singular: "prezzo"
+                summary: "{{fields.voce}}: {{fields.prezzo}}"
+                fields:
+                  - {label: "Voce", name: "voce", widget: "string", hint: "Es. «Adulti dai 22 anni»."}
+                  - {label: "Voce in tedesco", name: "voce_de", widget: "string", required: false}
+                  - {label: "Voce in inglese", name: "voce_en", widget: "string", required: false}
+                  - {label: "Prezzo", name: "prezzo", widget: "string", hint: "Come «Fr. 75.–» (in inglese diventa «CHF 75.–» da solo), oppure «gratis» o «incluso»."}
+          - {label: "Note per prenotare", name: "prenotare", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Sotto le tariffe: regole di riservazione e disdetta, link ai PDF (es. [Condizioni generali](docs/capanne/…pdf)).", required: false}
+          - {label: "Note per prenotare in tedesco", name: "prenotare_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "Note per prenotare in inglese", name: "prenotare_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+      - label: "Baita del Luca: tariffe"
+        name: capanna_baitadelluca
+        file: data/testi/capanne/baitadelluca.json
+        fields:
+          - label: "Tariffe"
+            name: "tariffe"
+            widget: "list"
+            label_singular: "riquadro"
+            summary: "{{fields.titolo}}"
+            hint: "Un riquadro per gruppo di prezzi (soci, non soci, extra…), nell’ordine in cui compaiono."
+            fields:
+              - {label: "Titolo", name: "titolo", widget: "string", hint: "Es. «Non soci»."}
+              - {label: "Titolo in tedesco", name: "titolo_de", widget: "string", required: false}
+              - {label: "Titolo in inglese", name: "titolo_en", widget: "string", required: false}
+              - {label: "Nota", name: "nota", widget: "text", required: false, hint: "Es. «Pernottamento con mezza pensione (cena e colazione)»."}
+              - {label: "Nota in tedesco", name: "nota_de", widget: "text", required: false}
+              - {label: "Nota in inglese", name: "nota_en", widget: "text", required: false}
+              - label: "Prezzi"
+                name: "righe"
+                widget: "list"
+                label_singular: "prezzo"
+                summary: "{{fields.voce}}: {{fields.prezzo}}"
+                fields:
+                  - {label: "Voce", name: "voce", widget: "string", hint: "Es. «Adulti dai 22 anni»."}
+                  - {label: "Voce in tedesco", name: "voce_de", widget: "string", required: false}
+                  - {label: "Voce in inglese", name: "voce_en", widget: "string", required: false}
+                  - {label: "Prezzo", name: "prezzo", widget: "string", hint: "Come «Fr. 75.–» (in inglese diventa «CHF 75.–» da solo), oppure «gratis» o «incluso»."}
+          - {label: "Note per prenotare", name: "prenotare", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Sotto le tariffe: regole di riservazione e disdetta, link ai PDF (es. [Condizioni generali](docs/capanne/…pdf)).", required: false}
+          - {label: "Note per prenotare in tedesco", name: "prenotare_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}
+          - {label: "Note per prenotare in inglese", name: "prenotare_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "", required: false}

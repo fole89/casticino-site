@@ -1,0 +1,146 @@
+{
+  "guardiani": "Ci piace definirci persone solari, positive e piene di energia, con tanta voglia di fare e di metterci in gioco. Prima gestori di un’osteria con alloggio, dal 2024 siamo i guardiani della Capanna Campo Tencia.\n\nAbbiamo viaggiato molto, scoprendo posti meravigliosi, ma accorgendoci anche di quanto è bello tornare sulle nostre montagne: è lì che ci sentiamo a casa. Dopo molte esperienze di lavoro e di gestione alberghiera abbiamo sentito il richiamo della montagna, che ci ha spinto a puntare più in alto e ad aprire questo sogno nel cassetto.\n\nDurante la stagione ci affiancano amici e volontari. Non vediamo l’ora di accogliervi in capanna!\n\n**Valeria e Paco**",
+  "guardiani_de": "Wir sehen uns als fröhliche, positive Menschen voller Energie, mit viel Lust anzupacken. Früher führten wir eine Osteria mit Unterkunft; seit 2024 sind wir die Hüttenwarte der Capanna Campo Tencia.\n\nWir sind viel gereist und haben wunderbare Orte entdeckt, aber auch gemerkt, wie schön es ist, in unsere Berge zurückzukehren: Hier fühlen wir uns zu Hause. Nach vielen Jahren in der Hotellerie hat uns der Ruf der Berge höher hinaufgeführt, um diesen Traum zu verwirklichen.\n\nWährend der Saison helfen uns Freunde und Freiwillige. Wir freuen uns darauf, Sie in der Hütte zu begrüssen!\n\n**Valeria und Paco**",
+  "guardiani_en": "We see ourselves as cheerful, positive people full of energy, always keen to get stuck in. We used to run an osteria with rooms; since 2024 we have been the hut keepers of Capanna Campo Tencia.\n\nWe have travelled a lot and discovered wonderful places, but we have also realised how good it is to come back to our own mountains: this is where we feel at home. After many years in hospitality, the call of the mountains has taken us higher, to make this dream come true.\n\nDuring the season friends and volunteers help us. We look forward to welcoming you to the hut!\n\n**Valeria and Paco**",
+  "tariffe": [
+    {
+      "titolo": "Soci CAS/FAT e club con diritto di reciprocità",
+      "titolo_de": "Mitglieder SAC/FAT und Gegenrechtsvereine",
+      "titolo_en": "Members of SAC/FAT and reciprocal clubs",
+      "nota": "Pernottamento con mezza pensione (cena e colazione)",
+      "nota_de": "Übernachtung mit Halbpension (Abendessen und Frühstück)",
+      "nota_en": "Overnight stay with half board (dinner and breakfast)",
+      "righe": [
+        {
+          "voce": "Bambini fino a 7 anni",
+          "voce_de": "Kinder bis 7 Jahre",
+          "voce_en": "Children up to 7",
+          "prezzo": "Fr. 30.–"
+        },
+        {
+          "voce": "Ragazzi da 8 a 14 anni",
+          "voce_de": "Kinder von 8 bis 14 Jahren",
+          "voce_en": "Children aged 8 to 14",
+          "prezzo": "Fr. 45.–"
+        },
+        {
+          "voce": "Giovani da 15 a 21 anni",
+          "voce_de": "Jugendliche von 15 bis 21 Jahren",
+          "voce_en": "Young people aged 15 to 21",
+          "prezzo": "Fr. 58.–"
+        },
+        {
+          "voce": "Adulti dai 22 anni",
+          "voce_de": "Erwachsene ab 22 Jahren",
+          "voce_en": "Adults from 22",
+          "prezzo": "Fr. 75.–"
+        },
+        {
+          "voce": "Guide alpine UIAGM",
+          "voce_de": "Bergführer IFMGA",
+          "voce_en": "IFMGA mountain guides",
+          "prezzo": "Fr. 50.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Non soci",
+      "titolo_de": "Nichtmitglieder",
+      "titolo_en": "Non-members",
+      "nota": "Pernottamento con mezza pensione (cena e colazione)",
+      "nota_de": "Übernachtung mit Halbpension (Abendessen und Frühstück)",
+      "nota_en": "Overnight stay with half board (dinner and breakfast)",
+      "righe": [
+        {
+          "voce": "Bambini fino a 7 anni",
+          "voce_de": "Kinder bis 7 Jahre",
+          "voce_en": "Children up to 7",
+          "prezzo": "Fr. 30.–"
+        },
+        {
+          "voce": "Ragazzi da 8 a 14 anni",
+          "voce_de": "Kinder von 8 bis 14 Jahren",
+          "voce_en": "Children aged 8 to 14",
+          "prezzo": "Fr. 50.–"
+        },
+        {
+          "voce": "Giovani da 15 a 21 anni",
+          "voce_de": "Jugendliche von 15 bis 21 Jahren",
+          "voce_en": "Young people aged 15 to 21",
+          "prezzo": "Fr. 63.–"
+        },
+        {
+          "voce": "Adulti dai 22 anni",
+          "voce_de": "Erwachsene ab 22 Jahren",
+          "voce_en": "Adults from 22",
+          "prezzo": "Fr. 85.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Famiglie e gruppi",
+      "titolo_de": "Familien und Gruppen",
+      "titolo_en": "Families and groups",
+      "nota": "Sconto infrasettimanale per famiglie (domenica-giovedì) e offerta per gruppi di giovani: scuole, scout, corsi G+S (lunedì-giovedì)",
+      "nota_de": "Familienrabatt unter der Woche (Sonntag-Donnerstag) und Angebot für Jugendgruppen: Schulen, Pfadi, J+S-Kurse (Montag-Donnerstag)",
+      "nota_en": "Family discount on weekdays (Sunday-Thursday) and offer for youth groups: schools, scouts, Youth+Sport courses (Monday-Thursday)",
+      "righe": [
+        {
+          "voce": "Famiglie: riduzione per ogni bambino sotto i 15 anni",
+          "voce_de": "Familien: Rabatt pro Kind unter 15 Jahren",
+          "voce_en": "Families: discount per child under 15",
+          "prezzo": "Fr. 5.–"
+        },
+        {
+          "voce": "Gruppi: bambini sotto i 15 anni",
+          "voce_de": "Gruppen: Kinder unter 15 Jahren",
+          "voce_en": "Groups: children under 15",
+          "prezzo": "Fr. 40.–"
+        },
+        {
+          "voce": "Gruppi: giovani da 15 a 18 anni",
+          "voce_de": "Gruppen: Jugendliche von 15 bis 18 Jahren",
+          "voce_en": "Groups: young people aged 15 to 18",
+          "prezzo": "Fr. 45.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Extra",
+      "titolo_de": "Extras",
+      "titolo_en": "Extras",
+      "nota": "Per ragioni igieniche il sacco lenzuolo è obbligatorio",
+      "nota_de": "Aus hygienischen Gründen ist der Hüttenschlafsack obligatorisch",
+      "nota_en": "For hygiene reasons a sleeping-bag liner is compulsory",
+      "righe": [
+        {
+          "voce": "Lunch",
+          "voce_de": "Lunch",
+          "voce_en": "Packed lunch",
+          "prezzo": "Fr. 12.–"
+        },
+        {
+          "voce": "Tè di giornata (1 l)",
+          "voce_de": "Tagestee (1 l)",
+          "voce_en": "Tea for the day (1 l)",
+          "prezzo": "Fr. 4.–"
+        },
+        {
+          "voce": "Doccia (a persona)",
+          "voce_de": "Dusche (pro Person)",
+          "voce_en": "Shower (per person)",
+          "prezzo": "Fr. 5.–"
+        },
+        {
+          "voce": "Sacco lenzuolo monouso",
+          "voce_de": "Einweg-Hüttenschlafsack",
+          "voce_en": "Disposable sleeping-bag liner",
+          "prezzo": "Fr. 7.–"
+        }
+      ]
+    }
+  ],
+  "prenotare": "- **Riservazione obbligatoria**, online con il pulsante «Prenota».\n- Disdette senza costi entro le 18.00 di **due giorni prima** della data riservata.\n- Non si accettano riservazioni o richieste tramite social media: per informazioni chiamateci.\n[Disposizioni per gli ospiti](docs/capanne/campotencia/disposizioni-per-gli-ospiti.pdf)\n\n[Condizioni generali delle capanne CAS](docs/capanne/campotencia/2020-cgc-capanne-cas-it.pdf)",
+  "prenotare_de": "- **Reservation obligatorisch**, online mit der Schaltfläche «Reservieren».\n- Kostenlose Annullierung bis 18 Uhr **zwei Tage vor** dem reservierten Datum.\n- Keine Reservationen oder Anfragen über soziale Medien: Rufen Sie uns bitte an.\n[Hinweise für die Gäste](docs/capanne/campotencia/disposizioni-per-gli-ospiti.pdf)\n\n[Allgemeine Geschäftsbedingungen der SAC-Hütten](docs/capanne/campotencia/2020-cgc-capanne-cas-it.pdf)",
+  "prenotare_en": "- **Booking is compulsory**, online with the “Book” button.\n- Free cancellation until 6 pm **two days before** the booked date.\n- No bookings or enquiries via social media: please phone us.\n[Information for guests](docs/capanne/campotencia/disposizioni-per-gli-ospiti.pdf)\n\n[General terms and conditions of SAC huts](docs/capanne/campotencia/2020-cgc-capanne-cas-it.pdf)"
+}

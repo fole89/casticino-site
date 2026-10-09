@@ -125,32 +125,7 @@ CONTENUTI_DE = {
         cucina="""<p>Ein einfaches, ehrliches Angebot mit einheimischer, aber nicht nur tessinischer Prägung: kalte Teller mit Wurst und Käse aus der Region, Suppen, frische Gnocchi und Polenta mit verschiedenen Beilagen, je nach Saison und Angebot.</p>
 <p>Für Übernachtungsgäste kochen wir Spezialitäten aus der Gegend, mit einem Menü, das je nach Anlass wechselt, inspiriert von den Bergen und mehr.</p>
 <p>Vegetarier, Veganer und Gäste mit besonderer Ernährung sind willkommen: Bitte melden Sie sich frühzeitig, damit wir alle zufriedenstellen können.</p>""",
-        team=dict(img=("guardiani", "Valeria und Paco, Hüttenwarte der Capanna Campo Tencia"),
-                  testo="""<p>Wir sehen uns als fröhliche, positive Menschen voller Energie, mit viel Lust anzupacken. Früher führten wir eine Osteria mit Unterkunft; seit 2024 sind wir die Hüttenwarte der Capanna Campo Tencia.</p>
-<p>Wir sind viel gereist und haben wunderbare Orte entdeckt, aber auch gemerkt, wie schön es ist, in unsere Berge zurückzukehren: Hier fühlen wir uns zu Hause. Nach vielen Jahren in der Hotellerie hat uns der Ruf der Berge höher hinaufgeführt, um diesen Traum zu verwirklichen.</p>
-<p>Während der Saison helfen uns Freunde und Freiwillige. Wir freuen uns darauf, Sie in der Hütte zu begrüssen!</p>
-<p><strong>Valeria und Paco</strong></p>"""),
-        tariffe=[
-            ("Mitglieder SAC/FAT und Gegenrechtsvereine", "Übernachtung mit Halbpension (Abendessen und Frühstück)",
-             [("Kinder bis 7 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 45.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 58.–"),
-              ("Erwachsene ab 22 Jahren", "Fr. 75.–"), ("Bergführer IFMGA", "Fr. 50.–")]),
-            ("Nichtmitglieder", "Übernachtung mit Halbpension (Abendessen und Frühstück)",
-             [("Kinder bis 7 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 50.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 63.–"),
-              ("Erwachsene ab 22 Jahren", "Fr. 85.–")]),
-            ("Familien und Gruppen", "Familienrabatt unter der Woche (Sonntag-Donnerstag) und Angebot für Jugendgruppen: Schulen, Pfadi, J+S-Kurse (Montag-Donnerstag)",
-             [("Familien: Rabatt pro Kind unter 15 Jahren", "Fr. 5.–"), ("Gruppen: Kinder unter 15 Jahren", "Fr. 40.–"),
-              ("Gruppen: Jugendliche von 15 bis 18 Jahren", "Fr. 45.–")]),
-            ("Extras", "Aus hygienischen Gründen ist der Hüttenschlafsack obligatorisch",
-             [("Lunch", "Fr. 12.–"), ("Tagestee (1 l)", "Fr. 4.–"), ("Dusche (pro Person)", "Fr. 5.–"),
-              ("Einweg-Hüttenschlafsack", "Fr. 7.–")]),
-        ],
-        prenotare=f"""<ul>
-<li><strong>Reservation obligatorisch</strong>, online mit der Schaltfläche «Reservieren».</li>
-<li>Kostenlose Annullierung bis 18 Uhr <strong>zwei Tage vor</strong> dem reservierten Datum.</li>
-<li>Keine Reservationen oder Anfragen über soziale Medien: Rufen Sie uns bitte an.</li>
-</ul>
-<p><a class="file-link" href="{CT_DOC}disposizioni-per-gli-ospiti.pdf">Hinweise für die Gäste</a></p>
-<p><a class="file-link" href="{CT_DOC}2020-cgc-capanne-cas-it.pdf">Allgemeine Geschäftsbedingungen der SAC-Hütten</a></p>""",
+        team=dict(img=("guardiani", "Valeria und Paco, Hüttenwarte der Capanna Campo Tencia")),
         accessi=f"""<p>Im Sommer erreicht man die Hütte bequem zu Fuss, auf familienfreundlichen Wegen; im Winter mit Ski ab Dalpe durch das Val Piumogna.</p>
 <p><strong>Nach Dalpe:</strong> von Norden oder Süden auf der A2, Ausfahrt Rodi-Quinto; mit dem öffentlichen Verkehr bis Rodi und von dort mit dem <a href="https://www.postauto.ch/de" rel="noopener">Postauto</a>.</p>
 <ul>
@@ -307,32 +282,7 @@ CONTENUTI_DE = {
 <p><strong>Wichtig:</strong> Teilen Sie uns rechtzeitig mit, wenn Sie vegetarisch oder vegan essen oder Allergien und Unverträglichkeiten haben: Wir bereiten Ihnen gerne ein passendes Menü zu.</p>
 <p>Die Zimmer werden nach Eingang der Reservation und Grösse der Gruppe zugeteilt; Zimmer können nicht exklusiv reserviert werden. Wenn die Hütte bewartet ist, ist die Halbpension obligatorisch.</p>
 <p>Hunde sind willkommen, aber nicht in den Zimmern und Aufenthaltsräumen: Bitte melden Sie sie vor der Ankunft an.</p>""",
-        team=dict(titolo="Der Hüttenwart", img=("guardiano", "Emanuele Vellati, Hüttenwart der Capanna Cristallina, im Schnee mit dem Basodino im Hintergrund"),
-                  testo="""<p>Emanuele Vellati führt die Hütte seit dem Winter 2018. Elektriker und Koch von Beruf, leitet er sie mit grosser Sorgfalt und Hingabe, wie die gepflegte Infrastruktur und die ausgezeichnete Küche zeigen. In jungen Jahren begeisterter Bergsteiger, lebt er die Berge heute jeden Tag, als Kern seiner Arbeit.</p>
-<p>Im Sommer und im Winter unterstützen ihn viele Helferinnen und Helfer, Freunde und Freiwillige des CAS Ticino, die sich über ein kleines Dankeschön immer freuen. Und dann ist da noch Jack, der friedlichste und neugierigste Bewohner der Hütte, der Neuschnee fast mehr liebt als wir.</p>
-<p><strong>Emanuele</strong></p>""",
-                  persone=[("Jack", "Der Hüttenhund, liebt Neuschnee", "jack")]),
-        tariffe=[
-            ("Mitglieder SAC/FAT und Gegenrechtsvereine", "Übernachtung mit Halbpension (Abendessen und Frühstück), MWST und Kurtaxe inbegriffen",
-             [("Kinder bis 7 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 50.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 70.–"),
-              ("Erwachsene ab 22 Jahren", "Fr. 83.–"), ("Bergführer", "Fr. 55.–")]),
-            ("Nichtmitglieder", "Übernachtung mit Halbpension (Abendessen und Frühstück), MWST und Kurtaxe inbegriffen",
-             [("Kinder bis 7 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 55.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 77.–"),
-              ("Erwachsene ab 22 Jahren", "Fr. 95.–")]),
-            ("Familien und Gruppen", "Familienrabatt unter der Woche (Sonntag-Donnerstag) und Angebot für Jugendgruppen: Schulen, Pfadi, J+S-Kurse (Montag-Donnerstag)",
-             [("Familien: Rabatt pro Kind unter 15 Jahren", "Fr. 5.–"), ("Gruppen: Kinder bis 14 Jahre", "Fr. 40.–"),
-              ("Gruppen: Jugendliche von 15 bis 18 Jahren", "Fr. 50.–")]),
-            ("Extras", "Aus hygienischen Gründen ist der Hüttenschlafsack obligatorisch",
-             [("Lunch", "Fr. 12.–"), ("Tee in der Thermosflasche, mit dem Lunch", "inbegriffen"), ("Dusche (pro Person)", "Fr. 5.–"),
-              ("Einweg-Hüttenschlafsack", "Fr. 7.–")]),
-        ],
-        prenotare="""<ul>
-<li><strong>Nur Barzahlung in Schweizer Franken</strong>, keine Euro.</li>
-<li>Reservation online mit der Schaltfläche «Reservieren»: Allergien, Unverträglichkeiten und Vegetarier bitte im entsprechenden Feld angeben.</li>
-<li>Annullieren Sie bis <strong>zwei Tage vor der Ankunft</strong>, wenn nötig auch per Telefon oder E-Mail; es gilt das No-Show-Reglement.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/cristallina/disposizioni-per-gli-ospiti-1.pdf">Hinweise für die Gäste</a></p>
-<p><a class="file-link" href="docs/capanne/cristallina/2020-condizioni-generali-it.pdf">Allgemeine Geschäftsbedingungen der SAC-Hütten</a></p>""",
+        team=dict(titolo="Der Hüttenwart", img=("guardiano", "Emanuele Vellati, Hüttenwart der Capanna Cristallina, im Schnee mit dem Basodino im Hintergrund")),
         accessi="""<p>Im Sommer erreicht man die Hütte in einigen Stunden zu Fuss, meist auf familienfreundlichen Wegen; im Winter mit Ski aus dem Bedrettotal, von Robiei oder aus dem Val Formazza.</p>
 <ul>
 <li>Ab Ossasco: 3 h 30.</li>
@@ -423,33 +373,7 @@ CONTENUTI_DE = {
 <p>Für Übernachtungsgäste gibt es abends Gerichte und Spezialitäten mit saisonalen Produkten, und ein reichhaltiges Frühstück gibt Kraft für neue Abenteuer.</p>
 <p><strong>Wichtig:</strong> Teilen Sie uns rechtzeitig mit, wenn Sie vegetarisch oder vegan essen oder Allergien und Unverträglichkeiten haben.</p>
 <p>Hunde sind willkommen, aber nicht in den Zimmern: Für sie gibt es einen Platz draussen. Bitte melden Sie Ihren Hund vorher an.</p>""",
-        team=dict(img=("guardiani", "Der Hüttenwart und zwei Helfer vor dem Eingang der Steinhütte"),
-                  testo="""<p>Ich bin Lele, seit 2024 auf der Capanna Adula, zusammen mit meiner Partnerin Mirella. Die Leidenschaft für die Berge und die Erfahrung als Helfer in anderen Hütten jenseits der Alpen haben mich dazu gebracht, meinen Beruf aufzugeben, um mit den Menschen und der Natur zu leben.</p>
-<p>Während der Saison helfen uns junge Leute, die Lust auf ein einzigartiges Erlebnis in der Höhe haben. Ein Traum, der wahr geworden ist.</p>""",
-                  persone=[("Raffaele «Lele» Demaldi", "Hüttenwart", "lele"), ("Mirella", "Mit Lele in der Hütte", "mirella")]),
-        tariffe=[
-            ("Mitglieder SAC/FAT und Gegenrechtsvereine", "Übernachtung, Abendessen (Suppe, Salat, Hauptgang, Dessert) und Frühstück, MWST inbegriffen",
-             [("Kinder bis 7 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 45.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 58.–"),
-              ("Erwachsene ab 22 Jahren", "Fr. 75.–")]),
-            ("Nichtmitglieder", "Übernachtung, Abendessen (Suppe, Salat, Hauptgang, Dessert) und Frühstück, MWST inbegriffen",
-             [("Kinder bis 7 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 50.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 63.–"),
-              ("Erwachsene ab 22 Jahren", "Fr. 85.–")]),
-            ("Familien und Gruppen", "Familienrabatt unter der Woche (Sonntag-Donnerstag) und Preise für Schulen, Pfadi und J+S unter der Woche",
-             [("Familien: Rabatt pro Kind unter 15 Jahren", "Fr. 5.–"), ("Gruppen: Kinder von 8 bis 14 Jahren", "Fr. 35.–"),
-              ("Gruppen: Jugendliche von 15 bis 21 Jahren", "Fr. 45.–")]),
-            ("Extras", "Aus hygienischen Gründen ist der Hüttenschlafsack obligatorisch",
-             [("Doppelzimmer (Zuschlag pro Zimmer)", "Fr. 20.–"), ("Marschtee (1 l)", "Fr. 5.–"), ("Dusche (pro Person)", "Fr. 5.–"),
-              ("Einweg-Hüttenschlafsack", "Fr. 7.–")]),
-        ],
-        prenotare="""<ul>
-<li>Reservation online mit der Schaltfläche «Reservieren».</li>
-<li>Kostenlose Annullierung bis 18 Uhr <strong>zwei Tage vor</strong> dem reservierten Datum.</li>
-<li>Bezahlung bar, mit Twint oder Kreditkarte.</li>
-<li>Keine Reservationen oder Anfragen über soziale Medien: Rufen Sie uns bitte an.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/adula/disposizioni-per-gli-ospiti-1.pdf">Hinweise für die Gäste</a></p>
-<p><a class="file-link" href="docs/capanne/adula/2020-cgc-capanne-cas-it.pdf">Allgemeine Geschäftsbedingungen der SAC-Hütten</a></p>
-<p><a class="file-link" href="docs/capanne/adula/pagamento-non-custodita-adula.pdf">Aufenthalt im Winter: Merkblatt zur Bezahlung</a></p>""",
+        team=dict(img=("guardiani", "Der Hüttenwart und zwei Helfer vor dem Eingang der Steinhütte")),
         accessi="""<p><strong>Im Sommer</strong> erreicht man die Hütte bequem über den flachen Saumweg durch das Val Carassino ab Compietto. Das Tal ist etwa 6 km lang und führt an zwei Alpen vorbei, der Alpe Bolla und der Alpe Bresciana, wo ein ausgezeichneter Käse entsteht, den man auch in der Hütte geniesst. Der nahe Bach macht den Weg an heissen Tagen ideal für Familien; mit dem Mountainbike genügt etwa eine Stunde.</p>
 <p><strong>Im Winter</strong> steigt man mit Ski ab Dangio durch das Val Soi auf, oder ab Ghirone über den Luzzone und das Val Carassino, bei sicherem Schnee und am besten im Frühling.</p>
 <ul>
@@ -556,32 +480,7 @@ CONTENUTI_DE = {
 <p><strong>Wichtig:</strong> Teilen Sie uns rechtzeitig mit, wenn Sie vegetarisch oder vegan essen oder Allergien und Unverträglichkeiten haben.</p>
 <p>Für Kinder gibt es Spiele, Bücher, Papier und Farbstifte; am Weg sieht man mit etwas Glück Murmeltiere. Hunde sind willkommen, dürfen aber nicht in die Hütte: Für die Nacht steht der geschützte, trockene Holzschopf mit Decke und Näpfen bereit. Bitte vorher melden.</p>
 <p>Im Sommer hilft die Materialseilbahn bei der Versorgung, der Helikopter bleibt aber unverzichtbar: Bitte nehmen Sie Ihre Abfälle wieder mit ins Tal.</p>""",
-        team=dict(titolo="Der Hüttenwart", img=("fabio", "Fabio Merzaghi in der Küche mit frisch gebackenen Kuchen"),
-                  testo="""<p>Ich heisse Fabio Merzaghi und bin am Fuss des Monte Generoso aufgewachsen, am Ufer des Luganersees. Die Berge sind seit jeher meine Leidenschaft: Im Winter steige ich mit Fellen auf die Gipfel, im Sommer klettere ich.</p>
-<p>In einer Hütte zu arbeiten war mein Traum: Im Sommer 2023 habe ich ihn in der <a href="https://www.fornohuette.ch/" rel="noopener">Fornohütte</a> verwirklicht, danach habe ich eine Zeit lang die <a href="https://www.sac-bluemlisalp.ch/de/Baltschiederklause" rel="noopener">Baltschiederklause</a> auf 2783 m im Wallis geführt. Ich habe den Hüttenwartskurs des Schweizer Alpen-Clubs besucht. Als Maschineningenieur habe ich das Büro gegen ein Abenteuer in der Natur getauscht.</p>
-<p>Die Hütte setzt auf hochwertige lokale Produkte und nachhaltiges Wirtschaften. Und ohne die Zauberhände unserer treuen Helferinnen und Helfer gäbe es nicht einmal ein Stück Kuchen: herzlichen Dank!</p>
-<p><strong>Fabio</strong></p>"""),
-        tariffe=[
-            ("Mitglieder SAC/FAT und Gegenrechtsvereine", "Saison 2026: Übernachtung, Abendessen (Suppe, Salat, Hauptgang, Dessert) und Frühstücksbuffet, MWST und Kurtaxe inbegriffen",
-             [("Kinder bis 7 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 50.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 65.–"),
-              ("Erwachsene ab 22 Jahren", "Fr. 82.–"), ("Bergführer", "Fr. 52.–")]),
-            ("Nichtmitglieder", "Saison 2026: Übernachtung, Abendessen und Frühstücksbuffet, MWST und Kurtaxe inbegriffen",
-             [("Kinder bis 7 Jahre", "Fr. 32.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 55.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 72.–"),
-              ("Erwachsene ab 22 Jahren", "Fr. 95.–")]),
-            ("Familien und Gruppen", "Familienrabatt unter der Woche (Sonntag-Donnerstag) und Preise für Schulen, Pfadi und J+S (Montag-Donnerstag)",
-             [("Familien: Rabatt pro Kind unter 15 Jahren", "Fr. 5.–"), ("Gruppen: Kinder von 8 bis 14 Jahren", "Fr. 40.–"),
-              ("Gruppen: Jugendliche von 15 bis 18 Jahren", "Fr. 50.–")]),
-            ("Extras", "Aus hygienischen Gründen ist der Hüttenschlafsack obligatorisch",
-             [("Lunch", "Fr. 10.–"), ("Tee (1 l)", "Fr. 3.–"), ("Dusche (pro Person)", "Fr. 5.–"),
-              ("Einweg-Hüttenschlafsack", "Fr. 7.–"), ("Hüttenschlafsack zum Mieten", "Fr. 5.–")]),
-        ],
-        prenotare="""<ul>
-<li>Reservation online mit der Schaltfläche «Reservieren»; für kurzfristige Reservationen bitte anrufen.</li>
-<li><strong>Nur Barzahlung</strong>, in Franken oder Euro.</li>
-<li>Annullierungen und Änderungen kostenlos bis 18 Uhr zwei Tage vor der Ankunft; bis 18 Uhr am Vortag Fr. 30.– pro Person und Nacht; nicht gemeldetes Nichterscheinen Fr. 50.– pro Person und Nacht.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/motterascio/disposizioni-per-gli-ospiti-1.pdf">Hinweise für die Gäste</a></p>
-<p><a class="file-link" href="docs/capanne/motterascio/cgc-capanne-cas.pdf">Allgemeine Geschäftsbedingungen der SAC-Hütten</a></p>""",
+        team=dict(titolo="Der Hüttenwart", img=("fabio", "Fabio Merzaghi in der Küche mit frisch gebackenen Kuchen")),
         accessi="""<p>Im Sommer erreicht man die Hütte bequem zu Fuss, meist auf familienfreundlichen Wegen. Im Winter steigt man mit Ski durch das Val Camadra und über den Greinapass auf (5-6 h), nur bei gesetztem Schnee und wenn die seitlichen Hänge entladen sind.</p>
 <ul>
 <li>Ab Lago di Luzzone, Alpe Garzott: 2 h.</li>
@@ -678,36 +577,7 @@ CONTENUTI_DE = {
 <li>Grill auf der Terrasse im Sommer, Wild im Herbst, Käsefondue im Winter.</li>
 </ul>
 <p>Frühstück ab 7.45 Uhr (im Winter ab 8 Uhr). Hunde sind in der Hütte nicht erlaubt; Minderjährige sind in Begleitung eines Erwachsenen willkommen. Ab 22 Uhr bitte Rücksicht auf die Schlafenden nehmen.</p>""",
-        team=dict(titolo="Die Hüttenwarte", img=("gestori", "James Mauri und Serge Santese auf den Weiden vor der Hütte"),
-                  testo="""<p>Seit 2020 führen James Mauri und Serge «Seo» Santese die Hütte, mit Erfahrung in sehr guten Küchen im Tessin und darüber hinaus. Wir freuen uns über das, was wir tun: Hier zu leben ist eine bewusste Wahl und vor allem eine schöne Lebensschule.</p>
-<p><strong>James und Seo</strong></p>"""),
-        tariffe=[
-            ("Mitglieder SAC/FAT und Gegenrechtsvereine", "Übernachtung mit Halbpension",
-             [("Kinder bis 7 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 40.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 60.–"),
-              ("Erwachsene ab 22 Jahren", "Fr. 80.–")]),
-            ("Nichtmitglieder", "Übernachtung mit Halbpension",
-             [("Kinder bis 7 Jahre", "Fr. 30.–"), ("Kinder von 8 bis 14 Jahren", "Fr. 45.–"), ("Jugendliche von 15 bis 21 Jahren", "Fr. 65.–"),
-              ("Erwachsene ab 22 Jahren", "Fr. 95.–")]),
-            ("Doppelzimmer", "Mit Doppelbett und frischer Bettwäsche",
-             [("Pro Person", "Fr. 120.–"), ("Einzelbelegung", "Fr. 150.–")]),
-            ("Familien und Gruppen", "Familien mit 2 Erwachsenen und mindestens 2 Kindern bis 15 Jahre; Jugendgruppen (Schulen, Pfadi, J+S) von Montag bis Donnerstag",
-             [("Familien, Freitag-Samstag: Rabatt pro Person", "Fr. 5.–"), ("Familien, Sonntag-Donnerstag: Rabatt pro Person", "Fr. 10.–"),
-              ("Gruppen: Kinder bis 15 Jahre", "Fr. 35.–"), ("Gruppen: Jugendliche von 15 bis 18 Jahren", "Fr. 45.–")]),
-            ("Extras", "Besondere Menüs für Anlässe nach Absprache mit den Hüttenwarten; Hüttenschlafsack obligatorisch",
-             [("Lunch zum Mitnehmen", "Fr. 12.–"), ("Tagestee (1 l)", "Fr. 3.–"), ("Dusche (pro Person)", "Fr. 5.–"),
-              ("Hüttenschlafsack", "Fr. 7.–")]),
-            ("Workshop-Raum", "Mit Beamer und Tischen für etwa 15 Personen",
-             [("Pro Tag, ohne Verpflegung", "Fr. 200.–"), ("Mit Mittag- oder Abendessen", "Fr. 100.–"), ("Mit Halbpension", "gratis")]),
-        ],
-        prenotare="""<ul>
-<li><strong>Sommer</strong> (1. Mai bis 8. November 2026): täglich offen.</li>
-<li><strong>Winter</strong> (9. November 2026 bis 30. April 2027): von Freitagmittag bis Sonntagmittag, an Feiertagen und in den Schulferien immer offen; an den übrigen Tagen auf Anfrage. Wenn die Hütte geschlossen ist, sind nur der Eingang mit Toiletten und Getränken zugänglich: <strong>Übernachten ist dann nicht möglich</strong>.</li>
-<li>Reservation online mit der Schaltfläche «Reservieren». Annullierungen und Änderungen ohne Gebühr bis 18 Uhr 2 Tage vor der Ankunft für bis zu 9 Personen, 4 Tage vorher ab 10 Personen; danach Fr. 50.– pro Person und Nacht.</li>
-<li>Check-in von 16.30 bis 18 Uhr, Check-out um 9 Uhr. Übernachtungsgäste melden sich bei der Ankunft und tragen sich ins Gästebuch ein.</li>
-<li>Bezahlung bar, mit EC, Visa oder Twint.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/montebar/disposizioni-per-gli-ospiti.pdf">Hinweise für die Gäste</a></p>
-<p><a class="file-link" href="docs/capanne/montebar/cgc-capanna-monte-bar-it-2025.pdf">Allgemeine Geschäftsbedingungen der Capanna Monte Bar</a></p>""",
+        team=dict(titolo="Die Hüttenwarte", img=("gestori", "James Mauri und Serge Santese auf den Weiden vor der Hütte")),
         accessi="""<p>Zu Fuss oder mit dem Mountainbike ist die Hütte ohne grosse Schwierigkeiten erreichbar, meist auf familienfreundlichen Wegen. Auch im Winter kommt man mit Ski oder Schneeschuhen hinauf, aber denken Sie daran, dass die Verhältnisse in den Bergen anders sein können als im Tal. Parkplätze im Tal sind knapp: besser mit dem öffentlichen Verkehr.</p>
 <ul>
 <li>Ab Corticiasca: 1 h 30.</li>
@@ -808,25 +678,6 @@ CONTENUTI_DE = {
         capanna_titolo="Die Baita",
         capanna="""<p>Die Baita hat 16 Schlafplätze in zwei Räumen mit 4 und 12 Plätzen, eine Stube mit Gasküche und Cheminée, warmes Wasser und Dusche; das Licht kommt von Solarzellen. Geschirr und Pfannen sind vorhanden, Getränke gibt es in beschränkter Menge. Mässiger Empfang, kein WLAN und kein Telefon.</p>
 <p>Sie ist nicht bewartet: Die Tür ist abgeschlossen, den Code erhalten Sie von der Verantwortlichen. Schnell und einfach erreichbar, wird sie auch für Kurse, Ausbildungstage oder einfach für ein gemeinsames Abendessen genutzt.</p>""",
-        tariffe=[
-            ("Mitglieder SAC/FAT/CAI/DAV", "Übernachtung, Taxen inbegriffen",
-             [("Erwachsene ab 22 Jahren", "Fr. 15.–"), ("Jugendliche von 6 bis 21 Jahren, Bergführer-Aspiranten und SAC-Tourenleiter", "Fr. 8.–"),
-              ("Kinder bis 5 Jahre", "gratis"), ("Bergführer IFMGA", "gratis")]),
-            ("Nichtmitglieder", "Übernachtung, Taxen inbegriffen",
-             [("Erwachsene ab 20 Jahren", "Fr. 25.–"), ("Jugendliche von 6 bis 19 Jahren", "Fr. 12.–"), ("Kinder bis 5 Jahre", "gratis")]),
-            ("Zuschläge", "Der Hüttenschlafsack ist obligatorisch und in der Baita nicht erhältlich",
-             [("Gas zum Kochen (pro Tag)", "Fr. 5.–"), ("Brennholz (pro Tag)", "Fr. 5.–"), ("Dusche (pro Person)", "Fr. 5.–")]),
-        ],
-        prenotare="""<ul>
-<li><strong>Reservation unerlässlich</strong> per E-Mail an <a href="mailto:baitaluca@casticino.ch">baitaluca@casticino.ch</a>, mit Vorname, Name, Adresse und Handynummer.</li>
-<li>Kostenlose Annullierung bis 18 Uhr <strong>zwei Tage vor</strong> dem reservierten Datum.</li>
-<li>Den Code zum Schlüssel erhalten Sie von den Verantwortlichen; im Winter wird die Tür auf Anfrage und je nach Wetter geöffnet.</li>
-<li>Bringen Sie Hüttenschlafsack und Kissenbezug (55×80) mit.</li>
-<li>Bezahlung mit dem QR-Code (im Hüttenbuch) oder mit Twint.</li>
-<li>Rauchen ist streng verboten; Hunde sind nur in der Stube erlaubt, nicht im Schlafraum.</li>
-<li>Keine Reservationen oder Anfragen über soziale Medien: Rufen Sie bitte an.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/baitadelluca/2020-cgc-capanne-cas-it.pdf">Allgemeine Geschäftsbedingungen der SAC-Hütten</a></p>""",
         accessi="""<ul>
 <li>Ab Rosone (Bus): 45 min, +270 m, T2 (<a href="https://map.schweizmobil.ch/?lang=de&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2722290&amp;N=1102884&amp;layers=Wanderland%2CStation&amp;trackId=5273099" rel="noopener">Route</a>).</li>
 <li>Ab Sonvico (Bus): 1 h 45, +500 m, T2 (<a href="https://map.schweizmobil.ch/?lang=de&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2721523&amp;N=1102174&amp;layers=Wanderland%2CStation&amp;trackId=5273106" rel="noopener">Route</a>).</li>

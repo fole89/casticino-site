@@ -1,0 +1,155 @@
+{
+  "guardiani": "Emanuele Vellati gestisce la capanna dall’inverno 2018. Elettricista e cuoco di formazione, la conduce con grande cura e dedizione, come mostrano le infrastrutture curate e l’ottima cucina. Appassionato alpinista in gioventù, oggi vive la montagna ogni giorno, come essenza del suo lavoro.\n\nD’estate e d’inverno lo affiancano numerosi aiutanti, amici e volontari del CAS Ticino, sempre felici di un piccolo ringraziamento. E poi c’è Jack, il più pacifico e curioso abitante della capanna, che ama la neve fresca quasi più di noi.\n\n**Emanuele**",
+  "guardiani_de": "Emanuele Vellati führt die Hütte seit dem Winter 2018. Elektriker und Koch von Beruf, leitet er sie mit grosser Sorgfalt und Hingabe, wie die gepflegte Infrastruktur und die ausgezeichnete Küche zeigen. In jungen Jahren begeisterter Bergsteiger, lebt er die Berge heute jeden Tag, als Kern seiner Arbeit.\n\nIm Sommer und im Winter unterstützen ihn viele Helferinnen und Helfer, Freunde und Freiwillige des CAS Ticino, die sich über ein kleines Dankeschön immer freuen. Und dann ist da noch Jack, der friedlichste und neugierigste Bewohner der Hütte, der Neuschnee fast mehr liebt als wir.\n\n**Emanuele**",
+  "guardiani_en": "Emanuele Vellati has run the hut since winter 2018. An electrician and a cook by trade, he runs it with great care and dedication, as the well-kept facilities and excellent cooking show. A keen climber in his youth, today he lives the mountains every day, at the heart of his work.\n\nIn summer and winter he is helped by many helpers, friends and CAS Ticino volunteers, who are always glad of a small thank-you. And then there is Jack, the hut’s calmest and most curious resident, who loves fresh snow almost more than we do.\n\n**Emanuele**",
+  "persone": [
+    {
+      "nome": "Jack",
+      "ruolo": "Il cane della capanna, ama la neve fresca",
+      "ruolo_de": "Der Hüttenhund, liebt Neuschnee",
+      "ruolo_en": "The hut dog, loves fresh snow",
+      "foto": "jack"
+    }
+  ],
+  "tariffe": [
+    {
+      "titolo": "Soci CAS/FAT e club con diritto di reciprocità",
+      "titolo_de": "Mitglieder SAC/FAT und Gegenrechtsvereine",
+      "titolo_en": "Members of SAC/FAT and reciprocal clubs",
+      "nota": "Pernottamento con mezza pensione (cena e colazione), IVA e tassa di soggiorno incluse",
+      "nota_de": "Übernachtung mit Halbpension (Abendessen und Frühstück), MWST und Kurtaxe inbegriffen",
+      "nota_en": "Overnight stay with half board (dinner and breakfast), VAT and tourist tax included",
+      "righe": [
+        {
+          "voce": "Bambini fino a 7 anni",
+          "voce_de": "Kinder bis 7 Jahre",
+          "voce_en": "Children up to 7",
+          "prezzo": "Fr. 30.–"
+        },
+        {
+          "voce": "Ragazzi da 8 a 14 anni",
+          "voce_de": "Kinder von 8 bis 14 Jahren",
+          "voce_en": "Children aged 8 to 14",
+          "prezzo": "Fr. 50.–"
+        },
+        {
+          "voce": "Giovani da 15 a 21 anni",
+          "voce_de": "Jugendliche von 15 bis 21 Jahren",
+          "voce_en": "Young people aged 15 to 21",
+          "prezzo": "Fr. 70.–"
+        },
+        {
+          "voce": "Adulti dai 22 anni",
+          "voce_de": "Erwachsene ab 22 Jahren",
+          "voce_en": "Adults from 22",
+          "prezzo": "Fr. 83.–"
+        },
+        {
+          "voce": "Guide alpine",
+          "voce_de": "Bergführer",
+          "voce_en": "Mountain guides",
+          "prezzo": "Fr. 55.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Non soci",
+      "titolo_de": "Nichtmitglieder",
+      "titolo_en": "Non-members",
+      "nota": "Pernottamento con mezza pensione (cena e colazione), IVA e tassa di soggiorno incluse",
+      "nota_de": "Übernachtung mit Halbpension (Abendessen und Frühstück), MWST und Kurtaxe inbegriffen",
+      "nota_en": "Overnight stay with half board (dinner and breakfast), VAT and tourist tax included",
+      "righe": [
+        {
+          "voce": "Bambini fino a 7 anni",
+          "voce_de": "Kinder bis 7 Jahre",
+          "voce_en": "Children up to 7",
+          "prezzo": "Fr. 30.–"
+        },
+        {
+          "voce": "Ragazzi da 8 a 14 anni",
+          "voce_de": "Kinder von 8 bis 14 Jahren",
+          "voce_en": "Children aged 8 to 14",
+          "prezzo": "Fr. 55.–"
+        },
+        {
+          "voce": "Giovani da 15 a 21 anni",
+          "voce_de": "Jugendliche von 15 bis 21 Jahren",
+          "voce_en": "Young people aged 15 to 21",
+          "prezzo": "Fr. 77.–"
+        },
+        {
+          "voce": "Adulti dai 22 anni",
+          "voce_de": "Erwachsene ab 22 Jahren",
+          "voce_en": "Adults from 22",
+          "prezzo": "Fr. 95.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Famiglie e gruppi",
+      "titolo_de": "Familien und Gruppen",
+      "titolo_en": "Families and groups",
+      "nota": "Sconto infrasettimanale per famiglie (domenica-giovedì) e offerta per gruppi di giovani: scuole, scout, corsi G+S (lunedì-giovedì)",
+      "nota_de": "Familienrabatt unter der Woche (Sonntag-Donnerstag) und Angebot für Jugendgruppen: Schulen, Pfadi, J+S-Kurse (Montag-Donnerstag)",
+      "nota_en": "Family discount on weekdays (Sunday-Thursday) and offer for youth groups: schools, scouts, Youth+Sport courses (Monday-Thursday)",
+      "righe": [
+        {
+          "voce": "Famiglie: riduzione per ogni bambino sotto i 15 anni",
+          "voce_de": "Familien: Rabatt pro Kind unter 15 Jahren",
+          "voce_en": "Families: discount per child under 15",
+          "prezzo": "Fr. 5.–"
+        },
+        {
+          "voce": "Gruppi: bambini fino a 14 anni",
+          "voce_de": "Gruppen: Kinder bis 14 Jahre",
+          "voce_en": "Groups: children up to 14",
+          "prezzo": "Fr. 40.–"
+        },
+        {
+          "voce": "Gruppi: ragazzi da 15 a 18 anni",
+          "voce_de": "Gruppen: Jugendliche von 15 bis 18 Jahren",
+          "voce_en": "Groups: young people aged 15 to 18",
+          "prezzo": "Fr. 50.–"
+        }
+      ]
+    },
+    {
+      "titolo": "Extra",
+      "titolo_de": "Extras",
+      "titolo_en": "Extras",
+      "nota": "Per ragioni igieniche il sacco lenzuolo è obbligatorio",
+      "nota_de": "Aus hygienischen Gründen ist der Hüttenschlafsack obligatorisch",
+      "nota_en": "For hygiene reasons a sleeping-bag liner is compulsory",
+      "righe": [
+        {
+          "voce": "Lunch",
+          "voce_de": "Lunch",
+          "voce_en": "Packed lunch",
+          "prezzo": "Fr. 12.–"
+        },
+        {
+          "voce": "Tè in thermos per la giornata, con il lunch",
+          "voce_de": "Tee in der Thermosflasche, mit dem Lunch",
+          "voce_en": "Tea in a thermos, with the packed lunch",
+          "prezzo": "incluso"
+        },
+        {
+          "voce": "Doccia (a persona)",
+          "voce_de": "Dusche (pro Person)",
+          "voce_en": "Shower (per person)",
+          "prezzo": "Fr. 5.–"
+        },
+        {
+          "voce": "Sacco lenzuolo monouso",
+          "voce_de": "Einweg-Hüttenschlafsack",
+          "voce_en": "Disposable sleeping-bag liner",
+          "prezzo": "Fr. 7.–"
+        }
+      ]
+    }
+  ],
+  "prenotare": "- **Si accetta solo contante in franchi svizzeri**, niente euro.\n- Riservazione online con il pulsante «Prenota»: indicate allergie, intolleranze e vegetariani nell’apposita casella.\n- Annullate la prenotazione entro **due giorni prima dell’arrivo**, se serve anche per telefono o e-mail; vale il regolamento sul mancato arrivo (no-show).\n[Disposizioni per gli ospiti](docs/capanne/cristallina/disposizioni-per-gli-ospiti-1.pdf)\n\n[Condizioni generali delle capanne CAS](docs/capanne/cristallina/2020-condizioni-generali-it.pdf)",
+  "prenotare_de": "- **Nur Barzahlung in Schweizer Franken**, keine Euro.\n- Reservation online mit der Schaltfläche «Reservieren»: Allergien, Unverträglichkeiten und Vegetarier bitte im entsprechenden Feld angeben.\n- Annullieren Sie bis **zwei Tage vor der Ankunft**, wenn nötig auch per Telefon oder E-Mail; es gilt das No-Show-Reglement.\n[Hinweise für die Gäste](docs/capanne/cristallina/disposizioni-per-gli-ospiti-1.pdf)\n\n[Allgemeine Geschäftsbedingungen der SAC-Hütten](docs/capanne/cristallina/2020-condizioni-generali-it.pdf)",
+  "prenotare_en": "- **Cash payment in Swiss francs only**, no euros.\n- Book online with the “Book” button: please note allergies, intolerances and vegetarians in the field provided.\n- Cancel up to **two days before arrival**, by phone or e-mail if necessary; the no-show rules apply.\n[Information for guests](docs/capanne/cristallina/disposizioni-per-gli-ospiti-1.pdf)\n\n[General terms and conditions of SAC huts](docs/capanne/cristallina/2020-condizioni-generali-it.pdf)"
+}

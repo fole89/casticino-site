@@ -126,32 +126,7 @@ CONTENUTI_EN = {
         cucina="""<p>A simple, honest menu with a local flavour, though not only from Ticino: cold platters of cured meats and cheeses from the region, soups, fresh gnocchi and polenta with various accompaniments, depending on the season and what is available.</p>
 <p>For overnight guests we cook specialities from the area, with a menu that changes with the occasion, inspired by the mountains and beyond.</p>
 <p>Vegetarians, vegans and guests with special diets are welcome: please let us know in good time, so that we can look after everyone.</p>""",
-        team=dict(img=("guardiani", "Valeria and Paco, hut keepers of Capanna Campo Tencia"),
-                  testo="""<p>We see ourselves as cheerful, positive people full of energy, always keen to get stuck in. We used to run an osteria with rooms; since 2024 we have been the hut keepers of Capanna Campo Tencia.</p>
-<p>We have travelled a lot and discovered wonderful places, but we have also realised how good it is to come back to our own mountains: this is where we feel at home. After many years in hospitality, the call of the mountains has taken us higher, to make this dream come true.</p>
-<p>During the season friends and volunteers help us. We look forward to welcoming you to the hut!</p>
-<p><strong>Valeria and Paco</strong></p>"""),
-        tariffe=[
-            ("Members of SAC/FAT and reciprocal clubs", "Overnight stay with half board (dinner and breakfast)",
-             [("Children up to 7", "CHF 30.–"), ("Children aged 8 to 14", "CHF 45.–"), ("Young people aged 15 to 21", "CHF 58.–"),
-              ("Adults from 22", "CHF 75.–"), ("IFMGA mountain guides", "CHF 50.–")]),
-            ("Non-members", "Overnight stay with half board (dinner and breakfast)",
-             [("Children up to 7", "CHF 30.–"), ("Children aged 8 to 14", "CHF 50.–"), ("Young people aged 15 to 21", "CHF 63.–"),
-              ("Adults from 22", "CHF 85.–")]),
-            ("Families and groups", "Family discount on weekdays (Sunday-Thursday) and offer for youth groups: schools, scouts, Youth+Sport courses (Monday-Thursday)",
-             [("Families: discount per child under 15", "CHF 5.–"), ("Groups: children under 15", "CHF 40.–"),
-              ("Groups: young people aged 15 to 18", "CHF 45.–")]),
-            ("Extras", "For hygiene reasons a sleeping-bag liner is compulsory",
-             [("Packed lunch", "CHF 12.–"), ("Tea for the day (1 l)", "CHF 4.–"), ("Shower (per person)", "CHF 5.–"),
-              ("Disposable sleeping-bag liner", "CHF 7.–")]),
-        ],
-        prenotare=f"""<ul>
-<li><strong>Booking is compulsory</strong>, online with the “Book” button.</li>
-<li>Free cancellation until 6 pm <strong>two days before</strong> the booked date.</li>
-<li>No bookings or enquiries via social media: please phone us.</li>
-</ul>
-<p><a class="file-link" href="{CT_DOC}disposizioni-per-gli-ospiti.pdf">Information for guests</a></p>
-<p><a class="file-link" href="{CT_DOC}2020-cgc-capanne-cas-it.pdf">General terms and conditions of SAC huts</a></p>""",
+        team=dict(img=("guardiani", "Valeria and Paco, hut keepers of Capanna Campo Tencia")),
         accessi=f"""<p>In summer the hut is easy to reach on foot, on family-friendly paths; in winter on skis from Dalpe up Val Piumogna.</p>
 <p><strong>To Dalpe:</strong> from the north or south on the A2, exit Rodi-Quinto; by public transport to Rodi and from there by <a href="https://www.postauto.ch/en" rel="noopener">PostBus</a>.</p>
 <ul>
@@ -308,32 +283,7 @@ CONTENUTI_EN = {
 <p><strong>Important:</strong> let us know in good time if you are vegetarian or vegan or have allergies or intolerances: we will gladly prepare a suitable menu.</p>
 <p>Rooms are allocated according to when bookings arrive and the size of the group; rooms cannot be booked exclusively. When the hut is staffed, half board is compulsory.</p>
 <p>Dogs are welcome, but not in the bedrooms or common rooms: please let us know before you arrive.</p>""",
-        team=dict(titolo="The hut keeper", img=("guardiano", "Emanuele Vellati, hut keeper of Capanna Cristallina, in the snow with the Basodino behind"),
-                  testo="""<p>Emanuele Vellati has run the hut since winter 2018. An electrician and a cook by trade, he runs it with great care and dedication, as the well-kept facilities and excellent cooking show. A keen climber in his youth, today he lives the mountains every day, at the heart of his work.</p>
-<p>In summer and winter he is helped by many helpers, friends and CAS Ticino volunteers, who are always glad of a small thank-you. And then there is Jack, the hut’s calmest and most curious resident, who loves fresh snow almost more than we do.</p>
-<p><strong>Emanuele</strong></p>""",
-                  persone=[("Jack", "The hut dog, loves fresh snow", "jack")]),
-        tariffe=[
-            ("Members of SAC/FAT and reciprocal clubs", "Overnight stay with half board (dinner and breakfast), VAT and tourist tax included",
-             [("Children up to 7", "CHF 30.–"), ("Children aged 8 to 14", "CHF 50.–"), ("Young people aged 15 to 21", "CHF 70.–"),
-              ("Adults from 22", "CHF 83.–"), ("Mountain guides", "CHF 55.–")]),
-            ("Non-members", "Overnight stay with half board (dinner and breakfast), VAT and tourist tax included",
-             [("Children up to 7", "CHF 30.–"), ("Children aged 8 to 14", "CHF 55.–"), ("Young people aged 15 to 21", "CHF 77.–"),
-              ("Adults from 22", "CHF 95.–")]),
-            ("Families and groups", "Family discount on weekdays (Sunday-Thursday) and offer for youth groups: schools, scouts, Youth+Sport courses (Monday-Thursday)",
-             [("Families: discount per child under 15", "CHF 5.–"), ("Groups: children up to 14", "CHF 40.–"),
-              ("Groups: young people aged 15 to 18", "CHF 50.–")]),
-            ("Extras", "For hygiene reasons a sleeping-bag liner is compulsory",
-             [("Packed lunch", "CHF 12.–"), ("Tea in a thermos, with the packed lunch", "included"), ("Shower (per person)", "CHF 5.–"),
-              ("Disposable sleeping-bag liner", "CHF 7.–")]),
-        ],
-        prenotare="""<ul>
-<li><strong>Cash payment in Swiss francs only</strong>, no euros.</li>
-<li>Book online with the “Book” button: please note allergies, intolerances and vegetarians in the field provided.</li>
-<li>Cancel up to <strong>two days before arrival</strong>, by phone or e-mail if necessary; the no-show rules apply.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/cristallina/disposizioni-per-gli-ospiti-1.pdf">Information for guests</a></p>
-<p><a class="file-link" href="docs/capanne/cristallina/2020-condizioni-generali-it.pdf">General terms and conditions of SAC huts</a></p>""",
+        team=dict(titolo="The hut keeper", img=("guardiano", "Emanuele Vellati, hut keeper of Capanna Cristallina, in the snow with the Basodino behind")),
         accessi="""<p>In summer the hut is a few hours’ walk away, mostly on family-friendly paths; in winter on skis from Valle Bedretto, from Robiei or from Val Formazza.</p>
 <ul>
 <li>From Ossasco: 3 h 30.</li>
@@ -424,33 +374,7 @@ CONTENUTI_EN = {
 <p>For overnight guests there are dishes and specialities with seasonal produce in the evening, and a generous breakfast gives you strength for new adventures.</p>
 <p><strong>Important:</strong> let us know in good time if you are vegetarian or vegan or have allergies or intolerances.</p>
 <p>Dogs are welcome, but not in the bedrooms: there is a place for them outside. Please let us know about your dog in advance.</p>""",
-        team=dict(img=("guardiani", "The hut keeper and two helpers in front of the entrance of the stone hut"),
-                  testo="""<p>I’m Lele, at Capanna Adula since 2024 together with my partner Mirella. My passion for the mountains and my experience as a helper in other huts on the far side of the Alps led me to give up my job to live with people and nature.</p>
-<p>During the season we are helped by young people keen on a unique experience at altitude. A dream come true.</p>""",
-                  persone=[("Raffaele “Lele” Demaldi", "Hut keeper", "lele"), ("Mirella", "With Lele at the hut", "mirella")]),
-        tariffe=[
-            ("Members of SAC/FAT and reciprocal clubs", "Overnight stay, dinner (soup, salad, main course, dessert) and breakfast, VAT included",
-             [("Children up to 7", "CHF 30.–"), ("Children aged 8 to 14", "CHF 45.–"), ("Young people aged 15 to 21", "CHF 58.–"),
-              ("Adults from 22", "CHF 75.–")]),
-            ("Non-members", "Overnight stay, dinner (soup, salad, main course, dessert) and breakfast, VAT included",
-             [("Children up to 7", "CHF 30.–"), ("Children aged 8 to 14", "CHF 50.–"), ("Young people aged 15 to 21", "CHF 63.–"),
-              ("Adults from 22", "CHF 85.–")]),
-            ("Families and groups", "Family discount on weekdays (Sunday-Thursday) and prices for schools, scouts and Youth+Sport on weekdays",
-             [("Families: discount per child under 15", "CHF 5.–"), ("Groups: children aged 8 to 14", "CHF 35.–"),
-              ("Groups: young people aged 15 to 21", "CHF 45.–")]),
-            ("Extras", "For hygiene reasons a sleeping-bag liner is compulsory",
-             [("Double room (supplement per room)", "CHF 20.–"), ("Tea for the walk (1 l)", "CHF 5.–"), ("Shower (per person)", "CHF 5.–"),
-              ("Disposable sleeping-bag liner", "CHF 7.–")]),
-        ],
-        prenotare="""<ul>
-<li>Book online with the “Book” button.</li>
-<li>Free cancellation until 6 pm <strong>two days before</strong> the booked date.</li>
-<li>Payment in cash, by Twint or by credit card.</li>
-<li>No bookings or enquiries via social media: please phone us.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/adula/disposizioni-per-gli-ospiti-1.pdf">Information for guests</a></p>
-<p><a class="file-link" href="docs/capanne/adula/2020-cgc-capanne-cas-it.pdf">General terms and conditions of SAC huts</a></p>
-<p><a class="file-link" href="docs/capanne/adula/pagamento-non-custodita-adula.pdf">Staying in winter: how to pay</a></p>""",
+        team=dict(img=("guardiani", "The hut keeper and two helpers in front of the entrance of the stone hut")),
         accessi="""<p><strong>In summer</strong> the hut is easy to reach on the flat mule track through Val Carassino from Compietto. The valley is about 6 km long and passes two alpine pastures, Alpe Bolla and Alpe Bresciana, where an excellent cheese is made, which you can also enjoy at the hut. The stream close by makes the path ideal for families on hot days; by mountain bike about an hour is enough.</p>
 <p><strong>In winter</strong> you climb on skis from Dangio through Val Soi, or from Ghirone via the Luzzone and Val Carassino, with safe snow and preferably in spring.</p>
 <ul>
@@ -557,32 +481,7 @@ CONTENUTI_EN = {
 <p><strong>Important:</strong> let us know in good time if you are vegetarian or vegan or have allergies or intolerances.</p>
 <p>For children there are games, books, paper and coloured pencils; along the path, with a bit of luck, you will see marmots. Dogs are welcome but may not enter the hut: for the night the sheltered, dry woodshed is ready with a blanket and bowls. Please let us know in advance.</p>
 <p>In summer the goods cableway helps with supplies, but the helicopter remains essential: please take your rubbish back down to the valley.</p>""",
-        team=dict(titolo="The hut keeper", img=("fabio", "Fabio Merzaghi in the kitchen with freshly baked cakes"),
-                  testo="""<p>My name is Fabio Merzaghi and I grew up at the foot of Monte Generoso, on the shores of Lake Lugano. The mountains have always been my passion: in winter I climb peaks on skins, in summer I go climbing.</p>
-<p>Working in a hut was my dream: in summer 2023 I made it come true at the <a href="https://www.fornohuette.ch/" rel="noopener">Fornohütte</a>, then for a while I ran the <a href="https://www.sac-bluemlisalp.ch/de/Baltschiederklause" rel="noopener">Baltschiederklause</a> at 2783 m in the Valais. I took the Swiss Alpine Club’s hut keeper course. A mechanical engineer, I swapped the office for an adventure in nature.</p>
-<p>The hut focuses on high-quality local produce and sustainable management. And without the magic hands of our loyal helpers there wouldn’t even be a slice of cake: thank you so much!</p>
-<p><strong>Fabio</strong></p>"""),
-        tariffe=[
-            ("Members of SAC/FAT and reciprocal clubs", "2026 season: overnight stay, dinner (soup, salad, main course, dessert) and breakfast buffet, VAT and tourist tax included",
-             [("Children up to 7", "CHF 30.–"), ("Children aged 8 to 14", "CHF 50.–"), ("Young people aged 15 to 21", "CHF 65.–"),
-              ("Adults from 22", "CHF 82.–"), ("Mountain guides", "CHF 52.–")]),
-            ("Non-members", "2026 season: overnight stay, dinner and breakfast buffet, VAT and tourist tax included",
-             [("Children up to 7", "CHF 32.–"), ("Children aged 8 to 14", "CHF 55.–"), ("Young people aged 15 to 21", "CHF 72.–"),
-              ("Adults from 22", "CHF 95.–")]),
-            ("Families and groups", "Family discount on weekdays (Sunday-Thursday) and prices for schools, scouts and Youth+Sport (Monday-Thursday)",
-             [("Families: discount per child under 15", "CHF 5.–"), ("Groups: children aged 8 to 14", "CHF 40.–"),
-              ("Groups: young people aged 15 to 18", "CHF 50.–")]),
-            ("Extras", "For hygiene reasons a sleeping-bag liner is compulsory",
-             [("Packed lunch", "CHF 10.–"), ("Tea (1 l)", "CHF 3.–"), ("Shower (per person)", "CHF 5.–"),
-              ("Disposable sleeping-bag liner", "CHF 7.–"), ("Sleeping-bag liner to hire", "CHF 5.–")]),
-        ],
-        prenotare="""<ul>
-<li>Book online with the “Book” button; for last-minute bookings please phone.</li>
-<li><strong>Cash payment only</strong>, in francs or euros.</li>
-<li>Cancellations and changes free of charge until 6 pm two days before arrival; until 6 pm the day before CHF 30.– per person per night; unannounced no-show CHF 50.– per person per night.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/motterascio/disposizioni-per-gli-ospiti-1.pdf">Information for guests</a></p>
-<p><a class="file-link" href="docs/capanne/motterascio/cgc-capanne-cas.pdf">General terms and conditions of SAC huts</a></p>""",
+        team=dict(titolo="The hut keeper", img=("fabio", "Fabio Merzaghi in the kitchen with freshly baked cakes")),
         accessi="""<p>In summer the hut is easy to reach on foot, mostly on family-friendly paths. In winter you climb on skis through Val Camadra and over the Greina Pass (5-6 h), only with settled snow and once the side slopes have discharged.</p>
 <ul>
 <li>From Lago di Luzzone, Alpe Garzott: 2 h.</li>
@@ -679,36 +578,7 @@ CONTENUTI_EN = {
 <li>Barbecue on the terrace in summer, game in autumn, cheese fondue in winter.</li>
 </ul>
 <p>Breakfast from 7.45 am (from 8 am in winter). Dogs are not allowed in the hut; minors are welcome when accompanied by an adult. From 10 pm please be considerate of those sleeping.</p>""",
-        team=dict(titolo="The hut keepers", img=("gestori", "James Mauri and Serge Santese on the pastures in front of the hut"),
-                  testo="""<p>Since 2020 James Mauri and Serge “Seo” Santese have run the hut, with experience in very good kitchens in Ticino and beyond. We are happy with what we do: living here is a deliberate choice and above all a great school of life.</p>
-<p><strong>James and Seo</strong></p>"""),
-        tariffe=[
-            ("Members of SAC/FAT and reciprocal clubs", "Overnight stay with half board",
-             [("Children up to 7", "CHF 30.–"), ("Children aged 8 to 14", "CHF 40.–"), ("Young people aged 15 to 21", "CHF 60.–"),
-              ("Adults from 22", "CHF 80.–")]),
-            ("Non-members", "Overnight stay with half board",
-             [("Children up to 7", "CHF 30.–"), ("Children aged 8 to 14", "CHF 45.–"), ("Young people aged 15 to 21", "CHF 65.–"),
-              ("Adults from 22", "CHF 95.–")]),
-            ("Double room", "With double bed and fresh bed linen",
-             [("Per person", "CHF 120.–"), ("Single occupancy", "CHF 150.–")]),
-            ("Families and groups", "Families with 2 adults and at least 2 children up to 15; youth groups (schools, scouts, Youth+Sport) from Monday to Thursday",
-             [("Families, Friday-Saturday: discount per person", "CHF 5.–"), ("Families, Sunday-Thursday: discount per person", "CHF 10.–"),
-              ("Groups: children up to 15", "CHF 35.–"), ("Groups: young people aged 15 to 18", "CHF 45.–")]),
-            ("Extras", "Special menus for events by arrangement with the hut keepers; sleeping-bag liner compulsory",
-             [("Packed lunch to take away", "CHF 12.–"), ("Tea for the day (1 l)", "CHF 3.–"), ("Shower (per person)", "CHF 5.–"),
-              ("Sleeping-bag liner", "CHF 7.–")]),
-            ("Workshop room", "With projector and tables for about 15 people",
-             [("Per day, without meals", "CHF 200.–"), ("With lunch or dinner", "CHF 100.–"), ("With half board", "free")]),
-        ],
-        prenotare="""<ul>
-<li><strong>Summer</strong> (1 May to 8 November 2026): open every day.</li>
-<li><strong>Winter</strong> (9 November 2026 to 30 April 2027): always open from Friday noon to Sunday noon, on public holidays and during school holidays; on other days on request. When the hut is closed, only the entrance with toilets and drinks is accessible: <strong>overnight stays are then not possible</strong>.</li>
-<li>Book online with the “Book” button. Cancellations and changes free of charge until 6 pm 2 days before arrival for up to 9 people, 4 days before for 10 people or more; after that CHF 50.– per person per night.</li>
-<li>Check-in from 4.30 to 6 pm, check-out at 9 am. Overnight guests report on arrival and sign the guest book.</li>
-<li>Payment in cash, by debit card, Visa or Twint.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/montebar/disposizioni-per-gli-ospiti.pdf">Information for guests</a></p>
-<p><a class="file-link" href="docs/capanne/montebar/cgc-capanna-monte-bar-it-2025.pdf">General terms and conditions of Capanna Monte Bar</a></p>""",
+        team=dict(titolo="The hut keepers", img=("gestori", "James Mauri and Serge Santese on the pastures in front of the hut")),
         accessi="""<p>On foot or by mountain bike the hut is easy to reach, mostly on family-friendly paths. In winter too you can get up on skis or snowshoes, but remember that conditions in the mountains can be different from those in the valley. Parking in the valley is limited: public transport is better.</p>
 <ul>
 <li>From Corticiasca: 1 h 30.</li>
@@ -809,25 +679,6 @@ CONTENUTI_EN = {
         capanna_titolo="The baita",
         capanna="""<p>The baita has 16 beds in two rooms of 4 and 12 places, a common room with a gas kitchen and fireplace, hot water and a shower; the light comes from solar panels. Crockery and pans are provided, and drinks are available in limited quantities. Moderate reception, no Wi-Fi and no telephone.</p>
 <p>It is not staffed: the door is locked and you receive the code from the manager. Quick and easy to reach, it is also used for courses, training days or simply for a dinner together.</p>""",
-        tariffe=[
-            ("Members of SAC/FAT/CAI/DAV", "Overnight stay, taxes included",
-             [("Adults from 22", "CHF 15.–"), ("Young people aged 6 to 21, aspiring mountain guides and SAC trip leaders", "CHF 8.–"),
-              ("Children up to 5", "free"), ("IFMGA mountain guides", "free")]),
-            ("Non-members", "Overnight stay, taxes included",
-             [("Adults from 20", "CHF 25.–"), ("Young people aged 6 to 19", "CHF 12.–"), ("Children up to 5", "free")]),
-            ("Supplements", "A sleeping-bag liner is compulsory and not available at the baita",
-             [("Gas for cooking (per day)", "CHF 5.–"), ("Firewood (per day)", "CHF 5.–"), ("Shower (per person)", "CHF 5.–")]),
-        ],
-        prenotare="""<ul>
-<li><strong>Booking is essential</strong> by e-mail to <a href="mailto:baitaluca@casticino.ch">baitaluca@casticino.ch</a>, with first name, surname, address and mobile number.</li>
-<li>Free cancellation until 6 pm <strong>two days before</strong> the booked date.</li>
-<li>You receive the key code from the managers; in winter the door is opened on request and depending on the weather.</li>
-<li>Bring a sleeping-bag liner and a pillowcase (55×80).</li>
-<li>Payment with the QR code (in the hut book) or by Twint.</li>
-<li>Smoking is strictly forbidden; dogs are allowed only in the common room, not in the dormitory.</li>
-<li>No bookings or enquiries via social media: please phone.</li>
-</ul>
-<p><a class="file-link" href="docs/capanne/baitadelluca/2020-cgc-capanne-cas-it.pdf">General terms and conditions of SAC huts</a></p>""",
         accessi="""<ul>
 <li>From Rosone (bus): 45 min, +270 m, T2 (<a href="https://map.schweizmobil.ch/?lang=en&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2722290&amp;N=1102884&amp;layers=Wanderland%2CStation&amp;trackId=5273099" rel="noopener">route</a>).</li>
 <li>From Sonvico (bus): 1 h 45, +500 m, T2 (<a href="https://map.schweizmobil.ch/?lang=en&amp;bgLayer=pk&amp;season=summer&amp;resolution=2&amp;E=2721523&amp;N=1102174&amp;layers=Wanderland%2CStation&amp;trackId=5273106" rel="noopener">route</a>).</li>
