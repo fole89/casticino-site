@@ -1,9 +1,9 @@
 {
   "notifica": false,
-  "importante": false,
-  "testo": "",
+  "importante": true,
+  "testo": "La capanna è chiusa per la stagione invernale.",
   "testo_de": "",
   "testo_en": "",
   "link": "",
-  "scadenza": ""
+  "scadenza": "2027-04-30"
 }
