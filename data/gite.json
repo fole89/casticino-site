@@ -1,42 +1,6 @@
 {
  "gite": [
   {
-   "id": "2159",
-   "titolo": "Giovanissimi - Rovine del Castelliere - Locarnese",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2159",
-   "dal": "2026-10-11",
-   "al": "",
-   "tipo": "Arrampicata",
-   "sigla": "ARR",
-   "gruppi": [
-    "Tutti"
-   ],
-   "capigita": [
-    "Giosiana Codoni",
-    "Nadir Caduff"
-   ],
-   "cond": "A",
-   "tecn": "4a",
-   "descrizione": "Gita familiare, giornata ricreativa in falesia con i nostri bimbi. I bambini arrampicano sotto la responsabilità dei propri genitori.",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "",
-   "modalita": "",
-   "iscritti": 4,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Esigenze",
-     "Cond. A (poco impegnativo)\nTecn. 4a (Grandi difficoltà)"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Gita familiare, giornata ricreativa in falesia con i nostri bimbi.\nI bambini arrampicano sotto la responsabilità dei propri genitori."
-    ]
-   ]
-  },
-  {
    "id": "2037",
    "titolo": "Lago di Carì 2255 m - Valle Leventina",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2037",
@@ -228,7 +192,7 @@
    "iscrizione_dal": "2026-05-01",
    "iscrizione_al": "2026-10-22",
    "modalita": "",
-   "iscritti": 13,
+   "iscritti": 14,
    "posti": 12,
    "stato": "",
    "scheda": [
@@ -443,7 +407,7 @@
    "iscrizione_dal": "2026-05-01",
    "iscrizione_al": "2026-11-04",
    "modalita": "",
-   "iscritti": 20,
+   "iscritti": 21,
    "posti": 20,
    "stato": "completa",
    "scheda": [
