@@ -35,7 +35,7 @@ MENU = [
     ("Capanne", "index.html#capanne", [
         ("Campo Tencia", "campotencia.html"), ("Cristallina", "cristallina.html"), ("Adula", "adula.html"),
         ("Motterascio", "motterascio.html"), ("Monte Bar", "montebar.html"), ("Baita del Luca", "baitadelluca.html")]),
-    ("Servizi", "noleggio.html", [
+    ("Servizi", "index.html#servizi", [
         ("Noleggio", "noleggio.html"), ("Mercatino", "mercatino.html"), ("Documenti", "documenti.html"),
         ("Link utili", "link.html")]),
     ("News e media", "news.html", [
@@ -55,7 +55,7 @@ MENU_DE = [
     ("Hütten", "de/index.html#capanne", [
         ("Campo Tencia", "de/campotencia.html"), ("Cristallina", "de/cristallina.html"), ("Adula", "de/adula.html"),
         ("Motterascio", "de/motterascio.html"), ("Monte Bar", "de/montebar.html"), ("Baita del Luca", "de/baitadelluca.html")]),
-    ("Dienste", "de/noleggio.html", [
+    ("Dienste", "de/index.html#servizi", [
         ("Vermietung", "de/noleggio.html"), ("Marktplatz", "de/mercatino.html"), ("Dokumente", "de/documenti.html"),
         ("Nützliche Links", "de/link.html")]),
     ("News und Medien", "de/news.html", [
@@ -74,7 +74,7 @@ MENU_EN = [
     ("Huts", "en/index.html#capanne", [
         ("Campo Tencia", "en/campotencia.html"), ("Cristallina", "en/cristallina.html"), ("Adula", "en/adula.html"),
         ("Motterascio", "en/motterascio.html"), ("Monte Bar", "en/montebar.html"), ("Baita del Luca", "en/baitadelluca.html")]),
-    ("Services", "en/noleggio.html", [
+    ("Services", "en/index.html#servizi", [
         ("Hire", "en/noleggio.html"), ("Gear market", "en/mercatino.html"), ("Documents", "en/documenti.html"),
         ("Useful links", "en/link.html")]),
     ("News and media", "en/news.html", [

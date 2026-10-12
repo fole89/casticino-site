@@ -180,7 +180,7 @@ def SERVIZI_MENU():
 
 
 def servizi_crumb():
-    return (SERVIZI_MENU(), L("noleggio.html"))
+    return (SERVIZI_MENU(), L("index.html") + "#servizi")
 MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto",
         "settembre", "ottobre", "novembre", "dicembre"]
 

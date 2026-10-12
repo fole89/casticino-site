@@ -92,6 +92,10 @@ dl,dd{margin:0}
 .section + .section{padding-top:0}
 .section--surface{background:var(--surface);padding-block:var(--section)}
 .section--surface + .section{padding-top:var(--section)}
+/* home: tra le fasce bianche e grigie (gite, capanne, servizi, news) e sotto la foto lo stacco di colore basta, quindi meno spazio */
+.fascia-home{--fascia-home:clamp(40px,4.5vw,64px)}
+.fascia-home + .fascia-home,.hero + .fascia-home{padding-top:var(--fascia-home)}
+.fascia-home:has(+ .fascia-home){padding-bottom:var(--fascia-home)}
 .section--tight,.section--surface.section--tight{padding-block:clamp(48px,5vw,80px)}
 .section--surface.section--tight + .section{padding-top:clamp(64px,7vw,104px)}
 

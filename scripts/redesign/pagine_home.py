@@ -59,7 +59,7 @@ def home():
 </figure>
 </section>
 
-<section class="section" id="attivita" aria-labelledby="attivita-h">
+<section class="section fascia-home" id="attivita" aria-labelledby="attivita-h">
 <div class="container">
 <div class="section-head">
 <h2 id="attivita-h" class="h2">{tr("Fuori con la sezione", "Unterwegs mit der Sektion", "Out with the section")}</h2>
@@ -123,7 +123,7 @@ def home():
 </div>
 </section>
 
-<section class="section--surface" id="capanne" aria-labelledby="capanne-h">
+<section class="section--surface fascia-home" id="capanne" aria-labelledby="capanne-h">
 <div class="container">
 <div class="section-head">
 <h2 id="capanne-h" class="h2">{tx.get("capanne_h", "Sei capanne, un solo Ticino")}</h2>
@@ -141,13 +141,13 @@ def home():
 </div>
 </section>
 
-<section class="section" id="servizi" aria-labelledby="servizi-h">
+<section class="section fascia-home" id="servizi" aria-labelledby="servizi-h">
 <div class="container">
 <div class="section-head">
 <h2 id="servizi-h" class="h2">{SERVIZI_MENU()}</h2>
-<p class="lead">{tr("Materiale a noleggio, un mercatino tra soci e tutto quello che serve consultare prima di partire.",
-                    "Material zur Miete, ein Marktplatz unter Mitgliedern und alles, was man vor dem Aufbruch nachschlagen sollte.",
-                    "Equipment for hire, a gear market between members and everything worth checking before you set off.")}</p>
+<p class="lead">{tr("Materiale a noleggio per le tue uscite e un mercatino dell’attrezzatura tra soci.",
+                    "Material zur Miete für Ihre Touren und ein Marktplatz für Ausrüstung unter Mitgliedern.",
+                    "Equipment for hire for your outings and a gear market between members.")}</p>
 </div>
 <div class="pillars pillars--servizi" data-reveal>
 <article class="pillar pillar--dark pillar--wide">
@@ -162,25 +162,11 @@ def home():
 <p>{tr("Attrezzatura di montagna tra privati: vendo, cerco, regalo.", "Bergausrüstung unter Privaten: verkaufen, suchen, verschenken.", "Mountain gear between private people: for sale, wanted, free.")}{mercatino_conta}</p>
 <a class="link" href="mercatino.html">{tr("Vedi gli annunci", "Zu den Inseraten", "See the listings")}</a>
 </article>
-<article class="pillar">
-<h3>{tr("Documenti", "Dokumente", "Documents")}</h3>
-<p>{tr("Regolamento gite, scale di difficoltà, promemoria tecnici, moduli e cartine da scaricare.",
-       "Tourenreglement, Schwierigkeitsskalen, technische Merkblätter, Formulare und Karten zum Herunterladen (italienisch).",
-       "Trip regulations, difficulty scales, technical fact sheets, forms and maps to download (in Italian).")}</p>
-<a class="link" href="documenti.html">{tr("Tutti i documenti", "Alle Dokumente", "All documents")}</a>
-</article>
-<article class="pillar pillar--wide">
-<h3>{tr("Link utili", "Nützliche Links", "Useful links")}</h3>
-<p>{tr("Meteo, bollettini valanghe, condizioni, cartine e le altre società alpinistiche del territorio: i siti da consultare prima di partire.",
-       "Wetter, Lawinenbulletins, Verhältnisse, Karten und die anderen Bergsportvereine der Region: die Websites für vor dem Aufbruch.",
-       "Weather, avalanche bulletins, conditions, maps and the other mountaineering clubs in the region: the sites to check before you set off.")}</p>
-<a class="link" href="link.html">{tr("Vai ai link", "Zu den Links", "Go to the links")}</a>
-</article>
 </div>
 </div>
 </section>
 
-<section class="section--surface" id="news" aria-labelledby="news-h">
+<section class="section--surface fascia-home" id="news" aria-labelledby="news-h">
 <div class="container">
 <div class="section-row">
 <h2 id="news-h" class="h2">News</h2>
