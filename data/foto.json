@@ -1,6 +1,68 @@
 {
-  "updated": "2026-10-10T10:36:26+00:00",
+  "updated": "2026-10-12T11:56:41+00:00",
   "albums": [
+    {
+      "id": "2026-10-10-visita-alla-miniera-di-sessa",
+      "date": "2026-10-10",
+      "title": "Visita alla Miniera di Sessa",
+      "place": "",
+      "text": "In una giornata autunnale di pioggia e sole, l'allegra brigata è andata alla scoperta di un angolo di Malcantone, raccogliendo castagne e provando l'emozione di entrare in miniera, tra binari, carrelli ruggini e pozzi con scale vertiginose. Anche i piccoli Indiana Jones si sono divertiti. Grazie mille al gruppo di volontari della miniera di che ci ha ospitato preparando un ottimo pranzo per tutti.",
+      "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2036",
+      "photos": [
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/6fa27173-12db-424f-b588-59270182d104-8127.png",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/6fa27173-12db-424f-b588-59270182d104-8127.png"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6084-6066.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6084-6066.jpeg"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6094-4662.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6094-4662.jpeg"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6102-6815.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6102-6815.jpeg"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6107-1499.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6107-1499.jpeg"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6112-1943.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6112-1943.jpeg"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6116-3159.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6116-3159.jpeg"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6121-5444.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6121-5444.jpeg"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6125-7060.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6125-7060.jpeg"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6127-4434.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6127-4434.jpeg"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6128-4419.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6128-4419.jpeg"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6129-1430.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6129-1430.jpeg"
+        },
+        {
+          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/thumbnails/img_6130-1340.jpeg",
+          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-10-10-visita-alla-miniera-di-sessa/mysize/img_6130-1340.jpeg"
+        }
+      ]
+    },
     {
       "id": "2026-10-03-arrampicate-a-finale-ligure---italia",
       "date": "2026-10-03",
@@ -2472,64 +2534,6 @@
         {
           "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-15-tegia-nova-1822-m---gr/thumbnails/6-3776.jpg",
           "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-15-tegia-nova-1822-m---gr/mysize/6-3776.jpg"
-        }
-      ]
-    },
-    {
-      "id": "2026-01-06-valser-horn-dei-befani-2885-m---gr----",
-      "date": "2026-01-06",
-      "title": "Valser Horn dei Befani 2885 m",
-      "place": "GR",
-      "text": "",
-      "link": "",
-      "photos": [
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2025-01-06---befani05-7253.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2025-01-06---befani05-7253.jpg"
-        },
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2025-01-06---befani06-9080.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2025-01-06---befani06-9080.jpg"
-        },
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2025-01-06---befani09-3153.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2025-01-06---befani09-3153.jpg"
-        },
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2025-01-06---befani10-3595.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2025-01-06---befani10-3595.jpg"
-        },
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2026-01-06-10-19-27-2025-01-06---befani01-5898.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2026-01-06-10-19-27-2025-01-06---befani01-5898.jpg"
-        },
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2026-01-06-11-20-28-2025-01-06---befani02-4465.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2026-01-06-11-20-28-2025-01-06---befani02-4465.jpg"
-        },
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2026-01-06-11-26-40-2025-01-06---befani03-7418.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2026-01-06-11-26-40-2025-01-06---befani03-7418.jpg"
-        },
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2026-01-06-11-46-33-2025-01-06---befani04-2657.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2026-01-06-11-46-33-2025-01-06---befani04-2657.jpg"
-        },
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2026-01-06-12-16-52-2025-01-06---befani07-4145.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2026-01-06-12-16-52-2025-01-06---befani07-4145.jpg"
-        },
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2026-01-06-12-35-20-2025-01-06---befani08-1397.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2026-01-06-12-35-20-2025-01-06---befani08-1397.jpg"
-        },
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2026-01-06-12-43-14-2025-01-06---befani12-8056.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2026-01-06-12-43-14-2025-01-06---befani12-8056.jpg"
-        },
-        {
-          "thumb": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/thumbnails/2026-01-06-12-58-34-2025-01-06---befani13-5488.jpg",
-          "large": "https://ssl.dropnet.ch/casticino/dropbox/photo/gite/2026/2026-01-06-valser-horn-dei-befani-2885-m---gr----/mysize/2026-01-06-12-58-34-2025-01-06---befani13-5488.jpg"
         }
       ]
     }
