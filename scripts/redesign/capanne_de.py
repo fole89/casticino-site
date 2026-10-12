@@ -1,4 +1,4 @@
-"""Versione tedesca delle pagine capanna: stessa struttura di capanne.py (CONTENUTI) e dei dati di pages.py (HUT_PAGES, HUTS).
+"""Versione tedesca delle pagine capanna: stessa struttura di capanne.py (CONTENUTI) e dei dati di pagine_capanne.py (HUT_PAGES, HUTS).
 
 Le pagine tedesche si generano in de/ (de/campotencia.html, de/capanne/<cartella>/<pagina>.html).
 I link ad altre pagine tradotte si scrivono già con de/ davanti (es. "de/motterascio.html"); quelli a pagine solo in
@@ -8,7 +8,7 @@ from capanne import PRENOTA  # noqa: F401  (stesso formato del link di prenotazi
 
 CT_DOC = "docs/capanne/campotencia/"
 
-# testi di HUT_PAGES (pages.py) in tedesco: sostituiscono quelli italiani, il resto (quota, foto, contatti…) resta uguale
+# testi di HUT_PAGES (pagine_capanne.py) in tedesco: sostituiscono quelli italiani, il resto (quota, foto, contatti…) resta uguale
 HUT_DE = {
     "campotencia.html": dict(
         where="Val Piumogna, Leventina", custody="Mitte Juni bis Mitte Oktober",
@@ -106,7 +106,7 @@ HUT_DE = {
                  ("Reservation", '<a href="mailto:baitaluca@casticino.ch">baitaluca@casticino.ch</a>')]),
 }
 
-# schede della home tedesca e delle «altre capanne»: stessi campi di HUTS in pages.py
+# schede della home tedesca e delle «altre capanne»: stessi campi di HUTS in pagine_capanne.py
 HUTS_DE = [
     ("campotencia.html", "Campo Tencia", "2140", "Val Piumogna", "Bewartet Juni–Okt.", "Auf einer Terrasse über dem Val Piumogna, Ausgangspunkt für den Pizzo Campo Tencia, den höchsten ganz im Tessin gelegenen Gipfel.", "80 Plätze", "Dalpe 3 h", "capanne/campotencia-3x2", (987, 658), True),
     ("cristallina.html", "Cristallina", "2575", "Valle Bedretto", "Bewartet Sommer und Winter", "Auf dem gleichnamigen Pass zwischen Leventina und Maggiatal. 2003 eröffnet, die erste moderne SAC-Hütte.", "100 Plätze", "Ossasco 3 h 30", "capanne/cristallina-3x2", (837, 558), True),

@@ -8,7 +8,7 @@ Ogni capanna ha una cartella (es. "campotencia"):
   capanne/<cartella>/<pagina>.html          sottopagine generate da pages.py (attività, storia, foto)
 I testi sono HTML; i percorsi sono relativi alla radice del sito (pages.py li sistema nelle sottopagine).
 Testo, nomi e ruoli dei guardiani, tariffe e note per prenotare non sono qui ma in data/testi/capanne/<cartella>.json
-(in tre lingue, modificabili dalla redazione in admin/); contenuti() in pages.py li aggiunge."""
+(in tre lingue, modificabili dalla redazione in admin/); contenuti() in pagine_capanne.py li aggiunge."""
 
 PRENOTA = "https://www.hut-reservation.org/reservation/book-hut/{}/wizard"
 

@@ -11,7 +11,7 @@ Ogni news è un file data/news/<AAAA-MM-GG>-<titolo>.json, scritto a mano o dall
   allegati  PDF: lista di {"titolo", "file"} (docs/news/<anno>/…, ci li sposta prepara_news.py), facoltativi
   category  categoria, facoltativa
   file      pagina generata (news/<anno>/<AAAA-MM-GG>-<titolo-breve>.html); se manca la calcola nome_file()
-Solo libreria standard: lo usano pages.py e scripts/prepara_news.py."""
+Solo libreria standard: lo usano pagine_media.py (e comune.py) e scripts/prepara_news.py."""
 import glob, html, json, os, re, unicodedata
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

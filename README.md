@@ -7,6 +7,7 @@ Sito statico in HTML, CSS e JavaScript semplici, senza framework né passaggi di
 ```
 index.html, comitato.html, …   pagine del sito (generate, non modificarle a mano)
 scripts/redesign/               genera le pagine: python scripts/redesign/pages.py
+                                (pagine_*.py = un modulo per gruppo del menu, comune.py = funzioni comuni)
 assets/site.css                 stile di tutto il sito
 assets/site.js                  menu, comparsa allo scorrimento, menu mobile
 assets/foto.js                  pagina Foto: legge data/foto.json
@@ -18,7 +19,7 @@ assets/sponsor/                 loghi degli sponsor nel footer (originali/ = fil
 data/foto.json                  ultime gite con foto (generato in automatico)
 docs/<tema>/                    PDF della sezione per tema (scale-difficolta, promemoria, cartine, moduli, corsi, noleggio,
                                 annuari, informazione, statuto-visione, news);
-                                nomi in minuscolo con trattini, i link sono in scripts/redesign/pages.py
+                                nomi in minuscolo con trattini, i link sono nei moduli pagine_*.py di scripts/redesign/
 data/foto-overrides.json        correzioni manuali a titoli e testi delle gite
 data/cerca.json                 indice della pagina Cerca (generato da scripts/redesign/pages.py)
 scripts/update_foto.py          legge le cartelle foto via FTP e scrive data/foto.json

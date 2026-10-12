@@ -13,7 +13,7 @@ Ogni annuncio è un file data/mercatino/<AAAA-MM-GG>-<titolo>.json, scritto dall
   nome      chi pubblica, facoltativo
   contatto  e-mail e/o telefono da pubblicare (con il consenso di chi scrive)
 Gli annunci scaduti o conclusi restano nel repository (si possono rinnovare cambiando la scadenza) ma non si vedono.
-Solo libreria standard: lo usano pages.py e scripts/prepara_mercatino.py."""
+Solo libreria standard: lo usano pagine_servizi.py e pagine_home.py e scripts/prepara_mercatino.py."""
 import datetime, glob, json, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

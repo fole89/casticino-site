@@ -44,7 +44,7 @@ npx wrangler d1 execute casticino-noleggio --remote --file=schema.sql
 npx wrangler deploy
 ```
 L’indirizzo del Worker è del tipo `https://casticino-noleggio.fole89.workers.dev`. Se è diverso, aggiornalo in
-`NOLEGGIO_API` in `scripts/redesign/pages.py`.
+`NOLEGGIO_API` in `scripts/redesign/pagine_servizi.py`.
 
 ### 2. La password della gestione
 ```bash
@@ -58,7 +58,7 @@ chi lo supera riceve «Troppi tentativi» per un minuto.
 ### 3. La protezione dai programmi automatici (Turnstile)
 1. Cloudflare › **Turnstile › Add widget**: nome `Noleggio CAS Ticino`, domini `fole89.github.io`, `casticino.ch`
    e `localhost`, modalità *Managed*.
-2. Copia la **Site Key** in `NOLEGGIO_TURNSTILE` in `scripts/redesign/pages.py`.
+2. Copia la **Site Key** in `NOLEGGIO_TURNSTILE` in `scripts/redesign/pagine_servizi.py`.
 3. Salva la **Secret Key** nel servizio:
    ```bash
    npx wrangler secret put TURNSTILE_SECRET
@@ -87,7 +87,7 @@ Poi commit e push dalla radice del repository.
 - In `wrangler.toml`: `MAIL_GESTORE` e `MAIL_MITTENTE` = `noleggio@casticino.ch`, poi `npx wrangler deploy`.
 - Su Brevo aggiungi il mittente, o meglio il dominio `casticino.ch`. Il dominio va verificato con alcuni record DNS
   nuovi (DKIM): vanno **aggiunti** senza toccare i record MX/TXT che ci sono già.
-- Sul sito `NOLEGGIO_MAIL` in `scripts/redesign/pages.py` è già `noleggio@casticino.ch`: non serve cambiarlo.
+- Sul sito `NOLEGGIO_MAIL` in `scripts/redesign/pagine_servizi.py` è già `noleggio@casticino.ch`: non serve cambiarlo.
 
 ## Dopo il cambio di dominio (casticino.ch)
 In `wrangler.toml` cambia `INVENTARIO_URL` in `https://casticino.ch/…`, poi `npx wrangler deploy`.

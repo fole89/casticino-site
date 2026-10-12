@@ -349,7 +349,7 @@ collections:
         widget: string
         hint: "E-mail e/o telefono da pubblicare, solo con il consenso di chi ha mandato l’annuncio (es. «laura@esempio.ch, 079 123 45 67»)."
 
-  # Testi di alcune pagine, modificabili senza toccare il codice: data/testi/<pagina>.json, letti da pages.py
+  # Testi di alcune pagine, modificabili senza toccare il codice: data/testi/<pagina>.json, letti da testi() in scripts/redesign/comune.py
   # (testi() e testo_campo()). Per ogni campo l'italiano e, facoltativi, tedesco e inglese.
   - name: testi
     label: "Testi del sito"
