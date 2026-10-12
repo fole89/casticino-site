@@ -6,7 +6,7 @@ Sito statico in HTML, CSS e JavaScript semplici, senza framework né passaggi di
 
 ```
 index.html, comitato.html, …   pagine del sito (generate, non modificarle a mano)
-scripts/redesign/               genera le pagine: python scripts/redesign/pages.py
+scripts/redesign/               genera le pagine: python scripts/redesign/pages.py  (nuova pagina: scripts/redesign/LEGGIMI.md)
                                 (pagine_*.py = un modulo per gruppo del menu, comune.py = funzioni comuni)
 assets/site.css                 stile di tutto il sito
 assets/site.js                  menu, comparsa allo scorrimento, menu mobile
