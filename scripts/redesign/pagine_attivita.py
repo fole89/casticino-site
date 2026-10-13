@@ -505,9 +505,10 @@ CORSI = [
 def corsi():
     lang = LINGUA["lang"]
     stagioni = {"Estate": tr("Estate", "Sommer", "Summer"), "Inverno": tr("Inverno", "Winter", "Winter"), "Primavera": tr("Primavera", "Frühling", "Spring")}
-    articoli = []
+    articoli, voci = [], []
     for c in CORSI:
         x = c if lang == "it" else {**c, **c[lang]}
+        voci.append((f"corso-{CORSO_SLUG[c['titolo']]}", x["titolo"]))
         articoli.append(f"""<article class="course-row course-row--corso" id="corso-{CORSO_SLUG[c['titolo']]}" aria-labelledby="corso-{CORSO_SLUG[c['titolo']]}-h" data-reveal>
 <figure>{img(c['img'], x['alt'], *c['dim'])}</figure>
 <div class="course-text">
@@ -525,6 +526,7 @@ def corsi():
 {pic("paesaggi/salita-prato", tr("Un gruppo sale in fila su un sentiero tra prati fioriti, sotto il cielo azzurro", "Eine Gruppe steigt im Gänsemarsch auf einem Weg durch Blumenwiesen, unter blauem Himmel", "A group climbs in single file along a path through flowering meadows, under a blue sky"), mobile="paesaggi/salita-prato-4x3", w=2000, h=1125, lazy=False)}
 {credito()}
 </figure>
+{salti(voci, tr("Vai al corso", "Zum Kurs", "Go to course"))}
 
 <section class="section" aria-label="{tr("Corsi base", "Grundkurse", "Basic courses")}">
 <div class="container">
@@ -734,6 +736,7 @@ def partecipare():
 </section>
 
 {subnav(ATT_MENU(), L("partecipare.html"))}"""
+    body = body.replace('<section class="section"', '<section class="section section--fitta"')   # pagina lunga: meno spazio tra le sezioni
     return sezione_page("partecipare.html", titolo + " | CAS Ticino", tr(
         "Come partecipare alle gite del CAS Ticino: iscrizione e conferma su Droptour, requisiti, svolgimento, assicurazione, costi e foto, in breve dal regolamento gite.",
         "So nehmen Sie an den Touren der SAC-Sektion Ticino teil: Anmeldung und Bestätigung auf Droptour, Voraussetzungen, Ablauf, Versicherung, Kosten und Fotos, kurz aus dem Tourenreglement.",

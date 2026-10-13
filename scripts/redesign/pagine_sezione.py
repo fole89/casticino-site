@@ -849,6 +849,7 @@ def volontariato():
 <p>The section’s activities are voluntary; trip leaders are reimbursed for out-of-pocket expenses. Have you met <a href="capigita.html">our trip leaders</a>?</p>""")) + f"""
 
 {subnav(SEZ_MENU(), L("volontariato.html"))}"""
+    body = body.replace('<section class="section"', '<section class="section section--fitta"')   # pagina lunga: meno spazio tra le sezioni
     return sezione_page("volontariato.html", titolo + " | CAS Ticino", tr(
         "Volontariato nel CAS Ticino: api operaie in capanna, capigita e aiuto-capigita, monitori G+S, capigita Senior, comunicazione ed eventi. Come cominciare.",
         "Freiwilligenarbeit in der SAC-Sektion Ticino: Arbeiten in den Hütten, Tourenleitung und Hilfsleitung, J+S-Leitende, Seniorentouren, Kommunikation und Anlässe. So fangen Sie an.",

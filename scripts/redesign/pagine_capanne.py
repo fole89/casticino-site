@@ -591,17 +591,7 @@ def salti_capanna(c, d):
     if d.get("facebook"):
         voci.append(("notizie", tc("fb_h")))
     voci.append(("sostieni", tc("s_sostieni")))
-    links = "\n".join(f'<a href="#{k}">{l}</a>' for k, l in voci)
-    return f"""
-
-<nav class="salti" aria-label="{tc('salta')}">
-<div class="container subnav">
-<p class="label">{tc('salta')}</p>
-<div class="subnav-links">
-{links}
-</div>
-</div>
-</nav>"""
+    return salti(voci, tc("salta"))
 
 
 def fasce(body):

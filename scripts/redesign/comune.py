@@ -100,6 +100,23 @@ def credito(autore="Michele Foletti"):
     return f'<figcaption class="credito">{tr("Foto", "Foto", "Photo")} © {autore}</figcaption>'
 
 
+def salti(voci, etichetta=None):
+    """Barra «In questa pagina» (.salti; capanne, Corsi): pulsanti (id, testo) verso le sezioni della pagina, nell'ordine
+    in cui compaiono. Resta appiccicata sotto il menu e site.js evidenzia la sezione in cui ci si trova."""
+    etichetta = etichetta or tr("In questa pagina", "Auf dieser Seite", "On this page")
+    links = "\n".join(f'<a href="#{k}">{l}</a>' for k, l in voci)
+    return f"""
+
+<nav class="salti" aria-label="{etichetta}">
+<div class="container subnav">
+<p class="label">{etichetta}</p>
+<div class="subnav-links">
+{links}
+</div>
+</div>
+</nav>"""
+
+
 def band_img(name, alt, w, h):
     return f'<figure class="band">\n{img(name, alt, w, h, lazy=False)}\n</figure>'
 IBAN = "CH09 0076 4128 9526 1200 6"   # conto della sezione (Banca Stato, Lugano), anche in Sede e contatti
