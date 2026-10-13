@@ -391,6 +391,7 @@ def hut_extra(file):
 <div class="news-card-body">
 <h3>{p["titolo"]}</h3>
 <p>{p["lead"]}</p>
+<span class="news-card-vai">{tr("Scopri di più", "Mehr erfahren", "Find out more")} <span class="arrow" aria-hidden="true">→</span></span>
 </div>
 </a>""" for p in c["pagine"])
         out.append(f"""<section class="section" id="attivita" aria-labelledby="attivita-h">

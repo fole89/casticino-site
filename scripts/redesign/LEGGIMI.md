@@ -77,7 +77,7 @@ Ricerca, sitemap e metadati (canonical, hreflang) si aggiornano da soli.
 ## Da sapere
 
 - **Testi che la redazione deve poter cambiare:** mettili in `data/testi/<nome>.json` e leggili con `testi("<nome>")` e
-  `testo_campo()` / `testo_md()`, poi aggiungi il file a `admin/config.yml` (collezione «Testi del sito»). Esempio: `sede()`.
+  `testo_campo()` / `testo_md()`, poi aggiungi il file a `admin/config.yml` (collezione «Testi del sito»). Esempio: il testo dei guardiani, `data/testi/capanne/<cartella>.json`.
 - **Servizi esterni, form, cookie o dati salvati nel browser:** aggiorna anche i testi della privacy (`PRIVACY` in
   `pagine_altre.py`, tre lingue).
 - **Una funzione serve a due moduli?** Spostala in `comune.py`. Altrimenti importala per nome rispettando l'ordine

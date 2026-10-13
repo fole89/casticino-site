@@ -859,6 +859,10 @@ body:has(.salti.is-fisso) .site-nav.scrolled{box-shadow:none}
 .hut figure,.news-card figure{transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.hut:hover figure,.news-card:hover figure{transform:translateY(-4px);box-shadow:var(--shadow)}}
 .hut:active figure,.news-card:active figure{transform:translateY(-1px);transition-duration:.1s}
+/* attività delle capanne: le schede portano a un'altra pagina, la riga «Scopri di più →» lo dice */
+.news-card-vai{display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-size:15px;font-weight:600;color:var(--accent)}
+.news-card-vai .arrow{transition:transform .25s var(--ease)}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){.news-card:hover .news-card-vai .arrow{transform:translateX(3px)}}
 .news-card p{font-size:15px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .news-card .news-meta{-webkit-line-clamp:unset;display:flex}
 .news-noimg{display:grid!important;align-content:end;gap:4px;padding:20px;background:var(--accent)!important;color:var(--accent-ink)}
