@@ -1,4 +1,5 @@
 """Home (index.html, una funzione per tutte le lingue) e testi tradotti di home e Chi siamo (TRADOTTE)."""
+from datetime import date
 from comune import *
 from pagine_capanne import HUTS
 from pagine_media import NEWS, news_card
@@ -19,6 +20,35 @@ def banda_adesione(titolo, testo, bottone, href):
 </section>"""
 
 
+# Foto grandi della home, tre per stagione, a rotazione (site.js, [data-giro]): (immagine in paesaggi/, alt it/de/en,
+# classe per l'inquadratura). Ognuna serve in -1000, -2000 e -4x3 (vedi CLAUDE.md, «Images»). La stagione si sceglie
+# quando la pagina viene generata: update-gite.yml rigenera la home ogni mattina, quindi cambia da sola. Una stagione
+# senza foto usa quelle dell'inverno.
+STAGIONI = {
+    "inverno": [
+        ("sciatori-villaggio", "Scialpinisti in salita verso un villaggio innevato", "Skitourengeher im Aufstieg zu einem verschneiten Dorf",
+         "Ski tourers climbing towards a snow-covered village", "pos-low"),
+        ("traccia-abeti", "Una cordata sale nella neve fresca tra gli abeti", "Eine Gruppe steigt im Neuschnee zwischen den Tannen auf",
+         "A group climbing through fresh snow among the fir trees", ""),
+        ("traccia-cime", "Traccia di sci verso le cime sotto un cielo blu", "Skispur zu den Gipfeln unter blauem Himmel",
+         "Ski track towards the peaks under a blue sky", ""),
+    ],
+    # le altre stagioni restano vuote finché non arrivano le foto: intanto la home usa quelle invernali
+    "primavera": [],
+    "estate": [],
+    "autunno": [],
+}
+# mese → stagione: inverno da novembre a marzo (la stagione dello scialpinismo), primavera aprile–maggio,
+# estate giugno–agosto, autunno settembre–ottobre. CAS_STAGIONE=estate python scripts/redesign/pages.py index.html per provarne una.
+MESI_STAGIONE = {11: "inverno", 12: "inverno", 1: "inverno", 2: "inverno", 3: "inverno", 4: "primavera", 5: "primavera",
+                 6: "estate", 7: "estate", 8: "estate", 9: "autunno", 10: "autunno"}
+
+
+def foto_stagione():
+    stagione = os.environ.get("CAS_STAGIONE") or MESI_STAGIONE[date.today().month]
+    return STAGIONI[stagione] or STAGIONI["inverno"]
+
+
 def home():
     lang = LINGUA["lang"]
     tx = TRADOTTE.get(lang, {})
@@ -31,11 +61,15 @@ def home():
     n_annunci = len(mercatino_util.attivi())
     mercatino_conta = {0: "", 1: tr(" Un annuncio online.", " Ein Inserat online.", " One listing online.")}.get(
         n_annunci, tr(f" {n_annunci} annunci online.", f" {n_annunci} Inserate online.", f" {n_annunci} listings online."))
+    foto = foto_stagione()
+    prima = f"assets/img/paesaggi/{foto[0][0]}"
+    giro = "\n".join(pic(f"paesaggi/{n}", tr(*alt), mobile=f"paesaggi/{n}-4x3", w=2000, h=901, lazy=i > 0, cls=cls)
+                     for i, (n, *alt, cls) in enumerate(foto))
     corso_alt = {"it": "Cordata su una cresta di neve", "de": "Seilschaft auf einem Schneegrat", "en": "Rope team on a snow ridge"}[lang]
 
     html = head(tx.get("home_title", "CAS Ticino | Club Alpino Svizzero, Sezione Ticino"),
                 tx.get("home_desc", "Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età. Da oltre un secolo, la casa dell’alpinismo ticinese."),
-                '<meta property="og:image" content="assets/img/paesaggi/sciatori-villaggio-2000.webp">\n<link rel="preload" as="image" href="assets/img/paesaggi/sciatori-villaggio-2000.webp" imagesrcset="assets/img/paesaggi/sciatori-villaggio-1000.webp 1000w, assets/img/paesaggi/sciatori-villaggio-2000.webp 2000w" imagesizes="100vw" media="(min-width: 701px)">\n')
+                f'<meta property="og:image" content="{prima}-2000.webp">\n<link rel="preload" as="image" href="{prima}-2000.webp" imagesrcset="{prima}-1000.webp 1000w, {prima}-2000.webp 2000w" imagesizes="100vw" media="(min-width: 701px)">\n')
     html += "\n<body>\n" + nav(nome) + f"""
 <main id="contenuto">
 
@@ -53,8 +87,9 @@ def home():
 </div>
 </div>
 </div>
-<figure class="band">
-{pic("paesaggi/sciatori-villaggio", tx.get("hero_alt", "Scialpinisti in salita verso un villaggio innevato"), mobile="paesaggi/sciatori-villaggio-4x3", w=2000, h=901, lazy=False, cls="pos-low")}
+<figure class="band band--giro" data-giro>
+{giro}
+<button class="giro-pausa" type="button" hidden data-pausa="{tr("Ferma le foto", "Fotos anhalten", "Pause photos")}" data-avvia="{tr("Riavvia le foto", "Fotos fortsetzen", "Play photos")}"></button>
 {credito()}
 </figure>
 </section>
@@ -201,7 +236,6 @@ TRADOTTE = {
         hero_h="In die Berge<br>mit <span class=\"accent\">uns</span>.",
         hero_lead="Sechs Hütten vom Cristallinapass bis zu den Denti della Vecchia, Kurse mit Profis und ein Tourenprogramm für jedes Alter.",
         diventa="Mitglied werden",
-        hero_alt="Skitourengeher im Aufstieg zu einem verschneiten Dorf",
         cifre="Die Sektion in Zahlen",
         sezione="Die Sektion",
         capanne_h="Sechs Hütten, ein Tessin",
@@ -238,7 +272,6 @@ TRADOTTE = {
         hero_h="Into the mountains<br>with <span class=\"accent\">us</span>.",
         hero_lead="Six huts from the Cristallina Pass to the Denti della Vecchia, courses run by professionals and a trip programme for all ages.",
         diventa="Become a member",
-        hero_alt="Ski tourers climbing towards a snow-covered village",
         cifre="The section in numbers",
         sezione="The Section",
         capanne_h="Six huts, one Ticino",

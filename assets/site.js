@@ -327,6 +327,50 @@
   });
 })();
 
+// CAS Ticino - home: le foto grandi ([data-giro]) si alternano in dissolvenza ogni 7 secondi. Passa alla successiva solo
+// quando è già scaricata, si ferma con la scheda nascosta e col pulsante pausa. Senza JS e con movimento ridotto resta la prima.
+(function () {
+  var giro = document.querySelector('[data-giro]');
+  if (!giro || !window.matchMedia || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var foto = Array.prototype.slice.call(giro.querySelectorAll('picture'));
+  if (foto.length < 2) return;
+  var k = 0, timer = null, ferma = false;
+  var pausa = giro.querySelector('.giro-pausa');
+  foto.forEach(function (p, i) { if (i) p.setAttribute('aria-hidden', 'true'); });
+
+  function mostra(n) {
+    // la nuova foto sta sopra la vecchia: questa si toglie a dissolvenza finita, così non traspare la prima
+    var vecchia = foto[k];
+    vecchia.setAttribute('aria-hidden', 'true');
+    if (n) setTimeout(function () { if (foto[k] !== vecchia) vecchia.classList.remove('is-attiva'); }, 1500);
+    else vecchia.classList.remove('is-attiva');
+    k = n;
+    foto[k].classList.add('is-attiva');
+    foto[k].removeAttribute('aria-hidden');
+  }
+  function avanti() {
+    var n = (k + 1) % foto.length, img = foto[n].querySelector('img');
+    if (img.loading === 'lazy') img.loading = 'eager';
+    if (img.complete && img.naturalWidth) mostra(n);
+  }
+  function avvia() { if (!timer && !ferma && !document.hidden) timer = setInterval(avanti, 7000); }
+  function arresta() { clearInterval(timer); timer = null; }
+
+  function etichetta() {
+    pausa.setAttribute('aria-label', pausa.getAttribute(ferma ? 'data-avvia' : 'data-pausa'));
+    pausa.classList.toggle('is-ferma', ferma);
+  }
+  if (pausa) {
+    pausa.addEventListener('click', function () { ferma = !ferma; etichetta(); if (ferma) arresta(); else avvia(); });
+    etichetta();
+    pausa.hidden = false;
+  }
+  document.addEventListener('visibilitychange', function () { if (document.hidden) arresta(); else avvia(); });
+  // la seconda foto si scarica subito dopo la pagina, così al primo cambio è pronta
+  window.addEventListener('load', function () { foto[1].querySelector('img').loading = 'eager'; });
+  avvia();
+})();
+
 // CAS Ticino - capigita: la presentazione si apre passando sulla foto (CSS) e, per i touch, toccandola;
 // si chiude toccando fuori o con Esc.
 (function () {

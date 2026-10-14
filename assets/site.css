@@ -221,6 +221,16 @@ dl,dd{margin:0}
 .band img{width:100%;height:clamp(300px,40vw,600px);object-fit:cover}
 .band img.pos-low{object-position:center 72%}
 @media (max-width:700px){.band img{height:auto;aspect-ratio:4/3}}
+/* foto della home a rotazione (site.js): la prima resta nel flusso, le altre sopra in dissolvenza */
+.band--giro picture + picture{position:absolute;inset:0;opacity:0;transition:opacity 1.4s var(--ease)}
+.band--giro picture + picture img{height:100%}
+.band--giro picture.is-attiva{opacity:1}
+.giro-pausa{position:absolute;left:var(--gutter);bottom:10px;z-index:1;display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;background:rgba(18,24,22,.55);color:#fff;cursor:pointer;transition:background-color .2s var(--ease),transform .15s var(--ease)}
+.giro-pausa::before{content:"";width:10px;height:12px;border-inline:3px solid currentColor;box-sizing:border-box}
+.giro-pausa.is-ferma::before{width:0;height:0;border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent currentColor}
+.giro-pausa:hover{background:rgba(18,24,22,.8)}
+.giro-pausa:active{transform:scale(.94)}
+.band .credito{z-index:1}
 
 /* ------------------------------------------------------------------ cifre */
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
