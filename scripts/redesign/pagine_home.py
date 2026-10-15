@@ -23,20 +23,40 @@ def banda_adesione(titolo, testo, bottone, href):
 # Foto grandi della home, tre per stagione, a rotazione (site.js, [data-giro]): (immagine in paesaggi/, alt it/de/en,
 # classe per l'inquadratura). Ognuna serve in -1000, -2000 e -4x3 (vedi CLAUDE.md, «Images»). La stagione si sceglie
 # quando la pagina viene generata: update-gite.yml rigenera la home ogni mattina, quindi cambia da sola. Una stagione
-# senza foto usa quelle dell'inverno.
+# senza foto usa quelle dell'inverno. Le immagini sono generate con l'IA: in home nessun credito().
 STAGIONI = {
     "inverno": [
-        ("sciatori-villaggio", "Scialpinisti in salita verso un villaggio innevato", "Skitourengeher im Aufstieg zu einem verschneiten Dorf",
-         "Ski tourers climbing towards a snow-covered village", "pos-low"),
-        ("traccia-abeti", "Una cordata sale nella neve fresca tra gli abeti", "Eine Gruppe steigt im Neuschnee zwischen den Tannen auf",
-         "A group climbing through fresh snow among the fir trees", ""),
-        ("traccia-cime", "Traccia di sci verso le cime sotto un cielo blu", "Skispur zu den Gipfeln unter blauem Himmel",
-         "Ski track towards the peaks under a blue sky", ""),
+        ("scialpinisti-pendio", "Tre scialpinisti salgono un pendio innevato verso le cime", "Drei Skitourengeher steigen einen verschneiten Hang zu den Gipfeln hinauf",
+         "Three ski tourers climbing a snowy slope towards the peaks", ""),
+        ("villaggio-innevato", "Villaggio di pietra sotto la neve all’imbrunire", "Steindorf unter dem Schnee in der Abenddämmerung",
+         "Stone village under the snow at dusk", ""),
+        ("discesa-neve-fresca", "Uno sciatore scende nella neve fresca", "Ein Skifahrer fährt im Neuschnee ab",
+         "A skier coming down through fresh powder", ""),
     ],
-    # le altre stagioni restano vuote finché non arrivano le foto: intanto la home usa quelle invernali
-    "primavera": [],
-    "estate": [],
-    "autunno": [],
+    "primavera": [
+        ("arrampicata-placca", "Un arrampicatore su una placca di granito sopra una valle verde", "Ein Kletterer an einer Granitplatte über einem grünen Tal",
+         "A climber on a granite slab above a green valley", ""),
+        ("torrente-alpeggio", "Torrente tra i prati di un alpeggio, con le cime ancora innevate", "Bergbach zwischen den Weiden einer Alp, die Gipfel noch verschneit",
+         "A stream through the pastures of an alp, the peaks still snow-covered", ""),
+        ("bici-bosco", "In mountain bike su un sentiero nel bosco di primavera", "Mit dem Mountainbike auf einem Waldweg im Frühling",
+         "Mountain biking on a woodland trail in spring", ""),
+    ],
+    "estate": [
+        ("cresta-mare-nebbia", "Due alpinisti su una cresta rocciosa sopra un mare di nebbia", "Zwei Bergsteiger auf einem Felsgrat über einem Nebelmeer",
+         "Two climbers on a rocky ridge above a sea of cloud", ""),
+        ("lago-montagna", "Lago alpino circondato da cime rocciose", "Bergsee zwischen felsigen Gipfeln",
+         "Alpine lake surrounded by rocky peaks", ""),
+        ("arrampicata-valle", "Cordata su una parete di granito sopra il fondovalle", "Seilschaft an einer Granitwand hoch über dem Talboden",
+         "Rope team on a granite wall high above the valley floor", "pos-low"),
+    ],
+    "autunno": [
+        ("valle-larici", "Valle alpina con i larici dorati d’autunno", "Alpental mit goldenen Lärchen im Herbst",
+         "Alpine valley with golden larches in autumn", ""),
+        ("bici-autunno", "In mountain bike su un pendio autunnale al tramonto", "Mit dem Mountainbike an einem herbstlichen Hang bei Sonnenuntergang",
+         "Mountain biking on an autumn slope at sunset", "pos-low"),
+        ("rustico-nebbia", "Un escursionista arriva a un rustico di pietra nella nebbia", "Ein Wanderer erreicht ein Steinhaus im Nebel",
+         "A hiker reaching a stone hut in the mist", "pos-low"),
+    ],
 }
 # mese → stagione: inverno da novembre a marzo (la stagione dello scialpinismo), primavera aprile–maggio,
 # estate giugno–agosto, autunno settembre–ottobre. CAS_STAGIONE=estate python scripts/redesign/pages.py index.html per provarne una.
@@ -90,7 +110,6 @@ def home():
 <figure class="band band--giro" data-giro>
 {giro}
 <button class="giro-pausa" type="button" hidden data-pausa="{tr("Ferma le foto", "Fotos anhalten", "Pause photos")}" data-avvia="{tr("Riavvia le foto", "Fotos fortsetzen", "Play photos")}"></button>
-{credito()}
 </figure>
 </section>
 
