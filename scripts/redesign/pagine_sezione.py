@@ -13,11 +13,6 @@ def introduzione():
     body = page_hero([("La Sezione", "introduzione.html"), ("Chi siamo", None)], "La sezione",
                      "Fondata a Bellinzona l’11 aprile 1886, la Sezione Ticino del Club Alpino Svizzero conta quasi 3000 soci e propone un’attività varia, pensata per tutte le età: dai più giovani ai seniori.") + f"""
 
-<figure class="band">
-{pic("paesaggi/gruppo-ghiacciaio", "Gruppo di alpinisti in cammino su un ghiacciaio", mobile="paesaggi/gruppo-ghiacciaio-4x3", w=2000, h=1500, lazy=False, cls="pos-low")}
-{credito()}
-</figure>
-
 <section class="section--accent" aria-label="La sezione in cifre">
 <div class="container">
 <div class="stats" data-reveal>
@@ -633,19 +628,15 @@ def tappa(anno_it, anno, testo):
 def storia():
     tl = "\n".join(tappa(a_it, a, t) for (a_it, _), (a, t) in zip(STORIA, tr(STORIA, STORIA_DE, STORIA_EN)))
     if de():
-        body = page_hero([("Die Sektion", "de/introduzione.html"), ("Geschichte", None)], "Seit 1886<br>zu Fuss unterwegs.",
+        body = page_hero([("Die Sektion", "de/introduzione.html"), ("Geschichte", None)], "Seit 1886 zu Fuss unterwegs.",
                          "Mehr als ein Jahrhundert Besteigungen, Hütten, Rettung und Bergkultur: die Geschichte der Sektion in Etappen.")
     elif en():
-        body = page_hero([("The Section", "en/introduzione.html"), ("History", None)], "Since 1886,<br>on foot.",
+        body = page_hero([("The Section", "en/introduzione.html"), ("History", None)], "Since 1886, on foot.",
                          "More than a century of climbs, huts, rescue and mountain culture: the history of the section in milestones.")
     else:
-        body = page_hero([("La Sezione", "introduzione.html"), ("Storia", None)], "Dal 1886,<br>a piedi.",
+        body = page_hero([("La Sezione", "introduzione.html"), ("Storia", None)], "Dal 1886, a piedi.",
                          "Più di un secolo di salite, rifugi, soccorso e cultura alpina: la storia della sezione in tappe.")
     body += f"""
-
-<figure class="band">
-{pic("paesaggi/capanna-tencia", tr("La Capanna Campo Tencia all’alba, con la bandiera svizzera e le montagne in controluce", "Die Campo-Tencia-Hütte bei Sonnenaufgang, mit Schweizer Fahne und Bergen im Gegenlicht", "Campo Tencia hut at sunrise, with the Swiss flag and backlit mountains"), mobile="paesaggi/capanna-tencia-4x3", w=2000, h=658, lazy=False)}
-</figure>
 
 <section class="section" aria-labelledby="tappe-h">
 <div class="container">
@@ -679,11 +670,6 @@ def introduzione_tradotta():
     stats = "\n".join(f'<div class="stat"><strong>{n}</strong><span>{num(x)}</span></div>'
                       for n, x in zip(("1886", "3000", "6", "5"), tx["stat_intro"]))
     body = page_hero([(tx["sezione"], f"{lang}/introduzione.html"), (tx["intro_crumb"], None)], tx["intro_h"], tx["intro_lead"]) + f"""
-
-<figure class="band">
-{pic("paesaggi/gruppo-ghiacciaio", tx['intro_alt'], mobile="paesaggi/gruppo-ghiacciaio-4x3", w=2000, h=1500, lazy=False, cls="pos-low")}
-{credito()}
-</figure>
 
 <section class="section--accent" aria-label="{tx['cifre']}">
 <div class="container">

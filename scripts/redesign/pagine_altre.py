@@ -19,8 +19,8 @@ def adesione():
                      f'<div class="actions hero-actions"><a class="btn btn--primary" href="{join}">{iscriviti} <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
 
 <figure class="band">
-{pic("paesaggi/laghetto-alpino", tr("Laghetto alpino tra le rocce, con le montagne sullo sfondo", "Bergsee zwischen Felsen, im Hintergrund die Berge", "Mountain lake among rocks, with mountains behind"),
-     mobile="paesaggi/laghetto-alpino-4x3", w=2000, h=1126, lazy=False)}
+{pic("paesaggi/gruppo-ghiacciaio", tr("Gruppo di alpinisti in cammino su un ghiacciaio", "Eine Gruppe Bergsteiger unterwegs auf einem Gletscher", "A group of mountaineers walking on a glacier"),
+     mobile="paesaggi/gruppo-ghiacciaio-4x3", w=2000, h=1500, lazy=False, cls="pos-low")}
 {credito()}
 </figure>
 
@@ -49,7 +49,7 @@ def adesione():
                         tr("Diventa socio della Sezione Ticino del Club Alpino Svizzero: quote annuali per singoli, famiglie e giovani, e vantaggi per i soci.",
                            "Werden Sie Mitglied der Sektion Ticino des Schweizer Alpen-Clubs: Jahresbeiträge für Einzelne, Familien und Jugendliche, und die Vorteile für Mitglieder.",
                            "Become a member of the Ticino Section of the Swiss Alpine Club: annual fees for individuals, families and young people, and the benefits for members."),
-                        body, og="paesaggi/laghetto-alpino-2000")
+                        body, og="paesaggi/gruppo-ghiacciaio-2000")
 
 
 # ------------------------------------------------------------------ protezione dei dati (privacy.html, de/, en/)

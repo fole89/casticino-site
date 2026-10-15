@@ -473,6 +473,7 @@ dl,dd{margin:0}
 .page-hero--split figure{position:relative;margin:0;overflow:hidden;background:var(--surface-2)}
 .page-hero--split figure img{width:100%;aspect-ratio:4/5;object-fit:cover}
 .page-hero--split figure img.orizzontale{aspect-ratio:4/3}  /* foto orizzontale: hero più basso */
+.page-hero--split figure img.alto{object-position:center 25%}  /* soggetto nella metà alta (Giovani) */
 .page-hero--split figure img.basso{object-position:center 62%}  /* soggetto nella metà bassa (Soccorso) */
 @media (max-width:900px){
   .page-hero--split .container{grid-template-columns:1fr}
@@ -823,7 +824,8 @@ body:has(.salti.is-fisso) .site-nav.scrolled{box-shadow:none}
 @media (max-width:480px){.album-thumbs{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
 /* fascia rossa con le cifre */
-.section--accent{background:var(--accent);color:var(--accent-ink);padding-block:clamp(28px,3.5vw,48px)}
+.section--accent{color:var(--accent-ink)}
+.section--accent .stats{background:var(--accent);padding:clamp(28px,3.5vw,48px) clamp(24px,3.5vw,48px)}  /* il riquadro rosso resta largo come il contenuto */
 .section--accent + .section{padding-top:var(--section)}
 .section--accent .stat strong{color:var(--accent-ink);font-size:clamp(34px,3.6vw,52px)}
 .section--accent .stat span{color:var(--accent-ink);opacity:.86}

@@ -291,7 +291,8 @@ def giovani():
     programma = tr("Programma giovani", "Jugendprogramm", "Youth programme")
     body = page_hero([att_crumb(), (titolo, None)], titolo, testo_campo(testi("introduzioni")["giovani"], "introduzione"),
                      f'<div class="actions hero-actions"><a class="btn btn--primary" href="{GITE_GIOVANI}">{programma} <span class="arrow" aria-hidden="true">→</span></a></div>',
-                     figure=img("attivita/giovani-3x4", tr("Giovane arrampicatore su una parete dei Denti della Vecchia", "Junger Kletterer an einer Wand der Denti della Vecchia", "Young climber on a face of the Denti della Vecchia"), 800, 1066, lazy=False)) + f"""
+                     figure=img("attivita/giovani-3x4", tr("Giovane arrampicatore su una parete dei Denti della Vecchia", "Junger Kletterer an einer Wand der Denti della Vecchia", "Young climber on a face of the Denti della Vecchia"), 800, 1066, lazy=False)
+                     .replace("<img ", '<img class="orizzontale alto" ', 1)) + f"""
 
 <section class="section" aria-labelledby="fasce-h">
 <div class="container">
@@ -344,9 +345,12 @@ def senior():
             (tr("Capigita", "Tourenleitende", "Trip leaders"), tr(
                 "Il dicastero cerca sempre nuovi capigita.", "Das Ressort sucht immer neue Tourenleitende.", "The department is always looking for new trip leaders."))]
     titolo = tr("Senior", "Senioren", "Seniors")
-    body = page_hero([att_crumb(), (titolo, None)], titolo, testo_campo(testi("introduzioni")["senior"], "introduzione")) + f"""
-
-{band_img("attivita/senior-2x1", tr("Escursionisti del gruppo senior su un sentiero di cresta", "Wandernde der Seniorengruppe auf einem Gratweg", "Hikers from the seniors group on a ridge path"), 1000, 500)}
+    programma = tr("Programma senior", "Seniorenprogramm", "Seniors’ programme")
+    # come Giovani: foto a lato del titolo (taglio 4:3 di senior-2x1, il gruppo sta a sinistra)
+    body = page_hero([att_crumb(), (titolo, None)], titolo, testo_campo(testi("introduzioni")["senior"], "introduzione"),
+                     f'<div class="actions hero-actions"><a class="btn btn--primary" href="{GITE_SENIORI}">{programma} <span class="arrow" aria-hidden="true">→</span></a></div>',
+                     figure=img("attivita/senior-4x3", tr("Escursionisti del gruppo senior su un sentiero di cresta", "Wandernde der Seniorengruppe auf einem Gratweg", "Hikers from the seniors group on a ridge path"), 667, 500, lazy=False)
+                     .replace("<img ", '<img class="orizzontale" ', 1)) + f"""
 
 <section class="section" aria-labelledby="gruppo-h">
 <div class="container detail">
@@ -356,7 +360,7 @@ def senior():
 <p>{tr("Escursioni, gite di più giorni, mountain bike e racchette, con percorsi adatti a diversi livelli di allenamento.",
        "Wanderungen, mehrtägige Touren, Mountainbike und Schneeschuhe, auf Routen für verschiedene Trainingsstände.",
        "Hikes, trips of several days, mountain biking and snowshoeing, on routes suited to different levels of fitness.")}</p>
-<div><a class="btn btn--primary" href="{GITE_SENIORI}">{tr("Programma senior", "Seniorenprogramm", "Seniors’ programme")} <span class="arrow" aria-hidden="true">→</span></a></div>
+<div><a class="link" href="{GITE_SENIORI}">{programma}</a></div>
 </div>
 <div data-reveal>
 {facts(rows)}
@@ -522,10 +526,6 @@ def corsi():
     titolo = tr("Corsi", "Kurse", "Courses")
     body = page_hero([att_crumb(), (titolo, None)], titolo, testo_campo(testi("introduzioni")["corsi"], "introduzione")) + f"""
 
-<figure class="band">
-{pic("paesaggi/salita-prato", tr("Un gruppo sale in fila su un sentiero tra prati fioriti, sotto il cielo azzurro", "Eine Gruppe steigt im Gänsemarsch auf einem Weg durch Blumenwiesen, unter blauem Himmel", "A group climbs in single file along a path through flowering meadows, under a blue sky"), mobile="paesaggi/salita-prato-4x3", w=2000, h=1125, lazy=False)}
-{credito()}
-</figure>
 {salti(voci, tr("Vai al corso", "Zum Kurs", "Go to course"))}
 
 <section class="section" aria-label="{tr("Corsi base", "Grundkurse", "Basic courses")}">
