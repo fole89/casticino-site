@@ -2,8 +2,12 @@
   "notifica": false,
   "importante": true,
   "testo": "La capanna è chiusa per la stagione invernale.",
-  "testo_de": "",
-  "testo_en": "",
+  "testo_de": "Die Hütte ist während der Wintersaison geschlossen.",
+  "testo_en": "The hut is closed for the winter season.",
   "link": "",
-  "scadenza": "2027-04-30"
+  "scadenza": "2027-04-30",
+  "traduzioni": {
+    "testo_de": "a35af2c3aa3d:166e82d28825",
+    "testo_en": "a35af2c3aa3d:f9e3c443030b"
+  }
 }
