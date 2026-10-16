@@ -28,7 +28,7 @@ NEWS = carica_news()
 
 def og_name(n):
     """Nome dell'immagine per og:image (page() aggiunge assets/img/ e .webp)."""
-    return n["image"]["src"][len("assets/img/"):-len(".webp")] if n["image"] else "paesaggi/cresta-lugano-2000"
+    return n["image"]["src"][len("assets/img/"):-len(".webp")] if n["image"] else "paesaggi/sciatori-villaggio-2000"
 
 
 # Categorie delle news: le stesse (e nello stesso ordine) della lista in admin/config.yml (campo «category»)

@@ -31,7 +31,7 @@ def introduzione():
 </div>
 <div class="pillars" data-reveal>
 <article class="pillar pillar--photo pillar--wide">
-{img("paesaggi/cresta-lugano-2000", "Alpinisti su una cresta rocciosa", 2000, 580)}
+{img("paesaggi/sciatori-villaggio-2000", "Scialpinisti in salita verso un villaggio innevato", 2000, 901)}
 <h3>Discipline</h3>
 <p>Escursionismo, alpinismo, arrampicata, sci alpinismo, racchette e cascate di ghiaccio.</p>
 </article>
@@ -686,7 +686,7 @@ def introduzione_tradotta():
 </div>
 <div class="pillars" data-reveal>
 <article class="pillar pillar--photo pillar--wide">
-{img("paesaggi/cresta-lugano-2000", tx['alt_cresta'], 2000, 580)}
+{img("paesaggi/sciatori-villaggio-2000", tx['alt_cresta'], 2000, 901)}
 <h3>{tx['discipline_h']}</h3>
 <p>{tx['discipline_p']}</p>
 </article>
