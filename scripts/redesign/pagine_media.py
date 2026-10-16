@@ -32,10 +32,11 @@ def og_name(n):
 
 
 # Categorie delle news: le stesse (e nello stesso ordine) della lista in admin/config.yml (campo «category»)
-CATEGORIE = {"Capanne": ("Hütten", "Huts"), "Gite": ("Touren", "Trips"), "Corsi": ("Kurse", "Courses"),
-             "Giovani": ("Jugend", "Youth"), "Senior": ("Senioren", "Seniors"), "Sezione": ("Sektion", "Section"),
-             "Eventi": ("Anlässe", "Events"), "Incontri": ("Vorträge", "Talks"), "Itinerario": ("Tourenidee", "Route idea"),
-             "Sicurezza": ("Sicherheit", "Safety")}
+# (tedesco, inglese, francese)
+CATEGORIE = {"Capanne": ("Hütten", "Huts", "Cabanes"), "Gite": ("Touren", "Trips", "Courses"), "Corsi": ("Kurse", "Courses", "Cours"),
+             "Giovani": ("Jugend", "Youth", "Jeunesse"), "Senior": ("Senioren", "Seniors", "Seniors"), "Sezione": ("Sektion", "Section", "Section"),
+             "Eventi": ("Anlässe", "Events", "Événements"), "Incontri": ("Vorträge", "Talks", "Conférences"),
+             "Itinerario": ("Tourenidee", "Route idea", "Idée de course"), "Sicurezza": ("Sicherheit", "Safety", "Sécurité")}
 
 
 def categoria_l(cat):
@@ -96,34 +97,35 @@ def news():
         if n["category"]:
             conta[n["category"]] = conta.get(n["category"], 0) + 1
     cats = [c for c in CATEGORIE if c in conta] + sorted(c for c in conta if c not in CATEGORIE)
-    filtri = "\n".join([f'<button type="button" data-filtro="" aria-pressed="true">{tr("Tutte", "Alle", "All")} <span class="num">{len(NEWS)}</span></button>'] +
+    filtri = "\n".join([f'<button type="button" data-filtro="" aria-pressed="true">{tr("Tutte", "Alle", "All", "Toutes")} <span class="num">{len(NEWS)}</span></button>'] +
                        [f'<button type="button" data-filtro="{categoria_slug(c)}" aria-pressed="false">{esc(categoria_l(c))} <span class="num">{conta[c]}</span></button>'
                         for c in cats])
     body = page_hero([("News", None)], "News", tr(
         "Serate, eventi, corsi e avvisi della sezione: tutte le notizie, dalla più recente.",
         "Abende, Anlässe, Kurse und Hinweise der Sektion: alle Meldungen, die neuesten zuerst. Die News erscheinen auf Italienisch.",
-        "Evenings, events, courses and notices from the section: all the news, most recent first. The news is published in Italian."), social()) + f"""
+        "Evenings, events, courses and notices from the section: all the news, most recent first. The news is published in Italian.",
+        "Soirées, événements, cours et avis de la section : toutes les nouvelles, de la plus récente. Les nouvelles sont publiées en italien."), social()) + f"""
 
 <div id="notizie">
-<section class="section section--filtro" aria-label="{tr("Filtra per categoria", "Nach Kategorie filtern", "Filter by category")}">
+<section class="section section--filtro" aria-label="{tr("Filtra per categoria", "Nach Kategorie filtern", "Filter by category", "Filtrer par catégorie")}">
 <div class="container">
-<div class="filtro" role="group" aria-label="{tr("Filtra per categoria", "Nach Kategorie filtern", "Filter by category")}" data-filtra="#notizie" data-uno="{tr("notizia", "Meldung", "news item")}" data-molti="{tr("notizie", "Meldungen", "news items")}" hidden>
+<div class="filtro" role="group" aria-label="{tr("Filtra per categoria", "Nach Kategorie filtern", "Filter by category", "Filtrer par catégorie")}" data-filtra="#notizie" data-uno="{tr("notizia", "Meldung", "news item", "nouvelle")}" data-molti="{tr("notizie", "Meldungen", "news items", "nouvelles")}" hidden>
 {filtri}
 </div>
 <p class="small filtro-stato" id="filtro-stato" aria-live="polite"></p>
 </div>
 </section>
 
-<section class="section section--dopo-filtro" aria-label="{tr("Ultima notizia", "Neueste Meldung", "Latest news")}" data-filtro-gruppo>
+<section class="section section--dopo-filtro" aria-label="{tr("Ultima notizia", "Neueste Meldung", "Latest news", "Dernière nouvelle")}" data-filtro-gruppo>
 <div class="container">
 {news_card(NEWS[0], feature=True, filtro=True)}
 </div>
 </section>
 
-<section class="section section--tight" aria-label="{tr("Archivio delle notizie", "Archiv der Meldungen", "News archive")}">
+<section class="section section--tight" aria-label="{tr("Archivio delle notizie", "Archiv der Meldungen", "News archive", "Archives des nouvelles")}">
 <div class="container">
-<nav class="subnav news-years" aria-label="{tr("Anni", "Jahre", "Years")}">
-<h2 class="label">{tr("Archivio", "Archiv", "Archive")}</h2>
+<nav class="subnav news-years" aria-label="{tr("Anni", "Jahre", "Years", "Années")}">
+<h2 class="label">{tr("Archivio", "Archiv", "Archive", "Archives")}</h2>
 <div class="subnav-links">
 {salti}
 </div>
@@ -137,7 +139,8 @@ def news():
     return sezione_page("news.html", "News | CAS Ticino", tr(
         "Le notizie della Sezione Ticino del Club Alpino Svizzero: serate, eventi, corsi, avvisi di sicurezza e vita delle capanne.",
         "Die Meldungen der SAC-Sektion Ticino (italienisch): Abende, Anlässe, Kurse, Sicherheitshinweise und das Leben in den Hütten.",
-        "News from the SAC Ticino Section (in Italian): evenings, events, courses, safety notices and life in the huts."),
+        "News from the SAC Ticino Section (in Italian): evenings, events, courses, safety notices and life in the huts.",
+        "Les nouvelles de la Section Ticino du Club Alpin Suisse (en italien) : soirées, événements, cours, avis de sécurité et vie des cabanes."),
         body, og=og_name(NEWS[0]), section=NM_MENU())
 
 
@@ -155,7 +158,7 @@ def news_article(i):
         fig = f'<figure class="article-figure"><img src="{im["src"]}" alt="{alt}" width="{im["w"]}" height="{im["h"]}" fetchpriority="high"></figure>'
     piu_recente = NEWS[i - 1] if i > 0 else None
     meno_recente = NEWS[i + 1] if i + 1 < len(NEWS) else None
-    prec, succ = tr("Notizia precedente", "Vorherige Meldung", "Previous news"), tr("Notizia successiva", "Nächste Meldung", "Next news")
+    prec, succ = tr("Notizia precedente", "Vorherige Meldung", "Previous news", "Nouvelle précédente"), tr("Notizia successiva", "Nächste Meldung", "Next news", "Nouvelle suivante")
     prev = (f'<a class="article-prev" href="{meno_recente["file"]}"><span class="label">{prec}</span><strong{in_it()}>{esc(meno_recente["title"])}</strong></a>'
             if meno_recente else "<span></span>")
     nxt = (f'<a class="article-next" href="{piu_recente["file"]}"><span class="label">{succ}</span><strong{in_it()}>{esc(piu_recente["title"])}</strong></a>'
@@ -169,7 +172,7 @@ def news_article(i):
 </div>
 </section>
 
-<section class="section section--tight" aria-label="{tr("Testo", "Text", "Text")}">
+<section class="section section--tight" aria-label="{tr("Testo", "Text", "Text", "Texte")}">
 <div class="container article{'' if fig else ' article--noimg'}">
 {fig}
 <div class="prose"{in_it()}>
@@ -182,8 +185,8 @@ def news_article(i):
 <div class="container">
 <nav class="article-pager" aria-label="{prec} / {succ}">{prev}{nxt}</nav>
 <div class="section-row">
-<h2 id="altre-h" class="h3">{tr("Altre notizie", "Weitere Meldungen", "More news")}</h2>
-<a class="link" href="news.html">{tr("Tutte le news", "Alle News", "All news")}</a>
+<h2 id="altre-h" class="h3">{tr("Altre notizie", "Weitere Meldungen", "More news", "Autres nouvelles")}</h2>
+<a class="link" href="news.html">{tr("Tutte le news", "Alle News", "All news", "Toutes les news")}</a>
 </div>
 <div class="news-grid">
 {chr(10).join(news_card(x) for x in altre)}
@@ -196,26 +199,28 @@ def news_article(i):
 
 def foto():
     su = "" if LINGUA["lang"] == "it" else "../"  # data-json non passa da pubblica()
-    titolo = tr("Foto e resoconti", "Fotos und Tourenberichte", "Photos and trip reports")
+    titolo = tr("Foto e resoconti", "Fotos und Tourenberichte", "Photos and trip reports", "Photos et récits")
     body = page_hero([nm_crumb(), (titolo, None)], titolo, tr(
         "Le foto e i resoconti delle ultime gite della sezione, pubblicati dai capigita sul portale Droptour.",
         "Fotos und Berichte der letzten Touren der Sektion, von den Tourenleitenden auf dem Portal Droptour veröffentlicht. Die Berichte sind auf Italienisch.",
-        "Photos and reports from the section’s latest trips, published by the trip leaders on the Droptour portal. The reports are in Italian.")) + f"""
+        "Photos and reports from the section’s latest trips, published by the trip leaders on the Droptour portal. The reports are in Italian.",
+        "Les photos et les récits des dernières courses de la section, publiés par les chefs de course sur le portail Droptour. Les récits sont en italien.")) + f"""
 
-<section class="section" aria-label="{tr("Ultime gite", "Letzte Touren", "Latest trips")}">
+<section class="section" aria-label="{tr("Ultime gite", "Letzte Touren", "Latest trips", "Dernières courses")}">
 <div class="container">
-<div id="albums" aria-live="polite" data-json="{su}data/foto.json"><p class="albums-status">{tr("Caricamento delle foto…", "Fotos werden geladen…", "Loading photos…")}</p></div>
+<div id="albums" aria-live="polite" data-json="{su}data/foto.json"><p class="albums-status">{tr("Caricamento delle foto…", "Fotos werden geladen…", "Loading photos…", "Chargement des photos…")}</p></div>
 <div class="albums-more">
-<button type="button" class="btn btn--secondary" id="load-more" hidden>{tr("Carica altre gite", "Weitere Touren laden", "Load more trips")}</button>
+<button type="button" class="btn btn--secondary" id="load-more" hidden>{tr("Carica altre gite", "Weitere Touren laden", "Load more trips", "Charger d’autres courses")}</button>
 </div>
 </div>
 </section>
 
 {subnav(NM_MENU(), L("foto.html"))}"""
-    return sezione_page("foto.html", tr("Foto e resoconti delle gite", "Fotos und Tourenberichte", "Photos and trip reports") + " | CAS Ticino", tr(
+    return sezione_page("foto.html", tr("Foto e resoconti delle gite", "Fotos und Tourenberichte", "Photos and trip reports", "Photos et récits des courses") + " | CAS Ticino", tr(
         "Le foto delle ultime gite della Sezione Ticino del Club Alpino Svizzero, con i resoconti dei capigita.",
         "Die Fotos der letzten Touren der SAC-Sektion Ticino, mit den Berichten der Tourenleitenden (italienisch).",
-        "Photos from the latest trips of the SAC Ticino Section, with the trip leaders’ reports (in Italian)."),
+        "Photos from the latest trips of the SAC Ticino Section, with the trip leaders’ reports (in Italian).",
+        "Les photos des dernières courses de la Section Ticino du Club Alpin Suisse, avec les récits des chefs de course (en italien)."),
         body, og="attivita/gite-2x1", scripts=f'<script src="{asset("assets/foto.js")}" defer></script>\n')
 
 
@@ -242,7 +247,7 @@ def pubblicazioni(cartella, prefisso):
 
 def pub_card(x, titolo):
     return f"""<a class="pub" href="{x['pdf']}">
-<figure><img src="{x['cover']}" alt="{tr("Copertina", "Titelseite", "Cover")}: {titolo}" width="{x['w']}" height="{x['h']}" loading="lazy" decoding="async"></figure>
+<figure><img src="{x['cover']}" alt="{tr("Copertina", "Titelseite", "Cover", "Couverture")}: {titolo}" width="{x['w']}" height="{x['h']}" loading="lazy" decoding="async"></figure>
 <strong>{titolo}</strong>
 <span class="small">PDF {x['mb']}MB</span>
 </a>"""
@@ -250,12 +255,12 @@ def pub_card(x, titolo):
 
 def pub_feature(x, titolo, testo):
     return f"""<div class="pub-feature" data-reveal>
-<figure><img src="{x['cover']}" alt="{tr("Copertina", "Titelseite", "Cover")}: {titolo}" width="{x['w']}" height="{x['h']}"></figure>
+<figure><img src="{x['cover']}" alt="{tr("Copertina", "Titelseite", "Cover", "Couverture")}: {titolo}" width="{x['w']}" height="{x['h']}"></figure>
 <div class="pub-feature-body">
-<span class="label">{tr("Ultimo numero", "Neueste Ausgabe", "Latest issue")}</span>
+<span class="label">{tr("Ultimo numero", "Neueste Ausgabe", "Latest issue", "Dernier numéro")}</span>
 <h2 class="h2">{titolo}</h2>
 <p>{testo}</p>
-<a class="btn btn--primary" href="{x['pdf']}">{tr("Leggi il PDF", "PDF lesen (italienisch)", "Read the PDF (in Italian)")} <span class="arrow" aria-hidden="true">→</span></a>
+<a class="btn btn--primary" href="{x['pdf']}">{tr("Leggi il PDF", "PDF lesen (italienisch)", "Read the PDF (in Italian)", "Lire le PDF (en italien)")} <span class="arrow" aria-hidden="true">→</span></a>
 <span class="small">PDF {x['mb']}MB</span>
 </div>
 </div>"""
@@ -264,17 +269,18 @@ def pub_feature(x, titolo, testo):
 def annuari():
     items = pubblicazioni("annuari", "annuario")
     ultimo, altri = items[0], items[1:]
-    nome = tr("Annuario", "Jahrbuch", "Yearbook")
-    titolo = tr("Annuari", "Jahrbücher", "Yearbooks")
+    nome = tr("Annuario", "Jahrbuch", "Yearbook", "Annuaire")
+    titolo = tr("Annuari", "Jahrbücher", "Yearbooks", "Annuaires")
     body = page_hero([nm_crumb(), (titolo, None)], titolo, tr(
         "L’annuario racconta la vita della sezione: un volume per ogni anno, da sfogliare in PDF.",
         "Das Jahrbuch erzählt vom Leben der Sektion: ein Band pro Jahr, als PDF zum Durchblättern (italienisch).",
-        "The yearbook tells the story of the section’s life: one volume a year, to browse as a PDF (in Italian).")) + f"""
+        "The yearbook tells the story of the section’s life: one volume a year, to browse as a PDF (in Italian).",
+        "L’annuaire raconte la vie de la section : un volume par année, à feuilleter en PDF (en italien).")) + f"""
 
-<section class="section" aria-label="{tr("Numeri da sfogliare", "Ausgaben zum Durchblättern", "Issues to browse")}">
+<section class="section" aria-label="{tr("Numeri da sfogliare", "Ausgaben zum Durchblättern", "Issues to browse", "Numéros à feuilleter")}">
 <div class="container">
-{pub_feature(ultimo, f"{nome} {ultimo['anno']}", tr("L’ultimo annuario pubblicato dalla sezione.", "Das neueste Jahrbuch der Sektion.", "The section’s latest yearbook."))}
-<div class="section-row"><h2 class="h3">{tr("Annate precedenti", "Frühere Jahrgänge", "Previous years")}</h2></div>
+{pub_feature(ultimo, f"{nome} {ultimo['anno']}", tr("L’ultimo annuario pubblicato dalla sezione.", "Das neueste Jahrbuch der Sektion.", "The section’s latest yearbook.", "Le dernier annuaire publié par la section."))}
+<div class="section-row"><h2 class="h3">{tr("Annate precedenti", "Frühere Jahrgänge", "Previous years", "Années précédentes")}</h2></div>
 <div class="pubs" data-reveal>
 {chr(10).join(pub_card(x, f"{nome} {x['anno']}") for x in altri)}
 </div>
@@ -285,7 +291,8 @@ def annuari():
     return sezione_page("annuari.html", titolo + " | CAS Ticino", tr(
         "Gli annuari della Sezione Ticino del Club Alpino Svizzero da scaricare in PDF.",
         "Die Jahrbücher der SAC-Sektion Ticino als PDF zum Herunterladen (italienisch).",
-        "The yearbooks of the SAC Ticino Section to download as PDFs (in Italian)."),
+        "The yearbooks of the SAC Ticino Section to download as PDFs (in Italian).",
+        "Les annuaires de la Section Ticino du Club Alpin Suisse à télécharger en PDF (en italien)."),
         body, og=ultimo["cover"][len("assets/img/"):-len(".webp")])
 
 
@@ -296,18 +303,19 @@ def informazione():
     def quando(x):
         mese = MESI_L[LINGUA["lang"]][MESI.index(x["mese"])] if x["mese"] else ""
         return f"Informazione, {mese} {x['anno']}".replace(",  ", ", ").strip()
-    griglia = (f"""<div class="section-row"><h2 class="h3">{tr("Numeri precedenti", "Frühere Ausgaben", "Previous issues")}</h2></div>
+    griglia = (f"""<div class="section-row"><h2 class="h3">{tr("Numeri precedenti", "Frühere Ausgaben", "Previous issues", "Numéros précédents")}</h2></div>
 <div class="pubs" data-reveal>
 {chr(10).join(pub_card(x, quando(x)) for x in altri)}
 </div>""" if altri else "")
     body = page_hero([nm_crumb(), ("Informazione", None)], "Informazione", tr(
         "Il bollettino ufficiale della sezione: notizie, attività e appuntamenti, da sfogliare in PDF.",
         "Das offizielle Mitteilungsblatt der Sektion: Neuigkeiten, Aktivitäten und Termine, als PDF zum Durchblättern (italienisch).",
-        "The section’s official bulletin: news, activities and dates, to browse as a PDF (in Italian).")) + f"""
+        "The section’s official bulletin: news, activities and dates, to browse as a PDF (in Italian).",
+        "Le bulletin officiel de la section : nouvelles, activités et rendez-vous, à feuilleter en PDF (en italien).")) + f"""
 
-<section class="section" aria-label="{tr("Numeri da sfogliare", "Ausgaben zum Durchblättern", "Issues to browse")}">
+<section class="section" aria-label="{tr("Numeri da sfogliare", "Ausgaben zum Durchblättern", "Issues to browse", "Numéros à feuilleter")}">
 <div class="container">
-{pub_feature(ultimo, quando(ultimo), tr("Il numero più recente del bollettino ufficiale della Sezione Ticino.", "Die neueste Ausgabe des offiziellen Mitteilungsblatts der Sektion Ticino.", "The latest issue of the Ticino Section’s official bulletin."))}
+{pub_feature(ultimo, quando(ultimo), tr("Il numero più recente del bollettino ufficiale della Sezione Ticino.", "Die neueste Ausgabe des offiziellen Mitteilungsblatts der Sektion Ticino.", "The latest issue of the Ticino Section’s official bulletin.", "Le dernier numéro du bulletin officiel de la Section Ticino."))}
 {griglia}
 </div>
 </section>
@@ -316,5 +324,6 @@ def informazione():
     return sezione_page("informazione.html", "Informazione | CAS Ticino", tr(
         "Informazione, il bollettino ufficiale della Sezione Ticino del Club Alpino Svizzero, da scaricare in PDF.",
         "«Informazione», das offizielle Mitteilungsblatt der SAC-Sektion Ticino, als PDF zum Herunterladen (italienisch).",
-        "«Informazione», the official bulletin of the SAC Ticino Section, to download as a PDF (in Italian)."),
+        "«Informazione», the official bulletin of the SAC Ticino Section, to download as a PDF (in Italian).",
+        "« Informazione », le bulletin officiel de la Section Ticino du Club Alpin Suisse, à télécharger en PDF (en italien)."),
         body, og=ultimo["cover"][len("assets/img/"):-len(".webp")])

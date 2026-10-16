@@ -1,4 +1,4 @@
-// Richieste di noleggio materiale (noleggio.html e de/, en/): Cloudflare Worker con database D1.
+// Richieste di noleggio materiale (noleggio.html e de/, fr/, en/): Cloudflare Worker con database D1.
 // La pagina chiede qui la disponibilità per le date scelte e invia le richieste; il responsabile le gestisce
 // su /admin (protetto da password). I dati personali restano solo qui, mai nel repository.
 // Istruzioni per attivarlo: LEGGIMI.md nella stessa cartella; tabella del database: schema.sql.
@@ -154,7 +154,7 @@ async function richiesta(request, env, ctx) {
   if (periodo.errore) return json(periodo, 400);
 
   const nome = testo(d.nome, 100), email = testo(d.email, 200).toLowerCase(), telefono = testo(d.telefono, 40);
-  const note = testo(d.note, 2000, true), lingua = ["it", "de", "en"].includes(d.lingua) ? d.lingua : "it";
+  const note = testo(d.note, 2000, true), lingua = ["it", "de", "fr", "en"].includes(d.lingua) ? d.lingua : "it";
   if (nome.length < 3 || /https?:|www\.|[@/<>]/i.test(nome)) return json({ errore: "nome" }, 400);
   if (!/^[a-z0-9._%+'-]+@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/.test(email)) return json({ errore: "email" }, 400);
   if (!/^[+0-9 ()./-]{7,40}$/.test(telefono)) return json({ errore: "telefono" }, 400);
@@ -169,7 +169,7 @@ async function richiesta(request, env, ctx) {
     const taglia = a.taglie ? String(r.taglia || "") : null;
     if (a.taglie && !(taglia in a.taglie)) return json({ errore: "materiale" }, 400);
     if (righe.some((x) => x.articolo === a.id && x.taglia === taglia)) return json({ errore: "materiale" }, 400);
-    righe.push({ articolo: a.id, taglia, quantita: q, nome: a.nome, de: a.de, en: a.en, prezzo: Number(a.prezzo) || 0 });
+    righe.push({ articolo: a.id, taglia, quantita: q, nome: a.nome, de: a.de, fr: a.fr, en: a.en, prezzo: Number(a.prezzo) || 0 });
   }
   if (!righe.length) return json({ errore: "materiale" }, 400);
 
@@ -264,6 +264,24 @@ const TESTI = {
     luogo: "Abholung und Rückgabe im Lager in Manno.",
     rispondi: "Für Fragen antworten Sie auf diese E-Mail.",
     firma: "SAC Sektion Ticino, Materialvermietung",
+  },
+  fr: {
+    oggetto: (tipo) => ({ ricevuta: "Demande de location reçue", confermata: "Location confirmée",
+      rifiutata: "Location : demande refusée", annullata: "Location annulée", scaduta: "Location : demande expirée" })[tipo],
+    saluto: (nome) => `Bonjour ${nome},`,
+    apertura: {
+      ricevuta: "nous avons bien reçu votre demande de location. Nous vous écrivons dès que nous l’avons vérifiée : la demande n’est valable qu’avec notre confirmation.",
+      confermata: "votre demande de location est confirmée.",
+      rifiutata: "nous ne pouvons malheureusement pas accepter votre demande de location.",
+      annullata: "votre location a été annulée.",
+      scaduta: "nous n’avons pas pu confirmer votre demande de location dans un délai d’une semaine : elle a donc expiré et le matériel n’est pas réservé. Si vous en avez encore besoin, envoyez une nouvelle demande depuis le site.",
+    },
+    messaggio: "Message du responsable de la location",
+    periodo: (dal, al, g) => `Du ${dal} au ${al} (${g} ${g === 1 ? "jour" : "jours"})`,
+    totale: (t) => `Total indicatif : Fr. ${t}.–, à payer au retour en espèces ou par TWINT.`,
+    luogo: "Retrait et retour au dépôt de Manno.",
+    rispondi: "Pour toute question, répondez à cet e-mail.",
+    firma: "CAS Ticino, location de matériel",
   },
   en: {
     oggetto: (tipo) => ({ ricevuta: "Hire request received", confermata: "Hire confirmed",

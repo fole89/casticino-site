@@ -3,6 +3,7 @@ e sottopagine (attività, storia, foto). I contenuti sono in capanne.py, capanne
 from capanne import CONTENUTI, PRENOTA
 from capanne_de import CONTENUTI_DE, HUT_DE
 from capanne_en import CONTENUTI_EN, HUT_EN
+from capanne_fr import CONTENUTI_FR, HUT_FR
 from shared import avviso, avviso_testo
 from comune import *
 
@@ -137,6 +138,7 @@ HUT_PAGES = {
 # Il CAS sostituirà il portale con «Ridian» (annunciato per la primavera 2028): allora vanno controllati questi link.
 PORTALE_CAS = {"it": "https://www.sac-cas.ch/it/capanne-e-escursioni/portale-escursionistico-del-cas/{}/",
                "de": "https://www.sac-cas.ch/de/huetten-und-touren/sac-tourenportal/{}/",
+               "fr": "https://www.sac-cas.ch/fr/cabanes-et-courses/portail-des-courses-du-cas/{}/",
                "en": "https://www.sac-cas.ch/en/huts-and-tours/sac-route-portal/{}/"}
 
 # testi fissi delle pagine capanna
@@ -175,6 +177,23 @@ TC = {
                sostieni_p="Unterhalt, Erneuerungen und Arbeiten kosten: Die Hütten leben auch dank den Mitgliedern und den Freunden der Berge. Sie können sie mit einer Spende auf das Konto der Sektion unterstützen, mit dem Namen der Hütte als Vermerk.",
                conto="Konto", causale="Vermerk", salta="Auf dieser Seite", s_vita="Küche und Team", s_tariffe="Preise",
                s_contatti="Kontakt", s_sostieni="Hütte unterstützen"),
+    "fr": dict(prenota="Réserver", cucina="La cuisine", team="Vos hôtes", vita="La cuisine et les gardiens",
+               tariffe="Tarifs et réservation", accessi="Accès", attivita="Activités", sostenitori="Soutiens",
+               storia="Histoire", storia_link="L’histoire de la cabane", foto="Photos", tutte_foto="Toutes les photos",
+               in_breve="En bref", testo="Texte", itinerari="Itinéraires", capanne="Les cabanes", sezione_menu="Cabanes",
+               foto_lead="La cabane, la cuisine et les environs", tocca="Touchez une photo pour l’agrandir.",
+               foto_desc="Photos de la Capanna {n} et de ses environs.", avviso="Avis", importante="Important", altitudine="Altitude",
+               posti="Places", custodia="Gardiennage", apertura="Ouverture", la_capanna="La cabane",
+               soggiorno="Séjour", arrivare="Accès", contatti_h="Contactez le gardien avant de partir",
+               contatti_p="Vérifiez toujours que le gardien est présent et renseignez-vous sur les conditions en montagne.",
+               altre="Les autres cabanes", capanna="Capanna", n_foto="photo", accesso_da="Accès depuis", pdf=" (en italien)",
+               fb_h="Nouvelles de la cabane", fb_notizie="Dernières nouvelles", fb_p="Les dernières nouvelles de la cabane, publiées par l’équipe sur Facebook (surtout en italien).",
+               fb_carica="Afficher les publications", fb_privacy="Les publications ne sont chargées depuis Facebook qu’après le clic : dès ce moment, Facebook reçoit des données sur votre visite.",
+               fb_apri="Ouvrir la page Facebook",
+               portale="La cabane et ses itinéraires sur le portail des courses du CAS", sostieni_h="Soutenir la cabane",
+               sostieni_p="L’entretien, les rénovations et les travaux coûtent cher : les cabanes vivent aussi grâce aux membres et aux amis de la montagne. Vous pouvez les soutenir par un don sur le compte de la section, en indiquant le nom de la cabane.",
+               conto="Compte", causale="Communication", salta="Sur cette page", s_vita="Cuisine et gardiens", s_tariffe="Tarifs",
+               s_contatti="Contact", s_sostieni="Soutenir la cabane"),
     "en": dict(prenota="Book", cucina="The kitchen", team="Your hosts", vita="Kitchen and hut team",
                tariffe="Rates and booking", accessi="Getting there", attivita="Activities", sostenitori="Supporters",
                storia="History", storia_link="The history of the hut", foto="Photos", tutte_foto="All photos",
@@ -200,16 +219,16 @@ def tc(chiave):
 
 
 def capanna(file):
-    """Dati di HUT_PAGES nella lingua corrente (in tedesco e in inglese i testi vengono da capanne_de/capanne_en)."""
+    """Dati di HUT_PAGES nella lingua corrente (nelle traduzioni i testi vengono da capanne_de/capanne_fr/capanne_en)."""
     d = dict(HUT_PAGES[file])
-    d.update({"it": {}, "de": HUT_DE, "en": HUT_EN}[LINGUA["lang"]].get(file, {}))
+    d.update({"it": {}, "de": HUT_DE, "fr": HUT_FR, "en": HUT_EN}[LINGUA["lang"]].get(file, {}))
     return d
 
 
 def contenuti(file):
     """CONTENUTI nella lingua corrente, con i testi che la redazione cambia da admin/ («Testi del sito» › Capanne):
     guardiani, tariffe e note per prenotare, in data/testi/capanne/<cartella>.json."""
-    c = {"it": CONTENUTI, "de": CONTENUTI_DE, "en": CONTENUTI_EN}[LINGUA["lang"]].get(file)
+    c = {"it": CONTENUTI, "de": CONTENUTI_DE, "fr": CONTENUTI_FR, "en": CONTENUTI_EN}[LINGUA["lang"]].get(file)
     if not c or not os.path.exists(os.path.join(ROOT, "data", "testi", "capanne", c["cartella"] + ".json")):
         return c
     d = testi(f"capanne/{c['cartella']}")
@@ -230,7 +249,7 @@ def virgolette(t):
     return t.replace("«", "“").replace("»", "”") if en() else t
 
 
-PREZZI_L = {"incluso": ("inbegriffen", "included"), "gratis": ("gratis", "free")}
+PREZZI_L = {"incluso": ("inbegriffen", "included", "inclus"), "gratis": ("gratis", "free", "gratuit")}
 
 
 def prezzo_l(p):
@@ -391,7 +410,7 @@ def hut_extra(file):
 <div class="news-card-body">
 <h3>{p["titolo"]}</h3>
 <p>{p["lead"]}</p>
-<span class="news-card-vai">{tr("Scopri di più", "Mehr erfahren", "Find out more")} <span class="arrow" aria-hidden="true">→</span></span>
+<span class="news-card-vai">{tr("Scopri di più", "Mehr erfahren", "Find out more", "En savoir plus")} <span class="arrow" aria-hidden="true">→</span></span>
 </div>
 </a>""" for p in c["pagine"])
         out.append(f"""<section class="section" id="attivita" aria-labelledby="attivita-h">
@@ -529,7 +548,7 @@ def facebook(d):
 <p>{tc('fb_p')}</p>
 <a class="link" href="{d['facebook']}" rel="noopener">{tc('fb_apri')}</a>
 </div>
-<div class="fb-feed" data-fb="{d['facebook']}" data-lang="{tr('it_IT', 'de_DE', 'en_GB')}" data-titolo="Facebook {d['name']}">
+<div class="fb-feed" data-fb="{d['facebook']}" data-lang="{tr('it_IT', 'de_DE', 'en_GB', 'fr_FR')}" data-titolo="Facebook {d['name']}">
 <button type="button" class="btn btn--secondary">{tc('fb_carica')}</button>
 <p class="small">{tc('fb_privacy')}</p>
 </div>
@@ -608,7 +627,7 @@ def fasce(body):
 def hut(file):
     d = capanna(file)
     c = contenuti(file)
-    others = [h for h in {"it": HUTS, "de": HUTS_DE, "en": HUTS_EN}[LINGUA["lang"]] if h[0] != file]
+    others = [h for h in {"it": HUTS, "de": HUTS_DE, "fr": HUTS_FR, "en": HUTS_EN}[LINGUA["lang"]] if h[0] != file]
     mini = "\n".join(f"""<a class="mini-hut" href="{L(f)}"><figure>{img(im, f"{tc('capanna')} {n}", w, h)}</figure><strong>{n}</strong><span>{q} m</span></a>"""
                      for f, n, q, v, st, t, posti, acc, im, (w, h), big in others)
     if "band" in d:

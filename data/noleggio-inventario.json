@@ -4,45 +4,45 @@
       "quantita = numero di pezzi disponibili per il noleggio (0 = l'articolo non compare nel modulo).",
       "taglie = quantità per taglia (solo imbracature e pedule); si possono togliere le taglie che non ci sono o aggiungerne (es. \"42.5\").",
       "set = articolo composto da altri: non ha una quantità sua, si noleggia se sono liberi tutti i pezzi elencati.",
-      "id = nome tecnico, non cambiarlo per un articolo che esiste già (le richieste lo usano); nome (de, en = nome in tedesco e in inglese) e prezzo (franchi al giorno) si possono cambiare.",
-      "Dopo una modifica: python scripts/redesign/pages.py noleggio.html de/noleggio.html en/noleggio.html, poi commit e push."
+      "id = nome tecnico, non cambiarlo per un articolo che esiste già (le richieste lo usano); nome (de, en, fr = nome in tedesco, inglese e francese) e prezzo (franchi al giorno) si possono cambiare.",
+      "Dopo una modifica: python scripts/redesign/pages.py noleggio.html de/noleggio.html fr/noleggio.html en/noleggio.html, poi commit e push."
   ],
   "gruppi": [
     {
-      "gruppo": "Alpinismo e arrampicata", "de": "Hochtouren und Klettern", "en": "Mountaineering and climbing",
+      "gruppo": "Alpinismo e arrampicata", "de": "Hochtouren und Klettern", "en": "Mountaineering and climbing", "fr": "Alpinisme et escalade",
       "articoli": [
-        {"id": "ramponi", "nome": "Ramponi", "de": "Steigeisen", "en": "Crampons", "prezzo": 5, "quantita": 20},
-        {"id": "piccozza", "nome": "Piccozza", "de": "Pickel", "en": "Ice axe", "prezzo": 5, "quantita": 10},
-        {"id": "imbracatura", "nome": "Imbracatura", "de": "Klettergurt", "en": "Harness", "prezzo": 5, "taglie": {"Kids": 6, "S": 8, "M": 10, "L": 10, "XL": 8}},
-        {"id": "casco", "nome": "Casco", "de": "Helm", "en": "Helmet", "prezzo": 5, "quantita": 25},
-        {"id": "pedule", "nome": "Pedule", "de": "Bergschuhe", "en": "Mountain boots", "prezzo": 5, "taglie": {"36": 2, "37": 2, "38": 2, "39": 2, "40": 2, "41": 2, "42": 2, "43": 2, "44": 2, "45": 0, "46": 0, "47": 0}},
-        {"id": "moschettone-ghiera", "nome": "Moschettone a ghiera", "de": "Schraubkarabiner", "en": "Screwgate karabiner", "prezzo": 3, "quantita": 40},
-        {"id": "discensore", "nome": "Discensore e moschettone", "de": "Abseilgerät und Karabiner", "en": "Belay device and karabiner", "prezzo": 5, "quantita": 20},
-        {"id": "jul", "nome": "Jul e moschettone", "de": "Jul und Karabiner", "en": "Jul and karabiner", "prezzo": 5, "quantita": 0},
-        {"id": "cordino-prussik", "nome": "Cordino prussik", "de": "Prusikschlinge", "en": "Prusik cord", "prezzo": 1, "quantita": 25},
-        {"id": "cordino", "nome": "Cordino 3–5 m", "de": "Reepschnur 3–5 m", "en": "Accessory cord 3–5 m", "prezzo": 1, "quantita": 5},
-        {"id": "longe", "nome": "Longe", "de": "Selbstsicherungsschlinge", "en": "Lanyard", "prezzo": 2, "quantita": 25},
-        {"id": "rinvii", "nome": "Set di rinvii", "de": "Expressschlingen-Set", "en": "Set of quickdraws", "prezzo": 5, "quantita": 2}
+        {"id": "ramponi", "nome": "Ramponi", "de": "Steigeisen", "en": "Crampons", "fr": "Crampons", "prezzo": 5, "quantita": 20},
+        {"id": "piccozza", "nome": "Piccozza", "de": "Pickel", "en": "Ice axe", "fr": "Piolet", "prezzo": 5, "quantita": 10},
+        {"id": "imbracatura", "nome": "Imbracatura", "de": "Klettergurt", "en": "Harness", "fr": "Baudrier", "prezzo": 5, "taglie": {"Kids": 6, "S": 8, "M": 10, "L": 10, "XL": 8}},
+        {"id": "casco", "nome": "Casco", "de": "Helm", "en": "Helmet", "fr": "Casque", "prezzo": 5, "quantita": 25},
+        {"id": "pedule", "nome": "Pedule", "de": "Bergschuhe", "en": "Mountain boots", "fr": "Chaussures de montagne", "prezzo": 5, "taglie": {"36": 2, "37": 2, "38": 2, "39": 2, "40": 2, "41": 2, "42": 2, "43": 2, "44": 2, "45": 0, "46": 0, "47": 0}},
+        {"id": "moschettone-ghiera", "nome": "Moschettone a ghiera", "de": "Schraubkarabiner", "en": "Screwgate karabiner", "fr": "Mousqueton à vis", "prezzo": 3, "quantita": 40},
+        {"id": "discensore", "nome": "Discensore e moschettone", "de": "Abseilgerät und Karabiner", "en": "Belay device and karabiner", "fr": "Descendeur et mousqueton", "prezzo": 5, "quantita": 20},
+        {"id": "jul", "nome": "Jul e moschettone", "de": "Jul und Karabiner", "en": "Jul and karabiner", "fr": "Jul et mousqueton", "prezzo": 5, "quantita": 0},
+        {"id": "cordino-prussik", "nome": "Cordino prussik", "de": "Prusikschlinge", "en": "Prusik cord", "fr": "Cordelette prusik", "prezzo": 1, "quantita": 25},
+        {"id": "cordino", "nome": "Cordino 3–5 m", "de": "Reepschnur 3–5 m", "en": "Accessory cord 3–5 m", "fr": "Cordelette 3–5 m", "prezzo": 1, "quantita": 5},
+        {"id": "longe", "nome": "Longe", "de": "Selbstsicherungsschlinge", "en": "Lanyard", "fr": "Longe", "prezzo": 2, "quantita": 25},
+        {"id": "rinvii", "nome": "Set di rinvii", "de": "Expressschlingen-Set", "en": "Set of quickdraws", "fr": "Jeu de dégaines", "prezzo": 5, "quantita": 2}
       ]
     },
     {
-      "gruppo": "Scialpinismo", "de": "Skitouren", "en": "Ski touring",
+      "gruppo": "Scialpinismo", "de": "Skitouren", "en": "Ski touring", "fr": "Ski de randonnée",
       "articoli": [
-        {"id": "set-arva", "nome": "Set ARVA, sonda e pala", "de": "LVS-Set mit Sonde und Schaufel", "en": "Transceiver, probe and shovel set", "prezzo": 10, "set": ["arva", "sonda", "pala"]},
-        {"id": "arva", "nome": "ARVA", "de": "LVS-Gerät", "en": "Avalanche transceiver", "prezzo": 5, "quantita": 25},
-        {"id": "sonda", "nome": "Sonda", "de": "Sonde", "en": "Probe", "prezzo": 5, "quantita": 25},
-        {"id": "pala", "nome": "Pala", "de": "Schaufel", "en": "Shovel", "prezzo": 5, "quantita": 25},
-        {"id": "slittino", "nome": "Slittino di pronto soccorso", "de": "Rettungsschlitten", "en": "Rescue sledge", "prezzo": 5, "quantita": 1},
-        {"id": "pelli", "nome": "Pelli di riserva", "de": "Ersatzfelle", "en": "Spare skins", "prezzo": 5, "quantita": 1}
+        {"id": "set-arva", "nome": "Set ARVA, sonda e pala", "de": "LVS-Set mit Sonde und Schaufel", "en": "Transceiver, probe and shovel set", "fr": "Set DVA, sonde et pelle", "prezzo": 10, "set": ["arva", "sonda", "pala"]},
+        {"id": "arva", "nome": "ARVA", "de": "LVS-Gerät", "en": "Avalanche transceiver", "fr": "DVA", "prezzo": 5, "quantita": 25},
+        {"id": "sonda", "nome": "Sonda", "de": "Sonde", "en": "Probe", "fr": "Sonde", "prezzo": 5, "quantita": 25},
+        {"id": "pala", "nome": "Pala", "de": "Schaufel", "en": "Shovel", "fr": "Pelle", "prezzo": 5, "quantita": 25},
+        {"id": "slittino", "nome": "Slittino di pronto soccorso", "de": "Rettungsschlitten", "en": "Rescue sledge", "fr": "Luge de secours", "prezzo": 5, "quantita": 1},
+        {"id": "pelli", "nome": "Pelli di riserva", "de": "Ersatzfelle", "en": "Spare skins", "fr": "Peaux de rechange", "prezzo": 5, "quantita": 1}
       ]
     },
     {
-      "gruppo": "Altro", "de": "Weiteres", "en": "Other",
+      "gruppo": "Altro", "de": "Weiteres", "en": "Other", "fr": "Autre",
       "articoli": [
-        {"id": "bussola", "nome": "Bussola", "de": "Kompass", "en": "Compass", "prezzo": 5, "quantita": 5},
-        {"id": "occhiali", "nome": "Occhiali da sole", "de": "Sonnenbrille", "en": "Sunglasses", "prezzo": 5, "quantita": 5},
-        {"id": "kit-ferrata", "nome": "Kit ferrata", "de": "Klettersteigset", "en": "Via ferrata kit", "prezzo": 10, "quantita": 10},
-        {"id": "crash-pad", "nome": "Crash pad", "de": "Crashpad", "en": "Crash pad", "prezzo": 10, "quantita": 2 }
+        {"id": "bussola", "nome": "Bussola", "de": "Kompass", "en": "Compass", "fr": "Boussole", "prezzo": 5, "quantita": 5},
+        {"id": "occhiali", "nome": "Occhiali da sole", "de": "Sonnenbrille", "en": "Sunglasses", "fr": "Lunettes de soleil", "prezzo": 5, "quantita": 5},
+        {"id": "kit-ferrata", "nome": "Kit ferrata", "de": "Klettersteigset", "en": "Via ferrata kit", "fr": "Set de via ferrata", "prezzo": 10, "quantita": 10},
+        {"id": "crash-pad", "nome": "Crash pad", "de": "Crashpad", "en": "Crash pad", "fr": "Crash pad", "prezzo": 10, "quantita": 2 }
       ]
     }
   ]

@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.join(ROOT, "scripts", "redesign"))
 from shared import SITO, NOTIFICHE_API  # noqa: E402
 import news_util  # noqa: E402
 
-LINGUE = ("it", "de", "en")
-TITOLO_AVVISO = {"it": "CAS Ticino", "de": "CAS Ticino", "en": "CAS Ticino"}
+LINGUE = ("it", "de", "fr", "en")
+TITOLO_AVVISO = {"it": "CAS Ticino", "de": "CAS Ticino", "fr": "CAS Ticino", "en": "CAS Ticino"}
 # avvisi delle capanne (data/avvisi-capanne/<pagina>.json): titolo della notifica = nome della capanna
 CAPANNE = {"campotencia": "Capanna Campo Tencia", "cristallina": "Capanna Cristallina", "adula": "Capanna Adula",
            "motterascio": "Capanna Motterascio", "montebar": "Capanna Monte Bar", "baitadelluca": "Baita del Luca"}

@@ -37,7 +37,7 @@ def voce_pagina(file, page_html):
 
 
 def indice_ricerca(pagine):
-    voci = [voce_pagina(f, h) for f, h in pagine.items() if f not in FUORI_INDICE and not f.startswith(("de/", "en/"))]
+    voci = [voce_pagina(f, h) for f, h in pagine.items() if f not in FUORI_INDICE and senza_lingua(f) == f]
     for gruppo, links in DOCS:
         for nome, url in links:
             voci.append({"t": nome, "u": url, "k": "PDF", "x": f"Documenti, {gruppo}"})

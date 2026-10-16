@@ -1,4 +1,4 @@
-// CAS Ticino - pagina Foto (foto.html, de/foto.html, en/foto.html): legge data/foto.json (#albums[data-json]) e mostra
+// CAS Ticino - pagina Foto (foto.html, de/foto.html, fr/foto.html, en/foto.html): legge data/foto.json (#albums[data-json]) e mostra
 // le ultime gite (stili in assets/site.css, blocco «foto delle gite»)
 (function () {
   var root = document.getElementById('albums');
@@ -12,12 +12,14 @@
           mostra: 'Mostra foto ', nessuna: 'Nessuna foto pubblicata di recente.', errore: 'Le foto non sono disponibili al momento. Puoi consultarle sul portale Droptour.' },
     de: { foto: 'Fotos', di: 'von', resoconto: 'Bericht: ', prec: 'Vorheriges Foto', succ: 'Nächstes Foto', ingrandisci: 'Foto vergrössern',
           mostra: 'Foto anzeigen: ', nessuna: 'In letzter Zeit wurden keine Fotos veröffentlicht.', errore: 'Die Fotos sind im Moment nicht verfügbar. Sie finden sie auf dem Portal Droptour.' },
+    fr: { foto: 'photos', di: 'de', resoconto: 'Récit : ', prec: 'Photo précédente', succ: 'Photo suivante', ingrandisci: 'Agrandir la photo',
+          mostra: 'Afficher la photo ', nessuna: 'Aucune photo publiée récemment.', errore: 'Les photos ne sont pas disponibles pour le moment. Vous les trouverez sur le portail Droptour.' },
     en: { foto: 'photos', di: 'of', resoconto: 'Report: ', prec: 'Previous photo', succ: 'Next photo', ingrandisci: 'Enlarge the photo',
           mostra: 'Show photo ', nessuna: 'No photos published recently.', errore: 'The photos are not available at the moment. You can find them on the Droptour portal.' }
   }[LINGUA] || null;
   if (!TX) { LINGUA = 'it'; TX = { foto: 'foto', di: 'di', resoconto: 'Resoconto: ', prec: 'Foto precedente', succ: 'Foto successiva', ingrandisci: 'Ingrandisci la foto', mostra: 'Mostra foto ', nessuna: 'Nessuna foto pubblicata di recente.', errore: 'Le foto non sono disponibili al momento. Puoi consultarle sul portale Droptour.' }; }
   var IT = LINGUA === 'it' ? {} : { lang: 'it' };  // attributo per i testi in italiano
-  var fmt = new Intl.DateTimeFormat({ it: 'it-CH', de: 'de-CH', en: 'en-GB' }[LINGUA], { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  var fmt = new Intl.DateTimeFormat({ it: 'it-CH', de: 'de-CH', fr: 'fr-CH', en: 'en-GB' }[LINGUA], { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   function conIt(attrs) { Object.keys(IT).forEach(function (k) { attrs[k] = IT[k]; }); return attrs; }
 
   function el(tag, attrs, children) {

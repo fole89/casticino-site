@@ -9,24 +9,25 @@ def adesione():
 <h3 class="h3">{testo_campo(q, "nome")}</h3>
 <p>{testo_campo(q, "chi")}</p>
 <div class="amount"><small>CHF</small>{esc(q["quota"])}</div>
-<p class="small">{tr("+ CHF {} alla prima iscrizione", "+ CHF {} beim ersten Beitritt", "+ CHF {} when you first join").format(esc(q["tassa"]))}</p>
+<p class="small">{tr("+ CHF {} alla prima iscrizione", "+ CHF {} beim ersten Beitritt", "+ CHF {} when you first join", "+ CHF {} à la première inscription").format(esc(q["tassa"]))}</p>
 </article>""" for q in d["quote"])
     rows = [(testo_campo(v, "etichetta"), testo_md(v, "testo", in_riga=True)) for v in d["vantaggi"]]
     join = tr("https://portal.sac-cas.ch/it/groups/6783/self_registration", "https://portal.sac-cas.ch/de/groups/6783/self_registration",
-              "https://portal.sac-cas.ch/it/groups/6783/self_registration")
-    iscriviti = tr("Iscriviti sul sito del CAS", "Auf der SAC-Website beitreten", "Join on the SAC website")
-    body = page_hero([(tr("Adesione", "Mitgliedschaft", "Membership"), None)], testo_campo(d, "titolo"), testo_campo(d, "introduzione"),
+              "https://portal.sac-cas.ch/it/groups/6783/self_registration",
+              "https://portal.sac-cas.ch/fr/groups/6783/self_registration")
+    iscriviti = tr("Iscriviti sul sito del CAS", "Auf der SAC-Website beitreten", "Join on the SAC website", "S’inscrire sur le site du CAS")
+    body = page_hero([(tr("Adesione", "Mitgliedschaft", "Membership", "Adhésion"), None)], testo_campo(d, "titolo"), testo_campo(d, "introduzione"),
                      f'<div class="actions hero-actions"><a class="btn btn--primary" href="{join}">{iscriviti} <span class="arrow" aria-hidden="true">→</span></a></div>') + f"""
 
 <figure class="band">
-{pic("paesaggi/gruppo-ghiacciaio", tr("Gruppo di alpinisti in cammino su un ghiacciaio", "Eine Gruppe Bergsteiger unterwegs auf einem Gletscher", "A group of mountaineers walking on a glacier"),
+{pic("paesaggi/gruppo-ghiacciaio", tr("Gruppo di alpinisti in cammino su un ghiacciaio", "Eine Gruppe Bergsteiger unterwegs auf einem Gletscher", "A group of mountaineers walking on a glacier", "Un groupe d’alpinistes en marche sur un glacier"),
      mobile="paesaggi/gruppo-ghiacciaio-4x3", w=2000, h=1500, lazy=False, cls="pos-low")}
 {credito()}
 </figure>
 
 <section class="section" aria-labelledby="quote-h">
 <div class="container">
-<div class="section-head"><h2 id="quote-h" class="h2">{tr("Quote annuali", "Jahresbeiträge", "Annual fees")}</h2></div>
+<div class="section-head"><h2 id="quote-h" class="h2">{tr("Quote annuali", "Jahresbeiträge", "Annual fees", "Cotisations annuelles")}</h2></div>
 <div class="prices" data-reveal>
 {cards}
 </div>
@@ -37,7 +38,7 @@ def adesione():
 <section class="section--surface" aria-labelledby="vantaggi-h">
 <div class="container detail">
 <div class="detail-intro">
-<h2 id="vantaggi-h" class="h2">{tr("Cosa ricevi", "Ihre Vorteile", "Your benefits")}</h2>
+<h2 id="vantaggi-h" class="h2">{tr("Cosa ricevi", "Ihre Vorteile", "Your benefits", "Vos avantages")}</h2>
 <div><a class="btn btn--primary" href="{join}">{iscriviti} <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
 <div data-reveal>
@@ -48,15 +49,16 @@ def adesione():
     return sezione_page("adesione.html", f'{testo_campo(d, "titolo", semplice=True)} | CAS Ticino',
                         tr("Diventa socio della Sezione Ticino del Club Alpino Svizzero: quote annuali per singoli, famiglie e giovani, e vantaggi per i soci.",
                            "Werden Sie Mitglied der Sektion Ticino des Schweizer Alpen-Clubs: Jahresbeiträge für Einzelne, Familien und Jugendliche, und die Vorteile für Mitglieder.",
-                           "Become a member of the Ticino Section of the Swiss Alpine Club: annual fees for individuals, families and young people, and the benefits for members."),
+                           "Become a member of the Ticino Section of the Swiss Alpine Club: annual fees for individuals, families and young people, and the benefits for members.",
+                           "Devenez membre de la Section Ticino du Club Alpin Suisse : cotisations annuelles pour individuels, familles et jeunes, et avantages pour les membres."),
                         body, og="paesaggi/gruppo-ghiacciaio-2000")
 
 
-# ------------------------------------------------------------------ protezione dei dati (privacy.html, de/, en/)
-# Testo per lingua: titolo, descrizione, sommario e corpo (HTML, percorsi dalla radice). Tenere allineate le tre versioni
+# ------------------------------------------------------------------ protezione dei dati (privacy.html, de/, fr/, en/)
+# Testo per lingua: titolo, descrizione, sommario e corpo (HTML, percorsi dalla radice). Tenere allineate le quattro versioni
 # quando il sito cambia (nuovi servizi esterni, cookie, moduli…) e aggiornare PRIVACY_AGGIORNATA.
 
-PRIVACY_AGGIORNATA = {"it": "ottobre 2026", "de": "Oktober 2026", "en": "October 2026"}
+PRIVACY_AGGIORNATA = {"it": "ottobre 2026", "de": "Oktober 2026", "fr": "octobre 2026", "en": "October 2026"}
 
 PRIVACY = {
     "it": dict(
@@ -131,6 +133,42 @@ PRIVACY = {
 
 <h2>Ihre Rechte</h2>
 <p>Sie können Auskunft über Ihre Daten verlangen, sie berichtigen oder löschen lassen und der Bearbeitung widersprechen: Schreiben Sie an <a href="mailto:info@casticino.ch">info@casticino.ch</a>. Sie können sich auch an den <a href="https://www.edoeb.admin.ch/de" rel="noopener">Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB)</a> wenden.</p>"""),
+    "fr": dict(
+        title="Protection des données | CAS Ticino", h1="Protection des données",
+        desc="Déclaration de protection des données du site du CAS Ticino : quelles données sont traitées, cookies, services externes et vos droits.",
+        lead="Le site du CAS Ticino n’utilise ni cookies ni outils de statistique. Vous trouverez ici quelles données sont tout de même traitées quand vous le visitez ou nous écrivez, par qui et pourquoi.",
+        corpo="""<h2>Responsable</h2>
+<p>Club Alpin Suisse CAS, Section Ticino<br>Case postale 112, 6998 Monteggio 2<br><a href="mailto:info@casticino.ch">info@casticino.ch</a></p>
+<p>Nous respectons la loi fédérale sur la protection des données (LPD).</p>
+
+<h2>Visite du site</h2>
+<p>Le site est hébergé par GitHub Pages (GitHub Inc., États-Unis). Comme tout serveur web, GitHub enregistre pour chaque visite l’adresse IP, la date et l’heure, la page demandée et le type de navigateur, pour faire fonctionner le service et pour la sécurité. La section ne reçoit pas ces données. GitHub adhère au Swiss-U.S. Data Privacy Framework ; les détails figurent dans la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">déclaration de confidentialité de GitHub</a> (en anglais).</p>
+
+<h2>Cookies et mémoire du navigateur</h2>
+<p>Le site ne place pas de cookies et n’utilise pas d’outils de statistique, de publicité ou de profilage. Les polices de caractères sont chargées depuis le site lui-même. Le programme des courses garde la liste des courses pendant 10 minutes dans la mémoire de l’onglet du navigateur (sessionStorage), pour ouvrir plus vite le détail d’une course : elle ne contient pas de données personnelles et s’efface à la fermeture de l’onglet. Si vous fermez l’avis en haut des pages, le navigateur retient seulement quel avis vous avez fermé (localStorage), pour ne plus vous le montrer : cette information reste sur votre appareil et n’est envoyée à personne. Pour ouvrir le site plus vite et même sans réseau (par exemple si vous l’ajoutez à l’écran d’accueil), le navigateur garde en mémoire certaines pages, images et fichiers du site (service worker et cache) : ils restent sur votre appareil et s’effacent avec les données du site dans les réglages du navigateur.</p>
+
+<h2>Programme des courses et photos</h2>
+<p>Le programme des courses et les photos des sorties sont chargés depuis Droptour (ssl.dropnet.ch, en Suisse), le service avec lequel la section gère les courses et les inscriptions : en ouvrant ces pages, votre navigateur se connecte à Droptour, qui reçoit votre adresse IP. L’inscription aux courses se fait sur Droptour ; les données que vous y saisissez servent à organiser la course et sont visibles pour les chefs de course.</p>
+
+<h2>Facebook</h2>
+<p>Sur les pages des cabanes, les publications de Facebook ne sont chargées que si vous cliquez sur « Afficher les publications ». Avant ce clic, rien n’est envoyé à Facebook ; ensuite, Meta Platforms reçoit des données sur votre visite (dont l’adresse IP) et peut placer des cookies, selon sa <a href="https://www.facebook.com/privacy/policy/" rel="noopener">politique de confidentialité</a>. Les liens vers Instagram, Facebook, hut-reservation.org et d’autres sites sont de simples liens : vos données sont alors traitées par le site que vous ouvrez.</p>
+
+<h2>Contacts et annonces</h2>
+<p>Si vous nous écrivez par e-mail, nous utilisons votre message uniquement pour vous répondre et donner suite à votre demande (par exemple en le transmettant au gardien d’une cabane ou au responsable d’un cours). Les annonces du Mercatino sont publiées avec le nom et le contact que vous indiquez et restent en ligne jusqu’à leur échéance ; vous pouvez demander leur retrait à tout moment.</p>
+
+<h2 id="notifiche">Notifications</h2>
+<p>Si vous activez les notifications (en bas des pages), le navigateur vous demande votre autorisation et crée une adresse de notification anonyme : elle ne contient ni nom, ni e-mail, ni numéro de téléphone. Nous l’enregistrons, avec la langue de la page, dans un petit service de la section sur Cloudflare Workers (Cloudflare Inc., États-Unis ; données stockées en Europe), uniquement pour vous envoyer les nouvelles importantes de la section. Les notifications passent par le service de votre navigateur ou de votre téléphone (Google, Apple, Mozilla ou Microsoft). Avec « Désactiver les notifications », ou en retirant l’autorisation dans les réglages, l’adresse est effacée ; celles qui ne sont plus valables sont effacées automatiquement.</p>
+<h2 id="noleggio">Location de matériel</h2>
+<p>Le formulaire de location envoie le nom, l’e-mail, le téléphone, les remarques, les dates et le matériel choisi à un petit service de la section sur Cloudflare Workers (Cloudflare Inc., États-Unis ; données stockées en Europe). Seul le responsable de la location les voit et les utilise pour confirmer la demande ainsi que pour le retrait et le retour. Les e-mails d’accusé de réception et de confirmation sont envoyés par Brevo (France). Les demandes sont effacées 12 mois après la fin de la location. Pour protéger le formulaire des programmes automatiques, Cloudflare Turnstile est chargé quand vous commencez à le remplir ; Cloudflare reçoit alors l’adresse IP et quelques informations techniques sur le navigateur, selon la <a href="https://www.cloudflare.com/fr-fr/privacypolicy/" rel="noopener">politique de confidentialité de Cloudflare</a>. Cloudflare adhère au Swiss-U.S. Data Privacy Framework.</p>
+
+<h2>Personnes sur le site</h2>
+<p>Les noms, photos et présentations des membres du comité, des départements et des chefs de course sont publiés avec leur accord. Des photos de participants peuvent paraître dans les news et les récits de courses. Si vous souhaitez qu’une photo de vous ou votre nom soit retiré, écrivez-nous.</p>
+
+<h2>Membres</h2>
+<p>L’adhésion et les données des membres sont gérées avec le Club Alpin Suisse (portal.sac-cas.ch), selon sa <a href="https://www.sac-cas.ch/fr/meta/protection-des-donnees/" rel="noopener">déclaration de protection des données</a>.</p>
+
+<h2>Vos droits</h2>
+<p>Vous pouvez demander quelles données nous avons sur vous, les faire corriger ou effacer et vous opposer à leur utilisation, en écrivant à <a href="mailto:info@casticino.ch">info@casticino.ch</a>. Vous pouvez aussi vous adresser au <a href="https://www.edoeb.admin.ch/fr" rel="noopener">Préposé fédéral à la protection des données et à la transparence (PFPDT)</a>.</p>"""),
     "en": dict(
         title="Privacy policy | CAS Ticino", h1="Privacy policy",
         desc="Privacy policy of the website of the Ticino Section of the Swiss Alpine Club: what data is processed, cookies, external services and your rights.",
@@ -172,10 +210,10 @@ PRIVACY = {
 
 def privacy():
     tx = PRIVACY[LINGUA["lang"]]
-    agg = tr("Ultimo aggiornamento", "Letzte Änderung", "Last updated") + ": " + PRIVACY_AGGIORNATA[LINGUA["lang"]]
+    agg = tr("Ultimo aggiornamento", "Letzte Änderung", "Last updated", "Dernière mise à jour") + ": " + PRIVACY_AGGIORNATA[LINGUA["lang"]]
     body = page_hero([(tx["h1"], None)], tx["h1"], tx["lead"]) + f"""
 
-<section class="section section--tight" aria-label="{tr("Testo dell’informativa", "Text der Datenschutzerklärung", "Full policy")}">
+<section class="section section--tight" aria-label="{tr("Testo dell’informativa", "Text der Datenschutzerklärung", "Full policy", "Texte complet")}">
 <div class="container article article--noimg">
 <div class="prose">
 {tx["corpo"]}
@@ -189,29 +227,30 @@ def privacy():
 def offline_pagina():
     """Pagina mostrata dal service worker (sw.js, pwa.py) quando non c'è rete e la pagina chiesta non è salvata:
     le pagine che il telefono ha sempre (home, capanne, Partecipare, Soccorso) e i numeri d'emergenza."""
-    huts = {"it": HUTS, "de": HUTS_DE, "en": HUTS_EN}[LINGUA["lang"]]
-    links = [(tr("Home", "Startseite", "Home"), L("index.html"))]
+    huts = {"it": HUTS, "de": HUTS_DE, "fr": HUTS_FR, "en": HUTS_EN}[LINGUA["lang"]]
+    links = [(tr("Home", "Startseite", "Home", "Accueil"), L("index.html"))]
     links += [(f'{tc("capanna")} {h[1]}' if h[0] != "baitadelluca.html" else h[1], L(h[0])) for h in huts]
-    links += [(tr("Prima di partire", "Vor dem Aufbruch", "Before you set off"), L("partecipare.html") + "#prima-di-partire"),
-              (tr("Soccorso", "Bergrettung", "Mountain rescue"), L("soccorso.html"))]
+    links += [(tr("Prima di partire", "Vor dem Aufbruch", "Before you set off", "Avant de partir"), L("partecipare.html") + "#prima-di-partire"),
+              (tr("Soccorso", "Bergrettung", "Mountain rescue", "Secours en montagne"), L("soccorso.html"))]
     lista = "\n".join(f'<a href="{h}"><span>{x}</span></a>' for x, h in links)
-    numeri = [("1414", tr("Rega, soccorso aereo", "Rega, Luftrettung", "Rega, air rescue")),
-              ("144", tr("Ambulanza", "Sanitätsnotruf", "Ambulance")),
-              ("112", tr("Numero d’emergenza europeo", "Europäische Notrufnummer", "European emergency number"))]
+    numeri = [("1414", tr("Rega, soccorso aereo", "Rega, Luftrettung", "Rega, air rescue", "Rega, sauvetage aérien")),
+              ("144", tr("Ambulanza", "Sanitätsnotruf", "Ambulance", "Ambulance")),
+              ("112", tr("Numero d’emergenza europeo", "Europäische Notrufnummer", "European emergency number", "Numéro d’urgence européen"))]
     numeri = "\n".join(f'<a href="tel:{n}"><strong class="num">{n}</strong><span>{x}</span></a>' for n, x in numeri)
-    titolo = tr("Sei offline", "Sie sind offline", "You are offline")
+    titolo = tr("Sei offline", "Sie sind offline", "You are offline", "Vous êtes hors ligne")
     body = page_hero([(titolo, None)], titolo, tr(
         "Senza connessione questa pagina non si può aprire. Restano consultabili le pagine già visitate e queste, salvate sul telefono.",
         "Ohne Verbindung lässt sich diese Seite nicht öffnen. Abrufbar bleiben die schon besuchten Seiten und diese, auf dem Telefon gespeichert.",
-        "This page cannot be opened without a connection. Pages you have already visited are still available, and so are these, saved on your phone.")) + f"""
+        "This page cannot be opened without a connection. Pages you have already visited are still available, and so are these, saved on your phone.",
+        "Sans connexion, cette page ne peut pas s’ouvrir. Les pages déjà visitées restent consultables, ainsi que celles-ci, enregistrées sur votre téléphone.")) + f"""
 
-<section class="section section--tight" aria-label="{tr("Pagine salvate", "Gespeicherte Seiten", "Saved pages")}">
+<section class="section section--tight" aria-label="{tr("Pagine salvate", "Gespeicherte Seiten", "Saved pages", "Pages enregistrées")}">
 <div class="container detail">
 <div class="linklist">
 {lista}
 </div>
 <div class="emergenza">
-<h2 class="label">{tr("In caso di emergenza", "Im Notfall", "In an emergency")}</h2>
+<h2 class="label">{tr("In caso di emergenza", "Im Notfall", "In an emergency", "En cas d’urgence")}</h2>
 <div class="emergenza-numeri">
 {numeri}
 </div>

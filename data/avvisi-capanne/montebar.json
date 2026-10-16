@@ -4,10 +4,12 @@
   "testo": "Sono iniziati i lavori di rifacimento del ponte sul fiume Bello. Di conseguenza la “Strada da Boris” (strada che dalla cantonale a Bidogno conduce al parcheggio Monte Bar, prima della sbarra) è chiusa all’accesso veicolare e non è possibile raggiungere il parcheggio Monte Bar. La Capanna Monte Bar è dunque raggiungibile esclusivamente da Corticiasca.",
   "testo_de": "Die Arbeiten zur Erneuerung der Brücke über den Fluss Bello haben begonnen. Daher ist die «Strada da Boris» (die Strasse, die von der Kantonsstrasse in Bidogno zum Parkplatz Monte Bar vor der Schranke führt) für den motorisierten Verkehr gesperrt, und der Parkplatz Monte Bar kann nicht erreicht werden. Die Capanna Monte Bar ist somit ausschliesslich von Corticiasca aus erreichbar.",
   "testo_en": "Work has begun on the reconstruction of the bridge over the Bello River. Consequently, the “Strada da Boris” (the road leading from the main road in Bidogno to the Monte Bar car park, before the barrier) is closed to vehicular traffic, and the Monte Bar car park cannot be reached. The Monte Bar Hut can therefore only be reached from Corticiasca.",
+  "testo_fr": "Les travaux de réfection du pont sur la rivière Bello ont commencé. Par conséquent, la « Strada da Boris » (la route qui mène de la cantonale à Bidogno au parking du Monte Bar, avant la barrière) est fermée à la circulation et le parking du Monte Bar n’est pas accessible. La Capanna Monte Bar n’est donc atteignable que depuis Corticiasca.",
   "link": "",
   "scadenza": "2026-12-31",
   "traduzioni": {
     "testo_de": "e08973a52480:34ac9d23846a",
-    "testo_en": "e08973a52480:8a9d78423c46"
+    "testo_en": "e08973a52480:8a9d78423c46",
+    "testo_fr": "e08973a52480:338c7781c936"
   }
 }

@@ -1,7 +1,7 @@
 // Service worker del sito CAS Ticino: generato da scripts/redesign/pwa.py (pages.py), non modificare a mano.
-const VERSIONE = "409ba355e1";
-const STATICI = ["assets/site.css?v=488c93dc", "assets/site.js?v=98bfd40a", "assets/gite.js?v=a1574ae8", "assets/cerca.js?v=6de6c786", "assets/foto.js?v=0b48c1c6", "assets/noleggio.js?v=f548c601", "assets/fonts/geist-latin-ext.woff2", "assets/fonts/geist-latin.woff2", "assets/fonts/geist-mono-latin-ext.woff2", "assets/fonts/geist-mono-latin.woff2", "assets/logo-cas.webp", "assets/logo-cas-stemma.webp", "assets/icone/icona-192.png", "assets/icone/icona-512.png", "assets/icone/icona-maskable-512.png", "assets/icone/apple-touch-icon.png", "assets/icone/badge-96.png", "offline.html", "de/offline.html", "en/offline.html"];      // salvati all'installazione: stili, script, caratteri, icone, pagine offline
-const ESSENZIALI = {"it": ["index.html", "partecipare.html", "soccorso.html", "campotencia.html", "cristallina.html", "adula.html", "motterascio.html", "montebar.html", "baitadelluca.html"], "de": ["de/index.html", "de/partecipare.html", "de/soccorso.html", "de/campotencia.html", "de/cristallina.html", "de/adula.html", "de/motterascio.html", "de/montebar.html", "de/baitadelluca.html"], "en": ["en/index.html", "en/partecipare.html", "en/soccorso.html", "en/campotencia.html", "en/cristallina.html", "en/adula.html", "en/motterascio.html", "en/montebar.html", "en/baitadelluca.html"]};  // per lingua: pagine da avere anche senza rete
+const VERSIONE = "721ae00f2d";
+const STATICI = ["assets/site.css?v=81f653c8", "assets/site.js?v=51f2ae25", "assets/gite.js?v=a5098e81", "assets/cerca.js?v=6de6c786", "assets/foto.js?v=d7131789", "assets/noleggio.js?v=2f1403e3", "assets/fonts/geist-latin-ext.woff2", "assets/fonts/geist-latin.woff2", "assets/fonts/geist-mono-latin-ext.woff2", "assets/fonts/geist-mono-latin.woff2", "assets/logo-cas.webp", "assets/logo-cas-stemma.webp", "assets/icone/icona-192.png", "assets/icone/icona-512.png", "assets/icone/icona-maskable-512.png", "assets/icone/apple-touch-icon.png", "assets/icone/badge-96.png", "offline.html", "de/offline.html", "fr/offline.html", "en/offline.html"];      // salvati all'installazione: stili, script, caratteri, icone, pagine offline
+const ESSENZIALI = {"it": ["index.html", "partecipare.html", "soccorso.html", "campotencia.html", "cristallina.html", "adula.html", "motterascio.html", "montebar.html", "baitadelluca.html"], "de": ["de/index.html", "de/partecipare.html", "de/soccorso.html", "de/campotencia.html", "de/cristallina.html", "de/adula.html", "de/motterascio.html", "de/montebar.html", "de/baitadelluca.html"], "fr": ["fr/index.html", "fr/partecipare.html", "fr/soccorso.html", "fr/campotencia.html", "fr/cristallina.html", "fr/adula.html", "fr/motterascio.html", "fr/montebar.html", "fr/baitadelluca.html"], "en": ["en/index.html", "en/partecipare.html", "en/soccorso.html", "en/campotencia.html", "en/cristallina.html", "en/adula.html", "en/motterascio.html", "en/montebar.html", "en/baitadelluca.html"]};  // per lingua: pagine da avere anche senza rete
 const C_STATICI = "statici-" + VERSIONE, C_PAGINE = "pagine", C_FOTO = "foto";
 const MAX_PAGINE = 80, MAX_FOTO = 120;
 const BASE = self.registration.scope;
@@ -66,7 +66,7 @@ async function pagina(req, url, percorso) {
     const salvata = await caches.match(chiave(url));
     if (salvata) return salvata;
     if (/offline\.html$/.test(url.pathname)) return new Response("Offline", { status: 503 });
-    const lang = /^(de|en)\//.exec(percorso);
+    const lang = /^(de|fr|en)\//.exec(percorso);
     return Response.redirect(new URL((lang ? lang[1] + "/" : "") + "offline.html", BASE).href, 302);
   }
 }

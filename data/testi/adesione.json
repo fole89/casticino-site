@@ -2,17 +2,21 @@
   "titolo": "Diventa socio",
   "titolo_de": "Mitglied werden",
   "titolo_en": "Become a member",
+  "titolo_fr": "Devenir membre",
   "introduzione": "Entra nella sezione ticinese del Club Alpino Svizzero: gite, corsi, capanne e una comunità che ama la montagna.",
   "introduzione_de": "Treten Sie der Tessiner Sektion des Schweizer Alpen-Clubs bei: Touren, Kurse, Hütten und eine Gemeinschaft, die die Berge liebt.",
   "introduzione_en": "Join the Ticino Section of the Swiss Alpine Club: trips, courses, huts and a community that loves the mountains.",
+  "introduzione_fr": "Rejoignez la section tessinoise du Club Alpin Suisse : courses, cours, cabanes et une communauté qui aime la montagne.",
   "quote": [
     {
       "nome": "Singolo",
       "nome_de": "Einzel",
       "nome_en": "Individual",
+      "nome_fr": "Individuel",
       "chi": "Socio individuale",
       "chi_de": "Einzelmitglied",
       "chi_en": "Individual member",
+      "chi_fr": "Membre individuel",
       "quota": "105",
       "tassa": "30"
     },
@@ -20,9 +24,11 @@
       "nome": "Famiglia",
       "nome_de": "Familie",
       "nome_en": "Family",
+      "nome_fr": "Famille",
       "chi": "Genitori e figli fino a 17 anni",
       "chi_de": "Eltern und Kinder bis 17 Jahre",
       "chi_en": "Parents and children up to 17",
+      "chi_fr": "Parents et enfants jusqu’à 17 ans",
       "quota": "179",
       "tassa": "50"
     },
@@ -30,9 +36,11 @@
       "nome": "Giovane",
       "nome_de": "Jugend",
       "nome_en": "Youth",
+      "nome_fr": "Jeunesse",
       "chi": "Fino a 22 anni",
       "chi_de": "Bis 22 Jahre",
       "chi_en": "Up to 22",
+      "chi_fr": "Jusqu’à 22 ans",
       "quota": "50",
       "tassa": "30"
     }
@@ -40,54 +48,67 @@
   "nota": "Sei già socio di un’altra sezione CAS? Puoi chiedere la doppia affiliazione e pagare solo la quota della Sezione Ticino.",
   "nota_de": "Sie sind schon Mitglied einer anderen SAC-Sektion? Sie können eine Doppelmitgliedschaft beantragen und zahlen nur den Beitrag der Sektion Ticino.",
   "nota_en": "Already a member of another SAC section? You can apply for dual membership and pay only the Ticino Section fee.",
+  "nota_fr": "Vous êtes déjà membre d’une autre section du CAS ? Vous pouvez demander la double affiliation et ne payer que la cotisation de la Section Ticino.",
   "vantaggi": [
     {
       "etichetta": "Capanne",
       "etichetta_de": "Hütten",
       "etichetta_en": "Huts",
+      "etichetta_fr": "Cabanes",
       "testo": "Fino al 50% di sconto nelle capanne di tutta la Svizzera e in alcuni paesi europei",
       "testo_de": "Bis 50 % Rabatt in den Hütten der ganzen Schweiz und in einigen europäischen Ländern",
-      "testo_en": "Up to 50% off in huts all over Switzerland and in some European countries"
+      "testo_en": "Up to 50% off in huts all over Switzerland and in some European countries",
+      "testo_fr": "Jusqu’à 50 % de réduction dans les cabanes de toute la Suisse et dans certains pays européens"
     },
     {
       "etichetta": "Portale escursionistico",
       "etichetta_de": "Tourenportal",
       "etichetta_en": "Tour portal",
+      "etichetta_fr": "Portail des courses",
       "testo": "Accesso gratuito a cartine e itinerari sul portale del CAS",
       "testo_de": "Kostenloser Zugang zu Karten und Routen im SAC-Tourenportal",
-      "testo_en": "Free access to maps and routes on the SAC tour portal"
+      "testo_en": "Free access to maps and routes on the SAC tour portal",
+      "testo_fr": "Accès gratuit aux cartes et itinéraires sur le portail du CAS"
     },
     {
       "etichetta": "Formazione",
       "etichetta_de": "Ausbildung",
       "etichetta_en": "Training",
+      "etichetta_fr": "Formation",
       "testo": "Riduzioni sui corsi",
       "testo_de": "Vergünstigungen bei den Kursen",
-      "testo_en": "Reduced prices on courses"
+      "testo_en": "Reduced prices on courses",
+      "testo_fr": "Réductions sur les cours"
     },
     {
       "etichetta": "Pubblicazioni",
       "etichetta_de": "Publikationen",
       "etichetta_en": "Publications",
+      "etichetta_fr": "Publications",
       "testo": "La rivista «Le Alpi», il periodico della sezione e sconti sulle edizioni CAS",
       "testo_de": "Die Zeitschrift «Die Alpen», das Bulletin der Sektion und Rabatte auf SAC-Publikationen",
-      "testo_en": "The SAC magazine “Die Alpen”, the section bulletin and discounts on SAC publications"
+      "testo_en": "The SAC magazine “Die Alpen”, the section bulletin and discounts on SAC publications",
+      "testo_fr": "La revue « Les Alpes », le bulletin de la section et des réductions sur les éditions du CAS"
     },
     {
       "etichetta": "Arrampicata",
       "etichetta_de": "Klettern",
       "etichetta_en": "Climbing",
+      "etichetta_fr": "Escalade",
       "testo": "Accesso gratuito alla palestra di arrampicata San Paolo",
       "testo_de": "Freier Eintritt in die Kletterhalle San Paolo",
-      "testo_en": "Free entry to the San Paolo climbing gym"
+      "testo_en": "Free entry to the San Paolo climbing gym",
+      "testo_fr": "Entrée gratuite à la salle d’escalade San Paolo"
     },
     {
       "etichetta": "Tessera digitale",
       "etichetta_de": "Digitaler Ausweis",
       "etichetta_en": "Digital card",
+      "etichetta_fr": "Carte numérique",
       "testo": "La tessera di socio è anche nell’app SAC-CAS ([App Store](https://apps.apple.com/ch/app/sac-cas/id1592646841), [Google Play](https://play.google.com/store/apps/details?id=ch.sac_cas)): si accede con l’account del CAS, funziona anche senza rete e il codice QR vale nelle capanne",
       "testo_de": "Der Mitgliederausweis ist auch in der App SAC-CAS ([App Store](https://apps.apple.com/ch/app/sac-cas/id1592646841), [Google Play](https://play.google.com/store/apps/details?id=ch.sac_cas)): Anmeldung mit dem SAC-Konto, funktioniert auch offline, der QR-Code gilt in den Hütten",
-      "testo_en": "Your membership card is also in the SAC-CAS app ([App Store](https://apps.apple.com/ch/app/sac-cas/id1592646841), [Google Play](https://play.google.com/store/apps/details?id=ch.sac_cas)): log in with your SAC account; it works offline and the QR code is accepted in the huts"
+      "testo_en": "Your membership card is also in the SAC-CAS app ([App Store](https://apps.apple.com/ch/app/sac-cas/id1592646841), [Google Play](https://play.google.com/store/apps/details?id=ch.sac_cas)): log in with your SAC account; it works offline and the QR code is accepted in the huts",
+      "testo_fr": "La carte de membre est aussi dans l’app SAC-CAS ([App Store](https://apps.apple.com/ch/app/sac-cas/id1592646841), [Google Play](https://play.google.com/store/apps/details?id=ch.sac_cas)) : on s’y connecte avec son compte CAS, elle fonctionne aussi sans réseau et le code QR est valable dans les cabanes"
     }
   ]
 }

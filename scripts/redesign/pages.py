@@ -10,7 +10,8 @@ import pwa
 from capanne import CONTENUTI
 from capanne_de import CONTENUTI_DE
 from capanne_en import CONTENUTI_EN
-from shared import SITO
+from capanne_fr import CONTENUTI_FR
+from shared import LINGUE, SITO, TRADUZIONI, senza_lingua
 from urllib.parse import urljoin
 from comune import *
 from pagine_capanne import hut, hut_foto, hut_page, HUT_PAGES
@@ -45,7 +46,7 @@ for _i, _n in enumerate(NEWS):
 
 
 def in_lingua_pagina(lang, fn):
-    """Genera una pagina con la lingua impostata a `lang` (de, en)."""
+    """Genera una pagina con la lingua impostata a `lang` (de, fr, en)."""
     def genera():
         LINGUA["lang"] = lang
         try:
@@ -55,9 +56,9 @@ def in_lingua_pagina(lang, fn):
     return genera
 
 
-# Versioni tradotte (de/, en/): tutte le pagine tranne la ricerca. Restano in italiano i contenuti scritti da altri
+# Versioni tradotte (de/, fr/, en/): tutte le pagine tranne la ricerca. Restano in italiano i contenuti scritti da altri
 # (news, annunci del mercatino, gite e resoconti di Droptour) e i PDF; nelle pagine tradotte sono marcati lang="it".
-for _lang, _contenuti in (("de", CONTENUTI_DE), ("en", CONTENUTI_EN)):
+for _lang, _contenuti in (("de", CONTENUTI_DE), ("fr", CONTENUTI_FR), ("en", CONTENUTI_EN)):
     _pagine = {"index.html": home, "introduzione.html": introduzione_tradotta, "comitato.html": comitato,
                "organizzazione.html": organizzazione, "capigita.html": capigita, "sede.html": sede,
                "storia.html": storia, "link.html": link, "adesione.html": adesione,
@@ -91,8 +92,8 @@ def metadati(name, html):
     url = indirizzo(name)
     html = re.sub(r'(<meta property="og:image" content=")([^"]+)"', lambda m: m.group(1) + urljoin(SITO + name, m.group(2)) + '"', html, count=1)
     righe = [f'<link rel="canonical" href="{url}">', f'<meta property="og:url" content="{url}">']
-    it = name[3:] if name[:3] in ("de/", "en/") else name
-    lingue = [lang for lang in ("de", "en") if it in PAGINE_LINGUA[lang]]
+    it = senza_lingua(name)
+    lingue = [lang for lang in TRADUZIONI if it in PAGINE_LINGUA[lang]]
     if lingue:
         righe += [f'<link rel="alternate" hreflang="it" href="{indirizzo(it)}">']
         righe += [f'<link rel="alternate" hreflang="{lang}" href="{indirizzo(lang + "/" + it)}">' for lang in lingue]
@@ -114,6 +115,7 @@ def pagina_404():
 <div class="actions"><a class="btn btn--secondary" href="index.html">Vai alla home</a></div>
 <div class="altre-lingue">
 <p class="small" lang="de">Seite nicht gefunden. <a href="de/index.html">Zur Startseite</a></p>
+<p class="small" lang="fr">Page introuvable. <a href="fr/index.html">Aller à l’accueil</a></p>
 <p class="small" lang="en">Page not found. <a href="en/index.html">Go to the home page</a></p>
 </div>
 </div>""")
@@ -146,15 +148,14 @@ if __name__ == "__main__":
     # gita.html vale solo con ?id=; offline.html la mostra solo il service worker
     scrivi("sitemap.xml", sitemap([p for p in pagine if not p.endswith(("gita.html", "offline.html"))] + ["cerca.html"]))
     # sito installabile (pwa.py): manifesto per lingua e service worker
-    for _lang in ("it", "de", "en"):
+    for _lang in LINGUE:
         scrivi("manifest.webmanifest" if _lang == "it" else f"manifest-{_lang}.webmanifest", pwa.manifest(_lang))
     _essenziali = ["index.html", "partecipare.html", "soccorso.html"] + list(HUT_PAGES)
     _statici = ([asset(f) for f in ("assets/site.css", "assets/site.js", "assets/gite.js", "assets/cerca.js", "assets/foto.js", "assets/noleggio.js")]
                 + [f"assets/fonts/{f}" for f in sorted(os.listdir(os.path.join(ROOT, "assets", "fonts"))) if f.endswith(".woff2")]
                 + ["assets/logo-cas.webp", "assets/logo-cas-stemma.webp"] + [i["src"] for i in pwa.ICONE] + ["assets/icone/apple-touch-icon.png", pwa.BADGE]
-                + ["offline.html", "de/offline.html", "en/offline.html"])
-    scrivi("sw.js", pwa.service_worker(_statici, {"it": _essenziali, "de": [f"de/{p}" for p in _essenziali],
-                                                   "en": [f"en/{p}" for p in _essenziali]}))
+                + ["offline.html"] + [f"{l}/offline.html" for l in TRADUZIONI])
+    scrivi("sw.js", pwa.service_worker(_statici, {"it": _essenziali, **{l: [f"{l}/{p}" for p in _essenziali] for l in TRADUZIONI}}))
     scrivi("robots.txt", f"User-agent: *\nDisallow: /admin/\n\nSitemap: {SITO}sitemap.xml\n")
     with open(os.path.join(ROOT, "data", "cerca.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(indice_ricerca(pagine), f, ensure_ascii=False, separators=(",", ":"))

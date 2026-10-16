@@ -62,7 +62,7 @@ async function iscrizione(request, env) {
   try { d = await request.json(); } catch { return json({ errore: "dati" }, 400); }
   const s = valida(d);
   if (!s) return json({ errore: "dati" }, 400);
-  const lingua = ["it", "de", "en"].includes(d.lingua) ? d.lingua : "it";
+  const lingua = ["it", "de", "fr", "en"].includes(d.lingua) ? d.lingua : "it";
   const { n } = await env.DB.prepare("SELECT COUNT(*) AS n FROM iscrizioni").first();
   if (n >= MAX_ISCRIZIONI) return json({ errore: "pieno" }, 503);
   await env.DB.prepare(

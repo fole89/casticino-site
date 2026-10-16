@@ -108,6 +108,25 @@ RUOLI_DE = {
 }
 
 
+RUOLI_FR = {
+    # comitato
+    "Presidente": "Président", "Capanne e vicepresidente": "Cabanes et vice-président", "Segretaria": "Secrétaire",
+    "Consigliere giuridico": "Conseiller juridique", "Finanze e sponsoring": "Finances et sponsoring",
+    "Coordinazione gruppi": "Coordination des groupes", "Sport di montagna": "Sports de montagne", "Comunicazione": "Communication",
+    # dicasteri
+    "Responsabile capanne": "Responsable des cabanes", "Responsabile sentieri": "Responsable des sentiers",
+    "Responsabile tecnico capanne": "Responsable technique des cabanes",
+    "Coordinatore e responsabile attività": "Coordinateur et responsable des activités", "Responsabile formazione": "Responsable de la formation",
+    "Responsabile magazzino": "Responsable du dépôt de matériel",
+    "Amministratrice sito web": "Administratrice du site web", "Membro": "Membre", "Coordinatore e comunicazione": "Coordinateur et communication",
+    "Coach": "Coach", "Cassiere": "Caissier", "Segretariato, giovanissimi e Spider": "Secrétariat, plus jeunes et Spider",
+    "Attività del mercoledì sera e arrampicata": "Mercredi soir et escalade", "Attività estive": "Activités d’été",
+    "Attività invernali": "Activités d’hiver", "Coordinatore gite": "Coordinateur des courses", "Informatica": "Informatique",
+    "Responsabile comunicazione": "Responsable de la communication", "Redazione Informazione": "Rédaction d’Informazione", "Redazione annuario": "Rédaction de l’annuaire", "Eventi": "Événements",
+    "Grafica": "Graphisme", "Responsabile ambiente": "Responsable de l’environnement",
+}
+
+
 RUOLI_EN = {
     # comitato
     "Presidente": "President", "Capanne e vicepresidente": "Huts and vice-president", "Segretaria": "Secretary",
@@ -128,18 +147,20 @@ RUOLI_EN = {
 
 
 def ruolo(r):
-    """Ruolo nella lingua corrente (gli ispettori delle capanne sono «Hüttenchef» in tedesco, «hut supervisor» in inglese)."""
+    """Ruolo nella lingua corrente (gli ispettori delle capanne sono «Hüttenchef» in tedesco, «hut supervisor» in inglese,
+    «préposé» in francese)."""
     if LINGUA["lang"] == "it":
         return r
     if r.startswith("Ispettore "):
         capanne = r[len("Ispettore "):]
-        return tr(r, "Hüttenchef " + capanne.replace(" e ", " und "), "Hut supervisor, " + capanne.replace(" e ", " and "))
-    return tr(r, RUOLI_DE.get(r, r), RUOLI_EN.get(r, r))
+        return tr(r, "Hüttenchef " + capanne.replace(" e ", " und "), "Hut supervisor, " + capanne.replace(" e ", " and "),
+                  "Préposé, " + capanne.replace(" e ", " et "))
+    return tr(r, RUOLI_DE.get(r, r), RUOLI_EN.get(r, r), RUOLI_FR.get(r, r))
 
 
 def comitato():
     people = []
-    ritratto = tr("Ritratto di", "Porträt von", "Portrait of")
+    ritratto = tr("Ritratto di", "Porträt von", "Portrait of", "Portrait de")
     for role, name, photo in COMITATO:
         role = ruolo(role)
         ph = (f'<img src="assets/img/persone/comitato/{photo}.webp" alt="{ritratto} {name}" width="96" height="96" loading="lazy">'
@@ -154,6 +175,9 @@ def comitato():
     if de():
         body = page_hero([("Die Sektion", "de/introduzione.html"), ("Vorstand", None)], "Der Vorstand",
                          "Acht Personen, jede mit einem klaren Aufgabenbereich, führen die Sektion zusammen mit den <a href=\"de/organizzazione.html\">Ressorts</a> und den Freiwilligen. Kontakt: <a href=\"mailto:info@casticino.ch\">info@casticino.ch</a>.")
+    elif fr():
+        body = page_hero([("La Section", "fr/introduzione.html"), ("Comité", None)], "Le comité",
+                         "Huit personnes, chacune avec un domaine précis, dirigent la section avec les <a href=\"fr/organizzazione.html\">départements</a> et les bénévoles. Contact : <a href=\"mailto:info@casticino.ch\">info@casticino.ch</a>.")
     elif en():
         body = page_hero([("The Section", "en/introduzione.html"), ("Committee", None)], "The committee",
                          "Eight people, each with a clear area of responsibility, lead the section together with the <a href=\"en/organizzazione.html\">departments</a> and the volunteers. Contact: <a href=\"mailto:info@casticino.ch\">info@casticino.ch</a>.")
@@ -162,7 +186,7 @@ def comitato():
                          "Otto persone, ognuna con un ambito preciso, che guidano la sezione insieme ai <a href=\"organizzazione.html\">dicasteri</a> e ai volontari. Per scrivere al comitato: <a href=\"mailto:info@casticino.ch\">info@casticino.ch</a>.")
     body += f"""
 
-<section class="section" aria-label="{tr("Membri del comitato", "Mitglieder des Vorstands", "Committee members")}">
+<section class="section" aria-label="{tr("Membri del comitato", "Mitglieder des Vorstands", "Committee members", "Membres du comité")}">
 <div class="container">
 <div class="people" data-reveal>
 {chr(10).join(people)}
@@ -170,10 +194,13 @@ def comitato():
 </div>
 </section>
 
-{subnav(tr("La Sezione", "Die Sektion", "The Section"), L("comitato.html"))}"""
+{subnav(tr("La Sezione", "Die Sektion", "The Section", "La Section"), L("comitato.html"))}"""
     if de():
         return sezione_page("comitato.html", "Vorstand | CAS Ticino",
                             "Der Vorstand der Sektion Ticino des Schweizer Alpen-Clubs: Präsident, Vizepräsident, Sekretärin und Verantwortliche, mit Kontakten.", body)
+    if fr():
+        return sezione_page("comitato.html", "Comité | CAS Ticino",
+                            "Le comité de la Section Ticino du Club Alpin Suisse : président, vice-président, secrétaire et responsables, avec les contacts.", body)
     if en():
         return sezione_page("comitato.html", "Committee | CAS Ticino",
                             "The committee of the Ticino Section of the Swiss Alpine Club: president, vice-president, secretary and heads of area, with contacts.", body)
@@ -250,6 +277,19 @@ DICASTERI_DE = {
         "Betreut das halbjährliche Bulletin, das Jahrbuch, die Website und die sozialen Medien. Organisiert, auch mit Partnern, Anlässe und Initiativen zur Bergkultur."),
 }
 
+DICASTERI_FR = {
+    "Dicastero infrastruttura": ("Département infrastructure",
+        "S’occupe des infrastructures de la section : cabanes et sentiers. Il appuie le comité sur toutes les questions et tous les projets liés aux cabanes. Par l’intermédiaire des préposés, il suit le travail des gardiens, coordonne l’entretien ordinaire et extraordinaire, gère les aspects administratifs et contractuels avec les gardiens et assure la promotion des cabanes."),
+    "Dicastero sport di montagna": ("Département sports de montagne",
+        "En plus de composer le programme annuel des courses, il met à jour et prépare le matériel de formation, conseille et soutient les chefs de course en encourageant leur formation continue et gère le matériel technique de la section."),
+    "Dicastero giovani": ("Département jeunesse",
+        "Organise des camps d’une semaine et des activités d’escalade pour les filles et les garçons de 2 à 25 ans et encourage la formation de moniteurs Jeunesse+Sport."),
+    "Dicastero senior": ("Département seniors",
+        "Coordonne le programme annuel du groupe Seniors : courses d’un jour, week-ends et vacances de plusieurs jours. Il est toujours à la recherche de nouveaux chefs de course."),
+    "Dicastero comunicazione": ("Département communication",
+        "S’occupe du bulletin semestriel, de l’annuaire, du site et des réseaux sociaux. Organise, aussi avec d’autres partenaires, des événements et des initiatives qui promeuvent la culture de la montagne."),
+}
+
 DICASTERI_EN = {
     "Dicastero infrastruttura": ("Infrastructure department",
         "Looks after the section’s infrastructure: huts and trails. Supports the committee on all matters and projects concerning the huts. Through the hut supervisors it oversees the work of the hut keepers, coordinates routine and extraordinary maintenance, handles administrative and contractual matters with the keepers and promotes the huts."),
@@ -278,17 +318,17 @@ def organizzazione():
             role = ruolo(role)
             if name is None:
                 ms.append(f'<div class="member member--tbd"><div class="member-photo" aria-hidden="true"><span>?</span></div>'
-                          f'<div class="member-body"><strong>{tr("Da definire", "Noch offen", "To be appointed")}</strong><span>{role}</span></div></div>')
+                          f'<div class="member-body"><strong>{tr("Da definire", "Noch offen", "To be appointed", "À désigner")}</strong><span>{role}</span></div></div>')
                 continue
             foto = foto_persona(name, CARTELLE_DICASTERI[title])   # anche il ritratto del comitato, se nel dicastero manca
-            ph = (f'<img src="{foto}" alt="{tr("Ritratto di", "Porträt von", "Portrait of")} {name}" width="60" height="60" loading="lazy" decoding="async">'
+            ph = (f'<img src="{foto}" alt="{tr("Ritratto di", "Porträt von", "Portrait of", "Portrait de")} {name}" width="60" height="60" loading="lazy" decoding="async">'
                   if foto else f'<span aria-hidden="true">{initials(name)}</span>')
             ms.append(f'<div class="member"><div class="member-photo">{ph}</div>'
                       f'<div class="member-body"><strong>{name}</strong><span>{role}</span></div></div>')
-        titolo, testo = {"it": (title, text), "de": DICASTERI_DE.get(title), "en": DICASTERI_EN.get(title)}[LINGUA["lang"]]
+        titolo, testo = {"it": (title, text), "de": DICASTERI_DE.get(title), "fr": DICASTERI_FR.get(title), "en": DICASTERI_EN.get(title)}[LINGUA["lang"]]
         depts.append(f"""<article class="dept" id="{CARTELLE_DICASTERI[title]}" aria-labelledby="d{i}-h" data-reveal>
 <div class="dept-intro">
-<span class="dept-count">{len(members)} {tr("membri", "Mitglieder", "members")}</span>
+<span class="dept-count">{len(members)} {tr("membri", "Mitglieder", "members", "membres")}</span>
 <h2 id="d{i}-h" class="h2">{titolo}</h2>
 <p>{testo}</p>
 <p><a href="mailto:{MAIL_DICASTERI[title]}">{MAIL_DICASTERI[title]}</a></p>
@@ -300,6 +340,9 @@ def organizzazione():
     if de():
         body = page_hero([("Die Sektion", "de/introduzione.html"), ("Organisation", None)], "Organisation",
                          'Der <a href="de/comitato.html">Vorstand</a> stützt sich auf fünf Ressorts, die je für einen Bereich des Sektionslebens verantwortlich sind.')
+    elif fr():
+        body = page_hero([("La Section", "fr/introduzione.html"), ("Organisation", None)], "Organisation",
+                         'Le <a href="fr/comitato.html">comité</a> s’appuie sur cinq départements, chacun responsable d’un domaine de la vie de la section.')
     elif en():
         body = page_hero([("The Section", "en/introduzione.html"), ("Organisation", None)], "Organisation",
                          'The <a href="en/comitato.html">committee</a> relies on five departments, each responsible for one area of the section’s life.')
@@ -308,16 +351,19 @@ def organizzazione():
                          'Il <a href="comitato.html">comitato</a> si appoggia a cinque dicasteri, ognuno responsabile di un ambito della vita della sezione.')
     body += f"""
 
-<section class="section" aria-label="{tr("Dicasteri", "Ressorts", "Departments")}">
+<section class="section" aria-label="{tr("Dicasteri", "Ressorts", "Departments", "Départements")}">
 <div class="container">
 {chr(10).join(depts)}
 </div>
 </section>
 
-{subnav(tr("La Sezione", "Die Sektion", "The Section"), L("organizzazione.html"))}"""
+{subnav(tr("La Sezione", "Die Sektion", "The Section", "La Section"), L("organizzazione.html"))}"""
     if de():
         return sezione_page("organizzazione.html", "Organisation | CAS Ticino",
                             "Die fünf Ressorts der Sektion Ticino des SAC (Infrastruktur, Bergsport, Jugend, Senioren, Kommunikation) mit ihren Mitgliedern und Kontakten.", body)
+    if fr():
+        return sezione_page("organizzazione.html", "Organisation | CAS Ticino",
+                            "Les cinq départements de la Section Ticino du CAS (infrastructure, sports de montagne, jeunesse, seniors, communication) avec leurs membres et contacts.", body)
     if en():
         return sezione_page("organizzazione.html", "Organisation | CAS Ticino",
                             "The five departments of the Ticino Section of the SAC (infrastructure, mountain sports, youth, seniors, communication) with their members and contacts.", body)
@@ -331,6 +377,8 @@ RUOLI_CAPIGITA = [("estivo", "Estivo"), ("invernale", "Invernale"), ("arrampicat
                   ("soccorso", "Soccorso alpino")]
 RUOLI_CAPIGITA_EN = {"estivo": "Summer", "invernale": "Winter", "arrampicata": "Climbing", "escursionismo": "Hiking",
                      "seniori": "Seniors", "aiuto": "Assistant leader", "soccorso": "Mountain rescue"}
+RUOLI_CAPIGITA_FR = {"estivo": "Été", "invernale": "Hiver", "arrampicata": "Escalade", "escursionismo": "Randonnée",
+                     "seniori": "Seniors", "aiuto": "Aide chef de course", "soccorso": "Secours en montagne"}
 RUOLI_CAPIGITA_DE = {"estivo": "Sommer", "invernale": "Winter", "arrampicata": "Klettern", "escursionismo": "Wandern",
                      "seniori": "Senioren", "aiuto": "Hilfsleitung", "soccorso": "Bergrettung"}
 CAPIGITA_T = {
@@ -348,6 +396,13 @@ CAPIGITA_T = {
                box="<strong>Für Tourenleitende.</strong> Die Touren werden im Droptour-Portal veröffentlicht; das Merkblatt fasst Aufgaben und Abläufe der Tourenleitung zusammen.",
                portale="Droptour-Portal", promemoria="Merkblatt Tourenleitung (PDF, italienisch)",
                desc="Die {n} Tourenleitenden des SAC Ticino, die die Touren der Sektion vorbereiten und leiten: Sommer- und Wintertouren, Klettern, Wandern und Senioren."),
+    "fr": dict(titolo="Chefs de course", sezione="La Section", sezione_href="fr/introduzione.html", ritratto="Portrait de", chi="Qui est",
+               dal="Chef de course depuis", nuovo="Nouveau", nuovi="En {anno}, {k} nouveaux les ont rejoints, signalés en rouge.", tutti="Tous", filtra="Filtrer par rôle", elenco="Liste des chefs de course",
+               uno="chef de course", molti="chefs de course",
+               lead="Les courses de la section sont préparées et conduites par des membres bénévoles, formés dans les cours du CAS : {n} chefs de course actifs, chacun avec ses disciplines.",
+               box="<strong>Pour les chefs de course.</strong> Les courses sont publiées sur le portail Droptour ; l’aide-mémoire réunit les tâches et les procédures du chef de course.",
+               portale="Portail Droptour", promemoria="Aide-mémoire des chefs de course (PDF, en italien)",
+               desc="Les {n} chefs de course du CAS Ticino qui préparent et conduisent les courses de la section : été et hiver, escalade, randonnée et seniors."),
     "en": dict(titolo="Trip leaders", sezione="The Section", sezione_href="en/introduzione.html", ritratto="Portrait of", chi="Who is",
                dal="Trip leader since", nuovo="New", nuovi="{k} joined in {anno}, marked in red.", tutti="All", filtra="Filter by role", elenco="List of trip leaders",
                uno="trip leader", molti="trip leaders",
@@ -374,7 +429,7 @@ def capigita():
     # presentazioni scritte dai capigita (in italiano anche nelle pagine tradotte): box sulla foto
     info = json.load(open(os.path.join(ROOT, "data", "capigita-info.json"), encoding="utf-8"))
     tx = CAPIGITA_T[LINGUA["lang"]]
-    nomi = {k: tr(n, RUOLI_CAPIGITA_DE[k], RUOLI_CAPIGITA_EN[k]) for k, n in RUOLI_CAPIGITA}
+    nomi = {k: tr(n, RUOLI_CAPIGITA_DE[k], RUOLI_CAPIGITA_EN[k], RUOLI_CAPIGITA_FR[k]) for k, n in RUOLI_CAPIGITA}
     # i capigita nuovi (capogita dall'anno in corso) sono segnati in rosso, senza un filtro a parte
     import datetime
     anno = datetime.date.today().year
@@ -429,24 +484,26 @@ def capigita():
 
 def soccorso():
     d = testi("soccorso")
-    emergenza = [("Rega", f'<a class="num" href="tel:1414">1414</a> <span class="small">{tr("dall’estero", "aus dem Ausland", "from abroad")} <a class="num" href="tel:+41333333333">+41 333 333 333</a></span>'),
-                 (tr("Ambulanza", "Sanität", "Ambulance"), '<a class="num" href="tel:144">144</a>'),
-                 (tr("Emergenza europeo", "Europäischer Notruf", "European emergency number"), '<a class="num" href="tel:112">112</a>')]
-    titolo = tr("Soccorso", "Bergrettung", "Mountain rescue")
+    emergenza = [("Rega", f'<a class="num" href="tel:1414">1414</a> <span class="small">{tr("dall’estero", "aus dem Ausland", "from abroad", "depuis l’étranger")} <a class="num" href="tel:+41333333333">+41 333 333 333</a></span>'),
+                 (tr("Ambulanza", "Sanität", "Ambulance", "Ambulance"), '<a class="num" href="tel:144">144</a>'),
+                 (tr("Emergenza europeo", "Europäischer Notruf", "European emergency number", "Numéro d’urgence européen"), '<a class="num" href="tel:112">112</a>')]
+    titolo = tr("Soccorso", "Bergrettung", "Mountain rescue", "Secours en montagne")
     body = page_hero([sez_crumb(), (titolo, None)], titolo, testo_campo(d, "introduzione"),
                      figure=img("attivita/soccorso-4x5", tr("Soccorritori con casco e imbragatura recuperano una persona in barella in una gola rocciosa",
                                                            "Retter mit Helm und Klettergurt bergen eine Person auf einer Trage in einer Felsschlucht",
-                                                           "Rescuers with helmets and harnesses recover a person on a stretcher in a rocky gorge"), 525, 657, lazy=False)
+                                                           "Rescuers with helmets and harnesses recover a person on a stretcher in a rocky gorge",
+                                                           "Des sauveteurs avec casque et baudrier récupèrent une personne sur une civière dans une gorge rocheuse"), 525, 657, lazy=False)
                      .replace("<img ", '<img class="orizzontale basso" ', 1) + credito("Urs Nett")) + f"""
 
 <section class="section" aria-labelledby="emergenza-h">
 <div class="container">
 <div class="contact" data-reveal>
 <div class="contact-intro">
-<h2 id="emergenza-h" class="h2">{tr("In caso di emergenza", "Im Notfall", "In an emergency")}</h2>
+<h2 id="emergenza-h" class="h2">{tr("In caso di emergenza", "Im Notfall", "In an emergency", "En cas d’urgence")}</h2>
 <p>{tr("Chiama subito: indica chi sei, dove ti trovi, cosa è successo e quante persone sono coinvolte. Resta raggiungibile al telefono.",
        "Rufen Sie sofort an: Sagen Sie, wer Sie sind, wo Sie sich befinden, was passiert ist und wie viele Personen betroffen sind. Bleiben Sie telefonisch erreichbar.",
-       "Call immediately: say who you are, where you are, what has happened and how many people are involved. Stay reachable by phone.")}</p>
+       "Call immediately: say who you are, where you are, what has happened and how many people are involved. Stay reachable by phone.",
+       "Appelez immédiatement : dites qui vous êtes, où vous vous trouvez, ce qui s’est passé et combien de personnes sont concernées. Restez joignable par téléphone.")}</p>
 </div>
 {facts(emergenza)}
 </div>
@@ -456,12 +513,12 @@ def soccorso():
 <section class="section" aria-labelledby="colonna-h">
 <div class="container detail">
 <div class="detail-intro">
-<h2 id="colonna-h" class="h2">{tr("La colonna<br>di soccorso", "Die Rettungs­<br>station", "The rescue<br>team")}</h2>
+<h2 id="colonna-h" class="h2">{tr("La colonna<br>di soccorso", "Die Rettungs­<br>station", "The rescue<br>team", "La colonne<br>de secours")}</h2>
 <p>{testo_campo(d, "colonna")}</p>
 </div>
 <div class="prose" data-reveal>
 {testo_md(d, "colonna_testo")}
-<div class="actions"><a class="btn btn--secondary" href="https://www.alpinerettung.ch" rel="noopener">{tr("Soccorso Alpino Svizzero", "Alpine Rettung Schweiz", "Swiss Alpine Rescue")}</a><a class="btn btn--secondary" href="https://www.rega.ch" rel="noopener">Rega</a></div>
+<div class="actions"><a class="btn btn--secondary" href="https://www.alpinerettung.ch" rel="noopener">{tr("Soccorso Alpino Svizzero", "Alpine Rettung Schweiz", "Swiss Alpine Rescue", "Secours Alpin Suisse")}</a><a class="btn btn--secondary" href="https://www.rega.ch" rel="noopener">Rega</a></div>
 </div>
 </div>
 </section>
@@ -470,7 +527,8 @@ def soccorso():
     return sezione_page("soccorso.html", titolo + " | CAS Ticino", tr(
         "Il soccorso alpino del CAS Ticino nel Sottoceneri: numeri d’emergenza (Rega 1414, 144, 112) e la colonna di soccorso della sezione.",
         "Die Bergrettung der SAC-Sektion Ticino im Sottoceneri: Notrufnummern (Rega 1414, 144, 112) und die Rettungsstation der Sektion.",
-        "Mountain rescue by the SAC Ticino Section in the Sottoceneri: emergency numbers (Rega 1414, 144, 112) and the section’s rescue team."),
+        "Mountain rescue by the SAC Ticino Section in the Sottoceneri: emergency numbers (Rega 1414, 144, 112) and the section’s rescue team.",
+        "Le secours en montagne de la section CAS Ticino dans le Sottoceneri : numéros d’urgence (Rega 1414, 144, 112) et la colonne de secours de la section."),
         body)
 
 
@@ -481,26 +539,27 @@ def rubrica():
         return (etichetta, f'<a href="mailto:{mail}">{mail}</a>')
 
     def nome_dicastero(k):
-        return tr(k.removeprefix("Dicastero ").capitalize(), DICASTERI_DE[k][0], DICASTERI_EN[k][0])
+        return tr(k.removeprefix("Dicastero ").capitalize(), DICASTERI_DE[k][0], DICASTERI_EN[k][0], DICASTERI_FR[k][0])
 
     gruppi = [
-        (tr("Sezione", "Sektion", "Section"),
-         [riga(tr("Segretariato e informazioni", "Sekretariat und Auskünfte", "Secretariat and information"), "info@casticino.ch"),
-          riga(tr("Sito web", "Website", "Website"), "webmaster@casticino.ch")]),
-        (tr("Dicasteri", "Ressorts", "Departments"), [riga(nome_dicastero(k), m) for k, m in MAIL_DICASTERI.items()]),
-        (tr("Servizi", "Dienste", "Services"),
-         [riga(tr("Noleggio materiale", "Materialvermietung", "Equipment hire"), NOLEGGIO_MAIL),
-          riga(tr("Mercatino", "Mercatino (Marktplatz)", "Mercatino (gear exchange)"), MERCATINO_MAIL)]),
-        (tr("Capanne", "Hütten", "Huts"), [riga(d["name"], d["mail"]) for d in HUT_PAGES.values()]),
+        (tr("Sezione", "Sektion", "Section", "Section"),
+         [riga(tr("Segretariato e informazioni", "Sekretariat und Auskünfte", "Secretariat and information", "Secrétariat et informations"), "info@casticino.ch"),
+          riga(tr("Sito web", "Website", "Website", "Site web"), "webmaster@casticino.ch")]),
+        (tr("Dicasteri", "Ressorts", "Departments", "Départements"), [riga(nome_dicastero(k), m) for k, m in MAIL_DICASTERI.items()]),
+        (tr("Servizi", "Dienste", "Services", "Services"),
+         [riga(tr("Noleggio materiale", "Materialvermietung", "Equipment hire", "Location de matériel"), NOLEGGIO_MAIL),
+          riga(tr("Mercatino", "Mercatino (Marktplatz)", "Mercatino (gear exchange)", "Mercatino (petites annonces)"), MERCATINO_MAIL)]),
+        (tr("Capanne", "Hütten", "Huts", "Cabanes"), [riga(d["name"], d["mail"]) for d in HUT_PAGES.values()]),
     ]
     blocchi = "\n".join(f'<div>\n<h3 class="h3">{titolo}</h3>\n{facts(righe)}\n</div>' for titolo, righe in gruppi)
     return f"""<section class="section" aria-labelledby="rubrica-h">
 <div class="container detail">
 <div class="detail-intro">
-<h2 id="rubrica-h" class="h2">{tr("Indirizzi e-mail", "E-Mail-Adressen", "E-mail addresses")}</h2>
+<h2 id="rubrica-h" class="h2">{tr("Indirizzi e-mail", "E-Mail-Adressen", "E-mail addresses", "Adresses e-mail")}</h2>
 <p>{tr("Per una domanda precisa scrivi direttamente a chi se ne occupa; per tutto il resto c’è il segretariato.",
        "Für eine bestimmte Frage schreiben Sie direkt an die zuständige Stelle; für alles andere ans Sekretariat.",
-       "For a specific question, write directly to whoever deals with it; for anything else, write to the secretariat.")}</p>
+       "For a specific question, write directly to whoever deals with it; for anything else, write to the secretariat.",
+       "Pour une question précise, écrivez directement à la personne qui s’en occupe ; pour tout le reste, au secrétariat.")}</p>
 </div>
 <div class="rubrica" data-reveal>
 {blocchi}
@@ -513,7 +572,7 @@ def sede():
     d = testi("sede")
     titolo = testo_campo(d, "titolo")
     rows = [(testo_campo(r, "etichetta"), testo_campo(r, "testo")) for r in d["righe"]]
-    rows.append((tr("Coordinate bancarie", "Bankverbindung", "Bank details"), f'Banca Stato, Lugano<br><span class="num">IBAN {IBAN}</span>'))
+    rows.append((tr("Coordinate bancarie", "Bankverbindung", "Bank details", "Coordonnées bancaires"), f'Banca Stato, Lugano<br><span class="num">IBAN {IBAN}</span>'))
     body = page_hero([sez_crumb(), (titolo, None)], titolo, testo_campo(d, "introduzione")) + f"""
 
 <section class="section" aria-labelledby="sede-h">
@@ -522,7 +581,7 @@ def sede():
 <div class="contact-intro">
 <h2 id="sede-h" class="h2">{testo_campo(d, "sottotitolo")}</h2>
 <p>{testo_campo(d, "testo")}</p>
-<div><a class="btn btn--primary" href="mailto:info@casticino.ch">{tr("Scrivi alla sezione", "Der Sektion schreiben", "Write to the section")} <span class="arrow" aria-hidden="true">→</span></a></div>
+<div><a class="btn btn--primary" href="mailto:info@casticino.ch">{tr("Scrivi alla sezione", "Der Sektion schreiben", "Write to the section", "Écrire à la section")} <span class="arrow" aria-hidden="true">→</span></a></div>
 </div>
 {facts(rows)}
 </div>
@@ -535,7 +594,8 @@ def sede():
     return sezione_page("sede.html", f'{testo_campo(d, "titolo", semplice=True)} | CAS Ticino',
                         tr("Sede del CAS Ticino al Canvetto Luganese (Molino Nuovo), recapito postale, e-mail, biblioteca e coordinate bancarie.",
                            "Sitz des CAS Ticino im Canvetto Luganese (Molino Nuovo), Postadresse, E-Mail, Bibliothek und Bankverbindung.",
-                           "The CAS Ticino office at the Canvetto Luganese (Molino Nuovo), postal address, e-mail, library and bank details."),
+                           "The CAS Ticino office at the Canvetto Luganese (Molino Nuovo), postal address, e-mail, library and bank details.",
+                           "Le siège du CAS Ticino au Canvetto Luganese (Molino Nuovo), adresse postale, e-mail, bibliothèque et coordonnées bancaires."),
                         body)
 
 STORIA = [
@@ -589,6 +649,23 @@ STORIA_EN = [
 ]
 
 
+STORIA_FR = [
+    ("1886", "Le 11 avril, à la Birraria Gambrinus de Bellinzona, naît le Club Alpino Ticinese, l’année du centenaire de la première ascension du Mont Blanc, réussie en 1786 par Jacques Balmat et Michel-Gabriel Paccard. Le premier président est l’avocat Curzio Curti. Le but : visiter, étudier et faire connaître les montagnes du canton et des régions voisines."),
+    ("1887", "Le 20 mars, le club rejoint le Club Alpin Suisse comme section tessinoise ; Lugano en devient le siège."),
+    ("1911", "De l’autre côté de la frontière, à Lanzo d’Intelvi, la bannière de la section est inaugurée. L’année suivante, le 11 août 1912, la section inaugure dans le haut Val Piumogna, au pied du sommet du même nom, la Capanna Campo Tencia : la première cabane des montagnes tessinoises."),
+    ("1913", "Les femmes ne sont pas admises au CAS : à Lugano, les alpinistes fondent alors un club à elles, présidé par Adelina Rossi-Baragiola. Il deviendra la section de Lugano du Club Suisse des Femmes Alpinistes, né en 1918, et le 22 septembre 1924 il sera présent, avec quelque 300 personnes, à l’inauguration de la Capanna Adula."),
+    ("1918", "En Léventine et dans le Val Blenio se constituent les stations de secours alpin de Faido, Airolo et Olivone : pour la première fois, qui se blesse en montagne peut compter sur des équipes organisées. La formation des guides revient à la section, leur nomination au Conseil d’État."),
+    ("Années 1930", "L’escalade sur rocher se développe : Emilio Comici, le numéro un de l’alpinisme italien, est invité aux Denti della Vecchia, où il ouvre en 1935 avec Tita Calvi la voie qui porte son nom ; les Denti deviennent le site d’escalade de la section, et Riccardo Cassin s’y entraîne aussi. En 1932, Tita Calvi, l’abbé Giugni et Aldo Balmelli ouvrent la face nord-est du Piz Prevat ; Bruno Primi « Stüva » devient guide et signe de grandes classiques, de la Civetta au Cervin. En 1935, Calvi et Balmelli dirigent la première école de ski du Tessin, à l’Alpe Musgatina."),
+    ("1936", "La section fête ses cinquante ans avec la première cabane sur le Monte Bar : les femmes de Bidogno portent les matériaux dans des hottes jusqu’au chantier, et bientôt on compte le dimanche plus de 300 skieurs sur les pistes. La même année, les premiers membres arrivent dans l’Himalaya central ; suivront la Laponie (1959), le Huascarán (1977) et le Pumori (1978)."),
+    ("1940", "Naissance du groupe Seniors."),
+    ("Années 1960", "Naissance du groupe de jeunesse OJ et mise en service de la colonne de secours du Sottoceneri. En 1963, l’alpiniste Aldo Fontana apporte un nouvel élan ; en 1964 naît le Gruppo Scoiattoli, qui au fil des années ouvrira et documentera la plupart des voies des Denti della Vecchia."),
+    ("1980", "Les sections masculine et féminine fusionnent, comme dans toute la Suisse : jusque-là, le Club Alpin Suisse était réservé aux hommes et les alpinistes avaient leur propre club. Derrière, une décennie difficile : le 22 août 1975, un incendie détruit la Capanna Campo Tencia, qui renaît en 1977 avec une structure en acier, novatrice pour l’époque, de l’architecte de la section Oscar Hofmann."),
+    ("1982", "Première édition de la « semaine mini » pour les plus petits."),
+    ("2003", "En février 1999, une série d’avalanches avait détruit l’ancienne Capanna Cristallina, de 1939. La nouvelle, conçue par les architectes Nicola Baserga et Christian Mozzetti, s’élève sur le Passo di Cristallina à 2575 m en seulement huit mois de chantier, durant les étés 2001 et 2002 ; elle ouvre en décembre 2002 et est inaugurée officiellement en juillet 2003. C’est la première cabane moderne du CAS."),
+    ("2016", "Quatre-vingts ans après la première cabane ouvre la nouvelle Capanna Monte Bar. Le concours de 2014 avait été remporté, parmi trente projets, par « Barlume » des architectes Oliviero Piffaretti et Carlo Romano : un bâtiment simple en bois, construit autour du foyer comme lieu de rencontre et pensé avec la commune de Capriasca pour valoriser toute la région."),
+]
+
+
 # disegno di ogni tappa (chiave = anno come in STORIA): oggetto di storia_oggetti.py e, per uno o due, il movimento
 # legato allo scorrimento («ruota», «oscilla»): non di più, se tutto si muove stanca
 STORIA_OGGETTI = {
@@ -598,7 +675,7 @@ STORIA_OGGETTI = {
     "2016": ("capanna-moderna", None),
 }
 # foto storiche al posto del disegno, quando arrivano: anno come in STORIA → (immagine in assets/img/storia/ senza
-# .webp, alt in italiano, tedesco, inglese). Es. "1886": ("storia/1886-fondazione", "…", "…", "…")
+# .webp, alt in italiano, tedesco, inglese, francese). Es. "1886": ("storia/1886-fondazione", "…", "…", "…", "…")
 STORIA_FOTO = {}
 
 
@@ -626,10 +703,13 @@ def tappa(anno_it, anno, testo):
 
 
 def storia():
-    tl = "\n".join(tappa(a_it, a, t) for (a_it, _), (a, t) in zip(STORIA, tr(STORIA, STORIA_DE, STORIA_EN)))
+    tl = "\n".join(tappa(a_it, a, t) for (a_it, _), (a, t) in zip(STORIA, tr(STORIA, STORIA_DE, STORIA_EN, STORIA_FR)))
     if de():
         body = page_hero([("Die Sektion", "de/introduzione.html"), ("Geschichte", None)], "Seit 1886 zu Fuss unterwegs.",
                          "Mehr als ein Jahrhundert Besteigungen, Hütten, Rettung und Bergkultur: die Geschichte der Sektion in Etappen.")
+    elif fr():
+        body = page_hero([("La Section", "fr/introduzione.html"), ("Histoire", None)], "Depuis 1886, à pied.",
+                         "Plus d’un siècle d’ascensions, de cabanes, de secours et de culture alpine : l’histoire de la section en étapes.")
     elif en():
         body = page_hero([("The Section", "en/introduzione.html"), ("History", None)], "Since 1886, on foot.",
                          "More than a century of climbs, huts, rescue and mountain culture: the history of the section in milestones.")
@@ -641,8 +721,8 @@ def storia():
 <section class="section" aria-labelledby="tappe-h">
 <div class="container">
 <div class="section-head">
-<h2 id="tappe-h" class="h2">{tr("Le tappe", "Die Etappen", "Milestones")}</h2>
-<p class="lead">{tr("Accanto all’attività sul terreno, la sezione ha sempre organizzato proiezioni, conferenze e dibattiti, e documentato la propria vita in numerose pubblicazioni e negli annuari.", "Neben den Touren hat die Sektion immer Vorführungen, Vorträge und Diskussionen organisiert und ihr Leben in zahlreichen Publikationen und in den Jahrbüchern festgehalten.", "Alongside its activity in the mountains, the section has always organised slide shows, talks and debates, and recorded its life in many publications and in its yearbooks.")}</p>
+<h2 id="tappe-h" class="h2">{tr("Le tappe", "Die Etappen", "Milestones", "Les étapes")}</h2>
+<p class="lead">{tr("Accanto all’attività sul terreno, la sezione ha sempre organizzato proiezioni, conferenze e dibattiti, e documentato la propria vita in numerose pubblicazioni e negli annuari.", "Neben den Touren hat die Sektion immer Vorführungen, Vorträge und Diskussionen organisiert und ihr Leben in zahlreichen Publikationen und in den Jahrbüchern festgehalten.", "Alongside its activity in the mountains, the section has always organised slide shows, talks and debates, and recorded its life in many publications and in its yearbooks.", "Parallèlement à son activité sur le terrain, la section a toujours organisé des projections, des conférences et des débats, et documenté sa vie dans de nombreuses publications et dans ses annuaires.")}</p>
 </div>
 <ol class="tappe">
 {tl}
@@ -650,10 +730,13 @@ def storia():
 </div>
 </section>
 
-{subnav(tr("La Sezione", "Die Sektion", "The Section"), L("storia.html"))}"""
+{subnav(tr("La Sezione", "Die Sektion", "The Section", "La Section"), L("storia.html"))}"""
     if de():
         return sezione_page("storia.html", "Geschichte | CAS Ticino",
                             "Die Geschichte der Sektion Ticino des Schweizer Alpen-Clubs seit 1886: Gründung, Bergrettung, Expeditionen, Jugend- und Seniorengruppen, Hütten.", body)
+    if fr():
+        return sezione_page("storia.html", "Histoire | CAS Ticino",
+                            "L’histoire de la Section Ticino du Club Alpin Suisse depuis 1886 : fondation, secours en montagne, expéditions, groupes jeunesse et seniors, cabanes.", body)
     if en():
         return sezione_page("storia.html", "History | CAS Ticino",
                             "The history of the Ticino Section of the Swiss Alpine Club since 1886: foundation, mountain rescue, expeditions, youth and seniors groups, huts.", body)
@@ -728,60 +811,66 @@ def introduzione_tradotta():
 
 def volontariato():
     def mail(m, testo=None):
-        return f'<a class="link" href="mailto:{m}">{testo or tr("Scrivi a", "Schreiben Sie an", "Write to")} {m}</a>'
+        return f'<a class="link" href="mailto:{m}">{testo or tr("Scrivi a", "Schreiben Sie an", "Write to", "Écrire à")} {m}</a>'
 
-    titolo = tr("Mettiti in gioco", "Mithelfen", "Get involved")
+    titolo = tr("Mettiti in gioco", "Mithelfen", "Get involved", "S’engager")
     body = page_hero([sez_crumb(), (titolo, None)], titolo, testo_campo(testi("introduzioni")["volontariato"], "introduzione")) + f"""
 
 <section class="section" aria-labelledby="ruoli-h">
 <div class="container">
 <div class="section-head">
-<h2 id="ruoli-h" class="h2">{tr("Dove c’è bisogno", "Wo es Hilfe braucht", "Where help is needed")}</h2>
+<h2 id="ruoli-h" class="h2">{tr("Dove c’è bisogno", "Wo es Hilfe braucht", "Where help is needed", "Là où il y a besoin d’aide")}</h2>
 </div>
 <div class="pillars" data-reveal>
 <article class="pillar pillar--wide">
-<h3>{tr("Api operaie in capanna", "Fleissige Bienen in den Hütten", "Busy bees in the huts")}</h3>
+<h3>{tr("Api operaie in capanna", "Fleissige Bienen in den Hütten", "Busy bees in the huts", "Abeilles ouvrières en cabane")}</h3>
 <p>{tr("Aiuti i guardiani ad aprire e chiudere la stagione e nei lavori di manutenzione delle capanne, e passi qualche bella serata in quota.",
        "Sie helfen den Hüttenwarten beim Öffnen und Schliessen der Saison und bei Unterhaltsarbeiten in den Hütten und verbringen schöne Abende in der Höhe.",
-       "Help the hut keepers open and close the season and with maintenance work in the huts, and spend some fine evenings up high.")}</p>
-<a class="link" href="#capanne-h">{tr("Come dare una mano", "So helfen Sie mit", "How to help")}</a>
+       "Help the hut keepers open and close the season and with maintenance work in the huts, and spend some fine evenings up high.",
+       "Aidez les gardiens à ouvrir et fermer la saison et dans les travaux d’entretien des cabanes, et passez de belles soirées en altitude.")}</p>
+<a class="link" href="#capanne-h">{tr("Come dare una mano", "So helfen Sie mit", "How to help", "Comment aider")}</a>
 </article>
 <article class="pillar pillar--accent">
-<h3>{tr("Capogita", "Tourenleitung", "Trip leader")}</h3>
+<h3>{tr("Capogita", "Tourenleitung", "Trip leader", "Chef de course")}</h3>
 <p>{tr("Si comincia affiancando un capogita, o nei corsi base come aiuto-capogita; con i corsi avanzati e la formazione del CAS si diventa capogita.",
        "Man beginnt an der Seite einer Tourenleitung oder als Hilfsleitung in den Grundkursen; mit Fortgeschrittenenkursen und der SAC-Ausbildung wird man Tourenleiterin oder Tourenleiter.",
-       "You start alongside a trip leader, or as an assistant leader on the basic courses; with advanced courses and SAC training you become a trip leader.")}</p>
+       "You start alongside a trip leader, or as an assistant leader on the basic courses; with advanced courses and SAC training you become a trip leader.",
+       "On commence aux côtés d’un chef de course, ou comme aide chef de course dans les cours de base ; avec les cours avancés et la formation du CAS, on devient chef de course.")}</p>
 {mail(MAIL_DICASTERI["Dicastero sport di montagna"])}
 </article>
 <article class="pillar">
-<h3>{tr("Monitore G+S", "J+S-Leitung", "Youth+Sport instructor")}</h3>
+<h3>{tr("Monitore G+S", "J+S-Leitung", "Youth+Sport instructor", "Moniteur J+S")}</h3>
 <p>{tr("Accompagni ragazze e ragazzi in falesia, nei campi e in montagna. La sezione promuove la formazione di monitori Gioventù+Sport.",
        "Sie begleiten Mädchen und Jungen in den Klettergarten, in Lager und in die Berge. Die Sektion fördert die Ausbildung von Jugend+Sport-Leitenden.",
-       "Take girls and boys climbing, to camps and into the mountains. The section supports Youth+Sport instructor training.")}</p>
+       "Take girls and boys climbing, to camps and into the mountains. The section supports Youth+Sport instructor training.",
+       "Accompagnez filles et garçons en falaise, dans les camps et en montagne. La section encourage la formation de moniteurs Jeunesse+Sport.")}</p>
 {mail(MAIL_DICASTERI["Dicastero giovani"])}
 </article>
 <article class="pillar">
-<h3>{tr("Gite Senior", "Seniorentouren", "Seniors’ trips")}</h3>
+<h3>{tr("Gite Senior", "Seniorentouren", "Seniors’ trips", "Courses seniors")}</h3>
 <p>{tr("Il gruppo Senior cerca sempre nuovi capigita per gite di un giorno, fine settimana e vacanze in montagna.",
        "Die Seniorengruppe sucht immer neue Tourenleitende für Tagestouren, Wochenenden und Bergferien.",
-       "The seniors group is always looking for new trip leaders for day trips, weekends and mountain holidays.")}</p>
+       "The seniors group is always looking for new trip leaders for day trips, weekends and mountain holidays.",
+       "Le groupe Seniors cherche toujours de nouveaux chefs de course pour des courses d’un jour, des week-ends et des vacances en montagne.")}</p>
 {mail(MAIL_DICASTERI["Dicastero senior"])}
 </article>
 <article class="pillar pillar--dark">
-<h3>{tr("Comunicazione ed eventi", "Kommunikation und Anlässe", "Communication and events")}</h3>
+<h3>{tr("Comunicazione ed eventi", "Kommunikation und Anlässe", "Communication and events", "Communication et événements")}</h3>
 <p>{tr("Testi, foto e resoconti per il sito, i social, l’annuario e Informazione; serate ed eventi sulla cultura della montagna.",
        "Texte, Fotos und Berichte für Website, soziale Medien, Jahrbuch und «Informazione»; Abende und Anlässe zur Bergkultur.",
-       "Texts, photos and reports for the website, social media, the yearbook and «Informazione»; evenings and events on mountain culture.")}</p>
+       "Texts, photos and reports for the website, social media, the yearbook and «Informazione»; evenings and events on mountain culture.",
+       "Textes, photos et récits pour le site, les réseaux sociaux, l’annuaire et « Informazione » ; soirées et événements sur la culture de la montagne.")}</p>
 {mail(MAIL_DICASTERI["Dicastero comunicazione"])}
 </article>
 </div>
 </div>
 </section>
 
-""" + blocco("capanne-h", tr("Lavori in capanna", "Arbeiten in den Hütten", "Work in the huts"),
+""" + blocco("capanne-h", tr("Lavori in capanna", "Arbeiten in den Hütten", "Work in the huts", "Travaux en cabane"),
              tr("Le sei capanne della sezione si tengono in ordine anche grazie ai soci volontari, insieme ai guardiani e al dicastero infrastruttura.",
                 "Die sechs Hütten der Sektion werden auch dank freiwilliger Mitglieder in Schuss gehalten, zusammen mit den Hüttenwarten und dem Ressort Infrastruktur.",
-                "The section’s six huts are kept in shape partly thanks to volunteer members, together with the hut keepers and the infrastructure department."),
+                "The section’s six huts are kept in shape partly thanks to volunteer members, together with the hut keepers and the infrastructure department.",
+                "Les six cabanes de la section sont entretenues aussi grâce aux membres bénévoles, avec les gardiens et le département infrastructure."),
              tr("""<p>Ogni anno servono mani per lavori di ogni genere, per una giornata o per un fine settimana:</p>
 <ul>
 <li>apertura e chiusura della stagione: pulizie, coperte e materassi, messa in sicurezza per l’inverno;</li>
@@ -808,10 +897,19 @@ def volontariato():
 <li>firewood, carrying materials and clearing up around the hut;</li>
 <li>bigger jobs and building work when a hut is renovated.</li>
 </ul>
-<p>You don’t need to be a tradesperson, just willing. Anyone with a trade (carpenter, plumber, electrician, bricklayer…) is especially valuable. The work is organised with the hut keeper and the infrastructure department, who will tell you where and when help is needed.</p>""")
+<p>You don’t need to be a tradesperson, just willing. Anyone with a trade (carpenter, plumber, electrician, bricklayer…) is especially valuable. The work is organised with the hut keeper and the infrastructure department, who will tell you where and when help is needed.</p>""",
+                """<p>Chaque année, il faut des bras pour des travaux de toutes sortes, pour une journée ou un week-end :</p>
+<ul>
+<li>ouverture et fermeture de la saison : nettoyages, couvertures et matelas, mise en sécurité pour l’hiver ;</li>
+<li>entretien et petites réparations : menuiserie, peinture, installations, portes et fenêtres ;</li>
+<li>nettoyage des fosses septiques et des installations d’épuration ;</li>
+<li>bois, transports de matériel et rangement des alentours ;</li>
+<li>travaux plus importants et chantiers, quand une cabane est rénovée.</li>
+</ul>
+<p>Pas besoin d’être artisan : l’envie de faire suffit. Qui a un métier (menuisier, installateur sanitaire, électricien, maçon…) est particulièrement précieux. Les travaux s’organisent avec le gardien et le département infrastructure, qui vous dit où et quand on a besoin d’aide.</p>""")
              + f'\n<p>{mail(MAIL_DICASTERI["Dicastero infrastruttura"])}</p>') + "\n\n" + blocco(
-        "capogita-h", tr("Diventare capogita", "Tourenleiter werden", "Becoming a trip leader"),
-        tr("Il percorso per chi vuole guidare le gite della sezione.", "Der Weg für alle, die Touren der Sektion leiten möchten.", "The path for those who want to lead the section’s trips."),
+        "capogita-h", tr("Diventare capogita", "Tourenleiter werden", "Becoming a trip leader", "Devenir chef de course"),
+        tr("Il percorso per chi vuole guidare le gite della sezione.", "Der Weg für alle, die Touren der Sektion leiten möchten.", "The path for those who want to lead the section’s trips.", "Le parcours pour qui veut conduire les courses de la section."),
         tr("""<ol>
 <li><strong>Partecipa</strong> alle gite e ai <a href="corsi.html">corsi</a> della sezione, per fare esperienza.</li>
 <li><strong>Fatti avanti come aiuto-capogita</strong>: può esserlo ogni socio che vuole dare una mano o che segue, o vuole seguire, la formazione da capogita.</li>
@@ -832,12 +930,20 @@ def volontariato():
 <li><strong>Train</strong>: the section’s advanced courses in mountaineering, ski touring and climbing prepare you to lead a rope and for the SAC trip leader or Youth+Sport instructor courses.</li>
 <li><strong>Lead your own trips</strong>, with the support of the mountain sports department, and keep up to date with refresher courses.</li>
 </ol>
-<p>The section’s activities are voluntary; trip leaders are reimbursed for out-of-pocket expenses. Have you met <a href="capigita.html">our trip leaders</a>?</p>""")) + f"""
+<p>The section’s activities are voluntary; trip leaders are reimbursed for out-of-pocket expenses. Have you met <a href="capigita.html">our trip leaders</a>?</p>""",
+           """<ol>
+<li><strong>Participez</strong> aux courses et aux <a href="corsi.html">cours</a> de la section, pour acquérir de l’expérience.</li>
+<li><strong>Proposez-vous comme aide chef de course</strong> : tout membre peut l’être, pour donner un coup de main ou parce qu’il suit, ou veut suivre, la formation de chef de course.</li>
+<li><strong>Formez-vous</strong> : les cours avancés d’alpinisme, de ski de randonnée et d’escalade de la section préparent à mener une cordée et aux cours de chef de course du CAS central ou de moniteur Jeunesse+Sport.</li>
+<li><strong>Conduisez vos propres courses</strong>, avec le soutien du département sports de montagne, et restez à jour grâce aux cours de perfectionnement.</li>
+</ol>
+<p>Les activités de la section sont bénévoles ; les frais effectifs des chefs de course sont remboursés. Connaissez-vous déjà <a href="capigita.html">nos chefs de course</a> ?</p>""")) + f"""
 
 {subnav(SEZ_MENU(), L("volontariato.html"))}"""
     body = body.replace('<section class="section"', '<section class="section section--fitta"')   # pagina lunga: meno spazio tra le sezioni
     return sezione_page("volontariato.html", titolo + " | CAS Ticino", tr(
         "Volontariato nel CAS Ticino: api operaie in capanna, capigita e aiuto-capigita, monitori G+S, capigita Senior, comunicazione ed eventi. Come cominciare.",
         "Freiwilligenarbeit in der SAC-Sektion Ticino: Arbeiten in den Hütten, Tourenleitung und Hilfsleitung, J+S-Leitende, Seniorentouren, Kommunikation und Anlässe. So fangen Sie an.",
-        "Volunteering with the SAC Ticino Section: work in the huts, trip leaders and assistant leaders, Youth+Sport instructors, seniors’ trips, communication and events. How to start."),
+        "Volunteering with the SAC Ticino Section: work in the huts, trip leaders and assistant leaders, Youth+Sport instructors, seniors’ trips, communication and events. How to start.",
+        "Bénévolat au CAS Ticino : travaux en cabane, chefs de course et aides, moniteurs J+S, courses seniors, communication et événements. Comment commencer."),
         body, og="paesaggi/salita-prato-2000")

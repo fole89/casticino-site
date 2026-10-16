@@ -1,6 +1,6 @@
 """Sito installabile (PWA): manifesto per lingua e service worker, scritti da pages.py a ogni rigenerazione.
 
-- manifest.webmanifest (it), manifest-de.webmanifest, manifest-en.webmanifest: nome, icone (assets/icone/), colori,
+- manifest.webmanifest (it), manifest-de/-fr/-en.webmanifest: nome, icone (assets/icone/), colori,
   pagina iniziale nella lingua; head() in shared.py collega quello della lingua della pagina.
 - sw.js nella radice del sito (così vale per tutte le pagine): prima la rete per le pagine (sempre aggiornate quando
   c'è campo, l'ultima versione vista quando non c'è, altrimenti offline.html); dalla memoria stili, script, caratteri
@@ -24,6 +24,7 @@ BADGE = "assets/icone/badge-96.png"   # sagoma bianca per la barra di stato di A
 DESCRIZIONE = {
     "it": "Club Alpino Svizzero, Sezione Ticino: gite, corsi, capanne e news.",
     "de": "Schweizer Alpen-Club, Sektion Ticino: Touren, Kurse, Hütten und News.",
+    "fr": "Club Alpin Suisse, Section Ticino : courses, cours, cabanes et news.",
     "en": "Swiss Alpine Club, Ticino Section: trips, courses, huts and news.",
 }
 
@@ -112,7 +113,7 @@ async function pagina(req, url, percorso) {
     const salvata = await caches.match(chiave(url));
     if (salvata) return salvata;
     if (/offline\.html$/.test(url.pathname)) return new Response("Offline", { status: 503 });
-    const lang = /^(de|en)\//.exec(percorso);
+    const lang = /^(de|fr|en)\//.exec(percorso);
     return Response.redirect(new URL((lang ? lang[1] + "/" : "") + "offline.html", BASE).href, 302);
   }
 }

@@ -177,7 +177,7 @@ CMS.registerEventListener({
     var data = args.entry.get("data");
     if (!data.has("elimina")) return data;
     if (data.get("elimina")) {
-      ["testo", "testo_de", "testo_en", "link", "scadenza"].forEach(function (k) { data = data.set(k, ""); });
+      ["testo", "testo_de", "testo_fr", "testo_en", "link", "scadenza"].forEach(function (k) { data = data.set(k, ""); });
       data = data.set("importante", false).set("notifica", false);
     }
     return data.delete("elimina");
@@ -222,12 +222,12 @@ CMS.registerEventListener({
   vai();
 })();
 
-// Anteprima dell'avviso: la striscia come apparirà in cima alle pagine (italiano, poi tedesco e inglese se scritti).
+// Anteprima dell'avviso: la striscia come apparirà in cima alle pagine (italiano, poi tedesco, francese e inglese se scritti).
 var AvvisoPreview = createClass({
   render: function () {
     var d = this.props.entry.get("data");
     var cls = "avviso" + (d.get("importante") ? " avviso--importante" : "");
-    var righe = [["", d.get("testo")], ["Tedesco: ", d.get("testo_de")], ["Inglese: ", d.get("testo_en")]].filter(function (r) { return r[1]; });
+    var righe = [["", d.get("testo")], ["Tedesco: ", d.get("testo_de")], ["Francese: ", d.get("testo_fr")], ["Inglese: ", d.get("testo_en")]].filter(function (r) { return r[1]; });
     var nota = notaAvviso(d);
     return h("main", {},
       righe.length && !d.get("elimina") ? righe.map(function (r, i) {
@@ -240,12 +240,12 @@ var AvvisoPreview = createClass({
 });
 CMS.registerPreviewTemplate("avviso", AvvisoPreview);
 
-// Anteprima dell'avviso di una capanna: il riquadro come apparirà sotto la foto (italiano, poi tedesco e inglese se scritti).
+// Anteprima dell'avviso di una capanna: il riquadro come apparirà sotto la foto (italiano, poi tedesco, francese e inglese se scritti).
 var AvvisoCapannaPreview = createClass({
   render: function () {
     var d = this.props.entry.get("data");
     var imp = d.get("importante");
-    var righe = [["Avviso", "Importante", d.get("testo")], ["Hinweis", "Wichtig", d.get("testo_de")], ["Notice", "Important", d.get("testo_en")]]
+    var righe = [["Avviso", "Importante", d.get("testo")], ["Hinweis", "Wichtig", d.get("testo_de")], ["Avis", "Important", d.get("testo_fr")], ["Notice", "Important", d.get("testo_en")]]
       .filter(function (r) { return r[2]; });
     var nota = notaAvviso(d);
     return h("main", {},

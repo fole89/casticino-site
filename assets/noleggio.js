@@ -1,4 +1,4 @@
-// CAS Ticino - modulo del noleggio materiale (noleggio.html, de/, en/): con le date scelte chiede al servizio
+// CAS Ticino - modulo del noleggio materiale (noleggio.html, de/, fr/, en/): con le date scelte chiede al servizio
 // (form#nol[data-api], scripts/noleggio/worker.js) quanto materiale è libero, poi invia la richiesta.
 // Articoli e nomi nella lingua della pagina in #nol-dati (da data/noleggio-inventario.json, scritti da pages.py).
 // Cloudflare Turnstile si carica solo quando si inizia a compilare il modulo. Stili in site.css, blocco «noleggio».
@@ -50,6 +50,25 @@
         rete: 'Der Dienst antwortet nicht.'
       },
       alt: function (m) { return ' Versuchen Sie es später nochmals oder schreiben Sie an ' + m + '.'; }
+    },
+    fr: {
+      giorni: function (n) { return n === 1 ? '1 jour' : n + ' jours'; },
+      carico: 'Vérification du matériel libre…', liberi: function (n) { return n === 1 ? '1 libre' : n + ' libres'; },
+      esaurito: 'occupé', taglia: 'Taille', giorno: 'par jour', quantita: 'Quantité', nessuno: 'Aucun matériel n’est libre pour ces dates.',
+      totale: function (t, g) { return 'Total indicatif : Fr. ' + t + '.– pour ' + g + ', à payer au retour.'; },
+      scegli: 'Choisissez au moins un article.',
+      ok: function (m) { return 'Demande envoyée. Nous vous avons envoyé un accusé de réception à ' + m + ' : nous vérifions la disponibilité et vous écrivons la confirmation.'; },
+      nuova: 'Nouvelle demande',
+      errori: {
+        date: 'Indiquez le premier et le dernier jour.', ordine: 'Le dernier jour est avant le premier.',
+        passato: 'Le matériel peut être demandé à partir de demain.', lontano: 'On peut réserver au plus un an à l’avance.',
+        durata: 'La location peut durer au maximum ' + MAX_GIORNI + ' jours.',
+        nome: 'Indiquez vos nom et prénom.', email: 'Vérifiez l’adresse e-mail.', telefono: 'Vérifiez le numéro de téléphone.',
+        materiale: 'Choisissez au moins un article.', verifica: 'Confirmez le contrôle « Je ne suis pas un robot » ci-dessus et réessayez.',
+        esaurito: 'Entre-temps, une partie du matériel a été réservée : vérifiez les quantités et réessayez.',
+        rete: 'Le service ne répond pas.'
+      },
+      alt: function (m) { return ' Réessayez plus tard ou écrivez à ' + m + '.'; }
     },
     en: {
       giorni: function (n) { return n === 1 ? '1 day' : n + ' days'; },

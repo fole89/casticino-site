@@ -1,11 +1,12 @@
 """Funzioni e dati comuni a tutte le pagine: impaginazione (page()), gruppi del menu e briciole, testi modificabili
-dalla redazione (data/testi/, testi()), date e mesi nelle tre lingue, percorsi delle sottocartelle (pubblica()).
+dalla redazione (data/testi/, testi()), date e mesi nelle quattro lingue, percorsi delle sottocartelle (pubblica()).
 I moduli pagine_*.py lo importano con `from comune import *`."""
 import json, mercatino_util, news_util, os, re, sys, unicodedata
 from capanne_de import HUTS_DE
 from capanne_en import HUTS_EN
+from capanne_fr import HUTS_FR
 from news_util import webp_size
-from shared import GITE, L, LINGUA, PAGINE_LINGUA, asset, de, en, footer, head, img, in_sottocartella, nav, page_hero, pic, social, subnav, t, tr
+from shared import GITE, L, LINGUA, PAGINE_LINGUA, TRADUZIONI, asset, de, en, fr, senza_lingua, footer, head, img, in_sottocartella, nav, page_hero, pic, social, subnav, t, tr
 
 
 # Programma gite su Droptour già filtrato per gruppo o per tipo di attività (i link dei singoli corsi cambiano ogni anno)
@@ -33,15 +34,15 @@ def schede_capanne(lista, accesso="Accesso da", prefisso=""):
 
 
 def ATT_MENU():
-    return tr("Attività", "Aktivitäten", "Activities")
+    return tr("Attività", "Aktivitäten", "Activities", "Activités")
 
 
 def NM_MENU():
-    return tr("News e media", "News und Medien", "News and media")
+    return tr("News e media", "News und Medien", "News and media", "News et médias")
 
 
 def SEZ_MENU():
-    return tr("La Sezione", "Die Sektion", "The Section")
+    return tr("La Sezione", "Die Sektion", "The Section", "La Section")
 
 
 def att_crumb():
@@ -97,13 +98,13 @@ def facts(rows):
 
 def credito(autore="Michele Foletti"):
     """Autore della foto grande (figcaption in basso a destra sopra la foto, .credito in site.css)."""
-    return f'<figcaption class="credito">{tr("Foto", "Foto", "Photo")} © {autore}</figcaption>'
+    return f'<figcaption class="credito">{tr("Foto", "Foto", "Photo", "Photo")} © {autore}</figcaption>'
 
 
 def salti(voci, etichetta=None):
     """Barra «In questa pagina» (.salti; capanne, Corsi): pulsanti (id, testo) verso le sezioni della pagina, nell'ordine
     in cui compaiono. Resta appiccicata sotto il menu e site.js evidenzia la sezione in cui ci si trova."""
-    etichetta = etichetta or tr("In questa pagina", "Auf dieser Seite", "On this page")
+    etichetta = etichetta or tr("In questa pagina", "Auf dieser Seite", "On this page", "Sur cette page")
     links = "\n".join(f'<a href="#{k}">{l}</a>' for k, l in voci)
     return f"""
 
@@ -123,12 +124,12 @@ IBAN = "CH09 0076 4128 9526 1200 6"   # conto della sezione (Banca Stato, Lugano
 
 
 def pubblica(nome, html):
-    """Pagina in una sottocartella (de/, en/, capanne/…): i percorsi relativi salgono dei livelli giusti."""
+    """Pagina in una sottocartella (de/, fr/, en/, capanne/…): i percorsi relativi salgono dei livelli giusti."""
     return in_sottocartella(html, su="../" * nome.count("/")) if "/" in nome else html
 
 
 def sezione_page(file, title, description, body, **kw):
-    """Pagina della sezione nella lingua corrente (tradotta: de/<file>, en/<file>)."""
+    """Pagina della sezione nella lingua corrente (tradotta: de/<file>, fr/<file>, en/<file>)."""
     nome = L(file)
     return pubblica(nome, page(nome, title, description, body, **kw))
 
@@ -139,7 +140,7 @@ def slug_nome(nome):
 
 
 # Testi modificabili dalla redazione (admin/, «Testi del sito»): data/testi/<pagina>.json. Ogni campo ha l'italiano e,
-# facoltativi, _de e _en; se la traduzione manca, la pagina tradotta mostra l'italiano marcato lang="it".
+# facoltativi, _de, _fr e _en; se la traduzione manca, la pagina tradotta mostra l'italiano marcato lang="it".
 _TESTI = {}
 
 
@@ -193,7 +194,7 @@ DOC = "docs/"  # PDF della sezione, in sottocartelle per tema (nomi in minuscolo
 
 def SERVIZI_MENU():
     """Nome della voce Servizi nella lingua corrente (per percorso e sotto-menu)."""
-    return tr("Servizi", "Dienste", "Services")
+    return tr("Servizi", "Dienste", "Services", "Services")
 
 
 def servizi_crumb():
@@ -210,13 +211,14 @@ def data_it(iso):
 def esc(t):
     return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 MESI_L = {"it": MESI, "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+          "fr": ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
           "en": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]}
 
 
 def data_l(iso):
     y, m, d = (int(x) for x in iso.split("-"))
     mese = MESI_L[LINGUA["lang"]][m - 1]
-    return tr(f"{d} {mese} {y}", f"{d}. {mese} {y}", f"{d} {mese} {y}")
+    return tr(f"{d} {mese} {y}", f"{d}. {mese} {y}", f"{d} {mese} {y}", f"{'1er' if d == 1 else d} {mese} {y}")
 
 
 def blocco(id_, titolo, intro, corpo):

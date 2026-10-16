@@ -4,32 +4,38 @@
       "titolo": "Soci CAS/FAT/CAI/DAV",
       "titolo_de": "Mitglieder SAC/FAT/CAI/DAV",
       "titolo_en": "Members of SAC/FAT/CAI/DAV",
+      "titolo_fr": "Membres CAS/FAT/CAI/DAV",
       "nota": "Pernottamento, tasse incluse",
       "nota_de": "Übernachtung, Taxen inbegriffen",
       "nota_en": "Overnight stay, taxes included",
+      "nota_fr": "Nuitée, taxes comprises",
       "righe": [
         {
           "voce": "Adulti dai 22 anni",
           "voce_de": "Erwachsene ab 22 Jahren",
           "voce_en": "Adults from 22",
+          "voce_fr": "Adultes dès 22 ans",
           "prezzo": "Fr. 15.–"
         },
         {
           "voce": "Giovani da 6 a 21 anni, aspiranti guida e capigita CAS",
           "voce_de": "Jugendliche von 6 bis 21 Jahren, Bergführer-Aspiranten und SAC-Tourenleiter",
           "voce_en": "Young people aged 6 to 21, aspiring mountain guides and SAC trip leaders",
+          "voce_fr": "Jeunes de 6 à 21 ans, aspirants guides et chefs de course CAS",
           "prezzo": "Fr. 8.–"
         },
         {
           "voce": "Bambini fino a 5 anni",
           "voce_de": "Kinder bis 5 Jahre",
           "voce_en": "Children up to 5",
+          "voce_fr": "Enfants jusqu’à 5 ans",
           "prezzo": "gratis"
         },
         {
           "voce": "Guide alpine UIAGM",
           "voce_de": "Bergführer IFMGA",
           "voce_en": "IFMGA mountain guides",
+          "voce_fr": "Guides de montagne UIAGM",
           "prezzo": "gratis"
         }
       ]
@@ -38,26 +44,31 @@
       "titolo": "Non soci",
       "titolo_de": "Nichtmitglieder",
       "titolo_en": "Non-members",
+      "titolo_fr": "Non-membres",
       "nota": "Pernottamento, tasse incluse",
       "nota_de": "Übernachtung, Taxen inbegriffen",
       "nota_en": "Overnight stay, taxes included",
+      "nota_fr": "Nuitée, taxes comprises",
       "righe": [
         {
           "voce": "Adulti dai 20 anni",
           "voce_de": "Erwachsene ab 20 Jahren",
           "voce_en": "Adults from 20",
+          "voce_fr": "Adultes dès 20 ans",
           "prezzo": "Fr. 25.–"
         },
         {
           "voce": "Giovani da 6 a 19 anni",
           "voce_de": "Jugendliche von 6 bis 19 Jahren",
           "voce_en": "Young people aged 6 to 19",
+          "voce_fr": "Jeunes de 6 à 19 ans",
           "prezzo": "Fr. 12.–"
         },
         {
           "voce": "Bambini fino a 5 anni",
           "voce_de": "Kinder bis 5 Jahre",
           "voce_en": "Children up to 5",
+          "voce_fr": "Enfants jusqu’à 5 ans",
           "prezzo": "gratis"
         }
       ]
@@ -66,26 +77,31 @@
       "titolo": "Supplementi",
       "titolo_de": "Zuschläge",
       "titolo_en": "Supplements",
+      "titolo_fr": "Suppléments",
       "nota": "Il sacco lenzuolo è obbligatorio e non è disponibile in baita",
       "nota_de": "Der Hüttenschlafsack ist obligatorisch und in der Baita nicht erhältlich",
       "nota_en": "A sleeping-bag liner is compulsory and not available at the baita",
+      "nota_fr": "Le sac à viande est obligatoire et n’est pas disponible à la baita",
       "righe": [
         {
           "voce": "Uso del gas per cucinare (al giorno)",
           "voce_de": "Gas zum Kochen (pro Tag)",
           "voce_en": "Gas for cooking (per day)",
+          "voce_fr": "Gaz pour cuisiner (par jour)",
           "prezzo": "Fr. 5.–"
         },
         {
           "voce": "Uso della legna (al giorno)",
           "voce_de": "Brennholz (pro Tag)",
           "voce_en": "Firewood (per day)",
+          "voce_fr": "Bois de chauffage (par jour)",
           "prezzo": "Fr. 5.–"
         },
         {
           "voce": "Doccia (a persona)",
           "voce_de": "Dusche (pro Person)",
           "voce_en": "Shower (per person)",
+          "voce_fr": "Douche (par personne)",
           "prezzo": "Fr. 5.–"
         }
       ]
@@ -93,5 +109,6 @@
   ],
   "prenotare": "- **Prenotazione indispensabile** via e-mail a [baitaluca@casticino.ch](mailto:baitaluca@casticino.ch), con nome, cognome, indirizzo e numero di cellulare.\n- Disdette senza costi entro le 18.00 di **due giorni prima** della data riservata.\n- Il codice per accedere alla chiave lo danno i responsabili; d’inverno la porta si apre su richiesta, secondo il meteo.\n- Portate sacco lenzuolo e federa del cuscino (55×80).\n- Pagamento con il codice QR (nel libro della baita) o con Twint.\n- Divieto assoluto di fumare; i cani sono ammessi solo nel soggiorno, non nel dormitorio.\n- Non si accettano riservazioni o richieste tramite social media: per informazioni chiamate.\n[Condizioni generali delle capanne CAS](docs/capanne/baitadelluca/2020-cgc-capanne-cas-it.pdf)",
   "prenotare_de": "- **Reservation unerlässlich** per E-Mail an [baitaluca@casticino.ch](mailto:baitaluca@casticino.ch), mit Vorname, Name, Adresse und Handynummer.\n- Kostenlose Annullierung bis 18 Uhr **zwei Tage vor** dem reservierten Datum.\n- Den Code zum Schlüssel erhalten Sie von den Verantwortlichen; im Winter wird die Tür auf Anfrage und je nach Wetter geöffnet.\n- Bringen Sie Hüttenschlafsack und Kissenbezug (55×80) mit.\n- Bezahlung mit dem QR-Code (im Hüttenbuch) oder mit Twint.\n- Rauchen ist streng verboten; Hunde sind nur in der Stube erlaubt, nicht im Schlafraum.\n- Keine Reservationen oder Anfragen über soziale Medien: Rufen Sie bitte an.\n[Allgemeine Geschäftsbedingungen der SAC-Hütten](docs/capanne/baitadelluca/2020-cgc-capanne-cas-it.pdf)",
-  "prenotare_en": "- **Booking is essential** by e-mail to [baitaluca@casticino.ch](mailto:baitaluca@casticino.ch), with first name, surname, address and mobile number.\n- Free cancellation until 6 pm **two days before** the booked date.\n- You receive the key code from the managers; in winter the door is opened on request and depending on the weather.\n- Bring a sleeping-bag liner and a pillowcase (55×80).\n- Payment with the QR code (in the hut book) or by Twint.\n- Smoking is strictly forbidden; dogs are allowed only in the common room, not in the dormitory.\n- No bookings or enquiries via social media: please phone.\n[General terms and conditions of SAC huts](docs/capanne/baitadelluca/2020-cgc-capanne-cas-it.pdf)"
+  "prenotare_en": "- **Booking is essential** by e-mail to [baitaluca@casticino.ch](mailto:baitaluca@casticino.ch), with first name, surname, address and mobile number.\n- Free cancellation until 6 pm **two days before** the booked date.\n- You receive the key code from the managers; in winter the door is opened on request and depending on the weather.\n- Bring a sleeping-bag liner and a pillowcase (55×80).\n- Payment with the QR code (in the hut book) or by Twint.\n- Smoking is strictly forbidden; dogs are allowed only in the common room, not in the dormitory.\n- No bookings or enquiries via social media: please phone.\n[General terms and conditions of SAC huts](docs/capanne/baitadelluca/2020-cgc-capanne-cas-it.pdf)",
+  "prenotare_fr": "- **Réservation indispensable** par e-mail à [baitaluca@casticino.ch](mailto:baitaluca@casticino.ch), avec nom, prénom, adresse et numéro de portable.\n- Annulation sans frais jusqu’à 18 h **deux jours avant** la date réservée.\n- Le code pour accéder à la clé est donné par les responsables ; en hiver, la porte est ouverte sur demande, selon la météo.\n- Apportez un sac à viande et une taie d’oreiller (55×80).\n- Paiement avec le code QR (dans le livre de la baita) ou par Twint.\n- Interdiction absolue de fumer ; les chiens sont admis seulement dans la salle commune, pas dans le dortoir.\n- Pas de réservations ni de demandes par les réseaux sociaux : pour toute information, appelez.\n[Conditions générales des cabanes du CAS](docs/capanne/baitadelluca/2020-cgc-capanne-cas-it.pdf)"
 }

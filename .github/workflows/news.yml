@@ -44,7 +44,7 @@ jobs:
       - name: Prepara il mercatino (foto in WebP con il nome dell’annuncio)
         run: python scripts/prepara_mercatino.py
 
-      - name: Traduce avvisi e guardiani in tedesco e inglese (DeepL)
+      - name: Traduce avvisi e guardiani in tedesco, francese e inglese (DeepL)
         # solo i campi vuoti o tradotti in automatico; senza chiave o se DeepL non risponde resta l'italiano
         env:
           DEEPL_KEY: ${{ secrets.API_DEEPL }}

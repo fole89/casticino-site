@@ -20,16 +20,16 @@ def banda_adesione(titolo, testo, bottone, href):
 </section>"""
 
 
-# Foto grandi della home a rotazione (site.js, [data-giro]): (immagine in paesaggi/, alt it/de/en, classe per
+# Foto grandi della home a rotazione (site.js, [data-giro]): (immagine in paesaggi/, alt it/de/en/fr, classe per
 # l'inquadratura). Ognuna serve in -1000, -2000 e -4x3 (vedi CLAUDE.md, «Images»). Predisposte per stagione: la stagione
 # si sceglie quando la pagina viene generata (update-gite.yml rigenera la home ogni mattina). Per ora la rotazione per
 # stagione è in sospeso: solo l'inverno ha foto e le stagioni vuote usano quelle. Tutte di Michele Foletti (credito()).
 STAGIONI = {
     "inverno": [
         ("sciatori-villaggio", "Scialpinisti in salita verso un villaggio innevato", "Skitourengeher im Aufstieg zu einem verschneiten Dorf",
-         "Ski tourers climbing towards a snow-covered village", "pos-low"),
+         "Ski tourers climbing towards a snow-covered village", "Randonneurs à skis montant vers un village enneigé", "pos-low"),
         ("traccia-abeti", "Una cordata sale nella neve fresca tra gli abeti", "Eine Gruppe steigt im Neuschnee zwischen den Tannen auf",
-         "A group climbing through fresh snow among the fir trees", ""),
+         "A group climbing through fresh snow among the fir trees", "Un groupe monte dans la neige fraîche entre les sapins", ""),
     ],
     # vuote finché non arrivano le foto giuste: intanto la home usa quelle invernali tutto l'anno
     "primavera": [],
@@ -55,15 +55,15 @@ def home():
     if lang == "it":
         huts = schede_capanne(HUTS)
     else:
-        huts = schede_capanne({"de": HUTS_DE, "en": HUTS_EN}[lang], tx["accesso"], f"{lang}/")
+        huts = schede_capanne({"de": HUTS_DE, "fr": HUTS_FR, "en": HUTS_EN}[lang], tx["accesso"], f"{lang}/")
     n_annunci = len(mercatino_util.attivi())
-    mercatino_conta = {0: "", 1: tr(" Un annuncio online.", " Ein Inserat online.", " One listing online.")}.get(
-        n_annunci, tr(f" {n_annunci} annunci online.", f" {n_annunci} Inserate online.", f" {n_annunci} listings online."))
+    mercatino_conta = {0: "", 1: tr(" Un annuncio online.", " Ein Inserat online.", " One listing online.", " Une annonce en ligne.")}.get(
+        n_annunci, tr(f" {n_annunci} annunci online.", f" {n_annunci} Inserate online.", f" {n_annunci} listings online.", f" {n_annunci} annonces en ligne."))
     foto = foto_stagione()
     prima = f"assets/img/paesaggi/{foto[0][0]}"
     giro = "\n".join(pic(f"paesaggi/{n}", tr(*alt), mobile=f"paesaggi/{n}-4x3", w=2000, h=901, lazy=i > 0, cls=cls)
                      for i, (n, *alt, cls) in enumerate(foto))
-    corso_alt = {"it": "Cordata su una cresta di neve", "de": "Seilschaft auf einem Schneegrat", "en": "Rope team on a snow ridge"}[lang]
+    corso_alt = {"it": "Cordata su una cresta di neve", "de": "Seilschaft auf einem Schneegrat", "en": "Rope team on a snow ridge", "fr": "Cordée sur une arête de neige"}[lang]
 
     html = head(tx.get("home_title", "CAS Ticino | Club Alpino Svizzero, Sezione Ticino"),
                 tx.get("home_desc", "Sei rifugi dal Passo Cristallina ai Denti della Vecchia, corsi tenuti da professionisti, un programma di gite per ogni età. Da oltre un secolo, la casa dell’alpinismo ticinese."),
@@ -81,13 +81,13 @@ def home():
 </div>
 <div class="actions">
 <a class="btn btn--primary" href="adesione.html">{tx.get("diventa", "Diventa socio")} <span class="arrow" aria-hidden="true">→</span></a>
-<a class="btn btn--secondary" href="news.html">{tr("Ultime notizie", "Neuigkeiten", "Latest news")}</a>
+<a class="btn btn--secondary" href="news.html">{tr("Ultime notizie", "Neuigkeiten", "Latest news", "Dernières nouvelles")}</a>
 </div>
 </div>
 </div>
 <figure class="band band--giro" data-giro>
 {giro}
-<button class="giro-pausa" type="button" hidden data-pausa="{tr("Ferma le foto", "Fotos anhalten", "Pause photos")}" data-avvia="{tr("Riavvia le foto", "Fotos fortsetzen", "Play photos")}"></button>
+<button class="giro-pausa" type="button" hidden data-pausa="{tr("Ferma le foto", "Fotos anhalten", "Pause photos", "Arrêter les photos")}" data-avvia="{tr("Riavvia le foto", "Fotos fortsetzen", "Play photos", "Relancer les photos")}"></button>
 {credito()}
 </figure>
 </section>
@@ -95,57 +95,61 @@ def home():
 <section class="section fascia-home" id="attivita" aria-labelledby="attivita-h">
 <div class="container">
 <div class="section-head">
-<h2 id="attivita-h" class="h2">{tr("Fuori con la sezione", "Unterwegs mit der Sektion", "Out with the section")}</h2>
+<h2 id="attivita-h" class="h2">{tr("Fuori con la sezione", "Unterwegs mit der Sektion", "Out with the section", "En route avec la section")}</h2>
 <p class="lead">{tr("Gite per tutti i livelli, un gruppo per ogni età e corsi per imparare a muoversi in montagna in sicurezza.",
                     "Touren für jedes Niveau, eine Gruppe für jedes Alter und Kurse, um sich sicher in den Bergen zu bewegen.",
-                    "Trips for every level, a group for every age and courses to learn to move safely in the mountains.")}</p>
+                    "Trips for every level, a group for every age and courses to learn to move safely in the mountains.",
+                    "Des courses pour tous les niveaux, un groupe pour chaque âge et des cours pour apprendre à se déplacer en montagne en sécurité.")}</p>
 </div>
 <div class="bento" id="gruppi">
 <article class="tile tile--wide-top" data-reveal>
-{img("attivita/gite-2x1", tr("Gruppo in vetta con vista sulle Alpi innevate", "Gruppe auf dem Gipfel mit Blick auf die verschneiten Alpen", "Group on a summit overlooking the snowy Alps"), 1400, 700)}
+{img("attivita/gite-2x1", tr("Gruppo in vetta con vista sulle Alpi innevate", "Gruppe auf dem Gipfel mit Blick auf die verschneiten Alpen", "Group on a summit overlooking the snowy Alps", "Groupe au sommet avec vue sur les Alpes enneigées"), 1400, 700)}
 <div class="tile-body">
-<h3 class="h2">{tr("Gite, escursioni e uscite della sezione", "Touren, Wanderungen und Ausflüge der Sektion", "The section’s trips, hikes and outings")}</h3>
+<h3 class="h2">{tr("Gite, escursioni e uscite della sezione", "Touren, Wanderungen und Ausflüge der Sektion", "The section’s trips, hikes and outings", "Courses, randonnées et sorties de la section")}</h3>
 <p>{tr("Escursionismo, alpinismo, sci alpinismo, racchette e arrampicata: il calendario completo con iscrizioni online.",
        "Wandern, Hochtouren, Skitouren, Schneeschuhtouren und Klettern: das ganze Programm mit Online-Anmeldung.",
-       "Hiking, mountaineering, ski touring, snowshoeing and climbing: the full calendar with online registration.")}</p>
-<div class="actions"><a class="btn btn--primary" href="{GITE}">{t("gite")}</a><a class="btn btn--ghost-light" href="foto.html">{tr("Foto e resoconti", "Fotos und Berichte", "Photos and reports")}</a></div>
+       "Hiking, mountaineering, ski touring, snowshoeing and climbing: the full calendar with online registration.",
+       "Randonnée, alpinisme, ski de randonnée, raquettes et escalade : le programme complet avec inscription en ligne.")}</p>
+<div class="actions"><a class="btn btn--primary" href="{GITE}">{t("gite")}</a><a class="btn btn--ghost-light" href="foto.html">{tr("Foto e resoconti", "Fotos und Berichte", "Photos and reports", "Photos et récits")}</a></div>
 </div>
 </article>
 <article class="tile tile--tall" data-reveal>
-{img("attivita/giovani-3x4", tr("Giovane arrampicatore su una parete dei Denti della Vecchia", "Junger Kletterer an einer Wand der Denti della Vecchia", "Young climber on a face of the Denti della Vecchia"), 800, 1066)}
+{img("attivita/giovani-3x4", tr("Giovane arrampicatore su una parete dei Denti della Vecchia", "Junger Kletterer an einer Wand der Denti della Vecchia", "Young climber on a face of the Denti della Vecchia", "Jeune grimpeur sur une paroi des Denti della Vecchia"), 800, 1066)}
 <div class="tile-body">
-<span class="label">{tr("Gruppo giovani, dagli anni ’60", "Jugendgruppe, seit den 1960er-Jahren", "Youth group, since the 1960s")}</span>
-<h3 class="h2">{tr("Giovani", "Jugend", "Youth")}</h3>
-<p>{tr("Arrampicata, escursioni e settimane in montagna con monitori della sezione.", "Klettern, Wanderungen und Bergwochen mit Leitenden der Sektion.", "Climbing, hikes and mountain weeks with the section’s instructors.")}</p>
-<div class="links"><a class="link" href="giovani.html">{tr("Gruppo giovani", "Jugendgruppe", "Youth group")}</a><a class="link" href="organizzazione.html#giovani">{tr("Organizzazione", "Organisation", "Organisation")}<span class="visually-hidden"> {tr("del gruppo giovani", "der Jugendgruppe", "of the youth group")}</span></a></div>
+<span class="label">{tr("Gruppo giovani, dagli anni ’60", "Jugendgruppe, seit den 1960er-Jahren", "Youth group, since the 1960s", "Groupe jeunesse, depuis les années 1960")}</span>
+<h3 class="h2">{tr("Giovani", "Jugend", "Youth", "Jeunesse")}</h3>
+<p>{tr("Arrampicata, escursioni e settimane in montagna con monitori della sezione.", "Klettern, Wanderungen und Bergwochen mit Leitenden der Sektion.", "Climbing, hikes and mountain weeks with the section’s instructors.", "Escalade, randonnées et semaines en montagne avec les moniteurs de la section.")}</p>
+<div class="links"><a class="link" href="giovani.html">{tr("Gruppo giovani", "Jugendgruppe", "Youth group", "Groupe jeunesse")}</a><a class="link" href="organizzazione.html#giovani">{tr("Organizzazione", "Organisation", "Organisation", "Organisation")}<span class="visually-hidden"> {tr("del gruppo giovani", "der Jugendgruppe", "of the youth group", "du groupe jeunesse")}</span></a></div>
 </div>
 </article>
 <article class="tile tile--bottom-1" data-reveal>
-{img("attivita/senior-2x1", tr("Escursionisti su un sentiero di cresta", "Wandernde auf einem Gratweg", "Hikers on a ridge path"), 1000, 500)}
+{img("attivita/senior-2x1", tr("Escursionisti su un sentiero di cresta", "Wandernde auf einem Gratweg", "Hikers on a ridge path", "Randonneurs sur un sentier de crête"), 1000, 500)}
 <div class="tile-body">
-<span class="label">{tr("Gruppo senior, dal 1940", "Seniorengruppe, seit 1940", "Seniors group, since 1940")}</span>
-<h3 class="h2">{tr("Senior", "Senioren", "Seniors")}</h3>
+<span class="label">{tr("Gruppo senior, dal 1940", "Seniorengruppe, seit 1940", "Seniors group, since 1940", "Groupe seniors, depuis 1940")}</span>
+<h3 class="h2">{tr("Senior", "Senioren", "Seniors", "Seniors")}</h3>
 <p>{tr("Uscite settimanali con capigita esperti, al ritmo giusto e in buona compagnia, dalla Capriasca alle Alpi.",
        "Wöchentliche Touren mit erfahrenen Tourenleitenden, im richtigen Tempo und in guter Gesellschaft, von der Capriasca bis in die Alpen.",
-       "Weekly outings with experienced trip leaders, at the right pace and in good company, from the Capriasca to the Alps.")}</p>
-<div class="links"><a class="link" href="senior.html">{tr("Gruppo senior", "Seniorengruppe", "Seniors group")}</a><a class="link" href="organizzazione.html#senior">{tr("Organizzazione", "Organisation", "Organisation")}<span class="visually-hidden"> {tr("del gruppo senior", "der Seniorengruppe", "of the seniors group")}</span></a></div>
+       "Weekly outings with experienced trip leaders, at the right pace and in good company, from the Capriasca to the Alps.",
+       "Des sorties hebdomadaires avec des chefs de course expérimentés, au bon rythme et en bonne compagnie, de la Capriasca aux Alpes.")}</p>
+<div class="links"><a class="link" href="senior.html">{tr("Gruppo senior", "Seniorengruppe", "Seniors group", "Groupe seniors")}</a><a class="link" href="organizzazione.html#senior">{tr("Organizzazione", "Organisation", "Organisation", "Organisation")}<span class="visually-hidden"> {tr("del gruppo senior", "der Seniorengruppe", "of the seniors group", "du groupe seniors")}</span></a></div>
 </div>
 </article>
 <article class="tile tile--bottom-2" id="corsi" data-reveal>
 {img("corsi/alpinismo-4x5", corso_alt, 594, 742)}
 <div class="tile-body">
-<h3 class="h2">{tr("Corsi", "Kurse", "Courses")}</h3>
+<h3 class="h2">{tr("Corsi", "Kurse", "Courses", "Cours")}</h3>
 <p>{tr("Alpinismo, sci alpinismo, arrampicata, freeride e racchette: per imparare a muoversi in montagna in sicurezza.",
        "Hochtouren, Skitouren, Klettern, Freeride und Schneeschuhtouren: um zu lernen, sich sicher in den Bergen zu bewegen.",
-       "Mountaineering, ski touring, climbing, freeride and snowshoeing: to learn to move safely in the mountains.")}</p>
-<div class="links"><a class="link" href="corsi.html">{tr("Tutti i corsi", "Alle Kurse", "All courses")}</a><a class="link" href="partecipare.html">{tr("Partecipare alle gite", "An Touren teilnehmen", "Taking part in trips")}</a></div>
+       "Mountaineering, ski touring, climbing, freeride and snowshoeing: to learn to move safely in the mountains.",
+       "Alpinisme, ski de randonnée, escalade, freeride et raquettes : pour apprendre à se déplacer en montagne en sécurité.")}</p>
+<div class="links"><a class="link" href="corsi.html">{tr("Tutti i corsi", "Alle Kurse", "All courses", "Tous les cours")}</a><a class="link" href="partecipare.html">{tr("Partecipare alle gite", "An Touren teilnehmen", "Taking part in trips", "Participer aux courses")}</a></div>
 </div>
 </article>
 </div>
 {f"""<div class="prossime" data-reveal>
 <div class="section-row">
-<h3 class="h3">{tr("Prossime gite", "Nächste Touren", "Upcoming trips")}</h3>
-<a class="link" href="{GITE}">{tr("Tutto il programma", "Ganzes Programm", "Full programme")}</a>
+<h3 class="h3">{tr("Prossime gite", "Nächste Touren", "Upcoming trips", "Prochaines courses")}</h3>
+<a class="link" href="{GITE}">{tr("Tutto il programma", "Ganzes Programm", "Full programme", "Tout le programme")}</a>
 </div>
 <div class="scorri scorri--gite">
 <div class="scorri-traccia">
@@ -168,8 +172,9 @@ def home():
 <div class="callout callout--accent">
 <p>{tr("<strong>Cerchiamo «api operaie».</strong> I volontari aiutano i guardiani ad aprire, chiudere e mantenere le capanne, e passano qualche bella serata in quota.",
        "<strong>Wir suchen «fleissige Bienen».</strong> Freiwillige helfen den Hüttenwarten beim Öffnen, Schliessen und Unterhalten der Hütten und verbringen schöne Abende in der Höhe.",
-       "<strong>We are looking for «busy bees».</strong> Volunteers help the hut keepers open, close and maintain the huts, and spend some fine evenings up high.")}</p>
-<a class="btn btn--light" href="volontariato.html">{tr("Voglio aiutare", "Ich helfe mit", "I want to help")} <span class="arrow" aria-hidden="true">→</span></a>
+       "<strong>We are looking for «busy bees».</strong> Volunteers help the hut keepers open, close and maintain the huts, and spend some fine evenings up high.",
+       "<strong>Nous cherchons des « abeilles ouvrières ».</strong> Les bénévoles aident les gardiens à ouvrir, fermer et entretenir les cabanes, et passent de belles soirées en altitude.")}</p>
+<a class="btn btn--light" href="volontariato.html">{tr("Voglio aiutare", "Ich helfe mit", "I want to help", "Je veux aider")} <span class="arrow" aria-hidden="true">→</span></a>
 </div>
 </div>
 </section>
@@ -180,20 +185,22 @@ def home():
 <h2 id="servizi-h" class="h2">{SERVIZI_MENU()}</h2>
 <p class="lead">{tr("Materiale a noleggio per le tue uscite e un mercatino dell’attrezzatura tra soci.",
                     "Material zur Miete für Ihre Touren und ein Marktplatz für Ausrüstung unter Mitgliedern.",
-                    "Equipment for hire for your outings and a gear market between members.")}</p>
+                    "Equipment for hire for your outings and a gear market between members.",
+                    "Du matériel en location pour vos sorties et des petites annonces de matériel entre membres.")}</p>
 </div>
 <div class="pillars pillars--servizi" data-reveal>
 <article class="pillar pillar--dark pillar--wide">
-<h3>{tr("Noleggio materiale", "Materialvermietung", "Equipment hire")}</h3>
+<h3>{tr("Noleggio materiale", "Materialvermietung", "Equipment hire", "Location de matériel")}</h3>
 <p>{tr("Ramponi, piccozze, imbragature, set ARVA con sonda e pala e molto altro, a pochi franchi al giorno: per le gite della sezione e per le uscite private.",
        "Steigeisen, Pickel, Klettergurte, LVS-Sets mit Sonde und Schaufel und vieles mehr, für wenige Franken pro Tag: für die Touren der Sektion und für private Unternehmungen.",
-       "Crampons, ice axes, harnesses, transceiver sets with probe and shovel and much more, for a few francs a day: for section trips and private outings.")}</p>
-<a class="link" href="noleggio.html">{tr("Richiedi il materiale", "Material anfragen", "Request equipment")}</a>
+       "Crampons, ice axes, harnesses, transceiver sets with probe and shovel and much more, for a few francs a day: for section trips and private outings.",
+       "Crampons, piolets, baudriers, sets DVA avec sonde et pelle et bien plus, pour quelques francs par jour : pour les courses de la section et les sorties privées.")}</p>
+<a class="link" href="noleggio.html">{tr("Richiedi il materiale", "Material anfragen", "Request equipment", "Demander du matériel")}</a>
 </article>
 <article class="pillar pillar--accent">
-<h3>{tr("Mercatino", "Marktplatz", "Gear market")}</h3>
-<p>{tr("Attrezzatura di montagna tra privati: vendo, cerco, regalo.", "Bergausrüstung unter Privaten: verkaufen, suchen, verschenken.", "Mountain gear between private people: for sale, wanted, free.")}{mercatino_conta}</p>
-<a class="link" href="mercatino.html">{tr("Vedi gli annunci", "Zu den Inseraten", "See the listings")}</a>
+<h3>{tr("Mercatino", "Marktplatz", "Gear market", "Petites annonces")}</h3>
+<p>{tr("Attrezzatura di montagna tra privati: vendo, cerco, regalo.", "Bergausrüstung unter Privaten: verkaufen, suchen, verschenken.", "Mountain gear between private people: for sale, wanted, free.", "Matériel de montagne entre particuliers : à vendre, recherché, à donner.")}{mercatino_conta}</p>
+<a class="link" href="mercatino.html">{tr("Vedi gli annunci", "Zu den Inseraten", "See the listings", "Voir les annonces")}</a>
 </article>
 </div>
 </div>
@@ -203,7 +210,7 @@ def home():
 <div class="container">
 <div class="section-row">
 <h2 id="news-h" class="h2">News</h2>
-<a class="link" href="news.html">{tr("Tutte le news", "Alle News", "All news")}</a>
+<a class="link" href="news.html">{tr("Tutte le news", "Alle News", "All news", "Toutes les news")}</a>
 </div>
 <div class="scorri scorri--news" data-reveal>
 <div class="scorri-traccia">
@@ -220,11 +227,11 @@ def home():
     return pubblica(nome, html)
 
 
-# ------------------------------------------------------------------ versioni tradotte (de/, en/)
+# ------------------------------------------------------------------ versioni tradotte (de/, fr/, en/)
 # Solo La Sezione, le capanne e Adesione sono tradotte; news, attività, media e PDF restano in italiano.
-# I testi sono scritti con i percorsi dalla radice del sito; i link alle pagine tradotte passano da L() (de/…, en/…).
+# I testi sono scritti con i percorsi dalla radice del sito; i link alle pagine tradotte passano da L() (de/…, fr/…, en/…).
 # Home, Introduzione, Sede e Adesione hanno un testo proprio per lingua in TRADOTTE; le altre pagine della sezione
-# usano le stesse funzioni dell'italiano (comitato(), storia()…), con tr() e i dizionari *_DE / *_EN.
+# usano le stesse funzioni dell'italiano (comitato(), storia()…), con tr() e i dizionari *_DE / *_FR / *_EN.
 
 TRADOTTE = {
     "de": dict(
@@ -263,6 +270,41 @@ TRADOTTE = {
         statuto="Statuten", visione="Vision und Strategie", organigramma="Organigramm",
         intro_title="Die Sektion | CAS Ticino",
         intro_desc="Die Sektion Ticino des Schweizer Alpen-Clubs: 1886 gegründet, fast 3000 Mitglieder, sechs Hütten, Kurse, Touren und Aktivitäten für jedes Alter.",
+    ),
+    "fr": dict(
+        home_title="CAS Ticino | Club Alpin Suisse, Section Ticino",
+        home_desc="Six cabanes du Passo Cristallina aux Denti della Vecchia, des cours donnés par des professionnels et un programme de courses pour tous les âges. Depuis plus d’un siècle, la maison de l’alpinisme tessinois.",
+        hero_h="En montagne<br>avec <span class=\"accent\">nous</span>.",
+        hero_lead="Six cabanes du Passo Cristallina aux Denti della Vecchia, des cours donnés par des professionnels et un programme de courses pour tous les âges.",
+        diventa="Devenir membre",
+        cifre="La section en chiffres",
+        sezione="La Section",
+        capanne_h="Six cabanes, un seul Tessin",
+        capanne_lead="Toujours ouvertes, gardiennées quand les gardiens sont présents. Avant de partir, contactez le gardien pour vérifier sa présence et les conditions en montagne.",
+        accesso="Accès depuis",
+        cta_h="Montez avec nous.",
+        cta_p="Des tarifs réduits dans les cabanes du CAS de toute la Suisse, des cours, des courses et une communauté qui aime la montagne autant que vous.",
+        intro_crumb="Qui sommes-nous", intro_h="La section",
+        intro_lead="Fondée à Bellinzona le 11 avril 1886, la Section Ticino du Club Alpin Suisse compte près de 3000 membres et propose un programme varié pour tous les âges : des plus jeunes aux seniors.",
+        intro_alt="Un groupe d’alpinistes en marche sur un glacier",
+        stat_intro=["fondée à Bellinzona le 11 avril", "membres, des plus jeunes aux seniors", "cabanes appartenant à la section", "départements aux côtés du comité"],
+        cosa_h="En montagne,<br>en toute saison",
+        alt_cresta="Randonneurs à skis montant vers un village enneigé",
+        discipline_h="Disciplines", discipline_p="Randonnée, alpinisme, escalade, ski de randonnée, raquettes et cascade de glace.",
+        inizia_h="Pour débuter", inizia_p="Des cours d’initiation à l’alpinisme, au ski de randonnée, aux raquettes et à l’escalade en extérieur.",
+        vedi_corsi="Voir les cours",
+        alt_montebar="La Capanna Monte Bar",
+        capanne_h3="Cabanes", capanne_p="La section possède six cabanes : {huts}.", e="et",
+        oltre_h="Plus que du sport", oltre_p="Elle coordonne le secours en montagne dans le Sottoceneri, s’engage pour la protection de l’environnement alpin et promeut la culture de la montagne.",
+        come_h="Comment ça marche",
+        come_p="Un <a href=\"fr/comitato.html\">comité</a> coordonne les différentes activités, avec l’appui de cinq <a href=\"fr/organizzazione.html\">départements</a> et le bénévolat des membres.",
+        alt_racchette="Arête enneigée au-dessus d’une mer de brouillard",
+        com_h="Communication", com_p="Programme des courses, site web, un bulletin semestriel et l’annuaire qui raconte la vie de la section (en italien).",
+        doc_h="Statuts, vision et stratégie, organigramme",
+        doc_p="Les documents de référence de la section, en PDF en italien. Vous en trouverez d’autres sur la page <a href=\"documenti.html\">Documents</a>.",
+        statuto="Statuts", visione="Vision et stratégie", organigramma="Organigramme",
+        intro_title="La section | CAS Ticino",
+        intro_desc="La Section Ticino du Club Alpin Suisse : fondée en 1886, près de 3000 membres, six cabanes, des cours, des courses et des activités pour tous les âges.",
     ),
     "en": dict(
         home_title="CAS Ticino | Swiss Alpine Club, Ticino Section",

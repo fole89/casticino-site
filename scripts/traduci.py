@@ -1,4 +1,4 @@
-"""Traduce in tedesco e inglese, con DeepL, i testi che la redazione scrive in italiano: l'avviso in cima al sito
+"""Traduce in tedesco, francese e inglese, con DeepL, i testi che la redazione scrive in italiano: l'avviso in cima al sito
 (data/avviso.json), gli avvisi delle capanne (data/avvisi-capanne/*.json) e il testo dei guardiani
 (data/testi/capanne/*.json, campo «guardiani», Markdown).
 
@@ -30,14 +30,14 @@ import urllib.error
 import urllib.request
 
 RADICE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LINGUE = {"de": "DE", "en": "EN-GB"}
+LINGUE = {"de": "DE", "fr": "FR", "en": "EN-GB"}
 
 # file → campi italiani da tradurre
 FILE = [(os.path.join(RADICE, "data", "avviso.json"), ["testo"])]
 FILE += [(f, ["testo"]) for f in sorted(glob.glob(os.path.join(RADICE, "data", "avvisi-capanne", "*.json")))]
 FILE += [(f, ["guardiani"]) for f in sorted(glob.glob(os.path.join(RADICE, "data", "testi", "capanne", "*.json")))]
 
-# nomi propri che DeepL non deve tradurre («Capanna Campo Tencia» resta così anche in tedesco e inglese, come nel sito)
+# nomi propri che DeepL non deve tradurre («Capanna Campo Tencia» resta così anche in tedesco, francese e inglese, come nel sito)
 NOMI = re.compile(r"\b(?:Capanna|Capanne|Baita)(?:\s+(?:del|della|dei|di|d’|d')?\s*[A-ZÀ-Ý][\w’'-]*)+")
 
 

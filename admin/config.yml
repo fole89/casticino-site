@@ -165,6 +165,11 @@ collections:
             widget: string
             required: false
             hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo."
+          - label: Testo in francese
+            name: testo_fr
+            widget: string
+            required: false
+            hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo."
           - label: Testo in inglese
             name: testo_en
             widget: string
@@ -216,6 +221,11 @@ collections:
             hint: "Breve, senza link nel testo; si può andare a capo (es. «Aperta dal 13 giugno al 18 ottobre 2027»). Con «Pubblica» l’avviso va online."
           - label: Testo in tedesco
             name: testo_de
+            widget: text
+            required: false
+            hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo."
+          - label: Testo in francese
+            name: testo_fr
             widget: text
             required: false
             hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo."
@@ -357,7 +367,7 @@ collections:
   - name: testi
     label: "Testi del sito"
     label_singular: "testo"
-    description: "Il testo dei guardiani di ogni capanna. Cambia quello che serve e premi «Pubblica»: la pagina è aggiornata in uno o due minuti, anche nella ricerca. Basta scrivere in italiano: tedesco e inglese si traducono da soli alla pubblicazione."
+    description: "Il testo dei guardiani di ogni capanna. Cambia quello che serve e premi «Pubblica»: la pagina è aggiornata in uno o due minuti, anche nella ricerca. Basta scrivere in italiano: tedesco, francese e inglese si traducono da soli alla pubblicazione."
     files:
       - label: "Capanna Campo Tencia: i guardiani"
         name: capanna_campotencia
@@ -365,11 +375,13 @@ collections:
         fields:
           - {label: "I guardiani", name: "guardiani", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Il testo accanto alla foto dei guardiani.", required: true}
           - {label: "I guardiani in tedesco", name: "guardiani_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
+          - {label: "I guardiani in francese", name: "guardiani_fr", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
           - {label: "I guardiani in inglese", name: "guardiani_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
           - {label: "tariffe", name: "tariffe", widget: "hidden"}
           - {label: "prenotare", name: "prenotare", widget: "hidden"}
           - {label: "prenotare_de", name: "prenotare_de", widget: "hidden"}
           - {label: "prenotare_en", name: "prenotare_en", widget: "hidden"}
+          - {label: "prenotare_fr", name: "prenotare_fr", widget: "hidden"}
           - {label: "traduzioni", name: "traduzioni", widget: "hidden"}
       - label: "Capanna Cristallina: i guardiani"
         name: capanna_cristallina
@@ -377,12 +389,14 @@ collections:
         fields:
           - {label: "I guardiani", name: "guardiani", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Il testo accanto alla foto dei guardiani.", required: true}
           - {label: "I guardiani in tedesco", name: "guardiani_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
+          - {label: "I guardiani in francese", name: "guardiani_fr", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
           - {label: "I guardiani in inglese", name: "guardiani_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
           - {label: "persone", name: "persone", widget: "hidden"}
           - {label: "tariffe", name: "tariffe", widget: "hidden"}
           - {label: "prenotare", name: "prenotare", widget: "hidden"}
           - {label: "prenotare_de", name: "prenotare_de", widget: "hidden"}
           - {label: "prenotare_en", name: "prenotare_en", widget: "hidden"}
+          - {label: "prenotare_fr", name: "prenotare_fr", widget: "hidden"}
           - {label: "traduzioni", name: "traduzioni", widget: "hidden"}
       - label: "Capanna Adula: i guardiani"
         name: capanna_adula
@@ -390,12 +404,14 @@ collections:
         fields:
           - {label: "I guardiani", name: "guardiani", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Il testo accanto alla foto dei guardiani.", required: true}
           - {label: "I guardiani in tedesco", name: "guardiani_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
+          - {label: "I guardiani in francese", name: "guardiani_fr", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
           - {label: "I guardiani in inglese", name: "guardiani_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
           - {label: "persone", name: "persone", widget: "hidden"}
           - {label: "tariffe", name: "tariffe", widget: "hidden"}
           - {label: "prenotare", name: "prenotare", widget: "hidden"}
           - {label: "prenotare_de", name: "prenotare_de", widget: "hidden"}
           - {label: "prenotare_en", name: "prenotare_en", widget: "hidden"}
+          - {label: "prenotare_fr", name: "prenotare_fr", widget: "hidden"}
           - {label: "traduzioni", name: "traduzioni", widget: "hidden"}
       - label: "Capanna Motterascio: i guardiani"
         name: capanna_motterascio
@@ -403,11 +419,13 @@ collections:
         fields:
           - {label: "I guardiani", name: "guardiani", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Il testo accanto alla foto dei guardiani.", required: true}
           - {label: "I guardiani in tedesco", name: "guardiani_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
+          - {label: "I guardiani in francese", name: "guardiani_fr", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
           - {label: "I guardiani in inglese", name: "guardiani_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
           - {label: "tariffe", name: "tariffe", widget: "hidden"}
           - {label: "prenotare", name: "prenotare", widget: "hidden"}
           - {label: "prenotare_de", name: "prenotare_de", widget: "hidden"}
           - {label: "prenotare_en", name: "prenotare_en", widget: "hidden"}
+          - {label: "prenotare_fr", name: "prenotare_fr", widget: "hidden"}
           - {label: "traduzioni", name: "traduzioni", widget: "hidden"}
       - label: "Capanna Monte Bar: i guardiani"
         name: capanna_montebar
@@ -415,9 +433,11 @@ collections:
         fields:
           - {label: "I guardiani", name: "guardiani", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Il testo accanto alla foto dei guardiani.", required: true}
           - {label: "I guardiani in tedesco", name: "guardiani_de", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
+          - {label: "I guardiani in francese", name: "guardiani_fr", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
           - {label: "I guardiani in inglese", name: "guardiani_en", widget: "markdown", modes: ["rich_text"], buttons: ["bold","italic","link","bulleted-list","numbered-list"], editor_components: [], hint: "Facoltativo: se resta vuoto si traduce da solo dall’italiano alla pubblicazione (e si aggiorna quando cambi l’italiano). Se correggi la traduzione a mano, la tua versione resta; per tornare alla traduzione automatica svuota il campo.", required: false}
           - {label: "tariffe", name: "tariffe", widget: "hidden"}
           - {label: "prenotare", name: "prenotare", widget: "hidden"}
           - {label: "prenotare_de", name: "prenotare_de", widget: "hidden"}
           - {label: "prenotare_en", name: "prenotare_en", widget: "hidden"}
+          - {label: "prenotare_fr", name: "prenotare_fr", widget: "hidden"}
           - {label: "traduzioni", name: "traduzioni", widget: "hidden"}

@@ -171,13 +171,13 @@ dl,dd{margin:0}
 .nav-search:hover,.nav-search[aria-current="page"]{color:var(--accent)}
 .menu-toggle{display:none;width:48px;height:48px;align-items:center;justify-content:center;background:transparent;border:1.5px solid var(--line-strong);color:var(--ink);cursor:pointer}
 .menu-toggle:active{transform:scale(.96)}
-@media (max-width:1280px){ /* sotto questa larghezza il menu completo non entra più in una riga */
+@media (max-width:1310px){ /* sotto questa larghezza il menu completo non entra più in una riga (inglese: 1295px con la barra di scorrimento) */
   .nav-links.hide-sm{display:none}
   .menu-toggle{display:inline-flex}
 }
-@media (max-width:1360px){ /* in tedesco le voci sono più lunghe */
-  html[lang="de"] .nav-links.hide-sm{display:none}
-  html[lang="de"] .menu-toggle{display:inline-flex}
+@media (max-width:1400px){ /* in tedesco e in francese le voci sono più lunghe (servono circa 1385 e 1345px) */
+  html[lang="de"] .nav-links.hide-sm,html[lang="fr"] .nav-links.hide-sm{display:none}
+  html[lang="de"] .menu-toggle,html[lang="fr"] .menu-toggle{display:inline-flex}
 }
 @media (max-width:560px){
   .nav-end .btn{display:none}
@@ -188,8 +188,8 @@ dl,dd{margin:0}
 @media (max-width:480px){
   .actions .btn{max-width:100%;white-space:normal;text-align:center;line-height:1.25;padding-block:10px}
 }
-/* sotto i 480px le lingue non stanno nella barra: le mostra il menu mobile (site.js) */
-@media (max-width:480px){
+/* sotto i 700px le lingue (tre) non stanno nella barra accanto al pulsante del programma: le mostra il menu mobile (site.js) */
+@media (max-width:700px){
   .js .nav-langs{display:none}
 }
 

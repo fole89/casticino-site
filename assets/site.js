@@ -589,6 +589,7 @@
   var TX = {
     it: { chiudi: 'Chiudi', prec: 'Foto precedente', succ: 'Foto successiva', foto: 'Foto ingrandita' },
     de: { chiudi: 'Schliessen', prec: 'Vorheriges Foto', succ: 'Nächstes Foto', foto: 'Vergrössertes Foto' },
+    fr: { chiudi: 'Fermer', prec: 'Photo précédente', succ: 'Photo suivante', foto: 'Photo agrandie' },
     en: { chiudi: 'Close', prec: 'Previous photo', succ: 'Next photo', foto: 'Enlarged photo' }
   }[(document.documentElement.lang || 'it').slice(0, 2)] || null;
   if (!TX || !window.HTMLDialogElement) return;

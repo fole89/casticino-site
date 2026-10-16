@@ -6,7 +6,7 @@
 // gita.html: intestazione e stato dall'elenco, testi (percorso, ritrovo, costi…) dalla scheda Droptour (getItem),
 // ridotti a testo semplice; finché Droptour non risponde si mostra la scheda salvata in data/gite.json. L'iscrizione resta su Droptour (pulsante «Iscriviti su Droptour»).
 // Dei capigita si prende solo il nome: l'interfaccia contiene anche dati che il sito non deve mostrare.
-// Le stesse pagine esistono in de/ e en/: i testi della pagina vengono da TESTI (lingua di <html lang>), le gite
+// Le stesse pagine esistono in de/, fr/ e en/: i testi della pagina vengono da TESTI (lingua di <html lang>), le gite
 // (titoli, tipi, dettagli della scheda Droptour) restano in italiano. Testi allineati con gita_html() in pages.py.
 (function () {
   var box = document.getElementById('gite');
@@ -57,6 +57,27 @@
       iscriviti: 'Auf Droptour anmelden', apri: 'Auf Droptour öffnen', programma: 'Tourenprogramm', cerca: 'Auf Droptour suchen',
       nonTrovata: 'Tour nicht gefunden', nonTrovataTesto: 'Die Tour ist nicht (mehr) im Programm: Vielleicht ist sie schon vorbei, oder der Link stimmt nicht.'
     },
+    fr: {
+      giorni: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
+      giorniLunghi: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
+      mesi: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+      mesiBrevi: ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'],
+      impegno: { A: 'peu exigeant', B: 'assez exigeant', C: 'exigeant', D: 'très exigeant' },
+      gruppi: { Tutti: 'Tous', Attivi: 'Membres actifs', Giovani: 'Jeunesse', Seniori: 'Seniors', Soccorso: 'Secours en montagne', Monitori: 'Moniteurs' },
+      breve: function (g, m) { return g + ' ' + m; },
+      lungo: function (gs, g, m, a) { return gs + ' ' + (g === 1 ? '1er' : g) + ' ' + m + ' ' + a; },
+      fino: function (g, m) { return 'jusqu’au ' + g + ' ' + m; },
+      annullata: 'Annulée', completa: 'Complète', senza: 'Sans inscription en ligne', dal: 'Inscriptions dès le ',
+      chiuse: 'Inscriptions fermées', aperte: 'Inscriptions ouvertes', impegnoT: 'Condition', difficolta: 'Difficulté',
+      capogita: 'Chef de course', capigita: 'Chefs de course', iscritti: ' inscrits', iscrizione: 'Inscription',
+      dettagli: 'Détails', dettagliIscr: 'Détails et inscription', tuttiGruppi: 'Tous les groupes', tuttiTipi: 'Tous les types',
+      gita: ' course', gite: ' courses', titolo: ' | Programme des courses | CAS Ticino', perTutti: 'Pour tous', data: 'Date',
+      iscrittiT: 'Inscrits', onlineDal: 'En ligne', dalT: ' du ', alT: ' au ', soloDalT: ' dès le ', soloAlT: ' jusqu’au ', laGita: 'La course (en italien)',
+      caricamento: 'Chargement des détails depuis Droptour…',
+      nonDisp: 'Les détails de la course ne sont pas disponibles pour le moment : vous les trouverez sur Droptour.',
+      iscriviti: 'S’inscrire sur Droptour', apri: 'Ouvrir sur Droptour', programma: 'Programme des courses', cerca: 'Chercher sur Droptour',
+      nonTrovata: 'Course introuvable', nonTrovataTesto: 'La course n’est pas (ou plus) au programme : elle est peut-être déjà passée, ou le lien n’est pas correct.'
+    },
     en: {
       giorni: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       giorniLunghi: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -86,6 +107,8 @@
   var TIPI = {
     de: { ALP: 'Hochtour', ARR: 'Klettern', COR: 'Ausbildungskurs', CUL: 'Kultur', ESC: 'Wandern', EVE: 'Anlass', FER: 'Klettersteig',
           MTB: 'Mountainbike', RAC: 'Schneeschuhtour', SA: 'Skitour', SOC: 'Bergrettung' },
+    fr: { ALP: 'Alpinisme', ARR: 'Escalade', COR: 'Cours de formation', CUL: 'Culture', ESC: 'Randonnée', EVE: 'Événement', FER: 'Via ferrata',
+          MTB: 'VTT', RAC: 'Raquettes', SA: 'Ski de randonnée', SOC: 'Secours en montagne' },
     en: { ALP: 'Mountaineering', ARR: 'Climbing', COR: 'Training course', CUL: 'Culture', ESC: 'Hiking', EVE: 'Event', FER: 'Via ferrata',
           MTB: 'Mountain biking', RAC: 'Snowshoeing', SA: 'Ski touring', SOC: 'Mountain rescue' }
   }[LINGUA] || {};

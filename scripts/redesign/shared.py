@@ -47,7 +47,7 @@ MENU = [
     ("Adesione", "adesione.html", None),
 ]
 
-# Versioni tedesca (de/) e inglese (en/): stesse pagine e stessi nomi di file dell'italiano, stessa struttura del menu.
+# Versioni tedesca (de/), francese (fr/) e inglese (en/): stesse pagine e stessi nomi di file dell'italiano, stessa struttura del menu.
 MENU_DE = [
     ("Die Sektion", "de/introduzione.html", [
         ("Über uns", "de/introduzione.html"), ("Geschichte", "de/storia.html"), ("Vorstand", "de/comitato.html"),
@@ -65,6 +65,25 @@ MENU_DE = [
         ("News", "de/news.html"), ("Fotos und Berichte", "de/foto.html"), ("Jahrbücher", "de/annuari.html"),
         ("Informazione", "de/informazione.html")]),
     ("Mitgliedschaft", "de/adesione.html", None),
+]
+
+MENU_FR = [
+    ("La Section", "fr/introduzione.html", [
+        ("Qui sommes-nous", "fr/introduzione.html"), ("Histoire", "fr/storia.html"), ("Comité", "fr/comitato.html"),
+        ("Organisation", "fr/organizzazione.html"), ("Chefs de course", "fr/capigita.html"), ("Secours en montagne", "fr/soccorso.html"),
+        ("S’engager", "fr/volontariato.html"), ("Siège et contacts", "fr/sede.html")]),
+    ("Activités", "fr/index.html#attivita", [
+        ("Participer", "fr/partecipare.html"), ("Cours", "fr/corsi.html"), ("Jeunesse", "fr/giovani.html"), ("Seniors", "fr/senior.html")]),
+    ("Cabanes", "fr/index.html#capanne", [
+        ("Campo Tencia", "fr/campotencia.html"), ("Cristallina", "fr/cristallina.html"), ("Adula", "fr/adula.html"),
+        ("Motterascio", "fr/motterascio.html"), ("Monte Bar", "fr/montebar.html"), ("Baita del Luca", "fr/baitadelluca.html")]),
+    ("Services", "fr/index.html#servizi", [
+        ("Location", "fr/noleggio.html"), ("Petites annonces", "fr/mercatino.html"), ("Documents", "fr/documenti.html"),
+        ("Liens utiles", "fr/link.html")]),
+    ("News et médias", "fr/news.html", [
+        ("News", "fr/news.html"), ("Photos et récits", "fr/foto.html"), ("Annuaires", "fr/annuari.html"),
+        ("Informazione", "fr/informazione.html")]),
+    ("Adhésion", "fr/adesione.html", None),
 ]
 
 MENU_EN = [
@@ -86,10 +105,12 @@ MENU_EN = [
     ("Membership", "en/adesione.html", None),
 ]
 
-LINGUE = ("it", "de", "en")  # l'italiano è la lingua principale; de e en hanno tutte le pagine tranne la ricerca
+LINGUE = ("it", "de", "fr", "en")  # l'italiano è la lingua principale; le altre hanno tutte le pagine tranne la ricerca.
+# L'ordine è quello del selettore delle lingue in alto (tedesco, francese, inglese).
+TRADUZIONI = LINGUE[1:]
 LINGUA = {"lang": "it"}      # lingua della pagina che si sta generando
-PAGINE_LINGUA = {"de": set(), "en": set()}  # pagine (percorso italiano dalla radice) tradotte in ogni lingua; le riempie pages.py
-NOMI_LINGUE = {"it": "Italiano", "de": "Deutsch", "en": "English"}
+PAGINE_LINGUA = {l: set() for l in TRADUZIONI}  # pagine (percorso italiano dalla radice) tradotte in ogni lingua; le riempie pages.py
+NOMI_LINGUE = {"it": "Italiano", "de": "Deutsch", "fr": "Français", "en": "English"}
 
 # testi fissi dell'interfaccia (quelli delle capanne sono in capanne_de.py)
 T = {
@@ -117,6 +138,18 @@ T = {
                notifiche_bloccate="Mitteilungen sind blockiert: Erlauben Sie sie in den Browser-Einstellungen.",
                notifiche_ios="Auf dem iPhone kommen Mitteilungen nur mit installierter App an (siehe oben).",
                notifiche_errore="Das Einschalten hat nicht geklappt. Versuchen Sie es später nochmals."),
+    "fr": dict(skip="Aller au contenu", nav="Navigation principale", menu_apri="Ouvrir le menu", menu_chiudi="Fermer le menu", menu="Menu",
+               logo_sotto="Club Alpin Suisse", cerca="Recherche (en italien)", gite="Programme des courses",
+               lingua="Français", percorso="Fil d’Ariane", seguici="Suivez-nous", sostegno="Avec le soutien de",
+               sezione="Club Alpin Suisse CAS, Section Ticino", su_instagram="CAS Ticino sur Instagram", su_facebook="CAS Ticino sur Facebook",
+               redazione="Rédaction", privacy="Protection des données", locale="fr_CH", adesione="Adhésion",
+               avviso="Avis", avviso_chiudi="Fermer l’avis", avviso_link="En savoir plus",
+               app="L’app sur votre téléphone", app_installa="Installer l’app", app_ios="Sur iPhone : touchez Partager, puis « Sur l’écran d’accueil ».",
+               notifiche="Notifications", notifiche_p="Les nouvelles importantes de la section (en italien)",
+               notifiche_attiva="Recevoir les notifications", notifiche_disattiva="Désactiver les notifications", notifiche_attive="Notifications activées sur cet appareil",
+               notifiche_bloccate="Les notifications sont bloquées : autorisez-les dans les réglages du navigateur.",
+               notifiche_ios="Sur iPhone, les notifications n’arrivent qu’avec l’app installée (voir ci-dessus).",
+               notifiche_errore="Impossible de les activer. Réessayez plus tard."),
     "en": dict(skip="Skip to content", nav="Main", menu_apri="Open menu", menu_chiudi="Close menu", menu="Menu",
                logo_sotto="Swiss Alpine Club", cerca="Search (in Italian)", gite="Trip programme",
                lingua="English", percorso="Breadcrumb", seguici="Follow us", sostegno="With the support of",
@@ -136,13 +169,17 @@ def de():
     return LINGUA["lang"] == "de"
 
 
+def fr():
+    return LINGUA["lang"] == "fr"
+
+
 def en():
     return LINGUA["lang"] == "en"
 
 
-def tr(it, de_, en_):
-    """Lo stesso testo nelle tre lingue: restituisce quello della lingua corrente."""
-    return {"it": it, "de": de_, "en": en_}[LINGUA["lang"]]
+def tr(it, de_, en_, fr_):
+    """Lo stesso testo nelle quattro lingue (italiano, tedesco, inglese, francese): restituisce quello della lingua corrente."""
+    return {"it": it, "de": de_, "en": en_, "fr": fr_}[LINGUA["lang"]]
 
 
 def t(chiave):
@@ -150,7 +187,7 @@ def t(chiave):
 
 
 def menu():
-    return {"it": MENU, "de": MENU_DE, "en": MENU_EN}[LINGUA["lang"]]
+    return {"it": MENU, "de": MENU_DE, "fr": MENU_FR, "en": MENU_EN}[LINGUA["lang"]]
 
 
 def L(href):
@@ -161,16 +198,21 @@ def L(href):
     return href
 
 
+def senza_lingua(pagina):
+    """Percorso italiano di una pagina tradotta (de/x.html → x.html)."""
+    return pagina[3:] if pagina[:3] in tuple(f"{l}/" for l in TRADUZIONI) else pagina
+
+
 def in_lingua(pagina, lang):
     """La stessa pagina in un'altra lingua (la home di quella lingua, se la pagina non è tradotta)."""
-    base = pagina[3:] if pagina[:3] in ("de/", "en/") else pagina
+    base = senza_lingua(pagina)
     if lang == "it":
         return base
     return f"{lang}/{base}" if base in PAGINE_LINGUA[lang] else f"{lang}/index.html"
 
 
 # ------------------------------------------------------------------ avviso in cima a tutte le pagine
-# data/avviso.json, scritto dalla redazione (admin/, «Avvisi»; si vede se c'è un testo, «Elimina» lo svuota): importante (rosso), testo (+ testo_de, testo_en),
+# data/avviso.json, scritto dalla redazione (admin/, «Avvisi»; si vede se c'è un testo, «Elimina» lo svuota): importante (rosso), testo (+ testo_de, testo_fr, testo_en),
 # link, scadenza (ultimo giorno in cui si vede). Chi lo chiude non lo rivede finché il testo non cambia: il browser
 # ricorda solo l'impronta dell'avviso chiuso (localStorage «avviso», vedi la privacy). Dopo la scadenza lo nasconde
 # lo script in head(), anche se la pagina non è ancora stata rigenerata.
@@ -415,7 +457,7 @@ def subnav(group, current_page):
             links = "\n".join(f'<a href="{h}"{cur if h == current_page else ""}>{l}</a>'
                               for l, h in sub if h.endswith(".html"))
             # nome diverso dal titolo della pagina (es. Chi siamo = «La sezione»): due regioni con lo stesso nome confondono
-            return f"""<section class="section" aria-label="{group} – {tr('tutte le pagine', 'alle Seiten', 'all pages')}">
+            return f"""<section class="section" aria-label="{group} – {tr('tutte le pagine', 'alle Seiten', 'all pages', 'toutes les pages')}">
 <div class="container subnav">
 <h2 class="label">{group}</h2>
 <div class="subnav-links">
