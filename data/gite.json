@@ -1,92 +1,6 @@
 {
  "gite": [
   {
-   "id": "2037",
-   "titolo": "Lago di Carì 2255 m - Valle Leventina",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2037",
-   "dal": "2026-10-15",
-   "al": "",
-   "tipo": "Escursionismo",
-   "sigla": "ESC",
-   "gruppi": [
-    "Seniori"
-   ],
-   "capigita": [
-    "Milvia Carelli"
-   ],
-   "cond": "B",
-   "tecn": "T2",
-   "descrizione": "Da Carì al laghetto e ritorno.",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-10-13",
-   "modalita": "",
-   "iscritti": 9,
-   "posti": 20,
-   "stato": "",
-   "scheda": [
-    [
-     "Esigenze",
-     "Cond. B (abbastanza impegnativo)\nTecn. T2 (Escursione di montagna)"
-    ],
-    [
-     "Tempo della gita, salita/discesa",
-     "5 h"
-    ],
-    [
-     "Carte",
-     "1252 Ambrì Piotta"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Da Carì al laghetto e ritorno."
-    ],
-    [
-     "Descrizione",
-     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/2037/Gita%2042%20Lago%20di%20Car%C3%AC.pdf\" rel=\"noopener\">Gita 42 Lago di Carì</a>"
-    ]
-   ]
-  },
-  {
-   "id": "2157",
-   "titolo": "Topografia dalla carta al digitale, serata d'istru",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2157",
-   "dal": "2026-10-15",
-   "al": "",
-   "tipo": "Corso di formazione",
-   "sigla": "COR",
-   "gruppi": [
-    "Tutti"
-   ],
-   "capigita": [
-    "David Stracquadanio"
-   ],
-   "cond": "",
-   "tecn": "LCI",
-   "descrizione": "Luogo _ Coordinate 2.712.016 1.093.279 Ore 19:45 Partecipanti con un minimo di dimestichezza con uso della carta topografica 1:25000 e dei sistemi informatici come PC - iPhone - iPad Inizieremo utilizzando la carta topografica, Azimut, dopodiché ci concentreremo con i sistemi informatici, applicazione SwissTopo. Allarme Rega ?. Piccoli consigli ? video sui soccorsi ... dopo un'eventuale richiesta d'intervento Durata al massimo fino alle 22:30 Parcheggi in zona",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "",
-   "modalita": "",
-   "iscritti": 3,
-   "posti": 20,
-   "stato": "",
-   "scheda": [
-    [
-     "Esigenze",
-     "Tecn. LCI (Livello corso I)"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Luogo _ Coordinate\n2.712.016 / 1.093.279\n\nOre 19:45\n\nPartecipanti con un minimo di dimestichezza con uso della carta topografica 1:25000 e dei sistemi informatici come PC - iPhone - iPad\n\nInizieremo utilizzando la carta topografica, Azimut, dopodiché ci concentreremo con i sistemi informatici, applicazione SwissTopo.\n\nAllarme Rega ?. Piccoli consigli ? video sui soccorsi ... dopo un&#x27;eventuale richiesta d&#x27;intervento\n\nDurata al massimo fino alle 22:30\n\nParcheggi in zona"
-    ],
-    [
-     "Equipaggiamento",
-     "PC - iPhone - iPad\n\nCarta topografica\n1:25000 - Bellinzona 1313 - Tesserete 1333 - Lugano 1353\n\nBussola , scalimetro (righetta)\nMatita, gomma"
-    ]
-   ]
-  },
-  {
    "id": "2089",
    "titolo": "Colonna di soccorso - Corso sezionale estivo",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2089",
@@ -143,7 +57,7 @@
    "iscrizione_dal": "2026-05-01",
    "iscrizione_al": "2026-10-20",
    "modalita": "",
-   "iscritti": 3,
+   "iscritti": 4,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -953,7 +867,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-12-01",
    "modalita": "",
-   "iscritti": 26,
+   "iscritti": 27,
    "posti": 30,
    "stato": "",
    "scheda": [
