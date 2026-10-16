@@ -195,13 +195,19 @@ dl,dd{margin:0}
   .nav-end{gap:4px}
   .nav-inner{gap:12px}
 }
+/* telefoni stretti (360px e meno): logo, lingua, ricerca e menu entrano in una riga solo un po' più stretti (tedesco: il sottotitolo più lungo) */
+@media (max-width:380px){
+  .site-nav .nav-inner{gap:8px;padding-inline:14px}
+  .nav-end{gap:0}
+  .site-nav .brand{gap:7px}
+  .site-nav .brand-logo{height:40px}
+  .site-nav .brand-text strong{font-size:18px}
+  .site-nav .brand-text span{font-size:10.5px}
+  .nav-langs-btn{gap:5px;padding-inline:4px}
+}
 /* telefoni stretti: i pulsanti con testo lungo vanno a capo invece di uscire dallo schermo */
 @media (max-width:480px){
   .actions .btn{max-width:100%;white-space:normal;text-align:center;line-height:1.25;padding-block:10px}
-}
-/* sotto i 700px le lingue (tre) non stanno nella barra accanto al pulsante del programma: le mostra il menu mobile (site.js) */
-@media (max-width:700px){
-  .js .nav-langs{display:none}
 }
 
 /* menu mobile (costruito da site.js) */
@@ -219,9 +225,6 @@ dl,dd{margin:0}
 .mnav-sub a{font-size:17px;padding:8px 0;text-decoration:none;color:var(--ink-2)}
 .mnav-cta{display:flex;margin-top:24px}
 .mnav-cta .btn{width:100%}
-.mnav-langs{display:flex;flex-wrap:wrap;gap:4px 24px;margin-top:20px}
-.mnav-langs a{display:inline-flex;align-items:center;min-height:44px;font-size:17px;font-weight:600;color:var(--ink-2);text-decoration:none}
-.mnav-langs a:hover{color:var(--accent)}
 
 /* ------------------------------------------------------------------ hero */
 .hero{padding-top:clamp(40px,6vw,88px)}

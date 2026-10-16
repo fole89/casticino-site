@@ -64,7 +64,7 @@
 })();
 
 // CAS Ticino - cambio di lingua: la stessa pagina nell'altra lingua tiene i parametri dell'indirizzo
-// (gita.html?id=…, gite.html?gruppo=…); prima del menu mobile, che copia questi link.
+// (gita.html?id=…, gite.html?gruppo=…).
 (function () {
   if (!location.search) return;
   Array.prototype.forEach.call(document.querySelectorAll('.nav-lang'), function (a) {
@@ -142,19 +142,6 @@
     wrap.className = 'mnav-cta';
     wrap.appendChild(cta.cloneNode(true));
     panel.appendChild(wrap);
-  }
-  // le altre lingue: sugli schermi stretti non stanno nella barra in alto, quindi compaiono qui con il nome intero
-  var langs = nav.querySelectorAll('.nav-lang');
-  if (langs.length) {
-    var lw = document.createElement('div');
-    lw.className = 'mnav-langs';
-    Array.prototype.forEach.call(langs, function (l) {
-      var c = l.cloneNode(false);
-      c.className = '';
-      c.textContent = l.getAttribute('title') || l.textContent;
-      lw.appendChild(c);
-    });
-    panel.appendChild(lw);
   }
   document.body.appendChild(panel);
 
