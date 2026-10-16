@@ -116,7 +116,7 @@ NOMI_LINGUE = {"it": "Italiano", "de": "Deutsch", "fr": "Français", "en": "Engl
 T = {
     "it": dict(skip="Vai al contenuto", nav="Principale", menu_apri="Apri menu", menu_chiudi="Chiudi menu", menu="Menu",
                logo_sotto="Club Alpino Svizzero", cerca="Cerca nel sito", gite="Programma gite",
-               lingua="Deutsch", percorso="Percorso", seguici="Seguici", sostegno="Con il sostegno di",
+               lingua="Lingua", percorso="Percorso", seguici="Seguici", sostegno="Con il sostegno di",
                sezione="Club Alpino Svizzero, Sezione Ticino", su_instagram="CAS Ticino su Instagram", su_facebook="CAS Ticino su Facebook",
                redazione="Area redazione", adesione="Adesione", privacy="Protezione dei dati", locale="it_CH",
                avviso="Avviso", avviso_chiudi="Chiudi l’avviso", avviso_link="Scopri di più",
@@ -128,7 +128,7 @@ T = {
                notifiche_errore="Non è stato possibile attivarle. Riprova più tardi."),
     "de": dict(skip="Zum Inhalt", nav="Hauptnavigation", menu_apri="Menü öffnen", menu_chiudi="Menü schliessen", menu="Menü",
                logo_sotto="Schweizer Alpen-Club", cerca="Suche (italienisch)", gite="Tourenprogramm",
-               lingua="Italiano", percorso="Pfad", seguici="Folgen Sie uns", sostegno="Mit Unterstützung von",
+               lingua="Sprache", percorso="Pfad", seguici="Folgen Sie uns", sostegno="Mit Unterstützung von",
                sezione="Schweizer Alpen-Club SAC, Sektion Ticino", su_instagram="CAS Ticino auf Instagram", su_facebook="CAS Ticino auf Facebook",
                redazione="Redaktion", privacy="Datenschutz", locale="de_CH", adesione="Mitgliedschaft",
                avviso="Hinweis", avviso_chiudi="Hinweis schliessen", avviso_link="Mehr erfahren",
@@ -140,7 +140,7 @@ T = {
                notifiche_errore="Das Einschalten hat nicht geklappt. Versuchen Sie es später nochmals."),
     "fr": dict(skip="Aller au contenu", nav="Navigation principale", menu_apri="Ouvrir le menu", menu_chiudi="Fermer le menu", menu="Menu",
                logo_sotto="Club Alpin Suisse", cerca="Recherche (en italien)", gite="Programme des courses",
-               lingua="Français", percorso="Fil d’Ariane", seguici="Suivez-nous", sostegno="Avec le soutien de",
+               lingua="Langue", percorso="Fil d’Ariane", seguici="Suivez-nous", sostegno="Avec le soutien de",
                sezione="Club Alpin Suisse CAS, Section Ticino", su_instagram="CAS Ticino sur Instagram", su_facebook="CAS Ticino sur Facebook",
                redazione="Rédaction", privacy="Protection des données", locale="fr_CH", adesione="Adhésion",
                avviso="Avis", avviso_chiudi="Fermer l’avis", avviso_link="En savoir plus",
@@ -152,7 +152,7 @@ T = {
                notifiche_errore="Impossible de les activer. Réessayez plus tard."),
     "en": dict(skip="Skip to content", nav="Main", menu_apri="Open menu", menu_chiudi="Close menu", menu="Menu",
                logo_sotto="Swiss Alpine Club", cerca="Search (in Italian)", gite="Trip programme",
-               lingua="English", percorso="Breadcrumb", seguici="Follow us", sostegno="With the support of",
+               lingua="Language", percorso="Breadcrumb", seguici="Follow us", sostegno="With the support of",
                sezione="Swiss Alpine Club SAC, Ticino Section", su_instagram="CAS Ticino on Instagram", su_facebook="CAS Ticino on Facebook",
                redazione="Editors", privacy="Privacy", locale="en_GB", adesione="Membership",
                avviso="Notice", avviso_chiudi="Close the notice", avviso_link="Find out more",
@@ -312,8 +312,11 @@ def nav(current_page, current_section=None):
                 cls = "navlink is-current" if label == current_section else "navlink"
                 items.append(f'<a class="{cls}" href="{href}">{label}</a>')
     links = "\n".join(items)
-    lingue = "\n".join(f'<a class="nav-lang" href="{in_lingua(current_page, l)}" hreflang="{l}" lang="{l}" title="{NOMI_LINGUE[l]}">{l.upper()}</a>'
+    # selettore di lingua: tendina con la lingua corrente (<details>, funziona anche senza JS); le altre con il nome intero
+    lingue = "\n".join(f'<a class="nav-lang" href="{in_lingua(current_page, l)}" hreflang="{l}" lang="{l}" title="{NOMI_LINGUE[l]}">'
+                       f'<span class="nav-lang-code" aria-hidden="true">{l.upper()}</span>{NOMI_LINGUE[l]}</a>'
                        for l in LINGUE if l != LINGUA["lang"])
+    corrente = LINGUA["lang"]
     return f"""<a class="skip-link" href="#contenuto">{t('skip')}</a>
 {avviso_html()}<header class="site-nav">
 <nav aria-label="{t('nav')}" class="container nav-inner">
@@ -325,9 +328,12 @@ def nav(current_page, current_section=None):
 {links}
 </div>
 <div class="nav-end">
-<div class="nav-langs">
+<details class="nav-langs">
+<summary class="nav-langs-btn" aria-label="{t('lingua')}: {NOMI_LINGUE[corrente]}" title="{t('lingua')}">{corrente.upper()} {CARET}</summary>
+<div class="nav-langs-menu">
 {lingue}
 </div>
+</details>
 <a class="nav-search" href="cerca.html" aria-label="{t('cerca')}" title="{t('cerca')}"{' aria-current="page"' if current_page == "cerca.html" else ""}><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="m13 13 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a>
 <a class="btn btn--primary" href="{L(GITE)}"{' aria-current="page"' if current_page == L(GITE) else ""}>{t('gite')}</a>
 <button class="menu-toggle" type="button" aria-label="{t('menu_apri')}" data-chiudi="{t('menu_chiudi')}" data-titolo="{t('menu')}"><span class="burger" aria-hidden="true"></span></button>

@@ -72,6 +72,16 @@
   });
 })();
 
+// CAS Ticino - tendina delle lingue: si chiude cliccando fuori o con Esc (il resto lo fa <details>)
+(function () {
+  var d = document.querySelector('.nav-langs');
+  if (!d) return;
+  document.addEventListener('click', function (e) { if (d.open && !d.contains(e.target)) d.open = false; });
+  d.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && d.open) { d.open = false; d.querySelector('summary').focus(); }
+  });
+})();
+
 // CAS Ticino - menu mobile (costruito a partire dal menu desktop)
 (function () {
   var btn = document.querySelector('.menu-toggle');

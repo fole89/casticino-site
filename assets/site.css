@@ -164,9 +164,20 @@ dl,dd{margin:0}
 .dd-menu a:hover,.dd-menu a:focus-visible{background:var(--surface);color:var(--ink)}
 .dd-menu a[aria-current="page"]{color:var(--accent);font-weight:600}
 .nav-end{display:flex;align-items:center;gap:10px}
-.nav-lang{display:inline-grid;place-items:center;min-width:44px;height:44px;padding-inline:6px;font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none;transition:color .2s var(--ease)}
-.nav-lang:hover{color:var(--accent)}
-.nav-langs{display:flex;align-items:center}
+/* selettore di lingua: tendina (<details>) con la lingua corrente; site.js la chiude cliccando fuori o con Esc */
+.nav-langs{position:relative}
+.nav-langs-btn{display:inline-flex;align-items:center;gap:7px;min-width:44px;height:44px;padding-inline:6px;font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ink-2);cursor:pointer;list-style:none;user-select:none;transition:color .2s var(--ease)}
+.nav-langs-btn::-webkit-details-marker{display:none}
+.nav-langs-btn:hover,.nav-langs[open] .nav-langs-btn{color:var(--ink)}
+.nav-langs[open] .caret{transform:translateY(1px) rotate(225deg)}
+.nav-langs-menu{position:absolute;top:calc(100% + 6px);right:0;min-width:180px;padding:8px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--shadow);display:grid;z-index:1}
+@media (prefers-reduced-motion:no-preference){
+  .nav-langs[open] .nav-langs-menu{transition:opacity .18s var(--ease),transform .18s var(--ease)}
+  @starting-style{.nav-langs[open] .nav-langs-menu{opacity:0;transform:translateY(-4px)}}
+}
+.nav-lang{display:flex;align-items:center;gap:12px;padding:10px 12px;font-size:15px;color:var(--ink-2);text-decoration:none}
+.nav-lang:hover,.nav-lang:focus-visible{background:var(--surface);color:var(--ink)}
+.nav-lang-code{min-width:2ch;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--muted)}
 .nav-search{display:inline-grid;place-items:center;width:44px;height:44px;color:var(--ink-2);transition:color .2s var(--ease)}
 .nav-search:hover,.nav-search[aria-current="page"]{color:var(--accent)}
 .menu-toggle{display:none;width:48px;height:48px;align-items:center;justify-content:center;background:transparent;border:1.5px solid var(--line-strong);color:var(--ink);cursor:pointer}
