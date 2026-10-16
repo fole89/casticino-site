@@ -22,6 +22,9 @@ SITO = "https://fole89.github.io/casticino-site/"
 # Notifiche (un solo canale): servizio delle iscrizioni (scripts/notifiche/) e chiave pubblica VAPID; la privata è
 # il segreto VAPID_PRIVATE su GitHub, che usa scripts/notifiche.py per inviare
 NOTIFICHE_API = "https://casticino-notifiche.fole89.workers.dev/"
+# Per ora le notifiche non si usano: False toglie il riquadro «Notifiche» dal footer (e in admin/config.yml la casella
+# «Invia anche come notifica» è nascosta). True per riattivarle.
+NOTIFICHE_ATTIVE = False
 NOTIFICHE_CHIAVE = "BA9DQYS64NlrmnvBazBF-ARUH_6zoi8xFpxTj7jHu_4pAVsjGbzM5tQlE84_BpTdhZzwY5MdYpVhSsFCLw4IVy8"
 
 MENU = [
@@ -321,6 +324,14 @@ def footer():
         links = "\n".join(f'<a href="{h}">{l}</a>' for l, h in sub + extra_end)
         cols.append(f'<nav class="footer-col" aria-label="{name}">\n<h2>{name}</h2>\n{links}\n</nav>')
     cols = "\n".join(cols)
+    notifiche = f"""<div class="notifiche" data-api="{NOTIFICHE_API}" data-chiave="{NOTIFICHE_CHIAVE}" data-ios="{t('notifiche_ios')}" data-attive="{t('notifiche_attive')}" data-bloccate="{t('notifiche_bloccate')}" data-errore="{t('notifiche_errore')}" hidden>
+<h2 class="social-label">{t('notifiche')}</h2>
+<p class="small">{t('notifiche_p')}</p>
+<button class="btn btn--secondary notifiche-attiva" type="button" hidden>{t('notifiche_attiva')}</button>
+<button class="btn btn--secondary notifiche-disattiva" type="button" hidden>{t('notifiche_disattiva')}</button>
+<p class="small notifiche-stato" role="status"></p>
+</div>
+""" if NOTIFICHE_ATTIVE else ""
     return f"""<footer class="site-footer">
 <div class="container">
 <div class="footer-grid">
@@ -335,14 +346,7 @@ def footer():
 <button class="btn btn--secondary app-installa" type="button" hidden>{t('app_installa')}</button>
 <p class="small app-ios" hidden>{t('app_ios')}</p>
 </div>
-<div class="notifiche" data-api="{NOTIFICHE_API}" data-chiave="{NOTIFICHE_CHIAVE}" data-ios="{t('notifiche_ios')}" data-attive="{t('notifiche_attive')}" data-bloccate="{t('notifiche_bloccate')}" data-errore="{t('notifiche_errore')}" hidden>
-<h2 class="social-label">{t('notifiche')}</h2>
-<p class="small">{t('notifiche_p')}</p>
-<button class="btn btn--secondary notifiche-attiva" type="button" hidden>{t('notifiche_attiva')}</button>
-<button class="btn btn--secondary notifiche-disattiva" type="button" hidden>{t('notifiche_disattiva')}</button>
-<p class="small notifiche-stato" role="status"></p>
-</div>
-</div>
+{notifiche}</div>
 {cols}
 </div>
 {SPONSORS.replace("{sostegno}", t('sostegno'))}

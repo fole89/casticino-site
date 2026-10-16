@@ -60,10 +60,8 @@ collections:
         hint: "Breve e in minuscolo normale (niente parole TUTTE MAIUSCOLE): si legge meglio nelle schede."
       - label: Invia anche come notifica
         name: notifica
-        widget: boolean
-        default: false
+        widget: hidden     # per ora le notifiche non si usano: per riattivarle, widget boolean con default false
         required: false
-        hint: "Acceso: alla pubblicazione chi ha attivato le notifiche riceve titolo e riassunto sul telefono. Solo per le cose importanti, al massimo una o due a settimana. Dopo l’invio si spegne da solo; riaccenderlo rimanda la notifica."
       - label: Categoria
         name: category
         widget: select
@@ -149,10 +147,8 @@ collections:
             required: false
           - label: Invia anche come notifica
             name: notifica
-            widget: boolean
-            default: false
+            widget: hidden     # per ora le notifiche non si usano: per riattivarle, widget boolean con default false
             required: false
-            hint: "Acceso: alla pubblicazione chi ha attivato le notifiche riceve il testo dell’avviso sul telefono. Dopo l’invio la casella si spegne da sola."
           - label: Importante (in rosso)
             name: importante
             widget: boolean
@@ -205,10 +201,8 @@ collections:
             required: false
           - label: Invia anche come notifica
             name: notifica
-            widget: boolean
-            default: false
+            widget: hidden     # per ora le notifiche non si usano: per riattivarle, widget boolean con default false
             required: false
-            hint: "Acceso: alla pubblicazione chi ha attivato le notifiche riceve il testo dell’avviso sul telefono, con il nome della capanna; toccandola si apre la pagina della capanna. Dopo l’invio la casella si spegne da sola."
           - label: Importante (in rosso)
             name: importante
             widget: boolean
