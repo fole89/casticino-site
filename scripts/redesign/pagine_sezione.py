@@ -81,7 +81,7 @@ COMITATO = [
     ("Finanze e sponsoring", "Claudio Roncoroni", "claudio-roncoroni"),
     ("Coordinazione gruppi", "Nadir Caduff", "nadir-caduff"),
     ("Sport di montagna", "Geoffroy Jolly", "geoffroy-jolly"),
-    ("Comunicazione", "Flavia Spinelli", None),
+    ("Comunicazione", "Flavia Spinelli", "flavia-spinelli"),
 ]
 
 
@@ -213,7 +213,7 @@ DICASTERI = [
     ("Dicastero infrastruttura",
      "Si occupa delle infrastrutture della sezione: capanne e sentieri. Affianca il comitato su tutte le questioni e i progetti legati ai rifugi. Tramite gli ispettori segue l’operato dei guardiani, coordina la manutenzione ordinaria e straordinaria, cura gli aspetti amministrativi e contrattuali con i guardiani e sviluppa la promozione delle capanne.",
      [("Richard Knupfer", "Responsabile capanne"),
-      ("Ulisse Conrengia", "Responsabile sentieri"),
+      ("Ulisse Corengia", "Responsabile sentieri"),
       ("Stefano Olgiati", "Responsabile sentieri"),
       ("Edgardo Bulloni", "Responsabile tecnico capanne"),
       (None, "Ispettore Capanna Michela Motterascio"),
