@@ -321,7 +321,9 @@ def giovani():
 </div>
 </section>
 
-<section class="section--surface" aria-labelledby="iscr-h">
+{corso_giovani()}
+
+<section class="section" aria-labelledby="iscr-h">
 <div class="container detail">
 <div class="detail-intro">
 <h2 id="iscr-h" class="h2">{tr("Iscrizioni<br>e costi", "Anmeldung<br>und Kosten", "Registration<br>and costs", "Inscriptions<br>et coûts")}</h2>
@@ -340,6 +342,54 @@ def giovani():
         "The SAC Ticino Section’s youth group: climbing, ski touring, camps and outings for girls and boys aged 2 to 25, with instructors and mountain guides.",
         "Le groupe jeunesse du CAS Ticino : escalade, ski de randonnée, camps et sorties pour filles et garçons de 2 à 25 ans, avec moniteurs et guides de montagne."),
         body, og="attivita/giovani-3x4")
+
+
+CORSO_GIOVANI_GITA = "2242"   # numero Droptour del corso: l'iscrizione passa da gita.html
+
+
+def corso_giovani():
+    """Corso di sci alpinismo OG e Junior (13-22 anni) sulla pagina Giovani, dalla news del 16.10.2026;
+    il volantino è in docs/corsi/sci-alpinismo-giovani/. Da aggiornare (o togliere) a fine corso."""
+    rows = [(tr("Quando", "Wann", "When", "Quand"), tr(
+                "Sabato 9 gennaio, sabato 23 gennaio, sabato e domenica 13-14 febbraio 2027.",
+                "Samstag, 9. Januar, Samstag, 23. Januar, Samstag und Sonntag, 13.–14. Februar 2027.",
+                "Saturday 9 January, Saturday 23 January, Saturday and Sunday 13–14 February 2027.",
+                "Samedi 9 janvier, samedi 23 janvier, samedi et dimanche 13-14 février 2027.")),
+            (tr("Per chi", "Für wen", "Who for", "Pour qui"), tr(
+                "Gruppi OG e Junior, dai 13 ai 22 anni. Difficoltà tecnica AD.",
+                "Gruppen JO und Junior, von 13 bis 22 Jahren. Technische Schwierigkeit ZS.",
+                "OG and Junior groups, aged 13 to 22. Technical grade AD.",
+                "Groupes OJ et Junior, de 13 à 22 ans. Difficulté technique AD.")),
+            (tr("Costi", "Kosten", "Costs", "Coûts"), tr(
+                "Il trasporto pubblico fino al luogo della gita e, per il fine settimana, l’eventuale pernottamento.",
+                "Die Fahrt mit dem öffentlichen Verkehr bis zum Ausgangsort und, fürs Wochenende, die allfällige Übernachtung.",
+                "Public transport to the starting point and, for the weekend, any overnight stay.",
+                "Le transport public jusqu’au lieu de la course et, pour le week-end, l’éventuelle nuitée.")),
+            (tr("Capigita", "Tourenleitung", "Leaders", "Chefs de course"),
+                'Jacopo Soldini, <a class="num" href="tel:+41787704270">078 770 42 70</a><br>'
+                'Nicola Martinoni, <a class="num" href="tel:+41794391691">079 439 16 91</a>'),
+            (tr("Iscrizione", "Anmeldung", "Registration", "Inscription"), tr(
+                "Dal 4 ottobre al 6 dicembre 2026, su Droptour.",
+                "Vom 4. Oktober bis 6. Dezember 2026, auf Droptour.",
+                "From 4 October to 6 December 2026, on Droptour.",
+                "Du 4 octobre au 6 décembre 2026, sur Droptour.")
+                + " " + pdf_corso("sci-alpinismo-giovani", "programma-2027", tr("Programma 2027", "Programm 2027", "Programme 2027", "Programme 2027")))]
+    return f"""<section class="section--surface" id="corso-sci-alpinismo" aria-labelledby="corso-giovani-h">
+<div class="container detail">
+<div class="detail-intro">
+<span class="label">{tr("Inverno 2027", "Winter 2027", "Winter 2027", "Hiver 2027")}</span>
+<h2 id="corso-giovani-h" class="h2">{tr("Corso di sci alpinismo", "Skitourenkurs", "Ski touring course", "Cours de ski de randonnée")}</h2>
+<p>{tr("Le basi dello sci alpinismo: tecnica di progressione, conoscenza della neve e uso di ARTVA, pala e sonda. Per divertirsi, vivere ai ritmi della montagna, muoversi in sicurezza e diventare via via più autonomi, rispettando la natura e gli altri.",
+       "Die Grundlagen des Skitourengehens: Aufstiegstechnik, Schneekunde und der Umgang mit LVS, Schaufel und Sonde. Um Spass zu haben, im Rhythmus der Berge zu leben, sich sicher zu bewegen und nach und nach selbständiger zu werden, mit Respekt vor der Natur und den anderen.",
+       "The basics of ski touring: skinning technique, snow knowledge and using transceiver, shovel and probe. To have fun, live at the mountains’ pace, move safely and gradually become more independent, respecting nature and each other.",
+       "Les bases du ski de randonnée : technique de progression, connaissance de la neige et utilisation du DVA, de la pelle et de la sonde. Pour s’amuser, vivre au rythme de la montagne, évoluer en sécurité et devenir peu à peu plus autonome, dans le respect de la nature et des autres.")}</p>
+<div class="actions"><a class="btn btn--primary" href="gita.html?id={CORSO_GIOVANI_GITA}">{tr("Iscriviti", "Anmelden", "Register", "S’inscrire")} <span class="arrow" aria-hidden="true">→</span></a></div>
+</div>
+<div data-reveal>
+{facts(rows)}
+</div>
+</div>
+</section>"""
 
 
 def senior():
@@ -541,28 +591,28 @@ CORSI = [
          requisiti="Discreta condizione fisica: escursioni di 4-5 ore con 500-700 m di dislivello. Età minima 16 anni.",
          partecipanti="Al massimo 20, in ordine d’iscrizione. L’iscrizione è definitiva con il pagamento della quota alla serata introduttiva. Serata e uscite obbligatorie, con qualsiasi tempo; la meta può cambiare secondo le condizioni.",
          materiale="L’equipaggiamento personale viene controllato il primo giorno. ARTVA, pala e sonda prestati a chi ne ha bisogno.",
-         programma="Serata introduttiva martedì 15 dicembre 2026 nel Luganese; nivologia il 12 gennaio 2027 a Mezzovico, sicurezza il 16 gennaio ad Airolo, uscite il 23-24 gennaio e il 13-14 febbraio 2027. CHF 650 per i soci, 700 per i non soci, 375 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni, trasferte comprese.",
+         programma="Serata introduttiva martedì 15 dicembre 2026 alle 19:00 nel Luganese; nivologia il 12 gennaio 2027 a Mezzovico, sicurezza il 16 gennaio ad Airolo, uscite il 23-24 gennaio e il 13-14 febbraio 2027. CHF 650 per i soci, 700 per i non soci, 375 per i giovani OG fino a 20 anni e gli studenti soci dai 21 ai 25 anni, trasferte comprese.",
          de=dict(titolo="Schneeschuhtouren", alt="Verschneiter Grat über einem Nebelmeer",
                  testo="Einführung ins Schneeschuhwandern, in Theorie und Praxis: Gefahrenzeichen erkennen, Lawinenrisiko und Gelände beurteilen, mit den verfügbaren Hilfsmitteln planen, Verschüttetensuche und Erste Hilfe.",
                  struttura="Sechs Tage: ein Abend Schnee- und Lawinenkunde, ein Sicherheitstag mit LVS, Schaufel und Sonde, dann zwei Wochenenden in der Capanna Piansecco und der Capanna Maighels, mit Gehtechnik, 3x3-Methode, Orientierung und Gruppendynamik. Am Ende steigt man sicher auf und ab in einfachem Gelände, markiert und unmarkiert.",
                  requisiti="Gute Kondition: Touren von 4–5 Stunden mit 500–700 Höhenmetern. Mindestalter 16 Jahre.",
                  partecipanti="Höchstens 20, nach Anmeldeeingang. Definitiv ist die Anmeldung mit der Bezahlung am Einführungsabend. Abend und Kurstage obligatorisch, bei jedem Wetter; das Ziel kann je nach Verhältnissen ändern.",
                  materiale="Die persönliche Ausrüstung wird am ersten Tag kontrolliert. LVS, Schaufel und Sonde werden bei Bedarf ausgeliehen.",
-                 programma="Einführungsabend am Dienstag, 15. Dezember 2026, im Luganese; Schnee- und Lawinenkunde am 12. Januar 2027 in Mezzovico, Sicherheitstag am 16. Januar in Airolo, Kurstage 23.–24. Januar und 13.–14. Februar 2027. CHF 650 für Mitglieder, 700 für Nichtmitglieder, 375 für JO-Jugendliche bis 20 Jahre und studierende Mitglieder von 21 bis 25 Jahren, Fahrten inbegriffen."),
+                 programma="Einführungsabend am Dienstag, 15. Dezember 2026, um 19:00 Uhr im Luganese; Schnee- und Lawinenkunde am 12. Januar 2027 in Mezzovico, Sicherheitstag am 16. Januar in Airolo, Kurstage 23.–24. Januar und 13.–14. Februar 2027. CHF 650 für Mitglieder, 700 für Nichtmitglieder, 375 für JO-Jugendliche bis 20 Jahre und studierende Mitglieder von 21 bis 25 Jahren, Fahrten inbegriffen."),
          fr=dict(titolo="Raquettes", alt="Arête enneigée au-dessus d’une mer de brouillard",
                  testo="Introduction à la randonnée à raquettes, entre théorie et pratique : reconnaître les signaux de danger, évaluer le risque d’avalanche et le terrain, planifier avec les outils disponibles, recherche de victimes ensevelies et premiers secours.",
                  struttura="Six jours : une soirée de nivologie, une journée sur la sécurité avec DVA, pelle et sonde, puis deux week-ends en cabane, à la Capanna Piansecco et à la Capanna Maighels, entre technique de progression, méthode 3x3, orientation et dynamique de groupe. À la fin, on monte et on descend en sécurité sur des terrains simples, balisés ou non.",
                  requisiti="Bonne condition physique : randonnées de 4-5 heures avec 500-700 m de dénivelé. Âge minimum 16 ans.",
                  partecipanti="20 au maximum, dans l’ordre d’inscription. L’inscription est définitive avec le paiement de la finance à la soirée d’introduction. Soirée et sorties obligatoires, par tous les temps ; le but peut changer selon les conditions.",
                  materiale="L’équipement personnel est contrôlé le premier jour. DVA, pelle et sonde prêtés à qui en a besoin.",
-                 programma="Soirée d’introduction le mardi 15 décembre 2026 dans la région de Lugano ; nivologie le 12 janvier 2027 à Mezzovico, sécurité le 16 janvier à Airolo, sorties les 23-24 janvier et 13-14 février 2027. CHF 650 pour les membres, 700 pour les non-membres, 375 pour les jeunes OJ jusqu’à 20 ans et les membres étudiants de 21 à 25 ans, déplacements compris."),
+                 programma="Soirée d’introduction le mardi 15 décembre 2026 à 19 h dans la région de Lugano ; nivologie le 12 janvier 2027 à Mezzovico, sécurité le 16 janvier à Airolo, sorties les 23-24 janvier et 13-14 février 2027. CHF 650 pour les membres, 700 pour les non-membres, 375 pour les jeunes OJ jusqu’à 20 ans et les membres étudiants de 21 à 25 ans, déplacements compris."),
          en=dict(titolo="Snowshoeing", alt="Snowy ridge above a sea of clouds",
                  testo="An introduction to snowshoeing, in theory and practice: recognising danger signs, assessing avalanche risk and terrain, planning with the tools available, searching for buried people and first aid.",
                  struttura="Six days: an evening on snow science, a safety day with transceiver, shovel and probe, then two weekends at Capanna Piansecco and Capanna Maighels, covering walking technique, the 3x3 method, navigation and group dynamics. By the end you can go up and down safely on easy terrain, marked and unmarked.",
                  requisiti="Reasonable fitness: outings of 4–5 hours with 500–700 m of ascent. Minimum age 16.",
                  partecipanti="Maximum 20, in order of registration. Registration is final once the fee is paid at the introductory evening. The evening and outings are compulsory, whatever the weather; the destination may change according to conditions.",
                  materiale="Personal equipment is checked on the first day. Transceiver, shovel and probe lent to those who need them.",
-                 programma="Introductory evening on Tuesday 15 December 2026 in the Lugano area; snow science on 12 January 2027 in Mezzovico, safety day on 16 January in Airolo, outings on 23–24 January and 13–14 February 2027. CHF 650 for members, 700 for non-members, 375 for OG youth up to 20 and student members aged 21 to 25, travel included.")),
+                 programma="Introductory evening on Tuesday 15 December 2026 at 19:00 in the Lugano area; snow science on 12 January 2027 in Mezzovico, safety day on 16 January in Airolo, outings on 23–24 January and 13–14 February 2027. CHF 650 for members, 700 for non-members, 375 for OG youth up to 20 and student members aged 21 to 25, travel included.")),
 ]
 
 
@@ -596,6 +646,13 @@ def corsi():
 
 <section class="section" aria-labelledby="avanzati-h">
 <div class="container">
+<div class="callout">
+<p>{tr("<strong>Dai 13 ai 22 anni?</strong> Il gruppo giovani organizza un corso di sci alpinismo per OG e Junior, a gennaio e febbraio 2027.",
+       "<strong>Zwischen 13 und 22 Jahre alt?</strong> Die Jugendgruppe bietet im Januar und Februar 2027 einen Skitourenkurs für JO und Junior an.",
+       "<strong>Aged 13 to 22?</strong> The youth group runs a ski touring course for OG and Junior members in January and February 2027.",
+       "<strong>Entre 13 et 22 ans ?</strong> Le groupe jeunesse organise un cours de ski de randonnée pour OJ et Junior en janvier et février 2027.")}</p>
+<a class="link" href="giovani.html#corso-sci-alpinismo">{tr("Corso giovani", "Jugendkurs", "Youth course", "Cours jeunesse")}</a>
+</div>
 <div class="callout">
 <p>{tr("<strong id=\"avanzati-h\">Verso capogita e monitore G+S.</strong> Per chi vuole approfondire o prepararsi ai corsi capogita CAS e monitore Gioventù+Sport, la sezione propone corsi avanzati di alpinismo, sci alpinismo e arrampicata, di regola ad anni alterni, e serate di formazione teorica con specialisti.",
        "<strong id=\"avanzati-h\">Auf dem Weg zur Tourenleitung und J+S-Leitung.</strong> Wer sich vertiefen oder auf die Tourenleiterkurse des SAC und die Jugend+Sport-Leiterkurse vorbereiten will, findet bei der Sektion Fortgeschrittenenkurse in Hochtouren, Skitouren und Klettern, in der Regel alle zwei Jahre, und Theorieabende mit Fachleuten.",
