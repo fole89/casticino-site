@@ -101,7 +101,7 @@
    "iscrizione_dal": "2026-09-01",
    "iscrizione_al": "2026-10-27",
    "modalita": "",
-   "iscritti": 7,
+   "iscritti": 13,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -831,7 +831,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-12-01",
    "modalita": "",
-   "iscritti": 27,
+   "iscritti": 28,
    "posti": 30,
    "stato": "",
    "scheda": [
@@ -1167,6 +1167,44 @@
     [
      "Percorso / Dettagli",
      "Un corso volto ad imparare le basi dello sci alpinismo, nell&#x27;arco di due giornate ed un weekend; sia per quanto riguarda la tecnica di progressione che le conoscenze nivologiche e di utilizzo della strumentazione di ricerca.\n2a uscita: 23/01/2027\n3a uscita: 13-14/02/2027"
+    ]
+   ]
+  },
+  {
+   "id": "2176",
+   "titolo": "Via dell'acqua valle Morobbia con Banca Stato",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2176",
+   "dal": "2027-04-25",
+   "al": "",
+   "tipo": "Escursionismo",
+   "sigla": "ESC",
+   "gruppi": [
+    "Attivi",
+    "Giovani",
+    "Seniori",
+    "Tutti"
+   ],
+   "capigita": [
+    "Pierre Crivelli"
+   ],
+   "cond": "",
+   "tecn": "T2",
+   "descrizione": "Il percorso didattico il quale permette di scoprire, lungo i circa 8 km, il cammino dell'acqua dal bacino di accumulazione della diga di Carmena fino a raggiungere le turbine della centrale idroelettrica della Morobbia per la produzione di energia elettrica rinnovabile.",
+   "iscrizione": true,
+   "iscrizione_dal": "2027-01-01",
+   "iscrizione_al": "",
+   "modalita": "",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Tecn. T2 (Escursione di montagna)"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Il percorso didattico il quale permette di scoprire, lungo i circa 8 km, il cammino dell&#x27;acqua dal bacino di accumulazione della diga di Carmena fino a raggiungere le turbine della centrale idroelettrica della Morobbia per la produzione di energia elettrica rinnovabile."
     ]
    ]
   }
