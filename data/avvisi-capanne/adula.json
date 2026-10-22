@@ -2,9 +2,14 @@
   "notifica": false,
   "importante": false,
   "testo": "La capanna è chiusa per l’inverno; il locale invernale è aperto.",
-  "testo_de": "",
-  "testo_en": "",
-  "testo_fr": "",
+  "testo_de": "Die Hütte ist im Winter geschlossen; der Winterraum ist geöffnet.",
+  "testo_en": "The hut is closed for the winter; the winter lounge is open.",
+  "testo_fr": "Le refuge est fermé pour l'hiver ; le local d'hiver est ouvert.",
   "link": "",
-  "scadenza": ""
+  "scadenza": "",
+  "traduzioni": {
+    "testo_de": "3ca5fcbb408d:d8a165b0e67c",
+    "testo_fr": "3ca5fcbb408d:02466dde078c",
+    "testo_en": "3ca5fcbb408d:3c16ee4ed9c4"
+  }
 }

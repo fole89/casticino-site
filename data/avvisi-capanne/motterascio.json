@@ -2,14 +2,14 @@
   "notifica": false,
   "importante": true,
   "testo": "La capanna è chiusa per l’inverno e riapre sabato 12 giugno 2027.\nIl locale invernale è aperto: prenotate con il pulsante «Prenota». Bevande e legna sono a disposizione, ma non ci sono acqua corrente né servizi igienici.",
-  "testo_de": "Die Hütte ist während der Wintersaison geschlossen.",
-  "testo_en": "The hut is closed for the winter season.",
-  "testo_fr": "La cabane est fermée pour la saison d’hiver.",
+  "testo_de": "Die Hütte ist über den Winter geschlossen und öffnet wieder am Samstag, den 12. Juni 2027.\nDie Winterhütte ist geöffnet: Reservieren Sie über die Schaltfläche „Reservieren“. Getränke und Brennholz stehen zur Verfügung, es gibt jedoch weder fliessendes Wasser noch Toiletten.",
+  "testo_en": "The hut is closed for the winter and will reopen on Saturday 12 June 2027.\nThe winter hut is open: book your place using the ‘Book’ button. Drinks and firewood are available, but there is no running water or toilet facilities.",
+  "testo_fr": "Le refuge est fermé pour l'hiver et rouvrira le samedi 12 juin 2027.\nLe local d'hiver est ouvert : réservez en cliquant sur le bouton « Réserver ». Des boissons et du bois sont à votre disposition, mais il n'y a ni eau courante ni sanitaires.",
   "link": "",
   "scadenza": "2027-06-11",
   "traduzioni": {
-    "testo_de": "a35af2c3aa3d:166e82d28825",
-    "testo_en": "a35af2c3aa3d:f9e3c443030b",
-    "testo_fr": "a35af2c3aa3d:9231564851ff"
+    "testo_de": "c2ee76bcc9ef:838a3b23d921",
+    "testo_en": "c2ee76bcc9ef:69c68336e8a2",
+    "testo_fr": "c2ee76bcc9ef:9a218f6e3c79"
   }
 }
