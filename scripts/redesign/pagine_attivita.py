@@ -272,7 +272,7 @@ def giovani():
                                      "Im Winter Skitouren und Splitboard, im Sommer Grate und Klettern: zuerst Spass und Sicherheit, dann Selbständigkeit.",
                                      "Ski touring and splitboarding in winter, ridges and climbing in summer: fun and safety first, then independence.",
                                      "En hiver ski de randonnée et splitboard, en été arêtes et escalade : d’abord le plaisir et la sécurité, ensuite l’autonomie.")),
-              ("16-25", "OG", tr("Sci alpinismo impegnativo, cascate di ghiaccio e arrampicata tecnica in tutto l’arco alpino. Chi vuole può formarsi come monitore.",
+              ("16-22", "OG", tr("Sci alpinismo impegnativo, cascate di ghiaccio e arrampicata tecnica in tutto l’arco alpino. Chi vuole può formarsi come monitore.",
                                  "Anspruchsvolle Skitouren, Eisfälle und technisches Klettern im ganzen Alpenbogen. Wer will, kann sich zur Leiterin oder zum Leiter ausbilden.",
                                  "Demanding ski touring, ice falls and technical climbing across the Alps. Those who wish can train as instructors.",
                                  "Ski de randonnée exigeant, cascades de glace et escalade technique dans tout l’arc alpin. Qui le souhaite peut se former comme moniteur."))]
@@ -282,29 +282,51 @@ def giovani():
 <h3 class="h3">{t_}</h3>
 <p>{p}</p>
 </article>""" for a, t_, p in groups)
+    mail = lambda x: f'<a href="mailto:{x}">{x}</a>'
     rows = [(tr("Iscrizione", "Anmeldung", "Registration", "Inscription"), tr(
-                "Su Droptour, almeno due settimane prima per le singole attività, oppure dal coordinatore per iscrizioni a blocchi.",
-                "Auf Droptour, mindestens zwei Wochen im Voraus für einzelne Aktivitäten, oder beim Koordinator für Blockanmeldungen.",
-                "On Droptour, at least two weeks in advance for single activities, or through the coordinator for block registrations.",
-                "Sur Droptour, au moins deux semaines avant pour les activités isolées, ou auprès du coordinateur pour les inscriptions en bloc.")),
+                "Le attività Junior e OG sono raggruppate in blocchi invernali ed estivi: iscriversi a un blocco (anche a tutti, non si sovrappongono) semplifica l’organizzazione, costa meno e crea un bel gruppo. Per i blocchi telefona o scrivi al coordinatore; per le singole attività iscriviti su Droptour almeno due settimane prima.",
+                "Die Aktivitäten von Junior und JO sind in Winter- und Sommerblöcke gegliedert: Die Anmeldung für einen Block (auch für alle, sie überschneiden sich nicht) erleichtert die Organisation, kostet weniger und schafft eine tolle Gruppe. Für die Blöcke beim Koordinator anrufen oder schreiben; für einzelne Aktivitäten mindestens zwei Wochen im Voraus auf Droptour anmelden.",
+                "Junior and OG activities are grouped into winter and summer blocks: signing up for a block (or all of them, they don’t overlap) makes organising easier, costs less and builds a great group. For blocks, call or write to the coordinator; for single activities, register on Droptour at least two weeks in advance.",
+                "Les activités Junior et OJ sont regroupées en blocs d’hiver et d’été : s’inscrire à un bloc (ou à tous, ils ne se chevauchent pas) simplifie l’organisation, coûte moins cher et crée un bel esprit de groupe. Pour les blocs, appelez ou écrivez au coordinateur ; pour les activités isolées, inscrivez-vous sur Droptour au moins deux semaines avant.")),
             (tr("Requisiti", "Voraussetzungen", "Requirements", "Conditions"), tr(
-                'Serve essere soci del CAS Ticino, tranne per le uscite di prova. <a href="adesione.html">Diventa socio</a>',
-                'Mitgliedschaft bei der SAC-Sektion Ticino, ausser für Schnuppertouren. <a href="adesione.html">Mitglied werden</a>',
-                'Membership of the SAC Ticino Section, except for trial outings. <a href="adesione.html">Become a member</a>',
-                "Il faut être membre du CAS Ticino, sauf pour les sorties d’essai. <a href=\"adesione.html\">Devenir membre</a>")),
+                'Serve essere soci del CAS Ticino. Per un’uscita di prova no: telefona al capogita e tieni pronti numero AVS e data di nascita, che servono per l’annuncio a Gioventù+Sport. <a href="adesione.html">Diventa socio</a>',
+                'Mitgliedschaft bei der SAC-Sektion Ticino. Für eine Schnuppertour nicht: Rufen Sie die Tourenleitung an und halten Sie AHV-Nummer und Geburtsdatum bereit, die es für die Meldung an Jugend+Sport braucht. <a href="adesione.html">Mitglied werden</a>',
+                'Membership of the SAC Ticino Section. Not for a trial outing: call the trip leader and have your AHV number and date of birth ready, as they are needed to register you with Youth+Sport. <a href="adesione.html">Become a member</a>',
+                "Il faut être membre du CAS Ticino. Pas pour une sortie d’essai : appelez le chef de course avec votre numéro AVS et votre date de naissance, nécessaires pour l’annonce à Jeunesse+Sport. <a href=\"adesione.html\">Devenir membre</a>")),
             (tr("Costi", "Kosten", "Costs", "Coûts"), tr(
-                "Coprono vitto e alloggio a mezza pensione, guida e trasporto in furgone. Dai 21 ai 25 anni si aggiungono CHF 30 al giorno, perché non ci sono contributi G+S.",
-                "Sie decken Unterkunft mit Halbpension, Bergführer und Transport im Kleinbus. Von 21 bis 25 Jahren kommen CHF 30 pro Tag dazu, weil es keine J+S-Beiträge gibt.",
-                "They cover half-board food and lodging, guide and minibus transport. From 21 to 25, CHF 30 a day is added, as there are no Youth+Sport contributions.",
-                "Ils couvrent la demi-pension, le guide et le transport en minibus. De 21 à 25 ans, CHF 30 par jour s’ajoutent, car il n’y a pas de contributions J+S.")),
+                "Comprendono pernottamento in capanna o campeggio a mezza pensione, guida alpina o aspirante e trasporto in furgone; non il pranzo al sacco, bibite e spuntini in capanna, i mezzi pubblici e gli impianti di risalita. Tra i 20 e i 25 anni si aggiungono CHF 30 al giorno, perché non ci sono contributi G+S. Le famiglie in difficoltà possono rivolgersi al cassiere: insieme si trova una soluzione (pagamento a rate o riduzione della quota).",
+                "Inbegriffen sind Übernachtung in Hütte oder auf dem Zeltplatz mit Halbpension, Bergführer oder Aspirant und Transport im Kleinbus; nicht inbegriffen sind Lunch, Getränke und Snacks in der Hütte, öffentlicher Verkehr und Bergbahnen. Zwischen 20 und 25 Jahren kommen CHF 30 pro Tag dazu, weil es keine J+S-Beiträge gibt. Familien, für die die Kosten schwierig sind, wenden sich an den Kassier: Gemeinsam findet sich eine Lösung (Ratenzahlung oder Ermässigung).",
+                "They include half-board accommodation in a hut or campsite, mountain guide or aspirant guide and minibus transport; not the packed lunch, drinks and snacks at the hut, public transport or lifts. Between 20 and 25, CHF 30 a day is added, as there are no Youth+Sport contributions. Families who find the costs difficult can contact the treasurer: together we’ll find a solution (instalments or a reduced fee).",
+                "Ils comprennent la nuitée en cabane ou au camping en demi-pension, le guide ou l’aspirant guide et le transport en minibus ; pas le pique-nique, les boissons et en-cas en cabane, les transports publics ni les remontées mécaniques. Entre 20 et 25 ans, CHF 30 par jour s’ajoutent, car il n’y a pas de contributions J+S. Les familles pour qui les coûts sont difficiles peuvent s’adresser au caissier : ensemble, on trouvera une solution (paiement échelonné ou réduction).")),
+            (tr("Pagamento", "Bezahlung", "Payment", "Paiement"), tr(
+                "Attività singole: in contanti al capogita all’inizio della gita (il costo indicato nel programma può cambiare secondo la meta e il numero di partecipanti). Blocchi: sul conto OG; se a fine anno i conti chiudono meglio del previsto, una parte della quota può essere restituita.",
+                "Einzelne Aktivitäten: bar bei der Tourenleitung zu Beginn der Tour (der Preis im Programm kann sich je nach Ziel und Teilnehmerzahl ändern). Blöcke: auf das JO-Konto; schliesst die Rechnung am Jahresende besser ab als erwartet, kann ein Teil zurückerstattet werden.",
+                "Single activities: in cash to the trip leader at the start (the cost in the programme may change with the destination and number of participants). Blocks: to the OG account; if the accounts close better than expected at the end of the year, part of the fee may be refunded.",
+                "Activités isolées : en espèces au chef de course au début de la course (le coût indiqué au programme peut varier selon le but et le nombre de participants). Blocs : sur le compte OJ ; si les comptes bouclent mieux que prévu en fin d’année, une partie de la finance peut être remboursée.")
+                + '<br>CAS OG Conto Gite, c/o Nicola Martinoni, 6465 Unterschächen<br>IBAN <span class="num">CH77 0900 0000 6504 4913 8</span>'),
+            (tr("Materiale", "Material", "Equipment", "Matériel"), tr(
+                "Dopo l’iscrizione ricevi la lista del materiale; per i giovanissimi indica subito se servono imbragatura, casco o pedule, anche per l’accompagnatore. Quello che manca si prende in prestito gratis dal magazzino OG, avvisando per tempo il responsabile dell’attività (vestiti, sci, scarponi e zaini no). Chi si iscrive a un blocco invernale e noleggia sci, scarponi e pelli per la stagione può chiedere al cassiere il rimborso del 50%.",
+                "Nach der Anmeldung erhalten Sie die Materialliste; für die Jüngsten gleich angeben, ob Klettergurt, Helm oder Kletterfinken nötig sind, auch für die Begleitperson. Was fehlt, gibt es gratis aus dem JO-Materiallager, rechtzeitig der Leitung melden (keine Kleider, Ski, Skischuhe und Rucksäcke). Wer sich für einen Winterblock anmeldet und Ski, Schuhe und Felle für die Saison mietet, erhält auf Anfrage beim Kassier 50% zurück.",
+                "After registering you get the equipment list; for the youngest, say straight away whether a harness, helmet or climbing shoes are needed, also for the accompanying adult. Anything missing can be borrowed free from the OG store, telling the activity leader in good time (no clothing, skis, boots or rucksacks). If you sign up for a winter block and rent skis, boots and skins for the season, the treasurer refunds 50% on request.",
+                "Après l’inscription, vous recevez la liste du matériel ; pour les plus jeunes, indiquez tout de suite s’il faut baudrier, casque ou chaussons, aussi pour l’accompagnant. Ce qui manque s’emprunte gratuitement au dépôt OJ, en avertissant à temps le responsable (pas de vêtements, skis, chaussures ni sacs à dos). Qui s’inscrit à un bloc d’hiver et loue skis, chaussures et peaux pour la saison peut demander au caissier le remboursement de 50 %.")),
+            (tr("Assicurazione", "Versicherung", "Insurance", "Assurance"), tr(
+                "A carico dei partecipanti; è fortemente consigliato essere sostenitori Rega.",
+                "Sache der Teilnehmenden; eine Rega-Gönnerschaft wird dringend empfohlen.",
+                "Up to participants; Rega patronage is strongly recommended.",
+                "À la charge des participants ; il est vivement conseillé d’être donateur de la Rega.")),
+            (tr("Foto", "Fotos", "Photos", "Photos"), tr(
+                "Con l’iscrizione accetti che qualche foto delle attività sia pubblicata nel giornalino e nell’annuario del CAS, sull’Instagram del gruppo OG o sul sito. Se non ti va, diccelo.",
+                "Mit der Anmeldung sind Sie einverstanden, dass einige Fotos der Aktivitäten im Mitteilungsblatt und im Jahrbuch des SAC, auf dem Instagram der JO oder auf der Website erscheinen. Wenn nicht, sagen Sie es uns.",
+                "By registering you agree that some photos of the activities may appear in the SAC newsletter and yearbook, on the OG group’s Instagram or on the website. If you’d rather not, let us know.",
+                "En vous inscrivant, vous acceptez que quelques photos des activités paraissent dans le bulletin et l’annuaire du CAS, sur l’Instagram du groupe OJ ou sur le site. Sinon, dites-le-nous.")),
             (tr("Inclusione", "Inklusion", "Inclusion", "Inclusion"), tr(
-                "Ragazze e ragazzi con disabilità fisica o psichica sono i benvenuti: contatta il coordinatore per trovare insieme la soluzione giusta.",
-                "Mädchen und Jungen mit körperlicher oder psychischer Beeinträchtigung sind willkommen: Kontaktieren Sie den Koordinator, um gemeinsam die richtige Lösung zu finden.",
-                "Girls and boys with physical or mental disabilities are welcome: contact the coordinator to find the right solution together.",
-                "Les filles et garçons avec un handicap physique ou psychique sont les bienvenus : contactez le coordinateur pour trouver ensemble la bonne solution.")),
-            (tr("Coordinatore", "Koordinator", "Coordinator", "Coordinateur"), 'Diego Romelli, <a class="num" href="tel:+393485731549">+39 348 573 1549</a>'),
-            (tr("Cassiere", "Kassier", "Treasurer", "Caissier"), 'Nicola Martinoni, <a class="num" href="tel:+41794391691">+41 79 439 16 91</a>'),
-            ("Spider", "Giosiana Codoni")]
+                "Ragazze e ragazzi con disabilità fisica o psichica sono i benvenuti: alcuni monitori sono formati da PluSport. Contatta il coordinatore per trovare insieme la soluzione giusta.",
+                "Mädchen und Jungen mit körperlicher oder psychischer Beeinträchtigung sind willkommen: Einige Leitende sind bei PluSport ausgebildet. Kontaktieren Sie den Koordinator, um gemeinsam die richtige Lösung zu finden.",
+                "Girls and boys with physical or mental disabilities are welcome: some instructors are trained by PluSport. Contact the coordinator to find the right solution together.",
+                "Les filles et garçons avec un handicap physique ou psychique sont les bienvenus : certains moniteurs sont formés par PluSport. Contactez le coordinateur pour trouver ensemble la bonne solution.")),
+            (tr("Coordinatore", "Koordinator", "Coordinator", "Coordinateur"), 'Diego Romelli, <a class="num" href="tel:+393485731549">+39 348 573 1549</a>, ' + mail("diego.romelli15@gmail.com")),
+            (tr("Cassiere", "Kassier", "Treasurer", "Caissier"), 'Nicola Martinoni, <a class="num" href="tel:+41794391691">+41 79 439 16 91</a>, ' + mail("ogcasticino@gmail.com")),
+            ("Spider", "Giosiana Codoni, " + mail("giosiana.codoni@bluewin.ch"))]
     titolo = tr("Giovani", "Jugend", "Youth", "Jeunesse")
     programma = tr("Programma giovani", "Jugendprogramm", "Youth programme", "Programme jeunesse")
     body = page_hero([att_crumb(), (titolo, None)], titolo, testo_campo(testi("introduzioni")["giovani"], "introduzione"),
