@@ -1,53 +1,6 @@
 {
  "gite": [
   {
-   "id": "2038",
-   "titolo": "Giro ad anello in Valsolda 580 m - Italia",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2038",
-   "dal": "2026-10-22",
-   "al": "",
-   "tipo": "Escursionismo",
-   "sigla": "ESC",
-   "gruppi": [
-    "Seniori"
-   ],
-   "capigita": [
-    "Walter Baumgartner"
-   ],
-   "cond": "B",
-   "tecn": "T2",
-   "descrizione": "Giro ad anello: da Dasio saliamo alla Forcola, passando all'alpe di Cima saliamo alla Bocchetta di Pessina per poi scendere al Passo Stretto. Da quì scenderemo e ritorneremo a Dasio.",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-10-20",
-   "modalita": "",
-   "iscritti": 10,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Esigenze",
-     "Cond. B (abbastanza impegnativo)\nTecn. T2 (Escursione di montagna)"
-    ],
-    [
-     "Tempo della gita, salita/discesa",
-     "5.5 h"
-    ],
-    [
-     "Carte",
-     "1334 Porlezza"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Giro ad anello: da Dasio saliamo alla Forcola, passando all&#x27;alpe di Cima saliamo alla Bocchetta di Pessina per poi scendere al Passo Stretto. Da quì scenderemo e ritorneremo a Dasio."
-    ],
-    [
-     "Descrizione",
-     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/2038/Gita%2043%20Dasio-Valsolda.pdf\" rel=\"noopener\">Gita 43 Dasio-Valsolda</a>"
-    ]
-   ]
-  },
-  {
    "id": "1915",
    "titolo": "Vie lunghe - Bellinzonese e Locarnese",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=1915",
@@ -101,7 +54,7 @@
    "iscrizione_dal": "2026-09-01",
    "iscrizione_al": "2026-10-27",
    "modalita": "",
-   "iscritti": 13,
+   "iscritti": 14,
    "posti": 0,
    "stato": "",
    "scheda": [
