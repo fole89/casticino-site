@@ -1,39 +1,6 @@
 {
  "gite": [
   {
-   "id": "1915",
-   "titolo": "Vie lunghe - Bellinzonese e Locarnese",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=1915",
-   "dal": "2026-10-24",
-   "al": "2026-10-25",
-   "tipo": "Arrampicata",
-   "sigla": "ARR",
-   "gruppi": [
-    "Attivi",
-    "Giovani"
-   ],
-   "capigita": [
-    "Loris Carpineti",
-    "Nadir Caduff"
-   ],
-   "cond": "B",
-   "tecn": "5b",
-   "descrizione": "",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-10-22",
-   "modalita": "",
-   "iscritti": 14,
-   "posti": 12,
-   "stato": "completa",
-   "scheda": [
-    [
-     "Esigenze",
-     "Cond. B (abbastanza impegnativo)\nTecn. 5b (Difficoltà molto grandi)"
-    ]
-   ]
-  },
-  {
    "id": "2039",
    "titolo": "Castagnata",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2039",
@@ -54,7 +21,7 @@
    "iscrizione_dal": "2026-09-01",
    "iscrizione_al": "2026-10-27",
    "modalita": "",
-   "iscritti": 15,
+   "iscritti": 18,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -784,7 +751,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-12-01",
    "modalita": "",
-   "iscritti": 28,
+   "iscritti": 29,
    "posti": 30,
    "stato": "",
    "scheda": [
