@@ -1,37 +1,6 @@
 {
  "gite": [
   {
-   "id": "2039",
-   "titolo": "Castagnata",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2039",
-   "dal": "2026-10-29",
-   "al": "",
-   "tipo": "Evento",
-   "sigla": "EVE",
-   "gruppi": [
-    "Seniori"
-   ],
-   "capigita": [
-    "Fausto Cattalini"
-   ],
-   "cond": "",
-   "tecn": "",
-   "descrizione": "",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-09-01",
-   "iscrizione_al": "2026-10-27",
-   "modalita": "",
-   "iscritti": 20,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Descrizione",
-     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/2039/Gita%2044%20Castagnata.pdf\" rel=\"noopener\">Gita 44 Castagnata</a>"
-    ]
-   ]
-  },
-  {
    "id": "2149",
    "titolo": "Giovani Spider e Junior - Denti della Vecchia",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2149",
@@ -403,7 +372,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-11-18",
    "modalita": "",
-   "iscritti": 13,
+   "iscritti": 14,
    "posti": 0,
    "stato": "",
    "scheda": [
