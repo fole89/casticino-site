@@ -1,42 +1,6 @@
 {
  "gite": [
   {
-   "id": "2090",
-   "titolo": "Colonna di soccorso - Primo martedì del mese",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2090",
-   "dal": "2026-11-03",
-   "al": "",
-   "tipo": "Soccorso",
-   "sigla": "SOC",
-   "gruppi": [
-    "Soccorso"
-   ],
-   "capigita": [
-    "Simon Vanoncini",
-    "Matteo Umiker"
-   ],
-   "cond": "",
-   "tecn": "",
-   "descrizione": "Primo martedì del mese",
-   "iscrizione": false,
-   "iscrizione_dal": "",
-   "iscrizione_al": "",
-   "modalita": "www.soccorsoalpino-ti.ch",
-   "iscritti": 0,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Percorso / Dettagli",
-     "Primo martedì del mese"
-    ],
-    [
-     "Formalità di iscrizione",
-     "<a href=\"https://www.soccorsoalpino-ti.ch\" rel=\"noopener\">www.soccorsoalpino-ti.ch</a>"
-    ]
-   ]
-  },
-  {
    "id": "2207",
    "titolo": "Giovani, OG - Finale Ligure - Italia",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2207",
@@ -171,7 +135,7 @@
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
-   "stato": "",
+   "stato": "annullata",
    "scheda": [
     [
      "Esigenze",
