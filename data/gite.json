@@ -1166,7 +1166,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "",
    "modalita": "",
-   "iscritti": 0,
+   "iscritti": 1,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -1612,7 +1612,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "",
    "modalita": "",
-   "iscritti": 0,
+   "iscritti": 1,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -2825,7 +2825,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "2027-02-14",
    "modalita": "",
-   "iscritti": 0,
+   "iscritti": 1,
    "posti": 10,
    "stato": "",
    "scheda": [
@@ -4635,7 +4635,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "2026-12-31",
    "modalita": "",
-   "iscritti": 0,
+   "iscritti": 2,
    "posti": 6,
    "stato": "",
    "scheda": [
@@ -6919,9 +6919,9 @@
    ],
    "cond": "C",
    "tecn": "AD",
-   "descrizione": "Sabato: partenza da Zermat via Zmutt e Arbengandegge (via normale) fino ad'Arbenbiwak Domenica: Arbenbiwak - Arbengrat - Obergabelhorn - WellenKuppe - Triftgletcher - Rothornhütte -Trift - Zermatt",
+   "descrizione": "Sabato: partenza da Zermat via Zmutt e Arbengandegge (via normale) fino ad'Arbenbiwak Domenica: Arbenbiwak - Arbengrat - Obergabelhorn - WellenKuppe - Triftgletcher - Rothornhütte -Trift - Zermatt Gita destinata unicamente a giovaniOG - Gita con guida alpina",
    "iscrizione": true,
-   "iscrizione_dal": "2026-11-01",
+   "iscrizione_dal": "2027-05-01",
    "iscrizione_al": "2027-06-05",
    "modalita": "",
    "iscritti": 0,
@@ -6950,7 +6950,7 @@
     ],
     [
      "Percorso / Dettagli",
-     "Sabato: partenza da Zermat via Zmutt e Arbengandegge (via normale) fino ad&#x27;Arbenbiwak\nDomenica: Arbenbiwak - Arbengrat - Obergabelhorn - WellenKuppe - Triftgletcher - Rothornhütte -Trift - Zermatt"
+     "Sabato: partenza da Zermat via Zmutt e Arbengandegge (via normale) fino ad&#x27;Arbenbiwak\nDomenica: Arbenbiwak - Arbengrat - Obergabelhorn - WellenKuppe - Triftgletcher - Rothornhütte -Trift - Zermatt\n\nGita destinata unicamente a giovani/OG - Gita con guida alpina"
     ],
     [
      "Equipaggiamento",
