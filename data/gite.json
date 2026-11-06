@@ -1,85 +1,6 @@
 {
  "gite": [
   {
-   "id": "2207",
-   "titolo": "Giovani, OG - Finale Ligure - Italia",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2207",
-   "dal": "2026-11-05",
-   "al": "2026-11-08",
-   "tipo": "Arrampicata",
-   "sigla": "ARR",
-   "gruppi": [
-    "Giovani"
-   ],
-   "capigita": [
-    "Alessandro Piazzoli",
-    "Diego Romelli"
-   ],
-   "cond": "A",
-   "tecn": "5c",
-   "descrizione": "",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-09-03",
-   "iscrizione_al": "2026-10-18",
-   "modalita": "",
-   "iscritti": 13,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Esigenze",
-     "Cond. A (poco impegnativo)\nTecn. 5c (Difficoltà straordinarie)"
-    ],
-    [
-     "Alloggio / Ristorazione",
-     "Pernottamento in campeggio"
-    ]
-   ]
-  },
-  {
-   "id": "2040",
-   "titolo": "Monti di Lego 1100 m - Locarnese",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2040",
-   "dal": "2026-11-05",
-   "al": "",
-   "tipo": "Escursionismo",
-   "sigla": "ESC",
-   "gruppi": [
-    "Seniori"
-   ],
-   "capigita": [
-    "Luca Salzborn"
-   ],
-   "cond": "A",
-   "tecn": "T2",
-   "descrizione": "Da Viona comoda salita fino ai Monti di Lego, balcone panoramico sul Lago Maggiore. Discesa lungo il sentiero percorso in salita.",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-11-03",
-   "modalita": "",
-   "iscritti": 0,
-   "posti": 0,
-   "stato": "annullata",
-   "scheda": [
-    [
-     "Esigenze",
-     "Cond. A (poco impegnativo)\nTecn. T2 (Escursione di montagna)"
-    ],
-    [
-     "Tempo della gita, salita/discesa",
-     "3 h"
-    ],
-    [
-     "Carte",
-     "1312 Locarno"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Da Viona comoda salita fino ai Monti di Lego, balcone panoramico sul Lago Maggiore. Discesa lungo il sentiero percorso in salita."
-    ]
-   ]
-  },
-  {
    "id": "1914",
    "titolo": "Arrampicate a Finale Ligure - Italia",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=1914",
@@ -223,7 +144,7 @@
    "iscrizione_dal": "2025-12-01",
    "iscrizione_al": "",
    "modalita": "",
-   "iscritti": 0,
+   "iscritti": 2,
    "posti": 12,
    "stato": "",
    "scheda": [
@@ -300,7 +221,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-11-18",
    "modalita": "",
-   "iscritti": 16,
+   "iscritti": 19,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -398,7 +319,7 @@
    "iscrizione_dal": "2026-05-01",
    "iscrizione_al": "2026-11-20",
    "modalita": "",
-   "iscritti": 4,
+   "iscritti": 7,
    "posti": 20,
    "stato": "",
    "scheda": [
@@ -974,8 +895,8 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "",
    "modalita": "",
-   "iscritti": 0,
-   "posti": 16,
+   "iscritti": 6,
+   "posti": 32,
    "stato": "",
    "scheda": [
     [
@@ -7324,7 +7245,7 @@
    "tecn": "LCI",
    "descrizione": "Consueta settimana Spider al Campo Tencia. Dedicata ai ragazzi dai 9 ai 12 anni. I partecipanti si cimenteranno con arrampicate, belle passeggiate e facili ascensioni alpinistiche con tanto tanto divertimento.",
    "iscrizione": true,
-   "iscrizione_dal": "2026-11-01",
+   "iscrizione_dal": "2027-01-01",
    "iscrizione_al": "",
    "modalita": "Utilizzare il seguente formulario per l'iscrizione: https://forms.gle/1uLXQipzCVpEBzF19. Riceverete conferma dell'iscrizione via mail a inizio marzo.",
    "iscritti": 0,
