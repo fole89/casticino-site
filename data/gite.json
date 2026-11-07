@@ -1,39 +1,6 @@
 {
  "gite": [
   {
-   "id": "1914",
-   "titolo": "Arrampicate a Finale Ligure - Italia",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=1914",
-   "dal": "2026-11-06",
-   "al": "2026-11-09",
-   "tipo": "Arrampicata",
-   "sigla": "ARR",
-   "gruppi": [
-    "Attivi",
-    "Giovani"
-   ],
-   "capigita": [
-    "Loris Carpineti",
-    "Chiara Crivelli"
-   ],
-   "cond": "A",
-   "tecn": "4b",
-   "descrizione": "",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-11-04",
-   "modalita": "",
-   "iscritti": 23,
-   "posti": 20,
-   "stato": "completa",
-   "scheda": [
-    [
-     "Esigenze",
-     "Cond. A (poco impegnativo)\nTecn. 4b (Grandi difficoltà)"
-    ]
-   ]
-  },
-  {
    "id": "2041",
    "titolo": "Trekking in Valle Maggia",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2041",
@@ -221,7 +188,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-11-18",
    "modalita": "",
-   "iscritti": 19,
+   "iscritti": 20,
    "posti": 0,
    "stato": "",
    "scheda": [
