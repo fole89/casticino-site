@@ -1,49 +1,6 @@
 {
  "gite": [
   {
-   "id": "2041",
-   "titolo": "Trekking in Valle Maggia",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2041",
-   "dal": "2026-11-12",
-   "al": "",
-   "tipo": "Escursionismo",
-   "sigla": "ESC",
-   "gruppi": [
-    "Seniori"
-   ],
-   "capigita": [
-    "Fausto Cattalini"
-   ],
-   "cond": "A",
-   "tecn": "T2",
-   "descrizione": "Avegno - Ponte Brolla - Avegno",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-11-10",
-   "modalita": "",
-   "iscritti": 0,
-   "posti": 0,
-   "stato": "annullata",
-   "scheda": [
-    [
-     "Esigenze",
-     "Cond. A (poco impegnativo)\nTecn. T2 (Escursione di montagna)"
-    ],
-    [
-     "Tempo della gita, salita/discesa",
-     "3.5 h"
-    ],
-    [
-     "Carte",
-     "1312 Locarno"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Avegno - Ponte Brolla - Avegno"
-    ]
-   ]
-  },
-  {
    "id": "2063",
    "titolo": "Corso avanzato di arrampicata, 2a uscita",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2063",
