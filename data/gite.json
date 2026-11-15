@@ -1,92 +1,6 @@
 {
  "gite": [
   {
-   "id": "2063",
-   "titolo": "Corso avanzato di arrampicata, 2a uscita",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2063",
-   "dal": "2026-11-14",
-   "al": "",
-   "tipo": "Corso di formazione",
-   "sigla": "COR",
-   "gruppi": [
-    "Attivi",
-    "Giovani"
-   ],
-   "capigita": [
-    "Loris Carpineti",
-    "Chiara Crivelli"
-   ],
-   "cond": "",
-   "tecn": "LCII",
-   "descrizione": "Vitto e alloggio del weekend e il costo dei due maestri per i quattro giorni. Il programma prevede una giornata di istruzione sull'arrampicata Trad e una giornata di tecnica di arrampicata mentre negli altri due giorni, manipolazioni di corda e sarà fatto un allenamento specifico personalizzato. Requisiti richiesti: essere in chiaro al 100% su tutte le manovre di corda e essere in grado di arrampicare un 5c6a da primo di cordata.",
-   "iscrizione": false,
-   "iscrizione_dal": "",
-   "iscrizione_al": "",
-   "modalita": "",
-   "iscritti": 0,
-   "posti": 12,
-   "stato": "",
-   "scheda": [
-    [
-     "Esigenze",
-     "Tecn. LCII (Livello corso II)"
-    ],
-    [
-     "Alloggio / Ristorazione",
-     "Ticino"
-    ],
-    [
-     "Costi",
-     "CHF 480.-"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Vitto e alloggio del weekend e il costo dei due maestri per i quattro giorni.\nIl programma prevede una giornata di istruzione sull&#x27;arrampicata Trad e una giornata di tecnica di arrampicata mentre negli altri due giorni, manipolazioni di corda e sarà fatto un allenamento specifico personalizzato.\nRequisiti richiesti: essere in chiaro al 100% su tutte le manovre di corda e essere in grado di arrampicare un 5c/6a da primo di cordata."
-    ]
-   ]
-  },
-  {
-   "id": "2163",
-   "titolo": "Ferrata Monte Grona",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2163",
-   "dal": "2026-11-14",
-   "al": "",
-   "tipo": "Via ferrata",
-   "sigla": "FER",
-   "gruppi": [
-    "Attivi",
-    "Giovani"
-   ],
-   "capigita": [
-    "Giovanni Galli",
-    "Sila Cittadini Ghiringhelli"
-   ],
-   "cond": "B",
-   "tecn": "K3",
-   "descrizione": "Via ferrata nella zona del lago di como, rivolto a Sud.",
-   "iscrizione": true,
-   "iscrizione_dal": "2025-12-01",
-   "iscrizione_al": "",
-   "modalita": "",
-   "iscritti": 5,
-   "posti": 12,
-   "stato": "",
-   "scheda": [
-    [
-     "Esigenze",
-     "Cond. B (abbastanza impegnativo)\nTecn. K3 (Abbastanza difficile)"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Via ferrata nella zona del lago di como, rivolto a Sud."
-    ],
-    [
-     "Equipaggiamento",
-     "Kit da ferrata"
-    ]
-   ]
-  },
-  {
    "id": "2091",
    "titolo": "Colonna di soccorso - PCI Lugano Campagna",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2091",
@@ -1055,7 +969,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "2027-01-12",
    "modalita": "",
-   "iscritti": 1,
+   "iscritti": 2,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -6323,7 +6237,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "2027-06-01",
    "modalita": "L'iscrizione alla prima gita vale per tutto il ciclo di 6 gite",
-   "iscritti": 0,
+   "iscritti": 3,
    "posti": 0,
    "stato": "",
    "scheda": [
