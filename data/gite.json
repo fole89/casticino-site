@@ -59,13 +59,13 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-11-18",
    "modalita": "",
-   "iscritti": 17,
+   "iscritti": 16,
    "posti": 0,
    "stato": "",
    "scheda": [
     [
      "Ritrovo",
-     "20:00 Ora / Luogo comunicato in seguito."
+     "19:00 Ora / Mezzovico-Vira, Alpine Physio, via Vira 2"
     ],
     [
      "Esigenze",
@@ -925,7 +925,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "",
    "modalita": "",
-   "iscritti": 3,
+   "iscritti": 6,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -969,7 +969,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "2027-01-12",
    "modalita": "",
-   "iscritti": 2,
+   "iscritti": 3,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -1247,12 +1247,12 @@
    "cond": "B",
    "tecn": "LCII",
    "descrizione": "Il corso tecnica di sci fuori pista da la possibilità ai partecipanti di migliorare la propria tecnica sciistica su piste preparate così come in neve fresca. Attraverso piccoli gruppi e insegnamenti mirati, l'obiettivo del corso è quello di rendere il partecipante sicuro della propria sciata in pista ma soprattutto al suo esterno, permettendogli inoltre di poter superare eventuali ostacoli e godersi così anche la fase di discesa a valle. La formazione è assicurata da maestri di sci con attestato professionale federale (APF) della Sezione.",
-   "iscrizione": false,
-   "iscrizione_dal": "",
-   "iscrizione_al": "",
+   "iscrizione": true,
+   "iscrizione_dal": "2026-11-18",
+   "iscrizione_al": "2026-12-31",
    "modalita": "Gli interessati sono invitati ad iscriversi e partecipare alla serata di presentazione di mercoledì 18 novembre 2026. L'iscrizione alla prima uscita è valida per tutto il corso.",
    "iscritti": 0,
-   "posti": 12,
+   "posti": 18,
    "stato": "",
    "scheda": [
     [
@@ -1265,7 +1265,7 @@
     ],
     [
      "Costi",
-     "CHF 750.-"
+     "CHF 750.- Soci CAS Ticino, CHF 850 non soci, CHF 500 giovani in età G+S o soci CAS Ticino fino 25 anni"
     ],
     [
      "Percorso / Dettagli",
