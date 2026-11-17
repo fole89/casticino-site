@@ -59,7 +59,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-11-18",
    "modalita": "",
-   "iscritti": 16,
+   "iscritti": 17,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -157,7 +157,7 @@
    "iscrizione_dal": "2026-05-01",
    "iscrizione_al": "2026-11-20",
    "modalita": "",
-   "iscritti": 15,
+   "iscritti": 21,
    "posti": 20,
    "stato": "",
    "scheda": [
@@ -644,7 +644,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "",
    "modalita": "La conferma dell'iscrizione avverrà alla serata di presentazione il 16 Dicembre 2026 con il pagamento in contanti della quota",
-   "iscritti": 0,
+   "iscritti": 5,
    "posti": 20,
    "stato": "",
    "scheda": [
@@ -925,7 +925,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "",
    "modalita": "",
-   "iscritti": 6,
+   "iscritti": 7,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -1371,7 +1371,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "",
    "modalita": "",
-   "iscritti": 1,
+   "iscritti": 4,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -2584,7 +2584,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "2027-02-14",
    "modalita": "",
-   "iscritti": 1,
+   "iscritti": 4,
    "posti": 10,
    "stato": "",
    "scheda": [
@@ -4394,7 +4394,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "2026-12-31",
    "modalita": "",
-   "iscritti": 2,
+   "iscritti": 4,
    "posti": 6,
    "stato": "",
    "scheda": [
@@ -10561,7 +10561,7 @@
    "tecn": "LCI",
    "descrizione": "Serata di presentazione del corso, dei requisiti e del materiale tecnico necessario. Il programma dettagliato è allegato come .pdf (vedi sotto nella rubrica Corsi Sci Escursionismo https:casticino.ch?page_id=57). L'iscrizione alla serata di presentazione vale quale iscrizione a tutto il corso",
    "iscrizione": true,
-   "iscrizione_dal": "",
+   "iscrizione_dal": "2027-10-01",
    "iscrizione_al": "",
    "modalita": "",
    "iscritti": 0,
