@@ -1,42 +1,6 @@
 {
  "gite": [
   {
-   "id": "2091",
-   "titolo": "Colonna di soccorso - PCI Lugano Campagna",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2091",
-   "dal": "2026-11-17",
-   "al": "",
-   "tipo": "Soccorso",
-   "sigla": "SOC",
-   "gruppi": [
-    "Soccorso"
-   ],
-   "capigita": [
-    "Simon Vanoncini",
-    "Matteo Umiker"
-   ],
-   "cond": "",
-   "tecn": "",
-   "descrizione": "PCI Lugano Campagna",
-   "iscrizione": false,
-   "iscrizione_dal": "",
-   "iscrizione_al": "",
-   "modalita": "www.soccorsoalpino-ti.ch",
-   "iscritti": 0,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Percorso / Dettagli",
-     "PCI Lugano Campagna"
-    ],
-    [
-     "Formalità di iscrizione",
-     "<a href=\"https://www.soccorsoalpino-ti.ch\" rel=\"noopener\">www.soccorsoalpino-ti.ch</a>"
-    ]
-   ]
-  },
-  {
    "id": "2167",
    "titolo": "Corso di sci fuori pista (presentazione)",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2167",
@@ -65,7 +29,7 @@
    "scheda": [
     [
      "Ritrovo",
-     "19:00 Ora / Mezzovico-Vira, Alpine Physio, via Vira 2"
+     "19:00 Ora / Mezzovico, via la Roggia 33, Protezione Civile Lugano-Campagna"
     ],
     [
      "Esigenze",
