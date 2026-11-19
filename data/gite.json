@@ -1,59 +1,6 @@
 {
  "gite": [
   {
-   "id": "2167",
-   "titolo": "Corso di sci fuori pista (presentazione)",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2167",
-   "dal": "2026-11-18",
-   "al": "",
-   "tipo": "Corso di formazione",
-   "sigla": "COR",
-   "gruppi": [
-    "Attivi",
-    "Giovani"
-   ],
-   "capigita": [
-    "Thomas Arn",
-    "Chiara Medolago"
-   ],
-   "cond": "",
-   "tecn": "LCII",
-   "descrizione": "Serata di presentazione del corso *tecnica di sci fuori pista, edizione 2027.",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-10-01",
-   "iscrizione_al": "2026-11-18",
-   "modalita": "",
-   "iscritti": 17,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Ritrovo",
-     "19:00 Ora / Mezzovico, via la Roggia 33, Protezione Civile Lugano-Campagna"
-    ],
-    [
-     "Esigenze",
-     "Tecn. LCII (Livello corso II)"
-    ],
-    [
-     "Alloggio / Ristorazione",
-     "Luogo comunicato in seguito."
-    ],
-    [
-     "Percorso / Dettagli",
-     "Serata di presentazione del corso *tecnica di sci fuori pista&quot;, edizione 2027."
-    ],
-    [
-     "Informazione supplementare",
-     "L&#x27;iscrizione alla serata di presentazione del corso non è automaticamente l&#x27;iscrizione al corso.\nAlla serata stessa o dopo la serata, dopo aver valutato tutti gli aspetti, gli interessati potranno iscriversi al corso vero e proprio."
-    ],
-    [
-     "Equipaggiamento",
-     "Nessuno."
-    ]
-   ]
-  },
-  {
    "id": "2042",
    "titolo": "Giro della valle di Lodano 1300 m - Valle Maggia",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2042",
@@ -121,7 +68,7 @@
    "iscrizione_dal": "2026-05-01",
    "iscrizione_al": "2026-11-20",
    "modalita": "",
-   "iscritti": 21,
+   "iscritti": 20,
    "posti": 20,
    "stato": "",
    "scheda": [
@@ -1215,7 +1162,7 @@
    "iscrizione_dal": "2026-11-18",
    "iscrizione_al": "2026-12-31",
    "modalita": "Gli interessati sono invitati ad iscriversi e partecipare alla serata di presentazione di mercoledì 18 novembre 2026. L'iscrizione alla prima uscita è valida per tutto il corso.",
-   "iscritti": 0,
+   "iscritti": 3,
    "posti": 18,
    "stato": "",
    "scheda": [
