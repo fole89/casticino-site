@@ -1,50 +1,6 @@
 {
  "gite": [
   {
-   "id": "2042",
-   "titolo": "Giro della valle di Lodano 1300 m - Valle Maggia",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2042",
-   "dal": "2026-11-19",
-   "al": "",
-   "tipo": "Escursionismo",
-   "sigla": "ESC",
-   "gruppi": [
-    "Seniori"
-   ],
-   "capigita": [
-    "Monica Stoppani",
-    "Emanuela Gastori"
-   ],
-   "cond": "B",
-   "tecn": "T2",
-   "descrizione": "Giro ad anello Val Lodano",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-11-17",
-   "modalita": "",
-   "iscritti": 0,
-   "posti": 0,
-   "stato": "annullata",
-   "scheda": [
-    [
-     "Esigenze",
-     "Cond. B (abbastanza impegnativo)\nTecn. T2 (Escursione di montagna)"
-    ],
-    [
-     "Tempo della gita, salita/discesa",
-     "4 h"
-    ],
-    [
-     "Carte",
-     "1292 Maggia"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Giro ad anello Val Lodano"
-    ]
-   ]
-  },
-  {
    "id": "1952",
    "titolo": "Arrampicata al caldo - Locarnese",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=1952",
@@ -178,6 +134,10 @@
     [
      "Percorso / Dettagli",
      "Percorso basso da Melide a Morcote"
+    ],
+    [
+     "Descrizione",
+     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/2044/Gita%2048%20Melide%20-%20Morcote.pdf\" rel=\"noopener\">Gita 48 Melide - Morcote</a>"
     ]
    ]
   },
@@ -372,6 +332,10 @@
     [
      "Percorso / Dettagli",
      "Da alpe Tedesco (in Val Ganna) percorso panoramico attorno al Monte Piambello"
+    ],
+    [
+     "Descrizione",
+     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/2045/Gita%2049%20Monte%20Piambello.pdf\" rel=\"noopener\">Gita 49 Monte Piambello</a>"
     ]
    ]
   },
@@ -405,7 +369,7 @@
    "id": "2046",
    "titolo": "Strecc da Vignun 2586 m - GR",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2046",
-   "dal": "2026-12-09",
+   "dal": "2026-12-10",
    "al": "",
    "tipo": "Scialpinismo",
    "sigla": "SA",
@@ -420,7 +384,7 @@
    "descrizione": "Da San Bernardino facile salita verso il passo e per chi se la sente si prosegue verso quota 2586 m.",
    "iscrizione": true,
    "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-12-07",
+   "iscrizione_al": "2026-12-08",
    "modalita": "",
    "iscritti": 0,
    "posti": 0,
@@ -441,6 +405,10 @@
     [
      "Percorso / Dettagli",
      "Da San Bernardino facile salita verso il passo e per chi se la sente si prosegue verso quota 2586 m."
+    ],
+    [
+     "Descrizione",
+     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/2046/Gita%2050%20Strecc%20da%20Vignun.pdf\" rel=\"noopener\">Gita 50 Strecc da Vignun</a>"
     ]
    ]
   },
@@ -466,7 +434,7 @@
    "iscrizione_dal": "2026-05-01",
    "iscrizione_al": "2026-12-11",
    "modalita": "",
-   "iscritti": 0,
+   "iscritti": 4,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -724,7 +692,7 @@
    "cond": "B",
    "tecn": "LCI",
    "descrizione": "",
-   "iscrizione": true,
+   "iscrizione": false,
    "iscrizione_dal": "",
    "iscrizione_al": "",
    "modalita": "Iscrizione: vedi serata di presentazione",
@@ -1113,7 +1081,7 @@
    "cond": "",
    "tecn": "LCI",
    "descrizione": "",
-   "iscrizione": true,
+   "iscrizione": false,
    "iscrizione_dal": "",
    "iscrizione_al": "",
    "modalita": "Iscrizione: vedi serata di presentazione",
@@ -1162,7 +1130,7 @@
    "iscrizione_dal": "2026-11-18",
    "iscrizione_al": "2026-12-31",
    "modalita": "Gli interessati sono invitati ad iscriversi e partecipare alla serata di presentazione di mercoledì 18 novembre 2026. L'iscrizione alla prima uscita è valida per tutto il corso.",
-   "iscritti": 3,
+   "iscritti": 5,
    "posti": 18,
    "stato": "",
    "scheda": [
@@ -1772,7 +1740,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "2027-01-23",
    "modalita": "",
-   "iscritti": 0,
+   "iscritti": 3,
    "posti": 10,
    "stato": "",
    "scheda": [
@@ -2342,7 +2310,7 @@
    "cond": "A",
    "tecn": "LCI",
    "descrizione": "",
-   "iscrizione": true,
+   "iscrizione": false,
    "iscrizione_dal": "",
    "iscrizione_al": "",
    "modalita": "Iscrizione: vedi serata di presentazione",
@@ -2837,7 +2805,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "2027-02-20",
    "modalita": "",
-   "iscritti": 0,
+   "iscritti": 3,
    "posti": 10,
    "stato": "",
    "scheda": [
@@ -3093,7 +3061,7 @@
    "cond": "A",
    "tecn": "LCI",
    "descrizione": "",
-   "iscrizione": true,
+   "iscrizione": false,
    "iscrizione_dal": "",
    "iscrizione_al": "",
    "modalita": "Iscrizione: vedi serata di presentazione",
