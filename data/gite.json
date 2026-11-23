@@ -1,64 +1,6 @@
 {
  "gite": [
   {
-   "id": "1952",
-   "titolo": "Arrampicata al caldo - Locarnese",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=1952",
-   "dal": "2026-11-22",
-   "al": "",
-   "tipo": "Arrampicata",
-   "sigla": "ARR",
-   "gruppi": [
-    "Attivi",
-    "Giovani",
-    "Seniori"
-   ],
-   "capigita": [
-    "Marco Da Rold",
-    "Giosiana Codoni"
-   ],
-   "cond": "A",
-   "tecn": "5a",
-   "descrizione": "Arrampicate in compagnia in una falesia calda del Locarnese, Verbano, Valle Maggia a dipendenza del...caldo.",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-11-20",
-   "modalita": "",
-   "iscritti": 20,
-   "posti": 20,
-   "stato": "",
-   "scheda": [
-    [
-     "Ritrovo",
-     "8:00 Ora / Bioggio"
-    ],
-    [
-     "Esigenze",
-     "Cond. A (poco impegnativo)\nTecn. 5a (Difficoltà molto grandi)"
-    ],
-    [
-     "Costi",
-     "Franchi (1/2 pensione + visita)"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Arrampicate in compagnia in una falesia &quot;calda&quot; del Locarnese, Verbano, Valle Maggia a dipendenza del...caldo."
-    ],
-    [
-     "Informazione supplementare",
-     "A dipendenza delle temperature di fine novembre sceglieremo una falesia con vie per tutti, magari andando alla scoperta di nuovi settori poco conosciuti sulle sponde del Verbano o in Valle Maggia."
-    ],
-    [
-     "Equipaggiamento",
-     "A0"
-    ],
-    [
-     "Descrizione",
-     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/1952/Palestra_di_roccia_Maccagno.pdf\" rel=\"noopener\">Palestra_di_roccia_Maccagno</a>"
-    ]
-   ]
-  },
-  {
    "id": "2092",
    "titolo": "Colonna di soccorso - Simulazione intervento",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2092",
@@ -421,10 +363,9 @@
    "tipo": "Corso di formazione",
    "sigla": "COR",
    "gruppi": [
-    "Monitori"
+    "Capigita"
    ],
    "capigita": [
-    "Pierre Crivelli",
     "Geoffroy Jolly"
    ],
    "cond": "A",
@@ -434,8 +375,8 @@
    "iscrizione_dal": "2026-05-01",
    "iscrizione_al": "2026-12-11",
    "modalita": "",
-   "iscritti": 6,
-   "posti": 0,
+   "iscritti": 7,
+   "posti": 12,
    "stato": "",
    "scheda": [
     [
@@ -612,7 +553,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "",
    "modalita": "",
-   "iscritti": 6,
+   "iscritti": 20,
    "posti": 32,
    "stato": "",
    "scheda": [
@@ -1130,7 +1071,7 @@
    "iscrizione_dal": "2026-11-18",
    "iscrizione_al": "2026-12-31",
    "modalita": "Gli interessati sono invitati ad iscriversi e partecipare alla serata di presentazione di mercoledì 18 novembre 2026. L'iscrizione alla prima uscita è valida per tutto il corso.",
-   "iscritti": 5,
+   "iscritti": 6,
    "posti": 18,
    "stato": "",
    "scheda": [
@@ -1250,7 +1191,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "",
    "modalita": "",
-   "iscritti": 4,
+   "iscritti": 6,
    "posti": 0,
    "stato": "",
    "scheda": [
