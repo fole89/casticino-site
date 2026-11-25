@@ -1,42 +1,6 @@
 {
  "gite": [
   {
-   "id": "2092",
-   "titolo": "Colonna di soccorso - Simulazione intervento",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2092",
-   "dal": "2026-11-24",
-   "al": "",
-   "tipo": "Soccorso",
-   "sigla": "SOC",
-   "gruppi": [
-    "Soccorso"
-   ],
-   "capigita": [
-    "Simon Vanoncini",
-    "Matteo Umiker"
-   ],
-   "cond": "",
-   "tecn": "",
-   "descrizione": "Simulazione intervento",
-   "iscrizione": false,
-   "iscrizione_dal": "",
-   "iscrizione_al": "",
-   "modalita": "www.soccorsoalpino-ti.ch",
-   "iscritti": 0,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Percorso / Dettagli",
-     "Simulazione intervento"
-    ],
-    [
-     "Formalità di iscrizione",
-     "<a href=\"https://www.soccorsoalpino-ti.ch\" rel=\"noopener\">www.soccorsoalpino-ti.ch</a>"
-    ]
-   ]
-  },
-  {
    "id": "2044",
    "titolo": "Percorso basso Morcote 600 m - Luganese",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2044",
@@ -57,7 +21,7 @@
    "iscrizione_dal": "2026-05-01",
    "iscrizione_al": "2026-11-24",
    "modalita": "",
-   "iscritti": 4,
+   "iscritti": 6,
    "posti": 0,
    "stato": "",
    "scheda": [
@@ -671,7 +635,7 @@
     "Nicola Martinoni"
    ],
    "cond": "B",
-   "tecn": "AD",
+   "tecn": "LCI",
    "descrizione": "Un corso volto ad imparare le basi dello sci alpinismo, nell'arco di due giornate ed un weekend; sia per quanto riguarda la tecnica di progressione che le conoscenze nivologiche e di utilizzo della strumentazione di ricerca. 2a uscita: 23012027 3a uscita: 13-14022027",
    "iscrizione": true,
    "iscrizione_dal": "2026-10-01",
@@ -683,7 +647,7 @@
    "scheda": [
     [
      "Esigenze",
-     "Cond. B (abbastanza impegnativo)\nTecn. AD (Abbastanza difficile)"
+     "Cond. B (abbastanza impegnativo)\nTecn. LCI (Livello corso I)"
     ],
     [
      "Percorso / Dettagli",
@@ -902,7 +866,7 @@
     "Filippo Iocchi"
    ],
    "cond": "B",
-   "tecn": "PD",
+   "tecn": "WI2-II",
    "descrizione": "Falesia di ghiaccio con prevalentemente monotiri WI3-4. Possibilità di provare le vie in top rope.",
    "iscrizione": true,
    "iscrizione_dal": "2026-10-01",
@@ -918,7 +882,7 @@
     ],
     [
      "Esigenze",
-     "Cond. B (abbastanza impegnativo)\nTecn. PD (Poco difficile)"
+     "Cond. B (abbastanza impegnativo)\nTecn. WI2-II (Poco difficile)"
     ],
     [
      "Percorso / Dettagli",
@@ -1071,7 +1035,7 @@
    "iscrizione_dal": "2026-11-18",
    "iscrizione_al": "2026-12-31",
    "modalita": "Gli interessati sono invitati ad iscriversi e partecipare alla serata di presentazione di mercoledì 18 novembre 2026. L'iscrizione alla prima uscita è valida per tutto il corso.",
-   "iscritti": 6,
+   "iscritti": 8,
    "posti": 18,
    "stato": "",
    "scheda": [
@@ -1675,7 +1639,7 @@
     "Giovanni Galli"
    ],
    "cond": "",
-   "tecn": "",
+   "tecn": "LCIII",
    "descrizione": "Nuova formula dei corsi di aggiornamento invernali. Gita tecnica di apprendimento sul campo con approfondimenti e ed esercizi pratici. A seconda delle condizioni che si avranno verrà scelta una zona interessante al di fuori degli itinerari conosciuti che permette di trattare alcuni aspetti dei temi seguenti: nivologia, tattica (scelta della traccia), tecnica di corda, incidente da valanga, dinamica di gruppo. Gita con dislivelli contenuti. Corso di aggiornamento diplomi CAS Centrale (1 giorno) rivolto ai capigita sezionali che hanno concluso con successo una formazione CAS o una formazione G+S invernale. Nel caso il corso non fosse al completo verranno accettati anche aiuto-capigita o interessati ad una formazione come capogita invernale (verrà chiesta la partecipazione ai costi).",
    "iscrizione": true,
    "iscrizione_dal": "2026-11-01",
@@ -1685,6 +1649,10 @@
    "posti": 10,
    "stato": "",
    "scheda": [
+    [
+     "Esigenze",
+     "Tecn. LCIII (Livello corso III)"
+    ],
     [
      "Percorso / Dettagli",
      "Nuova formula dei corsi di aggiornamento invernali.\nGita tecnica di apprendimento sul campo con approfondimenti e ed esercizi pratici.\nA seconda delle condizioni che si avranno verrà scelta una zona interessante al di fuori degli itinerari conosciuti che permette di trattare alcuni aspetti dei temi seguenti: nivologia, tattica (scelta della traccia), tecnica di corda, incidente da valanga, dinamica di gruppo.\nGita con dislivelli contenuti.\n\nCorso di aggiornamento diplomi CAS Centrale (1 giorno) rivolto ai capigita sezionali che hanno concluso con successo una formazione CAS o una formazione G+S invernale.\n\nNel caso il corso non fosse al completo verranno accettati anche aiuto-capigita o interessati ad una formazione come capogita invernale (verrà chiesta la partecipazione ai costi)."
@@ -4834,7 +4802,7 @@
     "Mauro Cresta"
    ],
    "cond": "B",
-   "tecn": "",
+   "tecn": "S2",
    "descrizione": "",
    "iscrizione": true,
    "iscrizione_dal": "2027-01-01",
@@ -4846,7 +4814,7 @@
    "scheda": [
     [
      "Esigenze",
-     "Cond. B (abbastanza impegnativo)"
+     "Cond. B (abbastanza impegnativo)\nTecn. S2 (abbastanza difficile)"
     ]
    ]
   },
