@@ -4562,6 +4562,55 @@
    ]
   },
   {
+   "id": "2190",
+   "titolo": "Corso base di arrampicata su roccia, 1a uscita",
+   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2190",
+   "dal": "2027-04-17",
+   "al": "2027-04-18",
+   "tipo": "Corso di formazione",
+   "sigla": "COR",
+   "gruppi": [
+    "Attivi",
+    "Giovani"
+   ],
+   "capigita": [
+    "Loris Carpineti",
+    "Nadir Caduff"
+   ],
+   "cond": "",
+   "tecn": "LCI",
+   "descrizione": "Il corso inizia con una serata di presentazione e si svolge sullarco di 3 fine-settimana e una giornata singola su pareti e falesie di fondovalle e media montagna. Il corso è dedicato ai principianti che per la prima volta vengono a contatto con questa attività e gli iniziati che intendono consolidare le nozioni tecniche e di sicurezza.",
+   "iscrizione": false,
+   "iscrizione_dal": "2026-12-01",
+   "iscrizione_al": "",
+   "modalita": "Iscrizione: vedi serata di presentazione",
+   "iscritti": 0,
+   "posti": 0,
+   "stato": "",
+   "scheda": [
+    [
+     "Esigenze",
+     "Tecn. LCI (Livello corso I)"
+    ],
+    [
+     "Costi",
+     "Base abbonamento metà prezzo"
+    ],
+    [
+     "Percorso / Dettagli",
+     "Il corso inizia con una serata di presentazione e si svolge\nsullarco di 3 fine-settimana e una giornata singola su pareti e falesie di fondovalle\ne media montagna.\nIl corso è dedicato ai principianti che per la prima volta\nvengono a contatto con questa attività e gli iniziati che intendono\nconsolidare le nozioni tecniche e di sicurezza."
+    ],
+    [
+     "Informazione supplementare",
+     "In una falesia a bassa quota in Piemonte, pernottamento in hotel"
+    ],
+    [
+     "Formalità di iscrizione",
+     "Iscrizione: vedi serata di presentazione"
+    ]
+   ]
+  },
+  {
    "id": "2235",
    "titolo": "Ferrata Piero Biasini al Seng di Dalo - Italia",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2235",
@@ -4985,55 +5034,6 @@
     [
      "Percorso / Dettagli",
      "Giro ad anello con partenza da Scudellate, Erbonne, Orimento, Cima della Piancaccia, Monte Generoso, Scudellate."
-    ]
-   ]
-  },
-  {
-   "id": "2190",
-   "titolo": "Corso base di arrampicata su roccia, 1a uscita",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2190",
-   "dal": "2027-05-01",
-   "al": "2027-05-02",
-   "tipo": "Corso di formazione",
-   "sigla": "COR",
-   "gruppi": [
-    "Attivi",
-    "Giovani"
-   ],
-   "capigita": [
-    "Loris Carpineti",
-    "Nadir Caduff"
-   ],
-   "cond": "",
-   "tecn": "LCI",
-   "descrizione": "Il corso inizia con una serata di presentazione e si svolge sullarco di 3 fine-settimana e una giornata singola su pareti e falesie di fondovalle e media montagna. Il corso è dedicato ai principianti che per la prima volta vengono a contatto con questa attività e gli iniziati che intendono consolidare le nozioni tecniche e di sicurezza.",
-   "iscrizione": false,
-   "iscrizione_dal": "2026-12-01",
-   "iscrizione_al": "",
-   "modalita": "Iscrizione: vedi serata di presentazione",
-   "iscritti": 0,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Esigenze",
-     "Tecn. LCI (Livello corso I)"
-    ],
-    [
-     "Costi",
-     "Base abbonamento metà prezzo"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Il corso inizia con una serata di presentazione e si svolge\nsullarco di 3 fine-settimana e una giornata singola su pareti e falesie di fondovalle\ne media montagna.\nIl corso è dedicato ai principianti che per la prima volta\nvengono a contatto con questa attività e gli iniziati che intendono\nconsolidare le nozioni tecniche e di sicurezza."
-    ],
-    [
-     "Informazione supplementare",
-     "In una falesia a bassa quota in Piemonte, pernottamento in hotel"
-    ],
-    [
-     "Formalità di iscrizione",
-     "Iscrizione: vedi serata di presentazione"
     ]
    ]
   },
@@ -5681,7 +5681,7 @@
   },
   {
    "id": "2248",
-   "titolo": "Modulo Condotta - CAS Centrale",
+   "titolo": "Modulo Conduzione - CAS Centrale",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2248",
    "dal": "2027-05-22",
    "al": "2027-05-23",
@@ -9639,7 +9639,7 @@
   },
   {
    "id": "2330",
-   "titolo": "Modulo Condotta - CAS Centrale",
+   "titolo": "Modulo Conduzione - CAS Centrale",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2330",
    "dal": "2027-10-16",
    "al": "2027-10-17",
