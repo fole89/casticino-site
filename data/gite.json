@@ -1,53 +1,6 @@
 {
  "gite": [
   {
-   "id": "2044",
-   "titolo": "Percorso basso Morcote 600 m - Luganese",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2044",
-   "dal": "2026-11-26",
-   "al": "",
-   "tipo": "Escursionismo",
-   "sigla": "ESC",
-   "gruppi": [
-    "Seniori"
-   ],
-   "capigita": [
-    "Piergiorgio Gin Vassalli"
-   ],
-   "cond": "A",
-   "tecn": "T2",
-   "descrizione": "Percorso basso da Melide a Morcote",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-11-24",
-   "modalita": "",
-   "iscritti": 6,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Esigenze",
-     "Cond. A (poco impegnativo)\nTecn. T2 (Escursione di montagna)"
-    ],
-    [
-     "Tempo della gita, salita/discesa",
-     "3 h"
-    ],
-    [
-     "Carte",
-     "1353 Lugano"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Percorso basso da Melide a Morcote"
-    ],
-    [
-     "Descrizione",
-     "<a href=\"https://ssl.dropnet.ch/casticino/dropbox/touren/files/2044/Gita%2048%20Melide%20-%20Morcote.pdf\" rel=\"noopener\">Gita 48 Melide - Morcote</a>"
-    ]
-   ]
-  },
-  {
    "id": "2105",
    "titolo": "Serata di introduzione a manutenzione e cura sci",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2105",
@@ -71,7 +24,7 @@
    "iscrizione_dal": "2026-05-01",
    "iscrizione_al": "2026-11-25",
    "modalita": "",
-   "iscritti": 7,
+   "iscritti": 6,
    "posti": 0,
    "stato": "",
    "scheda": [
