@@ -1,48 +1,6 @@
 {
  "gite": [
   {
-   "id": "2105",
-   "titolo": "Serata di introduzione a manutenzione e cura sci",
-   "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2105",
-   "dal": "2026-11-27",
-   "al": "",
-   "tipo": "Corso di formazione",
-   "sigla": "COR",
-   "gruppi": [
-    "Attivi",
-    "Giovani",
-    "Seniori"
-   ],
-   "capigita": [
-    "Marco Da Rold",
-    "Richard Knupfer"
-   ],
-   "cond": "",
-   "tecn": "",
-   "descrizione": "Mostriamo come preparare i nostri amati e costosi sci alla nuova imminente stagione; come si toglie la ruggine dagli spigoli, che poi verranno affilati come rasoi. Quindi il fondo verrà riportato allo splendore che aveva appena uscito dal negozio e quindi impregnato da un sottile strato di cera, rigorosamente priva di fluoro, che li renderà dei missili su ogni tipo di neve. Sperando che la neve appunto arrivi....",
-   "iscrizione": true,
-   "iscrizione_dal": "2026-05-01",
-   "iscrizione_al": "2026-11-25",
-   "modalita": "",
-   "iscritti": 6,
-   "posti": 0,
-   "stato": "",
-   "scheda": [
-    [
-     "Ritrovo",
-     "Canvetto luganese"
-    ],
-    [
-     "Percorso / Dettagli",
-     "Mostriamo come preparare i nostri amati e costosi sci alla nuova imminente stagione; come si toglie la ruggine dagli spigoli, che poi verranno affilati come rasoi. Quindi il fondo verrà riportato allo splendore che aveva appena uscito dal negozio e quindi impregnato da un sottile strato di cera, rigorosamente priva di fluoro, che li renderà dei missili su ogni tipo di neve. Sperando che la neve appunto arrivi...."
-    ],
-    [
-     "Informazione supplementare",
-     "Serata di preparazione sci: sciolina, spigoli e buchi sul fondo, cura delle pelli e dell&#x27;equipaggiamentodi sicurezza (pala, Sonda, ARTVA)\nCanvetto luganese ore 19.00"
-    ]
-   ]
-  },
-  {
    "id": "2145",
    "titolo": "Teambuilding capigita - Weekend di sci - VS",
    "link": "https://ssl.dropnet.ch/casticino/gite/index.php?page=detail&touren_nummer=2145",
@@ -137,7 +95,7 @@
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "2026-12-01",
    "modalita": "",
-   "iscritti": 33,
+   "iscritti": 32,
    "posti": 30,
    "stato": "completa",
    "scheda": [
@@ -4135,7 +4093,7 @@
    "iscrizione_dal": "2026-11-01",
    "iscrizione_al": "2026-12-31",
    "modalita": "",
-   "iscritti": 4,
+   "iscritti": 5,
    "posti": 6,
    "stato": "",
    "scheda": [
@@ -4319,7 +4277,7 @@
    ],
    "cond": "",
    "tecn": "LCI",
-   "descrizione": "Presentazione dei programmi dei corsi, del materiale di alpinismo e di arrampicata, iscrizione definitiva con pagamento della quota rimanente. - Serata di presentazione, 12 aprile 2027, ore 20.00, SP Trevano - 1a uscita, 1 -2 maggio 2027, Piemonte - 2a uscita, 151617 maggio 2027, Locarnese - 3a uscita, 1213 giugno 2027, Alpi centrali 50% della quota di iscrizione da pagare al momento dell'annuncio al corso 50% al momento dell'iscrizione definitiva",
+   "descrizione": "Presentazione dei programmi dei corsi, del materiale di alpinismo e di arrampicata, iscrizione definitiva con pagamento della quota rimanente. - Serata di presentazione, 12 aprile 2027, ore 20.00, SP Trevano - 1a uscita, 17 -18 aprile 2027, Piemonte - 2a uscita, 151617 maggio 2027, Locarnese - 3a uscita, 1213 giugno 2027, Alpi centrali 50% della quota di iscrizione da pagare al momento dell'annuncio al corso 50% al momento dell'iscrizione definitiva",
    "iscrizione": true,
    "iscrizione_dal": "2026-10-01",
    "iscrizione_al": "",
@@ -4342,7 +4300,7 @@
     ],
     [
      "Percorso / Dettagli",
-     "Presentazione dei programmi dei corsi, del materiale di alpinismo e di arrampicata, iscrizione definitiva con pagamento della quota rimanente.\n- Serata di presentazione, 12 aprile 2027, ore 20.00, SP Trevano\n- 1a uscita, 1 -2 maggio 2027, Piemonte\n- 2a uscita, 15/16/17 maggio 2027, Locarnese\n- 3a uscita, 12/13 giugno 2027, Alpi centrali\n\n50% della quota di iscrizione da pagare al momento dell&#x27;annuncio al corso\n50% al momento dell&#x27;iscrizione definitiva"
+     "Presentazione dei programmi dei corsi, del materiale di alpinismo e di arrampicata, iscrizione definitiva con pagamento della quota rimanente.\n- Serata di presentazione, 12 aprile 2027, ore 20.00, SP Trevano\n- 1a uscita, 17 -18 aprile 2027, Piemonte\n- 2a uscita, 15/16/17 maggio 2027, Locarnese\n- 3a uscita, 12/13 giugno 2027, Alpi centrali\n\n50% della quota di iscrizione da pagare al momento dell&#x27;annuncio al corso\n50% al momento dell&#x27;iscrizione definitiva"
     ],
     [
      "Formalità di iscrizione",
